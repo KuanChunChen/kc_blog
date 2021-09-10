@@ -1,0 +1,51 @@
+[
+  
+    {
+      "title"    : "[Android][Kotlin][RxJava]「進階篇」RxJava 進階 - 一個extension funcion 實現網路連線Token重取",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2021/02/19/android-kt-rxjava/",
+      "date"     : "2021-02-19 21:37:48 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin]Google Map decode polyline 預估路徑/畫線 解碼教學",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and Google map",
+      "url"      : "/2020/12/07/android-kt-map/",
+      "date"     : "2020-12-07 21:22:14 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解",
+      "category" : "",
+      "tags"     : "Android, Kotlin, inline, noinline, and crossinline",
+      "url"      : "/2020/11/30/android-kt-inline/",
+      "date"     : "2020-11-30 21:01:43 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/21/android-kotlin-custom-view-03/",
+      "date"     : "2020-11-21 15:44:20 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/20/android-kotlin-custom-view-02/",
+      "date"     : "2020-11-20 16:04:13 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/14/android-kotlin-custom-view-01/",
+      "date"     : "2020-11-14 15:30:18 +0800"
+    } 
+  
+]
