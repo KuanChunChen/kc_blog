@@ -87,8 +87,7 @@ repo.getPaymentData(paymentRequest)
 
 ```
 .retryNoKeyWhenError(resetRequest = {                       
-     repo.
-          getPaymentData(resetRequestToken(paymentRequest))                })
+     repo.getPaymentData(resetRequestToken(paymentRequest))})
 ```
 
 **2. 我們將擴充的function單獨拉出來看**
@@ -103,7 +102,9 @@ repo.getPaymentData(paymentRequest)
  (這邊是自行定義的enum類，主要是簽章或token過期的情況，這邊大家可以自行定義)<br>
 
  ```
- State.FAIL_SIGNATURE_ERROR.value            State.FAIL_SIGNATURE_EXPIRED.value        State.FAIL_KEY_TOKEN_EXPIRED.value
+ State.FAIL_SIGNATURE_ERROR.value
+ State.FAIL_SIGNATURE_EXPIRED.value
+ State.FAIL_KEY_TOKEN_EXPIRED.value
  ```
  就會執行重取token的API並儲存想要的資料後，再返回對應的資料，再把原先錯誤情形回傳給observer
 
