@@ -11,7 +11,7 @@
   <meta name='description' content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <link rel="shortcut icon" href="{{site.baseurl}}/images/kc_icon.png">
 
-  <meta name='title' content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name='og:image' content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
   <meta name='image' content="{% if page.image %}/images/{{ page.image }}{% else %}{{ site.author-image }}{% endif %}">
 
   <!-- bootstarp -->
