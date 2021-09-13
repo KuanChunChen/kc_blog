@@ -52,7 +52,7 @@ Jetpack Compose是一種完全用kotlin程式碼 <br>
 <h2>具體做法</h2>
 <h4>前言</h4> <br>
 最後做出來在IDE預覽可能會長成這樣<br>
-左邊寫code右邊是用preview doma
+左邊寫code右邊是用預覽畫面
 <br>
 
 <div align="center">
