@@ -29,6 +29,9 @@ mailchimp: # Add your MailChimp form identifier. For example - blogenjoyfreedom.
 # Google Analytics
 google-analytics: G-TS24BQ2JDT
 
+# Facebook App ID
+facebook-appid: 374092904421484
+
 # Comment Section (Disqus)
 disqus-identifier: K.C # Add your shortname for Disqus Comment. For example mr-brown
 
