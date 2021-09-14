@@ -41,7 +41,7 @@ layout: home
         </div>
       </div>
       {% include newsletter.html %}
-      {% include facebook/facebook-message-comment.html %}
+
       <div class="c-recent-post">
         <h4 class="c-recent__title">You might also enjoy</h4>
         <div class="c-recent__box">
@@ -61,9 +61,10 @@ layout: home
         {% endfor %}
         </div>
       </div> <!-- /.c-recent-post -->
-      {% if site.disqus-identifier %}
-        {% include disqus-comments.html %}
-      {% endif %}
+      <!-- {% if site.disqus-identifier %} -->
+        <!-- {% include disqus-comments.html %} -->
+      <!-- {% endif %} -->
+      {% include facebook/facebook-message-comment.html %}
     </div> <!-- /.c-wrap-content -->
   </div> <!-- /.c-article__content -->
 </article> <!-- /.c-article-page -->
