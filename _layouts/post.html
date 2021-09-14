@@ -35,13 +35,13 @@ layout: home
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url }}" title="Share
-          on Twitter" rel="nofollow" target="_blank"><div data-icon='ei-sc-twitter' data-size='s'></div></a>
+          {% include twitter/twitter-share-button.html %}
           {% include facebook/facebook-share-button.html %}
           <!-- <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       {% include newsletter.html %}
+      {% include facebook/facebook-message-comment.html %}
       <div class="c-recent-post">
         <h4 class="c-recent__title">You might also enjoy</h4>
         <div class="c-recent__box">
