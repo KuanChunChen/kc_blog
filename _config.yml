@@ -46,6 +46,7 @@ paginate_path: "/page/:num/"
 
 include:
   - _pages
+  - _site
 
 sass:
   sass_dir: _sass
@@ -53,6 +54,6 @@ sass:
 
 # Exclude from processing.
 exclude:
-  # - Gemfile
-  # - Gemfile.lock
+  - Gemfile
+  - Gemfile.lock
   - vendor
