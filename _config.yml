@@ -53,6 +53,6 @@ sass:
 
 # Exclude from processing.
 exclude:
-  - Gemfile
+  # - Gemfile
   - Gemfile.lock
   - vendor
