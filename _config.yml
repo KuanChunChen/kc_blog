@@ -54,5 +54,5 @@ sass:
 # Exclude from processing.
 exclude:
   # - Gemfile
-  - Gemfile.lock
+  # - Gemfile.lock
   - vendor
