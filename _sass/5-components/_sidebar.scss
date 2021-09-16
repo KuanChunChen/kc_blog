@@ -70,6 +70,23 @@
     margin: 0 auto 15px;
     font-size: 13px;
   }
+  .c-author__donate{
+    position: relative;
+
+    height: auto;
+    a{
+      width: 33px;
+      height: 25px;
+    }
+    .c-donate__paypal{
+      .icon {
+        width: 33px;
+        height: 25px;
+      }
+
+    }
+
+  }
 }
 
 .c-sidebar-footer {
