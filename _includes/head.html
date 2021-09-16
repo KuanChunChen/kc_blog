@@ -25,12 +25,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 
-  <!-- <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0&appId=374092904421484&autoLogAppEvents=1" nonce="ftNbWbEI"></script> -->
-<!-- FB JaveScript init -->
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0&appId=374092904421484&autoLogAppEvents=1" nonce="RRFqneEF"></script>
-
+  {% include facebook/facebook-root-init.html %}
   <style>
     {% capture include_to_scssify %}
       {% include main.scss %}
