@@ -103,7 +103,7 @@ val state = remember {
 
 根據官方解釋 <br>
 當可觀察的state狀態改變時<br>
-都會觸發系統讓compose去重組<br>
+會觸發系統讓compose去重組<br>
 所以我們可以利用這個特性<br>
 去實時變更我們compose元件的內容<br>
 
