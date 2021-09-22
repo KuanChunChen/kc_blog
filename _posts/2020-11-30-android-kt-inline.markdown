@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解"
 date: 2020-11-30 21:01:43 +0800
-image: inline01.png
+image: cover/inline01.png
 tags: [Android,Kotlin,inline,noinline,crossinline]
 categories: Android
 ---
@@ -31,7 +31,7 @@ inline 實際上的作用，<br>
 說明了預期要帶入function type 變數才能有效提升效能表現。<br>
 
 <div align="center">
-  <img src="/images/inline/inline-02.png" alt="Cover" width="1000%"/>
+  <img src="/images/cover/inline/inline-02.png" alt="Cover" width="1000%"/>
 </div>
 <br>
 所以，我們試著寫出一個帶入function type的function，<br>

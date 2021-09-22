@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][RxJava]「進階篇」RxJava 進階 - 一個extension funcion 實現網路連線Token重取"
 date: 2021-02-19 21:37:48 +0800
-image: android-photo.jpg
+image: cover/android-photo.jpg
 tags: [Android,Kotlin]
 categories: Android
 ---

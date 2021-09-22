@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view"
 date: 2020-11-21 15:44:20 +0800
-image: android-photo.jpg
+image: cover/android-photo.jpg
 tags: [Android,Kotlin]
 categories: Android
 ---

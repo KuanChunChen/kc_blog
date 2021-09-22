@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄"
 date: 2020-11-14 15:30:18 +0800
-image: android-photo.jpg
+image: cover/android-photo.jpg
 tags: [Android,Kotlin]
 categories: Android
 ---
@@ -17,7 +17,7 @@ Hello,大家好,這裡是Elegant Access的 KC
 首先最容易讓人理解的方式，就是直接先上影片，效果如影片：
 
 <div align="center">
-  <img src="/images/kt-demo-git01.gif" alt="Cover" width="30%"/>
+  <img src="/images/kt-demo-custom/kt-demo-git01.gif" alt="Cover" width="30%"/>
 </div>
 
 <p> </p>
@@ -49,8 +49,8 @@ Hello,大家好,這裡是Elegant Access的 KC
 像是能夠隨著滑動，正中央imageView淡入，淡出的效果。
 
 <div align="center">
-  <img src="/images/kt-demo-jpg01.jpeg" alt="Cover" width="30%" >
-  <img src="/images/kt-demo-jpg02.jpeg" alt="Cover" width="30%" >
+  <img src="/images/kt-demo-custom/kt-demo-jpg01.jpeg" alt="Cover" width="30%" >
+  <img src="/images/kt-demo-custom/kt-demo-jpg02.jpeg" alt="Cover" width="30%" >
 </div>
 
 
@@ -63,8 +63,8 @@ Hello,大家好,這裡是Elegant Access的 KC
 </ol>
 
 <div align="center">
-  <img src="/images/kt-demo-jpg03.jpeg" alt="Cover" width="30%" >
-  <img src="/images/kt-demo-jpg04.jpeg" alt="Cover" width="30%" >
+  <img src="/images/kt-demo-custom/kt-demo-jpg03.jpeg" alt="Cover" width="30%" >
+  <img src="/images/kt-demo-custom/kt-demo-jpg04.jpeg" alt="Cover" width="30%" >
 </div>
 
 <br>
@@ -79,7 +79,7 @@ Hello,大家好,這裡是Elegant Access的 KC
 
 <div align="start">
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-02/">
-    <img src="/images/android-photo.jpg" alt="Cover" width="30%" >
+    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-02/">[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</a>

@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view"
 date: 2020-11-20 16:04:13 +0800
-image: android-photo.jpg
+image: cover/android-photo.jpg
 tags: [Android,Kotlin]
 categories: Android
 ---
@@ -80,7 +80,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 <div align="start">
   <a href="{{site.baseurl}}/2020/11/21/android-kotlin-custom-view-03/">
-    <img src="/images/android-photo.jpg" alt="Cover" width="30%" >
+    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
   <a href="{{site.baseurl}}/2020/11/21/android-kotlin-custom-view-03/">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 -橫向左右滾動recycler view</a>
@@ -90,7 +90,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 <div align="start">
   <a href="{{site.baseurl}}/2020/11/14/android-kotlin-custom-view-01/">
-    <img src="/images/android-photo.jpg" alt="Cover" width="30%" >
+    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-01/">[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</a>
