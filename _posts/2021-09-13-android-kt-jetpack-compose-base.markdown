@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例"
 date: 2021-09-13 16:00:48 +0800
-image: cover/jetpackComposeCover.png
+image: cover/ea-website-base-cover-photo.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 ---

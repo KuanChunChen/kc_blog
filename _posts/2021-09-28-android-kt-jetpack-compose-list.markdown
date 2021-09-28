@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！"
 date: 2021-09-28 11:03:41 +0800
-image: cover/jetpackcompose_lazycolume.png
+image: cover/ea-website-lazy-colume-cover-photo.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 ---
@@ -39,12 +39,12 @@ categories: JetpackCompose
 
 <div align="start">
   <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">
-    <img src="/images/cover/android-photo.jpg" alt="Cover" width="20%" >
+    <img src="/images/cover/ea-website-base-cover-photo.png" alt="Cover" width="20%" >
   </a>
-  <a align="right" href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a><br>
+  <a align="right" href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a><br><br>
 
   <a href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">
-    <img src="/images/cover/android-photo.jpg" alt="Cover" width="20%" >
+    <img src="/images/cover/ea-website-splash-cover-photo.png" alt="Cover" width="20%" >
   </a>
 
   <a align="right" href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面</a><br>

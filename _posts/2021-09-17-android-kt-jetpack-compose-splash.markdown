@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面"
 date: 2021-09-17 15:02:11 +0800
-image: cover/jetpackComposeCover.png
+image: cover/ea-website-splash-cover-photo.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 ---
@@ -36,7 +36,7 @@ categories: JetpackCompose
 <br>
 <div align="start">
   <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">
-    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
+    <img src="/images/cover/ea-website-base-cover-photo.png" alt="Cover" width="20%" >
   </a>
 
   <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a>

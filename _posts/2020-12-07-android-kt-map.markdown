@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin]Google Map decode polyline 預估路徑/畫線 解碼教學"
 date: 2020-12-07 21:22:14 +0800
-image: googlemap/map01.jpeg
+image: cover/ea-website-google-map-decode-cover-photo.png
 tags: [Android,Kotlin,Google map]
 categories: Android
 ---
