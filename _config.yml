@@ -28,7 +28,7 @@ mailchimp: # Add your MailChimp form identifier. For example - blogenjoyfreedom.
 
 # Google Analytics
 google-analytics: G-TS24BQ2JDT
-
+google_ad_client: 5317402524376092
 # Facebook App ID
 facebook-appid: 374092904421484
 

@@ -17,7 +17,7 @@ categories: MemoryManagement
 
 
 <h2>Android Memory Note</h2>
-
+<br>
 heap：<br>
 Android virtual machine 會持續追蹤heap中的記憶體分配<br>
 而heap是一塊記憶體用來存放系統分配的 java / kotlin object<br>
@@ -41,7 +41,7 @@ Android會限制每個heap的size<br>
 
 
 <h2>Frequent Garbage Collection</h2>
-
+<br>
 之前看國外文章他也稱GC為 memory churn<br>
 換句話說就是 <br>
 GC通常發生在短時間內需要記憶體時<br>
@@ -88,3 +88,41 @@ val demoBitmap = BitmapFactory.decodeResource(itemView.context.resources, R.draw
 當然使用緩存也是有可能造成OOM<br>
 所以也需要定義或特地條件下必需清除緩存等<br>
 可以根據專案遇到的問題去優化<br>
+
+
+<h2>Android Memory Leak</h2>
+<br>
+
+
+gc 無法清除掉的object leak 的 reference<br>
+因為它認為可能有些地方還需要使用這個reference<br>
+同常這種情況就稱為memory leak<br>
+
+Inner Classes :當內部類與外部類有reference時，有可能產生memory leak<br>
+例如：
+<script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
+像是上面這段code<br>
+就是因為內部class存取了外部showResult<br>
+而因為AsyncTask會在背景執行<br>
+可能遇到activity已經finish了<br>
+但AsyncTask還在執行<br>
+因此可能造成memory leak<br>
+
+解決這問題的思路<br>
+可以把呼叫外部類的方法拿掉<br>
+或是改用其他方法去存取外部累<br>
+如可以使用弱引用<br>
+<script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
+
+用weakreference依舊可以存取外部類<br>
+不過他不會像是強引用一樣強以至於不會持續保留在記憶體內<br>
+當gc沒有找到object的強引用時則會去找它並將到設為null<br>
+
+Anonymous Classes:有些匿名類存活的時間比外部時間長<br>
+造成memory leak<br>
+
+Static Variables: 使用companion object 或static 來修飾某些類時
+會造成object一開始就載入<br>
+之後釋放不掉<br>
+導致memory leak<br>
+例如 static activity
