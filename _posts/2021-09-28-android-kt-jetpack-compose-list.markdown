@@ -139,3 +139,12 @@ val model: DeviceViewModel by activityViewModels()
 所以之後要只要觀察到viewmodel內livedata有變化後<br>
 畫面就會自動更新了<br>
 真的挺方便啊！<br>
+
+接下來會介紹如何<br>
+新增下拉刷新<br><br>
+
+<a href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
+  <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="20%" >
+</a>
+
+<a align="right" href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">[Android][Kotlin][JetpackCompose]基礎篇(3) - JetpackCompose SwipeRefresh 輕鬆讓list刷新！</a><br>
