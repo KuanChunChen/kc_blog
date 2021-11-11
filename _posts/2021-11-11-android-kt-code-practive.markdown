@@ -49,4 +49,29 @@ categories: Coding
 
 沒有返回false
 如果都正確
-則執行最後一行true 
+則執行最後一行true
+
+<h1>題目2</h1>
+給定一字串找出重複最多次的子字串，<br>
+如abcdabcd ->abcd 重複2次 <br>
+abababab ->ab重複4次<br>
+
+這題我想很久<br>
+不過我想不到快速的解法<br>
+所以就想說用暴力法破解<br>
+這個思路就是<br>
+先遍歷整個字串<br>
+塞出可能的組合<br>
+再把重複最多次的那個子字串抓出來<br>
+找出題目要的index或重複次數還是字串 （我有點忘記實際被問的是哪個結果<br>
+不過這樣可能就要用到2~3個迴圈<br>
+這樣時間複雜度就要O(n^3)了<br>
+這樣感覺很爛<br>
+所以我後來上網查<br>
+找到有人用LPS演算法去解<br>
+但我還在研究<br>
+之後會補上<br>
+我研究過後的解說跟理解<br>
+
+先放個參考網址：
+https://www.geeksforgeeks.org/find-given-string-can-represented-substring-iterating-substring-n-times/
