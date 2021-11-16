@@ -16,7 +16,7 @@ categories: Bluetooth
 所以自己有研究實際上怎麼做到的<br>
 會在今天這篇解說<br>
 
-
+<h1>方法1</h1>
 <h2>Step 1 - 打開開發者模式</h2>
 首先需要開啟開發者模式<br>
 <br>
@@ -152,3 +152,100 @@ FS/data/log/.../btsnoop_hci.log
 變得比較沒那麼靠譜<br>
 不過就當知道這個方法<br>
 之後如果用到也不虧<br>
+
+
+<h1>方法2 - nRF Sniffer + Wireshark 抓取藍芽封包</h1>
+
+<h2>Step 1 - 安裝python 與 pyserial</h2>
+輸入<br>
+
+```
+python --version
+```
+如果有顯示版本<br>
+表示全域環境內已有<br>
+
+<img src="/images/bluetooth/python_version.png" alt="Cover" width="100%" >
+<br>
+沒有的話可以透過<br>
+
+法1:
+<a href = "https://www.python.org/downloads/">python官網</a>
+安裝<br>
+法2:透過brew安裝<br>
+<img src="/images/bluetooth/python_install.png" alt="Cover" width="30%" >
+
+
+在terminal內輸入以下指令<br>
+安裝pyserial<br>
+```
+pip install pyserial
+```
+如出現 Successfully 字樣則表示安裝成功
+
+
+<h2>Step 2 - 安裝 WireShark  </h2>
+
+前往
+<a href = "https://www.wireshark.org/download.html">WireShark 官網</a>
+下載安裝檔
+
+<img src="/images/bluetooth/wireshark_web.png" alt="Cover" width="50%" >
+<br>
+<br>
+選擇屬於你os的版本<br>
+並且像是平常一樣安裝你的套裝軟體<br>
+<br>
+<img src="/images/bluetooth/wireshark_dmg_phtot.png" alt="Cover" width="30%" >
+
+<h2>Step 3 - 安裝 nRF-Sniffer-for-Bluetooth-LE 插件  </h2>
+
+
+透過連結下載
+<a href = "https://www.nordicsemi.com/Products/Development-tools/nRF-Sniffer-for-Bluetooth-LE/Download#infotabs">nRF-Sniffer-for-Bluetooth-LE</a><br>
+
+選擇想要的版本<br>
+版本的Changelog可以在下拉欄看<br>
+<br>
+<img src="/images/bluetooth/nRF_changelog.png" alt="Cover" width="50%" >
+<br><br>
+我是下載4.1.0<br>
+這邊根據自己所需選擇<br>
+
+解壓縮下載的zip後找到extcap資料夾
+<br><br>
+<img src="/images/bluetooth/excap.png" alt="Cover" width="50%" >
+<br><br>
+
+
+並打開WireShark 的About WireShark<br>
+mac版的是在應用程式名稱內<br><br>
+<img src="/images/bluetooth/wireshark_about.png" alt="Cover" width="30%" >
+<br><br>
+
+找到 Golbal Extcap Path <br><br>
+<img src="/images/bluetooth/wireshark_folder.png" alt="Cover" width="60%" >
+<br><br>
+
+extcap是 wireshark放 插件的資料夾<br>
+把上面下載好的nRF-Sniffer-for-Bluetooth-LE extcap資料夾<br>
+內的檔案全部複製到這個資料夾裡<br>
+
+<h2>Step 4 - 使用 官方提供的硬體開始抓封包  </h2>
+
+官網提到 需要以下硬體才能進行抓包
+
+<img src="/images/bluetooth/nRF_dongle.png" alt="Cover" width="60%" >
+<br><br>
+
+上網購買<br>
+或本身就有 插入電腦後直開wireshark<br>
+
+找到連接的 來源選<br>
+nRF Sniffer for Bluetooth LE COMXX<br>
+就能開始抓了<br>
+
+
+結論<br>
+這個方法 抓藍芽封包 比較小雜<br>
+所以如果手邊剛好有設備也能用這個方法試試看<br>
