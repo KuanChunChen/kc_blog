@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Kotlin]如何抓取Android手機中 Bluetooth 藍芽封包日誌"
 date: 2021-11-12 16:16:32 +0800
-image: cover/android-photo.jpg
+image: cover/ea-android_bluetooth_hci_packet.png
 tags: [Android,Bluetooth]
 categories: Bluetooth
 ---
@@ -16,8 +16,15 @@ categories: Bluetooth
 所以自己有研究實際上怎麼做到的<br>
 會在今天這篇解說<br>
 
-<h1>方法1</h1>
-<h2>Step 1 - 打開開發者模式</h2>
+如果你是想要看看怎麼串接gatt server的可以看看這裡<br>
+<a href="{{site.baseurl}}/2021/11/12/android-kotlin-bluetooth-gatt-client/">
+<img src="/images/cover/android-kotlin-bluetooth-gatt-client.png" alt="Cover" width="25%" >
+[Android][Kotlin][2021]Android低功耗藍芽Gatt連線實作教學！</a>
+<br><br>
+
+正文開始：<br>
+# 方法1
+### Step 1 - 打開開發者模式
 首先需要開啟開發者模式<br>
 <br>
 <img src="/images/bluetooth/open_developer.png" alt="Cover" width="30%" >
@@ -34,7 +41,7 @@ categories: Bluetooth
 <img src="/images/bluetooth/developer.png" alt="Cover" width="30%" >
 <br>
 
-<h2>Step 2 - 打開藍芽HCI記錄檔</h2>
+### Step 2 - 打開藍芽HCI記錄檔
 之後進入開發者選項<br>
 打開藍芽HCI記錄檔 選項<br>
 <br>
@@ -57,7 +64,7 @@ categories: Bluetooth
 所以如果你的手機跟我一樣沒有存在有權限read的目錄<br>
 可能可以參考下面步驟去dump出來<br>
 
-<h2>Step 3 - 安裝CLI工具 ADB</h2>
+### Step 3 - 安裝CLI工具 ADB
 
 ADB是Android開發時常用到的Debug工具<br>
 如果你有安裝Android Studio 的話<br>
@@ -71,7 +78,7 @@ ADB是Android開發時常用到的Debug工具<br>
 <a href="https://developer.android.com/studio/releases/platform-tools" class="btn btn-primary" role="button">查看Android Platform Tool</a>
 <br>
 
-<h2>Step 4 - 連接手機並確認USB調用模式</h2>
+### Step 4 - 連接手機並確認USB調用模式
 確認有開啟開發者模式中的USB調用模式<br>
 並確認有連接上pc端<br>
 可以用下面指令確認<br>
@@ -90,7 +97,7 @@ LXXXXXGYPXXCXXXXXX7	device
 
 就是有連到了 <br>
 
-<h2>Step 5 - Dump bluetooth HCI log file</h2>
+### Step 5 - Dump bluetooth HCI log file
 
 因為遇到檔案存在沒權限讀的地方<br>
 所以需要使用指令來dump出來<br>
@@ -154,9 +161,9 @@ FS/data/log/.../btsnoop_hci.log
 之後如果用到也不虧<br>
 
 
-<h1>方法2 - nRF Sniffer + Wireshark 抓取藍芽封包</h1>
+# 方法2 - nRF Sniffer + Wireshark 抓取藍芽封包
 
-<h2>Step 1 - 安裝python 與 pyserial</h2>
+### Step 1 - 安裝python 與 pyserial
 輸入<br>
 
 ```
@@ -184,7 +191,7 @@ pip install pyserial
 如出現 Successfully 字樣則表示安裝成功
 
 
-<h2>Step 2 - 安裝 WireShark  </h2>
+### Step 2 - 安裝 WireShark   
 
 前往
 <a href = "https://www.wireshark.org/download.html">WireShark 官網</a>
@@ -198,7 +205,7 @@ pip install pyserial
 <br>
 <img src="/images/bluetooth/wireshark_dmg_phtot.png" alt="Cover" width="30%" >
 
-<h2>Step 3 - 安裝 nRF-Sniffer-for-Bluetooth-LE 插件  </h2>
+### Step 3 - 安裝 nRF-Sniffer-for-Bluetooth-LE 插件  
 
 
 透過連結下載
@@ -231,7 +238,7 @@ extcap是 wireshark放 插件的資料夾<br>
 把上面下載好的nRF-Sniffer-for-Bluetooth-LE extcap資料夾<br>
 內的檔案全部複製到這個資料夾裡<br>
 
-<h2>Step 4 - 使用 官方提供的硬體開始抓封包  </h2>
+### Step 4 - 使用 官方提供的硬體開始抓封包   
 
 官網提到 需要以下硬體才能進行抓包
 
@@ -247,5 +254,6 @@ nRF Sniffer for Bluetooth LE COMXX<br>
 
 
 結論<br>
-這個方法 抓藍芽封包 比較小雜<br>
-所以如果手邊剛好有設備也能用這個方法試試看<br>
+這個方法 抓藍芽封包 存在個小成本-需要額外設備<br>
+所以如果手邊剛好有設備<br>
+可用這個方法試試看<br>
