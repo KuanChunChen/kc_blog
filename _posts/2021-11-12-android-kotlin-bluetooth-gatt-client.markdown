@@ -249,3 +249,5 @@ requireActivity().bindService(gattServiceIntent, serviceConnection, Context.BIND
 我都覺得沒有到很好用<br>
 所以之後還有研究其他抓包方式<br>
 也會再更新上來<br>
+
+<a>{% include google/google_ad_client.html %}</a>
