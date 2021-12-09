@@ -88,7 +88,7 @@ Ktor這個library<br>
   ```kotlin
   fun Application.module() {...}
   ```
-  這邊則是前檢.conf檔裡面指向要執行的server區塊<br>
+  這邊則是前面.conf檔裡面指向要執行的server區塊<br>
   用了kotlin的extension去寫<br>
 
   <script src="https://gist.github.com/KuanChunChen/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
@@ -132,7 +132,7 @@ Ktor這個library<br>
   就會產生http,https的連線網址給你做對外連線<br>
   這邊port就看你跟你的ktor server怎麼設再修改就行<br>
 
-  ### linebot簽名驗證
+###linebot簽名驗證
 
   看了下line developer文件<br>
   上面有提到<br>
