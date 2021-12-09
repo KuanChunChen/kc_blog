@@ -13,10 +13,10 @@ categories: Ktor
 Ktor這個library<br>
 而在閒暇時間做了一個小小side project <br>
 那就是 :  
- #### 基於Ktor寫的server來串接 line 聊天室機器人<br>
+#### 基於Ktor寫的server來串接 line 聊天室機器人<br>
 
 
- ### 前言
+### 前言
 
  本文最終的目的<br>
  就是完成一個能自動回覆訊息的自製server<br>
@@ -24,7 +24,7 @@ Ktor這個library<br>
  因為能自己接server的話<br>
  就能自訂一些天馬行空的功能XD<br>
 
- #### 最終server運行結果：
+#### 最終server運行結果：
 
  <div align="center">
    <img src="/images/linebot/server_run.png" width="100%"/>
@@ -45,7 +45,7 @@ Ktor這個library<br>
 幫你創建最基本的環境<br>
 效率高很多<br>
 
- #### 最終linebot回覆結果：
+#### 最終linebot回覆結果：
 
  <div align="center">
    <img src="/images/linebot/linebot01.png" width="45%"/>
@@ -59,7 +59,7 @@ Ktor這個library<br>
  相當方便<br>
 
 
-  ### 實作方法
+### 實作方法
 
   首先先創建ktor專案<br>
   我是使用ktor plugin直接幫我創<br>
