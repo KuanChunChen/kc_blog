@@ -250,4 +250,39 @@ requireActivity().bindService(gattServiceIntent, serviceConnection, Context.BIND
 所以之後還有研究其他抓包方式<br>
 也會再更新上來<br>
 
+
+簡單藍芽模組筆記：<br>
+有 經典藍芽(BT) 與 低功耗藍牙(LTE)<br>
+
+### 經典藍芽(BT):<br>
+包含 藍芽1.0 / 1.2 / 2.0+EDR / 2.1+EDR / 3.0+EDR 等基礎上發展和完善起來的<br>
+泛指藍芽4.0以下的模組<br>
+一般用於資料量比較大的傳輸<br>
+如：語音、音樂、較高資料量傳輸等<br>
+
+經典藍芽模組可再細分為<br>
+傳統藍芽模組和高速藍芽模組<br>
+
+傳統藍芽模組在2004年推出<br>
+主要代表是支援藍芽2.1協議的模組<br>
+傳統藍芽有3個功率級別<br>
+Class1 / Class2 / Class3<br>
+分別支援100m / 10m / 1m的傳輸距離<br>
+
+<br>
+高速藍芽模組在2009年推出<br>
+速率提高到約24Mbps<br>
+是傳統藍芽模組的八倍<br>
+
+### 低功耗藍芽模組(BLE):<br>
+泛指藍芽4.0或更高的模組<br>
+藍芽低功耗技術是低成本、短距離<br>
+可工作在2.4GHz ISM射頻頻段<br>
+因為BLE技術採用非常快速的連線方式<br>
+因此平時可以處於“非連線”狀態（節省能源）<br>
+
+Android手機藍芽4.x都是雙模藍芽(既有經典藍芽也有低功耗藍芽)<br>
+
+
+
 <a>{% include google/google_ad_client.html %}</a>
