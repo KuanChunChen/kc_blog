@@ -237,6 +237,44 @@ requireActivity().bindService(gattServiceIntent, serviceConnection, Context.BIND
 
 簡單的連接與尋找裝置<br>
 大概就是這樣<br>
+
+接著藍芽最重要的就是終端之間的通訊<br>
+所以如果想要收送資料<br>
+必需要找出service與characteristic<br>
+這邊先上個圖<br>
+
+<img src="/images/bluetooth/ble_logo.png" alt="Cover" width="50%" >
+這是藍芽連接時大概的關係圖<br>
+
+
+所以我們透過以下方法找出：<br>
+<script src="https://gist.github.com/KuanChunChen/2b6fb90e97f14b00e6a942b43f653644.js"></script>
+將前面透過廣播取得的gatt service帶入<br>
+就可以透過遍歷去取得characteristic<br>
+
+那因為android官方已經有幫你包好characteristic的類了<br>
+所以你要讀取只要透過相關function呼叫:<br>
+
+<script src="https://gist.github.com/KuanChunChen/51be18e662704d9cf0241cc27f5f961b.js"></script>
+<br>
+
+並且他會在之前定義的BluetoothGattCallback內的<br>
+onCharacteristicRead返回給你<br>
+你只要定義好接收廣播就可以得到資料<br>
+
+<script src="https://gist.github.com/KuanChunChen/ebb8318578499bec7f6cf97f4bc93063.js"></script>
+
+
+另外藍芽裡面也有一種notify的方法：<br>
+
+<script src="https://gist.github.com/KuanChunChen/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
+
+一樣返回結果<br>
+BluetoothGattCallback裡面<br>
+onCharacteristicChanged去看<br>
+<script src="https://gist.github.com/KuanChunChen/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
+
+
 如果想看怎麼透過第三方工具<br>
 擷取藍芽封包可以參考：<br>
 
