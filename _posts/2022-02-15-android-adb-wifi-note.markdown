@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Android][2022]用adb來透過wifi 連接Android實機教學"
-date: 2021-02-15 13:46:32 +0800
+date: 2022-02-15 13:46:32 +0800
 image: cover/android-photo.jpg
 tags: [Android,adb]
 categories: Android
