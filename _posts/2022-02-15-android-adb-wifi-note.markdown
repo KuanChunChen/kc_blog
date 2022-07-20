@@ -47,3 +47,9 @@ categories: Android
  adb connect 192.168.0.101:5555
  ```
  就能用wifi控制你的手機了
+
+ 補充：
+ 後來愈到要連線上android TV的方式
+ 但剛好沒遇到沒有usb插槽的情況
+ 這時候就可以去設定->wifi->同個網路下去找ip
+ 就不用透過指令
