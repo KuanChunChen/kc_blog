@@ -44,10 +44,13 @@ categories: DataStructure
  基於上方的實作，只要再透過while迴圈則可以遍歷：<br>
  <script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
+  * 後來自己又想到另一種實作方式，利用kotlin特有的data class來實作：
+  <script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
+
 
  * Linked List Complexity:
-| Time Complexity | Worst Case | Average Case |
-|-----------------|------------|--------------|
-| Search          | O(n)       | O(n)         |
-| Insert          | O(1)       | O(1)         |
-| Deletion        | O(1)       | O(1)         |
+  | Time Complexity | Worst Case | Average Case |
+  |-----------------|------------|--------------|
+  | Search          | O(n)       | O(n)         |
+  | Insert          | O(1)       | O(1)         |
+  | Deletion        | O(1)       | O(1)         |
