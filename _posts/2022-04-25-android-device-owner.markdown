@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Debug][Problem Solved Series]Android Device owner 權限請求與實際作用統整"
 date: 2022-04-25 18:19:28 +0800
-image: cover/problem-solved.jpeg
+image: cover/android-photo.jpg
 tags: [Android,Debug]
 categories: Debug
 ---
@@ -21,21 +21,22 @@ categories: Debug
 要怎麼找答案的過程<br>
 
 * 今天要分享的是<br>
-android 內提供的 Device owner權限
-怎麼獲得它還有能做什麼事
-在這篇我把整過過程分享給大家
+android 內提供的 Device owner權限<br>
+怎麼獲得它<br>
+能做什麼事<br>
+在這篇我把整過過程分享給大家<br>
 <br>
 
 ### 為何要成為Device Owner
-因為這個權限可以讓你使用Android官方提供的 DevicePolicyManager裏面的API<br>
+因為這個權限可以讓你使用Android官方提供的 DevicePolicyManager內的API<br>
 去執行一些普通權限無法達到的需求<br>
 請參考
-[DevicePolicyManager文件](https://developer.android.com/reference/android/app/admin/DevicePolicyManager)
+[DevicePolicyManager文件](https://developer.android.com/reference/android/app/admin/DevicePolicyManager)<br><br>
+當然也有Admin permission可以去用DevicePolicyManager<br>
+不過有的API需要Device Owner<br>
+所以這邊的主要看開發者想要用到哪些功能而決定<br>
 
-補充：
-除了Device Owner外
-下面這個指令 也能透過adb 修改指定app權限
-`adb shell pm grant com.your.package android.permission.CHANGE_CONFIGURATION`
+
 ### 如何成為Device Owner
 
 這邊有幾種方式 可以讓你的Android app 成為device owner  
@@ -102,3 +103,55 @@ android 內提供的 Device owner權限
 
  * 直接Factory Reset手機<br>
  以上其他方法都無法使用時，只能使出終極殺招XD
+
+### Device Admin Receiver建立
+
+* 這個跟Admin權限相輔相成<br>
+需在要當成Device Owner的app內<br>
+建立一個 Admin Receiver <br>
+這樣你在使用Adb 取得權限時<br><br>
+才有後面那段Receiver可以去啟動<br>
+也就是<br>
+adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br>
+
+* Admin權限就是： <br>
+在app內加入Admin權限所需的Receiver<br>
+所以使用者<br>
+也可以在設定內找到`裝置管理員`權限去打開<br>
+但是這跟Device Owner實際上是`不同`的權限 <br>
+`這邊不要搞混了`<br>
+
+* 加入方法可參考官網：[文件](https://developer.android.com/guide/topics/admin/device-admin)<br>
+文件內也有提到一些實際應用例子 可參考<br>
+作法很簡單只需要產生<br>
+`DeviceAdminReceiver`的子類<br>
+再將其加入Manifest.xml內即可<br>
+
+
+
+### Device Owner 實作分享
+
+這邊分享一些之前做過遇到的例子<br>
+不過主要是大概講一下觀念跟實作的部分code<br>
+個人認為不會太難離解<br>
+所以就不會講太細<br>
+
+* 首先就是得拿到DevicePolicyManger與AdminReceiver的實例<br>
+	<script src="https://gist.github.com/KuanChunChen/c12af22551a91a32a6f85cd3da7e3313.js"></script>
+
+* 拿到後，就可以依照自己需要的去呼叫，實作方法大同小異，所以這邊只大概舉幾個例子
+
+	- `隱藏App`
+	 <script src="https://gist.github.com/KuanChunChen/520157aaceb75c79cda052e10f576a26.js"></script>
+	- 加入`User Restriction`
+	 <script src="https://gist.github.com/KuanChunChen/15286f247a2120b4320b4cf5f678560e.js"></script>
+
+* 其他更多例子可以參考google [github](https://github.com/googlesamples/android-testdpc) 內有使用Device Owner的 範例app
+
+
+---
+補充：<br>
+除了Device Owner外<br>
+下面這個指令 也能透過adb 修改指定app權限<br>
+`adb shell pm grant com.your.package android.permission.CHANGE_CONFIGURATION`<br>
+不過他的層級就跟 Device Owner 不太一樣就是了<br>

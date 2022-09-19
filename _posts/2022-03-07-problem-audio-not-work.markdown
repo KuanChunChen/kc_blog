@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Problem Solved Series]Android Audio 調適問題分享"
 date: 2022-03-07 14:31:22 +0800
-image: cover/problem-solved.jpeg
+image: cover/android-developers-ascii-art-light.png
 tags: [Android,Debug]
 categories: Debug
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Problem Solved Series]Android IPC 方案整理分享"
 date: 2022-04-15 15:36:28 +0800
-image: cover/problem-solved.jpeg
+image: cover/android-developers-ascii-art-dark.png
 tags: [Android,Debug]
 categories: Debug
 ---

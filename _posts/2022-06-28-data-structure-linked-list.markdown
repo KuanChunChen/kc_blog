@@ -2,7 +2,7 @@
 layout: post
 title: "[Data Structure][Kotlin][2022]資料結構複習 - Linked List"
 date: 2022-06-28 11:46:12 +0800
-image: data-structure/cpu-linked-list.jpg
+image: cover/data-structure/cpu-linked-list.jpg
 tags: [data structure, algorithm]
 categories: DataStructure
 ---

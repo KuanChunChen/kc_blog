@@ -2,7 +2,7 @@
 layout: post
 title: "[MacOS][Enviroment][2022]My MacOS Development Environment!"
 date: 2022-08-08 14:46:12 +0800
-image: env/neofetch.png
+image: cover/env/neofetch.png
 tags: [macOS, environment]
 categories: macOS
 ---

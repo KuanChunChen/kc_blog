@@ -2,7 +2,7 @@
 layout: post
 title: "[MacOS][Enviroment][2022]WebRtc & Mqtt 名詞解釋筆記"
 date: 2022-02-14 13:50:12 +0800
-image: others/mqtt.png
+image: cover/mqtt.png
 tags: [know-how]
 categories: KnowHow
 ---
