@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TS24BQ2JDT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TS24BQ2JDT');
+</script>
+<!-- /google analytics -->
+
+  
+
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+  <title>[MacOS][Enviroment][2022]My MacOS Development Environment!</title>
+  <meta name='description' content="I always use MacBook pro 13’ to develop the project.So this subject will record the tool I use on my mac.">
+  <link rel="shortcut icon" href="/images/kc_icon.png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:url" content="https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/" />
+<meta property="og:title" content="[MacOS][Enviroment][2022]My MacOS Development Environment!" />
+<meta property="og:description" content="I always use MacBook pro 13’ to develop the project.So this subject will record the tool I use on my mac." />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/env/neofetch.png" />
+<meta property="og:type" content="article" />
+<meta property="fb:app_id" content="374092904421484" />
+
+
+  <!-- Add the pretty code -->
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+
+
+  <link rel='canonical' href="https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/">
+  <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
+
+  <!-- bootstarp -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+  
+    <!-- <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0&appId=374092904421484&autoLogAppEvents=1" nonce="ftNbWbEI"></script> -->
+<!-- FB JaveScript init -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0&appId=374092904421484&autoLogAppEvents=1" nonce="RRFqneEF"></script>
+
+  <style>
+    
+    /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:0.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace, monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace, monospace;font-size:1em}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}audio,video{display:inline-block}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}button,html [type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0}button:-moz-focusring,[type="button"]:-moz-focusring,[type="reset"]:-moz-focusring,[type="submit"]:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:0.35em 0.75em 0.625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{display:inline-block;vertical-align:baseline}textarea{overflow:auto}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}[type="search"]::-webkit-search-cancel-button,[type="search"]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details,menu{display:block}summary{display:list-item}canvas{display:inline-block}template{display:none}[hidden]{display:none}body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,dl,dd,ol,ul,fieldset,legend,figure,hr{margin:0;padding:0}li>ul,li>ol{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}@-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(0.5px, -0.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner .icon__spinner,.icon--ei-spinner-2 .icon__spinner{-webkit-animation:spin 1s steps(12) infinite;animation:spin 1s steps(12) infinite}.icon--ei-spinner-3 .icon__spinner{-webkit-animation:spin 1.5s linear infinite;animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#0088cc}*,*::after,*::before{box-sizing:border-box}h1,h2,h3,h4,h5,h6,ul,ol,dl,blockquote,p,address,hr,table,fieldset,figure,pre{margin-bottom:15px}ul,ol,dd{margin-left:15px}.highlight{background:#f7f7f7}.highlighter-rouge .highlight{background:#eef}.highlight .c{color:#998;font-style:italic}.highlight .err{color:#a61717;background-color:#e3d2d2}.highlight .k{font-weight:bold}.highlight .o{font-weight:bold}.highlight .cm{color:#998;font-style:italic}.highlight .cp{color:#999;font-weight:bold}.highlight .c1{color:#998;font-style:italic}.highlight .cs{color:#999;font-weight:bold;font-style:italic}.highlight .gd{color:#000;background-color:#fdd}.highlight .gd .x{color:#000;background-color:#faa}.highlight .ge{font-style:italic}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{color:#000;background-color:#dfd}.highlight .gi .x{color:#000;background-color:#afa}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:bold}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc{font-weight:bold}.highlight .kd{font-weight:bold}.highlight .kp{font-weight:bold}.highlight .kr{font-weight:bold}.highlight .kt{color:#458;font-weight:bold}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:#008080}.highlight .nb{color:#0086B3}.highlight .nc{color:#458;font-weight:bold}.highlight .no{color:#008080}.highlight .ni{color:#800080}.highlight .ne{color:#900;font-weight:bold}.highlight .nf{color:#900;font-weight:bold}.highlight .nn{color:#555}.highlight .nt{color:#000080}.highlight .nv{color:#008080}.highlight .ow{font-weight:bold}.highlight .w{color:#bbb}.highlight .mf{color:#099}.highlight .mh{color:#099}.highlight .mi{color:#099}.highlight .mo{color:#099}.highlight .sb{color:#d14}.highlight .sc{color:#d14}.highlight .sd{color:#d14}.highlight .s2{color:#d14}.highlight .se{color:#d14}.highlight .sh{color:#d14}.highlight .si{color:#d14}.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc{color:#008080}.highlight .vg{color:#008080}.highlight .vi{color:#008080}.highlight .il{color:#099}body{font-family:"Open Sans",Helvetica Neue,Helvetica,Arial,sans-serif;font-size:15px;line-height:28px;color:#404040;background-color:#fbfbfb;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}*::selection{color:#fff;background-color:#3af}h1,h2,h3,h4,h5,h6{font-family:"Volkhov","Times New Roman",Times,serif;font-weight:400;line-height:initial}h1{font-size:32px}h2{font-size:28px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}img{max-width:100%;height:auto;vertical-align:middle}a{text-decoration:none;color:#3af;transition:.35s}a:hover{color:#0086e6}blockquote{padding-left:15px;border-left:3px solid #3af;font-family:'Volkhov', 'Times New Roman', Times, serif;font-style:normal;font-size:18px;background-color:rgba(220,235,245,0.2)}blockquote p{padding:10px}hr{height:1px;margin:30px 0;border:0;background-color:#f0f0f0}pre{overflow:auto;padding:25px;font-size:14px;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier, monospace}code{overflow:auto;white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:Courier, monospace;font-size:14px;background-color:#f7f7f7}p code,li code{padding:3px 5px}.o-wrapper{max-width:1440px;position:relative}.o-opacity{animation-duration:0.7s;animation-delay:0.2s;animation-fill-mode:both;animation-name:opacity}@keyframes opacity{from{opacity:0}to{opacity:1}}.c-btn{display:inline-block;white-space:nowrap;vertical-align:middle;font-family:'Volkhov', serif;font-size:12px;text-align:center;padding:8px 15px;cursor:pointer;transition:.35s}.c-btn--primary{color:#fff;background-color:#3af;background:#591902}.c-btn--secondary{color:#fff;background-color:#cfcfdd;background:#F2A341}.c-btn--round{border-radius:30px}.c-btn--shadow{box-shadow:8px 10px 20px 0 rgba(46,61,73,0.15)}.c-btn--shadow:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,0.2)}.c-btn--middle{display:block;width:300px;max-width:100%}.c-btn--big{display:block;width:100%}.c-btn:hover{color:#fff;transition:.35s}.c-btn:active{transform:translateY(2px)}.c-sidebar{display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;left:0;bottom:0;width:360px;padding:40px 20px 20px;text-align:center;box-shadow:1px 1px 0 rgba(31,35,46,0.15);background-color:#fff}.c-sidebar-author .c-author__cover{width:100px;height:100px;margin:0 auto 10px;border-radius:50%;overflow:hidden;background-color:#cfcfdd}.c-sidebar-author .c-author__cover img{width:100%;height:100%;border-radius:50%;transition:.35s}.c-sidebar-author .c-author__cover img:hover{transform:scale3d(0.9, 0.9, 1)}.c-sidebar-author .c-contact-menu .c-btn{min-width:110px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:20px;height:20px;vertical-align:text-align;fill:#fff}.c-sidebar-author .c-author__info{font-family:'Volkhov', serif}.c-sidebar-author .c-author__name{font-size:18px;font-weight:700;line-height:21px}.c-sidebar-author .c-author__job{font-size:12px;color:#a0a0a0;margin:5px 0 0}.c-sidebar-author .c-contact-menu{margin:30px 0}.c-sidebar-author .c-contact-menu .c-btn--secondary{margin-right:10px}.c-sidebar-author .c-author__about{max-width:400px;margin:0 auto 15px;font-size:13px}.c-sidebar-author .c-author__donate{position:relative;height:auto}.c-sidebar-author .c-author__donate a{width:33px;height:25px}.c-sidebar-author .c-author__donate .c-donate__paypal .icon{width:33px;height:25px}.c-sidebar-footer .c-social__title{position:relative;font-family:'Volkhov', serif;font-size:15px;font-weight:700;color:#444}.c-sidebar-footer .c-social__title::before{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;left:0;background-color:#444}.c-sidebar-footer .c-social__title::after{content:"";display:block;height:2px;width:calc(50% - 40px);transform:translateY(-50%);position:absolute;top:50%;right:0;background-color:#444}.c-sidebar-footer .c-social__list{list-style-type:none;padding:0;margin:15px 0}.c-sidebar-footer .c-social__list .c-social__item{display:inline-block;width:27px;height:27px}.c-sidebar-footer .c-social__list .icon{width:27px;height:27px;fill:#444;vertical-align:middle;transition:.35s}.c-sidebar-footer .c-social__list .icon:hover{fill:#3af;transform:scale(1.2);transition:.35s}.c-sidebar-footer .c-copyright p{font-size:13px;margin:0}@media only screen and (max-width: 900px){.c-sidebar{position:relative;width:100%;padding:20px}.c-sidebar .c-contact-menu{margin:20px 0}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}@media only screen and (max-width: 480px){.c-sidebar-author .c-author__cover{width:80px;height:80px}.c-sidebar-author .c-author__cover img{width:100%;height:100%}.c-sidebar-author .c-contact-menu{margin:15px 0}.c-sidebar-author .c-contact-menu .c-btn{min-width:80px;font-size:10px;padding:4px 15px;margin-right:5px}.c-sidebar-author .c-contact-menu .c-btn .icon{width:16px;height:16px}.c-sidebar-footer .c-social .c-social__title{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.c-sidebar-footer .c-social__list{margin:0}.c-sidebar-footer .c-social__list .icon{width:25px;height:25px}.c-sidebar-footer .c-copyright{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}}.c-content{position:relative;display:flex;flex-direction:row;flex-wrap:wrap;align-items:stretch;padding:0 20px 0;margin-left:360px}@media only screen and (max-width: 900px){.c-content{position:static;padding:0 15px 0;margin-left:0}}.c-posts{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-post{width:100%;max-width:100%;margin-bottom:20px;display:flex;flex-direction:row;align-items:stretch;min-height:180px;border-radius:10px;overflow:hidden;transition:.35s;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,0.15)}.c-post:hover{transform:translate(0px, -2px);box-shadow:0 15px 45px -10px rgba(10,16,34,0.2)}.c-post .c-post-thumbnail{display:block;width:30%;max-width:100%;min-height:180px;border-radius:10px 0 0 10px;background-color:rgba(220,235,245,0.2);background-size:cover;background-position:50% 50%}.c-post .c-post-content{padding:15px;width:70%}.c-post .c-post-content .c-post-title{font-size:30px;font-weight:400;margin:0 0 15px}.c-post .c-post-content .c-post-title a{text-decoration:none;color:#263959}.c-post .c-post-content .c-post-date,.c-post .c-post-content .c-post-words{font-size:12px}.c-load-more{padding:20px;margin:20px auto 40px;font-size:13px;color:#fff;border:none;background-color:#3af;outline:none}.c-load-more:hover{background-color:#0086e6}@media only screen and (max-width: 1200px){.c-post{width:48%;max-width:100%;margin:0 1% 20px;flex-direction:column}.c-post .c-post-thumbnail{width:100%;border-radius:10px 10px 0 0}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}@media only screen and (max-width: 480px){.c-post{width:100%;max-width:100%;margin:0 0 20px}.c-post .c-post-content{width:100%}.c-post .c-post-content .c-post-title{font-size:21px;margin:15px 0}}.c-article{width:100%;margin:20px 0}.c-wrap-content{padding:20px;background-color:#fff}.c-article__image{position:relative;background-color:rgba(220,235,245,0.2);background-position:center;background-size:cover;background-repeat:no-repeat}.c-article__image:after{content:"";display:block;padding-top:56%}.c-article__header{margin-bottom:20px;text-align:center}.c-article__header .c-article__title{margin-bottom:10px}.c-article__date span{font-size:13px;text-transform:uppercase;color:#a0a0a0}.c-article__footer{margin:30px 0 0;padding-bottom:30px;text-align:center;border-bottom:1px solid #f0f0f0}.c-article__footer .c-article__share{transition:.35s}.c-article__footer .c-article__share a .icon{vertical-align:middle;transition:.35s}.c-article__footer .c-article__share a .icon:hover{opacity:.7;transition:.35s}.c-article__footer .c-article__tag{margin-bottom:5px}.c-article__footer .c-article__tag a{display:inline-block;vertical-align:middle;padding:5px 10px;font-family:'Volkhov', 'Times New Roman', Times, serif;font-size:10px;line-height:10px;text-transform:uppercase;background-color:rgba(115,138,160,0.6);color:#fff}.c-article__footer .c-article__tag a:hover{background-color:rgba(80,100,118,0.6)}.c-article__footer .c-article__tag a:last-child{margin-right:0}.c-recent-post{padding:30px 0}.c-recent-post .c-recent__title{font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:30px}.c-recent-post .c-recent__box{display:flex;flex-direction:row;flex-wrap:wrap}.c-recent-post .c-recent__item{max-width:23%;flex-basis:23%;margin:0 1% 20px;border-radius:10px;overflow:hidden;text-align:center;background-color:#fff;box-shadow:0 1px 1px 0 rgba(31,35,46,0.15);transition:.35s}.c-recent-post .c-recent__item h4{margin-bottom:5px;font-size:12px;text-transform:uppercase}.c-recent-post .c-recent__item h4 a{color:#444}.c-recent-post .c-recent__item:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,0.2)}.c-recent-post .c-recent__footer{padding:15px}.c-recent-post .c-recent__image{display:block;width:100%;min-height:180px;background-color:rgba(220,235,245,0.2);background-size:cover;background-position:center;background-repeat:no-repeat}.c-recent-post .c-recent__date{color:#a0a0a0;font-size:12px}@media only screen and (max-width: 1200px){.c-recent-post .c-recent__item{max-width:48%;flex-basis:48%}}@media only screen and (max-width: 900px){.c-article{margin:15px 0}}@media only screen and (max-width: 480px){.c-wrap-content{padding:15px}.c-article__header{margin-bottom:5px}.c-article__header .c-article__title{font-size:24px;margin-bottom:5px}.c-recent-post .c-recent__item{max-width:100%;flex-basis:100%;margin:0 0 20px}}.c-blog-tags{width:100%;padding:20px;margin:20px 0 40px;background-color:#fff}.c-blog-tags h1{text-align:center;margin-bottom:0}.c-blog-tags h2{font-size:18px;text-transform:uppercase;margin:30px 0;color:#757575}.c-tag__list{list-style:none;padding:0 0 40px;margin:40px 0 0;border-bottom:1px solid #f0f0f0}.c-tag__list li{display:inline-block;margin-right:15px}.c-tag__list li a{color:#404040;text-transform:uppercase;font-size:12px}.c-tag__list li a:hover{color:#000}.c-tag__item{margin-bottom:15px}.c-tag__image{width:50px;height:50px;border-radius:50%;margin-right:5px}@media only screen and (max-width: 480px){.c-blog-tags{padding:15px}.c-blog-tags h1{font-size:27px}.c-blog-tags h2{font-size:16px;margin:15px 0}.c-tag__list{padding:0 0 30px;margin:30px 0 0}.c-tag__item{margin-bottom:5px}.c-tag__image{display:none}}.c-header{position:relative;width:100%;margin:20px 0}.c-header__box{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center}.c-header__box .icon--ei-search{position:absolute;top:7px;left:15px;fill:#ccc}.c-search{width:80%}.c-search .c-search__box{display:flex;align-items:center}.c-search .c-search__text{position:relative;width:100%;padding:10px 10px 10px 40px;border:1px solid #dce4ea;border-radius:30px;outline:none;color:#a0a0a0}.c-search .c-search__text::placeholder{color:#ccc}.c-search .c-search__text:hover{box-shadow:0 1px 0px rgba(132,135,138,0.1);transition:.35s}.c-search .c-search-results-list{position:absolute;width:100%;margin:10px 0 0;list-style-type:none;background-color:#fff;z-index:1}.c-search .c-search-results-list li{display:flex;flex-wrap:wrap;align-items:center;margin:0;padding:20px 25px 0;background-color:#fff;line-height:1.4;border-left:solid 1px #edeeee;border-right:solid 1px #edeeee}.c-search .c-search-results-list li:first-child{border-top-left-radius:5px;border-top-right-radius:5px;border-top:solid 1px #edeeee}.c-search .c-search-results-list li:last-child{border-bottom-left-radius:5px;border-bottom-right-radius:5px;padding-bottom:25px;border-bottom:solid 1px #edeeee}.c-search .c-search-results-list li a{font-size:16px}.c-nav{flex-grow:1;padding-left:20px}.c-nav .c-nav__list{display:flex;justify-content:flex-end}.c-nav .c-nav__list .c-nav__item{display:flex;align-items:center;float:left;padding:4px 10px;font-size:10px;text-transform:uppercase;white-space:nowrap;border:1px solid #dce4ea;box-shadow:0 1px 0px rgba(132,135,138,0.4);will-change:transform;transform:translateY(0px);cursor:pointer}.c-nav .c-nav__list .c-nav__item:hover{color:#222;background-color:#fff}.c-nav .c-nav__list .c-nav__item.is-active{box-shadow:0 0 0 rgba(132,135,138,0.5);transform:translateY(1px);color:#cfcfdd}.c-nav .c-nav__list .c-nav__item.is-active:hover{background-color:#fbfbfb}.c-nav .c-nav__list .c-nav__item:first-child{border-radius:10px 0 0 10px}.c-nav .c-nav__list .c-nav__item:last-child{border-radius:0 10px 10px 0}.c-nav .c-nav__list .c-nav__item .icon{width:20px;height:20px;margin-right:3px;margin-bottom:10px}@media only screen and (max-width: 900px){.c-header{margin:15px 0}}@media only screen and (max-width: 480px){.c-header .c-header__box{flex-direction:column}.c-header .c-search{width:100%}.c-header .c-search .c-search__text{padding:8px 8px 8px 40px}.c-header .c-nav{margin-top:15px}.c-header .c-nav .c-nav__list{justify-content:center}.c-header .c-nav .c-nav__item{padding:4px 8px}}.c-categories{width:100%}.c-categories__list{width:100%;display:flex;flex-direction:row;flex-wrap:wrap}.c-categories__item{max-width:25%;flex-basis:25%;padding:0 10px 20px}.c-categories__link{height:100%;display:flex;flex-direction:column;align-items:center;padding:20px 10px;border-radius:5px;box-shadow:5px 5px 25px rgba(46,61,73,0.15);background-color:#fff;transition:.35s}.c-categories__link:hover{box-shadow:2px 4px 8px 0px rgba(46,61,73,0.2)}.c-categories__link:hover .c-categories__img .c-categories__more{opacity:1;transition:.35s}.c-categories__link .c-categories__container{width:100%;word-wrap:break-word}.c-categories__link .c-categories__container.c-empty-figure{display:flex;flex-direction:column;justify-content:center;flex-grow:1}.c-categories__img{position:relative;max-width:100%}.c-categories__img figure{position:relative;width:200px;max-width:100%;margin-bottom:20px;overflow:hidden;background-size:cover;background-repeat:no-repeat;background-position:center;border-radius:50%;box-shadow:inset 0 1px 3px rgba(141,165,185,0.3)}.c-categories__img figure:after{content:"";display:block;padding-top:100%}.c-categories__img figure:before{content:"";position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,0.15)}.c-categories__img .c-categories__more{display:inline-block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);font-weight:700;color:#fff;text-transform:uppercase;text-shadow:0 1px 0 rgba(104,172,191,0.3);opacity:0;transition:.35s}.c-categories__container{text-align:center}.c-categories__container .c-categories__header{font-size:13px;margin-bottom:10px;font-weight:normal;text-transform:uppercase;color:#404040}.c-categories__container .c-categories__count{font-family:'Volkhov', serif;font-size:12px;color:#404040;margin-bottom:0}.c-categories__container .c-categories__count span{display:inline-block;width:20px;height:20px;line-height:20px;vertical-align:baseline;margin-right:5px;border-radius:50%;color:#fff;background-color:#ee6c6c}@media only screen and (max-width: 1200px){.c-categories .c-categories__item{max-width:33.333%;flex-basis:33.333%}}@media only screen and (max-width: 1050px){.c-categories .c-categories__item{max-width:50%;flex-basis:50%}}@media only screen and (max-width: 480px){.c-categories .c-categories__item{max-width:100%;flex-basis:100%;padding:0 0 20px}}.c-form-box{position:absolute;top:0;width:calc(100% - 40px);min-height:100vh;padding:0 20px;background-color:#fff;z-index:1}.c-form-bnt__close{position:absolute;top:0px;left:0;width:30px;height:30px;cursor:pointer;transition:.35s}.c-form-bnt__close:hover{transform:scale(0.8);opacity:.8}.c-form{position:relative;width:750px;max-width:100%;margin:40px auto}.c-form .c-form__title{margin:0 0 40px;min-width:0;border:0;padding:0;font-family:"Volkhov","Times New Roman",Times,serif;text-transform:uppercase;text-align:center}.c-form a{color:#404040}.c-form__group{margin-bottom:20px}.c-form__group label{display:block;text-transform:uppercase;font-size:10px}.c-form__group input,.c-form__group textarea{width:100%;padding:10px 15px;color:#404040;border:1px solid #dce4ea;outline:none;transition:.35s}.c-form__group input:focus,.c-form__group textarea:focus{box-shadow:0 4px 25px rgba(132,135,138,0.1)}.c-form__group button{padding:20px;text-transform:uppercase;outline:none;border:none}.c-thank-you p{position:relative;padding:20px 40px;width:750px;max-width:100%;text-transform:uppercase;font-size:12px;line-height:18px;font-weight:700;margin:40px auto 0;text-align:center;color:#fff;background:linear-gradient(135deg, #55b5ad 0%, #5ec9c5 100%)}.c-thank-you p .c-form-bnt__close{width:25px;height:25px;background:transparent}.c-thank-you p a{color:#fff}@media only screen and (max-width: 900px){.c-form-box{width:100%;left:0;right:0}}@media only screen and (max-width: 480px){.c-form-bnt__close{width:25px;height:25px}}.c-newsletter{padding:30px 0 60px;margin:0 auto;border-bottom:1px solid #f0f0f0}.c-newsletter__header{text-align:center}.c-newsletter__header .c-newsletter__title{font-size:14px;text-transform:uppercase;text-align:center}.c-newsletter__header .c-newsletter__subtitle{margin-bottom:15px}.c-newsletter-form{width:100%;max-width:750px;margin:0 auto}.c-newsletter-form .c-newsletter-form__group{display:flex}.c-newsletter__email{width:70%;height:40px;padding:10px 15px;border:1px solid #ddd;border-right-color:transparent;outline:none;transition:.35s}.c-newsletter__email:focus{box-shadow:0 4px 25px rgba(132,135,138,0.1)}.c-newsletter__button{width:30%;height:40px;color:#fff;background-color:#3af;transition:.35s;border:none;outline:none;cursor:pointer}.c-newsletter__button:hover{background-color:#0086e6}@media only screen and (max-width: 480px){.c-newsletter__button{font-size:13px}}.c-comments{padding:30px 0;border-top:1px solid #f0f0f0}.c-top{position:fixed;width:40px;height:40px;bottom:20px;color:#757575;cursor:pointer;transition:.35s;right:-100px;z-index:10;opacity:.5}.c-top--active{right:15px}.c-top:hover{color:#757575;opacity:1}.u-text-left{text-align:left}.u-text-right{text-align:right}.u-text-center{text-align:center}.u-text-justify{text-align:justify}.u-block{display:block}.u-inline-block{display:inline-block}.u-inline{display:inline}.u-full-width{display:block;width:100%}.u-vertical-center{display:flex;align-items:center;justify-content:center}.u-responsive-image{max-width:100%;height:auto;vertical-align:middle}.u-show{display:block !important}.u-hide{display:none !important}.u-invisible{visibility:hidden}.u-float-left{float:left}.u-float-right{float:right}.u-no-padding-top{padding-top:0}.u-no-padding-bottom{padding-bottom:0}.u-no-padding-left{padding-left:0}.u-no-padding-right{padding-right:0}.u-no-padding{padding:0}.u-no-margin-top{margin-top:0}.u-no-margin-bottom{margin-bottom:0}.u-no-margin-left{margin-left:0}.u-no-margin-right{margin-right:0}.u-no-margin{margin:0}.u-lists-reset{list-style-type:none;margin:0;padding:0}.u-clearfix::before,.u-clearfix::after{content:"";display:table;clear:both}.u-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px;word-wrap:normal !important}.tg{border-collapse:collapse;border-spacing:0}.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal}.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal}.tg .tg-vrid{background-color:#2C2F31;border-color:inherit;color:#E8E6E3;font-weight:bold;text-align:left;vertical-align:top}.tg .tg-3b1y{background-color:#2C2F31;border-color:inherit;color:#E8E6E3;text-align:left;vertical-align:top}.tg .tg-3rup{background-color:rgba(55,60,62,0.2);border-color:inherit;color:#E8E6E3;text-align:left;vertical-align:top}
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="o-wrapper">
+    <aside class="c-sidebar">
+  <div class="c-sidebar-author">
+    <div class="c-author__cover">
+      <a href="/">
+        <img src="/images/champion.JPG" alt="Willy Chen">
+      </a>
+    </div>
+
+    <div class="c-author__info">
+      <div class="c-author__name">Willy Chen</div>
+      <span class="c-author__job">Android Developer</span>
+    </div>
+
+
+    <div class="c-contact-menu">
+      
+      <a href="mailto:championsheeps@gmail.com" class="c-contact-btn c-btn c-btn--secondary c-btn--round c-btn--shadow"><span class="img-responsive" data-icon='ei-envelope' data-size='s'></span> Send me</a>
+      
+      
+      <a href="https://www.linkedin.com/in/kuan-chun-chen-3b703216b" class="c-btn c-btn--primary c-btn--round c-btn--shadow"><span data-icon='ei-sc-linkedin' data-size='s'></span> Follow me</a>
+      
+    </div>
+    <p class="c-author__about">I am a Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.</p>
+
+
+  </div>
+
+  <div class="c-sidebar-footer">
+    <div class="c-social">
+      <div class="c-social__title">Social</div>
+      <a><div
+  id ="like-donate"
+  class="likecoin-embed likecoin-button"
+  data-liker-id="elegantaccess"
+  data-href="https://docs.like.co/developer/likecoin-button/"></div>
+
+<script src="https://static.like.co/sdk/v1/button.js"></script>
+
+<script>
+    window.onload = function() {
+        like-donate.data-href = encodeURIComponent(location.href);
+    }
+</script>
+</a>
+      <ul class="c-social__list u-lists-reset">
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://github.com/KuanChunChen" target="_blank"><div data-icon='ei-sc-github' data-size='s'></div></a></li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <li class="c-social__item"><a href="https://in.linkedin.com/in/kuan-chun-chen-3b703216b" target="_blank"><div data-icon='ei-sc-linkedin' data-size='s'></div></a></li>
+        
+      </ul>
+    </div>
+    <div class="c-copyright">
+      <p>2022 &copy; Willy Chen</p>
+    </div>
+  </div>
+</aside> <!-- /.c-sidebar -->
+
+<main class="c-content">
+  <article class="c-article">
+  <div class="c-article__content">
+    <header class="c-header u-hide u-no-margin-top">
+      <div class="c-header__box">
+        <div class="c-search u-full-width">
+          <div class="c-search__box">
+            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+            <div data-icon='ei-search' data-size='s'></div>
+          </div>
+          <ul id="js-results-container" class="c-search-results-list"></ul>
+        </div>
+      </div>
+    </header>
+    
+    <div class="c-article__image o-opacity" style="background-image: url( /images/cover/env/neofetch.png )"></div>
+    
+    <div class="c-wrap-content">
+      <header class="c-article__header">
+        <h1 class="c-article__title">[MacOS][Enviroment][2022]My MacOS Development Environment!</h1>
+        <div class="c-article__date">
+          <span>2022, Aug 08</span>
+        </div>
+      </header>
+      <p>I always use MacBook pro 13’ to develop the project.<br />
+So this subject will record the tool I use on my mac.<br /></p>
+
+<div style="font-size:18px; border-width:1px; border-style:solid; font-size:19px;">Brief description</div>
+<div class="prettyprint lang-html" style="font-size:18px; border-width:1px; border-style:dashed;">
+
+  <div align="left">
+    1. Neofetch: Terminal info and show ascii logo<br />
+    <img style="padding-left:30px;" src=" /images/env/neofetch.png" width="40%" />
+  </div>
+
+  <div align="left">
+    2. Zshrc + powerlevel10k with font “Fira Code Light Nerd Font Complete Mono” Show better looking on macOS terminal <br />
+    <img style="padding-left:30px;" src=" /images/env/zshrc.png" />
+  </div>
+</div>
+<p><br /></p>
+
+<div class="body">Neofetch config content </div>
+<pre class="prettyprint">
+  # See this wiki page for more info:
+  # https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
+  print_info() {
+      info title
+      info underline
+
+      info "OS" distro
+      info "Host" model
+      info "Kernel" kernel
+      info "Uptime" uptime
+      info "Packages" packages
+      info "Shell" shell
+      info "Resolution" resolution
+      info "DE" de
+      info "WM" wm
+      info "WM Theme" wm_theme
+      info "Theme" theme
+      info "Icons" icons
+      info "Terminal" term
+      info "Terminal Font" term_font
+      info "CPU" cpu
+      info "GPU" gpu
+      info "Memory" memory
+
+      info "GPU Driver" gpu_driver  # Linux/macOS only
+      # info "CPU Usage" cpu_usage
+      # info "Disk" disk
+      # info "Battery" battery
+      # info "Font" font
+      # info "Song" song
+      # [[ "$player" ]] &amp;&amp; prin "Music Player" "$player"
+      info "Local IP" local_ip
+      info "Public IP" public_ip
+      # info "Users" users
+      # info "Locale" locale  # This only works on glibc systems.
+
+      info cols
+  }
+
+  # Title
+
+
+  # Hide/Show Fully qualified domain name.
+  #
+  # Default:  'off'
+  # Values:   'on', 'off'
+  # Flag:     --title_fqdn
+  title_fqdn="off"
+
+
+  # Kernel
+
+
+  # Shorten the output of the kernel function.
+  #
+  # Default:  'on'
+  # Values:   'on', 'off'
+  # Flag:     --kernel_shorthand
+  # Supports: Everything except *BSDs (except PacBSD and PC-BSD)
+  #
+  # Example:
+  # on:  '4.8.9-1-ARCH'
+  # off: 'Linux 4.8.9-1-ARCH'
+  kernel_shorthand="on"
+
+
+  # Distro
+
+
+  # Shorten the output of the distro function
+  #
+  # Default:  'off'
+  # Values:   'on', 'tiny', 'off'
+  # Flag:     --distro_shorthand
+  # Supports: Everything except Windows and Haiku
+  distro_shorthand="off"
+
+  # Show/Hide OS Architecture.
+  # Show 'x86_64', 'x86' and etc in 'Distro:' output.
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --os_arch
+  #
+  # Example:
+  # on:  'Arch Linux x86_64'
+  # off: 'Arch Linux'
+  os_arch="on"
+
+
+  # Uptime
+
+
+  # Shorten the output of the uptime function
+  #
+  # Default: 'on'
+  # Values:  'on', 'tiny', 'off'
+  # Flag:    --uptime_shorthand
+  #
+  # Example:
+  # on:   '2 days, 10 hours, 3 mins'
+  # tiny: '2d 10h 3m'
+  # off:  '2 days, 10 hours, 3 minutes'
+  uptime_shorthand="on"
+
+
+  # Memory
+
+
+  # Show memory pecentage in output.
+  #
+  # Default: 'off'
+  # Values:  'on', 'off'
+  # Flag:    --memory_percent
+  #
+  # Example:
+  # on:   '1801MiB / 7881MiB (22%)'
+  # off:  '1801MiB / 7881MiB'
+  memory_percent="on"
+
+  # Change memory output unit.
+  #
+  # Default: 'mib'
+  # Values:  'kib', 'mib', 'gib'
+  # Flag:    --memory_unit
+  #
+  # Example:
+  # kib  '1020928KiB / 7117824KiB'
+  # mib  '1042MiB / 6951MiB'
+  # gib: ' 0.98GiB / 6.79GiB'
+  memory_unit="gib"
+
+
+  # Packages
+
+
+  # Show/Hide Package Manager names.
+  #
+  # Default: 'tiny'
+  # Values:  'on', 'tiny' 'off'
+  # Flag:    --package_managers
+  #
+  # Example:
+  # on:   '998 (pacman), 8 (flatpak), 4 (snap)'
+  # tiny: '908 (pacman, flatpak, snap)'
+  # off:  '908'
+  package_managers="on"
+
+
+  # Shell
+
+
+  # Show the path to $SHELL
+  #
+  # Default: 'off'
+  # Values:  'on', 'off'
+  # Flag:    --shell_path
+  #
+  # Example:
+  # on:  '/bin/bash'
+  # off: 'bash'
+  shell_path="off"
+
+  # Show $SHELL version
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --shell_version
+  #
+  # Example:
+  # on:  'bash 4.4.5'
+  # off: 'bash'
+  shell_version="on"
+
+
+  # CPU
+
+
+  # CPU speed type
+  #
+  # Default: 'bios_limit'
+  # Values: 'scaling_cur_freq', 'scaling_min_freq', 'scaling_max_freq', 'bios_limit'.
+  # Flag:    --speed_type
+  # Supports: Linux with 'cpufreq'
+  # NOTE: Any file in '/sys/devices/system/cpu/cpu0/cpufreq' can be used as a value.
+  speed_type="bios_limit"
+
+  # CPU speed shorthand
+  #
+  # Default: 'off'
+  # Values: 'on', 'off'.
+  # Flag:    --speed_shorthand
+  # NOTE: This flag is not supported in systems with CPU speed less than 1 GHz
+  #
+  # Example:
+  # on:    'i7-6500U (4) @ 3.1GHz'
+  # off:   'i7-6500U (4) @ 3.100GHz'
+  speed_shorthand="off"
+
+  # Enable/Disable CPU brand in output.
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --cpu_brand
+  #
+  # Example:
+  # on:   'Intel i7-6500U'
+  # off:  'i7-6500U (4)'
+  cpu_brand="on"
+
+  # CPU Speed
+  # Hide/Show CPU speed.
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --cpu_speed
+  #
+  # Example:
+  # on:  'Intel i7-6500U (4) @ 3.1GHz'
+  # off: 'Intel i7-6500U (4)'
+  cpu_speed="on"
+
+  # CPU Cores
+  # Display CPU cores in output
+  #
+  # Default: 'logical'
+  # Values:  'logical', 'physical', 'off'
+  # Flag:    --cpu_cores
+  # Support: 'physical' doesn't work on BSD.
+  #
+  # Example:
+  # logical:  'Intel i7-6500U (4) @ 3.1GHz' (All virtual cores)
+  # physical: 'Intel i7-6500U (2) @ 3.1GHz' (All physical cores)
+  # off:      'Intel i7-6500U @ 3.1GHz'
+  cpu_cores="logical"
+
+  # CPU Temperature
+  # Hide/Show CPU temperature.
+  # Note the temperature is added to the regular CPU function.
+  #
+  # Default: 'off'
+  # Values:  'C', 'F', 'off'
+  # Flag:    --cpu_temp
+  # Supports: Linux, BSD
+  # NOTE: For FreeBSD and NetBSD-based systems, you'll need to enable
+  #       coretemp kernel module. This only supports newer Intel processors.
+  #
+  # Example:
+  # C:   'Intel i7-6500U (4) @ 3.1GHz [27.2°C]'
+  # F:   'Intel i7-6500U (4) @ 3.1GHz [82.0°F]'
+  # off: 'Intel i7-6500U (4) @ 3.1GHz'
+  cpu_temp="C"
+
+
+  # GPU
+
+
+  # Enable/Disable GPU Brand
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --gpu_brand
+  #
+  # Example:
+  # on:  'AMD HD 7950'
+  # off: 'HD 7950'
+  gpu_brand="on"
+
+  # Which GPU to display
+  #
+  # Default: 'all'
+  # Values:  'all', 'dedicated', 'integrated'
+  # Flag:    --gpu_type
+  # Supports: Linux
+  #
+  # Example:
+  # all:
+  #   GPU1: AMD HD 7950
+  #   GPU2: Intel Integrated Graphics
+  #
+  # dedicated:
+  #   GPU1: AMD HD 7950
+  #
+  # integrated:
+  #   GPU1: Intel Integrated Graphics
+  gpu_type="all"
+
+
+  # Resolution
+
+
+  # Display refresh rate next to each monitor
+  # Default: 'off'
+  # Values:  'on', 'off'
+  # Flag:    --refresh_rate
+  # Supports: Doesn't work on Windows.
+  #
+  # Example:
+  # on:  '1920x1080 @ 60Hz'
+  # off: '1920x1080'
+  refresh_rate="off"
+
+
+  # Gtk Theme / Icons / Font
+
+
+  # Shorten output of GTK Theme / Icons / Font
+  #
+  # Default: 'off'
+  # Values:  'on', 'off'
+  # Flag:    --gtk_shorthand
+  #
+  # Example:
+  # on:  'Numix, Adwaita'
+  # off: 'Numix [GTK2], Adwaita [GTK3]'
+  gtk_shorthand="off"
+
+
+  # Enable/Disable gtk2 Theme / Icons / Font
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --gtk2
+  #
+  # Example:
+  # on:  'Numix [GTK2], Adwaita [GTK3]'
+  # off: 'Adwaita [GTK3]'
+  gtk2="on"
+
+  # Enable/Disable gtk3 Theme / Icons / Font
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --gtk3
+  #
+  # Example:
+  # on:  'Numix [GTK2], Adwaita [GTK3]'
+  # off: 'Numix [GTK2]'
+  gtk3="on"
+
+
+  # IP Address
+
+
+  # Website to ping for the public IP
+  #
+  # Default: 'http://ident.me'
+  # Values:  'url'
+  # Flag:    --ip_host
+  public_ip_host="http://ident.me"
+
+  # Public IP timeout.
+  #
+  # Default: '2'
+  # Values:  'int'
+  # Flag:    --ip_timeout
+  public_ip_timeout=2
+
+
+  # Desktop Environment
+
+
+  # Show Desktop Environment version
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --de_version
+  de_version="on"
+
+
+  # Disk
+
+
+  # Which disks to display.
+  # The values can be any /dev/sdXX, mount point or directory.
+  # NOTE: By default we only show the disk info for '/'.
+  #
+  # Default: '/'
+  # Values:  '/', '/dev/sdXX', '/path/to/drive'.
+  # Flag:    --disk_show
+  #
+  # Example:
+  # disk_show=('/' '/dev/sdb1'):
+  #      'Disk (/): 74G / 118G (66%)'
+  #      'Disk (/mnt/Videos): 823G / 893G (93%)'
+  #
+  # disk_show=('/'):
+  #      'Disk (/): 74G / 118G (66%)'
+  #
+  disk_show=('/')
+
+  # Disk subtitle.
+  # What to append to the Disk subtitle.
+  #
+  # Default: 'mount'
+  # Values:  'mount', 'name', 'dir', 'none'
+  # Flag:    --disk_subtitle
+  #
+  # Example:
+  # name:   'Disk (/dev/sda1): 74G / 118G (66%)'
+  #         'Disk (/dev/sdb2): 74G / 118G (66%)'
+  #
+  # mount:  'Disk (/): 74G / 118G (66%)'
+  #         'Disk (/mnt/Local Disk): 74G / 118G (66%)'
+  #         'Disk (/mnt/Videos): 74G / 118G (66%)'
+  #
+  # dir:    'Disk (/): 74G / 118G (66%)'
+  #         'Disk (Local Disk): 74G / 118G (66%)'
+  #         'Disk (Videos): 74G / 118G (66%)'
+  #
+  # none:   'Disk: 74G / 118G (66%)'
+  #         'Disk: 74G / 118G (66%)'
+  #         'Disk: 74G / 118G (66%)'
+  disk_subtitle="mount"
+
+  # Disk percent.
+  # Show/Hide disk percent.
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --disk_percent
+  #
+  # Example:
+  # on:  'Disk (/): 74G / 118G (66%)'
+  # off: 'Disk (/): 74G / 118G'
+  disk_percent="on"
+
+
+  # Song
+
+
+  # Manually specify a music player.
+  #
+  # Default: 'auto'
+  # Values:  'auto', 'player-name'
+  # Flag:    --music_player
+  #
+  # Available values for 'player-name':
+  #
+  # amarok
+  # audacious
+  # banshee
+  # bluemindo
+  # clementine
+  # cmus
+  # deadbeef
+  # deepin-music
+  # dragon
+  # elisa
+  # exaile
+  # gnome-music
+  # gmusicbrowser
+  # gogglesmm
+  # guayadeque
+  # io.elementary.music
+  # iTunes
+  # juk
+  # lollypop
+  # mocp
+  # mopidy
+  # mpd
+  # muine
+  # netease-cloud-music
+  # olivia
+  # playerctl
+  # pogo
+  # pragha
+  # qmmp
+  # quodlibet
+  # rhythmbox
+  # sayonara
+  # smplayer
+  # spotify
+  # strawberry
+  # tauonmb
+  # tomahawk
+  # vlc
+  # xmms2d
+  # xnoise
+  # yarock
+  music_player="auto"
+
+  # Format to display song information.
+  #
+  # Default: '%artist% - %album% - %title%'
+  # Values:  '%artist%', '%album%', '%title%'
+  # Flag:    --song_format
+  #
+  # Example:
+  # default: 'Song: Jet - Get Born - Sgt Major'
+  song_format="%artist% - %album% - %title%"
+
+  # Print the Artist, Album and Title on separate lines
+  #
+  # Default: 'off'
+  # Values:  'on', 'off'
+  # Flag:    --song_shorthand
+  #
+  # Example:
+  # on:  'Artist: The Fratellis'
+  #      'Album: Costello Music'
+  #      'Song: Chelsea Dagger'
+  #
+  # off: 'Song: The Fratellis - Costello Music - Chelsea Dagger'
+  song_shorthand="off"
+
+  # 'mpc' arguments (specify a host, password etc).
+  #
+  # Default:  ''
+  # Example: mpc_args=(-h HOST -P PASSWORD)
+  mpc_args=()
+
+
+  # Text Colors
+
+
+  # Text Colors
+  #
+  # Default:  'distro'
+  # Values:   'distro', 'num' 'num' 'num' 'num' 'num' 'num'
+  # Flag:     --colors
+  #
+  # Each number represents a different part of the text in
+  # this order: 'title', '@', 'underline', 'subtitle', 'colon', 'info'
+  #
+  # Example:
+  # colors=(distro)      - Text is colored based on Distro colors.
+  # colors=(4 6 1 8 8 6) - Text is colored in the order above.
+  colors=(distro)
+
+
+  # Text Options
+
+
+  # Toggle bold text
+  #
+  # Default:  'on'
+  # Values:   'on', 'off'
+  # Flag:     --bold
+  bold="on"
+
+  # Enable/Disable Underline
+  #
+  # Default:  'on'
+  # Values:   'on', 'off'
+  # Flag:     --underline
+  underline_enabled="on"
+
+  # Underline character
+  #
+  # Default:  '-'
+  # Values:   'string'
+  # Flag:     --underline_char
+  underline_char="-"
+
+
+  # Info Separator
+  # Replace the default separator with the specified string.
+  #
+  # Default:  ':'
+  # Flag:     --separator
+  #
+  # Example:
+  # separator="-&gt;":   'Shell-&gt; bash'
+  # separator=" =":   'WM = dwm'
+  separator=":"
+
+
+  # Color Blocks
+
+
+  # Color block range
+  # The range of colors to print.
+  #
+  # Default:  '0', '15'
+  # Values:   'num'
+  # Flag:     --block_range
+  #
+  # Example:
+  #
+  # Display colors 0-7 in the blocks.  (8 colors)
+  # neofetch --block_range 0 7
+  #
+  # Display colors 0-15 in the blocks. (16 colors)
+  # neofetch --block_range 0 15
+  block_range=(0 15)
+
+  # Toggle color blocks
+  #
+  # Default:  'on'
+  # Values:   'on', 'off'
+  # Flag:     --color_blocks
+  color_blocks="on"
+
+  # Color block width in spaces
+  #
+  # Default:  '3'
+  # Values:   'num'
+  # Flag:     --block_width
+  block_width=3
+
+  # Color block height in lines
+  #
+  # Default:  '1'
+  # Values:   'num'
+  # Flag:     --block_height
+  block_height=1
+
+  # Color Alignment
+  #
+  # Default: 'auto'
+  # Values: 'auto', 'num'
+  # Flag: --col_offset
+  #
+  # Number specifies how far from the left side of the terminal (in spaces) to
+  # begin printing the columns, in case you want to e.g. center them under your
+  # text.
+  # Example:
+  # col_offset="auto" - Default behavior of neofetch
+  # col_offset=7      - Leave 7 spaces then print the colors
+  col_offset="auto"
+
+  # Progress Bars
+
+
+  # Bar characters
+  #
+  # Default:  '-', '='
+  # Values:   'string', 'string'
+  # Flag:     --bar_char
+  #
+  # Example:
+  # neofetch --bar_char 'elapsed' 'total'
+  # neofetch --bar_char '-' '='
+  bar_char_elapsed="-"
+  bar_char_total="="
+
+  # Toggle Bar border
+  #
+  # Default:  'on'
+  # Values:   'on', 'off'
+  # Flag:     --bar_border
+  bar_border="on"
+
+  # Progress bar length in spaces
+  # Number of chars long to make the progress bars.
+  #
+  # Default:  '15'
+  # Values:   'num'
+  # Flag:     --bar_length
+  bar_length=15
+
+  # Progress bar colors
+  # When set to distro, uses your distro's logo colors.
+  #
+  # Default:  'distro', 'distro'
+  # Values:   'distro', 'num'
+  # Flag:     --bar_colors
+  #
+  # Example:
+  # neofetch --bar_colors 3 4
+  # neofetch --bar_colors distro 5
+  bar_color_elapsed="distro"
+  bar_color_total="distro"
+
+
+  # Info display
+  # Display a bar with the info.
+  #
+  # Default: 'off'
+  # Values:  'bar', 'infobar', 'barinfo', 'off'
+  # Flags:   --cpu_display
+  #          --memory_display
+  #          --battery_display
+  #          --disk_display
+  #
+  # Example:
+  # bar:     '[---=======]'
+  # infobar: 'info [---=======]'
+  # barinfo: '[---=======] info'
+  # off:     'info'
+  cpu_display="off"
+  memory_display="off"
+  battery_display="off"
+  disk_display="off"
+
+
+  # Backend Settings
+
+
+  # Image backend.
+  #
+  # Default:  'ascii'
+  # Values:   'ascii', 'caca', 'chafa', 'jp2a', 'iterm2', 'off',
+  #           'pot', 'termpix', 'pixterm', 'tycat', 'w3m', 'kitty'
+  # Flag:     --backend
+  image_backend="ascii"
+
+  # Image Source
+  #
+  # Which image or ascii file to display.
+  #
+  # Default:  'auto'
+  # Values:   'auto', 'ascii', 'wallpaper', '/path/to/img', '/path/to/ascii', '/path/to/dir/'
+  #           'command output (neofetch --ascii "$(fortune | cowsay -W 30)")'
+  # Flag:     --source
+  #
+  # NOTE: 'auto' will pick the best image source for whatever image backend is used.
+  #       In ascii mode, distro ascii art will be used and in an image mode, your
+  #       wallpaper will be used.
+  image_source="auto"
+
+
+  # Ascii Options
+
+
+  # Ascii distro
+  # Which distro's ascii art to display.
+  #
+  # Default: 'auto'
+  # Values:  'auto', 'distro_name'
+  # Flag:    --ascii_distro
+  # NOTE: AIX, Alpine, Anarchy, Android, Antergos, antiX, "AOSC OS",
+  #       "AOSC OS/Retro", Apricity, ArcoLinux, ArchBox, ARCHlabs,
+  #       ArchStrike, XFerience, ArchMerge, Arch, Artix, Arya, Bedrock,
+  #       Bitrig, BlackArch, BLAG, BlankOn, BlueLight, bonsai, BSD,
+  #       BunsenLabs, Calculate, Carbs, CentOS, Chakra, ChaletOS,
+  #       Chapeau, Chrom*, Cleanjaro, ClearOS, Clear_Linux, Clover,
+  #       Condres, Container_Linux, CRUX, Cucumber, Debian, Deepin,
+  #       DesaOS, Devuan, DracOS, DarkOs, DragonFly, Drauger, Elementary,
+  #       EndeavourOS, Endless, EuroLinux, Exherbo, Fedora, Feren, FreeBSD,
+  #       FreeMiNT, Frugalware, Funtoo, GalliumOS, Garuda, Gentoo, Pentoo,
+  #       gNewSense, GNOME, GNU, GoboLinux, Grombyang, Guix, Haiku, Huayra,
+  #       Hyperbola, janus, Kali, KaOS, KDE_neon, Kibojoe, Kogaion,
+  #       Korora, KSLinux, Kubuntu, LEDE, LFS, Linux_Lite,
+  #       LMDE, Lubuntu, Lunar, macos, Mageia, MagpieOS, Mandriva,
+  #       Manjaro, Maui, Mer, Minix, LinuxMint, MX_Linux, Namib,
+  #       Neptune, NetBSD, Netrunner, Nitrux, NixOS, Nurunner,
+  #       NuTyX, OBRevenge, OpenBSD, openEuler, OpenIndiana, openmamba,
+  #       OpenMandriva, OpenStage, OpenWrt, osmc, Oracle, OS Elbrus, PacBSD,
+  #       Parabola, Pardus, Parrot, Parsix, TrueOS, PCLinuxOS, Peppermint,
+  #       popos, Porteus, PostMarketOS, Proxmox, Puppy, PureOS, Qubes, Radix,
+  #       Raspbian, Reborn_OS, Redstar, Redcore, Redhat, Refracted_Devuan,
+  #       Regata, Rosa, sabotage, Sabayon, Sailfish, SalentOS, Scientific,
+  #       Septor, SereneLinux, SharkLinux, Siduction, Slackware, SliTaz,
+  #       SmartOS, Solus, Source_Mage, Sparky, Star, SteamOS, SunOS,
+  #       openSUSE_Leap, openSUSE_Tumbleweed, openSUSE, SwagArch, Tails,
+  #       Trisquel, Ubuntu-Budgie, Ubuntu-GNOME, Ubuntu-MATE, Ubuntu-Studio,
+  #       Ubuntu, Venom, Void, Obarun, windows10, Windows7, Xubuntu, Zorin,
+  #       and IRIX have ascii logos
+  # NOTE: Arch, Ubuntu, Redhat, and Dragonfly have 'old' logo variants.
+  #       Use '{distro name}_old' to use the old logos.
+  # NOTE: Ubuntu has flavor variants.
+  #       Change this to Lubuntu, Kubuntu, Xubuntu, Ubuntu-GNOME,
+  #       Ubuntu-Studio, Ubuntu-Mate  or Ubuntu-Budgie to use the flavors.
+  # NOTE: Arcolinux, Dragonfly, Fedora, Alpine, Arch, Ubuntu,
+  #       CRUX, Debian, Gentoo, FreeBSD, Mac, NixOS, OpenBSD, android,
+  #       Antrix, CentOS, Cleanjaro, ElementaryOS, GUIX, Hyperbola,
+  #       Manjaro, MXLinux, NetBSD, Parabola, POP_OS, PureOS,
+  #       Slackware, SunOS, LinuxLite, OpenSUSE, Raspbian,
+  #       postmarketOS, and Void have a smaller logo variant.
+  #       Use '{distro name}_small' to use the small variants.
+  ascii_distro="Mac_small"
+
+  # Ascii Colors
+  #
+  # Default:  'distro'
+  # Values:   'distro', 'num' 'num' 'num' 'num' 'num' 'num'
+  # Flag:     --ascii_colors
+  #
+  # Example:
+  # ascii_colors=(distro)      - Ascii is colored based on Distro colors.
+  # ascii_colors=(4 6 1 8 8 6) - Ascii is colored using these colors.
+  ascii_colors=(distro)
+
+  # Bold ascii logo
+  # Whether or not to bold the ascii logo.
+  #
+  # Default: 'on'
+  # Values:  'on', 'off'
+  # Flag:    --ascii_bold
+  ascii_bold="on"
+
+
+  # Image Options
+
+
+  # Image loop
+  # Setting this to on will make neofetch redraw the image constantly until
+  # Ctrl+C is pressed. This fixes display issues in some terminal emulators.
+  #
+  # Default:  'off'
+  # Values:   'on', 'off'
+  # Flag:     --loop
+  image_loop="off"
+
+  # Thumbnail directory
+  #
+  # Default: '~/.cache/thumbnails/neofetch'
+  # Values:  'dir'
+  thumbnail_dir="${XDG_CACHE_HOME:-${HOME}/.cache}/thumbnails/neofetch"
+
+  # Crop mode
+  #
+  # Default:  'normal'
+  # Values:   'normal', 'fit', 'fill'
+  # Flag:     --crop_mode
+  #
+  # See this wiki page to learn about the fit and fill options.
+  # https://github.com/dylanaraps/neofetch/wiki/What-is-Waifu-Crop%3F
+  crop_mode="normal"
+
+  # Crop offset
+  # Note: Only affects 'normal' crop mode.
+  #
+  # Default:  'center'
+  # Values:   'northwest', 'north', 'northeast', 'west', 'center'
+  #           'east', 'southwest', 'south', 'southeast'
+  # Flag:     --crop_offset
+  crop_offset="southwest"
+
+  # Image size
+  # The image is half the terminal width by default.
+  #
+  # Default: 'auto'
+  # Values:  'auto', '00px', '00%', 'none'
+  # Flags:   --image_size
+  #          --size
+  image_size="auto"
+
+  # Gap between image and text
+  #
+  # Default: '3'
+  # Values:  'num', '-num'
+  # Flag:    --gap
+  gap=3
+
+  # Image offsets
+  # Only works with the w3m backend.
+  #
+  # Default: '0'
+  # Values:  'px'
+  # Flags:   --xoffset
+  #          --yoffset
+  yoffset=0
+  xoffset=0
+
+  # Image background color
+  # Only works with the w3m backend.
+  #
+  # Default: ''
+  # Values:  'color', 'blue'
+  # Flag:    --bg_color
+  background_color=
+
+
+  # Misc Options
+
+  # Stdout mode
+  # Turn off all colors and disables image backend (ASCII/Image).
+  # Useful for piping into another command.
+  # Default: 'off'
+  # Values: 'on', 'off'
+  stdout="off"
+
+</pre>
+<p><br /></p>
+
+<div style="font-size:18px; border-width:1px; border-style:solid; font-size:19px;">zsh .zshrc</div>
+<pre class="prettyprint">
+
+  # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+neofetch --ascii ~/champion_start.txt
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# zsh-completions
+# fpath=(/usr/local/share/zsh-completions $fpath)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh &lt; 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# ls cli
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+#color about terminal file.
+export CLICOLOR=1
+#export LSCOLORS=ExGxFxdaCxDaDahbadeche
+
+
+
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(rbenv init - zsh)"
+
+</pre>
+
+<div style="font-size:18px; border-width:1px; border-style:solid; font-size:19px;">powerlevel10k p10k.zsh</div>
+<pre class="prettyprint">
+  # Generated by Powerlevel10k configuration wizard on 2019-07-30 at 18:21 BST.
+  # Based on romkatv/powerlevel10k/config/p10k-classic.zsh, checksum 21564.
+  # Wizard options: nerdfont-complete + powerline, classic, medium, angled sep, slanted heads, sharp tails, 2 lines, dotted, left frame, compact, many icons, fluent.
+  #
+  # Config for Powerlevel10k with classic powerline prompt style. Requires a powerline font.
+  # The color scheme is suitable for dark terminal background.
+  #
+  # Once you've installed Powerlevel10k, run these commands to apply classic style.
+  #
+  #   curl -fsSL -o ~/p10k-classic.zsh https://raw.githubusercontent.com/romkatv/powerlevel10k/master/config/p10k-classic.zsh
+  #   echo 'source ~/p10k-classic.zsh' &gt;&gt;! ~/.zshrc
+  #
+  # To customize your prompt, open ~/p10k-classic.zsh in your favorite text editor, change it and
+  # restart ZSH. The file is well-documented.
+  #
+  # Tip: Looking for a nice color? Here's a one-liner to print colormap.
+  #
+  #   for i in {0..255}; do print -Pn "%${i}F${(l:3::0:)i}%f " ${${(M)$((i%8)):#7}:+$'\n'}; done
+
+  if [[ -o 'aliases' ]]; then
+    'builtin' 'unsetopt' 'aliases'
+    local p9k_classic_restore_aliases=1
+  else
+    local p9k_classic_restore_aliases=0
+  fi
+
+  () {
+    emulate -L zsh
+    setopt no_unset
+
+    # Unset all configuration options. This allows you to apply configiguration changes without
+    # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
+    unset -m 'POWERLEVEL9K_*'
+
+    # The list of segments shown on the left. Fill it with the most important segments.
+    typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+        # =========================[ Line #1 ]=========================
+        context
+        os_icon
+        dir                     # current directory
+        vcs                     # git status
+        # =========================[ Line #2 ]=========================
+        newline
+        # prompt_char           # prompt symbol
+    )
+
+    # The list of segments shown on the right. Fill it with less important segments.
+    # Right prompt on the last prompt line (where you are typing your commands) gets
+    # automatically hidden when the input line reaches it. Right prompt above the
+    # last prompt line gets hidden if it would overlap with left prompt.
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        status                  # exit code of the last command
+        command_execution_time  # duration of the last command
+        background_jobs         # presence of background jobs
+        direnv                  # direnv status (https://direnv.net/)
+        asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+        virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+        anaconda                # conda environment (https://conda.io/)
+        pyenv                   # python environment (https://github.com/pyenv/pyenv)
+        goenv                   # go environment (https://github.com/syndbg/goenv)
+        nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+        nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+        nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+        # node_version          # node.js version
+        # go_version            # go version (https://golang.org)
+        # rust_version          # rustc version (https://www.rust-lang.org)
+        # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+        # php_version           # php version (https://www.php.net/)
+        # laravel_version       # laravel php framework version (https://laravel.com/)
+        # java_version          # java version (https://www.java.com/)
+        # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+        rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+        rvm                     # ruby version from rvm (https://rvm.io)
+        fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+        luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+        jenv                    # java version from jenv (https://github.com/jenv/jenv)
+        plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+        perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
+        phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
+        scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+        haskell_stack           # haskell version from stack (https://haskellstack.org/)
+        kubecontext             # current kubernetes context (https://kubernetes.io/)
+        terraform               # terraform workspace (https://www.terraform.io)
+        # terraform_version     # terraform version (https://www.terraform.io)
+        aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+        aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+        azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+        gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+        google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+        toolbox                 # toolbox name (https://github.com/containers/toolbox)
+        context                 # user@hostname
+        nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+        ranger                  # ranger shell (https://github.com/ranger/ranger)
+        nnn                     # nnn shell (https://github.com/jarun/nnn)
+        xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+        vim_shell               # vim shell indicator (:sh)
+        midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+        nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+        vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
+        # vpn_ip                # virtual private network indicator
+        # load                  # CPU load
+        # disk_usage            # disk usage
+        # ram                   # free RAM
+        # swap                  # used swap
+        todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+        timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+        taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+        time                    # current time
+        # ip                    # ip address and bandwidth usage for a specified network interface
+        # public_ip             # public IP address
+        # proxy                 # system-wide http/https/ftp proxy
+        # battery               # internal battery
+        # wifi                  # wifi speed
+        # example               # example user-defined segment (see prompt_example function below)
+      )
+
+    # To disable default icons for all segments, set POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION=''.
+    #
+    # To enable default icons for all segments, don't define POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION
+    # or set it to '${P9K_VISUAL_IDENTIFIER}'.
+    #
+    # To remove trailing space from all default icons, set POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION
+    # to '${P9K_VISUAL_IDENTIFIER% }'.
+    #
+    # To enable default icons for one segment (e.g., dir), set
+    # POWERLEVEL9K_DIR_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'.
+    #
+    # To assign a specific icon to one segment (e.g., dir), set
+    # POWERLEVEL9K_DIR_VISUAL_IDENTIFIER_EXPANSION='⭐'.
+    #
+    # To assign a specific icon to a segment in a given state (e.g., dir in state NOT_WRITABLE),
+    # set POWERLEVEL9K_DIR_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION='⭐'.
+    #
+    # Note: You can use $'\u2B50' instead of '⭐'. It's especially convenient when specifying
+    # icons that your text editor cannot render. Don't forget to put $ and use single quotes when
+    # defining icons via Unicode codepoints.
+    #
+    # Note: Many default icons cannot be displayed with system fonts. You'll need to install a
+    # capable font to use them. See POWERLEVEL9K_MODE below.
+    typeset -g POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
+
+    # This option makes a difference only when default icons are enabled for all or some prompt
+    # segments (see POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION above). LOCK_ICON can be printed as
+    # $'\uE0A2', $'\uE138' or $'\uF023' depending on POWERLEVEL9K_MODE. The correct value of this
+    # parameter depends on the provider of the font your terminal is using.
+    #
+    #   Font Provider                    | POWERLEVEL9K_MODE
+    #   ---------------------------------+-------------------
+    #   Powerline                        | powerline
+    #   Font Awesome                     | awesome-fontconfig
+    #   Adobe Source Code Pro            | awesome-fontconfig
+    #   Source Code Pro                  | awesome-fontconfig
+    #   Awesome-Terminal Fonts (regular) | awesome-fontconfig
+    #   Awesome-Terminal Fonts (patched) | awesome-patched
+    #   Nerd Fonts                       | nerdfont-complete
+    #
+    # If this looks overwhelming, install a font from https://github.com/ryanoasis/nerd-fonts
+    # and set POWERLEVEL9K_MODE=nerdfont-complete. "Meslo LG S Regular Nerd Font Complete Mono" from
+    # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular/complete is
+    # very good.
+    typeset -g POWERLEVEL9K_MODE=nerdfont-complete
+
+    # When set to true, icons appear before content on both sides of the prompt. When set
+    # to false, icons go after content. If empty or not set, icons go before content in the left
+    # prompt and after content in the right prompt.
+    #
+    # You can also override it for a specific segment:
+    #
+    #   POWERLEVEL9K_STATUS_ICON_BEFORE_CONTENT=false
+    #
+    # Or for a specific segment in specific state:
+    #
+    #   POWERLEVEL9K_DIR_NOT_WRITABLE_ICON_BEFORE_CONTENT=false
+    typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=
+
+    # Add an empty line before each prompt.
+    typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+
+    # Connect left prompt lines with these symbols. You'll probably want to use the same color
+    # as POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND below.
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%240F╭─'
+    typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%240F├─'
+    typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%240F╰─'
+    # Connect right prompt lines with these symbols.
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
+    typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
+    typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX=
+
+    # Filler between left and right prompt on the first prompt line. You can set it to ' ', '·' or
+    # '─'. The last two make it easier to see the alignment between left and right prompt and to
+    # separate prompt from command output. You might want to set POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+    # for more compact prompt if using using this option.
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='·'
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND=
+    if [[ $POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR != ' ' ]]; then
+      # The color of the filler. You'll probably want to match the color of POWERLEVEL9K_MULTILINE
+      # ornaments defined above.
+      typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=240
+      # Start filler from the edge of the screen if there are no left segments on the first line.
+      typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_FIRST_SEGMENT_END_SYMBOL=
+      # End filler on the edge of the screen if there are no right segments on the first line.
+      typeset -g POWERLEVEL9K_EMPTY_LINE_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+    fi
+
+    # Default background color.
+    typeset -g POWERLEVEL9K_BACKGROUND=236
+
+    # Separator between same-color segments on the left.
+    typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%244F\uE0B1'
+    # Separator between same-color segments on the right.
+    typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%244F\uE0B3'
+    # Separator between different-color segments on the left.
+    typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='\uE0B1'
+    # Separator between different-color segments on the right.
+    typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='\uE0B3'
+    # The right end of left prompt.
+    typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL='\uE0BC'
+    # The left end of right prompt.
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL='\uE0BA'
+    # The left end of left prompt.
+    typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL='\uE0B2'
+    # The right end of right prompt.
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL='\uE0B0'
+    # Left prompt terminator for lines without any segments.
+    typeset -g POWERLEVEL9K_EMPTY_LINE_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
+
+    #################################[ os_icon: os identifier ]##################################
+    # Foreground color.
+    typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=7
+    # Display this icon instead of the default.
+    # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='os'
+
+    ################################[ prompt_char: prompt symbol ]################################
+    # Transparent background.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
+    # Green prompt symbol if the last command succeeded.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=76
+    # Red prompt symbol if the last command failed.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=196
+    # Default prompt symbol.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
+    # Prompt symbol in command vi mode.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
+    # Prompt symbol in visual vi mode.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='Ⅴ'
+    # No line terminator if prompt_char is the last segment.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
+    # No line introducer if prompt_char is the first segment.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+    # No surrounding whitespace.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=
+
+    ##################################[ dir: current directory ]##################################
+    # Default current directory color.
+    typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
+    # If directory is too long, shorten some of its segments to the shortest possible unique
+    # prefix. The shortened directory can be tab-completed to the original.
+    typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
+    # Replace removed segment suffixes with this symbol.
+    typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
+    # Color of the shortened directory segments.
+    typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=103
+    # Color of the anchor directory segments. Anchor segments are never shortened. The first
+    # segment is always an anchor.
+    typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=39
+    # Display anchor directory segments in bold.
+    typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
+    # Don't shorten directories that contain files matching this pattern. They are anchors.
+    typeset -g POWERLEVEL9K_SHORTEN_FOLDER_MARKER='(.shorten_folder_marker|.bzr|CVS|.git|.hg|.svn|.terraform|.citc)'
+    # Don't shorten this many last directory segments. They are anchors.
+    typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+    # Shorten directory if it's longer than this even if there is space for it. The value can
+    # be either absolute (e.g., '80') or a percentage of terminal width (e.g, '50%'). If empty,
+    # directory will be shortened only when prompt doesn't fit.
+    typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=80
+    # If set to true, embed a hyperlink into the directory. Useful for quickly
+    # opening a directory in the file manager simply by clicking the link.
+    # Can also be handy when the directory is shortened, as it allows you to see
+    # the full directory that was used in previous commands.
+    typeset -g POWERLEVEL9K_DIR_HYPERLINK=false
+
+    # Enable special styling for non-writable directories.
+    typeset -g POWERLEVEL9K_DIR_SHOW_WRITABLE=true
+    # Show this icon when the current directory is not writable. Empty for no icon.
+    # typeset -g POWERLEVEL9K_DIR_NOT_WRITABLE_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    # Custom prefix.
+    # typeset -g POWERLEVEL9K_DIR_PREFIX='%248Fin '
+
+    # POWERLEVEL9K_DIR_CLASSES allows you to specify custom icons for different directories.
+    # It must be an array with 3 * N elements. Each triplet consists of:
+    #
+    #   1. A pattern against which the current directory is matched. Matching is done with
+    #      extended_glob option enabled.
+    #   2. Directory class for the purpose of styling.
+    #   3. Icon.
+    #
+    # Triplets are tried in order. The first triplet whose pattern matches $PWD wins. If there
+    # are no matches, the directory will have no icon.
+    #
+    # Example:
+    #
+    #   typeset -g POWERLEVEL9K_DIR_CLASSES=(
+    #       '~/work(/*)#'  WORK     '(╯°□°）╯︵ ┻━┻'
+    #       '~(/*)#'       HOME     '⌂'
+    #       '*'            DEFAULT  '')
+    #
+    # With these settings, the current directory in the prompt may look like this:
+    #
+    #   (╯°□°）╯︵ ┻━┻ ~/work/projects/important/urgent
+    #
+    # Or like this:
+    #
+    #   ⌂ ~/best/powerlevel10k
+    #
+    # You can also set different colors for directories of different classes. Remember to override
+    # FOREGROUND, SHORTENED_FOREGROUND and ANCHOR_FOREGROUND for every directory class that you wish
+    # to have its own color.
+    #
+    #   typeset -g POWERLEVEL9K_DIR_WORK_FOREGROUND=12
+    #   typeset -g POWERLEVEL9K_DIR_WORK_SHORTENED_FOREGROUND=4
+    #   typeset -g POWERLEVEL9K_DIR_WORK_ANCHOR_FOREGROUND=39
+    #
+    # typeset -g POWERLEVEL9K_DIR_CLASSES=()
+
+    #####################################[ vcs: git status ]######################################
+    # Git status: feature:master#tag ⇣42⇡42 *42 merge ~42 +42 !42 ?42.
+    # We are using parameters defined by the gitstatus plugin. See reference:
+    # https://github.com/romkatv/gitstatus/blob/master/gitstatus.plugin.zsh.
+    local vcs=''
+    # 'feature' or '@72f5c8a' if not on a branch.
+    vcs+='${${VCS_STATUS_LOCAL_BRANCH:+%76F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${VCS_STATUS_LOCAL_BRANCH//\%/%%}}'
+    vcs+=':-%f@%76F${VCS_STATUS_COMMIT[1,8]}}'
+    # ':master' if the tracking branch name differs from local branch.
+    vcs+='${${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH}:+%f:%76F${VCS_STATUS_REMOTE_BRANCH//\%/%%}}'
+    # '#tag' if on a tag.
+    vcs+='${VCS_STATUS_TAG:+%f#%76F${VCS_STATUS_TAG//\%/%%}}'
+    # ⇣42 if behind the remote.
+    vcs+='${${VCS_STATUS_COMMITS_BEHIND:#0}:+ %76F⇣${VCS_STATUS_COMMITS_BEHIND}}'
+    # ⇡42 if ahead of the remote; no leading space if also behind the remote: ⇣42⇡42.
+    # If you want '⇣42 ⇡42' instead, replace '${${(M)VCS_STATUS_COMMITS_BEHIND:#0}:+ }' with ' '.
+    vcs+='${${VCS_STATUS_COMMITS_AHEAD:#0}:+${${(M)VCS_STATUS_COMMITS_BEHIND:#0}:+ }%76F⇡${VCS_STATUS_COMMITS_AHEAD}}'
+    # *42 if have stashes.
+    vcs+='${${VCS_STATUS_STASHES:#0}:+ %76F*${VCS_STATUS_STASHES}}'
+    # 'merge' if the repo is in an unusual state.
+    vcs+='${VCS_STATUS_ACTION:+ %196F${VCS_STATUS_ACTION//\%/%%}}'
+    # ~42 if have merge conflicts.
+    vcs+='${${VCS_STATUS_NUM_CONFLICTED:#0}:+ %196F~${VCS_STATUS_NUM_CONFLICTED}}'
+    # +42 if have staged changes.
+    vcs+='${${VCS_STATUS_NUM_STAGED:#0}:+ %227F+${VCS_STATUS_NUM_STAGED}}'
+    # !42 if have unstaged changes.
+    vcs+='${${VCS_STATUS_NUM_UNSTAGED:#0}:+ %227F!${VCS_STATUS_NUM_UNSTAGED}}'
+    # ?42 if have untracked files.
+    vcs+='${${VCS_STATUS_NUM_UNTRACKED:#0}:+ %39F?${VCS_STATUS_NUM_UNTRACKED}}'
+    # If P9K_CONTENT is not empty, leave it unchanged. It's either "loading" or from vcs_info.
+    vcs="\${P9K_CONTENT:-$vcs}"
+
+    # Branch icon. Set this parameter to $'\uF126' for the popular Powerline branch icon.
+    typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126  '
+
+    # Disable the default Git status formatting.
+    typeset -g POWERLEVEL9K_VCS_DISABLE_GITSTATUS_FORMATTING=true
+    # Install our own Git status formatter.
+    typeset -g POWERLEVEL9K_VCS_{CLEAN,UNTRACKED,MODIFIED}_CONTENT_EXPANSION=$vcs
+    # When Git status is being refreshed asynchronously, display the last known repo status in grey.
+    typeset -g POWERLEVEL9K_VCS_LOADING_CONTENT_EXPANSION=${${vcs//\%f}//\%&lt;-&gt;F}
+    typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND=244
+    # Enable counters for staged, unstaged, etc.
+    typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
+
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
+    # Custom prefix.
+    typeset -g POWERLEVEL9K_VCS_PREFIX='%246Fon '
+
+    # Show status of repositories of these types. You can add svn and/or hg if you are
+    # using them. If you do, your prompt may become slow even when your current directory
+    # isn't in an svn or hg reposotiry.
+    typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
+
+    # These settings are used for respositories other than Git or when gitstatusd fails and
+    # Powerlevel10k has to fall back to using vcs_info.
+    typeset -g POWERLEVEL9K_VCS_{CLEAN,MODIFIED,UNTRACKED}_FOREGROUND=76
+    typeset -g POWERLEVEL9K_VCS_REMOTE_BRANCH_ICON=':'
+    typeset -g POWERLEVEL9K_VCS_COMMIT_ICON='@'
+    typeset -g POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='⇣'
+    typeset -g POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='⇡'
+    typeset -g POWERLEVEL9K_VCS_STASH_ICON='*'
+    typeset -g POWERLEVEL9K_VCS_TAG_ICON=$'%{\b#%}'
+    typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON=$'%{\b?%}'
+    typeset -g POWERLEVEL9K_VCS_UNSTAGED_ICON=$'%{\b!%}'
+    typeset -g POWERLEVEL9K_VCS_STAGED_ICON=$'%{\b+%}'
+
+    ##########################[ status: exit code of the last command ]###########################
+    # Enable OK_PIPE, ERROR_PIPE and ERROR_SIGNAL status states to allow us to enable, disable and
+    # style them independently from the regular OK and ERROR state.
+    typeset -g POWERLEVEL9K_STATUS_EXTENDED_STATES=true
+
+    # Status on success. No content, just an icon. No need to show it if prompt_char is enabled as
+    # it will signify success by turning green.
+    typeset -g POWERLEVEL9K_STATUS_OK=true
+    typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=70
+    typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
+
+    # Status when some part of a pipe command fails but the overall exit status is zero. It may look
+    # like this: 1|0.
+    typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
+    typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=70
+    typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION='✔'
+
+    # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
+    # it will signify error by turning red.
+    typeset -g POWERLEVEL9K_STATUS_ERROR=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=160
+    typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='↵'
+
+    # Status when the last command was terminated by a signal.
+    typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=160
+    # Use terse signal names: "INT" instead of "SIGINT(2)".
+    typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
+    typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='↵'
+
+    # Status when some part of a pipe command fails and the overall exit status is also non-zero.
+    # It may look like this: 1|0.
+    typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=160
+    typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='↵'
+
+    ###################[ command_execution_time: duration of the last command ]###################
+    # Background color.
+    # Show duration of the last command if takes longer than this many seconds.
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+    # Show this many fractional digits. Zero means round to seconds.
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+    # Execution time color.
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=248
+    # Duration format: 1d 2h 3m 4s.
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
+    # Custom prefix.
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PREFIX='%246Ftook '
+
+    #######################[ background_jobs: presence of background jobs ]#######################
+    # Don't show the number of background jobs.
+    typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
+    # Background jobs color.
+    typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=37
+    # Icon to show when there are background jobs.
+    typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
+
+    ##########[ nordvpn: nordvpn connection status, linux only (https://nordvpn.com/) ]###########
+    # NordVPN connection indicator color.
+    typeset -g POWERLEVEL9K_NORDVPN_FOREGROUND=39
+    # Hide NordVPN connection indicator when not connected.
+    typeset -g POWERLEVEL9K_NORDVPN_{DISCONNECTED,CONNECTING,DISCONNECTING}_CONTENT_EXPANSION=
+    typeset -g POWERLEVEL9K_NORDVPN_{DISCONNECTED,CONNECTING,DISCONNECTING}_VISUAL_IDENTIFIER_EXPANSION=
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_NORDVPN_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ####################################[ context: user@host ]####################################
+    # Default context color.
+    typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=180
+    # Default context format: %n is username, %m is hostname.
+    typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE='%n%246F at %180F%m'
+
+    # Context color when running with privileges.
+    typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=227
+    # Context format when running with privileges: %n is username, %m is hostname.
+    typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%n%246F at %227F%m'
+
+    # Don't show context unless running with privileges on in SSH.
+    typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
+    typeset -g POWERLEVEL9K_ALWAYS_SHOW_CONTEXT=true
+
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_CONTEXT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+    # Custom prefix.
+    typeset -g POWERLEVEL9K_CONTEXT_PREFIX='%246Fwith '
+
+    ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
+    # Python virtual environment color.
+    typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=37
+    # Don't show Python version next to the virtual environment name.
+    typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
+    # Separate environment name from Python version only with a space.
+    typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_VIRTUALENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    #####################[ anaconda: conda environment (https://conda.io/) ]######################
+    # Anaconda environment color.
+    typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND=37
+    # Don't show Python version next to the anaconda environment name.
+    typeset -g POWERLEVEL9K_ANACONDA_SHOW_PYTHON_VERSION=false
+    # Separate environment name from Python version only with a space.
+    typeset -g POWERLEVEL9K_ANACONDA_{LEFT,RIGHT}_DELIMITER=
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_ANACONDA_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
+    # Pyenv color.
+    typeset -g POWERLEVEL9K_PYENV_FOREGROUND=37
+    # Don't show the current Python version if it's the same as global.
+    typeset -g POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=false
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_PYENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
+    # Nodenv color.
+    typeset -g POWERLEVEL9K_NODENV_FOREGROUND=70
+    # Don't show node version if it's the same as global: $(nodenv version-name) == $(nodenv global).
+    typeset -g POWERLEVEL9K_NODENV_PROMPT_ALWAYS_SHOW=false
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_NODENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ##############[ nvm: node.js version from nvm (https://github.com/nvm-sh/nvm) ]###############
+    # Nvm color.
+    typeset -g POWERLEVEL9K_NVM_FOREGROUND=70
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
+    # Nodeenv color.
+    typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=70
+    # Don't show Node version next to the environment name.
+    typeset -g POWERLEVEL9K_NODEENV_SHOW_NODE_VERSION=false
+    # Separate environment name from Node version only with a space.
+    typeset -g POWERLEVEL9K_NODEENV_{LEFT,RIGHT}_DELIMITER=
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_NODEENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ##############################[ node_version: node.js version ]###############################
+    # Node version color.
+    typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=70
+    # Show node version only when in a directory tree containing package.json.
+    typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ################################[ go_version: golang version ]################################
+    # Golang version color.
+    typeset -g POWERLEVEL9K_GO_VERSION_FOREGROUND=37
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    #############[ kubecontext: current kubernetes context (https://kubernetes.io/) ]#############
+    # Kubernetes context classes for the purpose of using different colors, icons and expansions with
+    # different contexts.
+    #
+    # POWERLEVEL9K_KUBECONTEXT_CLASSES is an array with even number of elements. The first element
+    # in each pair defines a pattern against which the current kubernetes context gets matched.
+    # More specifically, it's P9K_CONTENT prior to the application of context expansion (see below)
+    # that gets matched. If you unset all POWERLEVEL9K_KUBECONTEXT_*CONTENT_EXPANSION parameters,
+    # you'll see this value in your prompt. The second element of each pair in
+    # POWERLEVEL9K_KUBECONTEXT_CLASSES defines the context class. Patterns are tried in order. The
+    # first match wins.
+    #
+    # For example, if your current kubernetes context is "deathray-testing/default", its class is TEST
+    # because "deathray-testing/default" doesn't match the pattern '*prod*' but does match '*test*'.
+    #
+    # You can define different colors, icons and content expansions for different classes:
+    #
+    #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_FOREGROUND=2
+    #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
+    #   typeset -g POWERLEVEL9K_KUBECONTEXT_TEST_CONTENT_EXPANSION='&gt; ${P9K_CONTENT} &lt;'
+    typeset -g POWERLEVEL9K_KUBECONTEXT_CLASSES=(
+        # '*prod*'  PROD    # These values are examples that are unlikely
+        # '*test*'  TEST    # to match your needs. Customize them as needed.
+        '*'       DEFAULT)
+    typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=134
+    # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext
+    # segment.
+    #
+    # Within the expansion the following parameters are always available:
+    #
+    # - P9K_CONTENT                The content that would've been displayed if there was no content
+    #                              expansion defined.
+    # - P9K_KUBECONTEXT_NAME       The current context's name. Corresponds to column NAME in the
+    #                              output of `kubectl config get-contexts`.
+    # - P9K_KUBECONTEXT_CLUSTER    The current context's cluster. Corresponds to column CLUSTER in the
+    #                              output of `kubectl config get-contexts`.
+    # - P9K_KUBECONTEXT_NAMESPACE  The current context's namespace. Corresponds to column NAMESPACE
+    #                              in the output of `kubectl config get-contexts`. If there is no
+    #                              namespace, the parameter is set to "default".
+    #
+    # If the context points to GKE or EKS, the following extra parameters are available:
+    #
+    # - P9K_KUBECONTEXT_CLOUD_NAME     Either "gke" or "eks".
+    # - P9K_KUBECONTEXT_CLOUD_ACCOUNT  Account/project ID.
+    # - P9K_KUBECONTEXT_CLOUD_ZONE     Availability zone.
+    # - P9K_KUBECONTEXT_CLOUD_CLUSTER  Cluster.
+    #
+    # P9K_KUBECONTEXT_CLOUD_* parameters are derived from P9K_KUBECONTEXT_CLUSTER. For example,
+    # if P9K_KUBECONTEXT_CLUSTER is "gke_my-account_us-east1-a_my-cluster-01":
+    #
+    #   - P9K_KUBECONTEXT_CLOUD_NAME=gke
+    #   - P9K_KUBECONTEXT_CLOUD_ACCOUNT=my-account
+    #   - P9K_KUBECONTEXT_CLOUD_ZONE=us-east1-a
+    #   - P9K_KUBECONTEXT_CLOUD_CLUSTER=my-cluster-01
+    #
+    # If P9K_KUBECONTEXT_CLUSTER is "arn:aws:eks:us-east-1:123456789012:cluster/my-cluster-01":
+    #
+    #   - P9K_KUBECONTEXT_CLOUD_NAME=eks
+    #   - P9K_KUBECONTEXT_CLOUD_ACCOUNT=123456789012
+    #   - P9K_KUBECONTEXT_CLOUD_ZONE=us-east-1
+    #   - P9K_KUBECONTEXT_CLOUD_CLUSTER=my-cluster-01
+    #
+    # The expansion below will show P9K_KUBECONTEXT_CLOUD_CLUSTER if it's not empty and fall back
+    # to P9K_KUBECONTEXT_NAME. Parameter expansions are very flexible and fast, too. See reference:
+    # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion.
+    typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_CONTENT_EXPANSION='${P9K_KUBECONTEXT_CLOUD_CLUSTER:-${P9K_KUBECONTEXT_NAME}}'
+
+    # Custom prefix.
+    typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%246Fat '
+
+    ###############################[ public_ip: public IP address ]###############################
+    # Public IP color.
+    typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=94
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_PUBLIC_IP_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+    ################################[ battery: internal battery ]#################################
+    # Show battery in red when it's below this level and not connected to power supply.
+    typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=20
+    typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=1
+    # Show battery in green when it's charging.
+    typeset -g POWERLEVEL9K_BATTERY_CHARGING_FOREGROUND=2
+    # Show battery in yellow when not connected to power supply.
+    typeset -g POWERLEVEL9K_BATTERY_DISCONNECTED_FOREGROUND=178
+    # Battery pictograms going from low to high level of charge.
+    typeset -g POWERLEVEL9K_BATTERY_STAGES='▁▂▃▄▅▆▇'
+    # Display battery pictogram without background.
+    typeset -g POWERLEVEL9K_BATTERY_VISUAL_IDENTIFIER_EXPANSION='%k${P9K_VISUAL_IDENTIFIER}'
+    # Don't show battery when it's fully charged and connected to power supply.
+    typeset -g POWERLEVEL9K_BATTERY_CHARGED_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
+    # Don't show the remaining time to charge/discharge.
+    typeset -g POWERLEVEL9K_BATTERY_VERBOSE=false
+
+    ####################################[ time: current time ]####################################
+    # Current time color.
+    typeset -g POWERLEVEL9K_TIME_FOREGROUND=66
+    # Format for the current time: 09:51:02. See `man 3 strftime`.
+    typeset -g POWERLEVEL9K_TIME_FORMAT=''
+    # If set to true, time will update when you hit enter. This way prompts for the past
+    # commands will contain the start times of their commands as opposed to the default
+    # behavior where they contain the end times of their preceding commands.
+    typeset -g POWERLEVEL9K_TIME_UPDATE_ON_COMMAND=false
+    # Custom icon.
+    # typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION='⭐'
+    # Custom prefix.
+    typeset -g POWERLEVEL9K_TIME_PREFIX='%246Fat '
+
+    # Example of a user-defined prompt segment. Function prompt_example will be called on every
+    # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
+    # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
+    #
+    # Type `p9k_prompt_segment -h` for documentation and a more sophisticated example.
+    function prompt_example() {
+      p9k_prompt_segment -f 208 -i '⭐' -t 'hello, %n'
+    }
+
+    # User-defined prompt segments can be customized the same way as built-in segments.
+    typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
+    typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
+  }
+
+  (( ! p9k_classic_restore_aliases )) || setopt aliases
+  'builtin' 'unset' 'p9k_classic_restore_aliases'
+
+
+</pre>
+
+      <div class="c-article__footer u-clearfix">
+        <div class="c-article__tag">
+          
+          <a href="/tags#macOS">&#35; macOS</a>
+          
+          <a href="/tags#environment">&#35; environment</a>
+          
+        </div>
+        <div class="c-article__share">
+
+          <a href="https://twitter.com/intent/tweet?text=[MacOS][Enviroment][2022]My%20MacOS%20Development%20Environment!&url=https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/" title="Share
+on Twitter" rel="nofollow" target="_blank">
+  <div data-icon='ei-sc-twitter' data-size='s'></div>
+</a>
+
+          <!-- <a href="" id="fb_share" title="Share on Facebook" rel="nofollow" target="_blank" ><div data-icon='ei-sc-facebook' data-size='s'></div></a>
+  <script>
+      window.onload = function() {
+          fb_share.href ='http://www.facebook.com/share.php?u=' + encodeURIComponent(location.href);
+      }
+  </script> -->
+<div id="fb_share_offical" class="fb-share-button" data-layout="button_count" data-size="small">share</div>
+<!-- <div id="fb_share_offical" class="btn btn-success clearfix">Simple OG Dialog</div> -->
+
+<!-- <script>
+    window.onload = function() {
+        fb_share_offical.data-href = encodeURIComponent(location.href);
+    }
+</script> -->
+
+<script>
+document.getElementById('fb_share_offical').onclick = function() {
+  FB.ui({
+    display: 'popup',
+    method: 'share',
+    href: encodeURIComponent(location.href);,
+    hashtag: '#Android,#Kotlin,#ElegantAccess',
+    quote: 'quote'
+  }, function(response){});
+}
+</script>
+
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+
+          
+<div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
+<script>
+    window.onload = function() {
+        fb-like-button.data-href = encodeURIComponent(location.href);
+    }
+</script>
+
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+        </div>
+      </div>
+      <div class="c-newsletter">
+  <div class="c-newsletter__header">
+    <h4 class="c-newsletter__title">Newsletter</h4>
+    <div class="c-newsletter__subtitle">Subscribe to this blog from below way.</div>
+  </div>
+
+  <div align="center">
+    <div class="c-newsletter__subtitle">Created by Elegant Access's KC.</div>
+    <div class="c-newsletter__subtitle">Copyright (c) 2021 All rights reserved.</div>
+
+    <div class="c-newsletter__subtitle">Instagram  :
+      <a href="https://www.instagram.com/eleg.aces.kc/">https://www.instagram.com/eleg.aces.kc/</a>
+    </div>
+
+    <div class="c-newsletter__subtitle">Github :
+      <a href="https://github.com/KuanChunChen">https://github.com/KuanChunChen</a>
+    </div>
+
+
+    <div class="c-newsletter__subtitle">Donate:
+      <a><div id="smart-button-container">
+      <div style="text-align: center;">
+        <div style="margin-bottom: 1.25rem;">
+          <p>Donate and support me.</p>
+          <select id="item-options"><option value="Buy me a coffee." price="3">Buy me a coffee. - 3 USD</option></select>
+          <select style="visibility: hidden" id="quantitySelect"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option></select>
+        </div>
+      <div id="paypal-button-container"></div>
+      </div>
+    </div>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <script>
+      function initPayPalButton() {
+        var shipping = 0;
+        var itemOptions = document.querySelector("#smart-button-container #item-options");
+    var quantity = parseInt(100);
+    var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
+    if (!isNaN(quantity)) {
+      quantitySelect.style.visibility = "visible";
+    }
+    var orderDescription = 'Donate and support me.';
+    if(orderDescription === '') {
+      orderDescription = 'Item';
+    }
+    paypal.Buttons({
+      style: {
+        shape: 'pill',
+        color: 'gold',
+        layout: 'horizontal',
+        label: 'paypal',
+        tagline:false,
+
+
+      },
+      createOrder: function(data, actions) {
+        var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
+        var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
+        var tax = (0 === 0 || false) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
+        if(quantitySelect.options.length > 0) {
+          quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
+        } else {
+          quantity = 1;
+        }
+
+        tax *= quantity;
+        tax = Math.round(tax * 100) / 100;
+        var priceTotal = quantity * selectedItemPrice + parseFloat(shipping) + tax;
+        priceTotal = Math.round(priceTotal * 100) / 100;
+        var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
+
+        return actions.order.create({
+          purchase_units: [{
+            description: orderDescription,
+            amount: {
+              currency_code: 'USD',
+              value: priceTotal,
+              breakdown: {
+                item_total: {
+                  currency_code: 'USD',
+                  value: itemTotalValue,
+                },
+                shipping: {
+                  currency_code: 'USD',
+                  value: shipping,
+                },
+                tax_total: {
+                  currency_code: 'USD',
+                  value: tax,
+                }
+              }
+            },
+            items: [{
+              name: selectedItemDescription,
+              unit_amount: {
+                currency_code: 'USD',
+                value: selectedItemPrice,
+              },
+              quantity: quantity
+            }]
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(orderData) {
+
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '';
+          element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+          // Or go to another URL:  actions.redirect('thank_you.html');
+
+        });
+      },
+      onError: function(err) {
+        console.log(err);
+      },
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+    </script>
+</a>
+      <a><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5317402524376092"
+     crossorigin="anonymous"></script>
+</a>
+    </div>
+
+  </div>
+
+
+
+</div> <!-- /.c-newsletter -->
+
+      <!-- <div class="c-fb-message-comment"> -->
+
+  <!-- <script> -->
+      <!-- window.onload = function() { -->
+          <!-- fb_message.data-href = encodeURIComponent(location.href); -->
+      <!-- } -->
+  <!-- </script> -->
+<!-- </div> -->
+
+
+<div class="c-fbmessagecomment">
+
+  <div align="center">
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/2022/08/08/share-my-macos-enviroment/" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+
+  </div>
+
+
+
+</div> <!-- /.c-newsletter -->
+
+      <div class="c-recent-post">
+        <h4 class="c-recent__title">You might also enjoy</h4>
+        <div class="c-recent__box">
+          
+          
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2022/09/17/android-often-cli/" style="background-image: url( /images/cover/android-photo-ascii-art.png)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2022/09/17/android-often-cli/">[Android][2022][Problem Solved Series] 2022年我在開發最常用的指令分享</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2022-09-17T17:21:13+08:00">September 17, 2022</time>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2022/09/16/android-samsung-knox-import/" style="background-image: url( /images/cover/knox_social.png)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2022/09/16/android-samsung-knox-import/">[Android][2022][Samsung][Problem Solved Series] 手把手教你如何導入Samsung Knox SDK 到你的Android 專案</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2022-09-16T14:41:08+08:00">September 16, 2022</time>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2022/08/25/android-13-version-impact/" style="background-image: url( /images/cover/android13.png)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2022/08/25/android-13-version-impact/">[Android][2022][Problem Solved Series] Android 13 版本差異分享</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2022-08-25T11:11:58+08:00">August 25, 2022</time>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/2022/08/24/android-12-version-impact/" style="background-image: url( /images/cover/android12.jpeg)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/2022/08/24/android-12-version-impact/">[Android][2022][Problem Solved Series] Android 12 版本差異分享</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2022-08-24T14:39:48+08:00">August 24, 2022</time>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div> <!-- /.c-recent-post -->
+      
+      <div class="c-comments">
+  <div id="disqus_thread" class="article-comments"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script');
+      s.src = '//K.C.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+</div> <!-- /.c-comments -->
+      
+    </div> <!-- /.c-wrap-content -->
+  </div> <!-- /.c-article__content -->
+</article> <!-- /.c-article-page -->
+</main> <!-- /.c-content -->
+
+  </div> <!-- /.o-wrapper -->
+  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
+  <script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/evil-icons.min.js"></script>
+<script src="/js/jquery.fitvids.js"></script>
+<script src="/js/simple-jekyll-search.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- /javascripts -->
+</body>
+<!-- Messenger 洽談外掛程式 Code -->
+<div id="fb-root"></div>
+
+<!-- Your 洽談外掛程式 code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "111648304079126");
+  chatbox.setAttribute("attribution", "biz_inbox");
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      xfbml            : true,
+      version          : 'v12.0'
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</html>

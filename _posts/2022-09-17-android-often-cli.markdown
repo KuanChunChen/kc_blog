@@ -23,7 +23,7 @@ categories: Android
    -  install bundletool<br>
       `brew install bundletool`
 
-   -  switch to your abb file folder and convert it to apk file<br>
+   -  switch to your aab file folder and convert it to apk file<br>
       `bundletool build-apks --bundle=./app.aab --output=./app.apks`
 
    -  install apk<br>
@@ -73,8 +73,8 @@ categories: Android
 
    - Pull files<br>
     `adb pull /your/path`
-    
-   - Switch tcpip port
+
+   - Switch tcpip port<br>
      `adb tcpip <port>`
 
    - Catch android log<br>

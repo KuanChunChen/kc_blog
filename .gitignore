@@ -2,6 +2,5 @@ images/.DS_Store
 .DS_Store
 .sass-cache/
 *.DS_Store
-_site/*
 !_site/category/
 .jekyll-cache
