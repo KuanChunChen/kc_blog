@@ -7,17 +7,14 @@ tags: [Android,CLI,adb,brew,develop]
 categories: Android
 ---
 
-
----
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Preview</h1>
 
  * when I am developing that I always used `brew` to install some cli tool.
    -  install brew<br>
    `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-<br><br>
 
-### Android
----
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Android</h1>
 
  * How to install test `aab` file
    -  install bundletool<br>
@@ -83,11 +80,8 @@ categories: Android
         <a href="{{site.baseurl}}/2022/04/18/android-log-catch-method/">[Android][2022][Debug][Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log</a>
       </div>
 
-<br>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;bootloader</h1>
 
-bootloader
-
----
 
  * The step of recovery Android phone use the office OTA
   1. Update bootloader<br>
@@ -119,10 +113,8 @@ bootloader
 
 <br>
 
-Git
----
-
- * I like to use git command line to control my repo instead of git GUI tool.
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Git</h1>
+<h4 style = "background-color:tomato; color:white;">&nbsp;&nbsp;I like to use git command line to control my repo instead of git GUI tool.</h4>
 
    - Let your git graph not merge together and not commit after you sent the cli.<br>
    `git merge --no-ff --no-commit hash`
@@ -144,7 +136,7 @@ Git
 
 <br>
 
-Others
----
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Others</h1>
+
  * See Java environment<br>
  `/usr/libexec/java_home -V`

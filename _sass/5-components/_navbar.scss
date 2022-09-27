@@ -1,0 +1,31 @@
+
+.c-nav_bar {
+
+  margin-top: 15px;
+  margin-bottom:15px;
+  position:relative;
+  display: flex;
+  width: 100%;
+  background-color: $white-color
+  border: 1px solid $darkest;
+}
+
+.c-nav_icon {
+  display: flex;
+  align-items: center;
+}
+.navbar-header{
+  a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 15px;
+  }
+}
+
+.navbar-nav a {
+  color: black;
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-size: 15px;
+}

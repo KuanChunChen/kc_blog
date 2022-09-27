@@ -1,3 +1,4 @@
+web-name: Elegant Access
 title: Elegant Access - Your Majesty
 description: Elegant Access is a blog that share android know-how.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -52,6 +53,8 @@ sass:
   sass_dir: _sass
   style: compressed
 
+future: true
+timezone:	Asia/Taipei
 # Exclude from processing.
 exclude:
   - Gemfile
