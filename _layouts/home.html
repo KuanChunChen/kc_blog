@@ -16,14 +16,14 @@ layout: default
 
 
     <div class="c-contact-menu">
-      {% if site.author-email %}
+      <!-- {% if site.author-email %}
       <a href="mailto:{{site.author-email}}" class="c-contact-btn c-btn c-btn--secondary c-btn--round c-btn--shadow"><span class="img-responsive" data-icon='ei-envelope' data-size='s'></span> Send me</a>
       {% else %}
       {% endif %}
       {% if site.author-linkedin %}
       <a href="https://www.linkedin.com/in/{{ site.social-linkedin }}" class="c-btn c-btn--primary c-btn--round c-btn--shadow"><span data-icon='ei-sc-linkedin' data-size='s'></span> Follow me</a>
       {% else %}
-      {% endif %}
+      {% endif %} -->
     </div>
     <p class="c-author__about">{{site.about-author | strip_html | truncatewords: 50}}</p>
 

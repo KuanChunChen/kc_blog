@@ -29,7 +29,7 @@ categories: AI
   <img src="/images/linebot/line_bot_011.png" width="70%"/>
   <img src="/images/linebot/line_bot_012.png" width="70%"/>
   <img src="/images/linebot/line_bot_013.png" width="70%"/>
-  <p>看起來chatGPT給了一段給身高預測體重的範例，看起來有模有樣</p>
+  <p>&#11014;看起來chatGPT給了一段給身高預測體重的範例，看起來有模有樣</p>
 
 </div>
 
@@ -44,9 +44,9 @@ categories: AI
   </h3>
 
   <img src="/images/linebot/line_bot_014.png" width="30%"/><br>
-  <p>點擊進入後右上角 頭像點進後會有如上圖樣式，點擊View API keys即可</p>
+  <p>&#11014;點擊進入後右上角 頭像點進後會有如上圖樣式，點擊View API keys即可</p>
   <img src="/images/linebot/line_bot_015.png" width="60%"/><br><br>
-  <p>點擊Create new Security key，這個Key是你之後呼叫API使用要確認你身份的一把Key</p>
+  <p>&#11014;點擊Create new Security key，這個Key是你之後呼叫API使用要確認你身份的一把Key</p>
 
   <h3>2.接著你可以看官方api文件：
     <a href="https://platform.openai.com/docs/api-reference/models/list">OpenAI api文件</a>
