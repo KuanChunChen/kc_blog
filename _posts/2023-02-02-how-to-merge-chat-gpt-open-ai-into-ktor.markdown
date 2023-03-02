@@ -166,13 +166,13 @@ categories: AI
 </h3>
 這邊兩組key是呼叫linebot相關接口需要的key
 <div align="center">
-  <img src="/images/linebot/line_bot_018.png" width="50%"/><br><br>
-  <img src="/images/linebot/line_bot_019.png" width="80%"/>
+  <img src="/images/linebot/line_bot_018.png" width="100%"/><br><br>
+  <img src="/images/linebot/line_bot_019.png" width="100%"/>
 </div><br>
 
 <h3>4.接著就是參考參考LineBot官方API文件，看看怎麼串:<a href="https://developers.line.biz/en/docs/messaging-api/sending-messages/#methods-of-sending-message">LineBot Messaging api文件</a></h3>
 <div align="center">
-  <img src="/images/linebot/line_bot_020.png" width="50%"/><br><br>
+  <img src="/images/linebot/line_bot_020.png" width="100%"/><br><br>
 </div><br>
 
 <h3>5.至此，你已經取得串接LineBot接口所需的東西了...</h3>
@@ -199,3 +199,63 @@ categories: AI
 <div align="center">
   <img src="/images/linebot/line_bot_021.png" width="40%"/><br><br>
 </div><br>
+
+<h2 style="background-color:MediumSeaGreen; color:white;">開發完成後怎麼部署到LineBot內呢？</h2>
+
+<h3>1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了</h3>
+
+<p style="text-align:center;">
+這裡就是回到前面去過的<a href="https://developers.line.biz/">Line Deverloper</a><br>
+進到Messaging API這個頁面<br>
+把你開放的接口輸入進來就行了
+</p>
+<div align="center">
+  <img src="/images/linebot/line_bot_022.png" width="100%"/><br><br>
+  <img src="/images/linebot/line_bot_025.png" width="100%"/><br><br>
+</div>
+<p style="text-align:center;">
+&#11014;更新你的url到Line後台</p>
+
+
+<img src="/images/linebot/line_bot_023.png" width="100%"/>
+<p style="text-align:center;">
+&#11014;輸入完後，可以確認你的Server是不是通的</p>
+<img src="/images/linebot/line_bot_024.png" width="100%"/>
+<p style="text-align:center;">
+&#11014;點Verify後的結果顯示，若是錯誤則會反饋error code</p>
+
+<h3>2.這邊我用Kotlin的Ktor來開發自己的後端，像是...</h3>
+<img src="/images/linebot/line_bot_026.png" width="100%"/>
+<p style="text-align:center;">
+&#11014;開一個/line_callback接口</p>
+
+<h3>3.我推薦一個免費用的線上Server：<a href="https://ngrok.com/">ngrok</a></h3>
+
+<p style="text-align:center;">
+因為這個使用門檻低，很適合新手<br>
+只需要照著官網文件<br>
+幾乎無痛就幫你把本地port轉換成一個對外的Url<br>
+相當方便<br></p>
+
+<div align="center">
+  <img src="/images/linebot/line_bot_027.png" width="100%"/><br><br>
+</div>
+<p style="text-align:center;">
+&#11014;登入後，看到ngrok的dashboard，這時只需要照上方步驟<br>
+1.下載zip安裝<br>
+2.在commend line (Linux/mac) / dos(windows) 中複製輸入上方指令<br>
+3.最後選一個port轉成對外port即可
+</p>
+
+<h3 style="text-align:center;">
+4.在用ngrok轉換port後，會看到以下畫面<br></h3>
+<div align="center">
+  <img src="/images/linebot/line_bot_028.png" width="100%"/><br><br>
+  <img src="/images/linebot/line_bot_029.png" width="100%"/><br><br>
+</div>
+
+<h3 style="text-align:center;">
+5.再次回到Line Developer後台，輸入url即可完全串好<br></h3>
+<div align="center">
+  <img src="/images/linebot/line_bot_030.png" width="100%"/><br><br>
+</div>
