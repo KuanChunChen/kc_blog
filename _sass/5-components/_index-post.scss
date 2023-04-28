@@ -26,7 +26,7 @@
     box-shadow: 0 15px 45px -10px rgba(10, 16, 34, .2)
   }
   .c-post-thumbnail {
-    display: block;
+    display: inline-flex;
     width: 30%;
     max-width: 100%;
     min-height: 180px;
@@ -39,15 +39,18 @@
     padding: 15px;
     width: 70%;
     .c-post-title {
-      font-size: 30px;
-      font-weight: 400;
+      font-size: 28px;
+      font-weight: bold;
       margin: 0 0 15px;
       a {
         text-decoration: none;
-        color: $blue-dark;
+        color: $blue-dark-2;
       }
     }
-    .c-post-date,
+    .c-post-date {
+      font-size: 12px;
+      font-weight: bold;
+    }
     .c-post-words {
       font-size: 12px;
     }

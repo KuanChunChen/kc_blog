@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][Enterprise][2022][Problem Solved Series]Android Enterprise 研究筆記分享"
 date: 2022-05-25 16:05:01 +0800
-image: cover/android-er_1x.png
+image: cover/android-enterprise-1.png
 tags: [Android,Enterprise]
 categories: Android Enterprise
 ---

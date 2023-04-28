@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Android][2022][Problem Solved Series]Android IPC 方案整理分享"
+title: "[Problem Solved Series]Android IPC 跨進程方案整理分享"
 date: 2022-04-15 15:36:28 +0800
-image: cover/android-developers-ascii-art-dark.png
+image: cover/android-ipc-method-share-1.png
 tags: [Android,Debug]
 categories: Debug
 ---

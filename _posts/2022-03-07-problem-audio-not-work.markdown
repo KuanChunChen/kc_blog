@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Android][2022][Problem Solved Series]Android Audio 調適問題分享"
+title: "[Problem Solved Series]Android Audio 適配疑難雜症分享"
 date: 2022-03-07 14:31:22 +0800
-image: cover/android-developers-ascii-art-light.png
+image: cover/android-audio-share-1.png
 tags: [Android,Debug]
 categories: Debug
 ---

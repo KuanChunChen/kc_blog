@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Android][2022][Debug][Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log"
+title: "[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log"
 date: 2022-04-18 16:37:48 +0800
-image: cover/android-photo-ascii-art.png
+image: cover/android-catch-log-1.png
 tags: [Android,Debug]
 categories: Debug
 ---

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "[2023][Android][ChatGPT][Open AI][Kotlin][懶人包教學]一步一步帶你把ChatGPT串進你的LineBot聊天室"
+title: "[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室"
 date: 2023-02-02 16:24:56 +0800
-image: cover/android-photo.jpg
-tags: [OpenAI,Chat GPT,自然语言處理,人工智能,語言生成,AI,智能聊天機器人,機器學習,開放式對話系統,智能語音助手,LineBot機器人,聊天機器人,自動化客服,聊天程式,智能對話,訊息自動回覆,人工智慧,智能客服,智能聊天,AI聊天機器人,虛擬客服,自動回應,聊天機器人開發,LineBot開發]
+image: cover/kotlin-cht-gpt-line-bot-open-ai-1.png
+tags: [OpenAI,Chat GPT,AI]
 permalink: /easy_use_chat_gpt_with_line_bot
 categories: AI
 ---

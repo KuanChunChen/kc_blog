@@ -2,7 +2,7 @@
 layout: post
 title: "[Adsense][Html][2022]你也可以輕鬆學會的廣告收益方式 - 在網站中加入 Google AdSense 教學"
 date: 2022-09-26 14:44:32 +0800
-image: cover/adsense.jpeg
+image: cover/html-google-adsense-2022-1.png
 tags: [html,adsense,google,extra income,tutorial]
 categories: ExtraIncome
 ---

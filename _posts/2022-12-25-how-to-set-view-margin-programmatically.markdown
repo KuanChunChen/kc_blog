@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "[Android][Kotlin][Clear Code]如何優雅的用程式碼在各種layout動態設定view margin"
+title: "[Android][Kotlin][Extension]Kotlin extension純程式碼設定Android layout的margin"
 date: 2022-12-25 17:05:12 +0800
-image: cover/android-photo.jpg
+image: cover/kotlin-clear-code-maring-layout-xml-constarint-layout-1.png
 tags: [Android,Kotlin,Extension]
 permalink: /clear_use_extension_to_set_margin
 categories: Android

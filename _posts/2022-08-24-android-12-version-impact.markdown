@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Problem Solved Series] Android 12 版本差異分享"
 date: 2022-08-24 14:39:48 +0800
-image: cover/android12.jpeg
+image: cover/android-version-adaptation-12-1.png
 tags: [Android,Debug,ota,aosp]
 categories: Debug
 ---

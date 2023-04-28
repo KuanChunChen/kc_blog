@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Debug][Problem Solved Series]Android Device owner 權限請求與實際作用統整"
 date: 2022-04-25 18:19:28 +0800
-image: cover/android-photo.jpg
+image: cover/android-device-owner-1.png
 tags: [Android,Debug]
 categories: Debug
 ---

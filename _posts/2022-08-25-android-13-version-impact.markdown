@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Problem Solved Series] Android 13 版本差異分享"
 date: 2022-08-25 11:11:58 +0800
-image: cover/android13.png
+image: cover/android-version-adaptation-13-1.png
 tags: [Android,Debug,ota,aosp]
 categories: Debug
 ---

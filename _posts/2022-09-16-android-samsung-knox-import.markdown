@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Samsung][Problem Solved Series] 手把手教你如何導入Samsung Knox SDK 到你的Android 專案"
 date: 2022-09-16 14:41:08 +0800
-image: cover/knox_social.png
+image: cover/samsung-android-knox-1.png
 tags: [Android,Debug,Samsung,knox]
 categories: Debug
 ---

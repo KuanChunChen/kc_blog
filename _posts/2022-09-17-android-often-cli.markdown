@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Problem Solved Series] 2022年我在開發最常用的指令分享"
 date: 2022-09-17 17:21:13 +0800
-image: cover/android-photo-ascii-art.png
+image: cover/android-cmd-terminal-1.png
 tags: [Android,CLI,adb,brew,develop]
 categories: Android
 ---

@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享"
 date: 2022-04-21 18:09:28 +0800
-image: cover/android-photo.jpg
+image: cover/android-vpn-app-develop-1.png
 tags: [Android,Debug]
 categories: Debug
 ---

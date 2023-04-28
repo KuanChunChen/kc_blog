@@ -12,10 +12,10 @@ So this subject will record the tool I use on my mac.<br>
 
 
 <div style="font-size:18px; border-width:1px; border-style:solid; font-size:19px;">Brief description</div>
-{% include example/linux/brief_desrcption.html %} <br>
+{% include example/linux/brief_desrcption.html %}
 
 <div class= "body" >Neofetch config content </div>
-{% include example/linux/neofetch_config.html %} <br>
+{% include example/linux/neofetch_config.html %}
 
 <div style="font-size:18px; border-width:1px; border-style:solid; font-size:19px;">zsh .zshrc</div>
 {% include example/linux/zshrc.html %}
