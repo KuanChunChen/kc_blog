@@ -1,0 +1,291 @@
+[
+  
+    {
+      "title"    : "[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室",
+      "category" : "",
+      "tags"     : "OpenAI, Chat GPT, and AI",
+      "url"      : "/easy_use_chat_gpt_with_line_bot",
+      "date"     : "2023-02-02 16:24:56 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Extension]Kotlin extension純程式碼設定Android layout的margin",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and Extension",
+      "url"      : "/clear_use_extension_to_set_margin",
+      "date"     : "2022-12-25 17:05:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Adsense][Html][2022]你也可以輕鬆學會的廣告收益方式 - 在網站中加入 Google AdSense 教學",
+      "category" : "",
+      "tags"     : "html, adsense, google, extra income, and tutorial",
+      "url"      : "/2022/09/26/google-adsense-how-to-setup/",
+      "date"     : "2022-09-26 14:44:32 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Problem Solved Series] 2022年我在開發最常用的指令分享",
+      "category" : "",
+      "tags"     : "Android, CLI, adb, brew, and develop",
+      "url"      : "/2022/09/17/android-often-cli/",
+      "date"     : "2022-09-17 17:21:13 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Samsung][Problem Solved Series] 手把手教你如何導入Samsung Knox SDK 到你的Android 專案",
+      "category" : "",
+      "tags"     : "Android, Debug, Samsung, and knox",
+      "url"      : "/2022/09/16/android-samsung-knox-import/",
+      "date"     : "2022-09-16 14:41:08 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Problem Solved Series] Android 13 版本差異分享",
+      "category" : "",
+      "tags"     : "Android, Debug, ota, and aosp",
+      "url"      : "/2022/08/25/android-13-version-impact/",
+      "date"     : "2022-08-25 11:11:58 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Problem Solved Series] Android 12 版本差異分享",
+      "category" : "",
+      "tags"     : "Android, Debug, ota, and aosp",
+      "url"      : "/2022/08/24/android-12-version-impact/",
+      "date"     : "2022-08-24 14:39:48 +0800"
+    } ,
+  
+    {
+      "title"    : "[MacOS][Enviroment][2022]My MacOS Development Environment!",
+      "category" : "",
+      "tags"     : "macOS and environment",
+      "url"      : "/2022/08/08/share-my-macos-enviroment/",
+      "date"     : "2022-08-08 14:46:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Data Structure][Kotlin][2022]資料結構複習 - Linked List",
+      "category" : "",
+      "tags"     : "data structure and algorithm",
+      "url"      : "/2022/06/28/data-structure-linked-list/",
+      "date"     : "2022-06-28 11:46:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Enterprise][2022][Problem Solved Series]Android Enterprise 研究筆記分享",
+      "category" : "",
+      "tags"     : "Android and Enterprise",
+      "url"      : "/2022/05/25/android-enterprise/",
+      "date"     : "2022-05-25 16:05:01 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Debug][Problem Solved Series]Android Device owner 權限請求與實際作用統整",
+      "category" : "",
+      "tags"     : "Android and Debug",
+      "url"      : "/2022/04/25/android-device-owner/",
+      "date"     : "2022-04-25 18:19:28 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享",
+      "category" : "",
+      "tags"     : "Android and Debug",
+      "url"      : "/2022/04/21/android-vpn-manager-method/",
+      "date"     : "2022-04-21 18:09:28 +0800"
+    } ,
+  
+    {
+      "title"    : "[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log",
+      "category" : "",
+      "tags"     : "Android and Debug",
+      "url"      : "/2022/04/18/android-log-catch-method/",
+      "date"     : "2022-04-18 16:37:48 +0800"
+    } ,
+  
+    {
+      "title"    : "[Problem Solved Series]Android IPC 跨進程方案分享",
+      "category" : "",
+      "tags"     : "Android and Debug",
+      "url"      : "/2022/04/15/android-ipc-note/",
+      "date"     : "2022-04-15 15:36:28 +0800"
+    } ,
+  
+    {
+      "title"    : "[Problem Solved Series]Android Audio 適配疑難雜症分享",
+      "category" : "",
+      "tags"     : "Android and Debug",
+      "url"      : "/2022/03/07/problem-audio-not-work/",
+      "date"     : "2022-03-07 14:31:22 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022]Android 11 adb wireless debug 心得分享",
+      "category" : "",
+      "tags"     : "Android and adb",
+      "url"      : "/2022/02/22/android-adb-wifi-note-detail/",
+      "date"     : "2022-02-22 15:16:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2022]用adb來透過wifi 連接Android實機教學",
+      "category" : "",
+      "tags"     : "Android and adb",
+      "url"      : "/2022/02/15/android-adb-wifi-note/",
+      "date"     : "2022-02-15 13:46:32 +0800"
+    } ,
+  
+    {
+      "title"    : "[MacOS][Enviroment][2022]WebRtc &amp; Mqtt 名詞解釋筆記分享",
+      "category" : "",
+      "tags"     : "know-how",
+      "url"      : "/2022/02/14/web-rtc-mqtt-name/",
+      "date"     : "2022-02-14 13:50:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][2021]Android實作-mvvm+di+Rx做出流暢自動加載分頁！",
+      "category" : "",
+      "tags"     : "Android, Kotlin, MVVM, dagger, http, and di",
+      "url"      : "/2021/12/23/android-kotlin-mvvm-dagger-http-rxjava/",
+      "date"     : "2021-12-23 13:06:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Ktor][Kotlin][2021]Ktor server 架設 line聊天室機器人",
+      "category" : "",
+      "tags"     : "Android, Ktor, and Kotlin",
+      "url"      : "/2021/12/07/android-kotlin-ktor-line-bot-server/",
+      "date"     : "2021-12-07 17:36:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][2021]Android低功耗藍芽Gatt連線實作教學！",
+      "category" : "",
+      "tags"     : "Android, Bluetooth, and Kotlin",
+      "url"      : "/2021/11/12/android-kotlin-bluetooth-gatt-client/",
+      "date"     : "2021-11-12 16:16:32 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin]如何抓取Android手機中 Bluetooth 藍芽封包日誌",
+      "category" : "",
+      "tags"     : "Android and Bluetooth",
+      "url"      : "/2021/11/12/android-bluetooth-hci-packet/",
+      "date"     : "2021-11-12 16:16:32 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][CodingTest]刷題練習紀錄",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and Coding",
+      "url"      : "/2021/11/11/android-kt-code-practive/",
+      "date"     : "2021-11-11 12:55:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(3) - JetpackCompose SwipeRefresh 輕鬆讓list刷新！",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and JetpackCompose",
+      "url"      : "/2021/10/28/android-kt-jetpack-compose-swiperefresh/",
+      "date"     : "2021-10-28 14:41:12 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Memory]記憶體優化+GC管理相關概念分享",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and Memory",
+      "url"      : "/2021/10/05/android-memory-note/",
+      "date"     : "2021-10-05 17:42:21 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and JetpackCompose",
+      "url"      : "/2021/09/28/android-kt-jetpack-compose-list/",
+      "date"     : "2021-09-28 11:03:41 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and JetpackCompose",
+      "url"      : "/2021/09/17/android-kt-jetpack-compose-splash/",
+      "date"     : "2021-09-17 15:02:11 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and JetpackCompose",
+      "url"      : "/2021/09/13/android-kt-jetpack-compose-base/",
+      "date"     : "2021-09-13 16:00:48 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][RxJava]「進階篇」RxJava 進階 - 一個extension funcion 實現網路連線Token重取",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2021/02/19/android-kt-rxjava/",
+      "date"     : "2021-02-19 21:37:48 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin]Google Map decode polyline 預估路徑/畫線 解碼教學",
+      "category" : "",
+      "tags"     : "Android, Kotlin, and Google map",
+      "url"      : "/2020/12/07/android-kt-map/",
+      "date"     : "2020-12-07 21:22:14 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解",
+      "category" : "",
+      "tags"     : "Android, Kotlin, inline, noinline, and crossinline",
+      "url"      : "/2020/11/30/android-kt-inline/",
+      "date"     : "2020-11-30 21:01:43 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/21/android-kotlin-custom-view-03/",
+      "date"     : "2020-11-21 15:44:20 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/20/android-kotlin-custom-view-02/",
+      "date"     : "2020-11-20 16:04:13 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄",
+      "category" : "",
+      "tags"     : "Android and Kotlin",
+      "url"      : "/2020/11/14/android-kotlin-custom-view-01/",
+      "date"     : "2020-11-14 15:30:18 +0800"
+    } ,
+  
+    {
+      "title"    : "[Android][2020][Samsung][Problem Solved Series] 導入Huawei HMS Core 4.0 心得分享 ",
+      "category" : "",
+      "tags"     : "Android, Debug, Samsung, and knox",
+      "url"      : "/2020/09/15/android-huawei-hms-review/",
+      "date"     : "2020-09-15 10:06:32 +0800"
+    } ,
+  
+    {
+      "title"    : "[App開發]用 AIDL 來跨進程開發Android app吧 ！",
+      "category" : "",
+      "tags"     : "Android and AIDL",
+      "url"      : "/android/aidl",
+      "date"     : "2020-08-21 09:41:01 +0800"
+    } 
+  
+]
