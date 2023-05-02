@@ -8,21 +8,21 @@ url: "https://elegantaccess.org" # the base hostname & protocol for your site, e
 author-name:    Willy Chen
 author-image:   champion.JPG
 author-job:     Android Developer
-author-email:   championsheeps@gmail.com
+author-email:
 author-twitter:
-author-linkedin: kuan-chun-chen-3b703216b # Add your twitter account
-author-link: kc09401811 # Add your twitter account
+author-linkedin:
+author-link: eleg_aces  
 about-author:   I am a Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.
 
 # Social settings
-social-twitter:
-social-facebook:
+social-twitter:   intent/follow?screen_name=eleg_aces
+social-facebook:  eleg.aces
 social-github:    KuanChunChen
 social-pinterest:
-social-instagram:
+social-instagram: eleg.aces.kc
 social-youtube:
 social-vk:
-social-linkedin: kuan-chun-chen-3b703216b
+social-linkedin:
 
 # Newsletter
 mailchimp: # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e

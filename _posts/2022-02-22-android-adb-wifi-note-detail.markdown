@@ -2,7 +2,7 @@
 layout: post
 title: "[Android][2022]Android 11 adb wireless debug 心得分享"
 date: 2022-02-22 15:16:12 +0800
-image: others/android-adb-wirless-share-1.png
+image: cover/android-adb-wirless-share-1.png
 tags: [Android,adb]
 categories: Android
 ---
