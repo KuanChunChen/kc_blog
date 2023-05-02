@@ -3,7 +3,7 @@ layout: post
 title: "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄"
 date: 2020-11-14 15:30:18 +0800
 image: cover/android-photo.jpg
-permalink: /android/custom/ui/01
+permalink: /android/custom01
 tags: [Android,Kotlin]
 categories: Android
 ---

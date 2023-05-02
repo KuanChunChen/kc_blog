@@ -19,17 +19,17 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK</title>
-  <meta name='description' content="前言  過去在專案上有遇過有廠商要求導入Huawei SDK的經驗剛好以前有做一些筆記現在把他整理出來分享給大家！整體開發下來其實就是跟Google gms滿像的 XDD ">
+  <title>[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view</title>
+  <meta name='description' content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化的實作篇，今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/android/huawei/map" />
-<meta property="og:title" content="實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK" />
-<meta property="og:description" content="前言  過去在專案上有遇過有廠商要求導入Huawei SDK的經驗剛好以前有做一些筆記現在把他整理出來分享給大家！整體開發下來其實就是跟Google gms滿像的 XDD " />
-<meta property="og:image" content="https://elegantaccess.org/images/cover/android-hms-sdk-1.png" />
+  <meta property="og:url" content="https://elegantaccess.org/android/custom03" />
+<meta property="og:title" content="[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view" />
+<meta property="og:description" content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化的實作篇，今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！" />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/android-photo.jpg" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -39,7 +39,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/android/huawei/map">
+  <link rel='canonical' href="https://elegantaccess.org/android/custom03">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -181,152 +181,245 @@
       </div>
     </header>
     
-    <div class="c-article__image opacity" style="background-image: url( /images/cover/android-hms-sdk-1.png )"></div>
+    <div class="c-article__image opacity" style="background-image: url( /images/cover/android-photo.jpg )"></div>
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK</h1>
+        <h1 class="c-article__title">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view</h1>
         <div class="c-article__date">
-          <span>2020, Sep 15</span>
+          <span>2020, Nov 21</span>
         </div>
       </header>
-      <h1 class="c-border-main-title">前言</h1>
-<ul>
-  <li>過去在專案上有遇過<br />
-有廠商要求導入Huawei SDK的經驗<br />
-剛好以前有做一些筆記<br />
-現在把他整理出來<br />
-分享給大家！<br />
-整體開發下來<br />
-其實就是跟Google gms滿像的 XDD <br /></li>
-</ul>
+      <p>Hello,大家好,這裡是Elegant Access的 KC，<br />
+歡迎大家繼續回來看如何客製化的實作篇，<br />
+今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，<br />
+讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！</p>
 
-<h1 class="c-border-main-title">導入HMS</h1>
-
-<div class="c-border-content-title-1">第一步:註冊帳號</div>
-<ul>
-  <li>首先你必須去<a href="https://developer.huawei.com/consumer/cn">華為後台</a>註冊加入實名會員<br />
- 具體方法可參考<a href="https://developer.huawei.com/consumer/cn/devservice/doc/20300">帳號註冊認證</a>。</li>
-</ul>
-
-<div class="c-border-content-title-1">第二步:在後台創建應用</div>
-<ul>
-  <li>這邊就是跟其他平台滿像的<br />
- 有使用者介面操作一下即可創建<br />
- <img src="/images/huawei/1.png" alt="1.png" /><br />
- 接著就需要去開啟你要用的API的權限<br />
- 也是在後台打開<br />
- <img src="/images/huawei/2.png" alt="2.png" /><br /></li>
-</ul>
-
-<div class="c-border-content-title-1">第三步 :生成簽名</div>
-<ul>
-  <li>這邊跟google滿像的<br />
- 可以用AS內的tool直接生成<br />
- <img src="/images/huawei/3.png" alt="3.png" /><br />
- 產生後使用指令<br />
- <code class="language-plaintext highlighter-rouge">keytool -list -v -keystore &lt;keystore-file&gt;</code><br />
- keystore-file : 這邊是需要輸入證書path<br />
- 之後把產生的Sha256 hash貼到華為後台你剛創建的app的配置內<br /><br /></li>
-</ul>
-
-<div class="c-border-content-title-1">第四步:配置簽名</div>
-<ul>
-  <li>
-    <p>生成簽名之後<br />
-  就可以在華為後台下載 <code class="language-plaintext highlighter-rouge">agconnect-services.json</code><br />
-  接著開始加入到你的專案中<br /></p>
-  </li>
-  <li>
-    <p>這個圖是當時專案的配置<br />
-  因為那時候產品需求是<br />
-  希望在build project的時候就能先build進不同產商的配置<br />
-  然後亦希望在huawei內如果有人的手機自行安裝了gms<br />
-  又要可以支援google服務<br />
-  所以配置如下圖<br /><br />
-  <img src="/images/huawei/4.png" alt="4.png" /><br /><br />
-  當然實際專案開發時<br />
-  可以跟你們的team member溝通會比較好<br /></p>
-  </li>
-  <li>
-    <p>因為<code class="language-plaintext highlighter-rouge">HMS</code>很多function name 都跟<code class="language-plaintext highlighter-rouge">GMS</code> 內都是<code class="language-plaintext highlighter-rouge">一樣的名字</code>XD<br />
-  所以開發上就要好好<code class="language-plaintext highlighter-rouge">分清楚</code>會比較好<br />
-  不管從<code class="language-plaintext highlighter-rouge">配置</code>著手 或 <code class="language-plaintext highlighter-rouge">code分離</code>開始<br />
-  不然很容易後期維護上會很麻煩<br />
-  耦合太高又很難拆的話就…<br /></p>
-  </li>
-</ul>
-
-<div class="c-border-content-title-1">第五步:加入專案配置</div>
-<ul>
-  <li>
-    <p>再來加入android專案 <br />
-在build gradle內配置<code class="language-plaintext highlighter-rouge">maven {url 'https://developer.huawei.com/repo/'}</code>
-<script src="https://gist.github.com/KuanChunChen/1ca47854f0a1eb3c94565c3512725050.js"></script>
+<p><br /><br />
+效果圖：
 <br /></p>
-  </li>
-  <li>
-    <p>再來把需要HMS kit 導入到專案內<br />
-這邊以HMS map為例<br />
-<script src="https://gist.github.com/KuanChunChen/631f00b79f69c96bd2a226c58eff5199.js"></script>
-<code class="language-plaintext highlighter-rouge">這樣可以正式開始開發了！</code></p>
-  </li>
-</ul>
-
-<div class="c-border-content-title-4">開發huawei遇到的小差異分享</div>
-
-<ul>
-  <li>Hms 與 Gms 兩家地圖的小差異<br />
-前面說到HMS與GMS的function name 極度相似<br />
-所以如果用過gms的人應該很快能上手(？<br />
-不過我剛好運氣<code class="language-plaintext highlighter-rouge">比較好</code><br />
-在開發時有遇到<br />
-稍微不同的地方<br />
-    <div align="center">
-  <img src="/images/huawei/6.png" alt="Cover" width="30%" />
-  <img src="/images/huawei/7.png" alt="Cover" width="30%" />
+<div align="center">
+  <img src="/images/kt-demo-custom/kt-demo-jpg08.png" alt="Cover" width="30%" />
 </div>
-    <p>就是在設置 polyline的時候同樣的常數設置出來的粗度不同啊<br />
-如 <code class="language-plaintext highlighter-rouge">googlePolylineOption.width(5)</code> vs <code class="language-plaintext highlighter-rouge">huaweiPolylineOption.width(5)</code>
-實測效果不一樣<br /></p>
 
-    <h3 id="所以也不是全部邏輯能直接套啊xdd-最好還是檢查一下">所以也不是全部邏輯能直接套啊XDD 最好還是檢查一下!!</h3>
+<p>首先第一步，很簡單，要先定義一個recycler view用的adapter，那這邊我習慣，先做其中的item的xml，所以如下：</p>
 
-    <p>最後改成這樣才能一樣<br />
-<img src="/images/huawei/5.png" alt="5.png" /><br /><br /></p>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">推播</code>小差異<br />
-主要就是<code class="language-plaintext highlighter-rouge">繼承子類</code>不同<br />
-其他用起來也一樣<br />
-不過我會分享是因為<br />
-之前開發別的華為功能<br />
-幾乎是方法、類的名稱幾乎一模一樣XD<br />
-<img src="/images/huawei/8.png" alt="8.png" /><br /><br /></li>
-</ul>
+<script src="https://gist.github.com/KuanChunChen/b1a45501587bf59e8008b261c8439f72.js"></script>
 
-<h1 class="c-border-main-title">總結一下</h1>
+<p><br /><br /></p>
+
+<p>接著，開始定義你的adapter，並讓adapter load進你剛剛創建的item：
+<br /><br /></p>
+
+<p>因為我習慣使用自定義的BaseListAdapter，<br />
+在這個類裡面我習慣會用泛型來寫，<br />
+去代替之後可能會丟進adapter的data，<br />
+然後會在我的adapter裡面創建一個屬於這個adatper的viewholder，<br />
+一樣也用了泛型，去取代未來可能會重複寫到類似code的地方，<br />
+所以會看起來像下面這樣：<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
+
+<p>在上面這個adapter裡面，<br />
+我的code變得很少，<br />
+因為我先寫好了一個抽象類，<br />
+<br /><br /></p>
+
+<p>另外我的base adapter會長這樣，<br />
+主要是抽象了一些方法：</p>
+
+<script src="https://gist.github.com/KuanChunChen/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
+
+<p>這裡主要講一些我抽象的方法
+我要求實作 ItemView<br /></p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@LayoutRes</span> <span class="k">protected</span> <span class="k">abstract</span> <span class="n">int</span> <span class="nf">getItemViewLayout</span><span class="p">();</span>
+</code></pre></div></div>
+<p>用意是讓我丟入，我寫好的item的xml的<br />
+這樣下次我就不用重複寫</p>
+
+<p>接著我定義了一個ViewHolder，<br />
+去繼承我BaseListAdapter裡面的BaseViewHolder，<br />
+目的也是讓我之後可以不用再重寫一些基本的viewholder內容<br /></p>
+
+<p>另外這個base adapter 我也寫了一些其他通用功能
+如果有需要再看就好
+有些沒照著寫也是可以用</p>
+
+<p><br />
+結論是
+我只要override像上方code的幾個function就好了，<br />
+就能實現一個recycler view adapter的功能了！<br />
+我在我的BaseListAdapter類別裡面繼承了RecyclerView.Adapter，<br />
+並實作了recycler view adapter需要繼承的 :<br /></p>
 
 <ul>
-  <li>HMS &amp; GMS 除了package name不太一樣<br />
- 另外就是少部分function不太一樣<br />
- 整體上兩家SDK用法沒有差到很多<br /></li>
+  <li>getItemViewType(position: Int)</li>
+  <li>onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int)</li>
+  <li>getItemViewType(position: Int)</li>
+  <li>getItemCount()</li>
+  <li>onCreateViewHolder(parent: ViewGroup, viewType: Int)…等function，<br />
+<br /></li>
 </ul>
+
+<p>這些都是在創造recycler view會需要繼承的地方，<br />
+因為考量到可能會很常用到recycler view，並且又很懶XDD，<br />
+想說未來在其他地方，<br />
+甚至是到別的專案的時候，<br />
+可能會用到類似的，<br />
+所以會習慣寫一個未來擴充性也夠的抽象類出來，<br />
+讓我日後在寫使用時也能方便取用，<br />
+想改可以直接在父類改，<br />
+並且直接繼承就能用，<br />
+真的是省時又能節省重複的code！</p>
+
+<p><br /></p>
+
+<p>目前已經完成了一個基本的recycler view的建構了 ，<br />
+只要呼叫下方code，<br />
+就能有基本的recycler view了:<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/16987a5a8f9039f913b3e490da226e76.js"></script>
+
+<p>那這邊的switchRecyclerView是上一篇
+  <a href="/2020/11/20/android-kotlin-custom-view-02/">[Custom View]客製UI心得分享（1）：實作篇</a>
+有提到的customer view，忘記的可以看看</p>
+
+<p><br /></p>
+
+<p>接著，我們為了要讓recycler view達到以下效果：<br /></p>
+<ol>
+  <li>滑到最邊邊的時候，recycler view能離開最旁邊並看起來滑動到最中間</li>
+  <li>每個item之間有固定的間隔距離</li>
+</ol>
+
+<p>所以我們需要繼承RecyclerView.ItemDecoration()，如下:</p>
+
+<script src="https://gist.github.com/KuanChunChen/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
+
+<p><br /></p>
+
+<p>這邊為了達到每個item之間有間隔，<br />
+設定了mSpace變數，<br />
+用來指定item之間的間隔，<br />
+所以只要在 override getItemOffsets之後，<br />
+取用裡面的Rect，來設定每個item間格，如：<br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>outRect.left = mSpace
+</code></pre></div></div>
+<p><br />
+但因為我們要達到滑到最左或最右拿讓該item看起來滑動到中間，<br />
+所以我們定義了一個 sideVisibleWidth 變數，<br />
+這個變數的算法是：<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(螢幕範圍width的pixel - 每個item的pixel)/2 - 預期間隔最左/右邊距離的pixel
+</code></pre></div></div>
+<p><br />
+上面這個算法雖然有點難理解，<br />
+但其實只要稍微想過，也是能想通的，<br />
+這邊切細一點來說，recycler view 一開始會從螢幕最左邊或最上面起始，<br />
+在我這個例子是橫向，所以是最左邊：那思路是這樣的，<br />
+我希望我滑到最左/右邊的時候會間隔最左邊一定距離，<br />
+並且讓該recycler view的item是在正中間，<br />
+所以我需要取得範圍內螢幕width的長度的一半，<br />
+又需要讓item只移動一半，所以取得item的長度的一半，所以是 ：<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>螢幕範圍width的pixel/2 - 每個item的pixel/2
+</code></pre></div></div>
+<p><br /></p>
+
+<p>這個意思也就代表，計算半個螢幕並算滑動半個item的距離，<br />
+使得他看起來就會在中間，但是因為我們在最左或最右時，<br />
+還需要額外定義的間距，所以必需再去減掉指定的pixel，<br />
+所以合併以後會變成最一開始給的算式：<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(螢幕範圍width的pixel - 每個item的pixel)/2 - 預期間隔最左/右邊距離的pixel
+</code></pre></div></div>
+
+<p>所以換成code就是：<br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var sideVisibleWidth =      
+//整個螢幕width的pixel  
+(context.resources.displayMetrics.widthPixels
+//每個item的一半
+- ScreenUtil().convertDpToPixel(70F, context).roundToInt()) / 2
+//預期間隔多少的pixel
+- ScreenUtil().convertDpToPixel(28F, context) .roundToInt()
+</code></pre></div></div>
+<p><br /></p>
+
+<p>接著，只需要在指定條件下，去指定我們的item間隔即可，如下：
+<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
+
+<p><br /></p>
+
+<p>所以我上面的code，就是在第一個item的時候間隔我的sideVisibleWidth與每個他的右邊間隔mSpace的pixel<br /></p>
+
+<p>到這裡間距的設定就都完成了，再來就是需要進入算出每個移動距離並做出相對應動作的步驟了</p>
+
+<p><br /><br /></p>
+
+<p>接著我們繼承 RecyclerView.OnScrollListener()來計算滑動時的監聽器:</p>
+
+<script src="https://gist.github.com/KuanChunChen/9e98788c170b119d4da62124eb7523f3.js"></script>
+
+<p><br /></p>
+
+<p>這邊說難不難，說簡單也有點花時間，但只要釐清他要做的事情，你就會有股茅塞頓開的感覺，<br />
+在這個類裡，我們要記錄我的item目前滑動到的位置，<br /></p>
+
+<p>以及我們每個recycler view item的pixel大小，<br />
+因為我們要紀錄目前滑動位置，並且透過計算滑動量去算與每個item的比例，<br />
+來算出我們移動了幾個item的位置，所以我們一開始在建構子裡傳入：<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SwitchRecyclerScrollerListener(private var mPosition: Int, private val itemWith: Int)
+</code></pre></div></div>
+
+<p>接著override onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int)，去取得左右橫移時的滑動量，<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
+
+<p>我們在onscroll裡面取得dx，他代表左右橫移的滑動量，<br />
+他是當你滑動都會觸發一次，所以在滑動期間，紀錄並累加該值，<br />
+之後使用onScrollStateChanged，當滑動停止時，<br />
+也就是SCROLL_STATE_IDLE，會去算出總移動量並算出移動的比例：<br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val offset = scrolledWidth.toFloat() / itemWith.toFloat()
+</code></pre></div></div>
+<p><br /></p>
+
+<p>算出的比例就是我移動了幾個item，用這個值去觸發我每移動了要做什麼事，<br />
+例如我這邊，就是如果移動的item數不是0，我就設定文字顏色變化，如：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (moveTotalCount != 0) {        
+   mPosition += moveTotalCount     
+   scrolledWidth -= itemWith * moveTotalCount
+   setItemAnim(recyclerView, mPosition)      
+}
+</code></pre></div></div>
+
+<p>這樣在滑動時，看起來就會是你在滑動時，文字的顏色會轉換的動畫了！<br />
+那這邊動畫的code我就不寫出來了，<br />
+有興趣的可以去我分享的source code，裡面有詳細的寫法，<br />
+當然你也可以依照你的需求，自己去寫！<br />
+最後，你只要把你剛剛寫的那些繼承的類，拿出來用，<br />
+就可以得到一個左右滑動的recycler view了，這邊是我實際使用時的範例：<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
+
+<p><br /></p>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
           
           <a href="/tags#Android">&#35; Android</a>
           
-          <a href="/tags#Debug">&#35; Debug</a>
-          
-          <a href="/tags#Samsung">&#35; Samsung</a>
-          
-          <a href="/tags#knox">&#35; knox</a>
+          <a href="/tags#Kotlin">&#35; Kotlin</a>
           
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=%E5%AF%A6%E4%BD%9C%E6%8C%87%E5%8D%97:%E5%A6%82%E4%BD%95%E5%9C%A8Android%20app%E5%85%A7%E6%88%90%E5%8A%9F%E5%B0%8E%E5%85%A5Huawei%20HMS%20Core%204.0%20SDK&url=https://elegantaccess.org/android/huawei/map" title="Share
+          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][Custom%20View]%E5%AE%A2%E8%A3%BDUI%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB(2):%E5%AF%A6%E4%BD%9C%E7%AF%87%20-%20%E6%A9%AB%E5%90%91%E5%B7%A6%E5%8F%B3%E6%BB%BE%E5%8B%95recycler%20view&url=https://elegantaccess.org/android/custom03" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -358,7 +451,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/huawei/map" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/custom03" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -368,7 +461,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/huawei/map" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/custom03" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -532,7 +625,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/huawei/map" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/custom03" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 

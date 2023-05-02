@@ -252,7 +252,7 @@
       "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view",
       "category" : "",
       "tags"     : "Android and Kotlin",
-      "url"      : "/android/custom/ui/03",
+      "url"      : "/android/custom03",
       "date"     : "2020-11-21 15:44:20 +0800"
     } ,
   
@@ -260,7 +260,7 @@
       "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view",
       "category" : "",
       "tags"     : "Android and Kotlin",
-      "url"      : "/android/custom/ui/02",
+      "url"      : "/android/custom02",
       "date"     : "2020-11-20 16:04:13 +0800"
     } ,
   
@@ -268,7 +268,7 @@
       "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄",
       "category" : "",
       "tags"     : "Android and Kotlin",
-      "url"      : "/android/custom/ui/01",
+      "url"      : "/android/custom01",
       "date"     : "2020-11-14 15:30:18 +0800"
     } ,
   
@@ -276,7 +276,7 @@
       "title"    : "實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK",
       "category" : "",
       "tags"     : "Android, Debug, Samsung, and knox",
-      "url"      : "/android/huawei/map",
+      "url"      : "/android/huawei_map",
       "date"     : "2020-09-15 10:06:32 +0800"
     } ,
   

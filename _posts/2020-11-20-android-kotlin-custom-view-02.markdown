@@ -3,7 +3,7 @@ layout: post
 title: "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view"
 date: 2020-11-20 16:04:13 +0800
 image: cover/android-photo.jpg
-permalink: /android/custom/ui/02
+permalink: /android/custom02
 tags: [Android,Kotlin]
 categories: Android
 ---

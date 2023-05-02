@@ -19,16 +19,16 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view</title>
-  <meta name='description' content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化的實作篇，今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！">
+  <title>[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</title>
+  <meta name='description' content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化，左右切換view與動畫的下拉欄的實作篇，接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/android/custom/ui/03" />
-<meta property="og:title" content="[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view" />
-<meta property="og:description" content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化的實作篇，今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！" />
+  <meta property="og:url" content="https://elegantaccess.org/android/custom02" />
+<meta property="og:title" content="[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view" />
+<meta property="og:description" content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化，左右切換view與動畫的下拉欄的實作篇，接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-photo.jpg" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -39,7 +39,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/android/custom/ui/03">
+  <link rel='canonical' href="https://elegantaccess.org/android/custom02">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -185,229 +185,98 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view</h1>
+        <h1 class="c-article__title">[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</h1>
         <div class="c-article__date">
-          <span>2020, Nov 21</span>
+          <span>2020, Nov 20</span>
         </div>
       </header>
       <p>Hello,大家好,這裡是Elegant Access的 KC，<br />
-歡迎大家繼續回來看如何客製化的實作篇，<br />
-今天的內容會提到怎樣實作一個左右滑動的recycler view，並且提到如何調整，<br />
-讓它滑動起來有pager的滑動感以及讓item間有間距的調整，好吧，廢話不多說，接著看下去吧！</p>
-
-<p><br /><br />
-效果圖：
+歡迎大家繼續回來看如何客製化，<br />
+左右切換view與動畫的下拉欄的實作篇，<br />
+接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！<br />
+<br />
+首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：
+<br />
 <br /></p>
+
 <div align="center">
-  <img src="/images/kt-demo-custom/kt-demo-jpg08.png" alt="Cover" width="30%" />
+  <img src="/images/kt-demo-custom/kt-demo-jpg05.png" alt="Cover" width="30%" />
 </div>
 
-<p>首先第一步，很簡單，要先定義一個recycler view用的adapter，那這邊我習慣，先做其中的item的xml，所以如下：</p>
+<p><br />
+<br />
+建造這個類，並繼承你想要使用的layout，這邊想要讓view擁有什麼特性而繼承什麼，可以依照你的需求去調整，例如我想要用FrameLayout：</p>
 
-<script src="https://gist.github.com/KuanChunChen/b1a45501587bf59e8008b261c8439f72.js"></script>
-
-<p><br /><br /></p>
-
-<p>接著，開始定義你的adapter，並讓adapter load進你剛剛創建的item：
-<br /><br /></p>
-
-<p>因為我習慣使用自定義的BaseListAdapter，<br />
-在這個類裡面我習慣會用泛型來寫，<br />
-去代替之後可能會丟進adapter的data，<br />
-然後會在我的adapter裡面創建一個屬於這個adatper的viewholder，<br />
-一樣也用了泛型，去取代未來可能會重複寫到類似code的地方，<br />
-所以會看起來像下面這樣：<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
-
-<p>在上面這個adapter裡面，<br />
-我的code變得很少，<br />
-因為我先寫好了一個抽象類，<br />
-<br /><br /></p>
-
-<p>另外我的base adapter會長這樣，<br />
-主要是抽象了一些方法：</p>
-
-<script src="https://gist.github.com/KuanChunChen/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
-
-<p>這裡主要講一些我抽象的方法
-我要求實作 ItemView<br /></p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@LayoutRes</span> <span class="k">protected</span> <span class="k">abstract</span> <span class="n">int</span> <span class="nf">getItemViewLayout</span><span class="p">();</span>
-</code></pre></div></div>
-<p>用意是讓我丟入，我寫好的item的xml的<br />
-這樣下次我就不用重複寫</p>
-
-<p>接著我定義了一個ViewHolder，<br />
-去繼承我BaseListAdapter裡面的BaseViewHolder，<br />
-目的也是讓我之後可以不用再重寫一些基本的viewholder內容<br /></p>
-
-<p>另外這個base adapter 我也寫了一些其他通用功能
-如果有需要再看就好
-有些沒照著寫也是可以用</p>
+<script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
 
 <p><br />
-結論是
-我只要override像上方code的幾個function就好了，<br />
-就能實現一個recycler view adapter的功能了！<br />
-我在我的BaseListAdapter類別裡面繼承了RecyclerView.Adapter，<br />
-並實作了recycler view adapter需要繼承的 :<br /></p>
-
-<ul>
-  <li>getItemViewType(position: Int)</li>
-  <li>onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int)</li>
-  <li>getItemViewType(position: Int)</li>
-  <li>getItemCount()</li>
-  <li>onCreateViewHolder(parent: ViewGroup, viewType: Int)…等function，<br />
-<br /></li>
-</ul>
-
-<p>這些都是在創造recycler view會需要繼承的地方，<br />
-因為考量到可能會很常用到recycler view，並且又很懶XDD，<br />
-想說未來在其他地方，<br />
-甚至是到別的專案的時候，<br />
-可能會用到類似的，<br />
-所以會習慣寫一個未來擴充性也夠的抽象類出來，<br />
-讓我日後在寫使用時也能方便取用，<br />
-想改可以直接在父類改，<br />
-並且直接繼承就能用，<br />
-真的是省時又能節省重複的code！</p>
-
-<p><br /></p>
-
-<p>目前已經完成了一個基本的recycler view的建構了 ，<br />
-只要呼叫下方code，<br />
-就能有基本的recycler view了:<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/16987a5a8f9039f913b3e490da226e76.js"></script>
-
-<p>那這邊的switchRecyclerView是上一篇
-  <a href="/2020/11/20/android-kotlin-custom-view-02/">[Custom View]客製UI心得分享（1）：實作篇</a>
-有提到的customer view，忘記的可以看看</p>
-
-<p><br /></p>
-
-<p>接著，我們為了要讓recycler view達到以下效果：<br /></p>
-<ol>
-  <li>滑到最邊邊的時候，recycler view能離開最旁邊並看起來滑動到最中間</li>
-  <li>每個item之間有固定的間隔距離</li>
-</ol>
-
-<p>所以我們需要繼承RecyclerView.ItemDecoration()，如下:</p>
-
-<script src="https://gist.github.com/KuanChunChen/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
-
-<p><br /></p>
-
-<p>這邊為了達到每個item之間有間隔，<br />
-設定了mSpace變數，<br />
-用來指定item之間的間隔，<br />
-所以只要在 override getItemOffsets之後，<br />
-取用裡面的Rect，來設定每個item間格，如：<br /></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>outRect.left = mSpace
-</code></pre></div></div>
-<p><br />
-但因為我們要達到滑到最左或最右拿讓該item看起來滑動到中間，<br />
-所以我們定義了一個 sideVisibleWidth 變數，<br />
-這個變數的算法是：<br /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(螢幕範圍width的pixel - 每個item的pixel)/2 - 預期間隔最左/右邊距離的pixel
-</code></pre></div></div>
-<p><br />
-上面這個算法雖然有點難理解，<br />
-但其實只要稍微想過，也是能想通的，<br />
-這邊切細一點來說，recycler view 一開始會從螢幕最左邊或最上面起始，<br />
-在我這個例子是橫向，所以是最左邊：那思路是這樣的，<br />
-我希望我滑到最左/右邊的時候會間隔最左邊一定距離，<br />
-並且讓該recycler view的item是在正中間，<br />
-所以我需要取得範圍內螢幕width的長度的一半，<br />
-又需要讓item只移動一半，所以取得item的長度的一半，所以是 ：<br /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>螢幕範圍width的pixel/2 - 每個item的pixel/2
-</code></pre></div></div>
-<p><br /></p>
-
-<p>這個意思也就代表，計算半個螢幕並算滑動半個item的距離，<br />
-使得他看起來就會在中間，但是因為我們在最左或最右時，<br />
-還需要額外定義的間距，所以必需再去減掉指定的pixel，<br />
-所以合併以後會變成最一開始給的算式：<br /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(螢幕範圍width的pixel - 每個item的pixel)/2 - 預期間隔最左/右邊距離的pixel
-</code></pre></div></div>
-
-<p>所以換成code就是：<br /></p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var sideVisibleWidth =      
-//整個螢幕width的pixel  
-(context.resources.displayMetrics.widthPixels
-//每個item的一半
-- ScreenUtil().convertDpToPixel(70F, context).roundToInt()) / 2
-//預期間隔多少的pixel
-- ScreenUtil().convertDpToPixel(28F, context) .roundToInt()
-</code></pre></div></div>
-<p><br /></p>
-
-<p>接著，只需要在指定條件下，去指定我們的item間隔即可，如下：
 <br /></p>
 
-<script src="https://gist.github.com/KuanChunChen/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
+<p>接著來創建這個view包含哪些東西，所以要創建自定義的xml來當作這個view的外觀，例如：我這個view包含了webview,image view,recycler view等等的佈局，可以依照需求去自定義。</p>
+
+<div align="center">
+  <img src="/images/kt-demo-custom/kt-demo-jpg06.png" alt="Cover" width="30%" />
+</div>
+
+<p><br />
+<br />
+上面那張圖的佈局實際上的code如下：
+<script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script></p>
+
+<p><br />
+<br /></p>
+
+<p>這邊的佈局比較基本，沒有什麼特別難的地方，主要是依照讀者的專案需求，來定義想要的佈局，不一定要照上面的也可以，但我習慣分檔，避免檔案都混在一起，這時候你只要在剛剛創建的 HorizontalMoveView 裡面去加載這張佈局，如下：</p>
+
+<script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
+
+<p><br />
+<br /></p>
+
+<p>那到這邊，你就算完成第一步了，你已經可以創建你自己的custom view，但注意，因為到目前都只有空殼而已，只有外皮，都還沒寫任何的function去支持你的custom view ，所以目前，你可以呼叫你的custom view來用，但沒有任何功能，只有一個畫面顯示在那邊而已，所以你還必需要去寫他的功能來用。
+這邊要先嘗試呼叫剛寫好的view，可以這樣：</p>
+
+<script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
+
+<p><br />
+<br /></p>
+
+<p>把你剛剛客製的view加入你要用的地方，至於你的custom view在哪，就要看你存放的package了，把你的package路徑加上你的file name就可以了。
+目前寫到這邊，你大概可以呼叫出一張空白的view了，因為還沒寫function，所以可能會長得像下面這樣：</p>
+
+<div align="center">
+  <img src="/images/kt-demo-custom/kt-demo-jpg07.png" alt="Cover" width="30%" />
+</div>
+
+<p><br />
+<br />
+那今天這邊先告一段落，接下來我會一一介紹寫一些function或定義recycler view 等等來完成我們的整個view。
+接著收看，繼續實作左右滑動的recycler view：</p>
+
+<div align="start">
+  <a href="/2020/11/21/android-kotlin-custom-view-03/">
+    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" />
+  </a>
+
+  <a href="/2020/11/21/android-kotlin-custom-view-03/">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 -橫向左右滾動recycler view</a>
+</div>
+
+<p>回去看前導：</p>
+
+<div align="start">
+  <a href="/2020/11/14/android-kotlin-custom-view-01/">
+    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" />
+  </a>
+
+  <a href="/2020/11/20/android-kotlin-custom-view-01/">[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</a>
+</div>
 
 <p><br /></p>
 
-<p>所以我上面的code，就是在第一個item的時候間隔我的sideVisibleWidth與每個他的右邊間隔mSpace的pixel<br /></p>
-
-<p>到這裡間距的設定就都完成了，再來就是需要進入算出每個移動距離並做出相對應動作的步驟了</p>
-
-<p><br /><br /></p>
-
-<p>接著我們繼承 RecyclerView.OnScrollListener()來計算滑動時的監聽器:</p>
-
-<script src="https://gist.github.com/KuanChunChen/9e98788c170b119d4da62124eb7523f3.js"></script>
-
-<p><br /></p>
-
-<p>這邊說難不難，說簡單也有點花時間，但只要釐清他要做的事情，你就會有股茅塞頓開的感覺，<br />
-在這個類裡，我們要記錄我的item目前滑動到的位置，<br /></p>
-
-<p>以及我們每個recycler view item的pixel大小，<br />
-因為我們要紀錄目前滑動位置，並且透過計算滑動量去算與每個item的比例，<br />
-來算出我們移動了幾個item的位置，所以我們一開始在建構子裡傳入：<br /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SwitchRecyclerScrollerListener(private var mPosition: Int, private val itemWith: Int)
-</code></pre></div></div>
-
-<p>接著override onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int)，去取得左右橫移時的滑動量，<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
-
-<p>我們在onscroll裡面取得dx，他代表左右橫移的滑動量，<br />
-他是當你滑動都會觸發一次，所以在滑動期間，紀錄並累加該值，<br />
-之後使用onScrollStateChanged，當滑動停止時，<br />
-也就是SCROLL_STATE_IDLE，會去算出總移動量並算出移動的比例：<br /></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val offset = scrolledWidth.toFloat() / itemWith.toFloat()
-</code></pre></div></div>
-<p><br /></p>
-
-<p>算出的比例就是我移動了幾個item，用這個值去觸發我每移動了要做什麼事，<br />
-例如我這邊，就是如果移動的item數不是0，我就設定文字顏色變化，如：</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (moveTotalCount != 0) {        
-   mPosition += moveTotalCount     
-   scrolledWidth -= itemWith * moveTotalCount
-   setItemAnim(recyclerView, mPosition)      
-}
-</code></pre></div></div>
-
-<p>這樣在滑動時，看起來就會是你在滑動時，文字的顏色會轉換的動畫了！<br />
-那這邊動畫的code我就不寫出來了，<br />
-有興趣的可以去我分享的source code，裡面有詳細的寫法，<br />
-當然你也可以依照你的需求，自己去寫！<br />
-最後，你只要把你剛剛寫的那些繼承的類，拿出來用，<br />
-就可以得到一個左右滑動的recycler view了，這邊是我實際使用時的範例：<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
-
-<p><br /></p>
+<p>Created by Elegant Access’s KC.<br />
+Copyright (c) 2020 All rights reserved.<br />
+Instagram  : https://www.instagram.com/eleg.aces.kc/<br />
+Github : https://github.com/KuanChunChen<br /></p>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
@@ -419,7 +288,7 @@
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][Custom%20View]%E5%AE%A2%E8%A3%BDUI%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB(2):%E5%AF%A6%E4%BD%9C%E7%AF%87%20-%20%E6%A9%AB%E5%90%91%E5%B7%A6%E5%8F%B3%E6%BB%BE%E5%8B%95recycler%20view&url=https://elegantaccess.org/android/custom/ui/03" title="Share
+          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][Custom%20View]%E5%AE%A2%E8%A3%BDUI%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB(1):%E5%AF%A6%E4%BD%9C%E7%AF%87%20-%20%E5%BB%BA%E7%AB%8B%E5%9F%BA%E6%9C%AC%E7%9A%84custom%20view&url=https://elegantaccess.org/android/custom02" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -451,7 +320,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/custom/ui/03" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/custom02" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -461,7 +330,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/custom/ui/03" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/custom02" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -625,7 +494,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/custom/ui/03" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/custom02" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 

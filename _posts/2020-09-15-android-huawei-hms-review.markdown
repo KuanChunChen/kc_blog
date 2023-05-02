@@ -3,7 +3,7 @@ layout: post
 title: "實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK"
 date: 2020-09-15 10:06:32 +0800
 image: cover/android-hms-sdk-1.png
-permalink: /android/huawei/map
+permalink: /android/huawei_map
 tags: [Android,Debug,Samsung,knox]
 categories: Debug
 ---

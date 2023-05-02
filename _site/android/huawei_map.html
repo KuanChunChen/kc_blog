@@ -19,17 +19,17 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</title>
-  <meta name='description' content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化，左右切換view與動畫的下拉欄的實作篇，接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：">
+  <title>實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK</title>
+  <meta name='description' content="前言  過去在專案上有遇過有廠商要求導入Huawei SDK的經驗剛好以前有做一些筆記現在把他整理出來分享給大家！整體開發下來其實就是跟Google gms滿像的 XDD ">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/android/custom/ui/02" />
-<meta property="og:title" content="[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view" />
-<meta property="og:description" content="Hello,大家好,這裡是Elegant Access的 KC，歡迎大家繼續回來看如何客製化，左右切換view與動畫的下拉欄的實作篇，接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：" />
-<meta property="og:image" content="https://elegantaccess.org/images/cover/android-photo.jpg" />
+  <meta property="og:url" content="https://elegantaccess.org/android/huawei_map" />
+<meta property="og:title" content="實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK" />
+<meta property="og:description" content="前言  過去在專案上有遇過有廠商要求導入Huawei SDK的經驗剛好以前有做一些筆記現在把他整理出來分享給大家！整體開發下來其實就是跟Google gms滿像的 XDD " />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/android-hms-sdk-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -39,7 +39,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/android/custom/ui/02">
+  <link rel='canonical' href="https://elegantaccess.org/android/huawei_map">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -181,114 +181,152 @@
       </div>
     </header>
     
-    <div class="c-article__image opacity" style="background-image: url( /images/cover/android-photo.jpg )"></div>
+    <div class="c-article__image opacity" style="background-image: url( /images/cover/android-hms-sdk-1.png )"></div>
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</h1>
+        <h1 class="c-article__title">實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK</h1>
         <div class="c-article__date">
-          <span>2020, Nov 20</span>
+          <span>2020, Sep 15</span>
         </div>
       </header>
-      <p>Hello,大家好,這裡是Elegant Access的 KC，<br />
-歡迎大家繼續回來看如何客製化，<br />
-左右切換view與動畫的下拉欄的實作篇，<br />
-接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！<br />
-<br />
-首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：
-<br />
+      <h1 class="c-border-main-title">前言</h1>
+<ul>
+  <li>過去在專案上有遇過<br />
+有廠商要求導入Huawei SDK的經驗<br />
+剛好以前有做一些筆記<br />
+現在把他整理出來<br />
+分享給大家！<br />
+整體開發下來<br />
+其實就是跟Google gms滿像的 XDD <br /></li>
+</ul>
+
+<h1 class="c-border-main-title">導入HMS</h1>
+
+<div class="c-border-content-title-1">第一步:註冊帳號</div>
+<ul>
+  <li>首先你必須去<a href="https://developer.huawei.com/consumer/cn">華為後台</a>註冊加入實名會員<br />
+ 具體方法可參考<a href="https://developer.huawei.com/consumer/cn/devservice/doc/20300">帳號註冊認證</a>。</li>
+</ul>
+
+<div class="c-border-content-title-1">第二步:在後台創建應用</div>
+<ul>
+  <li>這邊就是跟其他平台滿像的<br />
+ 有使用者介面操作一下即可創建<br />
+ <img src="/images/huawei/1.png" alt="1.png" /><br />
+ 接著就需要去開啟你要用的API的權限<br />
+ 也是在後台打開<br />
+ <img src="/images/huawei/2.png" alt="2.png" /><br /></li>
+</ul>
+
+<div class="c-border-content-title-1">第三步 :生成簽名</div>
+<ul>
+  <li>這邊跟google滿像的<br />
+ 可以用AS內的tool直接生成<br />
+ <img src="/images/huawei/3.png" alt="3.png" /><br />
+ 產生後使用指令<br />
+ <code class="language-plaintext highlighter-rouge">keytool -list -v -keystore &lt;keystore-file&gt;</code><br />
+ keystore-file : 這邊是需要輸入證書path<br />
+ 之後把產生的Sha256 hash貼到華為後台你剛創建的app的配置內<br /><br /></li>
+</ul>
+
+<div class="c-border-content-title-1">第四步:配置簽名</div>
+<ul>
+  <li>
+    <p>生成簽名之後<br />
+  就可以在華為後台下載 <code class="language-plaintext highlighter-rouge">agconnect-services.json</code><br />
+  接著開始加入到你的專案中<br /></p>
+  </li>
+  <li>
+    <p>這個圖是當時專案的配置<br />
+  因為那時候產品需求是<br />
+  希望在build project的時候就能先build進不同產商的配置<br />
+  然後亦希望在huawei內如果有人的手機自行安裝了gms<br />
+  又要可以支援google服務<br />
+  所以配置如下圖<br /><br />
+  <img src="/images/huawei/4.png" alt="4.png" /><br /><br />
+  當然實際專案開發時<br />
+  可以跟你們的team member溝通會比較好<br /></p>
+  </li>
+  <li>
+    <p>因為<code class="language-plaintext highlighter-rouge">HMS</code>很多function name 都跟<code class="language-plaintext highlighter-rouge">GMS</code> 內都是<code class="language-plaintext highlighter-rouge">一樣的名字</code>XD<br />
+  所以開發上就要好好<code class="language-plaintext highlighter-rouge">分清楚</code>會比較好<br />
+  不管從<code class="language-plaintext highlighter-rouge">配置</code>著手 或 <code class="language-plaintext highlighter-rouge">code分離</code>開始<br />
+  不然很容易後期維護上會很麻煩<br />
+  耦合太高又很難拆的話就…<br /></p>
+  </li>
+</ul>
+
+<div class="c-border-content-title-1">第五步:加入專案配置</div>
+<ul>
+  <li>
+    <p>再來加入android專案 <br />
+在build gradle內配置<code class="language-plaintext highlighter-rouge">maven {url 'https://developer.huawei.com/repo/'}</code>
+<script src="https://gist.github.com/KuanChunChen/1ca47854f0a1eb3c94565c3512725050.js"></script>
 <br /></p>
+  </li>
+  <li>
+    <p>再來把需要HMS kit 導入到專案內<br />
+這邊以HMS map為例<br />
+<script src="https://gist.github.com/KuanChunChen/631f00b79f69c96bd2a226c58eff5199.js"></script>
+<code class="language-plaintext highlighter-rouge">這樣可以正式開始開發了！</code></p>
+  </li>
+</ul>
 
-<div align="center">
-  <img src="/images/kt-demo-custom/kt-demo-jpg05.png" alt="Cover" width="30%" />
+<div class="c-border-content-title-4">開發huawei遇到的小差異分享</div>
+
+<ul>
+  <li>Hms 與 Gms 兩家地圖的小差異<br />
+前面說到HMS與GMS的function name 極度相似<br />
+所以如果用過gms的人應該很快能上手(？<br />
+不過我剛好運氣<code class="language-plaintext highlighter-rouge">比較好</code><br />
+在開發時有遇到<br />
+稍微不同的地方<br />
+    <div align="center">
+  <img src="/images/huawei/6.png" alt="Cover" width="30%" />
+  <img src="/images/huawei/7.png" alt="Cover" width="30%" />
 </div>
+    <p>就是在設置 polyline的時候同樣的常數設置出來的粗度不同啊<br />
+如 <code class="language-plaintext highlighter-rouge">googlePolylineOption.width(5)</code> vs <code class="language-plaintext highlighter-rouge">huaweiPolylineOption.width(5)</code>
+實測效果不一樣<br /></p>
 
-<p><br />
-<br />
-建造這個類，並繼承你想要使用的layout，這邊想要讓view擁有什麼特性而繼承什麼，可以依照你的需求去調整，例如我想要用FrameLayout：</p>
+    <h3 id="所以也不是全部邏輯能直接套啊xdd-最好還是檢查一下">所以也不是全部邏輯能直接套啊XDD 最好還是檢查一下!!</h3>
 
-<script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
+    <p>最後改成這樣才能一樣<br />
+<img src="/images/huawei/5.png" alt="5.png" /><br /><br /></p>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">推播</code>小差異<br />
+主要就是<code class="language-plaintext highlighter-rouge">繼承子類</code>不同<br />
+其他用起來也一樣<br />
+不過我會分享是因為<br />
+之前開發別的華為功能<br />
+幾乎是方法、類的名稱幾乎一模一樣XD<br />
+<img src="/images/huawei/8.png" alt="8.png" /><br /><br /></li>
+</ul>
 
-<p><br />
-<br /></p>
+<h1 class="c-border-main-title">總結一下</h1>
 
-<p>接著來創建這個view包含哪些東西，所以要創建自定義的xml來當作這個view的外觀，例如：我這個view包含了webview,image view,recycler view等等的佈局，可以依照需求去自定義。</p>
-
-<div align="center">
-  <img src="/images/kt-demo-custom/kt-demo-jpg06.png" alt="Cover" width="30%" />
-</div>
-
-<p><br />
-<br />
-上面那張圖的佈局實際上的code如下：
-<script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script></p>
-
-<p><br />
-<br /></p>
-
-<p>這邊的佈局比較基本，沒有什麼特別難的地方，主要是依照讀者的專案需求，來定義想要的佈局，不一定要照上面的也可以，但我習慣分檔，避免檔案都混在一起，這時候你只要在剛剛創建的 HorizontalMoveView 裡面去加載這張佈局，如下：</p>
-
-<script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
-
-<p><br />
-<br /></p>
-
-<p>那到這邊，你就算完成第一步了，你已經可以創建你自己的custom view，但注意，因為到目前都只有空殼而已，只有外皮，都還沒寫任何的function去支持你的custom view ，所以目前，你可以呼叫你的custom view來用，但沒有任何功能，只有一個畫面顯示在那邊而已，所以你還必需要去寫他的功能來用。
-這邊要先嘗試呼叫剛寫好的view，可以這樣：</p>
-
-<script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
-
-<p><br />
-<br /></p>
-
-<p>把你剛剛客製的view加入你要用的地方，至於你的custom view在哪，就要看你存放的package了，把你的package路徑加上你的file name就可以了。
-目前寫到這邊，你大概可以呼叫出一張空白的view了，因為還沒寫function，所以可能會長得像下面這樣：</p>
-
-<div align="center">
-  <img src="/images/kt-demo-custom/kt-demo-jpg07.png" alt="Cover" width="30%" />
-</div>
-
-<p><br />
-<br />
-那今天這邊先告一段落，接下來我會一一介紹寫一些function或定義recycler view 等等來完成我們的整個view。
-接著收看，繼續實作左右滑動的recycler view：</p>
-
-<div align="start">
-  <a href="/2020/11/21/android-kotlin-custom-view-03/">
-    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" />
-  </a>
-
-  <a href="/2020/11/21/android-kotlin-custom-view-03/">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 -橫向左右滾動recycler view</a>
-</div>
-
-<p>回去看前導：</p>
-
-<div align="start">
-  <a href="/2020/11/14/android-kotlin-custom-view-01/">
-    <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" />
-  </a>
-
-  <a href="/2020/11/20/android-kotlin-custom-view-01/">[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</a>
-</div>
-
-<p><br /></p>
-
-<p>Created by Elegant Access’s KC.<br />
-Copyright (c) 2020 All rights reserved.<br />
-Instagram  : https://www.instagram.com/eleg.aces.kc/<br />
-Github : https://github.com/KuanChunChen<br /></p>
+<ul>
+  <li>HMS &amp; GMS 除了package name不太一樣<br />
+ 另外就是少部分function不太一樣<br />
+ 整體上兩家SDK用法沒有差到很多<br /></li>
+</ul>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
           
           <a href="/tags#Android">&#35; Android</a>
           
-          <a href="/tags#Kotlin">&#35; Kotlin</a>
+          <a href="/tags#Debug">&#35; Debug</a>
+          
+          <a href="/tags#Samsung">&#35; Samsung</a>
+          
+          <a href="/tags#knox">&#35; knox</a>
           
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][Custom%20View]%E5%AE%A2%E8%A3%BDUI%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB(1):%E5%AF%A6%E4%BD%9C%E7%AF%87%20-%20%E5%BB%BA%E7%AB%8B%E5%9F%BA%E6%9C%AC%E7%9A%84custom%20view&url=https://elegantaccess.org/android/custom/ui/02" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E5%AF%A6%E4%BD%9C%E6%8C%87%E5%8D%97:%E5%A6%82%E4%BD%95%E5%9C%A8Android%20app%E5%85%A7%E6%88%90%E5%8A%9F%E5%B0%8E%E5%85%A5Huawei%20HMS%20Core%204.0%20SDK&url=https://elegantaccess.org/android/huawei_map" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -320,7 +358,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/custom/ui/02" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android/huawei_map" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -330,7 +368,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/custom/ui/02" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android/huawei_map" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -494,7 +532,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/custom/ui/02" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android/huawei_map" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 
