@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "[Problem Solved Series]Android IPC 跨進程方案整理分享"
+title: "[Problem Solved Series]Android IPC 跨進程方案分享"
 date: 2022-04-15 15:36:28 +0800
 image: cover/android-ipc-method-share-1.png
 tags: [Android,Debug]
 categories: Debug
 ---
+
+<meta name="description" content="Free Android IPC tutorials">
 
 ### 前言
 
