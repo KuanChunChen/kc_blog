@@ -66,8 +66,7 @@ categories: Android
 `./gradle build` 去build<br>
 或者使用Android studio裡面的 `Build> Rebuild Project` 去讓他build一下<br>
 ![12.png](/images/aidl/12.png)<br>
-並且在build完後<br>
-將其產生的AIDL 實例 加入<br>
+
 
 * build完後會產生一個同樣檔名的.java<br>
 ![13.png](/images/aidl/13.png)<br>
@@ -88,7 +87,12 @@ categories: Android
 ![4.png](/images/aidl/4.png)<br><br>
 ![5.png](/images/aidl/5.png)<br><br>
 <div class="c-border-content-title-1">步驟3 : 加入Service至Manifest.xml<br></div>
-![6.png](/images/aidl/6.png)
+把`步驟2`的Service加入AndroidManifest.xml內並新增action<br>
+<script src="https://gist.github.com/KuanChunChen/873470afaa8317265c25ac02fc8832b3.js"></script>
+
+這邊的action是對應到之後`步驟5` 要用ServiceConnection去綁定的action<br>
+`action android:name="elegant.access.service.IRSSmartService"`
+
 <div class="c-border-content-title-1">步驟4 : 實作Intent bind service<br></div>
 * 這邊之後就可以開始把你的AIDL介面 + 實作建立AIDL實例化的service<br>
 給其他跨process的app或別層使用<br>
@@ -121,7 +125,9 @@ eleAcesAPI.getUpdateList();
 綁定範例：<br>
 <script src="https://gist.github.com/KuanChunChen/364a1289647d7676a7b51e35d21c4899.js"></script>
 
-<div class="c-border-content-title-4">注意：這邊是你有開發底層的需求才用這個，如果是app實作AIDL就用上一個的就好</div><br>
+<div class="c-border-content-title-4">注意：這邊是你有開發底層的需求才用這個，如果是app實作AIDL就用上一個的就好</div>
+<div class="c-border-content-title-4">注意2：Android官方在Android 9之後有更新新的反射政策，不確定這個還可否使用，因為那時候該機型OTA目標版本是5~8，可自行實測</div><br>
+
 
 <div class="c-border-content-title-1">(選擇性) 步驟6-其他用例:AIDL支援類型有限</div><br>
 
