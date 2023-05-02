@@ -123,15 +123,17 @@ eleAcesAPI.getUpdateList();
 
 <div class="c-border-content-title-4">注意：這邊是你有開發底層的需求才用這個，如果是app實作AIDL就用上一個的就好</div><br>
 
-<div class="c-border-content-title-1">(選擇性) 步驟6-其他用例:AIDL支援類型有限解法分享<br></div>
-這邊是因為專案有些特定需求的回傳值<br>
+<div class="c-border-content-title-1">(選擇性) 步驟6-其他用例:AIDL支援類型有限</div><br>
+
+* 這邊是因為專案有些特定需求的回傳值<br>
 例如Calendar<br>
 但因為AIDL原本就沒支援這個類型<br>
 所以我就再定義一層抽象層<br>
 那我實作的時候只要記得在中間加邏輯就好<br>
 ![9.png](/images/aidl/9.png)
-<div class="c-border-content-title-1">(選擇性) 步驟7-其他用例:寫好的AIDL介面與Service包成Jar檔<br></div>
-那時候遇到需求是透過groovy語法直接build一個jar檔<br>
+
+<div class="c-border-content-title-1">(選擇性) 步驟7-其他用例:AIDL包成Jar檔<br></div>
+*  那時候遇到需求是透過groovy語法直接build一個jar檔<br>
 讓別的process直接套就能使用<br>
 可以這樣做：<br>
 ![10.png](/images/aidl/10.png)
