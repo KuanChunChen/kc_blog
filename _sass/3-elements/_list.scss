@@ -11,7 +11,7 @@
 	}
 }
 
-.my-list {
+.order_list_style {
 	list-style: none;
 	counter-reset: ordered-list;
   li {
@@ -40,8 +40,8 @@
   	counter-increment: ordered-list;
   	content: counter(ordered-list);
   	margin-right: 10px;
-
-  	color: #060606;
+  	background-color: #ff4e4e;
+  	color: #f6f6f6;
   	border-radius: 5px;
   	display: flex;
   	justify-content: center;

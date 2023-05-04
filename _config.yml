@@ -11,7 +11,7 @@ author-job:     Android Developer
 author-email:
 author-twitter:
 author-linkedin:
-author-link: eleg_aces  
+author-link: eleg_aces
 about-author:   I am a Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.
 
 # Social settings
@@ -34,7 +34,7 @@ google_ad_client: 5317402524376092
 facebook-appid: 374092904421484
 
 # Comment Section (Disqus)
-disqus-identifier: K.C # Add your shortname for Disqus Comment. For example mr-brown
+disqus-identifier: eleg_aces # Add your shortname for Disqus Comment. For example mr-brown
 
 # Build settings
 markdown: kramdown
