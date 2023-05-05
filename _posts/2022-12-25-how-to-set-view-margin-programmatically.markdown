@@ -1,123 +1,138 @@
 ---
 layout: post
-title: "[Android][Kotlin][Extension]Kotlin extension純程式碼設定Android layout的margin"
+title: "快速學會在Android App中調整元素間距 - 使用Kotlin extension程式碼設定間距"
 date: 2022-12-25 17:05:12 +0800
 image: cover/kotlin-clear-code-maring-layout-xml-constarint-layout-1.png
 tags: [Android,Kotlin,Extension]
 permalink: /clear_use_extension_to_set_margin
 categories: Android
+excerpt: "在Android App中，調整元素間距是一個常見的需求，而使用Kotlin extension程式碼設定間距可以快速且簡單地達成此目的。在這篇文章中，我們將一步一步地學習如何使用這個技巧，讓您的App看起來更加美觀和專業。"
 ---
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;前言</h1>
 
-今天這篇主要是紀錄一下 <br>
-使用Kotlin extension的作法<br>
-這個方法我個人認為很漂亮<br>
-所以特別跟大家分享一下!<br>
-
+今天要跟大家分享一個超簡單的小技巧，<br>
+讓你在設計 Android App 時可以用`程式碼`調整元素的間距。<br>
+這個方法用起來不僅方便，而且還可以讓你的設計更加美觀。<br>
+就算你是剛入門工程師，也可以輕鬆掌握！<br>
+跟著我一起來學吧！<br>
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;基本的方法</h1>
 
-首先<br>
-可以先了解下<br>
+在Android中調整元素間距有多種方法，本文將介紹使用Kotlin extension程式碼設定間距的方法。<br>
+在這之前我們先了解一下<br>
 在xml裡面設定view間距的話<br>
-可能就是一行而已<br>
+最直接的僅需一行而已<br>
 `android:layout_marginLeft="30dp"`<br>
 
-但有些情況下<br>
-想動態設定margin值時<br>
-一般早期的方法會用:<br>
+有些情況下<br>
+當需求方要求你動態設定 Android View 元素間的間距時<br>
+通常可以用下面的的方法:<br>
 <script src="https://gist.github.com/KuanChunChen/60e47ade8cf051643f9075e8157c6ded.js"></script>
 <br>
-實例化一個LayoutParams並設定上下左右間距後<br>
-再set到你的view<br>
+這個方法需要實例化一個 LayoutParams<br>
+並且需要設定上下左右間距後才能 set 到你的 View 上<br>
+但如果你需要在多個地方都使用這個設定間距的方法<br>
+那就會讓程式碼變得冗長且難以維護。<br>
 
-但這樣如果你多處都要set的話<br>
-就會覺得挺麻煩<br>
-每處都要寫一次一樣的code<br>
-就會讓版面看起來很亂<br>
-
-或你可以寫一個kotlin object 單例<br>
-這樣也能減少相當一部分的code<br>
-那還有其他方法嗎？<br>
-這時就可以用kotlin extension 去實作
+為了解決這個問題，<br>
+你可以使用 Kotlin Extension 去實作設定間距的方法，<br>
+這樣就能夠讓你的程式碼更簡潔且易於維護。<br>
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;使用kotlin extension來完成</h1>
 
-所以這邊用了extension去擴充<br>
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;實際擴充的code</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;step0. 這邊先展示一下完整的擴充function</h4>
 <script src="https://gist.github.com/KuanChunChen/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
-<br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;首先先擴充一個View類命名為layoutParams</h4>
-<script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script>
-<br>
-
- - 這邊我們傳入一個 function type 命名為block<br>
-   它其實就是一種Kotlin變數(可能別的語言也有 但是Java還沒支援)
-    - 可以參考：[Kotlin function type](https://kotlinlang.org/docs/lambdas.html#function-types)<br>
-
-
- - 使用function type 可以讓你用lambda去操作(Java雖有lambda，不過目前並沒有function type)
-
- - 我們這邊使用泛型<br>
-   且用了型別轉換去轉換泛型<br>
-   有可能因為編譯時被認為是隱式型別強轉而產生錯誤<br>
-   因此如果在沒有明確類別<br>
-   直接強轉則可能遇到<br>
-   `xxxxClass cannot be cast to zzzzClass` 這種的錯誤<br>
-   或是有些編譯器會直接提示你 `unchecked cast` 警告語
-
- - 當然你也可以 帶入clazz: Class之類的 來判斷實際的類是什麼<br>
-   但這樣code會變得更多<br>
-   當類別一多時就會很麻煩、一直做重複的事...等等
-   或是得寫更多的code
-
- - 所以這邊用了`reified`來作為解決方法，他是一種kotlin提供來解決這類問題的一個用法
-   - 使用reified必需帶`inline`
-   <br>
+<p class="table_container">
+  這段程式碼已經可以直接使用了<br>
+  複製到你的專案內<br>
+  直接拿到你的view呼叫就行了！<br>
+  vb.btConfirmZero.margin(top = 0F)<br>
+  vb.btConfirmOne.margin(bottom = 30F,right = 2F)<br>
+  vb.btConfirmTwo.margin(bottom = 10F,left = 3F) <br>
+  <a class="link" href="#step5" data-scroll>這邊都懂的話可以直接跳到step5.</a>
+</p><br>
 
 
- - 最後這個步驟，<br>
-   其實就是為了符合不同的`ViewGroup.LayoutParams`<br>
-   讓未來如果有更多繼承`ViewGroup.LayoutParams`的實體類想進行操作<br>
-   可以更有彈性<br>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step1. 要如何實作呢？</h4>
+<div class="c-border-content-title-4">
+  首先先建立一個function如下
+</div><br>
+<script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script><br>
 
-   以我們這個例子就是想動態操控view與parent view的間距<br>
-   用程式碼在runtime時<br>
-   能夠隨判斷進行設置<br>
-   所以用了`MarginLayoutParams`<br>
+<div class="table_container">
+  <p>上面程式碼解說</p>
+  <ol class="rectangle-list">
+    <li>
+      <a href="https://kotlinlang.org/docs/lambdas.html#function-types" target="_blank">
+        這邊我們傳入一個 function type 命名為block<br>
+        它其實就是一種Kotlin變數(可能別的語言也有 但是Java還沒支援)<br>
+          <b style="color:blue;">(Function type解釋可以參考:點此)</b><br>
+          使用function type 可以讓你用lambda去操作(Java雖有lambda，不過目前並沒有function type)
+      </a>
+    </li>
 
-   亦即是如果你這次想要用別的LayoutParams<br>
-   你也可以直接用該LayoutParams去操作裡面的method<br>
-   例如:
-   <script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
-   但如果今天純論我們這個例子的話<br>
-   其實也可以省略這整個步驟<br><br>
-   但因為也許在某些情況我們還需要設定其他的layout的params的話<br>
-   就可以直接使用這個extension<br>
-   這樣到時候還要改的話<br>
-   效率就會比較好一些<br>
+    <li>
+      <a href="javascript:void(0)">
+        我們這邊使用泛型<br>
+        且用了型別轉換去轉換泛型<br>
+        有可能因為編譯時被認為是隱式型別強轉而產生錯誤<br>
+        因此如果在沒有明確類別<br>
+        直接強轉則可能遇到<br>
+        <b style="color:red;">`xxxxClass cannot be cast to zzzzClass` </b>這種的錯誤<br>
+        或是有些編譯器會直接提示你<b style="color:red;">`unchecked cast`</b>警告語<br><br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;寫一個dp to px的method</h4>
+        當然你也可以 帶入clazz: Class之類的 來判斷實際的類是什麼<br>
+        但這樣code會變得更多<br>
+        當類別一多時就會寫更多的code、一直做重複的事...等等<br><br>
+
+        所以這邊用了`reified`來作為解決方法<br>
+        他是一種kotlin提供來解決這類問題的一個用法<br>
+        -> 使用reified必需帶`inline`<br>
+      </a>
+    </li>
+  </ol>
+</div><br>
+
+<div class="c-border-content-title-4">
+    之後我們就可以這樣呼叫
+</div><br>
+<script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
+<div class="table_container">
+  <p>上面程式碼解說</p>
+  <span>
+    這邊其實就是為了符合不同的 <b>ViewGroup.LayoutParams</b><br>
+    讓未來如果有更多繼承 <b>ViewGroup.LayoutParams</b> 的實體類想進行操作<br>
+    可以更有彈性<br>
+  </span>
+</div><br>
+
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. 寫一個dp to px的method</h4>
 <script src="https://gist.github.com/KuanChunChen/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
 
   - 這邊很簡單
   主要是為了配合設定間距時使用的是pixel
   所以寫了個轉換方法
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;透過擴充好的layoutParams去對layout的parameter做修改</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. 透過擴充好的layoutParams去對layout的parameter做修改</h4>
 <script src="https://gist.github.com/KuanChunChen/b64909a750c6a73306a1d1885f763f67.js"></script>
+<div class="table_container">
+  <p>上面程式碼解說</p>
+  <span>
+    這邊透過剛寫好的 <b>View.layoutParams</b> 去操作我們要設定的view<br><br>
 
-  - 這邊就透過剛剛的寫好的View.layoutParams去操作我們要設定的view
+    以前在java要設定都一定要一次輸入上下左右四個parmater<br>
+    因此這邊我們用<br>
+    <b>left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null</b><br>
+    來預設四個位置的間距都是null<br>
+    再使用kotlin null safe的特性去檢查，如<br>
+    <b>left?.run { leftMargin = convertDpToPixel(this) }</b><br>
+    確定有值才會去設定margin間距值<br>
+    我們既不用擔心會null exception又能彈性的只輸入我們想改的位置就好<br>
+  </span>
+</div><br>
 
-  - 以前在java要設定都一定要一次輸入上下左右四個parmater<br>
-  因此這邊我們用<br>
-  `left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null`<br>
-  來預設四個位置的間距都是null<br>
-  再使用kotlin null safe的特性去檢查，如<br>
-  `left?.run { leftMargin = convertDpToPixel(this) }`<br>
-  這樣我們既不用擔心會null exception又能彈性的只輸入我們想改的位置就好<br>
+<h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5.最後輕鬆使用</h4>
 
-  - 最後輕鬆使用：
   <script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>

@@ -6,8 +6,9 @@ image: cover/android-aidl-1.png
 permalink: /android/aidl
 tags: [Android,AIDL]
 categories: Android
+excerpt: "身為一個App工程師，總會被要求實現需求，當你遇到要跨進程在app之間溝通，該怎麼做呢？"
+
 ---
-<meta name="description" content="Free Android AIDL tutorials">
 
 <h1 class="c-border-main-title">AIDL介紹</h1>
 <div class="c-border-content-title-4">什麼是AIDL呢？<br></div><br>

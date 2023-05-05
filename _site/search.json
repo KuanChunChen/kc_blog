@@ -1,7 +1,7 @@
 [
   
     {
-      "title"    : "[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室",
+      "title"    : "ChatGPT應用教學-把ChatGPT串進你的Line聊天室",
       "category" : "",
       "tags"     : "OpenAI, Chat GPT, and AI",
       "url"      : "/easy_use_chat_gpt_with_line_bot",
@@ -9,7 +9,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][Extension]Kotlin extension純程式碼設定Android layout的margin",
+      "title"    : "快速學會在Android App中調整元素間距 - 使用Kotlin extension程式碼設定間距",
       "category" : "",
       "tags"     : "Android, Kotlin, and Extension",
       "url"      : "/clear_use_extension_to_set_margin",

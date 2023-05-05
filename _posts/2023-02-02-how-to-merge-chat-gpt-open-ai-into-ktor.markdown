@@ -1,31 +1,31 @@
 ---
 layout: post
-title: "[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室"
+title: "ChatGPT應用教學-把ChatGPT串進你的Line聊天室"
 date: 2023-02-02 16:24:56 +0800
 image: cover/kotlin-cht-gpt-line-bot-open-ai-1.png
 tags: [OpenAI,Chat GPT,AI]
 permalink: /easy_use_chat_gpt_with_line_bot
 categories: AI
+excerpt: "現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊天室，為你所用吧！"
 ---
 
-<h2 style="background-color:MediumSeaGreen; color:white;">前導：和ChatGPT聊聊天吧</h2>
+
+<div class="c-border-main-title">前導：和ChatGPT聊聊天吧</div><br>
 
 <div align="center">
-  <h3>1.註冊帳號，點擊Sign Up註冊:
-    <a href="https://chat.openai.com/auth/login" target="_blank">ChatGPT 登入頁面</a>
-  </h3>
+  <div class="c-border-content-title-4">1.註冊帳號，點擊Sign Up註冊:<a href="https://chat.openai.com/auth/login" target="_blank">ChatGPT 登入頁面</a><br></div><br>
 
   <img src="/images/linebot/line_bot_0000.png" width="60%"/><br><br>
-  <h3>2.建立你的Account</h3>
+  <div class="c-border-content-title-4">2.建立你的Account</div><br>
 
   <img src="/images/linebot/line_bot_00000.png" width="45%"/><br><br>
-  <h3>3.開始聊聊天，在下面對話框輸入你要問的問題</h3>
+  <div class="c-border-content-title-4">3.開始聊聊天，在下面對話框輸入你要問的問題</div><br>
 
   <img src="/images/linebot/line_bot_009.png" width="70%"/><br><br>
-  <h3>4.像是...2023年WBC經典賽冠軍預測</h3>
+  <div class="c-border-content-title-4">4.像是...2023年WBC經典賽冠軍預測</div><br>
 
   <img src="/images/linebot/line_bot_010.png" width="70%"/><br><br>
-  <h3>5.或是...怎麼用Kotlin寫一個預測的程式呢？</h3>
+  <div class="c-border-content-title-4">5.或是...怎麼用Kotlin寫一個預測的程式呢？</div><br>
   <img src="/images/linebot/line_bot_011.png" width="70%"/>
   <img src="/images/linebot/line_bot_012.png" width="70%"/>
   <img src="/images/linebot/line_bot_013.png" width="70%"/>
@@ -36,21 +36,24 @@ categories: AI
 <h5>這個那麼厲害的AI我們都知道能夠問他千奇百怪的問題，那要怎麼為你所用呢？我們接著看下去...</h5>
 
 
-<h2 style="background-color:MediumSeaGreen; color:white;">試著串接ChatGPT API吧</h2>
+<div class="c-border-main-title">試著串接ChatGPT API吧</div>
 
 <div align="center">
-  <h3>1.註冊一個賬號並獲取API keys：
-    <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI 登入頁面</a>
-  </h3>
+  <div class="c-border-content-title-4">
+    1.註冊一個賬號並獲取API keys：<a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI 登入頁面</a>
+  </div><br>
+
 
   <img src="/images/linebot/line_bot_014.png" width="30%"/><br>
   <p>&#11014;點擊進入後右上角 頭像點進後會有如上圖樣式，點擊View API keys即可</p>
   <img src="/images/linebot/line_bot_015.png" width="60%"/><br><br>
   <p>&#11014;點擊Create new Security key，這個Key是你之後呼叫API使用要確認你身份的一把Key</p>
 
-  <h3>2.接著你可以看官方api文件：
-    <a href="https://platform.openai.com/docs/api-reference/models/list" target="_blank">OpenAI api文件</a>
-  </h3>
+  <div class="c-border-content-title-4">
+    2.接著你可以看官方api文件：
+    <a href="https://platform.openai.com/docs/api-reference/models/list" target="_blank">OpenAI api文件</a>  
+  </div><br>
+
   <p>看文件介紹怎麼串，再照文件上說明去串</p>
 
   <img src="/images/linebot/line_bot_017.png" width="45%"/><br><br>
@@ -64,7 +67,8 @@ categories: AI
   -d '{"model": "text-davinci-003", "prompt": "Say this is a test", "temperature": 0, "max_tokens": 7}'
   </code>
   </pre>
-    <p style="text-align:left;">
+
+    <p class = "table_container">
     &#11014; 快速介紹一下上面這段curl的含義<br>
     1. 我們要發送request的url是https://api.openai.com/v1/completions<br>
     2. 如果要拆成更細可以看成前段https://api.openai.com/ domain name<br>
@@ -87,13 +91,15 @@ categories: AI
     （這邊的tokens只是官方用來計算流量計費的一種方式，並非常見用token來驗證的那種token）
     </p>
 
-  <h3>3.至此，你已經取得串接OpenAI接口所需的東西了...</h3>
+  <div class="c-border-content-title-4">
+      3.至此，你已經取得串接OpenAI接口所需的東西了...    
+  </div><br>
   <p>可以開始使用你熟悉的語言來開發API了</p>
   <p>串接 OpenAI API 的 Kotlin 程式</p>
 
   <script src="https://gist.github.com/KuanChunChen/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
 
-  <p style="text-align:left;">
+  <p class = "table_container">
   &#11014; 這邊我習慣把各種有可能會覆用的code拉出來寫，ChatGptAPI.kt、ChatGptCompletionRequest.kt、ChatGptCompletionResult.kt...等等<br>
   中間因為沒有要寫太大的專案，就懶得自己寫thread操作了<br>
   先用最簡單用的retrofit內建Callback<br>
@@ -109,17 +115,22 @@ categories: AI
   <p style="text-align:left;">
   &#11014; 這邊就是建立一個http連線的類</p>
 
-  <h3>4.完成上面你就已經成功串接ChatGpt的API啦~</h3>
+  <div class="c-border-content-title-4">
+    4.完成上面你就已經成功串接ChatGpt的API啦~
+  </div><br>
+
   <p>現在你只需要再在你呼叫ChatGpt API成功的地方<br>
   去呼叫LineBot聊天室的API就能把返回的消息傳到你實際在使用的Line聊天室內了</p>
 </div>
 
 
 
-<h2 style="background-color:MediumSeaGreen; color:white;">開始建立LineBot帳號</h2>
+<div class="c-border-main-title">開始建立LineBot帳號</div>
 
-<h3>1.
-申請Line Bot賬號：首先需要到Line Bot開發者中心申請一個Line Bot賬號，並創建一個新的Line Bot Channel。</h3>
+
+<div class="c-border-content-title-4">
+  1.申請Line Bot賬號：首先需要到Line Bot開發者中心申請一個Line Bot賬號，並創建一個新的Line Bot Channel。
+</div><br>
 
 點此連結去申請或直接用line帳號登入：[Line Business ID](https://account.line.biz/login?redirectUri=https%3A%2F%2Fdevelopers.line.biz%2Fconsole%2Fchannel%2F1656655880%2Fmessaging-api)
 
@@ -128,9 +139,9 @@ categories: AI
   <img src="/images/linebot/line_bot_002.png" width="45%"/>
 </div><br>
 
-<h3>
-2.
-配置Line Bot Channel：創建Line Bot Channel後，需要配置Channel基本信息、Webhook、消息API、Line Login等功能。</h3>
+<div class="c-border-content-title-4">
+  2.配置Line Bot Channel：創建Line Bot Channel後，需要配置Channel基本信息、Webhook、消息API、Line Login等功能。
+</div><br>
 
 註冊完後，進入此畫面，點擊Create創建新的聊天室：<br>
 <div align="center">
@@ -160,22 +171,27 @@ categories: AI
   <img src="/images/linebot/line_bot_008.png" width="100%"/>
 </div><br>
 
-<h3>
-3.
-創建完後可以分別在Basic Setting 跟 Messaging API頁面看到你的Channel secret 與Channel access token
-</h3>
+<div class="c-border-content-title-4">
+  3.創建完後可以分別在Basic Setting 跟 Messaging API頁面看到你的Channel secret 與Channel access token
+</div><br>
+
 這邊兩組key是呼叫linebot相關接口需要的key
 <div align="center">
   <img src="/images/linebot/line_bot_018.png" width="100%"/><br><br>
   <img src="/images/linebot/line_bot_019.png" width="100%"/>
 </div><br>
 
-<h3>4.接著就是參考參考LineBot官方API文件，看看怎麼串:<a href="https://developers.line.biz/en/docs/messaging-api/sending-messages/#methods-of-sending-message" target="_blank">LineBot Messaging api文件</a></h3>
+<div class="c-border-content-title-4">
+  4.接著就是參考參考LineBot官方API文件，看看怎麼串:<a href="https://developers.line.biz/en/docs/messaging-api/sending-messages/#methods-of-sending-message" target="_blank">LineBot Messaging api文件</a>
+</div><br>
+
 <div align="center">
   <img src="/images/linebot/line_bot_020.png" width="100%"/><br><br>
 </div><br>
 
-<h3>5.至此，你已經取得串接LineBot接口所需的東西了...</h3>
+<div class="c-border-content-title-4">
+  5.至此，你已經取得串接LineBot接口所需的東西了...
+</div><br>
 <p>可以開始使用你熟悉的語言來開發API了</p>
 <p>串接 LineBot API 的 Kotlin 程式</p>
 <script src="https://gist.github.com/KuanChunChen/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
@@ -188,7 +204,9 @@ categories: AI
 &#11014; 拉出來的Line Messaging接口
 </p>
 
-<h3>6.到這邊就簡單串完了..可以開始部署代碼到Server上了</h3>
+<div class="c-border-content-title-4">
+  6.到這邊就簡單串完了..可以開始部署代碼到Server上了
+</div><br>
 
 可以用一些雲端Server或在自己本地IP架設Server把寫好的代碼放上去<br>
 即可開始你的LineBot串接ChatGpt服務<br>
@@ -200,11 +218,12 @@ categories: AI
   <img src="/images/linebot/line_bot_021.png" width="40%"/><br><br>
 </div><br>
 
-<h2 style="background-color:MediumSeaGreen; color:white;">開發完成後怎麼部署到LineBot內呢？</h2>
+<div class="c-border-main-title">開發完成後怎麼部署到LineBot內呢？</div>
+<div class="c-border-content-title-4">
+  1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了
+</div><br>
 
-<h3>1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了</h3>
-
-<p style="text-align:center;">
+<p class = "table_container">
 這裡就是回到前面去過的<a href="https://developers.line.biz/" target="_blank">Line Deverloper</a><br>
 進到Messaging API這個頁面<br>
 把你開放的接口輸入進來就行了
@@ -224,12 +243,16 @@ categories: AI
 <p style="text-align:center;">
 &#11014;點Verify後的結果顯示，若是錯誤則會反饋error code</p>
 
-<h3>2.這邊我用Kotlin的Ktor來開發自己的後端，像是...</h3>
+<div class="c-border-content-title-4">
+  2.這邊我用Kotlin的Ktor來開發自己的後端，像是..
+</div><br>
 <img src="/images/linebot/line_bot_026.png" width="100%"/>
 <p style="text-align:center;">
 &#11014;開一個/line_callback接口</p>
 
-<h3>3.我推薦一個免費用的線上Server：<a href="https://ngrok.com/" target="_blank">ngrok</a></h3>
+<div class="c-border-content-title-4">
+  3.我推薦一個免費用的線上Server：<a href="https://ngrok.com/" target="_blank">ngrok</a>
+</div><br>
 
 <p style="text-align:center;">
 因為這個使用門檻低，很適合新手<br>
@@ -247,22 +270,27 @@ categories: AI
 3.最後選一個port轉成對外port即可
 </p>
 
-<h3 style="text-align:center;">
-4.在用ngrok轉換port後，會看到以下畫面<br></h3>
+
+<div class="c-border-content-title-4">
+  4.在用ngrok轉換port後，會看到以下畫面
+</div><br>
+
 <div align="center">
   <img src="/images/linebot/line_bot_028.png" width="100%"/><br><br>
   <img src="/images/linebot/line_bot_029.png" width="100%"/><br><br>
 </div>
 
-<h3 style="text-align:center;">
-5.再次回到Line Developer後台，輸入url即可完全串好<br></h3>
+<div class="c-border-content-title-4">
+  5.再次回到Line Developer後台，輸入url即可完全串好<br>
+</div><br>
+
 <div align="center">
   <img src="/images/linebot/line_bot_030.png" width="100%"/><br><br>
 </div>
 
-<h3 style="text-align:center;">
-6.範例程式碼<br></h3>
-
+<div class="c-border-content-title-4">
+  6.範例程式碼
+</div><br>
 
 <div class="card py-4 h-100">
     <div class="card-body text-center">

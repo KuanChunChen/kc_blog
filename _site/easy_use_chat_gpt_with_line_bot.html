@@ -18,11 +18,10 @@
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <meta property="og:title" content="[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室" />
-	<meta property="og:description" content="前導：和ChatGPT聊聊天吧" />
 
-  <title>[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室</title>
-  <meta name='description' content="前導：和ChatGPT聊聊天吧">
+  <title>ChatGPT應用教學-把ChatGPT串進你的Line聊天室</title>
+  
+  <meta name='description' content="現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊天室，為你所用吧！">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -30,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/easy_use_chat_gpt_with_line_bot" />
-<meta property="og:title" content="[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室" />
-<meta property="og:description" content="前導：和ChatGPT聊聊天吧" />
+<meta property="og:title" content="ChatGPT應用教學-把ChatGPT串進你的Line聊天室" />
+<meta property="og:description" content="現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊天室，為你所用吧！" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/kotlin-cht-gpt-line-bot-open-ai-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -188,29 +187,28 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[2023][ChatGPT][Open AI][Kotlin][懶人包]一步一步帶你把ChatGPT串進你的Line聊天室</h1>
+        <h1 class="c-article__title">ChatGPT應用教學-把ChatGPT串進你的Line聊天室</h1>
         <div class="c-article__date">
           <span>2023, Feb 02</span>
         </div>
       </header>
-      <h2 style="background-color:MediumSeaGreen; color:white;">前導：和ChatGPT聊聊天吧</h2>
+      <div class="c-border-main-title">前導：和ChatGPT聊聊天吧</div>
+<p><br /></p>
 
 <div align="center">
-  <h3>1.註冊帳號，點擊Sign Up註冊:
-    <a href="https://chat.openai.com/auth/login" target="_blank">ChatGPT 登入頁面</a>
-  </h3>
+  <div class="c-border-content-title-4">1.註冊帳號，點擊Sign Up註冊:<a href="https://chat.openai.com/auth/login" target="_blank">ChatGPT 登入頁面</a><br /></div><br />
 
   <img src="/images/linebot/line_bot_0000.png" width="60%" /><br /><br />
-  <h3>2.建立你的Account</h3>
+  <div class="c-border-content-title-4">2.建立你的Account</div><br />
 
   <img src="/images/linebot/line_bot_00000.png" width="45%" /><br /><br />
-  <h3>3.開始聊聊天，在下面對話框輸入你要問的問題</h3>
+  <div class="c-border-content-title-4">3.開始聊聊天，在下面對話框輸入你要問的問題</div><br />
 
   <img src="/images/linebot/line_bot_009.png" width="70%" /><br /><br />
-  <h3>4.像是...2023年WBC經典賽冠軍預測</h3>
+  <div class="c-border-content-title-4">4.像是...2023年WBC經典賽冠軍預測</div><br />
 
   <img src="/images/linebot/line_bot_010.png" width="70%" /><br /><br />
-  <h3>5.或是...怎麼用Kotlin寫一個預測的程式呢？</h3>
+  <div class="c-border-content-title-4">5.或是...怎麼用Kotlin寫一個預測的程式呢？</div><br />
   <img src="/images/linebot/line_bot_011.png" width="70%" />
   <img src="/images/linebot/line_bot_012.png" width="70%" />
   <img src="/images/linebot/line_bot_013.png" width="70%" />
@@ -220,21 +218,24 @@
 
 <h5>這個那麼厲害的AI我們都知道能夠問他千奇百怪的問題，那要怎麼為你所用呢？我們接著看下去...</h5>
 
-<h2 style="background-color:MediumSeaGreen; color:white;">試著串接ChatGPT API吧</h2>
+<div class="c-border-main-title">試著串接ChatGPT API吧</div>
 
 <div align="center">
-  <h3>1.註冊一個賬號並獲取API keys：
-    <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI 登入頁面</a>
-  </h3>
+  <div class="c-border-content-title-4">
+    1.註冊一個賬號並獲取API keys：<a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI 登入頁面</a>
+  </div><br />
+
 
   <img src="/images/linebot/line_bot_014.png" width="30%" /><br />
   <p>&#11014;點擊進入後右上角 頭像點進後會有如上圖樣式，點擊View API keys即可</p>
   <img src="/images/linebot/line_bot_015.png" width="60%" /><br /><br />
   <p>&#11014;點擊Create new Security key，這個Key是你之後呼叫API使用要確認你身份的一把Key</p>
 
-  <h3>2.接著你可以看官方api文件：
-    <a href="https://platform.openai.com/docs/api-reference/models/list" target="_blank">OpenAI api文件</a>
-  </h3>
+  <div class="c-border-content-title-4">
+    2.接著你可以看官方api文件：
+    <a href="https://platform.openai.com/docs/api-reference/models/list" target="_blank">OpenAI api文件</a>  
+  </div><br />
+
   <p>看文件介紹怎麼串，再照文件上說明去串</p>
 
   <img src="/images/linebot/line_bot_017.png" width="45%" /><br /><br />
@@ -248,7 +249,8 @@
   -d '{"model": "text-davinci-003", "prompt": "Say this is a test", "temperature": 0, "max_tokens": 7}'
   </code>
   </pre>
-    <p style="text-align:left;">
+
+    <p class="table_container">
     &#11014; 快速介紹一下上面這段curl的含義<br />
     1. 我們要發送request的url是https://api.openai.com/v1/completions<br />
     2. 如果要拆成更細可以看成前段https://api.openai.com/ domain name<br />
@@ -271,13 +273,15 @@
     （這邊的tokens只是官方用來計算流量計費的一種方式，並非常見用token來驗證的那種token）
     </p>
 
-  <h3>3.至此，你已經取得串接OpenAI接口所需的東西了...</h3>
+  <div class="c-border-content-title-4">
+      3.至此，你已經取得串接OpenAI接口所需的東西了...    
+  </div><br />
   <p>可以開始使用你熟悉的語言來開發API了</p>
   <p>串接 OpenAI API 的 Kotlin 程式</p>
 
   <script src="https://gist.github.com/KuanChunChen/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
 
-  <p style="text-align:left;">
+  <p class="table_container">
   &#11014; 這邊我習慣把各種有可能會覆用的code拉出來寫，ChatGptAPI.kt、ChatGptCompletionRequest.kt、ChatGptCompletionResult.kt...等等<br />
   中間因為沒有要寫太大的專案，就懶得自己寫thread操作了<br />
   先用最簡單用的retrofit內建Callback<br />
@@ -293,15 +297,20 @@
   <p style="text-align:left;">
   &#11014; 這邊就是建立一個http連線的類</p>
 
-  <h3>4.完成上面你就已經成功串接ChatGpt的API啦~</h3>
+  <div class="c-border-content-title-4">
+    4.完成上面你就已經成功串接ChatGpt的API啦~
+  </div><br />
+
   <p>現在你只需要再在你呼叫ChatGpt API成功的地方<br />
   去呼叫LineBot聊天室的API就能把返回的消息傳到你實際在使用的Line聊天室內了</p>
 </div>
 
-<h2 style="background-color:MediumSeaGreen; color:white;">開始建立LineBot帳號</h2>
+<div class="c-border-main-title">開始建立LineBot帳號</div>
 
-<h3>1.
-申請Line Bot賬號：首先需要到Line Bot開發者中心申請一個Line Bot賬號，並創建一個新的Line Bot Channel。</h3>
+<div class="c-border-content-title-4">
+  1.申請Line Bot賬號：首先需要到Line Bot開發者中心申請一個Line Bot賬號，並創建一個新的Line Bot Channel。
+</div>
+<p><br /></p>
 
 <p>點此連結去申請或直接用line帳號登入：<a href="https://account.line.biz/login?redirectUri=https%3A%2F%2Fdevelopers.line.biz%2Fconsole%2Fchannel%2F1656655880%2Fmessaging-api">Line Business ID</a></p>
 
@@ -311,9 +320,10 @@
 </div>
 <p><br /></p>
 
-<h3>
-2.
-配置Line Bot Channel：創建Line Bot Channel後，需要配置Channel基本信息、Webhook、消息API、Line Login等功能。</h3>
+<div class="c-border-content-title-4">
+  2.配置Line Bot Channel：創建Line Bot Channel後，需要配置Channel基本信息、Webhook、消息API、Line Login等功能。
+</div>
+<p><br /></p>
 
 <p>註冊完後，進入此畫面，點擊Create創建新的聊天室：<br /></p>
 <div align="center">
@@ -348,10 +358,11 @@
 </div>
 <p><br /></p>
 
-<h3>
-3.
-創建完後可以分別在Basic Setting 跟 Messaging API頁面看到你的Channel secret 與Channel access token
-</h3>
+<div class="c-border-content-title-4">
+  3.創建完後可以分別在Basic Setting 跟 Messaging API頁面看到你的Channel secret 與Channel access token
+</div>
+<p><br /></p>
+
 <p>這邊兩組key是呼叫linebot相關接口需要的key</p>
 <div align="center">
   <img src="/images/linebot/line_bot_018.png" width="100%" /><br /><br />
@@ -359,13 +370,20 @@
 </div>
 <p><br /></p>
 
-<h3>4.接著就是參考參考LineBot官方API文件，看看怎麼串:<a href="https://developers.line.biz/en/docs/messaging-api/sending-messages/#methods-of-sending-message" target="_blank">LineBot Messaging api文件</a></h3>
+<div class="c-border-content-title-4">
+  4.接著就是參考參考LineBot官方API文件，看看怎麼串:<a href="https://developers.line.biz/en/docs/messaging-api/sending-messages/#methods-of-sending-message" target="_blank">LineBot Messaging api文件</a>
+</div>
+<p><br /></p>
+
 <div align="center">
   <img src="/images/linebot/line_bot_020.png" width="100%" /><br /><br />
 </div>
 <p><br /></p>
 
-<h3>5.至此，你已經取得串接LineBot接口所需的東西了...</h3>
+<div class="c-border-content-title-4">
+  5.至此，你已經取得串接LineBot接口所需的東西了...
+</div>
+<p><br /></p>
 <p>可以開始使用你熟悉的語言來開發API了</p>
 <p>串接 LineBot API 的 Kotlin 程式</p>
 <script src="https://gist.github.com/KuanChunChen/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
@@ -380,7 +398,10 @@
 &#11014; 拉出來的Line Messaging接口
 </p>
 
-<h3>6.到這邊就簡單串完了..可以開始部署代碼到Server上了</h3>
+<div class="c-border-content-title-4">
+  6.到這邊就簡單串完了..可以開始部署代碼到Server上了
+</div>
+<p><br /></p>
 
 <p>可以用一些雲端Server或在自己本地IP架設Server把寫好的代碼放上去<br />
 即可開始你的LineBot串接ChatGpt服務<br />
@@ -393,11 +414,13 @@
 </div>
 <p><br /></p>
 
-<h2 style="background-color:MediumSeaGreen; color:white;">開發完成後怎麼部署到LineBot內呢？</h2>
+<div class="c-border-main-title">開發完成後怎麼部署到LineBot內呢？</div>
+<div class="c-border-content-title-4">
+  1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了
+</div>
+<p><br /></p>
 
-<h3>1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了</h3>
-
-<p style="text-align:center;">
+<p class="table_container">
 這裡就是回到前面去過的<a href="https://developers.line.biz/" target="_blank">Line Deverloper</a><br />
 進到Messaging API這個頁面<br />
 把你開放的接口輸入進來就行了
@@ -416,12 +439,18 @@
 <p style="text-align:center;">
 &#11014;點Verify後的結果顯示，若是錯誤則會反饋error code</p>
 
-<h3>2.這邊我用Kotlin的Ktor來開發自己的後端，像是...</h3>
-<p><img src="/images/linebot/line_bot_026.png" width="100%" /></p>
+<div class="c-border-content-title-4">
+  2.這邊我用Kotlin的Ktor來開發自己的後端，像是..
+</div>
+<p><br />
+<img src="/images/linebot/line_bot_026.png" width="100%" /></p>
 <p style="text-align:center;">
 &#11014;開一個/line_callback接口</p>
 
-<h3>3.我推薦一個免費用的線上Server：<a href="https://ngrok.com/" target="_blank">ngrok</a></h3>
+<div class="c-border-content-title-4">
+  3.我推薦一個免費用的線上Server：<a href="https://ngrok.com/" target="_blank">ngrok</a>
+</div>
+<p><br /></p>
 
 <p style="text-align:center;">
 因為這個使用門檻低，很適合新手<br />
@@ -439,21 +468,29 @@
 3.最後選一個port轉成對外port即可
 </p>
 
-<h3 style="text-align:center;">
-4.在用ngrok轉換port後，會看到以下畫面<br /></h3>
+<div class="c-border-content-title-4">
+  4.在用ngrok轉換port後，會看到以下畫面
+</div>
+<p><br /></p>
+
 <div align="center">
   <img src="/images/linebot/line_bot_028.png" width="100%" /><br /><br />
   <img src="/images/linebot/line_bot_029.png" width="100%" /><br /><br />
 </div>
 
-<h3 style="text-align:center;">
-5.再次回到Line Developer後台，輸入url即可完全串好<br /></h3>
+<div class="c-border-content-title-4">
+  5.再次回到Line Developer後台，輸入url即可完全串好<br />
+</div>
+<p><br /></p>
+
 <div align="center">
   <img src="/images/linebot/line_bot_030.png" width="100%" /><br /><br />
 </div>
 
-<h3 style="text-align:center;">
-6.範例程式碼<br /></h3>
+<div class="c-border-content-title-4">
+  6.範例程式碼
+</div>
+<p><br /></p>
 
 <div class="card py-4 h-100">
     <div class="card-body text-center">
@@ -478,7 +515,7 @@
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[2023][ChatGPT][Open%20AI][Kotlin][%E6%87%B6%E4%BA%BA%E5%8C%85]%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E5%B8%B6%E4%BD%A0%E6%8A%8AChatGPT%E4%B8%B2%E9%80%B2%E4%BD%A0%E7%9A%84Line%E8%81%8A%E5%A4%A9%E5%AE%A4&url=https://elegantaccess.org/easy_use_chat_gpt_with_line_bot" title="Share
+          <a href="https://twitter.com/intent/tweet?text=ChatGPT%E6%87%89%E7%94%A8%E6%95%99%E5%AD%B8-%E6%8A%8AChatGPT%E4%B8%B2%E9%80%B2%E4%BD%A0%E7%9A%84Line%E8%81%8A%E5%A4%A9%E5%AE%A4&url=https://elegantaccess.org/easy_use_chat_gpt_with_line_bot" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -700,7 +737,7 @@ document.getElementById('fb_share_offical').onclick = function() {
           <div class="c-recent__item">
             <a class="c-recent__image" href="/clear_use_extension_to_set_margin" style="background-image: url( /images/cover/kotlin-clear-code-maring-layout-xml-constarint-layout-1.png)"></a>
             <div class="c-recent__footer">
-              <h4><a href="/clear_use_extension_to_set_margin">[Android][Kotlin][Extension]Kotlin extension純程式碼設定Android layout的margin</a></h4>
+              <h4><a href="/clear_use_extension_to_set_margin">快速學會在Android App中調整元素間距 - 使用Kotlin extension程式碼設定間距</a></h4>
               <div class="c-recent__date">
                 <time datetime="2022-12-25T17:05:12+08:00">December 25, 2022</time>
               </div>
