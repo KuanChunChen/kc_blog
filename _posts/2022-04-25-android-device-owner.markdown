@@ -1,78 +1,79 @@
 ---
 layout: post
-title: "[Android][2022][Debug][Problem Solved Series]Android Device owner 權限請求與實際作用統整"
+title: "掌握 Android Device Owner 權限，企業級管理輕鬆上手！"
 date: 2022-04-25 18:19:28 +0800
 image: cover/android-device-owner-1.png
 tags: [Android,Debug]
 categories: Debug
+excerpt: "想要輕鬆管理企業級 Android 裝置？這份文章提供了完整的 Android Device Owner 權限請求與實際作用統整。"
+
 ---
 
 
-### 前言
+<div class="c-border-main-title-2">前言：探索Device owner權限</div>
 
-* Hi Internet<br>
-這系列文章將記錄我`曾經開發Android遇到的問題`<br>
-`分析問題`時做的一些筆記<br>
-我預計要整理出我過去遇到的問題<br>
-做成一系列<br>
-這樣未來再遇到可以更快找回記憶<br>
-也可幫助有遇到相同問題的朋友們<br>
-或是分享一下如果遇到問題<br>
-要怎麼找答案的過程<br>
-
-* 今天要分享的是<br>
-android 內提供的 Device owner權限<br>
-怎麼獲得它<br>
-能做什麼事<br>
-在這篇我把整過過程分享給大家<br>
-<br>
-
-### 為何要成為Device Owner
-因為這個權限可以讓你使用Android官方提供的 DevicePolicyManager內的API<br>
-去執行一些普通權限無法達到的需求<br>
-請參考
-[DevicePolicyManager文件](https://developer.android.com/reference/android/app/admin/DevicePolicyManager)<br><br>
-當然也有Admin permission可以去用DevicePolicyManager<br>
-不過有的API需要Device Owner<br>
-所以這邊的主要看開發者想要用到哪些功能而決定<br>
+<p style="margin-top: 15px;" class="table_container">
+	在本系列文章中，我將分享我在Android開發中所遇到的問題，<br>
+	以及我如何解決這些問題的筆記。<br>
+	本文將探討Android內提供的Device owner權限，包括如何獲取和使用這些權限。
+</p>
 
 
-### 如何成為Device Owner
 
-這邊有幾種方式 可以讓你的Android app 成為device owner  
+<div class="c-border-main-title-2">為何要成為Device Owner</div>
+你是否曾經遇到一些普通權限無法滿足的需求，該怎麼辦呢？<br>
+舉例來說，<br>
+如果你需要在設備上強制設置一個特定的畫面，<br>
+或者阻止用戶卸載特定應用，這時候就需要Device Owner權限。<br>
 
-* 第一種：Factory Reset後 進入welcome頁面 點擊 Welcome字樣 7下 用開啟的相機 掃描 QR Code
-* 第二種：Factory Reset 點 8 下 後掃描 QR Code (需要有 GMS)
 
-這兩種其實類似 只是可能不同廠商有可能會遇到不同方式<br>
-這邊你需要製作一個QR code 掃描讓 這兩個步驟運作
+總之，<br>
+Device Owner權限可以幫助開發者實現一些普通權限無法滿足的需求，<br>
+但是否需要使用則取決於具體的應用場景<br><br>
 
+這個權限可以讓你使用Android官方提供的 DevicePolicyManager內的API<br>
+可以參考Android官方提供的DevicePolicyManager文件，了解有哪些API可以使用。<br>
+<a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager" target="_blank">DevicePolicyManager文件</a>
+
+<div class="c-border-main-title-2">如何成為Device Owner</div>
+
+<div class="c-border-content-title-4">有幾種方式可以讓你的Android app成為device owner，其中包括以下兩種方法：</div>
+
+<p style="margin-top: 15px;" class="table_container">
+	1.在 Factory Reset 後進入 welcome 頁面，點擊 Welcome 字樣七次，並使用開啟的相機掃描 QR Code。<br>
+	2.在 Factory Reset 後點擊八次，並使用 GMS 掃描 QR Code（需要 GMS）。
+</p>
+
+請注意，不同廠商可能採用不同的方式。<br>
+不過目前實測下來幾乎都可以用，除非是那種特製OTA才有機會不能用<br><br>
+接下來，你需要製作一個QR code 掃描來實現這兩個步驟。<br>
+
+<p style="margin-top: 15px;" class="table_container">
 1. 使用下方指令 apk_download_link帶入你apk的下載url<br>
-`curl -s [apk_download_link] | openssl dgst -binary -sha256 | openssl base64 | tr '+/' '-_' | tr -d '='`
+<b>curl -s [apk_download_link] | openssl dgst -binary -sha256 | openssl base64 | tr '+/' '-_' | tr -d '='</b><br><br>
+
 2. 利用下方Json格式，填好你的value<br>
-`android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME`：填入你的packageName/AdminReceiver的路徑<br><br>
-`android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM`：填入步驟1產生的hash code<br><br>
-`android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION`：填入你的download url<br>
-```
-{
-	"android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME":"com.xxx.your.package.name/com.xxx.your.package.name.receivers.AdminReceiver",
-	"android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM":"64l05FpmjfKvyAE67J9kLURBtdAgHIyKo_sKyha1h5E",
-	"android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION":"https://your_web_site_url.apk"
-}
-```
-3.拿著步驟2的json格式 去產生QrCode<br>
-之後只要在Factory Reset後照著前面兩種方式把QR code相機打開<br>
-讓用戶去掃描你產生的QrCode<br>
-待系統設定好後<br>
-那隻App就會自動安裝加上變成Device Owner<br>
+<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME</b>：填入你的packageName/AdminReceiver的路徑 <br>
+<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>：填入步驟1產生的hash code<br>
+<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>：填入你的download url<br>
+</p>
+<script src="https://gist.github.com/KuanChunChen/8a9376c9f99b70090c2c45a58defdf09.js"></script>
 
-這種方式通常是讓非開發人員去用的<br>
-例如：各端開發人員先上傳好apk<br>
-之後有apk download url後<br>
-用上方步驟產生hash code 以及製作json格式的資料並製成QrCode <br>
-方便讓非開發人員 透過UI操作就能產生Device Owner app
+<p style="margin-top: 15px;" class="table_container">
+	3. 拿著步驟2的json格式 去產生QrCode<br>
+	之後只要在Factory Reset後照著前面兩種方式把QR code相機打開<br>
+	讓用戶去掃描你產生的QrCode<br>
+	待系統設定好後<br>
+	那隻App就會自動安裝加上變成Device Owner<br><br>
 
-* 第三種：透過adb 指令讓指定app成為device owner<br>
+	這種方式通常是讓非開發人員去用的<br>
+	例如：各端開發人員先上傳好apk<br>
+	之後有apk download url後<br>
+	用上方步驟產生hash code 以及製作json格式的資料並製成QrCode<br>
+	方便讓非開發人員 透過UI操作就能產生Device Owner app<br>
+</p>
+
+<div class="c-border-content-title-4">另一種方式，透過adb 指令讓指定app成為device owner</div>
   這邊只要把你指定app的Admin Receiver的路徑打在下方指令之後<br>
   就能讓該app變成device owner<br>
   `adb shell dpm set-device-owner com.your.package/com.your.package.receivers.AdminReceiver`
@@ -83,10 +84,8 @@ android 內提供的 Device owner權限<br>
    `adb shell dumpsys device_policy`<br>
    這個指令可以去看你目前OS內有的device owner情況
 
-
-### 如何移除 Device Owner
-
-* 透過指令移除 <br>
+<div class="c-border-main-title-2">如何移除 Device Owner</div>
+<div class="c-border-content-title-4">透過指令移除</div><br>
 `adb shell dpm remove-active-admin com.your.package/.receivers.AdminReceiver`
  - 這個指令需透過： <br>
  在`AndroidManifest.xml的<application>`內 <br>
@@ -104,7 +103,7 @@ android 內提供的 Device owner權限<br>
  * 直接Factory Reset手機<br>
  以上其他方法都無法使用時，只能使出終極殺招XD
 
-### Device Admin Receiver建立
+ <div class="c-border-main-title-2">Device Admin Receiver建立</div>
 
 * 這個跟Admin權限相輔相成<br>
 需在要當成Device Owner的app內<br>
@@ -128,8 +127,7 @@ adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br
 再將其加入Manifest.xml內即可<br>
 
 
-
-### Device Owner 實作分享
+<div class="c-border-main-title-2">Device Owner 實作分享</div>
 
 這邊分享一些之前做過遇到的例子<br>
 不過主要是大概講一下觀念跟實作的部分code<br>

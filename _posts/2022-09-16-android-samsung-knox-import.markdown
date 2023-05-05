@@ -1,17 +1,32 @@
 ---
 layout: post
-title: "[Android][2022][Samsung][Problem Solved Series] 手把手教你如何導入Samsung Knox SDK 到你的Android 專案"
+title: "打造更安全的Android應用程式！ 學習導入Samsung Knox SDK的簡單方法"
 date: 2022-09-16 14:41:08 +0800
 image: cover/samsung-android-knox-1.png
 tags: [Android,Debug,Samsung,knox]
 categories: Debug
 ---
 
-這篇文章主要會解說<br>
-Samsung knox sdk 導入時的一些基本觀念<br>
-以及`遇到的坑`跟你們分享<br>
+<div class="c-border-main-title-2">Samsung Knox SDK 是一個安全解決方案</div>
 
-## 0. 前導
+<div class="c-border-content-title-4">
+  提供多種安全性控制和管理選項，讓企業輕鬆地保護其敏感數據和應用程序。
+  可以讓開發者在應用程式中實現以下功能：
+</div>
+<p class = "table_container">
+  <b>安全容器</b>：可用於分隔和保護企業數據和應用程式，以防止非授權的訪問。<br>
+  <b>VPN</b>：可用於建立安全的VPN連接，以保護網絡流量和數據。<br>
+  <b>加密</b>：可用於將數據加密，以保護其在傳輸過程中的安全性。<br>
+  <b>策略管理</b>：可用於管理設備設置和策略，例如密碼規則、設備鎖定、數據清除等。<br>
+  <b>身份驗證</b>：可用於實現強大的身份驗證功能，包括生物識別驗證和智能卡驗證。<br>
+  <b>安全更新</b>：可用於安全地更新應用程式和操作系統，以提高整體安全性。<br><br>
+
+  這篇文章主要會解說<br>
+  Samsung knox sdk 導入時的一些基本觀念<br>
+  以及<b>遇到的坑</b>跟你們分享<br>
+</p>
+
+<div class="c-border-main-title-2">前導</div>
 
 * 目前支持與對應的samsung 手機與版本:[參考](https://www.samsungknox.com/en/knox-platform/supported-devices)
   - 不支援knox的時候，官方提供的建議與方法：[參考](https://docs.samsungknox.com/admin/fundamentals/faqs/kba-349-about-android-others-android-go-devices.htm)
@@ -52,12 +67,12 @@ Samsung knox sdk 導入時的一些基本觀念<br>
     - [Knox SDK介紹](https://docs.samsungknox.com/dev/knox-sdk/index.htm)
     - [Knox API文件](https://docs.samsungknox.com/devref/knox-sdk/reference/packages.html)
 
-## 1. Knox架構開發者文件
+<div class="c-border-main-title-2">Knox架構開發者文件</div>
 
   - Samsung Knox提供 web-base 與 device-base兩種方式來做使用，其目前的架構：  
    <img src="https://docs.samsungknox.com/dev/common/images/knox-ecosystem.png" width="60%"/><br>
 
-## 2. Activite license note
+<div class="c-border-main-title-2">Activite license note</div>
    * android 6.0.1 samsung s6 ,測試`Knox 3.8`
      - 下載samsung開發者後台的Knox 3.8版 ，使用方法[knox3.7.1 higher](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)，解析URI時，報exception
      - 改用[knox2.7 lower](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)報出`java.lang.RuntimeException: Stub!`<br>
@@ -92,7 +107,7 @@ Samsung knox sdk 導入時的一些基本觀念<br>
     這時用`knox3.7.1 higher`active就會崩潰，<br>
     在Android 6.0.1 Knox 3.8 使用`knox3.7.1 higher`active同樣會崩潰<br>
 
-## 3. 開發研究
+<div class="c-border-main-title-2">開發遇到的事及研究</div>
 
  * Vpn 開發
    - 根據開發文件 有提供兩種Vpn方案
@@ -110,10 +125,9 @@ Samsung knox sdk 導入時的一些基本觀念<br>
  * LockScreen Password
    - 生物解鎖，設置指紋解鎖或臉部解鎖：[點此](https://docs.samsungknox.com/dev/knox-sdk/biometrics.htm)
 
-## 4. 實際開發啟動license與knox permission思路分享
-
- 那因為其實如何啟動只需要看官方文件上的方式去想就可<br>
- 這邊我就提供我規劃的思維給大家，如下：<br>
+<div class="c-border-main-title-2">分享實際開發啟動license與knox permission的思路</div>
+  其實如何啟動Knox只需要看官方文件上的方式去想就可<br>
+  這邊我提供我規劃的思維給大家，如下：
  - 目前將它包成dagger2 module
   - 結構如圖 ：<br>
   ![knox_module.png](/images/others/knox_module.png)

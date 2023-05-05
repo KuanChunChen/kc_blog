@@ -220,7 +220,7 @@ excerpt: "現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊
 
 <div class="c-border-main-title">開發完成後怎麼部署到LineBot內呢？</div>
 <div class="c-border-content-title-4">
-  1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Lint Deverloper 後台就能行了
+  1.前面都開發完成了，那你只需要把你的code開放接口跟部署到Server中提供Webhook URL給Line Deverloper 後台就能行了
 </div><br>
 
 <p class = "table_container">
