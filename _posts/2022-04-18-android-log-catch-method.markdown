@@ -1,78 +1,83 @@
 ---
 layout: post
-title: "[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log"
+title: "Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！"
 date: 2022-04-18 16:37:48 +0800
 image: cover/android-catch-log-1.png
 tags: [Android,Debug]
 categories: Debug
 ---
 
-### 前言
+<div class="c-border-main-title-2">前言</div>
 
-* Hi Internet<br>
-這系列文章將記錄我`曾經開發Android遇到的問題`<br>
-`分析問題`時做的一些筆記<br>
-我預計要整理出我過去遇到的問題<br>
-做成一系列<br>
-這樣未來再遇到可以更快找回記憶<br>
-也可幫助有遇到相同問題的朋友們<br>
-或是分享一下如果遇到問題<br>
-要怎麼找答案的過程<br>
+* 今天我想跟大家分享一些讓你輕鬆抓取Android log的技巧！<br>
+  在開發過程中，常常會有這樣的問題：「有什麼方法可以快速抓log呢？」<br>
+  「怎麼讓測試或其他非開發人員也能輕鬆抓到Android log呢？」<br>
+  別擔心！我整理了一些簡單易懂的方法，希望能幫助你們更有效率地開發和測試。<br>
 
-* 今天要分享的是<br>
-過去開發常常會被問<br><br>
-有什麼方法可以抓log<br>
-`或是怎麼讓測試或其他非開發人員更快抓到Android log`<br>
-所以這裡就整理了一些簡單的方式<br>
-讓大家參考<br>
+<div class="c-border-main-title-2">快速抓取 Android log，從基本觀念開始！</div>
 
-<br>
-
-### Android log 抓取基本觀念補充
-
-  * [確認Android 架構各層可以點這裡](https://developer.android.com/guide/platform)    
-
-  * logcat抓log ，logcat 只抓 Framewrok內 的 log
-    - 整包 log : `adb logcat`  -> [篩選log參考](https://developer.android.com/studio/command-line/logcat#options)
-
-    - 查看各 buffer size : `adb logcat -g`
-    - 可以查到多種buffer內 log : radio、events、main、system、crash、all、default..等等
-    - 例如：
+  * 要抓Android的log，可以使用logcat這個工具，不過需要注意的是logcat只會抓取系統內部的log
+    - 抓取整包log：使用指令 adb logcat 來抓取整包log，<br>
+    可以透過指定篩選條件來只抓取特定的log，<br>
+    詳細的篩選方法可以參考[篩選log參考](https://developer.android.com/studio/command-line/logcat#options)
+    - 查看各個buffer的大小：使用指令 `adb logcat -g` 來查看各個buffer的大小。
+    - 查看不同buffer內的log：除了主要的buffer之外，<br>
+    還有其他的buffer可以查看，<br>
+    例如radio、events、system等等，<br>
+    可以使用    
     ```
     [adb] logcat [-b 'buffer name']
     ```
-    main buffer log : `adb logcat -b main`
-    events buffer log : `adb logcat -b events`
+    來查看特定的log，<br>
+    其中<buffer_name>為要查看的buffer名稱。<br>
+    例如：<br>
+    main buffer log :<br>
+    <b>adb logcat -b main</b><br>
+    events buffer log : <br>
+    <b>adb logcat -b events</b><br>
     以此類推
-    - 各區差異可參考 ：[查看備用日志緩衝區](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
+    - 想了解各buffer區差異可參考官方文件 ：[查看備用日志緩衝區](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
 
 <br>
 
-### Android log 抓取思路
+<div class="c-border-main-title-2">Android log 抓取思路</div>
+<div class="c-border-content-title-4">以下是幾個使用 adb 抓取 Android 系統 log 的方式：</div><br>
 
-  * adb 抓取系統log file ：
-    - 需權限
-      - 拉出 Kernel panic log :`adb pull /sys/fs/pstore/console-ramoops`
+<p class ="table_container">
+  <i style="text-align: center;">需su權限</i><br>
+ 1. 拉出 Kernel panic log : <b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br>
+ 2. 印出 Kernel log：<b style="color:red;">adb shell cat /proc/kmsg</b> (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)<br>
+ 3. Linux kernel-ring buffer log : <b style="color:red;">adb shell su dmesg</b><br>
+ <a herf="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg指令參考</a>
+</p>
 
-      - 印出 Kernel log：`adb shell cat /proc/kmsg` (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)
+<p class ="table_container">
+  <i style="text-align: center;">不需權限</i><br>
+  1. 拉出 ANR log : <b style="color:red;">adb pull /data/anr</b><br>
+</p>
 
-      - Linux kernel-ring buffer log : `adb shell su dmesg` ([dmesg指令參考](https://man7.org/linux/man-pages/man1/dmesg.1.html))
-
-    - 不用權限
-      - 拉出 ANR log : `adb pull /data/anr`
+<div class="c-border-content-title-4">透過pc端執行adb logcat指令</div>
+  - 使用 adb logcat 亦可以取得當前連接的裝置log，如：
+  ```
+  adb logcat
+  ```
 
  <br>
-
-  * 從安卓應用執行指令：
-    - 開一個procees可以去執行commend :
+ <div class="c-border-content-title-4">從Android app用程式碼去抓log</div>
+  * 這個思路是透過開發人員用以下方式將抓log的功能寫在app內讓非開發人員去抓
+    - 開一個procees去執行commend :
     例如：`Runtime.getRuntime().exec("logcat -b radio")`
 
-    - Android 4.1 前 在Manifest.xml加入 `READ_LOGS` 權限
-        取得`READ_LOGS`權限 後，`則可以拿到原本需要su權限的log`
+    - 在 Android 4.1 之前，<br>
+      開發者可以在 Manifest.xml 中添加 "READ_LOGS" 權限，<br>
+      獲得此權限後可以取得需要 su 權限才能取得的 log。<br>
 
-    - Android 4.1 後 google將此評為10大Bad permission : [google developer相關影片](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
+      但在 Android 4.1 之後，<br>
+      Google 將 "READ_LOGS" 權限列為十大不良權限，<br>
+      因此不再建議使用。可以參考 Google 開發者相關影片。<br>
+      [google developer相關影片](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
 
-    - 因此 Android > 4.1 時 使用權限被變更為 `“signature|privileged”`
+    - 因此 Android > 4.1 時 在app內抓取log使用權限被變更為 `“signature|privileged”`
        等同於 需要有 `系統簽名` 或
        build image時包在特權資料夾`../priv-app`的app ([特許權限白名單](https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn))
        才能取得該`READ_LOGS`權限
@@ -83,37 +88,31 @@ categories: Debug
        可以打開`READ_LOGS`權限 + 強制關閉app （因下完要重啟app才會生效）
        要關閉權限則將`grant`改成`revoke`
 
-<br>
 
-  * 透過pc端執行指令：
 
-       - 使用 adb logcat 亦可以取得當前log
-       - 不過跟上方一樣 部分指令需要授權才能用
+<div class="c-border-content-title-4">土法煉鋼：結合前面幾種</div>
+  - 開發人員編寫程式碼在android app 內寫下 log 至對應資料夾<br>
+    之後再用adb pull 拉出來
 
-<br>
-
-  * 土法煉鋼：
-
-    - 編寫程式碼在android app 內寫下 log 至對應資料夾<br>
-      之後再用adb pull 拉出來
-
-    - 如寫好後，用adb拉出來<br>
+  - 例如：app寫好後，用adb pull拉出來<br>
       `adb pull /sdcard/Android/data/your.package.name/files/`
 <br>
 
-  * Scrpit or shell 大法：
+<div class="c-border-content-title-4">另一種，更快的方法：Scrpit or shell 大法</div>
 
-    - 透過寫好的shell直接小黑窗執行在背景抓log
-    - 這邊分享個簡易的寫法：<br>
-     ![shell_log.png](/images/others/shell_log.png)
-      - 主要需注意的就是要從頭到尾自己掌握<br>
-      - 如要帶入你的app packageName<br>
-      - 要配置好你adb的路徑 <br>
-        (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人也能執行)
-      - (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br>
-<br>
-    - 最後寫好就可以執行<br>
-      也可以把它包成工具給第三者測試用<br>
-      ![shell_log_start.png](/images/others/shell_log_start.png)
+  - 透過寫好的shell直接小黑窗執行在背景抓log
+  - 這邊分享個簡易的寫法：<br>
+<script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
-      就開始抓囉！
+<p class ="table_container">
+  1. 如果是需要<b style="color:red;">開發人員</b>要客製的話就是要從頭到尾自己了解上面這份code<br>
+  2. 但若是<b style="color:red;">非開發人員</b>直接複製上面code到txt 或空白檔案中<br>  
+     首先先確認電腦環境中有adb<br>
+     修改<b style="color:red;">packageName</b> 成指定的app包名<br>
+     配置<b style="color:red;">adbPath</b> 改成你adb的系統路徑<br>
+     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人，下載含有adb的就能執行)
+  4. (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br>
+</p>
+  - 最後寫好就可以在小黑窗(mac terminal / win cmd)執行./your_add_log.sh<br>
+  就開始抓囉！<br>
+  ![shell_log_start.png](/images/others/shell_log_start.png)

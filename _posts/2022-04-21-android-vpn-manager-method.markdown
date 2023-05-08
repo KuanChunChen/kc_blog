@@ -1,67 +1,56 @@
 ---
 layout: post
-title: "[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享"
+title: "打造你的VPN app：Android VpnManager開發思路心得"
 date: 2022-04-21 18:09:28 +0800
 image: cover/android-vpn-app-develop-1.png
 tags: [Android,Debug]
 categories: Debug
+excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應用程序內實現VPN方案。在這篇文章中，我將分享我當時的研究筆記和相關的解決方案。"
+
 ---
 
-### 前言
+<div class="c-border-main-title-2">前言</div>
 
-* Hi Internet<br>
-這系列文章將記錄我`曾經開發Android遇到的問題`<br>
-`分析問題`時做的一些筆記<br>
-我預計要整理出我過去遇到的問題<br>
-做成一系列<br>
-這樣未來再遇到可以更快找回記憶<br>
-也可幫助有遇到相同問題的朋友們<br>
-或是分享一下如果遇到問題<br>
-要怎麼找答案的過程<br>
+* 在本篇文章中，<br>
+我們將討論如何使用 Android VpnManager 開發自己的 VPN app 的思路，<br>
+無論你是新手還是有經驗的開發者，<br>
+這些筆記都希望能幫助到你。
 
-* 今天要分享的是<br>
-過去開發時有個需求時要自己在app內實作VPN方案時<br>
-該怎麼做呢<br>
-這邊分享我過去研究的相關筆記<br>
-<br>
 
-### 前期可以考慮的問題
+<div class="c-border-main-title-2">前期可以考慮的問題</div>
+<div class="c-border-content-title-4">思考要怎麼實作，所以先研究了原生有哪些VPN加密連線方式</div>
 
- `思考要怎麼實作，所以先研究了有哪些方法可以達到VPN實作`
+  * 這邊看了原生Android AOSP source code內有的VPN連線加密方式：
+    - PPTP  
+    - L2TP/IPSec PSK
+    - IPSec Xauth Psk
+    - IPSec IKEv2 PSK
+    - L2TP/IPSec RSA
+    - IPSec Xauth RSA
+    - IPSec 混合 RSA
+    - IPSec IKEv2 RSA
 
-  - 原生方法：
-
+  <div class="c-border-content-title-4">若是有個需求為，要提供上述的VPN連線加密模式功能，則：</div>
+  - 官方原生提供的方法:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
+  <a herf="https://developer.android.com/reference/android/net/VpnService">VpnService</a>
+    經研究後發現：
       - 如果用`VpnManager` ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供
 
       - 如果用`VpnService` ，僅提供設定基本的一些設定，無開放連線模式的接口給上層使用
 
-  - 在看了官方`VpnManager`的文件，需api 30才能使用，且也只有開放部分protocol
+  - 同上`VpnManager`述，需api 30才能使用，且也只有開放部分protocol
 
-      - 另外有看到google issue tracker的網站中，
-   有其他開發者有類似問題，並`詢問官方是否能開放下層的連線模式`給上層使用，
-   官方人員回覆 後續有望開放：[點此查看](https://issuetracker.google.com/issues/203461112)
+      - 另外有看到google issue tracker的網站中，<br>
+   有其他開發者有類似問題，並`詢問官方是否能開放下層的連線模式`給上層使用，<br>
+   官方人員回覆 後續有望開放：[點此查看](https://issuetracker.google.com/issues/203461112)<br>
+   表示也有其他人有類似需求，但目前官方暫無開發<br>
 
 
- * 這邊看了原本AOSP內有的連線加密方式：
+ *  之前提到官方只支援部分加密方式，其他的就得靠自己實作或串接第三方的lib啦！<br>
+    這張圖列出了官方支援的三種加密方式：IPSec IKEv2 PSK、IPSec IKEv2 RSA、IPSec User Pass。<br>
+    ![vpn_limit.png](/images/others/vpn_limit.png)
 
-   - PPTP  
-   - L2TP/IPSec PSK
-   - IPSec Xauth Psk
-   - IPSec IKEv2 PSK
-   - L2TP/IPSec RSA
-   - IPSec Xauth RSA
-   - IPSec 混合 RSA
-   - IPSec IKEv2 RSA
-
-<br>
-
- *  但根據前面提到官方只有提供部分方式給app使用<br>
-   其他只能自己實作、或用第三方lib提供的方式串接<br>
-   這張圖是官方提到有支援的加密方式
-   有三種：`IPSec IKEv2 PSK`、`IPSec IKEv2 RSA`、`IPSec User Pass`
-   ![vpn_limit.png](/images/others/vpn_limit.png)
-
-### VPN實作的思路參考
+<div class="c-border-main-title-2">VPN實作的思路參考</div>
 
 * 以服務端[通用文件-Vpn](https://server-doc.airdroid.com/#/develop_progress/biz_policy?id=%e8%ae%be%e7%bd%ae%e9%a1%b9)並使用`官方提供`的方法來實作：
      - `'連接類型'`：透過[VpnManager](https://developer.android.com/reference/android/net/VpnManager) (API level 30以上)的[provisionVpnProfile](https://developer.android.com/reference/android/net/VpnManager#provisionVpnProfile(android.net.PlatformVpnProfile))方法設定`PlatformVpnProfile`
@@ -94,7 +83,8 @@ categories: Debug
 
 <br>
 
-### 透過其他或第三方方案來實作 知識點分享
+<div class="c-border-main-title-2">透過其他或第三方方案來實作Vpn app</div>
+<div class="c-border-content-title-4">若官方提供開放的方法，還無法滿足需求，則可考慮：</div>
 
    - AnyConnect：第三方VPN供應商，目前看到第三方廠商的VPN服務
       - [AnyConnect官方文件](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-android-anyconnect-4-10-.html)提到有提供 TLS、DTLS、IPsec IKEv2 等等的protocol
@@ -105,7 +95,7 @@ categories: Debug
         - 像是Android 5.0、6.0 省電模式會與該服務衝突
         - Split DNS 無法在Android4.4 或 三星 5.x Android 設備運作
    - `(供參考)` 看到網路上有一解法去設定VpnProfile，透過反射framework內的方法直接使用:[Create VPN profile on Android](https://stackoverflow.com/questions/9718289/create-vpn-profile-on-android)
-     - 但在Android 9.0以上此法已被修正，故推測有些較早期的手機可能使用這種方法
+     - 但在Android 9.0以上此法已被修正，故推測有些較早期的手機可能使用這種方法 (若目標裝置在這之前，還能考慮)
      - [修正公告](https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces)
    - `(供參考)` 第三方 [openVpn](https://github.com/schwabe/ics-openvpn) 有提供Android開源
      - [說明文件](https://community.openvpn.net/openvpn/wiki/Openvpn23ManPage)提到支援`SSL/TLS`協議`(僅支援該協議)`
@@ -114,7 +104,7 @@ categories: Debug
 
 <br>
 
-### 其餘知識點
+<div class="c-border-main-title-2">其餘知識點</div>
 
 - 透過app開啟自定義VpnService時，在Android 8.0 以上service運作新增[後台執行限制](https://developer.android.com/about/versions/oreo/background?hl=zh-cn#services)
    <br>
@@ -133,5 +123,5 @@ categories: Debug
    而目前看到上面提供的常數有：<br>
    ![vpn_aosp_type.png](/images/others/vpn_aosp_type.png)<br>
    故推測目前aosp內有支援這些連線模式<br>
-   但因為沒有開放出來，所以無法直接使用
-   只能從官方設定那邊使用
+   但因為沒有開放出來，所以無法寫在app內直接使用<br>
+   只能從手機內設定那邊修改

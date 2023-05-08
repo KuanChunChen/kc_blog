@@ -19,7 +19,7 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log</title>
+  <title>Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！</title>
   
   <meta name='description' content="前言">
   <link rel="shortcut icon" href="/images/kc_icon.png">
@@ -29,7 +29,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2022/04/18/android-log-catch-method/" />
-<meta property="og:title" content="[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log" />
+<meta property="og:title" content="Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！" />
 <meta property="og:description" content="前言" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-catch-log-1.png" />
 <meta property="og:type" content="article" />
@@ -187,110 +187,97 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log</h1>
+        <h1 class="c-article__title">Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！</h1>
         <div class="c-article__date">
           <span>2022, Apr 18</span>
         </div>
       </header>
-      <h3 id="前言">前言</h3>
+      <div class="c-border-main-title-2">前言</div>
 
 <ul>
-  <li>
-    <p>Hi Internet<br />
-這系列文章將記錄我<code class="language-plaintext highlighter-rouge">曾經開發Android遇到的問題</code><br />
-<code class="language-plaintext highlighter-rouge">分析問題</code>時做的一些筆記<br />
-我預計要整理出我過去遇到的問題<br />
-做成一系列<br />
-這樣未來再遇到可以更快找回記憶<br />
-也可幫助有遇到相同問題的朋友們<br />
-或是分享一下如果遇到問題<br />
-要怎麼找答案的過程<br /></p>
-  </li>
-  <li>
-    <p>今天要分享的是<br />
-過去開發常常會被問<br /><br />
-有什麼方法可以抓log<br />
-<code class="language-plaintext highlighter-rouge">或是怎麼讓測試或其他非開發人員更快抓到Android log</code><br />
-所以這裡就整理了一些簡單的方式<br />
-讓大家參考<br /></p>
-  </li>
+  <li>今天我想跟大家分享一些讓你輕鬆抓取Android log的技巧！<br />
+在開發過程中，常常會有這樣的問題：「有什麼方法可以快速抓log呢？」<br />
+「怎麼讓測試或其他非開發人員也能輕鬆抓到Android log呢？」<br />
+別擔心！我整理了一些簡單易懂的方法，希望能幫助你們更有效率地開發和測試。<br /></li>
 </ul>
 
-<p><br /></p>
-
-<h3 id="android-log-抓取基本觀念補充">Android log 抓取基本觀念補充</h3>
+<div class="c-border-main-title-2">快速抓取 Android log，從基本觀念開始！</div>
 
 <ul>
-  <li>
-    <p><a href="https://developer.android.com/guide/platform">確認Android 架構各層可以點這裡</a></p>
-  </li>
-  <li>
-    <p>logcat抓log ，logcat 只抓 Framewrok內 的 log</p>
+  <li>要抓Android的log，可以使用logcat這個工具，不過需要注意的是logcat只會抓取系統內部的log
     <ul>
-      <li>
-        <p>整包 log : <code class="language-plaintext highlighter-rouge">adb logcat</code>  -&gt; <a href="https://developer.android.com/studio/command-line/logcat#options">篩選log參考</a></p>
-      </li>
-      <li>查看各 buffer size : <code class="language-plaintext highlighter-rouge">adb logcat -g</code></li>
-      <li>可以查到多種buffer內 log : radio、events、main、system、crash、all、default..等等</li>
-      <li>例如：
+      <li>抓取整包log：使用指令 adb logcat 來抓取整包log，<br />
+可以透過指定篩選條件來只抓取特定的log，<br />
+詳細的篩選方法可以參考<a href="https://developer.android.com/studio/command-line/logcat#options">篩選log參考</a></li>
+      <li>查看各個buffer的大小：使用指令 <code class="language-plaintext highlighter-rouge">adb logcat -g</code> 來查看各個buffer的大小。</li>
+      <li>查看不同buffer內的log：除了主要的buffer之外，<br />
+還有其他的buffer可以查看，<br />
+例如radio、events、system等等，<br />
+可以使用
         <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[adb] logcat [-b 'buffer name']
 </code></pre></div>        </div>
-        <p>main buffer log : <code class="language-plaintext highlighter-rouge">adb logcat -b main</code>
-events buffer log : <code class="language-plaintext highlighter-rouge">adb logcat -b events</code>
-以此類推</p>
+        <p>來查看特定的log，<br />
+其中<buffer_name>為要查看的buffer名稱。<br />
+例如：<br />
+main buffer log :<br />
+<b>adb logcat -b main</b><br />
+events buffer log : <br />
+<b>adb logcat -b events</b><br />
+以此類推</buffer_name></p>
       </li>
-      <li>各區差異可參考 ：<a href="https://developer.android.com/studio/command-line/logcat#alternativeBuffers">查看備用日志緩衝區</a></li>
+      <li>想了解各buffer區差異可參考官方文件 ：<a href="https://developer.android.com/studio/command-line/logcat#alternativeBuffers">查看備用日志緩衝區</a></li>
     </ul>
   </li>
 </ul>
 
 <p><br /></p>
 
-<h3 id="android-log-抓取思路">Android log 抓取思路</h3>
+<div class="c-border-main-title-2">Android log 抓取思路</div>
+<div class="c-border-content-title-4">以下是幾個使用 adb 抓取 Android 系統 log 的方式：</div>
+<p><br /></p>
 
+<p class="table_container">
+  <i style="text-align: center;">需su權限</i><br />
+ 1. 拉出 Kernel panic log : <b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br />
+ 2. 印出 Kernel log：<b style="color:red;">adb shell cat /proc/kmsg</b> (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)<br />
+ 3. Linux kernel-ring buffer log : <b style="color:red;">adb shell su dmesg</b><br />
+ <a herf="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg指令參考</a>
+</p>
+
+<p class="table_container">
+  <i style="text-align: center;">不需權限</i><br />
+  1. 拉出 ANR log : <b style="color:red;">adb pull /data/anr</b><br />
+</p>
+
+<div class="c-border-content-title-4">透過pc端執行adb logcat指令</div>
 <ul>
-  <li>adb 抓取系統log file ：
-    <ul>
-      <li>需權限
-        <ul>
-          <li>
-            <p>拉出 Kernel panic log :<code class="language-plaintext highlighter-rouge">adb pull /sys/fs/pstore/console-ramoops</code></p>
-          </li>
-          <li>
-            <p>印出 Kernel log：<code class="language-plaintext highlighter-rouge">adb shell cat /proc/kmsg</code> (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)</p>
-          </li>
-          <li>
-            <p>Linux kernel-ring buffer log : <code class="language-plaintext highlighter-rouge">adb shell su dmesg</code> (<a href="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg指令參考</a>)</p>
-          </li>
-        </ul>
-      </li>
-      <li>不用權限
-        <ul>
-          <li>拉出 ANR log : <code class="language-plaintext highlighter-rouge">adb pull /data/anr</code></li>
-        </ul>
-      </li>
-    </ul>
+  <li>使用 adb logcat 亦可以取得當前連接的裝置log，如：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  adb logcat
+</code></pre></div>    </div>
   </li>
 </ul>
 
 <p><br /></p>
-
+<div class="c-border-content-title-4">從Android app用程式碼去抓log</div>
 <ul>
-  <li>從安卓應用執行指令：
+  <li>這個思路是透過開發人員用以下方式將抓log的功能寫在app內讓非開發人員去抓
     <ul>
       <li>
-        <p>開一個procees可以去執行commend :
+        <p>開一個procees去執行commend :
 例如：<code class="language-plaintext highlighter-rouge">Runtime.getRuntime().exec("logcat -b radio")</code></p>
       </li>
       <li>
-        <p>Android 4.1 前 在Manifest.xml加入 <code class="language-plaintext highlighter-rouge">READ_LOGS</code> 權限
-  取得<code class="language-plaintext highlighter-rouge">READ_LOGS</code>權限 後，<code class="language-plaintext highlighter-rouge">則可以拿到原本需要su權限的log</code></p>
+        <p>在 Android 4.1 之前，<br />
+開發者可以在 Manifest.xml 中添加 “READ_LOGS” 權限，<br />
+獲得此權限後可以取得需要 su 權限才能取得的 log。<br /></p>
+
+        <p>但在 Android 4.1 之後，<br />
+Google 將 “READ_LOGS” 權限列為十大不良權限，<br />
+因此不再建議使用。可以參考 Google 開發者相關影片。<br />
+<a href="https://www.youtube.com/watch?v=WDDgoxvQsrQ&amp;t=1323s">google developer相關影片</a></p>
       </li>
       <li>
-        <p>Android 4.1 後 google將此評為10大Bad permission : <a href="https://www.youtube.com/watch?v=WDDgoxvQsrQ&amp;t=1323s">google developer相關影片</a></p>
-      </li>
-      <li>
-        <p>因此 Android &gt; 4.1 時 使用權限被變更為 <code class="language-plaintext highlighter-rouge">“signature|privileged”</code>
+        <p>因此 Android &gt; 4.1 時 在app內抓取log使用權限被變更為 <code class="language-plaintext highlighter-rouge">“signature|privileged”</code>
  等同於 需要有 <code class="language-plaintext highlighter-rouge">系統簽名</code> 或
  build image時包在特權資料夾<code class="language-plaintext highlighter-rouge">../priv-app</code>的app (<a href="https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn">特許權限白名單</a>)
  才能取得該<code class="language-plaintext highlighter-rouge">READ_LOGS</code>權限</p>
@@ -306,62 +293,40 @@ events buffer log : <code class="language-plaintext highlighter-rouge">adb logca
   </li>
 </ul>
 
-<p><br /></p>
-
+<div class="c-border-content-title-4">土法煉鋼：結合前面幾種</div>
 <ul>
   <li>
-    <p>透過pc端執行指令：</p>
-
-    <ul>
-      <li>使用 adb logcat 亦可以取得當前log</li>
-      <li>不過跟上方一樣 部分指令需要授權才能用</li>
-    </ul>
+    <p>開發人員編寫程式碼在android app 內寫下 log 至對應資料夾<br />
+之後再用adb pull 拉出來</p>
+  </li>
+  <li>
+    <p>例如：app寫好後，用adb pull拉出來<br />
+  <code class="language-plaintext highlighter-rouge">adb pull /sdcard/Android/data/your.package.name/files/</code>
+<br /></p>
   </li>
 </ul>
 
-<p><br /></p>
+<div class="c-border-content-title-4">另一種，更快的方法：Scrpit or shell 大法</div>
 
 <ul>
-  <li>
-    <p>土法煉鋼：</p>
+  <li>透過寫好的shell直接小黑窗執行在背景抓log</li>
+  <li>這邊分享個簡易的寫法：<br />
+<script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script></li>
+</ul>
 
-    <ul>
-      <li>
-        <p>編寫程式碼在android app 內寫下 log 至對應資料夾<br />
-之後再用adb pull 拉出來</p>
-      </li>
-      <li>
-        <p>如寫好後，用adb拉出來<br />
-<code class="language-plaintext highlighter-rouge">adb pull /sdcard/Android/data/your.package.name/files/</code>
-<br /></p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Scrpit or shell 大法：</p>
-
-    <ul>
-      <li>透過寫好的shell直接小黑窗執行在背景抓log</li>
-      <li>這邊分享個簡易的寫法：<br />
- <img src="/images/others/shell_log.png" alt="shell_log.png" />
-        <ul>
-          <li>主要需注意的就是要從頭到尾自己掌握<br /></li>
-          <li>如要帶入你的app packageName<br /></li>
-          <li>要配置好你adb的路徑 <br />
-(如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人也能執行)</li>
-          <li>(optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br />
-<br /></li>
-        </ul>
-      </li>
-      <li>
-        <p>最後寫好就可以執行<br />
-也可以把它包成工具給第三者測試用<br />
-<img src="/images/others/shell_log_start.png" alt="shell_log_start.png" /></p>
-
-        <p>就開始抓囉！</p>
-      </li>
-    </ul>
-  </li>
+<p class="table_container">
+  1. 如果是需要<b style="color:red;">開發人員</b>要客製的話就是要從頭到尾自己了解上面這份code<br />
+  2. 但若是<b style="color:red;">非開發人員</b>直接複製上面code到txt 或空白檔案中<br />  
+     首先先確認電腦環境中有adb<br />
+     修改<b style="color:red;">packageName</b> 成指定的app包名<br />
+     配置<b style="color:red;">adbPath</b> 改成你adb的系統路徑<br />
+     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人，下載含有adb的就能執行)
+  4. (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br />
+</p>
+<ul>
+  <li>最後寫好就可以在小黑窗(mac terminal / win cmd)執行./your_add_log.sh<br />
+  就開始抓囉！<br />
+  <img src="/images/others/shell_log_start.png" alt="shell_log_start.png" /></li>
 </ul>
 
       <div class="c-article__footer u-clearfix">
@@ -374,7 +339,7 @@ events buffer log : <code class="language-plaintext highlighter-rouge">adb logca
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Problem%20Solved%20Series]Android%20log%20%E6%8A%93%E5%8F%96%E6%96%B9%E5%BC%8F%E5%BD%99%E6%95%B4-%E8%AE%93%E9%9D%9E%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E6%9B%B4%E5%BF%AB%E6%8A%93log&url=https://elegantaccess.org/2022/04/18/android-log-catch-method/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=Android%20Logcat%20%E6%8A%93%E5%8F%96%E6%8A%80%E5%B7%A7%E6%95%99%E5%AD%B8,%E8%AE%93%E4%BD%A0%E8%BC%95%E9%AC%86%E6%8E%8C%E6%8F%A1:%E9%9D%9E%E9%96%8B%E7%99%BC%E4%BA%BA%E5%93%A1%E4%B9%9F%E8%83%BD%E6%87%82%E7%9A%84log%E6%8A%93%E5%8F%96%E6%8A%80%E5%B7%A7!&url=https://elegantaccess.org/2022/04/18/android-log-catch-method/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

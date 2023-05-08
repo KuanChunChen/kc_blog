@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Problem Solved Series]Android Audio 適配疑難雜症分享</title>
+  <title>Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題</title>
   
-  <meta name='description' content="前言">
+  <meta name='description' content="我們將探討如何解決 Android 設備上的音頻問題，如果你是 Android 開發人員或對音頻技術感興趣，這份分享絕對不能錯過！">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2022/03/07/problem-audio-not-work/" />
-<meta property="og:title" content="[Problem Solved Series]Android Audio 適配疑難雜症分享" />
-<meta property="og:description" content="前言" />
+<meta property="og:title" content="Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題" />
+<meta property="og:description" content="我們將探討如何解決 Android 設備上的音頻問題，如果你是 Android 開發人員或對音頻技術感興趣，這份分享絕對不能錯過！" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-audio-share-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,94 +187,87 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Problem Solved Series]Android Audio 適配疑難雜症分享</h1>
+        <h1 class="c-article__title">Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題</h1>
         <div class="c-article__date">
           <span>2022, Mar 07</span>
         </div>
       </header>
-      <h3 id="前言">前言</h3>
+      <div class="c-border-main-title-2">前言</div>
 
-<p>Hi Internet<br />
-這系列文章將記錄我<code class="language-plaintext highlighter-rouge">曾經開發Android遇到的問題</code><br />
-<code class="language-plaintext highlighter-rouge">分析問題</code>時做的一些筆記<br />
-我預計要整理出我過去遇到的問題<br />
-做成一系列<br />
-這樣未來再遇到可以更快找回記憶<br />
-也可幫助有遇到相同問題的朋友們<br />
-或是分享一下如果遇到問題<br />
-要怎麼找答案的過程<br /></p>
+<p>在今天的分享中，我們將探討當兩個客戶端設備進行連接時，<br />
+通過手機收音並播放到另一端時，其中一端的聲音會出現一些問題，<br />
+例如雜訊、音量不穩定和突然變化等。<br />
+我們將分析這些問題的可能原因，<br />
+並提供解決方案，<br />
+如果你有類似的問題，<br />
+或者對此感興趣，<br />
+歡迎參考這份分享。</p>
 
-<p>今天要分享的是
-兩台Client端 連線時 透過手機收音播放給另一端時<br />
-其中一端收音的聲音會 <code class="language-plaintext highlighter-rouge">有雜訊、忽大忽小聲、突然變大聲等</code><br /></p>
-
-<h3 id="分析過程分享">分析過程分享</h3>
-
+<div class="c-border-main-title-2">分析過程分享</div>
+<div class="c-border-content-title-4">第一步：覆現問題</div>
 <ul>
-  <li>第一步：覆現問題
+  <li>在 <code class="language-plaintext highlighter-rouge">Samsnug SM-G900I Android 6.0.2</code> 上測試 覆現得到的結果<br />
     <ul>
-      <li>在 <code class="language-plaintext highlighter-rouge">Samsnug SM-G900I Android 6.0.2</code> 上測試 覆現得到的結果<br />
-        <ul>
-          <li>情況: 背景有播放音樂的時<br />
+      <li>情況: 背景有播放音樂的時<br />
 Clinet A  與 Client B 連線成功時 愈進行通話 (收音傳給另一端) <br />
 Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<br /></li>
-          <li>預期: 背景有播放音樂的時 播放音樂不受影響</li>
-        </ul>
-      </li>
+      <li>預期: 背景有播放音樂的時 播放音樂不受影響</li>
     </ul>
   </li>
-  <li>第二步：找問題方向
+</ul>
+
+<div class="c-border-content-title-4">第二步：找問題方向</div>
+<ul>
+  <li>初期方向以下列幾個方式來嘗試解決此問題
     <ul>
-      <li>初期方向以下列幾個方式來嘗試解決此問題
-        <ul>
-          <li>
-            <p>Read App source code 並試著把某些code mute掉測試哪段會實際影響<br />
+      <li>
+        <p>Read App source code 並試著把某些code mute掉測試哪段會實際影響<br />
 例如：<code class="language-plaintext highlighter-rouge">Mute掉AudioRecord、AudioTrack</code>等，以此來降低問題範圍<br /></p>
-          </li>
-          <li><code class="language-plaintext highlighter-rouge">發想相關可能性</code>，如 研究<code class="language-plaintext highlighter-rouge">音頻焦點</code>：
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">發想相關可能性</code>，如 研究<code class="language-plaintext highlighter-rouge">音頻焦點</code>：
 因此發現其特性<br />
 手機一次只能有一個app拿到音频焦点<br />
 各個app也可以自行設置焦點遺失的監聽<br />
 故若偵測到此監聽<br />
 則各個app有可能自行降低音量(此為不可控)<br />
 不過會再研究看看目前程式碼有無行為會取音频焦点<br /></li>
-          <li>Surf the internet and find if there are same problem others used to occur.<br />
+      <li>Surf the internet and find if there are same problem others used to occur.<br />
 例如：參考網路文章
-            <ol>
-              <li><a href="https://www.itread01.com/content/1541940035.html">Android音頻與其他應用重音的問題</a></li>
-              <li><a href="https://developer.android.com/guide/topics/media-apps/volume-and-earphones">Android Developer 处理音频输出的变化</a></li>
-              <li><a href="https://www.twblogs.net/a/5d160b34bd9eee1e5c828cb5">Android 音頻系統</a></li>
-              <li><a href="https://developer.android.com/guide/topics/media-apps/audio-focus">Android Developer 管理音频焦点</a></li>
-            </ol>
-          </li>
-        </ul>
+        <ol>
+          <li><a href="https://www.itread01.com/content/1541940035.html">Android音頻與其他應用重音的問題</a></li>
+          <li><a href="https://developer.android.com/guide/topics/media-apps/volume-and-earphones">Android Developer 处理音频输出的变化</a></li>
+          <li><a href="https://www.twblogs.net/a/5d160b34bd9eee1e5c828cb5">Android 音頻系統</a></li>
+          <li><a href="https://developer.android.com/guide/topics/media-apps/audio-focus">Android Developer 管理音频焦点</a></li>
+        </ol>
       </li>
     </ul>
   </li>
-  <li>第三步：找問題答案
-    <ul>
-      <li>
-        <p>為了降低解決問題時間與提升效率達到預期效果，<br />
+</ul>
+
+<div class="c-border-content-title-4">第三步：找問題答案</div>
+<ul>
+  <li>
+    <p>為了降低解決問題時間與提升效率達到預期效果，<br />
 所以會先經歷上面第二步，思考看看可能的方向與解法，<br />
 避免一開始就一腦砸下去研究，<br />
 研究到最後才發現找錯方向，<br />
 間接變成你更沒效率，<br />
 所以我習慣都會先思考一下可能性<br /></p>
-      </li>
+  </li>
+  <li>
+    <p>所以透過上面分析，後來有幸發現幾種方法</p>
+    <ul>
       <li>
-        <p>所以透過上面分析，後來有幸發現幾種方法</p>
-        <ul>
-          <li>
-            <p>透過調整<code class="language-plaintext highlighter-rouge">硬體抽象層HAL</code>，<br />
+        <p>透過調整<code class="language-plaintext highlighter-rouge">硬體抽象層HAL</code>，<br />
 但是因為我們是開發Android應用層，<br />
 所以要改<code class="language-plaintext highlighter-rouge">HAL</code>的可能性就很低了，<br />
 除非是硬體開發商，想從根本改變這個規則<br />
 這邊是網路上其他人分享改法：<br />
 <a href="https://blog.csdn.net/kris_fei/article/details/71223117">调试笔记 — 实时录音会有呲呲噪音问题</a></p>
-          </li>
-          <li>
-            <p>另一種則是，修改AudioSource收音來源</p>
-            <pre><code class="language-Java"> AudioSource.DEFAULT:默認音頻來源
+      </li>
+      <li>
+        <p>另一種則是，修改AudioSource收音來源</p>
+        <pre><code class="language-Java"> AudioSource.DEFAULT:默認音頻來源
  AudioSource.MIC:麥克風（一般主mic的音源）
  AudioSource.VOICE_UPLINK:電話上行
  AudioSource.VOICE_DOWNLINK:電話下行
@@ -285,32 +278,30 @@ Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<b
  AudioSource.VOICE_PERFORMANCE 實時處理錄音並播放的音源（通常用於卡拉ok app）
  AudioSource.REMOTE_SUBMIX 音頻子混音的音源
 </code></pre>
-            <p>我們原本的source code是使用 <code class="language-plaintext highlighter-rouge">AudioSource.VOICE_COMMUNICATION</code><br />
+        <p>我們原本的source code是使用 <code class="language-plaintext highlighter-rouge">AudioSource.VOICE_COMMUNICATION</code><br />
 經實測使用<code class="language-plaintext highlighter-rouge">AudioSource.MIC</code> or <code class="language-plaintext highlighter-rouge">AudioSource.VOICE_RECOGNITION</code> 來錄音 <br />
 這個情境下則不會 有雜音 或聲音變大變小的情形<br /></p>
 
-            <p><code class="language-plaintext highlighter-rouge">嘗試後行為記錄</code>：<br />
+        <p><code class="language-plaintext highlighter-rouge">嘗試後行為記錄</code>：<br />
 (這邊是for我這個例子，如果你也遇到一樣 可以參考看看 但還是建議自行測測看)<br /></p>
-            <ul>
-              <li>
-                <p><code class="language-plaintext highlighter-rouge">AudioSource.VOICE_COMMUNICATION</code> 會造成大小聲、破音、雜音，能收到音但Parent收到的音頻聽起來有延遲<br /></p>
-              </li>
-              <li><code class="language-plaintext highlighter-rouge">AudioSource.VOICE_PERFORMANCE</code> 不會大小聲、但Parent端收不到音<br /></li>
-              <li><code class="language-plaintext highlighter-rouge">AudioSource.REMOTE_SUBMIX</code> 不會大小聲、但收音只收得到系統按鍵音<br /></li>
-            </ul>
+        <ul>
+          <li>
+            <p><code class="language-plaintext highlighter-rouge">AudioSource.VOICE_COMMUNICATION</code> 會造成大小聲、破音、雜音，能收到音但Parent收到的音頻聽起來有延遲<br /></p>
           </li>
+          <li><code class="language-plaintext highlighter-rouge">AudioSource.VOICE_PERFORMANCE</code> 不會大小聲、但Parent端收不到音<br /></li>
+          <li><code class="language-plaintext highlighter-rouge">AudioSource.REMOTE_SUBMIX</code> 不會大小聲、但收音只收得到系統按鍵音<br /></li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
 
-<h3 id="其餘知識點紀錄">其餘知識點紀錄：</h3>
+<div class="c-border-main-title-2">其餘知識點紀錄</div>
 
 <ul>
   <li>後來發現 Audio HAL 存在版本差異
 快速科普各Android版本的Audio HAL使用差異：
-    <table class="tg">
+    <table class="rwd-table">
   <thead>
     <tr>
       <th class="tg-2wgr">Android Version</th>
@@ -371,7 +362,7 @@ Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<b
   </li>
 </ul>
 
-<h3 id="終場總結">終場總結</h3>
+<div class="c-border-main-title-2">終場總結</div>
 <ul>
   <li>
     <p>最後這個問題
@@ -415,7 +406,7 @@ Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<b
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Problem%20Solved%20Series]Android%20Audio%20%E9%81%A9%E9%85%8D%E7%96%91%E9%9B%A3%E9%9B%9C%E7%97%87%E5%88%86%E4%BA%AB&url=https://elegantaccess.org/2022/03/07/problem-audio-not-work/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=Android%20Audio%20%E9%81%A9%E9%85%8D%E7%96%91%E9%9B%A3%E9%9B%9C%E7%97%87%E5%88%86%E4%BA%AB:%E6%8E%A2%E8%A8%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BA%20Android%20%E8%A8%AD%E5%82%99%E4%B8%8A%E7%9A%84%E9%9F%B3%E9%A0%BB%E5%95%8F%E9%A1%8C&url=https://elegantaccess.org/2022/03/07/problem-audio-not-work/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

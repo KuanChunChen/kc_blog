@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "[MacOS][Enviroment][2022]WebRtc & Mqtt 名詞解釋筆記分享"
+title: "加速你對 WebRtc 和 Mqtt 的理解：名詞解釋筆記分享"
 date: 2022-02-14 13:50:12 +0800
 image: cover/mqtt-noun-1.png
 tags: [know-how]
 categories: KnowHow
+excerpt: "本篇文章整理了WebRtc和Mqtt的名詞解釋筆記，讓你更深入理解這兩個技術的應用與原理。如果你對WebRtc和Mqtt感興趣，這篇文章絕對不容錯過！"
 ---
 
-### 0.前言 ：
+<div class="c-border-main-title-2">前言</div>
   - 因為在`Android工作需求`上遇到，<br>
 需串接Mqtt與webRtc，<br>
 所以大概了解一些名詞的意思，<br>
@@ -15,7 +16,7 @@ categories: KnowHow
 這邊身為Android工程師大概就是了解一下，<br>
 並且紀錄，未來有遇到可以再快速回憶下。<br>
 
-### 1. MQTT 筆記：
+<div class="c-border-main-title-2"> MQTT 筆記</div>
   - <a> QoS (Quality of Service)</a> : 訊息傳送服務的quality，有三種模式
     * <a>At most once</a>  : 最多一次，容易丟包，適合不在意是否收到data的環境，因下次pulish很快會被推送
 
@@ -37,8 +38,7 @@ categories: KnowHow
      broker，並且會傳給有subscribe這個topic的人，且一個topic只能有一個retained message
 
 
-### 2. WebRtc相關：
-
+<div class="c-border-main-title-2">WebRtc相關</div>
   - 了解以下名詞：
       * <a>Signaling</a> : 用來交換設備與設備之間的metadata或傳遞資訊，常用的像是SDP，查看網路資料說WebRTC1.0為保留
       Signaling的彈性，沒有特別強制規範其定義 ([可參考此篇](https://ithelp.ithome.com.tw/articles/10267612))

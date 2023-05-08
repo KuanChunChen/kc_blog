@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享</title>
+  <title>打造你的VPN app：Android VpnManager開發思路心得</title>
   
-  <meta name='description' content="前言">
+  <meta name='description' content="以下是我過去開發Android時遇到的一個問題：如何在應用程序內實現VPN方案。在這篇文章中，我將分享我當時的研究筆記和相關的解決方案。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2022/04/21/android-vpn-manager-method/" />
-<meta property="og:title" content="[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享" />
-<meta property="og:description" content="前言" />
+<meta property="og:title" content="打造你的VPN app：Android VpnManager開發思路心得" />
+<meta property="og:description" content="以下是我過去開發Android時遇到的一個問題：如何在應用程序內實現VPN方案。在這篇文章中，我將分享我當時的研究筆記和相關的解決方案。" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-vpn-app-develop-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,63 +187,25 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享</h1>
+        <h1 class="c-article__title">打造你的VPN app：Android VpnManager開發思路心得</h1>
         <div class="c-article__date">
           <span>2022, Apr 21</span>
         </div>
       </header>
-      <h3 id="前言">前言</h3>
+      <div class="c-border-main-title-2">前言</div>
 
 <ul>
-  <li>
-    <p>Hi Internet<br />
-這系列文章將記錄我<code class="language-plaintext highlighter-rouge">曾經開發Android遇到的問題</code><br />
-<code class="language-plaintext highlighter-rouge">分析問題</code>時做的一些筆記<br />
-我預計要整理出我過去遇到的問題<br />
-做成一系列<br />
-這樣未來再遇到可以更快找回記憶<br />
-也可幫助有遇到相同問題的朋友們<br />
-或是分享一下如果遇到問題<br />
-要怎麼找答案的過程<br /></p>
-  </li>
-  <li>
-    <p>今天要分享的是<br />
-過去開發時有個需求時要自己在app內實作VPN方案時<br />
-該怎麼做呢<br />
-這邊分享我過去研究的相關筆記<br />
-<br /></p>
-  </li>
+  <li>在本篇文章中，<br />
+我們將討論如何使用 Android VpnManager 開發自己的 VPN app 的思路，<br />
+無論你是新手還是有經驗的開發者，<br />
+這些筆記都希望能幫助到你。</li>
 </ul>
 
-<h3 id="前期可以考慮的問題">前期可以考慮的問題</h3>
-
-<p><code class="language-plaintext highlighter-rouge">思考要怎麼實作，所以先研究了有哪些方法可以達到VPN實作</code></p>
+<div class="c-border-main-title-2">前期可以考慮的問題</div>
+<div class="c-border-content-title-4">思考要怎麼實作，所以先研究了原生有哪些VPN加密連線方式</div>
 
 <ul>
-  <li>
-    <p>原生方法：</p>
-
-    <ul>
-      <li>
-        <p>如果用<code class="language-plaintext highlighter-rouge">VpnManager</code> ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供</p>
-      </li>
-      <li>
-        <p>如果用<code class="language-plaintext highlighter-rouge">VpnService</code> ，僅提供設定基本的一些設定，無開放連線模式的接口給上層使用</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>在看了官方<code class="language-plaintext highlighter-rouge">VpnManager</code>的文件，需api 30才能使用，且也只有開放部分protocol</p>
-
-    <ul>
-      <li>另外有看到google issue tracker的網站中，
-   有其他開發者有類似問題，並<code class="language-plaintext highlighter-rouge">詢問官方是否能開放下層的連線模式</code>給上層使用，
-   官方人員回覆 後續有望開放：<a href="https://issuetracker.google.com/issues/203461112">點此查看</a></li>
-    </ul>
-  </li>
-  <li>
-    <p>這邊看了原本AOSP內有的連線加密方式：</p>
-
+  <li>這邊看了原生Android AOSP source code內有的VPN連線加密方式：
     <ul>
       <li>PPTP</li>
       <li>L2TP/IPSec PSK</li>
@@ -257,17 +219,36 @@
   </li>
 </ul>
 
-<p><br /></p>
-
+<div class="c-border-content-title-4">若是有個需求為，要提供上述的VPN連線加密模式功能，則：</div>
 <ul>
-  <li>但根據前面提到官方只有提供部分方式給app使用<br />
-   其他只能自己實作、或用第三方lib提供的方式串接<br />
-   這張圖是官方提到有支援的加密方式
-   有三種：<code class="language-plaintext highlighter-rouge">IPSec IKEv2 PSK</code>、<code class="language-plaintext highlighter-rouge">IPSec IKEv2 RSA</code>、<code class="language-plaintext highlighter-rouge">IPSec User Pass</code>
-   <img src="/images/others/vpn_limit.png" alt="vpn_limit.png" /></li>
+  <li>官方原生提供的方法:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
+  <a herf="https://developer.android.com/reference/android/net/VpnService">VpnService</a>
+經研究後發現：
+    <ul>
+      <li>
+        <p>如果用<code class="language-plaintext highlighter-rouge">VpnManager</code> ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供</p>
+      </li>
+      <li>
+        <p>如果用<code class="language-plaintext highlighter-rouge">VpnService</code> ，僅提供設定基本的一些設定，無開放連線模式的接口給上層使用</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>同上<code class="language-plaintext highlighter-rouge">VpnManager</code>述，需api 30才能使用，且也只有開放部分protocol</p>
+
+    <ul>
+      <li>另外有看到google issue tracker的網站中，<br />
+   有其他開發者有類似問題，並<code class="language-plaintext highlighter-rouge">詢問官方是否能開放下層的連線模式</code>給上層使用，<br />
+   官方人員回覆 後續有望開放：<a href="https://issuetracker.google.com/issues/203461112">點此查看</a><br />
+   表示也有其他人有類似需求，但目前官方暫無開發<br /></li>
+    </ul>
+  </li>
+  <li>之前提到官方只支援部分加密方式，其他的就得靠自己實作或串接第三方的lib啦！<br />
+這張圖列出了官方支援的三種加密方式：IPSec IKEv2 PSK、IPSec IKEv2 RSA、IPSec User Pass。<br />
+<img src="/images/others/vpn_limit.png" alt="vpn_limit.png" /></li>
 </ul>
 
-<h3 id="vpn實作的思路參考">VPN實作的思路參考</h3>
+<div class="c-border-main-title-2">VPN實作的思路參考</div>
 
 <ul>
   <li>以服務端<a href="https://server-doc.airdroid.com/#/develop_progress/biz_policy?id=%e8%ae%be%e7%bd%ae%e9%a1%b9">通用文件-Vpn</a>並使用<code class="language-plaintext highlighter-rouge">官方提供</code>的方法來實作：
@@ -315,7 +296,8 @@
 
 <p><br /></p>
 
-<h3 id="透過其他或第三方方案來實作-知識點分享">透過其他或第三方方案來實作 知識點分享</h3>
+<div class="c-border-main-title-2">透過其他或第三方方案來實作Vpn app</div>
+<div class="c-border-content-title-4">若官方提供開放的方法，還無法滿足需求，則可考慮：</div>
 
 <ul>
   <li>AnyConnect：第三方VPN供應商，目前看到第三方廠商的VPN服務
@@ -334,7 +316,7 @@
   </li>
   <li><code class="language-plaintext highlighter-rouge">(供參考)</code> 看到網路上有一解法去設定VpnProfile，透過反射framework內的方法直接使用:<a href="https://stackoverflow.com/questions/9718289/create-vpn-profile-on-android">Create VPN profile on Android</a>
     <ul>
-      <li>但在Android 9.0以上此法已被修正，故推測有些較早期的手機可能使用這種方法</li>
+      <li>但在Android 9.0以上此法已被修正，故推測有些較早期的手機可能使用這種方法 (若目標裝置在這之前，還能考慮)</li>
       <li><a href="https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces">修正公告</a></li>
     </ul>
   </li>
@@ -349,7 +331,7 @@
 
 <p><br /></p>
 
-<h3 id="其餘知識點">其餘知識點</h3>
+<div class="c-border-main-title-2">其餘知識點</div>
 
 <ul>
   <li>
@@ -372,8 +354,8 @@
     <p>而目前看到上面提供的常數有：<br />
  <img src="/images/others/vpn_aosp_type.png" alt="vpn_aosp_type.png" /><br />
  故推測目前aosp內有支援這些連線模式<br />
- 但因為沒有開放出來，所以無法直接使用
- 只能從官方設定那邊使用</p>
+ 但因為沒有開放出來，所以無法寫在app內直接使用<br />
+ 只能從手機內設定那邊修改</p>
   </li>
 </ul>
 
@@ -387,7 +369,7 @@
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][2022][Debug][Problem%20Solved%20Series]Android%20VpnManager%20%E9%96%8B%E7%99%BCVPN%20app%E6%80%9D%E8%B7%AF%E5%88%86%E4%BA%AB&url=https://elegantaccess.org/2022/04/21/android-vpn-manager-method/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84VPN%20app:Android%20VpnManager%E9%96%8B%E7%99%BC%E6%80%9D%E8%B7%AF%E5%BF%83%E5%BE%97&url=https://elegantaccess.org/2022/04/21/android-vpn-manager-method/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

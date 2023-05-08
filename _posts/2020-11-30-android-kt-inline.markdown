@@ -1,18 +1,24 @@
 ---
 layout: post
-title: "[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解"
+title: "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！"
 date: 2020-11-30 21:01:43 +0800
 image: cover/inline01.png
 tags: [Android,Kotlin,inline,noinline,crossinline]
 categories: Android
+excerpt: "在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。這些關鍵字可以在函數聲明中使用，它們可以對函數進行不同的行為修改，進而影響代碼的運行方式和性能。"
 ---
-inline /noinline / crossinline 這幾個關鍵字常常可以在kotlin上看到，<br>
-為了可以看懂大家在寫什麼，你可以參考我這邊文章，在這邊推薦給大家，<br>
-inline主要能用來處理kotlin 函式內帶有function type 變數的效能優化，<br>
-或者有些人會稱function type的變數為lambda function。
-***
 
-<h1>inline</h1>
+<div class="c-border-main-title-2">前言</div>
+
+在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。<br>
+這些關鍵字可以在函數聲明中使用，<br>
+它們可以對函數進行不同的行為修改，<br>
+進而影響代碼的運行方式和性能。<br>
+本篇文章將詳細介紹這三個關鍵字的使用方式和區別，<br>
+並提供相關的代碼示例和實際應用場景。
+
+<div class="c-border-content-title-4">inline</div>
+
 inline 實際上的作用，<br>
 就是會在編譯的時候把你有使用inline的function內容直接複製到執行處，<br>
 而不是直接實例化一個物件，<br>
@@ -93,8 +99,7 @@ inline 實際上的作用，<br>
 他不像inline一樣，是加在fun前面，<br>
 他反而是用來設定function type(or lambda function)的。<br>
 
-
-<h1>noinline</h1>
+<div class="c-border-content-title-4">noinline</div>
 noinline的概念，其實更簡單了，<br>
 當你了解inline，就會明白為何我說這兩個是輔助了，<br>
 這個的用途，<br>
@@ -105,8 +110,8 @@ noinline的概念，其實更簡單了，<br>
 <br>
 因此，你也能依照需求，去選擇要不要用inline
 <br>
-<h1>crossinline</h1>
 
+<div class="c-border-content-title-4">crossinline</div>
 先來個前導概念：<br>
 當你在使用lambda function時，<br>
 如果在宣告的lambda function 裡面加入return ，<br>
@@ -128,7 +133,7 @@ noinline的概念，其實更簡單了，<br>
 
 
 
-<h1>結論</h1>
+<div class="c-border-main-title-2">結論</div>
 使用 inline<br>
 能夠降低程式呼叫lambda function時重複創建實例化<br>
 藉此提升效率<br>
@@ -137,16 +142,14 @@ noinline的概念，其實更簡單了，<br>
 使用 crossinline 可以避免lambda 中的 return 影響外部程式流程<br>
 
 
-<div align="start">
-
-  <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">[Android][Kotlin]KuanChunChen
-/
-KC_InlineDemo</a>
-
-
-  <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">
-    <img src="/images/kc_icon.png" alt="Cover" width="10%" >
-  </a>
-
-
+<div class="card py-4 h-100">
+    <div class="card-body text-center">
+        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+        <h4 class="text-uppercase m-0">inline / noinline / crossinline範例程式碼</h4>
+        <hr class="my-4 mx-auto" />
+        <div style="font-size: 1.5em;">
+          <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">
+Sample Code</a>
+        </div>
+    </div>
 </div>

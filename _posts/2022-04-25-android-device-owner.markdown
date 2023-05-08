@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "掌握 Android Device Owner 權限，企業級管理輕鬆上手！"
+title: "『教學』掌握 Android Device Owner 權限，企業級管理輕鬆上手！"
 date: 2022-04-25 18:19:28 +0800
 image: cover/android-device-owner-1.png
 tags: [Android,Debug]

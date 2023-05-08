@@ -1,38 +1,33 @@
 ---
 layout: post
-title: "[Problem Solved Series]Android Audio 適配疑難雜症分享"
+title: "Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題"
 date: 2022-03-07 14:31:22 +0800
 image: cover/android-audio-share-1.png
 tags: [Android,Debug]
 categories: Debug
+excerpt: "我們將探討如何解決 Android 設備上的音頻問題，如果你是 Android 開發人員或對音頻技術感興趣，這份分享絕對不能錯過！"
 ---
 
-### 前言
+<div class="c-border-main-title-2">前言</div>
 
-Hi Internet<br>
-這系列文章將記錄我`曾經開發Android遇到的問題`<br>
-`分析問題`時做的一些筆記<br>
-我預計要整理出我過去遇到的問題<br>
-做成一系列<br>
-這樣未來再遇到可以更快找回記憶<br>
-也可幫助有遇到相同問題的朋友們<br>
-或是分享一下如果遇到問題<br>
-要怎麼找答案的過程<br>
+在今天的分享中，我們將探討當兩個客戶端設備進行連接時，<br>
+通過手機收音並播放到另一端時，其中一端的聲音會出現一些問題，<br>
+例如雜訊、音量不穩定和突然變化等。<br>
+我們將分析這些問題的可能原因，<br>
+並提供解決方案，<br>
+如果你有類似的問題，<br>
+或者對此感興趣，<br>
+歡迎參考這份分享。
 
-今天要分享的是
-兩台Client端 連線時 透過手機收音播放給另一端時<br>
-其中一端收音的聲音會 `有雜訊、忽大忽小聲、突然變大聲等`<br>
-
-### 分析過程分享
-
- - 第一步：覆現問題
+<div class="c-border-main-title-2">分析過程分享</div>
+<div class="c-border-content-title-4">第一步：覆現問題</div>
    * 在 `Samsnug SM-G900I Android 6.0.2` 上測試 覆現得到的結果<br>
       - 情況: 背景有播放音樂的時<br>
      Clinet A  與 Client B 連線成功時 愈進行通話 (收音傳給另一端) <br>
      Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<br>
       - 預期: 背景有播放音樂的時 播放音樂不受影響
 
-- 第二步：找問題方向
+<div class="c-border-content-title-4">第二步：找問題方向</div>
    * 初期方向以下列幾個方式來嘗試解決此問題
      - Read App source code 並試著把某些code mute掉測試哪段會實際影響<br>
        例如：`Mute掉AudioRecord、AudioTrack`等，以此來降低問題範圍<br>
@@ -51,7 +46,7 @@ Hi Internet<br>
         3. [Android 音頻系統](https://www.twblogs.net/a/5d160b34bd9eee1e5c828cb5)
         4. [Android Developer 管理音频焦点](https://developer.android.com/guide/topics/media-apps/audio-focus)
 
-- 第三步：找問題答案
+<div class="c-border-content-title-4">第三步：找問題答案</div>
   * 為了降低解決問題時間與提升效率達到預期效果，<br>
     所以會先經歷上面第二步，思考看看可能的方向與解法，<br>
     避免一開始就一腦砸下去研究，<br>
@@ -91,11 +86,11 @@ Hi Internet<br>
           - `AudioSource.VOICE_PERFORMANCE` 不會大小聲、但Parent端收不到音<br>
           - `AudioSource.REMOTE_SUBMIX` 不會大小聲、但收音只收得到系統按鍵音<br>
 
-### 其餘知識點紀錄：
+<div class="c-border-main-title-2">其餘知識點紀錄</div>
 
 * 後來發現 Audio HAL 存在版本差異
 快速科普各Android版本的Audio HAL使用差異：
-  <table class="tg">
+  <table class="rwd-table">
     <thead>
       <tr>
         <th class="tg-2wgr">Android Version</th>
@@ -146,7 +141,7 @@ Hi Internet<br>
    * 使用指令 `adb shell lshal` 可查看當前HIDL的版本 (Android 8.0後才有接一層HIDL出來)
 `HIDL = 可以想像成HAL的AIDL`
 
-### 終場總結
+<div class="c-border-main-title-2">終場總結</div>
  * 最後這個問題
   我那時候就改了一個小小的地方
   就是把收音的

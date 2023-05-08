@@ -1,38 +1,25 @@
 ---
 layout: post
-title: "[Problem Solved Series]Android IPC 跨進程方案分享"
+title: "連接 Android app 應用：讓你的程式在不同進程中輕鬆溝通的IPC方案教學！"
 date: 2022-04-15 15:36:28 +0800
 image: cover/android-ipc-method-share-1.png
 tags: [Android,Debug]
 categories: Debug
+excerpt: "探索Android app應用程式之間的跨進程通訊技術（IPC），讓你的應用程式在不同進程之間輕鬆溝通，達到更好的協作效果。"
 ---
 
-<meta name="description" content="Free Android IPC tutorials">
+<div class="c-border-main-title-2">前言</div>
 
-### 前言
+* 今天我要分享的是「跨應用程式溝通」的相關方案。<br>
+  在我之前的工作經驗中，曾經有客戶問過我這方面的問題，<br>
+  所以我整理了相關資訊，並在這裡分享給大家。<br>
+  這份分享涵蓋了多種IPC相關的方案，<br>
+  讓有這方面需求的朋友可以一次獲取多種方案，<br>
+  以便更快地實現應用程式之間的溝通和協作。
 
-* Hi Internet<br>
-這系列文章將記錄我`曾經開發Android遇到的問題`<br>
-`分析問題`時做的一些筆記<br>
-我預計要整理出我過去遇到的問題<br>
-做成一系列<br>
-這樣未來再遇到可以更快找回記憶<br>
-也可幫助有遇到相同問題的朋友們<br>
-或是分享一下如果遇到問題<br>
-要怎麼找答案的過程<br>
 
-* 今天要分享的是<br>
-以前遇到產品問我<br>
-有什麼可以跨app溝通的方式<br>
-那時候就整理了相關的內容<br>
-這次就分享出來`IPC相關的方案`<br>
-供有這方面需求的朋友<br>
-可以一覽多種方案<br>
-
-<br>
-### 比較常見的Android app層 IPC方案
-  * `IPC科普：Inter-Process Communication`，譯為進程間通信或者跨進程通信，下方為整理
-
+<div class="c-border-main-title-2">比較常見的Android app層 IPC方案</div>
+  * `IPC科普：Inter-Process Communication`，譯為進程間通信或者跨進程通信
     - `ContentProvider` : 原生的組件，提供對外接口 (實作該lib的增、刪、改、查)，讓不同APP間能跨process存取共同資料。
       - 使用場景 : 較適合不同App需要共同資料，如存取SQL數據庫、共同文件...等，另外聯絡人、電話簿也是採用此法，讓其他應用取得
       - 若要知道資料更新狀態需額外註冊Observer<br>
@@ -50,7 +37,7 @@ categories: Debug
         <br>
 
     - AIDL vs Messenger
-       <table class="tg">
+       <table class="rwd-table">
          <thead>
            <tr>
              <th class="tg-vrid"></th>
@@ -80,7 +67,7 @@ categories: Debug
 
     - `Socket` : 雙方約定好IP，在本地端進行連線，形成一個C/S架構，以處理請求，部署範圍較大(區網內)
 
-      <table class="tg">
+      <table class="rwd-table">
       <thead>
         <tr>
           <th class="tg-vrid"></th>
@@ -140,7 +127,7 @@ categories: Debug
         - [官方 - 廣播相關](https://developer.android.com/guide/components/broadcasts)
 
 <br>
-### Android app層 IPC方案 可能遭遇的安全性問題
+<div class="c-border-main-title-2"> Android app層 IPC方案 可能遭遇的安全性問題</div>
 
 * 接口被未授權用戶盜用：
      - `BoardCast` :
@@ -187,7 +174,7 @@ categories: Debug
 ~~~
 
 <br>
-### IPC方案 支持的數據類型 (根據library內目前看到支援的類型)
+<div class="c-border-main-title-2">IPC方案 支持的數據類型 (根據library內目前看到支援的類型)</div>
   * `BoardCast` : 透過Intent傳遞資料，其可帶bundle，而bundle支援：byte、char、short、float、string、parcelable、serializable等等
   * `Socket` ： 透過 BufferedWriter寫出資料、BufferedReader接收資料，根據source code，目前支援 ：string、int、char[]
   * `AIDL` ： int、long、char、boolean、string、charSequence、list、map、parcelable

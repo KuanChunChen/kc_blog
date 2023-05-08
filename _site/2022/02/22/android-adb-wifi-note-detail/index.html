@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][2022]Android 11 adb wireless debug 心得分享</title>
+  <title>釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！</title>
   
-  <meta name='description' content="前言因為專案需求尋尋覓覓看有無其他使用adb debug的方式發現到一個Android 推出了一種方式這裡研究後的心得分享">
+  <meta name='description' content="想要釋放你的 Android 11 的真正潛力嗎？那就來探索無線 adb wireless debug 吧！從有線到無線，讓你的 debug 體驗更自由、更便利。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2022/02/22/android-adb-wifi-note-detail/" />
-<meta property="og:title" content="[Android][2022]Android 11 adb wireless debug 心得分享" />
-<meta property="og:description" content="前言因為專案需求尋尋覓覓看有無其他使用adb debug的方式發現到一個Android 推出了一種方式這裡研究後的心得分享" />
+<meta property="og:title" content="釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！" />
+<meta property="og:description" content="想要釋放你的 Android 11 的真正潛力嗎？那就來探索無線 adb wireless debug 吧！從有線到無線，讓你的 debug 體驗更自由、更便利。" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-adb-wirless-share-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,67 +187,57 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][2022]Android 11 adb wireless debug 心得分享</h1>
+        <h1 class="c-article__title">釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！</h1>
         <div class="c-article__date">
           <span>2022, Feb 22</span>
         </div>
       </header>
-      <h3 id="前言">前言</h3>
-<p>因為專案需求<br />
-尋尋覓覓看有無其他使用adb debug的方式<br />
-發現到一個Android 推出了一種方式<br />
-這裡研究後的心得分享<br /></p>
+      <div class="c-border-main-title-2">前言</div>
+<p>因應專案需求，
+我們不斷地尋找使用 ADB Debug 的新方式，<br />
+最近發現 Android 推出了一種方式。<br />
+在這裡，我們分享了adb wireless debug的研究心得。</p>
 
-<p>以前比較常用的方式前面也有一篇分享心得<br />
-需要的大大可以參考<br /></p>
-
-<div align="start">
+<div align="start" class="table_container">
+  如果您還不熟悉 ADB wifi來Debug，之前我們也分享過相關的心得，建議您可以參考一下。<br />
   <a href="/2022/02/15/android-adb-wifi-note/">
     <img src="/images/others/adb_wifi.png" alt="Cover" width="30%" />
   </a>
-  <a href="/2022/02/15/android-adb-wifi-note/">[Android][2022]用adb來透過wifi 連接Android實機教學</a>
+  <a href="/2022/02/15/android-adb-wifi-note/">擁抱無線：教你使用adb無線連接Android實機！</a>
+</div>
+<p><br /></p>
+
+<div class="c-border-main-title-2">針對Android 11 新出的adb wireless debug 研究
+  <a style="color:white;" herf="https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+">可參考此篇</a>
 </div>
 
-<h3 id="針對android-11-新出的adb-wireless-debug-研究此篇">針對Android 11 新出的adb wireless debug 研究<a href="https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+">此篇</a></h3>
+<div class="c-border-content-title-4"><b style="color:red;">Android 11</b> 後續版本才新增wireless debug功能，首先環境需達到：</div>
+<p>1.Android 11 以上<br />
+  2.連接的電腦或自己包的環境下 platform tool SDK版本必需大於 30.0.0 (<b style="color:red;">adb version</b> 可查看當前sdk version)<br />
+  3.需在同個區域網路下<br /></p>
+<div class="c-border-content-title-4">實際操作 <b>**(不需要 USB 線)**</b></div>
+<p>1.Android手機至setting開啟開發者模式並進入找到‘Wireless debugging’開啟<br />
+  2.進入Wireless debugging子選單<br />
+  3.點pair device with code 進入查看ip、port還有paring code.<br />
+  4.Terminal上 <b>adb pair <code class="language-plaintext highlighter-rouge">ipaddr</code>:<code class="language-plaintext highlighter-rouge">port</code></b> 輸入指令配對<br />
+  5.出現 <b>Enter pairing code:</b> 則輸入步驟3看到的paring code.<br /></p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">Android 11</code> 後續版本 新增wifi debug功能，首先環境需達到：
-    <ol>
-      <li>Android 11 以上</li>
-      <li>連接的電腦或自己包的環境下 platform tool SDK版本必需大於 30.0.0 ( <code class="language-plaintext highlighter-rouge">adb version</code> 可查看當前sdk version)</li>
-      <li>需在同個區域網路下</li>
-    </ol>
-  </li>
-  <li>實際操作 <strong>(不需要 USB 線)</strong>
-    <ol>
-      <li>Android手機至setting開啟開發者模式並進入找到‘Wireless debugging’開啟</li>
-      <li>進入Wireless debugging子選單</li>
-      <li>點pair device with code 進入查看ip、port還有paring code.</li>
-      <li>Terminal上 <code class="language-plaintext highlighter-rouge">adb pair &lt;ipaddr&gt;:&lt;port&gt;</code> 輸入指令配對</li>
-      <li>出現 <code class="language-plaintext highlighter-rouge">Enter pairing code:</code> 則輸入步驟3看到的paring code.</li>
-    </ol>
-  </li>
-  <li>特色
-    <ol>
-      <li>Wireless debugging內可看到已經配對過的device，可管理刪除</li>
-      <li>下次重開會自動重連</li>
-      <li>無需USB線即可配對</li>
-      <li>與舊版(Android10以下)adb 連wifi不同 ，舊版每次連都要手動重連
-        <ul>
-          <li>簡述Android 10 以下 adb連線方法  <strong>(需要借助 USB 線)</strong>
-a. 切換tcpip port : ` adb tcpip <port>`
-b. ` adb connect <ip>:<port>` 輸入ip 與剛剛的port來連接</port></ip></port></li>
-        </ul>
-      </li>
-    </ol>
-  </li>
-</ul>
+<div class="c-border-content-title-4">特色</div>
+<p>1.Wireless debugging內可看到已經配對過的device，可管理刪除<br />
+  2.下次重開會自動重連<br />
+  3.無需USB線即可配對<br />
+  4.與舊版(Android10以下)adb 連wifi不同 ，舊版每次連都要手動重連<br />
+    - 簡述Android 10 以下 adb連線方法  <strong>(需要借助 USB 線)</strong><br />
+    切換tcpip port : <b style="color:red;">adb tcpip <port>&lt;/b&gt;<br />
+    <b style="color:red;">adb connect <ip>:<port>&lt;/b&gt; 輸入ip 與剛剛的port來連接<br /></port></ip></b></port></b></p>
 
-<h3 id="其他筆記">其他筆記</h3>
+<div class="c-border-main-title-2">其他筆記</div>
+
 <ul>
   <li>
     <p>Android 11 AOSP 內develop option 內的 WirelessDebuggingFragment內 看看能否知道如何產生pair code<br />
--&gt; AOSP folder路徑 ： <code class="language-plaintext highlighter-rouge">/Android/11/packages/apps/Settings/com/android/settings/development/WirelessDebuggingFragment.java</code><br /></p>
+-&gt; AOSP folder路徑 ：<br />
+ <code class="language-plaintext highlighter-rouge">/Android/11/packages/apps/Settings/com/android/settings/development/WirelessDebuggingFragment.java</code><br /></p>
 
     <p>這邊我看的結果看起來他需要特殊的key才能產生，<br />
 不確定 <code class="language-plaintext highlighter-rouge">應用層</code> 能不能做到 <br />
@@ -259,8 +249,8 @@ b. ` adb connect <ip>:<port>` 輸入ip 與剛剛的port來連接</port></ip></po
  故實際有無支援還是要看該廠商燒的OTA有沒有帶<br /></p>
   </li>
   <li>
-    <p><code class="language-plaintext highlighter-rouge">adb connect &lt;ip&gt;:&lt;port&gt; 連線</code><code class="language-plaintext highlighter-rouge"> &lt;br&gt;
- -&gt; 用這個來測試連線是否能連到wireless debug 頁面上的那組</code>IP:port`<br />
+    <p><code class="language-plaintext highlighter-rouge">adb connect &lt;ip&gt;:&lt;port&gt; 連線</code>` <br />
+ -&gt; 用這個來測試連線是否能連到wireless debug 頁面上的那組<b style="color:red;">IP:port</b><br />
  但這指令一種是用來連線tcpip的ip(需要線)<br />
  另一種則是恢復有記錄在wireless debuging下已pair過的device<br />
  故僅能拿來手動恢復連線<br /></p>
@@ -277,7 +267,7 @@ b. ` adb connect <ip>:<port>` 輸入ip 與剛剛的port來連接</port></ip></po
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][2022]Android%2011%20adb%20wireless%20debug%20%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB&url=https://elegantaccess.org/2022/02/22/android-adb-wifi-note-detail/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E9%87%8B%E6%94%BE%20Android%2011%20adb%20wireless%20debug%20%E7%9A%84%E5%8A%9B%E9%87%8F:%E5%BE%9E%E6%9C%89%E7%B7%9A%E5%88%B0%E7%84%A1%E7%B7%9A,%E6%8E%A2%E7%B4%A2%E6%9B%B4%E8%87%AA%E7%94%B1%E7%9A%84debug%E9%AB%94%E9%A9%97%E6%95%99%E5%AD%B8!&url=https://elegantaccess.org/2022/02/22/android-adb-wifi-note-detail/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

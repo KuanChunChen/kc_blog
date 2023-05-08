@@ -1,71 +1,78 @@
 ---
 layout: post
-title: "[Android][2022]用adb來透過wifi 連接Android實機教學"
+title: "擁抱無線：教你使用adb無線連接Android實機教學！"
 date: 2022-02-15 13:46:32 +0800
 image: others/adb_wifi.png
 tags: [Android,adb]
 categories: Android
+excerpt: "本文教你如何使用adb透過wifi連接Android實機，讓你不再受到煩人的有線限制，輕鬆進行開發與測試。"
 ---
 
 
- ## 前言
- ---
- 這篇主要來記錄下adb wifi cli的下法，因為以前都是用Android studio的插件直接來連手機
- 所以不知道實際是怎下的，所以特別去查了下資料，並彙整才自己的筆記，這樣以後忘記還能回來看自己的筆記！
+<div class="c-border-main-title-2">前言</div>
+本篇主要記錄如何使用 adb wifi cli 連接 Android 手機，<br>
+適用於想要在無線網路環境下進行開發和debug的使用者。<br>
+過去，我們常常使用 Android Studio 的功能來連接手機，
+但其實使用 adb wifi 也不失為一種好方法。<br>
+因此，我特別查詢了相關資料並整理成筆記，<br>
+方便自己以後查閱，也希望能對其他使用者有所幫助！<br>
 
 
- <div align="start">
+
+ <div class="table_container">
+    <span style="text-align:center;">另外android 11 也新增了另一種方法，供測試或debug的方案：</span><br>
    <a href="{{site.baseurl}}/2022/02/22/android-adb-wifi-note-detail/">
      <img src="/images/others/adb_wifi.png" alt="Cover" width="30%"/>
    </a>
-   <a href="{{site.baseurl}}/2022/02/15/android-adb-wifi-note-detail/">[Android][2022]Android 11 adb wireless debug 心得分享</a>
- </div>
+   <a href="{{site.baseurl}}/2022/02/22/android-adb-wifi-note-detail/">釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗！</a>
+ </div><br>
 
 
 
- ## 實際作法
- ---
- 1. 讓電腦與Android手機進入同一個區域網路
- 2. 用USB線將Android手機連上電腦 要開啟開發者mode
- 3. 透過以下指令尋找手機ip位址
+<div class="c-border-main-title-2">實際作法</div><br>
+
+ 1.讓電腦與Android手機進入同一個區域網路<br>
+ 2.用USB線將Android手機連上電腦 要開啟開發者mode<br>
+ 3.透過以下指令尋找手機ip位址<br>
+
  ```linux
  adb shell ifconfig
  ```
- 4. 會找到類似192.168.xxx.xxx的IP
- 5. 用以下指令切換到tcp/ip模式
+ 4.會找到類似192.168.xxx.xxx的IP<br>
+ <img src="/images/others/ipconfig.png"/><br>
+ 5.用以下指令切換到tcp/ip模式<br>
  ```linux
  adb tcpip <port>
  ```
- 這邊的port是可以自己指定的
-
- 這邊分享一個雷：<br>
- 因為之前都是用插件adb wifi直接連<br>
- 所以這個插件設定的port都是同一組<br>
- 只要你不是自己在家用<br>
- 然後同公司又有其他人的port跟你設定一樣<br>
- 他又也是在同個區域網路下<br>
- 或他知道你ip + port 他就可以用指令下apk安裝到你的手機<br>
-
- 所以其他人不知道你在用<br>
- 也有可能誤發你的手機<br>
- 所以如果你能自己設定port的話就可以避免互衝的問題<br>
+ -> 這邊的port是可以自己指定的<br>
 
 
  6. 最後使用指令<br>
  ```
  adb connect 192.168.0.101:5555
  ```
- 就能用wifi控制你的手機了
+ (5555是你前面設定的port)
+ 至此就能用adb wifi控制你的手機了
 
  補充：
- 後來愈到要連線上android TV的方式
+ 後來遇到要連線上android TV的方式
  但剛好沒遇到沒有usb插槽的情況
  這時候就可以去設定->wifi->同個網路下去找ip
  就不用透過指令
 
+ <div class="c-border-content-title-4">這邊分享一個雷：</div>
+由於之前一直使用android studio下載的adb wifi插件來連接手機(該插件的效果就跟上面一樣)，<br>
+又因該插件所設定的端口都是相同的，<br>
+且公司中有其他人也使用同樣的端口設定或同一套插件，<br>
+而沒去改port的話，<br>
+又剛好你們的ip被分發到上一次另一位同事的舊IP，<br>
+則有機會在同一區域網路下使用指令，<br>
+即可透過你的IP和端口安裝APK到你的手機。<br>
+不過這個就是爾偶發生<br>
+只是就可以趁機用 scrcpy看別人在幹嘛而已XD（誤<br><br>
+所以還是要設不同的port比較好
 
-### 其他筆記
-
+<div class="c-border-main-title-2">其他筆記</div>
 - 補充Android 10 以下的 adb連線細節
   - 使用`adb connect`連上手機 **至少需連接一次USB線**，需先設定你的tcpip的port
  之後不用插線只要同ip跟port就能直接連
@@ -88,5 +95,5 @@ categories: Android
          RX bytes:198035 TX bytes:125461
  ```
    或是用這串CLI `adb shell ip route | awk '{print $9}'`
-   直接取得目標IP
+   直接取得目標IP<br>
     ![adb-ip-photo.png](/images/others/adb-ip-photo.png)

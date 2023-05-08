@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Ktor][Kotlin][2021]Ktor server 架設 line聊天室機器人</title>
+  <title>打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手</title>
   
-  <meta name='description' content="因為自己很喜歡Kotlin這門語言所以花了一點時間研究Ktor這個library而在閒暇時間做了一個小小side project 那就是 :基於Ktor寫的server來串接 line 聊天室機器人">
+  <meta name='description' content="打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置，讓你輕鬆上手。本課程將帶領你了解如何使用Kotlin Ktor框架建立簡單的聊天室機器人">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2021/12/07/android-kotlin-ktor-line-bot-server/" />
-<meta property="og:title" content="[Ktor][Kotlin][2021]Ktor server 架設 line聊天室機器人" />
-<meta property="og:description" content="因為自己很喜歡Kotlin這門語言所以花了一點時間研究Ktor這個library而在閒暇時間做了一個小小side project 那就是 :基於Ktor寫的server來串接 line 聊天室機器人" />
+<meta property="og:title" content="打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手" />
+<meta property="og:description" content="打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置，讓你輕鬆上手。本課程將帶領你了解如何使用Kotlin Ktor框架建立簡單的聊天室機器人" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/kotlin-line-bot-ktor-server.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,64 +187,50 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Ktor][Kotlin][2021]Ktor server 架設 line聊天室機器人</h1>
+        <h1 class="c-article__title">打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手</h1>
         <div class="c-article__date">
           <span>2021, Dec 07</span>
         </div>
       </header>
-      <p>因為自己很喜歡Kotlin這門語言<br />
-所以花了一點時間研究<br />
-Ktor這個library<br />
-而在閒暇時間做了一個小小side project <br />
-那就是 :</p>
-<h4 id="基於ktor寫的server來串接-line-聊天室機器人">基於Ktor寫的server來串接 line 聊天室機器人<br /></h4>
+      <div class="c-border-main-title-2">前言</div>
 
-<h3 id="前言">前言</h3>
+<p>因為喜愛Kotlin這門語言，我花了一些時間研究Ktor這個library，<br />
+並在閒暇時間製作了一個小小的side project。<br />
+這個project是基於Ktor寫的server，用來串接LINE聊天室機器人。<br /></p>
 
-<p>本文最終的目的<br />
- 就是完成一個能自動回覆訊息的自製server<br />
- 而非使用line develop console 介面所設定的<br />
- 因為能自己接server的話<br />
- 就能自訂一些天馬行空的功能XD<br /></p>
+<p>本文旨在透過Kotlin Ktor架設一個自製server，<br />
+能夠串接LINE聊天室機器人，實現自動回覆訊息的功能。<br /></p>
 
-<h4 id="最終server運行結果">最終server運行結果：</h4>
-
+<div class="c-border-content-title-4">最終server運行結果</div>
 <div align="center">
-   <img src="/images/linebot/server_run.png" width="100%" />
+   <img src="/images/linebot/server_run.png" width="70%" />
  </div>
+
+<div class="c-border-content-title-4">最終linebot回覆結果</div>
+<p><b>這裡我們演示了如何使用Kotlin來串聯一些API和爬蟲來獲取交易對的價格和網路上的圖片。</b></p>
+<div align="center">
+    <img src="/images/linebot/linebot01.png" width="45%" />
+    <img src="/images/linebot/linebot02.png" width="45%" />
+  </div>
 <p><br /></p>
 
-<p>這個server透過基於ktor<br />
-而ktor又基於kotlin<br />
-所以如果有寫過android-kotlin的人會很熟悉<br />
-透過build.gradle去設定環境與關聯一些要使用的library<br />
-使用時再透過 gradle的cli去run 你寫的ktor server<br />
-就會在本地端run你的server 不過目前都只有在本地端<br />
-所以後續要架設你的對外url<br />
-就能讓外部連線進來了<br /></p>
+<div class="table_container">
+  這篇文章介紹的是基於Kotlin的Ktor server，<br />
+  如何讓你輕鬆架設自己的LINE聊天室機器人。<br />
+  Ktor是一個簡單易用的框架，<br />
+  可用於構建不同的應用程序，<br />
+  它的可擴展性和高性能使其成為一個不錯的選擇。<br /><br />
 
-<p>而一開始不熟悉時<br />
-可以到intelliJ plugin下載ktor的插件<br />
-可以在創建新專案時<br />
-幫你創建最基本的環境<br />
-效率高很多<br /></p>
+  通過本文的介紹，<br />
+  你將了解到如何透過Kotlin及Ktor建置你的server，<br />
+  並串接LINE聊天室機器人。<br /><br />
 
-<h4 id="最終linebot回覆結果">最終linebot回覆結果：</h4>
+  我們將會透過Gradle設定環境，並引用一些必要的Library。<br />
 
-<div align="center">
-   <img src="/images/linebot/linebot01.png" width="45%" />
-   <img src="/images/linebot/linebot02.png" width="45%" />
- </div>
+</div>
 <p><br /></p>
 
-<p>像是這邊我就隨意串了一些api與爬蟲<br />
- 左邊就是查詢交易對的價格<br />
- 右邊就是爬蟲去抓指定網路上的圖片<br />
- 這些都是透過kotlin去寫<br />
- 相當方便<br /></p>
-
-<h3 id="實作方法">實作方法</h3>
-
+<div class="c-border-main-title-2">實作方法</div>
 <p>首先先創建ktor專案<br />
   我是使用ktor plugin直接幫我創<br />
   很多配置檔案他都幫你建好了<br />
@@ -254,9 +240,10 @@ Ktor這個library<br />
     <img src="/images/linebot/ktor01.png" width="65%" />
   </div>
 <p><br />
-  首先在根目錄下創了一個 application.conf檔<br />
-  主要是用來設定ktor相關的參數<br />
-  如port以及主程式的module指向<br /></p>
+  首先，<br />
+  在根目錄下創建了一個 application.conf 檔，<br />
+  主要用於設定 Ktor 相關的參數，<br />
+  例如 port 號以及主程式的 Application.module 的 package path。<br /></p>
 
 <script src="https://gist.github.com/KuanChunChen/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>
 
@@ -265,10 +252,10 @@ Ktor這個library<br />
 <pre><code class="language-Kotlin">  fun main(args: Array&lt;String&gt;): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 </code></pre>
-<p>這段主要是講ktor使用了netty的engine所以把它指向main()<br />
-  這邊好像也有支援其他的框架<br />
-  不過我還沒時間研究<br />
-  之後有時間再來玩玩看<br /></p>
+<p>這段程式碼主要是講述 Ktor 使用了 Netty 的 engine，<br />
+  因此需要將其指向 main()，<br />
+  不過 Ktor 也支援其他框架，<br />
+  但目前尚未有時間研究，未來有機會再來試試看。<br /></p>
 
 <div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">fun</span> <span class="nc">Application</span><span class="p">.</span><span class="nf">module</span><span class="p">()</span> <span class="p">{</span><span class="o">..</span><span class="p">.}</span>
 </code></pre></div></div>
@@ -277,68 +264,65 @@ Ktor這個library<br />
 
 <script src="https://gist.github.com/KuanChunChen/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
 
-<p>這邊則是實作時的範例<br />
-  其中為了讓ktor支援gson解析json<br />
-  所以加入了<br /></p>
+<p>以下是實作時的範例，<br />
+  其中為了讓 Ktor 支援 Gson 解析 JSON，<br />
+  所以加入了相關的 code<br />
+  用途就是讓http server接收時可以用gson去解析資料<br /></p>
 <pre><code class="language-Kotlin">  install(ContentNegotiation) {
         gson {
             setPrettyPrinting()
         }
     }
 </code></pre>
-<p>這邊主要是用了kotlin receive type去寫<br />
-  用途就是讓http server接收時可以用gson去解析資料<br /></p>
+
+<p>你可以在這裡定義一些API接口，<br />
+  如POST、GET等，讓外部的人可以透過呼叫API的方式來與你的server進行互動。<br />
+  下面例子則是定義了一個名為/callback的API接口。<br /></p>
 
 <pre><code class="language-Kotlin">  routing {
         post("/callback") {...}
   }
 </code></pre>
 
-<p>而下面roting就是類似轉接站<br />
-  你可以寫一些api接口<br />
-  如post,get讓外部人去呼叫api<br />
-  像上面的例子就是開了一個/callback的api<br /></p>
+<p>這邊的章節已經講完了基本的 Ktor 寫法，<br />
+  接下來可以考慮如何將你的 Ktor Server 放到線上。<br /><br /></p>
 
-<p>至此基本ktor寫法已經結束<br />
-  接著就是可以找一些第三方的server服務<br />
-  或者也可以申請固定ip+domain name去架設你的ktor server<br /></p>
+<p>你可以選擇使用第三方的 Server 架設服務，<br />
+  也可以自己申請固定 IP + Domain Name 去架設<br />
+  或者可以跟我一樣，<br />
+  我使用了 ngrok，這是一個可以免費使用 2 小時的 session，<br />
+  並產生固定的 Domain Name 讓你提供給外部人來連線。<br />
+  如果只是自己想試試或給朋友玩玩就可以用這種方式<br /></p>
 
-<p>像是我的話就是使用ngrok<br />
-  可以免費使用2hr的session<br />
-  產生固定domain name讓你給外部人來連線<br /></p>
+<div class="c-border-content-title-4">簡述ngrok用法</div>
 
+<p>使用ngrok的方式很簡單，<br />
+  只需從上往下載ngrok CLI加進環境變數，<br />
+  然後開啟server，就會產生HTTP、HTTPS的連線網址，<br />
+  你可以修改port來與你的ktor server進行連結。<br /><br /></p>
+
+<p>安裝好就直接在小黑窗打以下指令即可
+  (port可自行調配)</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ngrok http 8080
 </code></pre></div></div>
-<p>用法就是上往下載ngrok cli加進環境變數<br />
-  然後開啟server<br />
-  就會產生http,https的連線網址給你做對外連線<br />
-  這邊port就看你跟你的ktor server怎麼設再修改就行<br /></p>
 
-<p>###linebot簽名驗證</p>
+<div class="c-border-main-title-2">linebot簽名驗證</div>
 
-<p>看了下line developer文件<br />
-  上面有提到<br />
-  你必須確認<br />
-  收到的header x-line-signature簽名必須與<br />
-  request body 與chaneel secret做HmacSHA256驗證<br />
-  確認兩者相同<br />
-  才能確定是line 官方呼叫你的server<br />
-  避免有心人士攻擊你的server<br /></p>
+<p>根據Line Developer的文件，<br />
+當你收到來自Line官方的請求時，<br />
+你必須確保收到的header x-line-signature簽名與request body及channel secret進行HmacSHA256驗證，<br />
+只有在兩者相同的情況下，<br />
+你才能確認是Line官方呼叫你的server，<br />
+以避免有心人士攻擊你的server。<br /></p>
 
-<p>這邊附上我kotlin的寫法<br />
-  <script src="https://gist.github.com/KuanChunChen/442337c7fa413741c5e15451827e2c74.js"></script></p>
+<p>這邊附上我kotlin驗證簽名的寫法<br />
+<script src="https://gist.github.com/KuanChunChen/dab3f90689f9aa887d01c225caadd348.js"></script></p>
 
-<p>之後接收到line呼叫你的api時就能確認是line傳來的了<br /></p>
-
-<p>再來就是研究line developer的api<br />
-  例如要讓linebot自動在聊天室回覆訊息<br />
-  就必須要打下面這隻api<br />
-  這邊附上他的curl<br />
-  可以再轉成自己的語言去寫就行<br />
-  相當容易<br />
-  當然他也會有限制<br />
-  如最多meesages長度只能是5<br />
-  就是再看看官方文件就行<br /></p>
+<p>接著，我們繼續學習 LINE 開發者 API，<br />
+例如想要讓 LINE 機器人自動在聊天室回覆訊息，<br />
+就需要使用以下的 API<br />
+下面附上 cURL 指令供參考，<br />
+有了cURL開發者也可以用自己熟悉的語言去開發</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  curl <span class="nt">-v</span> <span class="nt">-X</span> POST https://api.line.me/v2/bot/message/reply <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
@@ -379,11 +363,11 @@ Ktor這個library<br />
 <script src="https://gist.github.com/KuanChunChen/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
 
 <p>這邊則是個範例<br />
-  主要就是其中一條指令去抓第三方api取得交易對的寫法<br /><br />
-  大同小異<br />
-  只要在指定的指令下<br />
-  寫你想做的行為<br />
-  再回傳就行<br /></p>
+主要就是其中一條指令去抓第三方api取得交易對的寫法<br /><br /></p>
+
+<p>其實每個指令的實作方式大同小異，<br />
+只要在指定的指令下寫出你想要執行的行為，<br />
+然後回傳就可以了。<br /></p>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
@@ -397,7 +381,7 @@ Ktor這個library<br />
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Ktor][Kotlin][2021]Ktor%20server%20%E6%9E%B6%E8%A8%AD%20line%E8%81%8A%E5%A4%A9%E5%AE%A4%E6%A9%9F%E5%99%A8%E4%BA%BA&url=https://elegantaccess.org/2021/12/07/android-kotlin-ktor-line-bot-server/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E6%89%93%E9%80%A0%E8%87%AA%E5%B7%B1%E7%9A%84LINE%E8%81%8A%E5%A4%A9%E5%AE%A4%E6%A9%9F%E5%99%A8%E4%BA%BA!%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%E5%AD%B8%E7%BF%92%E4%BD%BF%E7%94%A8Kotlin%20Ktor%E5%BB%BA%E7%BD%AE%E6%95%99%E5%AD%B8,%E8%AE%93%E4%BD%A0%E8%BC%95%E9%AC%86%E4%B8%8A%E6%89%8B&url=https://elegantaccess.org/2021/12/07/android-kotlin-ktor-line-bot-server/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

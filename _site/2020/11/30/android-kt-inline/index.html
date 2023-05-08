@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解</title>
+  <title>【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！</title>
   
-  <meta name='description' content="inline /noinline / crossinline 這幾個關鍵字常常可以在kotlin上看到，為了可以看懂大家在寫什麼，你可以參考我這邊文章，在這邊推薦給大家，inline主要能用來處理kotlin 函式內帶有function type 變數的效能優化，或者有些人會稱function type的變數為l...">
+  <meta name='description' content="在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。這些關鍵字可以在函數聲明中使用，它們可以對函數進行不同的行為修改，進而影響代碼的運行方式和性能。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/2020/11/30/android-kt-inline/" />
-<meta property="og:title" content="[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解" />
-<meta property="og:description" content="inline /noinline / crossinline 這幾個關鍵字常常可以在kotlin上看到，為了可以看懂大家在寫什麼，你可以參考我這邊文章，在這邊推薦給大家，inline主要能用來處理kotlin 函式內帶有function type 變數的效能優化，或者有些人會稱function type的變數為l..." />
+<meta property="og:title" content="【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！" />
+<meta property="og:description" content="在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。這些關鍵字可以在函數聲明中使用，它們可以對函數進行不同的行為修改，進而影響代碼的運行方式和性能。" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/inline01.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,18 +187,22 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解</h1>
+        <h1 class="c-article__title">【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！</h1>
         <div class="c-article__date">
           <span>2020, Nov 30</span>
         </div>
       </header>
-      <p>inline /noinline / crossinline 這幾個關鍵字常常可以在kotlin上看到，<br />
-為了可以看懂大家在寫什麼，你可以參考我這邊文章，在這邊推薦給大家，<br />
-inline主要能用來處理kotlin 函式內帶有function type 變數的效能優化，<br />
-或者有些人會稱function type的變數為lambda function。
-***</p>
+      <div class="c-border-main-title-2">前言</div>
 
-<h1>inline</h1>
+<p>在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。<br />
+這些關鍵字可以在函數聲明中使用，<br />
+它們可以對函數進行不同的行為修改，<br />
+進而影響代碼的運行方式和性能。<br />
+本篇文章將詳細介紹這三個關鍵字的使用方式和區別，<br />
+並提供相關的代碼示例和實際應用場景。</p>
+
+<div class="c-border-content-title-4">inline</div>
+
 <p>inline 實際上的作用，<br />
 就是會在編譯的時候把你有使用inline的function內容直接複製到執行處，<br />
 而不是直接實例化一個物件，<br />
@@ -278,7 +282,7 @@ inline主要能用來處理kotlin 函式內帶有function type 變數的效能�
 他不像inline一樣，是加在fun前面，<br />
 他反而是用來設定function type(or lambda function)的。<br /></p>
 
-<h1>noinline</h1>
+<div class="c-border-content-title-4">noinline</div>
 <p>noinline的概念，其實更簡單了，<br />
 當你了解inline，就會明白為何我說這兩個是輔助了，<br />
 這個的用途，<br />
@@ -290,8 +294,8 @@ inline主要能用來處理kotlin 函式內帶有function type 變數的效能�
 <p><br />
 因此，你也能依照需求，去選擇要不要用inline
 <br /></p>
-<h1>crossinline</h1>
 
+<div class="c-border-content-title-4">crossinline</div>
 <p>先來個前導概念：<br />
 當你在使用lambda function時，<br />
 如果在宣告的lambda function 裡面加入return ，<br />
@@ -308,7 +312,7 @@ inline主要能用來處理kotlin 函式內帶有function type 變數的效能�
 
 <script src="https://gist.github.com/KuanChunChen/940839c5f5bbaf854a0c243748192758.js"></script>
 
-<h1>結論</h1>
+<div class="c-border-main-title-2">結論</div>
 <p>使用 inline<br />
 能夠降低程式呼叫lambda function時重複創建實例化<br />
 藉此提升效率<br />
@@ -316,18 +320,16 @@ inline主要能用來處理kotlin 函式內帶有function type 變數的效能�
 使用 noinline 可以讓lambda 不使用inline<br />
 使用 crossinline 可以避免lambda 中的 return 影響外部程式流程<br /></p>
 
-<div align="start">
-
-  <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">[Android][Kotlin]KuanChunChen
-/
-KC_InlineDemo</a>
-
-
-  <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">
-    <img src="/images/kc_icon.png" alt="Cover" width="10%" />
-  </a>
-
-
+<div class="card py-4 h-100">
+    <div class="card-body text-center">
+        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
+        <h4 class="text-uppercase m-0">inline / noinline / crossinline範例程式碼</h4>
+        <hr class="my-4 mx-auto" />
+        <div style="font-size: 1.5em;">
+          <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">
+Sample Code</a>
+        </div>
+    </div>
 </div>
 
       <div class="c-article__footer u-clearfix">
@@ -346,7 +348,7 @@ KC_InlineDemo</a>
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin]%E3%80%8C%E6%A6%82%E5%BF%B5%E7%AF%87%E3%80%8D%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%20inline%20/%20noinline%20/%20crossinline%20%E4%BD%BF%E7%94%A8%E8%A9%B3%E8%A7%A3&url=https://elegantaccess.org/2020/11/30/android-kt-inline/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E3%80%90Android/Kotlin%E3%80%91%E6%A5%B5%E9%80%9F%E6%8E%8C%E6%8F%A1%20inline%20/%20noinline%20/%20crossinline%20%E4%B8%89%E5%A4%A7%E9%97%9C%E9%8D%B5%E5%AD%97%E6%95%99%E5%AD%B8!&url=https://elegantaccess.org/2020/11/30/android-kt-inline/" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>

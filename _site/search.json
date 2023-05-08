@@ -81,7 +81,7 @@
     } ,
   
     {
-      "title"    : "掌握 Android Device Owner 權限，企業級管理輕鬆上手！",
+      "title"    : "『教學』掌握 Android Device Owner 權限，企業級管理輕鬆上手！",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/25/android-device-owner/",
@@ -89,7 +89,7 @@
     } ,
   
     {
-      "title"    : "[Android][2022][Debug][Problem Solved Series]Android VpnManager 開發VPN app思路分享",
+      "title"    : "打造你的VPN app：Android VpnManager開發思路心得",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/21/android-vpn-manager-method/",
@@ -97,7 +97,7 @@
     } ,
   
     {
-      "title"    : "[Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log",
+      "title"    : "Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/18/android-log-catch-method/",
@@ -105,7 +105,7 @@
     } ,
   
     {
-      "title"    : "[Problem Solved Series]Android IPC 跨進程方案分享",
+      "title"    : "連接 Android app 應用：讓你的程式在不同進程中輕鬆溝通的IPC方案教學！",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/15/android-ipc-note/",
@@ -113,7 +113,7 @@
     } ,
   
     {
-      "title"    : "[Problem Solved Series]Android Audio 適配疑難雜症分享",
+      "title"    : "Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/03/07/problem-audio-not-work/",
@@ -121,7 +121,7 @@
     } ,
   
     {
-      "title"    : "[Android][2022]Android 11 adb wireless debug 心得分享",
+      "title"    : "釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！",
       "category" : "",
       "tags"     : "Android and adb",
       "url"      : "/2022/02/22/android-adb-wifi-note-detail/",
@@ -129,7 +129,7 @@
     } ,
   
     {
-      "title"    : "[Android][2022]用adb來透過wifi 連接Android實機教學",
+      "title"    : "擁抱無線：教你使用adb無線連接Android實機教學！",
       "category" : "",
       "tags"     : "Android and adb",
       "url"      : "/2022/02/15/android-adb-wifi-note/",
@@ -137,7 +137,7 @@
     } ,
   
     {
-      "title"    : "[MacOS][Enviroment][2022]WebRtc &amp; Mqtt 名詞解釋筆記分享",
+      "title"    : "加速你對 WebRtc 和 Mqtt 的理解：名詞解釋筆記分享",
       "category" : "",
       "tags"     : "know-how",
       "url"      : "/2022/02/14/web-rtc-mqtt-name/",
@@ -145,7 +145,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][2021]Android實作-mvvm+di+Rx做出流暢自動加載分頁！",
+      "title"    : "打造流暢自動加載分頁的Github API Demo：MVVM、DI、RxJava與Paging在Android Kotlin的實踐教學",
       "category" : "",
       "tags"     : "Android, Kotlin, MVVM, dagger, http, and di",
       "url"      : "/2021/12/23/android-kotlin-mvvm-dagger-http-rxjava/",
@@ -153,7 +153,7 @@
     } ,
   
     {
-      "title"    : "[Ktor][Kotlin][2021]Ktor server 架設 line聊天室機器人",
+      "title"    : "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手",
       "category" : "",
       "tags"     : "Android, Ktor, and Kotlin",
       "url"      : "/2021/12/07/android-kotlin-ktor-line-bot-server/",
@@ -161,7 +161,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][2021]Android低功耗藍芽Gatt連線實作教學！",
+      "title"    : "Android低功耗藍芽Gatt連線教學：使用Kotlin實作",
       "category" : "",
       "tags"     : "Android, Bluetooth, and Kotlin",
       "url"      : "/2021/11/12/android-kotlin-bluetooth-gatt-client/",
@@ -233,7 +233,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin]Google Map decode polyline 預估路徑/畫線 解碼教學",
+      "title"    : "如何使用 Kotlin 在 Android 中解碼 Google Map polyline 並預估路徑或畫線 - 教學",
       "category" : "",
       "tags"     : "Android, Kotlin, and Google map",
       "url"      : "/2020/12/07/android-kt-map/",
@@ -241,7 +241,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin]「概念篇」你需要知道的 inline / noinline / crossinline 使用詳解",
+      "title"    : "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！",
       "category" : "",
       "tags"     : "Android, Kotlin, inline, noinline, and crossinline",
       "url"      : "/2020/11/30/android-kt-inline/",
