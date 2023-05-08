@@ -2,7 +2,7 @@
 layout: post
 title: "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！"
 date: 2020-11-30 21:01:43 +0800
-image: cover/inline01.png
+image: cover/android-kt-inline-1.png
 tags: [Android,Kotlin,inline,noinline,crossinline]
 categories: Android
 excerpt: "在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。這些關鍵字可以在函數聲明中使用，它們可以對函數進行不同的行為修改，進而影響代碼的運行方式和性能。"
