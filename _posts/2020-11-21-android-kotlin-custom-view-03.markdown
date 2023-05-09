@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view"
+title: "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03"
 date: 2020-11-21 15:44:20 +0800
 image: cover/android-photo.jpg
 permalink: /android/custom03
 tags: [Android,Kotlin]
 categories: Android
+excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。"
 ---
 Hello,大家好,這裡是Elegant Access的 KC，<br>
 歡迎大家繼續回來看如何客製化的實作篇，<br>

@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view"
+title: "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02"
 date: 2020-11-20 16:04:13 +0800
 image: cover/android-photo.jpg
 permalink: /android/custom02
 tags: [Android,Kotlin]
 categories: Android
+excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。"
 ---
 
 Hello,大家好,這裡是Elegant Access的 KC，<br>
@@ -79,22 +80,22 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 那今天這邊先告一段落，接下來我會一一介紹寫一些function或定義recycler view 等等來完成我們的整個view。
 接著收看，繼續實作左右滑動的recycler view：
 
-<div align="start">
+<div class="table_container">
   <a href="{{site.baseurl}}/2020/11/21/android-kotlin-custom-view-03/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
-  <a href="{{site.baseurl}}/2020/11/21/android-kotlin-custom-view-03/">[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 -橫向左右滾動recycler view</a>
+  <a href="{{site.baseurl}}/android/custom03">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03</a>
 </div>
 
 回去看前導：
 
-<div align="start">
+<div class="table_container">
   <a href="{{site.baseurl}}/2020/11/14/android-kotlin-custom-view-01/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
-  <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-01/">[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</a>
+  <a href="{{site.baseurl}}/android/custom01">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01</a>
 </div>
 
 <br>

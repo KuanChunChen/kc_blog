@@ -249,7 +249,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（2）：實作篇 - 橫向左右滾動recycler view",
+      "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03",
       "category" : "",
       "tags"     : "Android and Kotlin",
       "url"      : "/android/custom03",
@@ -257,7 +257,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view",
+      "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02",
       "category" : "",
       "tags"     : "Android and Kotlin",
       "url"      : "/android/custom02",
@@ -265,7 +265,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄",
+      "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01",
       "category" : "",
       "tags"     : "Android and Kotlin",
       "url"      : "/android/custom01",

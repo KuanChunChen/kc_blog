@@ -19,9 +19,9 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</title>
+  <title>學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01</title>
   
-  <meta name='description' content="">
+  <meta name='description' content="在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
@@ -29,8 +29,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:url" content="https://elegantaccess.org/android/custom01" />
-<meta property="og:title" content="[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01" />
+<meta property="og:description" content="在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。" />
 <meta property="og:image" content="https://elegantaccess.org/images/cover/android-photo.jpg" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
@@ -187,17 +187,12 @@
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][Kotlin][Custom View]客製UI心得分享（0）：前導篇－左右切換view與動畫的下拉欄</h1>
+        <h1 class="c-article__title">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01</h1>
         <div class="c-article__date">
           <span>2020, Nov 14</span>
         </div>
       </header>
-      <hr />
-
-<p>Hello,大家好,這裡是Elegant Access的 KC
-平時是一位Android Developer ,擅長的語言是Kotlin ，Java ，喜歡的開發風格是使用封裝 ,抽象與泛型…等觀念去開發，因為我認為，在實現app的過程中，應該保持coding版面的乾淨，一方面可以增加code reuse的可能，也能降低一些冗余程式碼的產生，未來當你寫出更多code要來維護時，你也能一目瞭然的知道你是怎麼寫的，所以對我來說善用各種觀念與不同design parttern或架構去完成一個project是我對自己基本的要求，當然，寫code肯定有比你更強的人在寫，所以除了用過去學習過的方法去寫code, 我也會不停增加自己的經驗，像是最近就在惡補 receiver type &amp; extension 的用法，在未來也希望能分享給各位，接著就進入正文吧：</p>
-
-<hr />
+      <h1 class="c-border-main-title-2">實際效果</h1>
 
 <p>首先最容易讓人理解的方式，就是直接先上影片，效果如影片：</p>
 
@@ -209,23 +204,28 @@
 <p> </p>
 <p>在這個demo裡面你會看到的有：</p>
 
-<ol>
-  <li>下拉bottom sheet</li>
-  <li>Recycler view 左右滑動</li>
-  <li>Recycler view 中每個Item點擊時切換</li>
-  <li>Recycler view初始化時置中</li>
-  <li>Recycler view 中Item margin設置</li>
-  <li>WebView 跳轉到應用程式</li>
-</ol>
+<div class="table_container">
+  <ol class="rectangle-list">
+    <li><a href="javascript:void(0)">下拉bottom sheet</a></li>
+    <li><a href="javascript:void(0)">Recycler view 左右滑動</a></li>
+    <li><a href="javascript:void(0)">Recycler view 中每個Item點擊時切換</a></li>
+    <li><a href="javascript:void(0)">Recycler view初始化時置中</a></li>
+    <li><a href="javascript:void(0)">Recycler view 中Item margin設置</a></li>
+    <li><a href="javascript:void(0)">WebView 跳轉到應用程式</a></li>
+  </ol>
+</div>
 
 <p>我也繼承了下面的一些類（只列出主要用到的類）有</p>
 
-<ol>
-  <li>LinearLayoutManager</li>
-  <li>BottomSheetBehavior</li>
-  <li>ItemDecoration</li>
-  <li>OnScrollListener …等等，還有其他的類就不一一列出來了。</li>
-</ol>
+<div class="table_container">
+  <ol class="rectangle-list">
+    <li><a href="javascript:void(0)">LinearLayoutManager</a></li>
+    <li><a href="javascript:void(0)">BottomSheetBehavior</a></li>
+    <li><a href="javascript:void(0)">ItemDecoration</a></li>
+    <li><a href="javascript:void(0)">OnScrollListener …等等，<br />還有其他的類就不一一列出來了。</a></li>
+  </ol>
+</div>
+<p><br /></p>
 
 <p>本篇我會先介紹這個demo 的一些特色，如下：
 像是能夠隨著滑動，正中央imageView淡入，淡出的效果。</p>
@@ -236,12 +236,15 @@
 </div>
 
 <p>第二步，就是客製出一條左右滑動的recycler view，包含：</p>
-<ol>
-  <li>客製化recycler view 包含其中細項的調整</li>
-  <li>間距設置</li>
-  <li>滑動時動畫（字體變色，漸層，變更view等）</li>
 
-</ol>
+<div class="table_container">
+  <ol class="rectangle-list">
+    <li><a href="javascript:void(0)">客製化recycler view 包含其中細項的調整</a></li>
+    <li><a href="javascript:void(0)">間距設置</a></li>
+    <li><a href="javascript:void(0)">滑動時動畫（字體變色，漸層，變更view等）</a></li>
+  </ol>
+</div>
+<p><br /></p>
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-jpg03.jpeg" alt="Cover" width="30%" />
@@ -258,12 +261,12 @@
 
 <p>請參考：</p>
 
-<div align="start">
+<div class="table_container">
   <a href="/2020/11/20/android-kotlin-custom-view-02/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" />
   </a>
 
-  <a href="/2020/11/20/android-kotlin-custom-view-02/">[Android][Kotlin][Custom View]客製UI心得分享（1）：實作篇 - 建立基本的custom view</a>
+  <a href="/android/custom02">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02</a>
 </div>
 
 <p><br /></p>
@@ -283,7 +286,7 @@ Github : https://github.com/KuanChunChen<br /></p>
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][Custom%20View]%E5%AE%A2%E8%A3%BDUI%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB(0):%E5%89%8D%E5%B0%8E%E7%AF%87-%E5%B7%A6%E5%8F%B3%E5%88%87%E6%8F%9Bview%E8%88%87%E5%8B%95%E7%95%AB%E7%9A%84%E4%B8%8B%E6%8B%89%E6%AC%84&url=https://elegantaccess.org/android/custom01" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E5%AD%B8%E7%BF%92Android%20Kotlin%20%E5%AE%A2%E8%A3%BDUI%E7%9A%84%E6%8A%80%E5%B7%A7-%E5%B7%A6%E5%8F%B3%E5%88%87%E6%8F%9Bview%E8%88%87%E5%8B%95%E7%95%AB%E7%9A%84%E4%B8%8B%E6%8B%89%E6%AC%84%E6%95%99%E5%AD%B8%20-%2001&url=https://elegantaccess.org/android/custom01" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
