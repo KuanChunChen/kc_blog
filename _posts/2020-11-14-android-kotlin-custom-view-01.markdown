@@ -91,8 +91,3 @@ excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客�
 </div>
 
 <br>
-
-Created by Elegant Access's KC.<br>
-Copyright (c) 2020 All rights reserved.<br>
-Instagram  : https://www.instagram.com/eleg.aces.kc/<br>
-Github : https://github.com/KuanChunChen<br>

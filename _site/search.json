@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "打造流暢Android App跳轉體驗！Navigation with Kotlin 一篇文章就能搞定你的APP跳轉問題！",
+      "category" : "",
+      "tags"     : "Kotlin, Navigation, and Android",
+      "url"      : "/navigation_with_kotlin",
+      "date"     : "2023-05-15 16:06:16 +0800"
+    } ,
+  
+    {
       "title"    : "ChatGPT應用教學-把ChatGPT串進你的Line聊天室",
       "category" : "",
       "tags"     : "OpenAI, Chat GPT, and AI",
