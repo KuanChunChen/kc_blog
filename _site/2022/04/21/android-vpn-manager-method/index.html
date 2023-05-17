@@ -194,12 +194,13 @@
       </header>
       <div class="c-border-main-title-2">前言</div>
 
-<ul>
-  <li>在本篇文章中，<br />
-我們將討論如何使用 Android VpnManager 開發自己的 VPN app 的思路，<br />
-無論你是新手還是有經驗的開發者，<br />
-這些筆記都希望能幫助到你。</li>
-</ul>
+<p>
+  在這篇文章中，<br />
+  我們將分享開發自己研究的Android VPN 應用的思路，<br />
+  不論您是新手還是有經驗的開發者，<br />
+  這些筆記都將提供實用的指引，<br />
+  希望能對您有所幫助。<br />
+</p>
 
 <div class="c-border-main-title-2">前期可以考慮的問題</div>
 <div class="c-border-content-title-4">思考要怎麼實作，所以先研究了原生有哪些VPN加密連線方式</div>
@@ -219,23 +220,17 @@
   </li>
 </ul>
 
-<div class="c-border-content-title-4">若是有個需求為，要提供上述的VPN連線加密模式功能，則：</div>
+<div class="c-border-content-title-4">若是有個需求為，要實作VPN連線加密模式功能，則：</div>
 <ul>
-  <li>官方原生提供的方法:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
+  <li>官方原生提供的方法有:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
   <a herf="https://developer.android.com/reference/android/net/VpnService">VpnService</a>
-經研究後發現：
+我研究後發現：
     <ul>
-      <li>
-        <p>如果用<code class="language-plaintext highlighter-rouge">VpnManager</code> ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供</p>
-      </li>
-      <li>
-        <p>如果用<code class="language-plaintext highlighter-rouge">VpnService</code> ，僅提供設定基本的一些設定，無開放連線模式的接口給上層使用</p>
-      </li>
+      <li>如果用<code class="language-plaintext highlighter-rouge">VpnManager</code> ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供</li>
+      <li>如果用<code class="language-plaintext highlighter-rouge">VpnService</code> ，僅提供基本的一些設定，無開放連線模式的接口給上層使用</li>
     </ul>
   </li>
-  <li>
-    <p>同上<code class="language-plaintext highlighter-rouge">VpnManager</code>述，需api 30才能使用，且也只有開放部分protocol</p>
-
+  <li><code class="language-plaintext highlighter-rouge">VpnManager</code>，需api 30才能使用，且只有開放部分protocol
     <ul>
       <li>另外有看到google issue tracker的網站中，<br />
    有其他開發者有類似問題，並<code class="language-plaintext highlighter-rouge">詢問官方是否能開放下層的連線模式</code>給上層使用，<br />
@@ -251,7 +246,7 @@
 <div class="c-border-main-title-2">VPN實作的思路參考</div>
 
 <ul>
-  <li>以服務端<a href="https://server-doc.airdroid.com/#/develop_progress/biz_policy?id=%e8%ae%be%e7%bd%ae%e9%a1%b9">通用文件-Vpn</a>並使用<code class="language-plaintext highlighter-rouge">官方提供</code>的方法來實作：
+  <li>若使用<code class="language-plaintext highlighter-rouge">官方提供</code>的方法來實作，可以：
     <ul>
       <li><code class="language-plaintext highlighter-rouge">'連接類型'</code>：透過<a href="https://developer.android.com/reference/android/net/VpnManager">VpnManager</a> (API level 30以上)的<a href="https://developer.android.com/reference/android/net/VpnManager#provisionVpnProfile(android.net.PlatformVpnProfile)">provisionVpnProfile</a>方法設定<code class="language-plaintext highlighter-rouge">PlatformVpnProfile</code>
         <ul>
@@ -346,16 +341,20 @@
   </li>
   <li>
     <p>追蹤 <a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1;l=178">Android 12 aosp內的 VpnService.Java</a>，其<code class="language-plaintext highlighter-rouge">line:178~181</code>使用的aidl改成<a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/IVpnManager.aidl">IVpnManager.aidl</a>，
- source code內有另一個檔案為<a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1">VpnManagerService.Java</a>其中<code class="language-plaintext highlighter-rouge">line:293</code>的 ` provisionVpnProfile(VpnProfile profile,…)`<br /></p>
+ source code內有另一個檔案為<a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1">VpnManagerService.Java</a></p>
 
-    <p>要求提供<a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&amp;ss=android%2Fplatform%2Fsuperproject">VpnProfile</a>實例，<br />
- 看到該檔案的<code class="language-plaintext highlighter-rouge">line:97</code>得知其預設連線方案為：<code class="language-plaintext highlighter-rouge">public int type = TYPE_PPTP</code></p>
+    <p>其中<code class="language-plaintext highlighter-rouge">line:293</code>的 <code class="language-plaintext highlighter-rouge">provisionVpnProfile(VpnProfile profile,...)</code>
+ 這個method要求提供一個變數<a href="https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&amp;ss=android%2Fplatform%2Fsuperproject">VpnProfile</a></p>
 
-    <p>而目前看到上面提供的常數有：<br />
+    <p>點進去看VpnProfile的<code class="language-plaintext highlighter-rouge">line:97</code>得知其預設連線方案為：<code class="language-plaintext highlighter-rouge">public int type = TYPE_PPTP</code></p>
+
+    <p>且看到VpnProfile可設定的連線模式有：<br />
  <img src="/images/others/vpn_aosp_type.png" alt="vpn_aosp_type.png" /><br />
- 故推測目前aosp內有支援這些連線模式<br />
- 但因為沒有開放出來，所以無法寫在app內直接使用<br />
- 只能從手機內設定那邊修改</p>
+ 不過這些目前僅在aosp內有支援這些連線模式<br />
+ 且因為沒有開放出來，所以無法寫在app內直接使用<br />
+ 總結來說，<br />
+ 一來非開發者只能從手機設定裡那邊修改<br />
+ 二來開發者要自行實作只能從aosp那邊下手</p>
   </li>
 </ul>
 

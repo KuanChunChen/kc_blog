@@ -11,10 +11,13 @@ excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應
 
 <div class="c-border-main-title-2">前言</div>
 
-* 在本篇文章中，<br>
-我們將討論如何使用 Android VpnManager 開發自己的 VPN app 的思路，<br>
-無論你是新手還是有經驗的開發者，<br>
-這些筆記都希望能幫助到你。
+<p>
+  在這篇文章中，<br>
+  我們將分享開發自己研究的Android VPN 應用的思路，<br>
+  不論您是新手還是有經驗的開發者，<br>
+  這些筆記都將提供實用的指引，<br>
+  希望能對您有所幫助。<br>
+</p>
 
 
 <div class="c-border-main-title-2">前期可以考慮的問題</div>
@@ -30,16 +33,14 @@ excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應
     - IPSec 混合 RSA
     - IPSec IKEv2 RSA
 
-  <div class="c-border-content-title-4">若是有個需求為，要提供上述的VPN連線加密模式功能，則：</div>
-  - 官方原生提供的方法:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
+  <div class="c-border-content-title-4">若是有個需求為，要實作VPN連線加密模式功能，則：</div>
+  - 官方原生提供的方法有:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
   <a herf="https://developer.android.com/reference/android/net/VpnService">VpnService</a>
-    經研究後發現：
+    我研究後發現：
       - 如果用`VpnManager` ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供
+      - 如果用`VpnService` ，僅提供基本的一些設定，無開放連線模式的接口給上層使用
 
-      - 如果用`VpnService` ，僅提供設定基本的一些設定，無開放連線模式的接口給上層使用
-
-  - 同上`VpnManager`述，需api 30才能使用，且也只有開放部分protocol
-
+  - `VpnManager`，需api 30才能使用，且只有開放部分protocol
       - 另外有看到google issue tracker的網站中，<br>
    有其他開發者有類似問題，並`詢問官方是否能開放下層的連線模式`給上層使用，<br>
    官方人員回覆 後續有望開放：[點此查看](https://issuetracker.google.com/issues/203461112)<br>
@@ -52,7 +53,7 @@ excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應
 
 <div class="c-border-main-title-2">VPN實作的思路參考</div>
 
-* 以服務端[通用文件-Vpn](https://server-doc.airdroid.com/#/develop_progress/biz_policy?id=%e8%ae%be%e7%bd%ae%e9%a1%b9)並使用`官方提供`的方法來實作：
+* 若使用`官方提供`的方法來實作，可以：
      - `'連接類型'`：透過[VpnManager](https://developer.android.com/reference/android/net/VpnManager) (API level 30以上)的[provisionVpnProfile](https://developer.android.com/reference/android/net/VpnManager#provisionVpnProfile(android.net.PlatformVpnProfile))方法設定`PlatformVpnProfile`
          - 官方定義一個新的類別 [PlatformVpnProfile](https://developer.android.com/reference/android/net/PlatformVpnProfile)
            - 若搭配AOSP看的話，官方是提供這個類讓你`設定部分連線procotol`
@@ -115,13 +116,17 @@ excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應
    <br>
 
 - 追蹤 [Android 12 aosp內的 VpnService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1;l=178)，其`line:178~181`使用的aidl改成[IVpnManager.aidl](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/IVpnManager.aidl)，
-   source code內有另一個檔案為[VpnManagerService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1)其中`line:293`的 ` provisionVpnProfile(VpnProfile profile,...)`<br>
+   source code內有另一個檔案為[VpnManagerService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1)
 
-   要求提供[VpnProfile](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&ss=android%2Fplatform%2Fsuperproject)實例，<br>
-   看到該檔案的`line:97`得知其預設連線方案為：`public int type = TYPE_PPTP`  
+   其中`line:293`的 `provisionVpnProfile(VpnProfile profile,...)`
+   這個method要求提供一個變數[VpnProfile](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&ss=android%2Fplatform%2Fsuperproject)
 
-   而目前看到上面提供的常數有：<br>
+   點進去看VpnProfile的`line:97`得知其預設連線方案為：`public int type = TYPE_PPTP`  
+
+   且看到VpnProfile可設定的連線模式有：<br>
    ![vpn_aosp_type.png](/images/others/vpn_aosp_type.png)<br>
-   故推測目前aosp內有支援這些連線模式<br>
-   但因為沒有開放出來，所以無法寫在app內直接使用<br>
-   只能從手機內設定那邊修改
+   不過這些目前僅在aosp內有支援這些連線模式<br>
+   且因為沒有開放出來，所以無法寫在app內直接使用<br>
+   總結來說<br>
+   一來非開發者只能從手機設定裡那邊修改<br>
+   二來開發者要自行實作只能從aosp那邊下手
