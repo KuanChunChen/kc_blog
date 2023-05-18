@@ -14,7 +14,8 @@
 }
 
 .rectangle-list{
-  padding-left:5em;
+  padding-left:1em;
+	padding-right:1em;
 }
 
 /* Automatic counters and numbering */
@@ -80,3 +81,21 @@ ol {
     left: -.5em;
     background: #337ab7;
   }
+
+	@media screen and (max-width: 480px) {
+	  .table_container {
+	    padding: 20px; /* 調整內邊距 */
+
+	  }
+
+	  .rectangle-list a {
+	    margin: 0.5em 0 0.5em 1.5em; /* 調整外邊距 */
+			width: 100%; /* 在小螢幕時設置容器寬度為 100% */
+			margin-left: 0; /* 在小螢幕時移除左邊距 */
+			margin-right: 0; /* 在小螢幕時移除右邊距 */
+	  }
+
+	  .rectangle-list a:before {
+			left: -2em; /* 調整計數器位置，往左移動更多 */
+	  }
+	}
