@@ -217,7 +217,7 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面",
+      "title"    : "來學習Jetpack Compose 做動畫splash頁面吧！",
       "category" : "",
       "tags"     : "Android, Kotlin, and JetpackCompose",
       "url"      : "/2021/09/17/android-kt-jetpack-compose-splash/",

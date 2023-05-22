@@ -1,38 +1,36 @@
 ---
 layout: post
-title: "[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面"
+title: "來學習Jetpack Compose 做動畫splash頁面吧！"
 date: 2021-09-17 15:02:11 +0800
 image: cover/ea-website-splash-cover-photo.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
+excerpt: "透過Jetpack Compose，你可以輕鬆地為你的應用程式添加動態、生動的啟動頁面。
+在這篇文章中，我們將帶你一步步學習如何使用Jetpack Compose創建動畫頁面"
+
 ---
 
-
-今天一樣帶大家來寫新的jetpack compose<br>
-那這篇目標會是做出一個<br>
+<div class="c-border-main-title-2">目標</div>
+這篇目標會是做出一個<br>
 簡單的splash 頁面<br>
-現在很多app都會做一個進版畫面<br>
-讓用戶清楚知道現在的app是什麼<br>
-或標示出公司等<br>
-讓用戶清楚知道自己正在用什麼app <br>
-
-所以<br>
 我們今天最後達成的目標會是這樣：<br>
 <br>
 
 <div align="center">
-  <img src="/mov/jetpack/ea_splash_app.gif" width="30%"/>
-</div>
+  <img src="/mov/jetpack/ea_splash_app.gif" width="60%"/>
+</div><br>
 
+<div class="c-border-main-title-2">前言</div>
+現在許多應用程式都會設計一個進入畫面，<br>
+以便讓用戶清楚地識別當前的應用程式或公司標誌，<br>
+確保用戶知道他們正在使用的是哪個應用程式。<br>
 
-<h4>前言</h4>
-<br>
-一個簡單的跳轉 + 簡單水平擴展的動畫<br>
-就能完成今天的目標<br>
-那這篇會以完成這個目標為主<br>
-有些jetpack compose基礎不了解的話<br>
-可以參考這一篇:<br>
-
+在本篇文章中，<br>
+我們將重點介紹如何實現一個簡單的跳轉功能，<br>
+並配合簡單的水平擴展動畫，<br>
+來達到今天的目標。<br>
+如果你對Jetpack Compose的基礎還不熟悉，<br>
+可以參考這篇文章以加深理解：<br>
 <br>
 <div align="start">
   <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">
@@ -42,48 +40,49 @@ categories: JetpackCompose
   <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a>
 </div>
 
-這篇開始時，已經假設會了基本的compsable的概念了，所以還沒了解的可以參考上面那篇。
+
+<div class="c-border-content-title-4">這篇開始時，已經假設會基本概念了，所以還沒了解的可以參考上面那篇。</div>
 
 ----
-<h4>第一步： 想好頁面架構</h4>
-
-這邊我習慣先想好我的view最後長相會是怎樣<br>
-所以我先套了一層box去當某個圖層的概念<br>
-之後我要這個區塊<br>
-就能跟其他部分做區別<br>
+<div class="c-border-content-title-4">第一步：想好頁面架構</div>
+首先，<br>
+我們需要先考慮這個頁面的整體結構。<br>
+通常習慣先想像最終畫面的樣子，<br>
+因此我透過使用一個Box元件作為不同圖層的概念來區分各個區塊。<br>
 
 <script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
-<h4>第二步 ： 實作 splash頁logo動畫</h4>
-
-這裡傳入function type <font color="red"> event:()->Unit = {} </font><br>
-讓我之後能觸發某個外層呼叫想要執行的動作<br>
-並預設要執行進場跟退場動畫多久<br>
-以及delay多久執行傳入的動作<br>
-當然也可以把這些變數拉到fun內變數去做<br>
-這邊為了讓大家方便理解所以就先寫在fun內<br>
+<div class="c-border-content-title-4">第二步 ： 實作 splash頁logo動畫</div>
+在這一步中，我們將傳入一個函式型別的參數 <font color="red"> event:()->Unit = {} </font><br>
+這樣我們就能在之後觸發某個外部呼叫所要執行的動作。<br>
+同時，<br>
+我們也可以預設動畫的進場與退場時間，<br>
+以及執行傳入動作前的延遲時間。<br>
+這些參數可以根據需求自行調整，<br>
+但為了方便理解，我們先將它們寫在函式內部。<br>
 
 <script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
+根據具體情況，<br>
+我希望我的 Logo 在頁面正中央並稍微偏上一點，<br>
+所以我加入了 Column 元件，並使用 Modifier 調整相關位置。<br>
+你可以參考下方程式碼的<font color="red">#23~#34行</font>，來調整相關位置。<br>
 
-根據情況加入colume<br>
-因為我希望我的logo是在正中間偏上方一點<br>
-所以加入colume用modify去調整相關位置<br>
-參數可參考下方code <font color="red">#23~#34行</font><br>
 <br>
 <script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
-<h4><font color="red">本文重頭戲</font></h4>
+<div class="c-border-content-title-4">第三步 ： 本文重頭戲</div>
 
-這裡要開始來做動畫了<br>
-使用到了jetpack compose的 AnimatedVisibility<br>
-這個類提供了很多內建方法<br>
-讓我們能快速做出一些基本的動畫<br>
+現在我們將進入動畫的關鍵部分，<br>
+使用了 Jetpack Compose 的 AnimatedVisibility。<br>
+這個類提供了許多內建的方法，<br>
+讓我們能夠快速實現一些基本的動畫效果。<br>
 
+在這一部分，<br>
+我們先來看一下前面我們定義的一個 val 變數 state。<br>
+這是 Jetpack Compose 中經常使用的概念之一，<br>
+因為在單獨使用 Composable 寫程式碼時，<br>
+它不會自動在 XML 中進行更新。<br>
 
-這裡要先看到我們前面寫了一個val變數state<br>
-這是在jetpack compose內滿常用到的一個概念<br>
-是因為現在單用composable寫code<br>
-不會現在xml裏面自動更新<br>
 <font color="red">要透過state告知composable更新</font><br>
 
 ```Kotlin
@@ -154,28 +153,26 @@ val state = remember {
 <br>
 
 
+接下來，<br>
+我們將開始進行動畫的製作。<br>
+在這裡，<br>
+我們同樣使用了 Jetpack Compose 的庫，<br>
+具體來說是使用了 AnimatedVisibility。<br>
 
-接著就是開始做動畫了<br>
-這邊一樣使用jetpack compose的lib去做<br>
-用了AnimatedVisibility<br>
-這裡直接呼叫提供了變數讓你輸入去用這個function<br>
-這邊我們用了這幾個<br><br>
-1.visibleState<br>
-2.enter<br>
-3.exit<br>
-
-visibleState就是這個動畫出現的狀態<br>
-所以配合前面remember的MutableTransitionState<br>
-可以觸發這個lib<br>
-也就是說當該狀態改變後<br>
-這個function就會再執行<br>
+在這個函式中，我們使用了以下幾個變數：<br>
+1.visibleState：這是控制動畫顯示狀態的變數。<br>
+透過前面提到的 remember 和 MutableTransitionState，<br>
+我們能夠觸發這個庫的動畫效果。<br><br>
+換句話說，當該狀態改變時，這個函式就會再次執行。<br>
+2.enter：這個變數用於定義動畫進場的效果。<br><br>
+3.exit：這個變數用於定義動畫退場的效果。<br>
 <br>
-然後enter跟exit分別為<br>
-入場與出場動畫<br>
-這邊比較好理解<br>
+透過設定這些變數，<br>
+我們能夠控制動畫的出現與消失，<br>
+從而營造出令人驚艷的視覺效果。<br><br>
 
-這邊就可以用官方提供的幾種方法套入內建動畫<br>
 
+理解上面後，就可以用官方提供的幾種內建動畫套入<br>
 
 
 進場使用 expandHorizontally：<br>
@@ -220,10 +217,9 @@ AnimatedVisibility(
       }
 ```
 
-之後再在funtion type範圍內（AnimatedVisibilityScope）<br>
-去加入你要顯示的物件就可以跑出動畫了<br>
-最後成品如下：
-
-
-
+接著，<br>
+在 AnimatedVisibilityScope 的函式型別範圍內，<br>
+你可以加入你想要顯示的元件，<br>
+這樣就能呈現出動畫效果了。<br>
+<div class="c-border-main-title-2">最終成品，範例程式碼</div>
 <script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>
