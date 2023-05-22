@@ -241,7 +241,7 @@
     } ,
   
     {
-      "title"    : "如何使用 Kotlin 在 Android 中解碼 Google Map polyline 並預估路徑或畫線 - 教學",
+      "title"    : "Kotlin教學：解碼Google Maps Polyline路徑與繪製線條",
       "category" : "",
       "tags"     : "Android, Kotlin, and Google map",
       "url"      : "/2020/12/07/android-kt-map/",

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "如何使用 Kotlin 在 Android 中解碼 Google Map polyline 並預估路徑或畫線 - 教學"
+title: "Kotlin教學：解碼Google Maps Polyline路徑與繪製線條"
 date: 2020-12-07 21:22:14 +0800
-image: cover/ea-website-google-map-decode-cover-photo.png
+image: cover/kotlin_tutorial_google_map-1.png
 tags: [Android,Kotlin,Google map]
 categories: Android
-excerpt: "本篇教學介紹如何使用Kotlin在Android中使用Google Map API decode polyline，來預估路徑或畫線。"
+excerpt: "本篇教學介紹如何使用Kotlin在Android中使用Google Map API decode polyline後，來預估路徑或畫線。"
 ---
 
 <div class="c-border-main-title-2">前言</div>
