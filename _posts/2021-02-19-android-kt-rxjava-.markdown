@@ -1,27 +1,32 @@
 ---
 layout: post
-title: "[Android][Kotlin][RxJava]「進階篇」RxJava 進階 - 一個extension funcion 實現網路連線Token重取"
+title: "Android開發 - RxJava搭配網路請求：實現Token重取與重新執行網路請求"
 date: 2021-02-19 21:37:48 +0800
-image: cover/ea-website-rxjava-cover-photo.png
+image: cover/ea-website-rxjava-cover-photo-new-1.png
 tags: [Android,Kotlin]
 categories: Android
+permalink: /android-kt-rxjava
+excerpt: "本文將介紹如何使用 RxJava 實現 Token 的重取並重新執行網路請求的方法，這將有助於提升應用程式的使用體驗"
 ---
-Hi ，大家好 ，很久沒發文了，<br>
-今天要來分享一個自己摸索出來的RxJava搭配網路請求<br>
-(如：OkHttp + Retrofit )的情況下，<br>
-重取Token並重新請求同一個連線的方法，<br>
-當然這個問題，是很常在一個重度連線需求的APP中碰到的，<br>
-當需要跟server做請求時，因為需要確認是合法使用者，<br>
-通常會使用Token的機制去確認使用者登入或存取Api的合法性，<br>
-而通常Token伴隨著過期的設計，<br>
-為了讓使用體驗很順，<br>
-在沒有意識到app某個網路請求中間做了重取Token的動作，<br>
-所以必需要達到一個更完善的流程。<br>
 
+<div class="c-border-main-title-2">前言</div>
+大家好！<br>
+很久沒發文了，<br>
+今天要分享一個在使用RxJava搭配網路請求（如：OkHttp + Retrofit）時，<br>
+解決重取Token並重新請求同一個連線的方法。<br>
+這個問題在需要大量連線的APP中很常見。<br>
+當我們需要與伺服器進行請求時，<br>
+為了確保使用者的合法性，<br>
+通常會使用Token機制來驗證登入或存取API的權限。<br>
+而Token通常有有效期限，<br>
+為了提供良好的使用體驗，<br>
+我們需要在未意識到某個網路請求中Token已過期時，<br>
+實現更完善的流程。<br>
 
+<div class="c-border-content-title-4">用到相關知識</div><br>
 在本篇，我會用到相關知識列出如下，<br>
 但本篇主要想分享實現Token重取網路連線重連的過程，<br>
-故不會特別一一細聊，如果大家有興趣可以去查，或者私信討論：
+故不會特別一一細聊，如果大家有興趣可以去查，或者發訊息給我討論：
 
 * Genetic
 * Kotlin extension
@@ -30,60 +35,79 @@ Hi ，大家好 ，很久沒發文了，<br>
 * Retrofit
 * Okhttp
 
+<div class="c-border-main-title-2">思路</div>
+
 <br>
-通常，當剛開始學會用app串接一個有Token機制的網路連線API時，<br>
-在沒有做任何配套措施時，實際跑的流程可能是：<br>
+通常，在應用程式中串接帶有擁有Token機制的請求API時，，<br>
+若未進行相應的處理，實際執行流程可能如下：
 
 ```
 App網路請求 -> Token過期 -> Server回傳存取過期 -> App根據錯誤做出對應處理
 ```
 <br>
 
-所以通常這種情況下，雖然有做出錯誤處理，<br>
-但是因為只要每當Token過期，<br>
-就會跳出錯誤處理（例如：告知使用者超過連線時間等），<br>
-可能跳一次兩次還好，使用者以為是偶發狀況，<br>
-但當多次後，使用者則可能認為你的App有問題，<br>
-沒辦法很順的執行下去，因此使用體驗下降，<br>
-造成後續更多問題。<br><br>
+在這種情況下，<br>
+儘管有進行錯誤處理，<br>
+但每當Token過期時，<br>
+會觸發錯誤處理（例如：通知使用者Token已超時），<br>
+一兩次可能還可以被視為偶發狀況，<br>
+但多次後，<br>
+使用者可能會認為你的應用程式有問題，<br>
+無法順利執行，<br>
+從而降低使用體驗，<br>引發更多後續問題。<br><br>
 
-所以這邊我預期，能讓Token重取後，<br>
-原本的網路連線能夠重新執行，希望有類似如下流程：<br>
+因此，<br>
+我期望實現以下類似的流程，<br>
+使得Token重新取得後，<br>
+原始的網路連線能夠重新執行：<br>
 
 ```
 App網路請求 -> Token過期 -> Server回傳存取過期 -> 執行重取Token流程 -> App重新執行同個網路請求
 ```
 <br>
 
+<div class="c-border-main-title-2">實際開發</div>
 在這篇，我主要使用的連線請求方式是 RxJava 的操作符，<br>
 封裝Retrofit並套用OkHttp去請求網路Api，這邊分享一種我網路請求的方式：<br>
 
 <script src="https://gist.github.com/KuanChunChen/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
 
-如果有人用過，RxJava去操作網路請求，通常會用一個Rx操作符去控制它，<br>
-這邊我用的是 Obserable，而上面這段code其中的 ：<br>
+
+如果有人使用 RxJava 來操作網路請求，<br>
+通常會使用一個 Rx 操作符來控制它。<br>
+在這裡，<br>
+我使用的是 Observable。而上面這段程式碼中的：<br>
 
 ```
 repo.getPaymentData(paymentRequest)
 ```
 
 
-返回的結果是一個Obserable<T> ，<br><br>
+返回的結果是一個 Observable。<br>
+如果只按照我之前所說的方式進行，<br>
+可能會出現第一種情況，<br>
+即網路請求後 Token 失效，<br>
+只進行了錯誤處理然後重取token，<br>
+並沒有重新請求api。<br>
 
-而如果只照著我上面那樣做，可能會像我一開始說的第一種情況，網路連線請求且Token失效後，只做了錯誤處理，連線並不會重連。<br><br>
+為了解決這個問題，<br>
+我開始研究如何使用 RxJava 在執行過程中重新取得 Token，<br>
+並使用新的 Token 重新連線到原本的 API。<br>
+因此，<br>
+我撰寫了一個 Kotlin 的擴展函式（extension function），<br>
+以實現這個功能：<br>
 
-所以為了解決這個問題，我就去研究了Rx要怎樣才能在跑的過程中去重取Token，並以 新的Token 去重連原本的API，因此我寫了個Kotlin的extension function 來達成這件事：<br>
+<script src="https://gist.github.com/KuanChunChen/889f4e67cf5edae25cffc006a25032dd.js"></script>
 
-<script src="https://gist.github.com/KuanChunChen/889f4e67cf5edae25cffc006a25032dd.js"></script><br>
-
-這邊我把上面這段程式碼分開來講：<br>
+<div class="c-border-content-title-4">程式碼解說</div><br>
 **1.當實際應用這個extension時，會像是這樣：**<br>
 
-<script src="https://gist.github.com/KuanChunChen/8ef1124c7d67d02b7e3024fc56735bc8.js"></script><br>
-
-用起來十分方便，想要有重取Token的時候可以直接加入，<br>
-不用的時候就照上方原本的方式也能執行，擴充相當方便，<br>
-僅需加入：<br>
+<script src="https://gist.github.com/KuanChunChen/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
+使用起來非常方便，<br>
+只需在需要重新取得 Token 的地方加入該擴展函式，<br>
+不需要重新取得 Token 的地方則繼續使用原本的方式執行。<br>
+這個擴展函式的應用非常靈活，<br>
+只需加入以下程式碼即可：<br>
 
 ```
 .retryNoKeyWhenError(resetRequest = {                       
@@ -129,7 +153,11 @@ resetRequest.invoke().delay(delayInSeconds, TimeUnit.SECONDS)
 所以又能接回原本的訂閱中，我認為還算滿方便的，<br>
 提供給大家參考看看。<br>
 
-最後，其實這裡只是一種例子，<br>
-如果你想要遇到其他情況時，有特定處理流程，<br>
-也能在這裡面新增，<br>
-你只要定義好錯誤常數 及 寫好處理流程，同樣能幫你執行處理的。
+最後，<br>
+你可以根據其他情況需要定義特定的錯誤常數和處理流程，<br>
+並在這個擴展函式中新增相應的處理邏輯。<br>
+無論遇到什麼情況，<br>
+只要事先定義好相應的錯誤常數和處理流程，<br>
+這樣擴展函式都能幫助你執行相應的處理。<br>
+你可以根據自己的需求在這個函式中進行擴充，<br>
+讓它更適應你的應用場景。<br>

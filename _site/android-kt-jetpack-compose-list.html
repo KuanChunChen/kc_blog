@@ -19,19 +19,19 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>來學習Jetpack Compose 做動畫splash頁面吧！</title>
+  <title>Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</title>
   
-  <meta name='description' content="透過Jetpack Compose，你可以輕鬆地為你的應用程式添加動態、生動的啟動頁面。 在這篇文章中，我們將帶你一步步學習如何使用Jetpack Compose創建動畫頁面">
+  <meta name='description' content="這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 ViewModel，以輕鬆實現動態更新的列表資料。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/" />
-<meta property="og:title" content="來學習Jetpack Compose 做動畫splash頁面吧！" />
-<meta property="og:description" content="透過Jetpack Compose，你可以輕鬆地為你的應用程式添加動態、生動的啟動頁面。 在這篇文章中，我們將帶你一步步學習如何使用Jetpack Compose創建動畫頁面" />
-<meta property="og:image" content="https://elegantaccess.org/images/cover/ea-website-splash-cover-photo.png" />
+  <meta property="og:url" content="https://elegantaccess.org/android-kt-jetpack-compose-list" />
+<meta property="og:title" content="Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料" />
+<meta property="og:description" content="這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 ViewModel，以輕鬆實現動態更新的列表資料。" />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/ea-website-lazy-colume-cover-photo-new-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -41,7 +41,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/">
+  <link rel='canonical' href="https://elegantaccess.org/android-kt-jetpack-compose-list">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -161,8 +161,8 @@
       <ul class="nav navbar-nav">
 
         <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        
-        <li><a href="/tags"><span class="glyphicon glyphicon-tags"></span> Tags</a></li>
+
+        <!-- <li><a href="/tags"><span class="glyphicon glyphicon-tags"></span> Tags</a></li> -->
 
       </ul>
     </div>
@@ -183,225 +183,150 @@
       </div>
     </header>
     
-    <div class="c-article__image opacity" style="background-image: url( /images/cover/ea-website-splash-cover-photo.png )"></div>
+    <div class="c-article__image opacity" style="background-image: url( /images/cover/ea-website-lazy-colume-cover-photo-new-1.png )"></div>
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">來學習Jetpack Compose 做動畫splash頁面吧！</h1>
+        <h1 class="c-article__title">Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</h1>
         <div class="c-article__date">
-          <span>2021, Sep 17</span>
+          <span>2021, Sep 28</span>
         </div>
       </header>
-      <div class="c-border-main-title-2">目標</div>
-<p>這篇目標會是做出一個<br />
-簡單的splash 頁面<br />
-我們今天最後達成的目標會是這樣：<br />
-<br /></p>
+      <div class="c-border-main-title-2">前言</div>
+<p>過去製作listview從 ListView -&gt; RecyclerView -&gt; 使用不同Adapter，都做過，
+現在進化到 Jetpack Compose 也能輕鬆製作列表了。<br />
+在我實際實作後，<br />
+發現這個過程相當簡單。<br />
+現在我想與大家分享我的經驗，<br />
+讓大家參考。<br />
+其中主要的難點是如何將 ViewModel 銜接到 Jetpack Compose 的程式碼中。<br /></p>
 
+<h2>實作效果：list列表與動態變更資料</h2>
 <div align="center">
-  <img src="/mov/jetpack/ea_splash_app.gif" width="60%" />
+  <img src="/mov/jetpack/ea_list_app.gif" width="50%" />
 </div>
+
 <p><br /></p>
 
-<div class="c-border-main-title-2">前言</div>
-<p>現在許多應用程式都會設計一個進入畫面，<br />
-以便讓用戶清楚地識別當前的應用程式或公司標誌，<br />
-確保用戶知道他們正在使用的是哪個應用程式。<br /></p>
+<div class="c-border-content-title-4">用到相關知識</div>
+<ul>
+  <li>JetpackCompose</li>
+  <li>Viewmodel</li>
+</ul>
 
-<p>在本篇文章中，<br />
-我們將重點介紹如何實現一個簡單的跳轉功能，<br />
-並配合簡單的水平擴展動畫，<br />
-來達到今天的目標。<br />
-如果你對Jetpack Compose的基礎還不熟悉，<br />
-可以參考這篇文章以加深理解：<br />
-<br /></p>
+<div class="c-border-main-title-2">實作</div>
+<div class="c-border-content-title-4">第一步：做出list的item</div>
+<p>這步跟以往用recycler view 做xml很像<br />
+也是先實作每個item想要長的模樣<br />
+因為前面幾篇有講過類似概念<br />
+所以不再贅述<br />
+有興趣想了解可以回去看前面的文章<br /></p>
+
 <div align="start">
-  <a href="/2021/09/13/android-kt-jetpack-compose-base/">
-    <img src="/images/cover/ea-website-base-cover-photo.png" alt="Cover" width="20%" />
+  <a href="/android-kt-jetpack-compose-base">
+    <img src="/images/cover/ea-website-base-cover-photo-new-1.png" alt="Cover" width="40%" />
+  </a>
+  <a align="right" href="/android-kt-jetpack-compose-base/">Android Jetpack Compose 基本應用教學</a><br /><br />
+
+  <a href="/2021/09/17/android-kt-jetpack-compose-splash">
+    <img src="/images/cover/ea-website-splash-cover-photo-new-1.png" alt="Cover" width="40%" />
   </a>
 
-  <a href="/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a>
+  <a align="right" href="/2021/09/17/android-kt-jetpack-compose-splash/">來學習Jetpack Compose 在splash頁面加入動畫吧！</a><br />
+
+
 </div>
-
-<div class="c-border-content-title-4">這篇開始時，已經假設會基本概念了，所以還沒了解的可以參考上面那篇。</div>
-
-<hr />
-
-<div class="c-border-content-title-4">第一步：想好頁面架構</div>
-<p>首先，<br />
-我們需要先考慮這個頁面的整體結構。<br />
-通常習慣先想像最終畫面的樣子，<br />
-因此我透過使用一個Box元件作為不同圖層的概念來區分各個區塊。<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
-
-<div class="c-border-content-title-4">第二步 ： 實作 splash頁logo動畫</div>
-<p>在這一步中，我們將傳入一個函式型別的參數 <font color="red"> event:()-&gt;Unit = {} </font><br />
-這樣我們就能在之後觸發某個外部呼叫所要執行的動作。<br />
-同時，<br />
-我們也可以預設動畫的進場與退場時間，<br />
-以及執行傳入動作前的延遲時間。<br />
-這些參數可以根據需求自行調整，<br />
-但為了方便理解，我們先將它們寫在函式內部。<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script>
 
 <p><br />
-根據具體情況，<br />
-我希望我的 Logo 在頁面正中央並稍微偏上一點，<br />
-所以我加入了 Column 元件，並使用 Modifier 調整相關位置。<br />
-你可以參考下方程式碼的<font color="red">#23~#34行</font>，來調整相關位置。<br /></p>
+直接看實作item範例 ：<br />
+<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
 
 <p><br />
-<script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script></p>
+主要就是實作item <br />
+可以搭配你自定義的data model、navigate引導等等 <br />
+然後配置好你各個元件要在的位置<br />
+以及套入資料
+<br /></p>
 
-<div class="c-border-content-title-4">第三步 ： 本文重頭戲</div>
+<h2>第二步：使用LazyColumn去實現list列表</h2>
 
-<p>現在我們將進入動畫的關鍵部分，<br />
-使用了 Jetpack Compose 的 AnimatedVisibility。<br />
-這個類提供了許多內建的方法，<br />
-讓我們能夠快速實現一些基本的動畫效果。<br /></p>
+<p>再來只要使用LazyColumn呼叫你剛剛做好的item<br />
+這樣就能實作一個list列表了<br />
+如下：
+<script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script></p>
 
-<p>在這一部分，<br />
-我們先來看一下前面我們定義的一個 val 變數 state。<br />
-這是 Jetpack Compose 中經常使用的概念之一，<br />
-因為在單獨使用 Composable 寫程式碼時，<br />
-它不會自動在 XML 中進行更新。<br /></p>
+<h2>第三步：加入viewmodel去變化資料</h2>
 
-<font color="red">要透過state告知composable更新</font>
-<p><br /></p>
-
-<pre><code class="language-Kotlin">val state = remember {
-
-    MutableTransitionState(false).apply {
-        ...
-    }
-}
-</code></pre>
-
-<p>所以這邊用到 <font color="red">remember</font> 來記住（儲存） MutableTransitionState 物件<br /></p>
-
-<p>這邊重點講一下 MutableTransitionState<br />
-它是一種包含了兩種狀態的 可觀察其狀態的項目<br />
-其中包含 <font color="red">currentState</font> 與 <font color="red">targetState</font><br /></p>
-
-<p>根據官方解釋 <br />
-當可觀察的state狀態改變時<br />
-會觸發系統讓compose去重組<br />
-所以我們可以利用這個特性<br />
-去實時變更我們compose元件的內容<br /></p>
-
-<p>例如我這邊的例子是：<br />
-1.先宣告一個staus 初始狀態為 false<br />
-2.在使用AnimatedVisibility設定該visibleState為我剛剛宣告的staus<br />
-3.回到剛剛宣吿val staus的地方加入apply<br />
+<p>這邊是我這篇實作的viewmodel<br />
+使用了jetpack的viewmodel<br />
+以及livedata去觀察資料的變化<br />
+<script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br />
-其中概念是<br />
-利用了kotlin extension 概念apply去執行scope內的code<br />
-因apply可以取得父類內的特性<br />
-所以設定MutableTransitionState內的targetState變為ture<br /></p>
-<font color="red">此舉動會讓MutableTransitionState發生改變<br /></font>
-<p>所以使用該staus的會觸發上方說過的特性<br />
-讓我們開發時有依據去判斷何時要改變compose<br /></p>
+<br /></p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">state</span> <span class="p">=</span> <span class="nf">remember</span> <span class="p">{</span>
+<font color="green">提示(hint) </font>
 
-        <span class="nc">MutableTransitionState</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="nf">apply</span> <span class="p">{</span>
-            <span class="c1">// Start the animation immediately.</span>
-            <span class="n">targetState</span> <span class="p">=</span> <span class="k">true</span>
-
-            <span class="o">..</span><span class="p">.</span>
-
-        <span class="p">}</span>
-    <span class="p">}</span>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>常常在code看到用底線_命名變數
+例如上面這個例子就是
+_devices 與 devices
+但卻不懂為何要用這樣同名的變數只加一個底線
+或取成不同名字的兩個變數
+這是我之前剛開始寫code會有的疑問
+後來我終於明白
+所以這邊來分享下
 </code></pre></div></div>
 
-<p>也就是說，<br />
-使用上面方法觸發動畫<br />
-觸發後同時觸發Handler去執行跳轉的動作：<br /></p>
+<p>其實意義就是在一個是private<br />
+主要用來給這個class內去操作<br />
+其他要操作的就是用public的變數去呼叫<br />
+如這個上面這個例子來說<br />
+_devices就是用來給class內部呼叫 要變的話只用內部的fun去操作<br />
+或者像是這邊套了livedata<br />
+讓其他開放的public變數去觀察或者取用 如本例devices<br />
+並藉由getter / setter 讓外部呼叫可以直接更改<br />
+而不會動到主要的那個變數<br /></p>
 
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">state</span> <span class="p">=</span> <span class="nf">remember</span> <span class="p">{</span>
-        <span class="nc">MutableTransitionState</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="nf">apply</span> <span class="p">{</span>
-            <span class="c1">// Start the animation immediately.</span>
-            <span class="n">targetState</span> <span class="p">=</span> <span class="k">true</span>
-
-            <span class="nc">Handler</span><span class="p">(</span><span class="nc">Looper</span><span class="p">.</span><span class="nf">getMainLooper</span><span class="p">()).</span><span class="nf">postDelayed</span><span class="p">({</span>
-                <span class="n">event</span><span class="p">.</span><span class="nf">invoke</span><span class="p">()</span>
-            <span class="p">},</span> <span class="n">delayMillis</span><span class="p">)</span>
-
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre></div></div>
-<p><br /></p>
-
-<p>接下來，<br />
-我們將開始進行動畫的製作。<br />
-在這裡，<br />
-我們同樣使用了 Jetpack Compose 的庫，<br />
-具體來說是使用了 AnimatedVisibility。<br /></p>
-
-<p>在這個函式中，我們使用了以下幾個變數：<br />
-1.visibleState：這是控制動畫顯示狀態的變數。<br />
-透過前面提到的 remember 和 MutableTransitionState，<br />
-我們能夠觸發這個庫的動畫效果。<br /><br />
-換句話說，當該狀態改變時，這個函式就會再次執行。<br />
-2.enter：這個變數用於定義動畫進場的效果。<br /><br />
-3.exit：這個變數用於定義動畫退場的效果。<br />
+<p><br />
 <br />
-透過設定這些變數，<br />
-我們能夠控制動畫的出現與消失，<br />
-從而營造出令人驚艷的視覺效果。<br /><br /></p>
-
-<p>理解上面後，就可以用官方提供的幾種內建動畫套入<br /></p>
-
-<p>進場使用 expandHorizontally：<br /></p>
-
-<div align="center" style="word-wrap: break-word;">
-
-<img src="https://developer.android.com/images/jetpack/compose/animation-expandhorizontally.gif" alt="" width="100" class="screenshot" />
+把剛剛前面實作的list相關與viewmodel包成content:<br />
+<script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br />
-<a href="https://developer.android.com/jetpack/compose/animation#entertransition"><font color="#999999" size="1">本圖片轉自google android developer</font></a>
-
-
-</div>
-<p><br /></p>
-
-<p>出場使用 fadeOut：<br /></p>
-
-<div align="center" style="word-wrap: break-word;">
-<img src="https://developer.android.com/images/jetpack/compose/animation-fadeout.gif" alt="" width="100" class="screenshot" />
 <br />
-<a href="https://developer.android.com/jetpack/compose/animation#entertransition"><font color="#999999" size="1">本圖片轉自google android developer</font></a>
+這邊主要加入這行<br />
+使得jetpack viewmodel變成實際要用在view上的data<br /></p>
 
-</div>
-
-<p>也就是說在 enter與exit分別帶入要的動畫如下：<br /></p>
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">AnimatedVisibility</span><span class="p">(</span>
-          <span class="n">visibleState</span> <span class="p">=</span> <span class="n">state</span><span class="p">,</span>
-          <span class="n">enter</span> <span class="p">=</span> <span class="nf">expandHorizontally</span><span class="p">(</span>
-              <span class="n">animationSpec</span> <span class="p">=</span> <span class="nf">tween</span><span class="p">(</span>
-                  <span class="n">durationMillis</span> <span class="p">=</span> <span class="n">startDurationMillis</span><span class="p">,</span>
-                  <span class="n">easing</span> <span class="p">=</span> <span class="nc">LinearEasing</span>
-              <span class="p">),</span>
-          <span class="p">),</span>
-          <span class="n">exit</span> <span class="p">=</span> <span class="nf">fadeOut</span><span class="p">(</span>
-              <span class="n">animationSpec</span> <span class="p">=</span> <span class="nf">tween</span><span class="p">(</span>
-                  <span class="n">durationMillis</span> <span class="p">=</span> <span class="n">exitDurationMillis</span><span class="p">,</span>
-                  <span class="n">easing</span> <span class="p">=</span> <span class="nc">LinearEasing</span>
-              <span class="p">),</span>
-          <span class="p">)</span>
-      <span class="p">){</span>
-        <span class="o">..</span><span class="p">.</span>
-      <span class="p">}</span>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">devices</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">BleDevice</span><span class="p">&gt;</span> <span class="k">by</span> <span class="n">deviceViewModel</span><span class="p">.</span><span class="n">devices</span><span class="p">.</span><span class="nf">observeAsState</span><span class="p">(</span><span class="nf">listOf</span><span class="p">())</span>
 </code></pre></div></div>
 
-<p>接著，<br />
-在 AnimatedVisibilityScope 的函式型別範圍內，<br />
-你可以加入你想要顯示的元件，<br />
-這樣就能呈現出動畫效果了。<br /></p>
-<div class="c-border-main-title-2">最終成品，範例程式碼</div>
-<script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>
+<p>這是我最後包成一個content的範例，供參考：<br />
+<script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br /></p>
 
+<h2>第四步：加進fragment看看吧</h2>
+<p><br />
+記得導入viewmodel<br /></p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">model</span><span class="p">:</span> <span class="nc">DeviceViewModel</span> <span class="k">by</span> <span class="nf">activityViewModels</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>之後帶帶入剛剛完成的content內<br />
+看範例：<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
+
+<p>所以之後要只要觀察到viewmodel內livedata有變化後<br />
+畫面就會自動更新了<br />
+真的挺方便啊！<br /></p>
+
+<p>接下來會介紹如何<br />
+新增下拉刷新<br /><br /></p>
+
+<p><a href="/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
+  <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="30%" />
+</a></p>
+
+<p><a align="right" href="/android-kt-jetpack-compose-swiperefresh/">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</a><br /></p>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
@@ -415,7 +340,7 @@
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=%E4%BE%86%E5%AD%B8%E7%BF%92Jetpack%20Compose%20%E5%81%9A%E5%8B%95%E7%95%ABsplash%E9%A0%81%E9%9D%A2%E5%90%A7!&url=https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=Jetpack%20Compose:%E4%BD%BF%E7%94%A8%20LazyColumn%20+%20ViewModel%20%E8%BC%95%E9%AC%86%E5%AF%A6%E7%8F%BE%E5%8B%95%E6%85%8B%E6%9B%B4%E6%96%B0%E7%9A%84%E5%88%97%E8%A1%A8%E8%B3%87%E6%96%99&url=https://elegantaccess.org/android-kt-jetpack-compose-list" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -447,7 +372,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android-kt-jetpack-compose-list" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -457,7 +382,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android-kt-jetpack-compose-list" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -621,7 +546,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/2021/09/17/android-kt-jetpack-compose-splash/" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android-kt-jetpack-compose-list" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 

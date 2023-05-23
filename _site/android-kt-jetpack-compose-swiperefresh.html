@@ -19,19 +19,19 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！</title>
+  <title>Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</title>
   
-  <meta name='description' content="根據android官方的發展推薦使用從listview -&gt; recyclerview -&gt; 新的listadapter出現現在進化到jetpack compose也能做出列表囉～所以又多了一種做列表的選擇我實作後發現挺簡單分享給大家參考主要的難點就是把viewmodel串近Jetpack compo...">
+  <meta name='description' content="這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 SwipeRefresh運用，以輕鬆實現動態更新的列表資料。">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/" />
-<meta property="og:title" content="[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！" />
-<meta property="og:description" content="根據android官方的發展推薦使用從listview -&gt; recyclerview -&gt; 新的listadapter出現現在進化到jetpack compose也能做出列表囉～所以又多了一種做列表的選擇我實作後發現挺簡單分享給大家參考主要的難點就是把viewmodel串近Jetpack compo..." />
-<meta property="og:image" content="https://elegantaccess.org/images/cover/ea-website-lazy-colume-cover-photo.png" />
+  <meta property="og:url" content="https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh" />
+<meta property="og:title" content="Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！" />
+<meta property="og:description" content="這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 SwipeRefresh運用，以輕鬆實現動態更新的列表資料。" />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/ea_swiperefresh_app-new-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -41,7 +41,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/">
+  <link rel='canonical' href="https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -161,8 +161,8 @@
       <ul class="nav navbar-nav">
 
         <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        
-        <li><a href="/tags"><span class="glyphicon glyphicon-tags"></span> Tags</a></li>
+
+        <!-- <li><a href="/tags"><span class="glyphicon glyphicon-tags"></span> Tags</a></li> -->
 
       </ul>
     </div>
@@ -183,151 +183,90 @@
       </div>
     </header>
     
-    <div class="c-article__image opacity" style="background-image: url( /images/cover/ea-website-lazy-colume-cover-photo.png )"></div>
+    <div class="c-article__image opacity" style="background-image: url( /images/cover/ea_swiperefresh_app-new-1.png )"></div>
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！</h1>
+        <h1 class="c-article__title">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</h1>
         <div class="c-article__date">
-          <span>2021, Sep 28</span>
+          <span>2021, Oct 28</span>
         </div>
       </header>
-      <p><br />
-根據android官方的發展<br />
-推薦使用從listview -&gt; recyclerview -&gt; 新的listadapter出現<br />
-現在進化到jetpack compose也能做出列表囉～<br />
-所以又多了一種做列表的選擇<br />
-我實作後<br />
-發現挺簡單<br />
-分享給大家參考<br />
-主要的難點就是把viewmodel串近Jetpack compose的code裏面<br />
-<br /></p>
+      <div class="c-border-main-title-2">前言</div>
+<p>延續上一篇文章：<br /></p>
 
-<h2>實作效果：list列表與動態變更資料</h2>
-<div align="center">
-  <img src="/mov/jetpack/ea_list_app.gif" width="30%" />
-</div>
-
-<p><br /></p>
-
-<p>而這裡主要用到 <br /></p>
-<ul>
-  <li>JetpackCompose</li>
-  <li>Viewmodel</li>
-</ul>
-
-<h2>第一步：做出list的item</h2>
-<p>這步跟以往用recycler view 做xml很像<br />
-也是先實作每個item想要長的模樣<br />
-因為前面幾篇有講過類似概念<br />
-所以不再贅述<br />
-有興趣想了解可以回去看前面的文章<br /></p>
-
-<div align="start">
-  <a href="/2021/09/13/android-kt-jetpack-compose-base/">
-    <img src="/images/cover/ea-website-base-cover-photo.png" alt="Cover" width="20%" />
-  </a>
-  <a align="right" href="/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a><br /><br />
-
-  <a href="/2021/09/17/android-kt-jetpack-compose-splash/">
-    <img src="/images/cover/ea-website-splash-cover-photo.png" alt="Cover" width="20%" />
-  </a>
-
-  <a align="right" href="/2021/09/17/android-kt-jetpack-compose-splash/">[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面</a><br />
-
-
-</div>
-
-<p><br />
-直接看實作item範例 ：<br />
-<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
-
-<p><br />
-主要就是實作item <br />
-可以搭配你自定義的data model、navigate引導等等 <br />
-然後配置好你各個元件要在的位置<br />
-以及套入資料
-<br /></p>
-
-<h2>第二步：使用LazyColumn去實現list列表</h2>
-
-<p>再來只要使用LazyColumn呼叫你剛剛做好的item<br />
-這樣就能實作一個list列表了<br />
-如下：
-<script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script></p>
-
-<h2>第三步：加入viewmodel去變化資料</h2>
-
-<p>這邊是我這篇實作的viewmodel<br />
-使用了jetpack的viewmodel<br />
-以及livedata去觀察資料的變化<br />
-<script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
-<br />
-<br /></p>
-
-<font color="green">提示(hint) </font>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>常常在code看到用底線_命名變數
-例如上面這個例子就是
-_devices 與 devices
-但卻不懂為何要用這樣同名的變數只加一個底線
-或取成不同名字的兩個變數
-這是我之前剛開始寫code會有的疑問
-後來我終於明白
-所以這邊來分享下
-</code></pre></div></div>
-
-<p>其實意義就是在一個是private<br />
-主要用來給這個class內去操作<br />
-其他要操作的就是用public的變數去呼叫<br />
-如這個上面這個例子來說<br />
-_devices就是用來給class內部呼叫 要變的話只用內部的fun去操作<br />
-或者像是這邊套了livedata<br />
-讓其他開放的public變數去觀察或者取用 如本例devices<br />
-並藉由getter / setter 讓外部呼叫可以直接更改<br />
-而不會動到主要的那個變數<br /></p>
-
-<p><br />
-<br />
-把剛剛前面實作的list相關與viewmodel包成content:<br />
-<script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
-<br />
-<br />
-這邊主要加入這行<br />
-使得jetpack viewmodel變成實際要用在view上的data<br /></p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">devices</span><span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">BleDevice</span><span class="p">&gt;</span> <span class="k">by</span> <span class="n">deviceViewModel</span><span class="p">.</span><span class="n">devices</span><span class="p">.</span><span class="nf">observeAsState</span><span class="p">(</span><span class="nf">listOf</span><span class="p">())</span>
-</code></pre></div></div>
-
-<p>這是我最後包成一個content的範例，供參考：<br />
-<script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br /></p>
-
-<h2>第四步：加進fragment看看吧</h2>
-<p><br />
-記得導入viewmodel<br /></p>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">model</span><span class="p">:</span> <span class="nc">DeviceViewModel</span> <span class="k">by</span> <span class="nf">activityViewModels</span><span class="p">()</span>
-</code></pre></div></div>
-
-<p>之後帶帶入剛剛完成的content內<br />
-看範例：<br /></p>
-
-<script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
-
-<p>所以之後要只要觀察到viewmodel內livedata有變化後<br />
-畫面就會自動更新了<br />
-真的挺方便啊！<br /></p>
-
-<p>接下來會介紹如何<br />
-新增下拉刷新<br /><br /></p>
-
-<p><a href="/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
+<p><a href="/android-kt-jetpack-compose-list/">
   <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="20%" />
 </a></p>
 
-<p><a align="right" href="/2021/10/28/android-kt-jetpack-compose-swiperefresh/">[Android][Kotlin][JetpackCompose]基礎篇(3) - JetpackCompose SwipeRefresh 輕鬆讓list刷新！</a><br /></p>
+<p><a align="right" href="/android-kt-jetpack-compose-list/">Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</a><br /></p>
+
+<p>今天會繼續完整基於Jetpack Compose LazyColumn的下拉刷新功能<br /></p>
+
+<div class="c-border-main-title-2">實作效果：下拉列表刷新</div>
+
+<div align="center">
+  <img src="/mov/jetpack/ea_swiperefresh_app.gif" width="30%" />
+</div>
+
+<div class="c-border-content-title-4">用到相關知識</div>
+<ul>
+  <li>JetpackCompose SwipeRefresh, LazyColumn</li>
+  <li>Viewmodel</li>
+</ul>
+
+<p>只需要結合之前所介紹的概念，<br />
+再應用 Jetpack Compose 中的 SwipeRefresh 元件，<br />
+就能輕鬆實現目標功能。<br /></p>
+
+<p>透過這個教學，<br />
+你將學習如何運用先前所學，<br />
+並將 SwipeRefresh 結合到你的應用程式中。<br />
+這個過程非常直觀，<br />
+只需要幾個簡單的步驟，<br />
+你就可以為你的列表加入下拉刷新的功能。<br /></p>
+
+<script src="https://gist.github.com/KuanChunChen/fe87780cc0639b8458d764ce30ee54ed.js"></script>
+
+<p><br /></p>
+
+<div class="c-border-content-title-4">各變數的意義</div>
+
+<p>state就是觀察是否下拉刷新的boolean<br /></p>
+
+<p>onRefresh就是讓你帶入要做事情的scope<br /></p>
+
+<p>indicator可以讓你下拉刷新時下來轉圈圈那個符號的細項設定<br />
+其中程式碼是這樣<br /></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>indicator = { state, trigger -&gt;
+            SwipeRefreshIndicator(
+                state = state,
+                refreshTriggerDistance = trigger,
+                contentColor = Color.Black,
+                arrowEnabled = true,
+                fade = true,
+                scale = true,
+                backgroundColor = MaterialTheme.colors.primary,
+            )
+}
+</code></pre></div></div>
+<p>其他的話依照上面命名名稱<br />
+可以設定一些 大小、背景色、箭頭是否出現、箭頭顏色、刷新距離等等<br /></p>
+
+<p>除此之外<br />
+另外一個重點是<br />
+swiperefresh的state<br />
+會根據你的狀態判斷是否顯示轉圈圈動畫<br />
+所以當狀態為true時<br />
+轉圈圈那個等待動畫就會存在<br />
+當改為false時<br />
+這邊我是用livedata然後obsere as state<br />
+然後觀察刷新完取得資料才<br />
+讓他設定結束<br /></p>
+
+<p>那其實這個下拉刷新<br />
+簡單就完成了<br />
+你也可以趕快試試！<br /></p>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
@@ -341,7 +280,7 @@ _devices就是用來給class內部呼叫 要變的話只用內部的fun去操作
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=[Android][Kotlin][JetpackCompose]%E5%9F%BA%E7%A4%8E%E7%AF%87(2)%20-%20JetpackCompose%20LazyColumn%20+%20Jetpack%20Viewmodel%20%E8%BC%95%E9%AC%86%E5%81%9A%E5%87%BAlist%E5%88%97%E8%A1%A8%E9%82%84%E8%83%BD%E5%8B%95%E6%85%8B%E6%9B%B4%E6%96%B0%E8%B3%87%E6%96%99!&url=https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/" title="Share
+          <a href="https://twitter.com/intent/tweet?text=Android%20Jetpack%20Compose%20SwipeRefresh:%E8%BC%95%E9%AC%86%E5%AF%A6%E7%8F%BE%E5%88%97%E8%A1%A8%E7%9A%84%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0%E5%8A%9F%E8%83%BD!&url=https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -373,7 +312,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -383,7 +322,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -547,7 +486,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/2021/09/28/android-kt-jetpack-compose-list/" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/android-kt-jetpack-compose-swiperefresh" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 

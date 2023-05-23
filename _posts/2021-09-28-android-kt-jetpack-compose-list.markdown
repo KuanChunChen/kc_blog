@@ -1,36 +1,36 @@
 ---
 layout: post
-title: "[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！"
+title: "Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料"
 date: 2021-09-28 11:03:41 +0800
-image: cover/ea-website-lazy-colume-cover-photo.png
+image: cover/ea-website-lazy-colume-cover-photo-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
+permalink: /android-kt-jetpack-compose-list
+excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 ViewModel，以輕鬆實現動態更新的列表資料。"
 ---
-<br>
-根據android官方的發展<br>
-推薦使用從listview -> recyclerview -> 新的listadapter出現<br>
-現在進化到jetpack compose也能做出列表囉～<br>
-所以又多了一種做列表的選擇<br>
-我實作後<br>
-發現挺簡單<br>
-分享給大家參考<br>
-主要的難點就是把viewmodel串近Jetpack compose的code裏面<br>
-<br>
+<div class="c-border-main-title-2">前言</div>
+過去製作listview從 ListView -> RecyclerView -> 使用不同Adapter，都做過，
+現在進化到 Jetpack Compose 也能輕鬆製作列表了。<br>
+在我實際實作後，<br>
+發現這個過程相當簡單。<br>
+現在我想與大家分享我的經驗，<br>
+讓大家參考。<br>
+其中主要的難點是如何將 ViewModel 銜接到 Jetpack Compose 的程式碼中。<br>
 
 <h2>實作效果：list列表與動態變更資料</h2>
 <div align="center">
-  <img src="/mov/jetpack/ea_list_app.gif" width="30%"/>
+  <img src="/mov/jetpack/ea_list_app.gif" width="50%"/>
 </div>
 
 <br>
 
-而這裡主要用到 <br>
+<div class="c-border-content-title-4">用到相關知識</div>
 * JetpackCompose
 * Viewmodel
 
 
-
-<h2>第一步：做出list的item</h2>
+<div class="c-border-main-title-2">實作</div>
+<div class="c-border-content-title-4">第一步：做出list的item</div>
 這步跟以往用recycler view 做xml很像<br>
 也是先實作每個item想要長的模樣<br>
 因為前面幾篇有講過類似概念<br>
@@ -38,16 +38,16 @@ categories: JetpackCompose
 有興趣想了解可以回去看前面的文章<br>
 
 <div align="start">
-  <a href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">
-    <img src="/images/cover/ea-website-base-cover-photo.png" alt="Cover" width="20%" >
+  <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">
+    <img src="/images/cover/ea-website-base-cover-photo-new-1.png" alt="Cover" width="40%" >
   </a>
-  <a align="right" href="{{site.baseurl}}/2021/09/13/android-kt-jetpack-compose-base/">[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例</a><br><br>
+  <a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-base/">Android Jetpack Compose 基本應用教學</a><br><br>
 
-  <a href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">
-    <img src="/images/cover/ea-website-splash-cover-photo.png" alt="Cover" width="20%" >
+  <a href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash">
+    <img src="/images/cover/ea-website-splash-cover-photo-new-1.png" alt="Cover" width="40%" >
   </a>
 
-  <a align="right" href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">[Android][Kotlin][JetpackCompose]基礎篇(1) - JetpackCompose 做出帶動畫的splash頁面</a><br>
+  <a align="right" href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">來學習Jetpack Compose 在splash頁面加入動畫吧！</a><br>
 
 
 </div>
@@ -144,7 +144,7 @@ val model: DeviceViewModel by activityViewModels()
 新增下拉刷新<br><br>
 
 <a href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
-  <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="20%" >
+  <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="30%" >
 </a>
 
-<a align="right" href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">[Android][Kotlin][JetpackCompose]基礎篇(3) - JetpackCompose SwipeRefresh 輕鬆讓list刷新！</a><br>
+<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-swiperefresh/">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</a><br>

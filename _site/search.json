@@ -193,10 +193,10 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(3) - JetpackCompose SwipeRefresh 輕鬆讓list刷新！",
+      "title"    : "Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！",
       "category" : "",
       "tags"     : "Android, Kotlin, and JetpackCompose",
-      "url"      : "/2021/10/28/android-kt-jetpack-compose-swiperefresh/",
+      "url"      : "/android-kt-jetpack-compose-swiperefresh",
       "date"     : "2021-10-28 14:41:12 +0800"
     } ,
   
@@ -209,39 +209,39 @@
     } ,
   
     {
-      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(2) - JetpackCompose LazyColumn + Jetpack Viewmodel 輕鬆做出list列表還能動態更新資料！",
+      "title"    : "Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料",
       "category" : "",
       "tags"     : "Android, Kotlin, and JetpackCompose",
-      "url"      : "/2021/09/28/android-kt-jetpack-compose-list/",
+      "url"      : "/android-kt-jetpack-compose-list",
       "date"     : "2021-09-28 11:03:41 +0800"
     } ,
   
     {
-      "title"    : "來學習Jetpack Compose 做動畫splash頁面吧！",
+      "title"    : "來學習Jetpack Compose 在splash頁面加入動畫吧！",
       "category" : "",
       "tags"     : "Android, Kotlin, and JetpackCompose",
-      "url"      : "/2021/09/17/android-kt-jetpack-compose-splash/",
+      "url"      : "/android-kt-jetpack-compose-splash",
       "date"     : "2021-09-17 15:02:11 +0800"
     } ,
   
     {
-      "title"    : "[Android][Kotlin][JetpackCompose]基礎篇(0) - JetpackCompose view元件範例",
+      "title"    : "Android Jetpack Compose 基本應用教學",
       "category" : "",
       "tags"     : "Android, Kotlin, and JetpackCompose",
-      "url"      : "/2021/09/13/android-kt-jetpack-compose-base/",
+      "url"      : "/android-kt-jetpack-compose-base",
       "date"     : "2021-09-13 16:00:48 +0800"
     } ,
   
     {
-      "title"    : "[Android][Kotlin][RxJava]「進階篇」RxJava 進階 - 一個extension funcion 實現網路連線Token重取",
+      "title"    : "Android開發 - RxJava搭配網路請求：實現Token重取與重新執行網路請求",
       "category" : "",
       "tags"     : "Android and Kotlin",
-      "url"      : "/2021/02/19/android-kt-rxjava/",
+      "url"      : "/android-kt-rxjava",
       "date"     : "2021-02-19 21:37:48 +0800"
     } ,
   
     {
-      "title"    : "Kotlin教學：解碼Google Maps Polyline路徑與繪製線條",
+      "title"    : "Android Kotlin教學：解碼Google Maps Polyline路徑與繪製線條",
       "category" : "",
       "tags"     : "Android, Kotlin, and Google map",
       "url"      : "/2020/12/07/android-kt-map/",
