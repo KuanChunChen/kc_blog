@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "使用 Kotlin Flow 重構網路連線請求，取代 RxJava 或 Retrofit callback",
+      "category" : "",
+      "tags"     : "Kotlin and Android",
+      "url"      : "/kotlin_flow_refactor",
+      "date"     : "2023-05-24 15:56:16 +0800"
+    } ,
+  
+    {
       "title"    : "打造流暢Android App跳轉體驗！Navigation with Kotlin 一篇文章就能搞定你的APP跳轉問題！",
       "category" : "",
       "tags"     : "Kotlin, Navigation, and Android",
