@@ -91,9 +91,11 @@ layout: default
   </div>
 </aside> <!-- /.c-sidebar -->
 
-<main class="c-content">
 
+<main class="c-content">
+  {% include header.html %}
   {% include navbar.html %}
   {{ content }}
 
+  
 </main>
