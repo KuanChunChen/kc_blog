@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ChatGPT應用教學-把ChatGPT串進你的Line聊天室"
+title: "ChatGPT 教學 - Line Bot串接Open AI ChatGPT"
 date: 2023-02-02 16:24:56 +0800
 image: cover/kotlin-cht-gpt-line-bot-open-ai-1.png
 tags: [OpenAI,Chat GPT,AI]

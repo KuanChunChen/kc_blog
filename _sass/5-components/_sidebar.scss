@@ -10,6 +10,7 @@
   top: 0;
   left: 0;
   bottom: 0;
+  margin-top: 56px;
   width: 360px;
   padding: 40px 20px 20px;
   text-align: center;
@@ -153,6 +154,8 @@
   .c-sidebar {
     position: relative;
     width: 100%;
+    margin-top: 112px;
+
     padding: 20px;
     .c-contact-menu {
       margin: 20px 0;

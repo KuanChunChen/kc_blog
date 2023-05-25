@@ -1,20 +1,40 @@
-<header class="c-header">
-  <div class="c-header__box">
-    <div class="c-search">
-      <div class="c-search__box">
-        <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
-        <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
-        <div data-icon='ei-search' data-size='s'></div>
+<header class="topbar">
+    <div class="container">
+      <div class="row">
+        <!-- social icon-->
+        <div class="col-sm-12">
+          <ul class="social-network">
+            {% if site.social-twitter %}
+            <li>
+              <a class="waves-effect waves-dark" href="https://twitter.com/{{ site.social-twitter }}">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+            {% else %}
+            {% endif %}
+
+            {% if site.social-facebook %}
+            <li>
+              <a class="waves-effect waves-dark" href="https://facebook.com/{{ site.social-facebook }}">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+            {% else %}
+            {% endif %}
+
+            {% if site.social-instagram %}
+            <li>
+              <a class="waves-effect waves-dark" href="https://instagram.com/{{ site.social-instagram }}"><i class="fa fa-instagram">
+                </i>
+              </a>
+            </li>
+            {% else %}
+            {% endif %}
+
+  
+          </ul>
+        </div>
+
       </div>
-      <ul id="js-results-container" class="c-search-results-list"></ul>
     </div>
-    <div class="c-nav">
-      <ul class="c-nav__list u-lists-reset">
-        <li class="c-nav__item is-active">
-          <div data-icon='ei-pencil' data-size='s'></div> Posts</li>
-        <li class="c-nav__item">
-          <div data-icon='ei-star' data-size='s'></div> Categories</li>
-      </ul>
-    </div>
-  </div>
-</header> <!-- /.c-header -->
+</header>

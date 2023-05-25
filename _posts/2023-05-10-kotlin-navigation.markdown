@@ -24,7 +24,7 @@ excerpt: "「打造流暢Android App跳轉體驗！」使用 Jetpack Navigation 
 </p>
 
 <div class="p-img-container-single">
-  <img src="/images/navigation/01.png" alt="">
+  <img src="/images/navigation/01.png" alt="navigation">
 </div><br>
 
 <div class="c-border-main-title-2">Navigation 導入開發</div>
