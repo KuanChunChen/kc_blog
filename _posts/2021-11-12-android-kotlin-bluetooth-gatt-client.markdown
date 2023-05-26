@@ -2,7 +2,7 @@
 layout: post
 title: "Android低功耗藍芽Gatt連線教學：使用Kotlin實作"
 date: 2021-11-12 16:16:32 +0800
-image: cover/android-kotlin-bluetooth-gatt-client.png
+image: cover/bluetooth_with_kotlin-1.png
 tags: [Android,Bluetooth,Kotlin]
 categories: Bluetooth
 excerpt: "本篇文章介紹了如何使用Android平台上的Kotlin語言實現低功耗藍芽Gatt連線，內容包括建立Gatt連線、讀取Gatt服務、設置Gatt特性並進行數據通訊等。"
