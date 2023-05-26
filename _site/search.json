@@ -1,7 +1,7 @@
 [
   
     {
-      "title"    : "使用 Kotlin Flow 重構網路連線請求，取代 RxJava 或 Retrofit callback",
+      "title"    : "Kotlin Flow 重構網路連線 詳細步驟教學",
       "category" : "",
       "tags"     : "Kotlin and Android",
       "url"      : "/kotlin_flow_refactor",

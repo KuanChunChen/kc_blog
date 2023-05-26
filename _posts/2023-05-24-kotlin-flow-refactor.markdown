@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "使用 Kotlin Flow 重構網路連線請求，取代 RxJava 或 Retrofit callback"
+title: "Kotlin Flow 重構網路連線 詳細步驟教學"
 date: 2023-05-24 15:56:16 +0800
-image: cover/navigation_with_kotlin-1.png
+image: cover/retrofit_with_kotlin_flow-1.png
 tags: [Kotlin,Android]
 permalink: /kotlin_flow_refactor
 categories: Kotlin
-excerpt: "本次文章旨在修改和重構現有的 網路請求 程式碼，並使用 Kotlin Flow 取代原本的 Retrofit 回調函式(callback) 或是RxJava"
+excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教學將為您提供詳細的步驟指南，讓您在實現高效、穩定的網路連線時能夠游刃有餘"
 ---
 
 
@@ -135,6 +135,15 @@ excerpt: "本次文章旨在修改和重構現有的 網路請求 程式碼，�
   使用 Kotlin Flow 可以改善網路請求的程式結構，<br>
   使異步操作更加容易管理和處理。<br>
   可以提升程式碼的可讀性、可維護性和可擴展性，同時也帶來了更好的異步編程體驗。<br><br>
+
+  另外像是<br>
+  有一些lib幫你寫好 retrofit call 轉換成flow<br>
+  可以直接套在retrofit的interface中<br>
+  但是這種lib比較偏第三方或個人分享<br>
+  有時候在某些project或產品<br>
+  導入lib都需評估的狀況下<br>
+  不會導入太多不常用的lib<br>
+  就會自己刻<br>
 
   當然可以用的都是好方法<br>
   找到最符合你專案環境的方法並有效率的解決問題也是很重要的！<br>
