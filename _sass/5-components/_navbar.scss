@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 12;
+  z-index: 1000;
   margin-top: 32px;
   padding: 0 16px;
   display: flex;
@@ -46,7 +46,7 @@
   color: #ffffff;
 }
 .navbar .navbar-nav .nav-item .nav-link:hover{
-  color: #F6C33F; 
+  color: #F6C33F;
 }
 
 .mx-background-top-linear {
@@ -57,4 +57,10 @@
   background: linear-gradient(135deg, #616161 25%, #9E9E9E 25%);
 
 
+}
+
+
+#smart-button-container {
+  margin-top: 10px;
+  z-index: 10;
 }
