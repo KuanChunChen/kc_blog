@@ -3,11 +3,9 @@
 =============== */
 
 pre {
-  overflow: auto;
-  padding: 25px;
-  font-size: 14px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-all;
-  font-family: Courier, monospace;
+  background-color: #f4f5f6;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  padding: 1em;
+  overflow-x: auto;
 }
