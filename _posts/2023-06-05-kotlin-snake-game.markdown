@@ -48,7 +48,23 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
   <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
-      在 SnakeGameView 類中，定義遊戲所需的變量，如蛇的位置、大小、方向等。
+      在 SnakeGameView 類中，定義遊戲所需的變量，如蛇的位置、大小、方向等。<br>
+      以下概略解釋各項用途
+      screenWidth:畫布寬(蛇可以跑的區域)
+      screenHeight:畫布長(蛇可以跑的區域)
+      snakeSize: 蛇的大小
+      snake:整隻蛇座標存在LinkedList內
+      food：食物座標
+      foodPaint：食物樣式
+      direction：蛇頭方向
+      score：得分
+      updateHandler：做一個間隔事件，讓貪食蛇持續更新畫面
+      snakeHeadBitmap：蛇頭的bitmap圖
+      snakeBodyBitmap：蛇身的bitmap圖
+      borderColor：邊框顏色
+      borderWidth：邊框寬度
+      borderPaint：邊框樣式
+      pendingDirection：即將轉向的方向
   </div><br>
 </p>
 
