@@ -18,7 +18,7 @@ document.getElementById('fb_share_offical').onclick = function() {
   FB.ui({
     display: 'popup',
     method: 'share',
-    href: encodeURIComponent(location.href);,
+    href: encodeURIComponent(location.href),
     hashtag: '#Android,#Kotlin,#ElegantAccess',
     quote: 'quote'
   }, function(response){});

@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Android 作品集",
+      "category" : "",
+      "tags"     : "Kotlin and Android",
+      "url"      : "/app_portfolio",
+      "date"     : "2023-06-08 18:35:06 +0800"
+    } ,
+  
+    {
       "title"    : "PM、RD看過來，從零開始制定或開發App瀏覽器！",
       "category" : "",
       "tags"     : "Kotlin and Android",
