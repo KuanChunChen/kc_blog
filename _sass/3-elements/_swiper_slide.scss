@@ -164,7 +164,7 @@ img:not([draggable]), embed, object, video {
 }
 
 .swiper-pagination {
-    position: absolute;
+    position: relative;
     text-align: center;
     -webkit-transition: .3s;
     transition: .3s;
