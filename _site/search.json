@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學",
+      "category" : "",
+      "tags"     : "Kotlin and Android",
+      "url"      : "/kotlin_room",
+      "date"     : "2023-08-14 09:45:01 +0800"
+    } ,
+  
+    {
       "title"    : "Android portfolio",
       "category" : "",
       "tags"     : "Kotlin and Android",

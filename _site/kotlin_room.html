@@ -19,19 +19,19 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！</title>
+  <title>掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學</title>
 
-  <meta name='description' content="在本教學中，我們將帶領您一步一步打造經典貪吃蛇遊戲，讓您在學習過程中充分體驗到遊戲開發的樂趣！無論您是初學者還是有經驗的開發者，都能藉由這個實作教學加深對Kotlin語言和遊戲開發的理解。讓我們一起重溫這款老少咸宜的遊戲，動手開創您自己的經典回憶吧！">
+  <meta name='description' content="在這篇實戰教學中，我們將深入探討如何在 Android 應用程式中使用 Kotlin 與 Room 來實現持久化存儲。無論你是初學者還是有經驗的開發者，這篇教學都將為你提供實用的知識和技巧，讓你能夠更有效地開發 Android 應用程式。讓我們一起探索 Kotlin 與 Room 資料庫的強大功能，並將它們完美地...">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="https://elegantaccess.org/kotlin_snake_game" />
-<meta property="og:title" content="Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！" />
-<meta property="og:description" content="在本教學中，我們將帶領您一步一步打造經典貪吃蛇遊戲，讓您在學習過程中充分體驗到遊戲開發的樂趣！無論您是初學者還是有經驗的開發者，都能藉由這個實作教學加深對Kotlin語言和遊戲開發的理解。讓我們一起重溫這款老少咸宜的遊戲，動手開創您自己的經典回憶吧！" />
-<meta property="og:image" content="https://elegantaccess.org/images/snake_game/kotlin_snake_game_post.png" />
+  <meta property="og:url" content="https://elegantaccess.org/kotlin_room" />
+<meta property="og:title" content="掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學" />
+<meta property="og:description" content="在這篇實戰教學中，我們將深入探討如何在 Android 應用程式中使用 Kotlin 與 Room 來實現持久化存儲。無論你是初學者還是有經驗的開發者，這篇教學都將為你提供實用的知識和技巧，讓你能夠更有效地開發 Android 應用程式。讓我們一起探索 Kotlin 與 Room 資料庫的強大功能，並將它們完美地..." />
+<meta property="og:image" content="https://elegantaccess.org/images/cover/kotlin_room-1.png" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -41,7 +41,7 @@
 
 
 
-  <link rel='canonical' href="https://elegantaccess.org/kotlin_snake_game">
+  <link rel='canonical' href="https://elegantaccess.org/kotlin_room">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="https://elegantaccess.org/feed.xml">
 
   <!-- bootstarp -->
@@ -218,188 +218,128 @@
       </div>
     </header>
     
-    <div class="c-article__image opacity" style="background-image: url( /images/snake_game/kotlin_snake_game_post.png )"></div>
+    <div class="c-article__image opacity" style="background-image: url( /images/cover/kotlin_room-1.png )"></div>
     
     <div class="c-wrap-content">
       <header class="c-article__header">
-        <h1 class="c-article__title">Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！</h1>
+        <h1 class="c-article__title">掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學</h1>
         <div class="c-article__date">
-          <span>2023, Jun 05</span>
+          <span>2023, Aug 14</span>
         </div>
       </header>
       <div class="c-border-main-title-2">前言</div>
-<div class="c-border-content-title-4">
-    在本篇教學中
-</div>
-<p>
-我們將學習如何使用 Android 的自定義 View 來實現經典的 Snake 遊戲。
-<div class="c-border-content-title-4">
-    以下是我們將要實現的功能
-</div>
-1.蛇的移動和轉向<br />
-2.隨機生成食物<br />
-3.蛇吃食物後增長<br />
-4.碰到邊界或自身時遊戲重置<br />
-<div align="center">
-  <img src="/images/snake_game/snake_demo.gif" alt="Cover" width="20%" />
-</div>
-</p>
 
-<div class="c-border-main-title-2">實作貪食蛇的view</div>
-<div class="c-border-content-title-4">
-    創建一個自定義 View 類<br />
-</div>
-<p>
+<p>1.根據需求導入要用的Room library <br />
+2.Room 主體為以下三種：Entity、DAO、Database<br />
+3.為防止查詢封鎖 UI，Room 不允許在主執行緒上存取資料庫<br /></p>
 
-  <script src="https://gist.github.com/KuanChunChen/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-      首先，創建一個名為 SnakeGameView 的自定義 View 類，並繼承自 View 類。<br />
-  </div><br />
-</p>
+<div class="c-border-main-title-2">實作</div>
+<div class="c-border-content-title-1">1.建立Entity </div>
+<p><br />
+透過Room的<b style="color:red;">@Entity</b>標籤可以幫你建立db的table<br />
+<b style="color:red;">@PrimaryKey</b>幫你建立了每組資料唯一的Primary key<br />
+命名table 欄位 可以直接用變數 如 ：id<br />
+也可以使用 <b style="color:red;">@ColumnInfo(name = “name”)</b> 指定欄位名稱<br /></p>
 
-<div class="c-border-content-title-4">
-    定義變量和初始化<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-      在 SnakeGameView 類中，定義遊戲所需的變量，如蛇的位置、大小、方向等。<br />
-      以下概略解釋各項用途<br />
-      screenWidth:畫布寬(蛇可以跑的區域)<br />
-      screenHeight:畫布長(蛇可以跑的區域)<br />
-      snakeSize: 蛇的大小<br />
-      snake:整隻蛇座標存在LinkedList內<br />
-      food：食物座標<br />
-      foodPaint：食物樣式<br />
-      direction：蛇頭方向<br />
-      score：得分<br />
-      updateHandler：做一個間隔事件，讓貪食蛇持續更新畫面<br />
-      snakeHeadBitmap：蛇頭的bitmap圖<br />
-      snakeBodyBitmap：蛇身的bitmap圖<br />
-      borderColor：邊框顏色<br />
-      borderWidth：邊框寬度<br />
-      borderPaint：邊框樣式<br />
-      pendingDirection：即將轉向的方向<br />
-  </div><br />
-</p>
+<script src="https://gist.github.com/KuanChunChen/051bf1984f9e40c090ee894112a46178.js"></script>
 
-<div class="c-border-content-title-4">
-    設置遊戲畫面尺寸<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    在 SnakeGameView 類中，<br />
-    我們需要覆寫 onMeasure 方法，<br />
-    以便根據蛇的大小調整遊戲畫面的尺寸。<br />
-    此範例展示了如何讓遊戲畫面自適應，<br />
-    使其能夠剛好能讓蛇完整走完。<br />
-    主要原因是不同廠牌手機的尺寸和密度各有差異，<br />
-    可能導致設定的畫面尺寸與蛇寬、高不同，<br />
-    從而影響遊戲效果。為了確保使用者體驗的一致性，採用了這種設計。<br />
-    開發者可以根據自己的需求進行相應的調整。
-  </div><br />
-</p>
+<div class="c-border-content-title-1">2.建立DAO</div>
+<p><br />
+透過Room的<b style="color:red;">@Dao</b>標籤可以幫你建立操作db資料的方式<br />
+如 <b style="color:red;">@Insert</b> ：可以讓你插入到table內<br />
+<b style="color:red;">@Query</b> ：可以讓你自定義SQL執行<br />
+一些常用的SQL可參考<a href="https://developer.android.com/training/data-storage/room/accessing-data?hl=zh-cn">官方文件</a><br />
+<b style="color:red;">@Delete</b> ：刪除資料<br />
+<b style="color:red;">@Insert(onConflict = OnConflictStrategy.REPLACE)</b> ：當遇到有衝突Primary key時 會Replace而不是忽略或不做事<br />
+<b style="color:red;">@Update</b>： 更新資料<br /></p>
 
-<div class="c-border-content-title-4">
-    繪製蛇和食物<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/6d59bfaf552bade337814b0016fd0725.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    在 SnakeGameView ，<br />
-    onDraw 方法中，<br />
-    我們去繪製蛇和食物。<br />
-    這個範例我們用bitmap導入蛇頭、身體資源<br />
-    去客製化貪食蛇外觀<br />
-    另外，因為蛇會一直移動需要轉動方向<br />
-    所以使用Matrix() + rotationAngle 去設定旋轉角度<br />
-    <pre>
-    val rotationAngle = when (direction) {
-      Direction.UP -&gt; 180f
-      Direction.DOWN -&gt; 0f
-      Direction.LEFT -&gt; 90f
-      Direction.RIGHT -&gt; -90f
-    }</pre>
+<script src="https://gist.github.com/KuanChunChen/3961ad6afcdf02507c3cb00f9c298b44.js"></script>
 
-    <pre> val matrix = Matrix()
-          matrix.postRotate(rotationAngle, bodyBitmap.width / 2f, bodyBitmap.height / 2f)
-          matrix.postTranslate(part.x.toFloat(), part.y.toFloat())
-          canvas.drawBitmap(bodyBitmap, matrix, null)</pre>
-    也可以根據自己的需求進行相應的調整。<br />
-  </div><br />
-</p>
+<div class="c-border-content-title-1">3.建立Database</div>
+<p><br />
+使用<b style="color:red;">@Database</b>來創建一個RoomDatabase<br />
+entities 是你要建立的資料表<br />
+version 是更新版本用<br />
+<script src="https://gist.github.com/KuanChunChen/1d50c50c8e8d9393dd1a00164b5eda51.js"></script></p>
 
-<div class="c-border-content-title-4">
-    遊戲邏輯<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/d3d6fa84b498999473e0ed041fcb48be.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    新增一個 updateGame 方法，實現遊戲的主要邏輯，如蛇的移動、碰撞檢測等。<br />
-    其中resetGame()可以自行定義當撞到牆或自己要進行什麼步驟<br />
-    如：跳出彈框、結束畫面...等等。
+<div class="c-border-content-title-1">4.Build Database</div>
+<p><br />
+直接用下面code 來獲得RoomDatabase 實例<br />
+<script src="https://gist.github.com/KuanChunChen/b79c0ac20805aad583d8f7215983e0d5.js"></script></p>
 
-  </div><br />
-</p>
+<div class="c-border-content-title-1">5.實際操作Room</div>
+<p><br />
+透過前面寫好的DAO直接操作<br />
+<script src="https://gist.github.com/KuanChunChen/e9f32283de317a26089f8995868f8eb2.js"></script></p>
 
-<div class="c-border-content-title-4">
-    生成食物<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/3f8e352778a37d355b2afb2607013b23.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    新增一個generateFood 方法，實現隨機生成食物的功能。<br />
-    把隨機生成的x,y座標，指定給前面宣告好的food物件，<br />
-    這樣之後在onDraw時，<br />
-    就能實現隨機產生食物的效果。<br />
-  </div><br />
-</p>
+<div class="c-border-main-title-2">其他用法</div>
+<div class="c-border-content-title-1">非同步DAO用法</div>
+<div class="c-border-content-title-4">支援程度</div>
+<p>1.Room 2.1 支援suspend function，並使用Coroutines<br />
+2.Room 2.2 支援Flow
+3.其他也有支援RxJava、LiveData、Guava…等，有興趣可看：<a herf="https://developer.android.com/training/data-storage/room/async-queries?hl=zh-tw#rxjava">官方文件</a></p>
+<div class="c-border-content-title-4">Coroutines 操作Room用法</div>
+<script src="https://gist.github.com/KuanChunChen/f3680a49a0472cb138d7ceb3ddaf9955.js"></script>
 
-<div class="c-border-content-title-4">
-    更新方向<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    為了讓蛇能夠根據用戶的操作轉向，<br />
-    我們需要實現一個 updateDirection 方法。
-  </div><br />
-</p>
+<div class="c-border-content-title-4">Flow、LiveData操作Room用法</div>
+<script src="https://gist.github.com/KuanChunChen/f6bed0958c62e4a59c98fc52ee96969b.js"></script>
 
-<div class="c-border-content-title-4">
-    資源回收<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    為了避免內存泄漏，我們需要實現一個回收使用的資源，如bitmap。
-    讓之後接回activity or fragment 生命週期時可以釋放掉。
-  </div><br />
-</p>
+<p>完成上面操作介面後，照一般使用coroutines、flow、LiveData方式即可</p>
 
-<div class="c-border-content-title-4">
-    接回fragment/activity 並設置按鈕事件<br />
-</div>
-<p>
-  <script src="https://gist.github.com/KuanChunChen/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
-  <script src="https://gist.github.com/KuanChunChen/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
-  <div class="table_container">
-    <p>程式碼解說</p>
-    這是最後一步了，<br />
-    把前面實作的view接回fragment或activity<br />
-    再加上可以互動的按鈕就能實現與使用者互動的貪食蛇了！<br />
-    我這邊是使用自製的 joystickView 或者是你也可以使用四個按鈕去做上下左右的移動<br />
-  </div><br />
-</p>
+<div class="c-border-content-title-1">想要預先建立資料庫內容.db檔</div>
+<p>若想要針對資料庫內存有預設資料可將存放資料的.db預先埋入儲存路徑，再透過createFromAsset創建<br />
+或者想要用File建立，則改成<b style="color:red;">.createFromFile(File(“mypath”))</b>即可<br />
+<script src="https://gist.github.com/KuanChunChen/0719203d8066a043883d6c9cb03d3b32.js"></script></p>
+
+<div class="c-border-content-title-1">類型轉換器</div>
+<p>當原生支援的的變數類型不夠用，剛好又想自訂時，<br />
+可用<b style="color:red;">@TypeConverters</b><br />
+轉換變數型態，並讓它能在Room中使用。<br />
+假設需要在 Room 資料庫中保存 Date，Room 不知道如何保存 Date 物件，可以用：<br /></p>
+<div class="c-border-content-title-4">創建TypeConverter</div>
+<script src="https://gist.github.com/KuanChunChen/e55fe47c2f6a123350ee57d7221b04ba.js"></script>
+
+<div class="c-border-content-title-4">加入到DB</div>
+<script src="https://gist.github.com/KuanChunChen/ef76282b6e16583ca9b27e5928e75f21.js"></script>
+
+<div class="c-border-content-title-4">能在Room中使用了</div>
+<script src="https://gist.github.com/KuanChunChen/c4e96bf29b2fe2a6605d026920984592.js"></script>
+
+<div class="c-border-content-title-1">Room程式碼上的一些使用技巧</div>
+<div class="c-border-content-title-4">1.可支援tableName用標籤形式定義 且 支援多重主鍵primaryKeys</div>
+
+<script src="https://gist.github.com/KuanChunChen/3e6a2690d888e8f5f389d43c3a7de414.js"></script>
+
+<div class="c-border-content-title-4">2.建立Embedded物件，並讓data class 建立儲存欄位</div>
+<script src="https://gist.github.com/KuanChunChen/48ae4b2ae0f50b05542e33007d451134.js"></script>
+
+<div class="c-border-content-title-4">3.定義資料表關聯</div>
+<p>有兩張表<br />
+某些case下想要取得兩表對應的資料來做使用<br />
+<script src="https://gist.github.com/KuanChunChen/0dff70f438d0308cf7b271578bc8655d.js"></script>
+加入 對應的父、子entity，以此例，分別是UserEntity、HistoryEntity。<br />
+再來加入<b style="color:red;">@Relation</b> 其中需要入對應的唯一鍵值，如primaryKey。<br />
+以此例來說parentColumn對應的是UserEntity的primaryKey<br />
+entityColumn對應的是HistoryEntity的primaryKey<br />
+<script src="https://gist.github.com/KuanChunChen/f396d299150f77b7d5162b583ff51b9b.js"></script>
+最後再在DAO加入操作方法：<br />
+其中加入<b style="color:red;">@Transaction</b>，可以保證數據的一致性，<br />
+因有時候數據庫進行多個操作時，<br />
+如操作A表再次操作B表，<br />
+若中間A表成功取出，B表失敗，<br />
+這時返回的結果可能是錯的，<br />
+所以使用<b style="color:red;">@Transaction</b> 可以讓取得資料要就全部成功，不然就全部失敗，<br />
+不會讓操作段在一半，使得資料取出怪怪的。<br />
+<script src="https://gist.github.com/KuanChunChen/dfb5667f16cee00795e54b3d402ce018.js"></script></p>
+<div class="c-border-content-title-4">4.針對資料庫做版本遷移</div>
+<ul>
+  <li>自動更新：@Database內的version，加入遷移版本：AutoMigration (from = 1, to = 2)會讓資料庫隨version自動版本遷移。
+<script src="https://gist.github.com/KuanChunChen/2e2978b908ea4a289888ce29677c3886.js"></script></li>
+  <li>手動更新：透過 Migration 定義遷移的SQL指令
+ <img src="/images/room/01.png" alt="room 1" />
+ 在build Room db時加入Migration，例如：
+ <script src="https://gist.github.com/KuanChunChen/9eeeca3b183f77f047f6ed6f437b220c.js"></script></li>
+</ul>
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">
@@ -411,7 +351,7 @@
         </div>
         <div class="c-article__share">
 
-          <a href="https://twitter.com/intent/tweet?text=Android%20Kotlin%20:%E7%B6%93%E5%85%B8%E8%B2%AA%E5%90%83%E8%9B%87%E9%81%8A%E6%88%B2%E9%87%8D%E7%8F%BE,%E5%AF%AB%E5%A5%BD%E5%88%B0%E9%81%8A%E7%8E%A9%E4%B8%8D%E7%94%A8%E4%B8%80%E5%A4%A9!&url=https://elegantaccess.org/kotlin_snake_game" title="Share
+          <a href="https://twitter.com/intent/tweet?text=%E6%8E%8C%E6%8F%A1%20Android%20%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%84%B2:Kotlin%20%E8%88%87%20Room%20%E8%B3%87%E6%96%99%E5%BA%AB%E5%AF%A6%E6%88%B0%E6%95%99%E5%AD%B8&url=https://elegantaccess.org/kotlin_room" title="Share
 on Twitter" rel="nofollow" target="_blank">
   <div data-icon='ei-sc-twitter' data-size='s'></div>
 </a>
@@ -443,7 +383,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 }
 </script>
 
-<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/kotlin_snake_game" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
+<!-- <a href="https://facebook.com/sharer.php?u=https://elegantaccess.org/kotlin_room" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
 
           
 <div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
@@ -453,7 +393,7 @@ document.getElementById('fb_share_offical').onclick = function() {
     }
 </script>
 
-          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/kotlin_snake_game" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
+          <!-- <a href="https://plus.google.com/share?url=https://elegantaccess.org/kotlin_room" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
         </div>
       </div>
       <div class="c-newsletter">
@@ -617,7 +557,7 @@ document.getElementById('fb_share_offical').onclick = function() {
 <div class="c-fbmessagecomment">
 
   <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/kotlin_snake_game" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
+    <div class="fb-comments" id="fb_message" data-href="https://elegantaccess.org/kotlin_room" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
 
   </div>
 
@@ -628,18 +568,6 @@ document.getElementById('fb_share_offical').onclick = function() {
       <div class="c-recent-post">
         <h4 class="c-recent__title">You might also enjoy</h4>
         <div class="c-recent__box">
-          
-          
-          <div class="c-recent__item">
-            <a class="c-recent__image" href="/kotlin_room" style="background-image: url( /images/cover/kotlin_room-1.png)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/kotlin_room">掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2023-08-14T09:45:01+08:00">August 14, 2023</time>
-              </div>
-            </div>
-          </div>
-          
           
           
           <div class="c-recent__item">
@@ -660,6 +588,18 @@ document.getElementById('fb_share_offical').onclick = function() {
               <h4><a href="/safe_browser">PM、RD看過來，從零開始制定或開發App瀏覽器！</a></h4>
               <div class="c-recent__date">
                 <time datetime="2023-06-08T18:35:06+08:00">June 8, 2023</time>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="c-recent__item">
+            <a class="c-recent__image" href="/kotlin_snake_game" style="background-image: url( /images/snake_game/kotlin_snake_game_post.png)"></a>
+            <div class="c-recent__footer">
+              <h4><a href="/kotlin_snake_game">Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！</a></h4>
+              <div class="c-recent__date">
+                <time datetime="2023-06-05T17:24:06+08:00">June 5, 2023</time>
               </div>
             </div>
           </div>
