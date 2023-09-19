@@ -15,6 +15,10 @@ excerpt: "本篇文章介紹了如何使用Android平台上的Kotlin語言實現
 所以想重新回顧一下並做個紀錄，<br>
 希望也能幫助到需要實作的各位。<br>
 
+Android 12之後新增了 權限相關處理，大家可以注意一下！<br>
+這邊是我處理的方式，大家可以參考：
+<script src="https://gist.github.com/KuanChunChen/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
+
 
 最終目標是這樣<br>
 可以串回之前幾篇jetpack compose的練習<br>
@@ -394,6 +398,12 @@ Class1 / Class2 / Class3<br>
 
 Android手機藍芽4.x都是雙模藍芽(既有經典藍芽也有低功耗藍芽)<br>
 
+<div class="c-border-main-title-2">Kotlin + jetpack compose 藍芽app範例</div>
 
+最後我之前寫了一個範例，最近終於整理上來，有需要的可以參考看看
+
+<div class="c-border-main-title-2">Kotlin + jetpack compose 藍芽app範例
+  <a style ="color:white;" herf="https://github.com/KuanChunChen/elegantAccessApp">可參考此篇</a>
+</div>
 
 <a>{% include google/google_ad_client.html %}</a>
