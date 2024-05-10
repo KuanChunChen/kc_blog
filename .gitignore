@@ -4,3 +4,5 @@ images/.DS_Store
 .sass-cache/
 *.DS_Store
 .jekyll-cache
+
+.idea/
