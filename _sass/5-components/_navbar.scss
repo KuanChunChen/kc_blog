@@ -1,0 +1,66 @@
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  margin-top: 32px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #757575;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 8px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #F6C33F;
+}
+
+.navbar-brand {
+  color: #333333;
+  text-transform: uppercase;
+}
+
+
+.nav-link:hover {
+  color: #9E9E9E;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+}
+.navbar .navbar-nav .nav-item .nav-link:hover{
+  color: #F6C33F;
+}
+
+.mx-background-top-linear {
+
+
+  background: -webkit-linear-gradient(135deg, #616161 25%, #9E9E9E 25%);
+  background: -webkit-linear-gradient(left, #616161 25%, #9E9E9E 25%);
+  background: linear-gradient(135deg, #616161 25%, #9E9E9E 25%);
+
+
+}
+
+
+#smart-button-container {
+  margin-top: 10px;
+  z-index: 10;
+}

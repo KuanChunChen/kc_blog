@@ -1,0 +1,8 @@
+images/.DS_Store
+.DS_Store
+
+.sass-cache/
+*.DS_Store
+.jekyll-cache
+
+.idea/
