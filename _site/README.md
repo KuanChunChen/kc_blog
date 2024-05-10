@@ -1,3 +1,7 @@
+
+# KC_BLOG
+This repo is the website that have serval tutorial.
+
 ### 👋 Hello, I,m Kuan-Chun-Chen.
 ---
 <p align="left">
@@ -81,3 +85,4 @@ I will continue learn more know-how and coding skill on softwave develop in the 
   <img width="10%" src="https://www.vectorlogo.zone/logos/apache/apache-official.svg">
   <img width="10%" src="https://www.vectorlogo.zone/logos/jekyllrb/jekyllrb-ar21.svg">
 </p>
+
