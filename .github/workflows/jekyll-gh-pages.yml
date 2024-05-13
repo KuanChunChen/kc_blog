@@ -29,10 +29,6 @@ jobs:
 
       - name: 🚀 deploy
         uses: actions/deploy-pages@v4
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        runs-on: ubuntu-latest
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source: ./
