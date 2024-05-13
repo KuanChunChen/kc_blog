@@ -5,6 +5,7 @@ on:
     branches:
       - master
 
+    
 jobs:
   jekyll:
     runs-on: macos-latest
