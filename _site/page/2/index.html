@@ -19,19 +19,19 @@
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-  <title>擁抱無線：教你使用adb無線連接Android實機教學！</title>
+  <title>Elegant Access - Your Majesty</title>
 
-  <meta name='description' content="本文教你如何使用adb透過wifi連接Android實機，讓你不再受到煩人的有線限制，輕鬆進行開發與測試。">
+  <meta name='description' content="Elegant Access is a blog that share android know-how.">
   <link rel="shortcut icon" href="/images/kc_icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Volkhov:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
   <!-- facebook meta data ,find element : https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:url" content="http://localhost:4000/2022/02/15/android-adb-wifi-note/" />
-<meta property="og:title" content="擁抱無線：教你使用adb無線連接Android實機教學！" />
-<meta property="og:description" content="本文教你如何使用adb透過wifi連接Android實機，讓你不再受到煩人的有線限制，輕鬆進行開發與測試。" />
-<meta property="og:image" content="http://localhost:4000/images/others/adb_wifi.png" />
+  <meta property="og:url" content="http://localhost:4000/page/2/" />
+<meta property="og:title" content="Elegant Access - Your Majesty" />
+<meta property="og:description" content="Elegant Access is a blog that share android know-how." />
+<meta property="og:image" content="http://localhost:4000/images/" />
 <meta property="og:type" content="article" />
 <meta property="fb:app_id" content="374092904421484" />
 
@@ -41,7 +41,7 @@
 
 
 
-  <link rel='canonical' href="http://localhost:4000/2022/02/15/android-adb-wifi-note/">
+  <link rel='canonical' href="http://localhost:4000/page/2/">
   <link rel='alternate' type='application/rss+xml' title='Elegant Access - Your Majesty' href="http://localhost:4000/feed.xml">
 
   <!-- bootstarp -->
@@ -203,403 +203,776 @@
   </div>
 </nav>
 
-  <article class="c-article">
-  <div class="c-article__content">
-    <header class="c-header u-hide u-no-margin-top">
-      <div class="c-header__box">
-        <div class="c-search u-full-width">
-          <div class="c-search__box">
-            <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
-            <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
-            <div data-icon='ei-search' data-size='s'></div>
-          </div>
-          <ul id="js-results-container" class="c-search-results-list"></ul>
-        </div>
+  
+
+<header class="c-header">
+  <div class="c-header__box">
+    <div class="c-search">
+      <div class="c-search__box">
+        <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
+        <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
+        <div data-icon='ei-search' data-size='s'></div>
       </div>
-    </header>
+      <ul id="js-results-container" class="c-search-results-list"></ul>
+    </div>
+    <div class="c-nav">
+      <ul class="c-nav__list u-lists-reset">
+        <li class="c-nav__item is-active">
+          <div data-icon='ei-pencil' data-size='s'></div> Posts</li>
+        <li class="c-nav__item">
+          <div data-icon='ei-star' data-size='s'></div> Categories</li>
+      </ul>
+    </div>
+  </div>
+</header> <!-- /.c-header -->
+
+
+
+
+
+
+<div class="main-container">
+		<div class="main-header anim" style="--delay: .5s">
+			精選視界
+		</div>
+      <div class="main-blogs">
+        <a class="main-blog anim" href="/app_portfolio" style="--delay: .2s; background-image: url(/images/cover/android_portfolio.png)">
+          <div class="main-blog__title">
+            Android Portfolio：我的作品集
+          </div>
+      		<div class="main-blog__author">
+      			<div class="author-img__wrapper"><svg class="feather feather-check" viewbox="0 0 24 24">
+      			<path d="M20 6L9 17l-5-5"></path></svg> <img class="author-img" src="/images/champion.JPG"></div>
+      			<div class="author-detail">
+      				<div class="author-name">Willy Chen</div>
+      				<div class="author-info">
+      					2023, Jun 26
+      				</div>
+      			</div>
+      		</div>
+      		<div class="main-blog__time">
+            8 minute read
+      		</div>
+      	</a>
+
+			<a class="main-blog anim" href="/kotlin_room" style="--delay: .2s; background-image: url(/images/cover/kotlin_room-1.png)">
+				<div class="main-blog__title">
+					掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學
+				</div>
+				<div class="main-blog__author tips">
+					<div class="main-blog__time">
+            2 minute read
+					</div>
+					<div class="author-img__wrapper">
+            <svg class="feather feather-check" viewbox="0 0 24 24">
+              <path d="M20 6L9 17l-5-5"></path>
+            </svg>
+            <img class="author-img" src="/images/champion.JPG"></div>
+					<div class="author-detail">
+						<div class="author-name">
+							Willy Chen
+						</div>
+						<div class="author-info">
+							<span></span>2023, Aug 14
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="small-header anim" style="--delay: .3s">
+			往昔篇章
+		</div>
+	</div>
+
+<div class="c-posts o-opacity" data-page="2" data-totalPages="3">
+  
+
+  <article class="c-post">
     
-    <div class="c-article__image opacity" style="background-image: url( /images/others/adb_wifi.png )"></div>
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-audio-share-1.png)"
+        href="/2022/03/07/problem-audio-not-work/"></a>
     
-    <div class="c-wrap-content">
-      <header class="c-article__header">
-        <h1 class="c-article__title">擁抱無線：教你使用adb無線連接Android實機教學！</h1>
-        <div class="c-article__date">
-          <span>2022, Feb 15</span>
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2022/03/07/problem-audio-not-work/">Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題</a>
+      </h2>
+      <p>前言
+
+在今天的分享中，我們將探討當兩個客戶端設備進行連接時，
+通過手機收音並播放到另一端時，...</p>
+      <span class="c-post-date">2022, Mar 07&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-adb-wirless-share-1.png)"
+        href="/2022/02/22/android-adb-wifi-note-detail/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2022/02/22/android-adb-wifi-note-detail/">釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！</a>
+      </h2>
+      <p>前言
+因應專案需求，
+我們不斷地尋找使用 ADB Debug 的新方式，
+最近發現 Andro...</p>
+      <span class="c-post-date">2022, Feb 22&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/others/adb_wifi.png)"
+        href="/2022/02/15/android-adb-wifi-note/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2022/02/15/android-adb-wifi-note/">擁抱無線：教你使用adb無線連接Android實機教學！</a>
+      </h2>
+      <p>前言
+本篇主要記錄如何使用 adb wifi cli 連接 Android 手機，
+適用於想要...</p>
+      <span class="c-post-date">2022, Feb 15&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/mqtt-noun-1.png)"
+        href="/2022/02/14/web-rtc-mqtt-name/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2022/02/14/web-rtc-mqtt-name/">加速你對 WebRtc 和 Mqtt 的理解：名詞解釋筆記分享</a>
+      </h2>
+      <p>前言
+
+  因為在Android工作需求上遇到，
+需串接Mqtt與webRtc，
+所以大概了解...</p>
+      <span class="c-post-date">2022, Feb 14&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/kotlin-mvvm+rxjava+retrofit+okHttp+dagger.png)"
+        href="/2021/12/23/android-kotlin-mvvm-dagger-http-rxjava/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/12/23/android-kotlin-mvvm-dagger-http-rxjava/">打造流暢自動加載分頁的Github API Demo：MVVM、DI、RxJava與Paging在Android Kotlin的實踐教學</a>
+      </h2>
+      <p>前言
+
+今天我要分享的是使用以下架構，
+來串接Github API來實作流暢自動加載分頁的範例...</p>
+      <span class="c-post-date">2021, Dec 23&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/kotlin-line-bot-ktor-server.png)"
+        href="/2021/12/07/android-kotlin-ktor-line-bot-server/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/12/07/android-kotlin-ktor-line-bot-server/">打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手</a>
+      </h2>
+      <p>前言
+
+因為喜愛Kotlin這門語言，我花了一些時間研究Ktor這個library，
+並在閒暇...</p>
+      <span class="c-post-date">2021, Dec 07&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/bluetooth_with_kotlin-1.png)"
+        href="/2021/11/12/android-kotlin-bluetooth-gatt-client/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/11/12/android-kotlin-bluetooth-gatt-client/">Android低功耗藍芽Gatt連線教學：使用Kotlin實作</a>
+      </h2>
+      <p>前言
+
+我花了一些時間複習之前工作所實作的低功耗藍牙連接。
+由於我擔心會忘記，
+所以想重新回顧...</p>
+      <span class="c-post-date">2021, Nov 12&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">4 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-android_bluetooth_hci_packet.png)"
+        href="/2021/11/12/android-bluetooth-hci-packet/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/11/12/android-bluetooth-hci-packet/">[Android][Kotlin]如何抓取Android手機中 Bluetooth 藍芽封包日誌</a>
+      </h2>
+      <p>今天這篇文章要來紀錄下之前研究過 
+透過logcat或寫code抓取外的方式
+來抓取藍芽傳輸間...</p>
+      <span class="c-post-date">2021, Nov 12&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">3 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-photo.jpg)"
+        href="/2021/11/11/android-kt-code-practive/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/11/11/android-kt-code-practive/">[Android][Kotlin][CodingTest]刷題練習紀錄</a>
+      </h2>
+      <p>其實這篇文章是想紀錄
+之前面試被問到的題目的寫法
+以kotlin為主
+可能包含時間內沒寫出來
+...</p>
+      <span class="c-post-date">2021, Nov 11&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea_swiperefresh_app-new-1.png)"
+        href="/android-kt-jetpack-compose-swiperefresh"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android-kt-jetpack-compose-swiperefresh">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</a>
+      </h2>
+      <p>前言
+延續上一篇文章：
+
+
+  
+
+
+Jetpack Compose：使用 LazyColum...</p>
+      <span class="c-post-date">2021, Oct 28&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-website-android-memory.png)"
+        href="/2021/10/05/android-memory-note/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2021/10/05/android-memory-note/">[Android][Memory]記憶體優化+GC管理相關概念分享</a>
+      </h2>
+      <p>今天這篇
+打算來透過寫筆記的方式
+記錄關於我所了解的Android記憶體管理
+這邊我打算會持續...</p>
+      <span class="c-post-date">2021, Oct 05&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-website-lazy-colume-cover-photo-new-1.png)"
+        href="/android-kt-jetpack-compose-list"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android-kt-jetpack-compose-list">Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</a>
+      </h2>
+      <p>前言
+過去製作listview從 ListView -&gt; RecyclerView -&...</p>
+      <span class="c-post-date">2021, Sep 28&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-website-splash-cover-photo-new-1.png)"
+        href="/android-kt-jetpack-compose-splash"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android-kt-jetpack-compose-splash">來學習Jetpack Compose 在splash頁面加入動畫吧！</a>
+      </h2>
+      <p>目標
+這篇目標會是做出一個
+簡單的splash 頁面
+我們今天最後達成的目標會是這樣：
+
+
+
+...</p>
+      <span class="c-post-date">2021, Sep 17&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">3 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-website-base-cover-photo-new-1.png)"
+        href="/android-kt-jetpack-compose-base"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android-kt-jetpack-compose-base">Android Jetpack Compose 基本應用教學</a>
+      </h2>
+      <p>前言
+在2021/7/28的時候
+google官方終於發佈了Jetpack Compose 穩...</p>
+      <span class="c-post-date">2021, Sep 13&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/ea-website-rxjava-cover-photo-new-1.png)"
+        href="/android-kt-rxjava"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android-kt-rxjava">Android開發 - RxJava搭配網路請求：實現Token重取與重新執行網路請求</a>
+      </h2>
+      <p>前言
+大家好！
+很久沒發文了，
+今天要分享一個在使用RxJava搭配網路請求（如：OkHttp...</p>
+      <span class="c-post-date">2021, Feb 19&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/kotlin_tutorial_google_map-1.png)"
+        href="/2020/12/07/android-kt-map/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2020/12/07/android-kt-map/">Android Kotlin教學：解碼Google Maps Polyline路徑與繪製線條</a>
+      </h2>
+      <p>前言
+
+最近，
+有個需求是要在Google Map上面，
+將兩個經緯度之間的預估路徑畫出來。
+...</p>
+      <span class="c-post-date">2020, Dec 07&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-kt-inline-1.png)"
+        href="/2020/11/30/android-kt-inline/"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/2020/11/30/android-kt-inline/">【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！</a>
+      </h2>
+      <p>前言
+
+在 Kotlin 編程中，inline、noinline 和 crossinline ...</p>
+      <span class="c-post-date">2020, Nov 30&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-photo.jpg)"
+        href="/android/custom03"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android/custom03">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03</a>
+      </h2>
+      <p>Hello,大家好,這裡是Elegant Access的 KC，
+歡迎大家繼續回來看如何客製化...</p>
+      <span class="c-post-date">2020, Nov 21&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">2 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-photo.jpg)"
+        href="/android/custom02"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android/custom02">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02</a>
+      </h2>
+      <p>Hello,大家好,這裡是Elegant Access的 KC，
+歡迎大家繼續回來看如何客製化...</p>
+      <span class="c-post-date">2020, Nov 20&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+
+  <article class="c-post">
+    
+    <a class="c-post-thumbnail o-opacity" style="background-image: url(/images/cover/android-photo.jpg)"
+        href="/android/custom01"></a>
+    
+    <div class="c-post-content">
+      <h2 class="c-post-title">
+        <a href="/android/custom01">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01</a>
+      </h2>
+      <p>實際效果
+
+首先最容易讓人理解的方式，就是直接先上影片，效果如影片：
+
+
+  
+
+
+ 
+ 
+在...</p>
+      <span class="c-post-date">2020, Nov 14&nbsp;&nbsp;&nbsp;—&nbsp;</span>
+      <span class="c-post-words">1 minute read</span>
+    </div>
+  </article> <!-- /.c-post -->
+  
+</div> <!-- /.c-posts -->
+
+
+
+
+  <button class="c-load-more c-btn c-btn--middle">Load more posts</button>
+
+<div class="c-categories" style="display: none;">
+  <ul class="c-categories__list u-lists-reset">
+      
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/ai/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/kotlin-cht-gpt-line-bot-open-ai-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
         </div>
-      </header>
-      <div class="c-border-main-title-2">前言</div>
-<p>本篇主要記錄如何使用 adb wifi cli 連接 Android 手機，<br />
-適用於想要在無線網路環境下進行開發和debug的使用者。<br />
-過去，我們常常使用 Android Studio 的功能來連接手機，
-但其實使用 adb wifi 也不失為一種好方法。<br />
-因此，我特別查詢了相關資料並整理成筆記，<br />
-方便自己以後查閱，也希望能對其他使用者有所幫助！<br /></p>
-
-<div class="table_container">
-    <span style="text-align:center;">另外android 11 也新增了另一種方法，供測試或debug的方案：</span><br />
-   <a href="/2022/02/22/android-adb-wifi-note-detail/">
-     <img src="/images/others/adb_wifi.png" alt="Cover" width="30%" />
-   </a>
-   <a href="/2022/02/22/android-adb-wifi-note-detail/">釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗！</a>
- </div>
-<p><br /></p>
-
-<div class="c-border-main-title-2">實際作法</div>
-<p><br /></p>
-
-<p>1.讓電腦與Android手機進入同一個區域網路<br />
- 2.用USB線將Android手機連上電腦 要開啟開發者mode<br />
- 3.透過以下指令尋找手機ip位址<br /></p>
-
-<pre><code class="language-linux"> adb shell ifconfig
-</code></pre>
-<p>4.會找到類似192.168.xxx.xxx的IP<br />
- <img src="/images/others/ipconfig.png" /><br />
- 5.用以下指令切換到tcp/ip模式<br /></p>
-<pre><code class="language-linux"> adb tcpip &lt;port&gt;
-</code></pre>
-<p>-&gt; 這邊的port是可以自己指定的<br /></p>
-
-<ol>
-  <li>最後使用指令<br />
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> adb connect 192.168.0.101:5555
-</code></pre></div>    </div>
-    <p>(5555是你前面設定的port)
- 至此就能用adb wifi控制你的手機了</p>
-  </li>
-</ol>
-
-<p>補充：
- 後來遇到要連線上android TV的方式
- 但剛好沒遇到沒有usb插槽的情況
- 這時候就可以去設定-&gt;wifi-&gt;同個網路下去找ip
- 就不用透過指令</p>
-
-<div class="c-border-content-title-4">這邊分享一個雷：</div>
-<p>由於之前一直使用android studio下載的adb wifi插件來連接手機(該插件的效果就跟上面一樣)，<br />
-又因該插件所設定的端口都是相同的，<br />
-且公司中有其他人也使用同樣的端口設定或同一套插件，<br />
-而沒去改port的話，<br />
-又剛好你們的ip被分發到上一次另一位同事的舊IP，<br />
-則有機會在同一區域網路下使用指令，<br />
-即可透過你的IP和端口安裝APK到你的手機。<br />
-不過這個就是爾偶發生<br />
-只是就可以趁機用 scrcpy看別人在幹嘛而已XD（誤<br /><br />
-所以還是要設不同的port比較好</p>
-
-<div class="c-border-main-title-2">其他筆記</div>
-<ul>
-  <li>補充Android 10 以下的 adb連線細節
-    <ul>
-      <li>
-        <p>使用<code class="language-plaintext highlighter-rouge">adb connect</code>連上手機 <strong>至少需連接一次USB線</strong>，需先設定你的tcpip的port
- 之後不用插線只要同ip跟port就能直接連</p>
-      </li>
-      <li>一些俗稱adb wifi 插件通常預設port為5555，故有機會手機已設定過adb tcpip port
- 有人同區網又知道你的ip，就能輕易嘗試connect，並控制手機
- (這裡試過 ， 對沒設定過 <code class="language-plaintext highlighter-rouge">adb tcpip</code> 的直接用預設5555 會被refused)
- <img src="/images/others/adb-connect.png" alt="adb-connect.png" /></li>
-      <li>要斷連用 <code class="language-plaintext highlighter-rouge">adb disconnect &lt;ip&gt;:&lt;port&gt;</code></li>
-      <li>主要運作在adb server下 ，用 <code class="language-plaintext highlighter-rouge">adb kill-server</code> 亦會斷連</li>
-      <li>找手機本地IP可以用 <code class="language-plaintext highlighter-rouge">adb shell ifconfig</code>，可看到類似的如下：
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> wlan0   Link encap:Ethernet  HWaddr F0:XX:B7:XX:XX:97
-     inet addr:192.168.X01.XXX  Bcast:192.XXX.X01.255  Mask:255.255.255.0
-     inet6 addr: fe80::fxxxx:x2xx:fee1:7d97/64 Scope: Link
-     UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-     RX packets:543 errors:0 dropped:0 overruns:0 frame:0
-     TX packets:574 errors:0 dropped:0 overruns:0 carrier:0
-     collisions:0 txqueuelen:1000
-     RX bytes:198035 TX bytes:125461
-</code></pre></div>        </div>
-        <p>或是用這串CLI <code class="language-plaintext highlighter-rouge">adb shell ip route | awk '{print $9}'</code>
- 直接取得目標IP<br />
-<img src="/images/others/adb-ip-photo.png" alt="adb-ip-photo.png" /></p>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-      <div class="c-article__footer u-clearfix">
-        <div class="c-article__tag">
-          
-          <a href="/tags#Android">&#35; Android</a>
-          
-          <a href="/tags#adb">&#35; adb</a>
-          
-        </div>
-        <div class="c-article__share">
-
-          <a href="https://twitter.com/intent/tweet?text=%E6%93%81%E6%8A%B1%E7%84%A1%E7%B7%9A%EF%BC%9A%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8adb%E7%84%A1%E7%B7%9A%E9%80%A3%E6%8E%A5Android%E5%AF%A6%E6%A9%9F%E6%95%99%E5%AD%B8%EF%BC%81&url=http://localhost:4000/2022/02/15/android-adb-wifi-note/" title="Share
-on Twitter" rel="nofollow" target="_blank">
-  <div data-icon='ei-sc-twitter' data-size='s'></div>
-</a>
-
-          <!-- <a href="" id="fb_share" title="Share on Facebook" rel="nofollow" target="_blank" ><div data-icon='ei-sc-facebook' data-size='s'></div></a>
-  <script>
-      window.onload = function() {
-          fb_share.href ='http://www.facebook.com/share.php?u=' + encodeURIComponent(location.href);
-      }
-  </script> -->
-<div id="fb_share_offical" class="fb-share-button" data-layout="button_count" data-size="small">share</div>
-<!-- <div id="fb_share_offical" class="btn btn-success clearfix">Simple OG Dialog</div> -->
-
-<!-- <script>
-    window.onload = function() {
-        fb_share_offical.data-href = encodeURIComponent(location.href);
-    }
-</script> -->
-
-<script>
-document.getElementById('fb_share_offical').onclick = function() {
-  FB.ui({
-    display: 'popup',
-    method: 'share',
-    href: encodeURIComponent(location.href),
-    hashtag: '#Android,#Kotlin,#ElegantAccess',
-    quote: 'quote'
-  }, function(response){});
-}
-</script>
-
-<!-- <a href="https://facebook.com/sharer.php?u=http://localhost:4000/2022/02/15/android-adb-wifi-note/" title="Share on Facebook" rel="nofollow" target="_blank"><div data-icon='ei-sc-facebook' data-size='s'></div></a> -->
-
-          
-<div id ="fb-like-button"class="fb_like" data-href="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
-<script>
-    window.onload = function() {
-        fb-like-button.data-href = encodeURIComponent(location.href);
-    }
-</script>
-
-          <!-- <a href="https://plus.google.com/share?url=http://localhost:4000/2022/02/15/android-adb-wifi-note/" title="Share on Google+" rel="nofollow" target="_blank"><div data-icon='ei-sc-google-plus' data-size='s'></div></a> -->
-        </div>
-      </div>
-      <div class="c-newsletter">
-  <div class="c-newsletter__header">
-
-  </div>
-
-  <div align="center">
-    <div class="c-newsletter__subtitle">Created by Elegant Access's KC.</div>
-    <div class="c-newsletter__subtitle">Copyright (c) 2023 All rights reserved.</div>
-
-    <div class="c-newsletter__subtitle" style="font-weight: bold;">Please subscribe and give me a like!</div>
-    <div class="c-newsletter__subtitle">
-      <a href="https://twitter.com/intent/follow?screen_name=eleg_aces" target="_blank">
-        <div data-icon='ei-sc-twitter' data-size='m'>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">AI</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
         </div>
       </a>
-
-      <a href="https://instagram.com/eleg.aces.kc" target="_blank">
-        <div data-icon='ei-sc-instagram' data-size='m'></div>
-      </a>
-
-      <a href="https://facebook.com/eleg.aces" target="_blank">
-        <div data-icon='ei-sc-facebook' data-size='m'></div>
-      </a>
-
-
-    </div>
-
-
-
-    <div class="c-newsletter__subtitle"> ADVERTISEMENT:
-      <a><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5317402524376092" crossorigin="anonymous"></script>
-<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-5317402524376092" data-ad-slot="9124020559"></ins>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-</script></a>
-      <a><div id="smart-button-container">
-      <div style="text-align: center;">
-        <div style="margin-bottom: 1.25rem;">
-          <p>Donate and support me.</p>
-          <select id="item-options"><option value="Buy me a coffee." price="3">Buy me a coffee. - 3 USD</option></select>
-          <select style="visibility: hidden" id="quantitySelect"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option><option value="61">61</option><option value="62">62</option><option value="63">63</option><option value="64">64</option><option value="65">65</option><option value="66">66</option><option value="67">67</option><option value="68">68</option><option value="69">69</option><option value="70">70</option><option value="71">71</option><option value="72">72</option><option value="73">73</option><option value="74">74</option><option value="75">75</option><option value="76">76</option><option value="77">77</option><option value="78">78</option><option value="79">79</option><option value="80">80</option><option value="81">81</option><option value="82">82</option><option value="83">83</option><option value="84">84</option><option value="85">85</option><option value="86">86</option><option value="87">87</option><option value="88">88</option><option value="89">89</option><option value="90">90</option><option value="91">91</option><option value="92">92</option><option value="93">93</option><option value="94">94</option><option value="95">95</option><option value="96">96</option><option value="97">97</option><option value="98">98</option><option value="99">99</option><option value="100">100</option></select>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/android/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/kotlin-clear-code-maring-layout-xml-constarint-layout-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
         </div>
-      <div id="paypal-button-container"></div>
-      </div>
-    </div>
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
-    <script>
-      function initPayPalButton() {
-        var shipping = 0;
-        var itemOptions = document.querySelector("#smart-button-container #item-options");
-    var quantity = parseInt(100);
-    var quantitySelect = document.querySelector("#smart-button-container #quantitySelect");
-    if (!isNaN(quantity)) {
-      quantitySelect.style.visibility = "visible";
-    }
-    var orderDescription = 'Donate and support me.';
-    if(orderDescription === '') {
-      orderDescription = 'Item';
-    }
-    paypal.Buttons({
-      style: {
-        shape: 'pill',
-        color: 'gold',
-        layout: 'horizontal',
-        label: 'paypal',
-        tagline:false,
-
-
-      },
-      createOrder: function(data, actions) {
-        var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
-        var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
-        var tax = (0 === 0 || false) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
-        if(quantitySelect.options.length > 0) {
-          quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
-        } else {
-          quantity = 1;
-        }
-
-        tax *= quantity;
-        tax = Math.round(tax * 100) / 100;
-        var priceTotal = quantity * selectedItemPrice + parseFloat(shipping) + tax;
-        priceTotal = Math.round(priceTotal * 100) / 100;
-        var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
-
-        return actions.order.create({
-          purchase_units: [{
-            description: orderDescription,
-            amount: {
-              currency_code: 'USD',
-              value: priceTotal,
-              breakdown: {
-                item_total: {
-                  currency_code: 'USD',
-                  value: itemTotalValue,
-                },
-                shipping: {
-                  currency_code: 'USD',
-                  value: shipping,
-                },
-                tax_total: {
-                  currency_code: 'USD',
-                  value: tax,
-                }
-              }
-            },
-            items: [{
-              name: selectedItemDescription,
-              unit_amount: {
-                currency_code: 'USD',
-                value: selectedItemPrice,
-              },
-              quantity: quantity
-            }]
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(orderData) {
-
-          // Full available details
-          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-
-          // Show a success message within this page, e.g.
-          const element = document.getElementById('paypal-button-container');
-          element.innerHTML = '';
-          element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-          // Or go to another URL:  actions.redirect('thank_you.html');
-
-        });
-      },
-      onError: function(err) {
-        console.log(err);
-      },
-    }).render('#paypal-button-container');
-  }
-  initPayPalButton();
-    </script>
-</a>
-    </div>
-
-  </div>
-
-
-
-</div> <!-- /.c-newsletter -->
-
-      <!-- <div class="c-fb-message-comment"> -->
-
-  <!-- <script> -->
-      <!-- window.onload = function() { -->
-          <!-- fb_message.data-href = encodeURIComponent(location.href); -->
-      <!-- } -->
-  <!-- </script> -->
-<!-- </div> -->
-
-
-<div class="c-fbmessagecomment">
-
-  <div align="center">
-    <div class="fb-comments" id="fb_message" data-href="http://localhost:4000/2022/02/15/android-adb-wifi-note/" data-colorscheme="dark" data-width="100%" data-numposts="3"></div>
-
-  </div>
-
-
-
-</div> <!-- /.c-newsletter -->
-
-      <div class="c-recent-post">
-        <h4 class="c-recent__title">You might also enjoy</h4>
-        <div class="c-recent__box">
-          
-          
-          <div class="c-recent__item">
-            <a class="c-recent__image" href="/kotlin_room" style="background-image: url( /images/cover/kotlin_room-1.png)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/kotlin_room">掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2023-08-14T09:45:01+08:00">August 14, 2023</time>
-              </div>
-            </div>
-          </div>
-          
-          
-          
-          <div class="c-recent__item">
-            <a class="c-recent__image" href="/app_portfolio" style="background-image: url( /images/cover/android_portfolio.png)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/app_portfolio">Android Portfolio：我的作品集</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2023-06-26T18:35:06+08:00">June 26, 2023</time>
-              </div>
-            </div>
-          </div>
-          
-          
-          
-          <div class="c-recent__item">
-            <a class="c-recent__image" href="/safe_browser" style="background-image: url( /images/cover/safe_browser_post-1.png)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/safe_browser">PM、RD看過來，從零開始制定或開發App瀏覽器！</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2023-06-08T18:35:06+08:00">June 8, 2023</time>
-              </div>
-            </div>
-          </div>
-          
-          
-          
-          <div class="c-recent__item">
-            <a class="c-recent__image" href="/kotlin_snake_game" style="background-image: url( /images/snake_game/kotlin_snake_game_post.png)"></a>
-            <div class="c-recent__footer">
-              <h4><a href="/kotlin_snake_game">Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！</a></h4>
-              <div class="c-recent__date">
-                <time datetime="2023-06-05T17:24:06+08:00">June 5, 2023</time>
-              </div>
-            </div>
-          </div>
-          
-          
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Android</h2>
+          <p class="c-categories__count"><span>12</span> Posts</p>
         </div>
-      </div> <!-- /.c-recent-post -->
-    </div> <!-- /.c-wrap-content -->
-  </div> <!-- /.c-article__content -->
-</article> <!-- /.c-article-page -->
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/bluetooth/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/bluetooth_with_kotlin-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Bluetooth</h2>
+          <p class="c-categories__count"><span>2</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/coding/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/android-photo.jpg');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Coding</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/datastructure/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/data-structure/cpu-linked-list.jpg');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">DataStructure</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/debug/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/samsung-android-knox-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Debug</h2>
+          <p class="c-categories__count"><span>9</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/demo/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/kotlin-mvvm+rxjava+retrofit+okHttp+dagger.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Demo</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/enterprise/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/android-enterprise-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Enterprise</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/extraincome/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/html-google-adsense-2022-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">ExtraIncome</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/jetpackcompose/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/ea_swiperefresh_app-new-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">JetpackCompose</h2>
+          <p class="c-categories__count"><span>4</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/knowhow/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/mqtt-noun-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">KnowHow</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/kotlin/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/kotlin_room-1.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Kotlin</h2>
+          <p class="c-categories__count"><span>6</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/ktor/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/kotlin-line-bot-ktor-server.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">Ktor</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/memorymanagement/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/cover/ea-website-android-memory.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">MemoryManagement</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+    <li class="c-categories__item">
+      
+      <a class="c-categories__link" href="/category/macos/">
+        
+        
+        
+        <div class="c-categories__img">
+          <figure style="background-image: url('/images/env/neofetch.png');"></figure>
+          <span class="c-categories__more">View all</span>
+        </div>
+        
+        
+        <div class="c-categories__container ">
+          <h2 class="c-categories__header">macOS</h2>
+          <p class="c-categories__count"><span>1</span> Posts</p>
+        </div>
+      </a>
+    </li>
+    
+  </ul>
+</div> <!-- ./c-categories -->
 
 
   
