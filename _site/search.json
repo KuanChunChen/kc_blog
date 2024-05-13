@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "【部署教學】Github pages 遷移至Jekyll 4.x以上版本-2024.5月適用",
+      "category" : "",
+      "tags"     : "Jekyll, html, and githubpages",
+      "url"      : "/jeykll_deploy_4_x",
+      "date"     : "2024-05-13 14:21:13 +0800"
+    } ,
+  
+    {
       "title"    : "掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學",
       "category" : "",
       "tags"     : "Kotlin and Android",
