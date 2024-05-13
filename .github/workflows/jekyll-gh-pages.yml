@@ -5,11 +5,6 @@ on:
     branches:
       - master
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-  
 jobs:
   jekyll:
     runs-on: macos-latest
@@ -33,7 +28,7 @@ jobs:
           enable_cache: true
 
       - name: 🚀 deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source: ./
