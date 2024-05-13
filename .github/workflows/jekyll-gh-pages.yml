@@ -28,7 +28,7 @@ jobs:
           enable_cache: true
 
       - name: 🚀 deploy
-        uses: actions/deploy-pages@v3
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source: ./
