@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "3.2.3"
 
 gem 'bundler'
-gem 'jekyll'
+gem "jekyll", "~> 4.3.3"
 gem 'jekyll-paginate'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
