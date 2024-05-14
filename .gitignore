@@ -6,3 +6,5 @@ images/.DS_Store
 .jekyll-cache
 
 .idea/
+
+.github/.DS_Store
