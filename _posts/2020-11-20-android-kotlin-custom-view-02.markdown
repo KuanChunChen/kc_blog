@@ -101,6 +101,6 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 <br>
 
 Created by Elegant Access's KC.<br>
-Copyright (c) 2020 All rights reserved.<br>
+Copyright (c) 2024 All rights reserved.<br>
 Instagram  : https://www.instagram.com/eleg.aces.kc/<br>
 Github : https://github.com/KuanChunChen<br>

@@ -216,3 +216,22 @@ document.addEventListener("DOMContentLoaded", function() {
         retina_detect: !0
     })
 }, !1);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const images = document.querySelectorAll('img');
+
+  images.forEach(img => {
+    img.style.cursor = 'zoom-in'; // 设置鼠标样式为放大镜
+    img.addEventListener('click', function(event) {
+      event.stopPropagation(); // 阻止事件冒泡到 document
+      this.classList.toggle('zoomed-in');
+    });
+  });
+
+  document.addEventListener('click', function(event) {
+    const zoomedInImages = document.querySelectorAll('.zoomed-in');
+    zoomedInImages.forEach(img => {
+      img.classList.remove('zoomed-in');
+    });
+  });
+});

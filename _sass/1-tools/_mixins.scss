@@ -19,3 +19,8 @@
   margin: 0;
   padding: 0;
 }
+
+.zoomed-in {
+    transform: scale(1.8); /* 圖片放大倍數 */
+    cursor: zoom-out; /* 鼠標樣式變更 */
+}

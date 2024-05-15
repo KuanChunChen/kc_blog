@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "如何應對 Android 14 開發中的版本差異？Android 14快速適配指南！",
+      "category" : "",
+      "tags"     : "Android",
+      "url"      : "/2024/05/15/android-14-version-impact/",
+      "date"     : "2024-05-15 10:33:18 +0800"
+    } ,
+  
+    {
       "title"    : "【部署教學】Github pages 遷移至Jekyll 4.x以上版本-2024.5月適用",
       "category" : "",
       "tags"     : "Jekyll, html, and githubpages",
