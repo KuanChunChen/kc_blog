@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Android 15 預覽版的新功能：通知冷卻"
+title: "第二版Android 15 Beta版本釋出!開發者如何應對新的版本限制？"
 date: 2024-05-16 13:59:07 +0800
 image: cover/android-version-adaptation-15.png
 tags: [Android]
