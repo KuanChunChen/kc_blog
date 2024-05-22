@@ -4,7 +4,7 @@ title: "打造更安全的Android應用程式！ 學習導入Samsung Knox SDK的
 date: 2022-09-16 14:41:08 +0800
 image: cover/samsung-android-knox-1.png
 tags: [Android,Debug,Samsung,knox]
-categories: Debug
+categories: Android教學
 ---
 
 <div class="c-border-main-title-2">Samsung Knox SDK 是一個安全解決方案</div>

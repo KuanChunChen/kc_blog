@@ -176,26 +176,9 @@ val state = remember {
 理解上面後，就可以用官方提供的幾種內建動畫套入<br>
 
 
-進場使用 expandHorizontally：<br>
+進場使用 `expandHorizontally`<br>
+出場使用 `fadeOut`<br>
 
-<div align=center style="word-wrap: break-word;">
-
-<img src="https://developer.android.com/images/jetpack/compose/animation-expandhorizontally.gif" alt="" width="100" class="screenshot">
-<br>
-<a href="https://developer.android.com/jetpack/compose/animation#entertransition"><font color="#999999" size= "1">本圖片轉自google android developer</font></a>
-
-
-</div>
-<br>
-
-出場使用 fadeOut：<br>
-
-<div align=center style="word-wrap: break-word;">
-<img src="https://developer.android.com/images/jetpack/compose/animation-fadeout.gif" alt="" width="100" class="screenshot">
-<br>
-<a href="https://developer.android.com/jetpack/compose/animation#entertransition"><font color="#999999" size= "1">本圖片轉自google android developer</font></a>
-
-</div>
 
 也就是說在 enter與exit分別帶入要的動畫如下：<br>
 ```kotlin

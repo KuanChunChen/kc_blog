@@ -4,7 +4,7 @@ title: "擁抱無線：教你使用adb無線連接Android實機教學！"
 date: 2022-02-15 13:46:32 +0800
 image: others/adb_wifi.png
 tags: [Android,adb]
-categories: Android
+categories: Android教學
 excerpt: "本文教你如何使用adb透過wifi連接Android實機，讓你不再受到煩人的有線限制，輕鬆進行開發與測試。"
 ---
 

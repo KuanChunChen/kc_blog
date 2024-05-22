@@ -3,8 +3,8 @@ layout: post
 title: "[Android][Memory]記憶體優化+GC管理相關概念分享"
 date: 2021-10-05 17:42:21 +0800
 image: cover/ea-website-android-memory.png
-tags: [Android,Kotlin,Memory]
-categories: MemoryManagement
+tags: [Android,Kotlin]
+categories: Android教學
 ---
 
 

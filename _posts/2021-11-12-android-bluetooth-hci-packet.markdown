@@ -4,7 +4,7 @@ title: "[Android][Kotlin]如何抓取Android手機中 Bluetooth 藍芽封包日�
 date: 2021-11-12 16:16:32 +0800
 image: cover/ea-android_bluetooth_hci_packet.png
 tags: [Android,Bluetooth]
-categories: Bluetooth
+categories: Android教學
 ---
 
 今天這篇文章要來紀錄下之前研究過 <br>

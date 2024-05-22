@@ -1,7 +1,7 @@
 [
   
     {
-      "title"    : "Android 15 預覽版的新功能：通知冷卻",
+      "title"    : "Android 15 Beta版本釋出!開發者如何應對新的版本限制？",
       "category" : "",
       "tags"     : "Android",
       "url"      : "/2024/05/16/android-15-version-impact/",
@@ -35,7 +35,7 @@
     {
       "title"    : "Android Portfolio：我的作品集",
       "category" : "",
-      "tags"     : "Kotlin and Android",
+      "tags"     : "portfolio and android",
       "url"      : "/app_portfolio",
       "date"     : "2023-06-26 18:35:06 +0800"
     } ,
@@ -145,7 +145,7 @@
     } ,
   
     {
-      "title"    : "深入淺出的說明，Android Enterprise 完整研究筆記分享",
+      "title"    : "[Android Enterprise]深入淺出的說明，Android Enterprise 完整研究筆記分享",
       "category" : "",
       "tags"     : "Android and Enterprise",
       "url"      : "/2022/05/25/android-enterprise/",
@@ -153,7 +153,7 @@
     } ,
   
     {
-      "title"    : "『教學』掌握 Android Device Owner 權限，企業級管理輕鬆上手！",
+      "title"    : "[Android教學]掌握 Android Device Owner 權限，企業級管理輕鬆上手！",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/25/android-device-owner/",
@@ -161,7 +161,7 @@
     } ,
   
     {
-      "title"    : "打造你的VPN app：Android VpnManager開發思路心得",
+      "title"    : "[Android開發思路]打造你的VPN app：Android VpnManager開發思路心得",
       "category" : "",
       "tags"     : "Android and Debug",
       "url"      : "/2022/04/21/android-vpn-manager-method/",
@@ -211,7 +211,7 @@
     {
       "title"    : "加速你對 WebRtc 和 Mqtt 的理解：名詞解釋筆記分享",
       "category" : "",
-      "tags"     : "know-how",
+      "tags"     : "Coding",
       "url"      : "/2022/02/14/web-rtc-mqtt-name/",
       "date"     : "2022-02-14 13:50:12 +0800"
     } ,
@@ -219,7 +219,7 @@
     {
       "title"    : "打造流暢自動加載分頁的Github API Demo：MVVM、DI、RxJava與Paging在Android Kotlin的實踐教學",
       "category" : "",
-      "tags"     : "Android, Kotlin, MVVM, dagger, http, and di",
+      "tags"     : "Android",
       "url"      : "/2021/12/23/android-kotlin-mvvm-dagger-http-rxjava/",
       "date"     : "2021-12-23 13:06:12 +0800"
     } ,
@@ -227,7 +227,7 @@
     {
       "title"    : "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin Ktor建置教學，讓你輕鬆上手",
       "category" : "",
-      "tags"     : "Android, Ktor, and Kotlin",
+      "tags"     : "Ktor",
       "url"      : "/2021/12/07/android-kotlin-ktor-line-bot-server/",
       "date"     : "2021-12-07 17:36:12 +0800"
     } ,
@@ -235,7 +235,7 @@
     {
       "title"    : "Android低功耗藍芽Gatt連線教學：使用Kotlin實作",
       "category" : "",
-      "tags"     : "Android, Bluetooth, and Kotlin",
+      "tags"     : "Android and Bluetooth",
       "url"      : "/2021/11/12/android-kotlin-bluetooth-gatt-client/",
       "date"     : "2021-11-12 16:16:32 +0800"
     } ,
@@ -251,7 +251,7 @@
     {
       "title"    : "[Android][Kotlin][CodingTest]刷題練習紀錄",
       "category" : "",
-      "tags"     : "Android, Kotlin, and Coding",
+      "tags"     : "Coding",
       "url"      : "/2021/11/11/android-kt-code-practive/",
       "date"     : "2021-11-11 12:55:12 +0800"
     } ,
@@ -267,7 +267,7 @@
     {
       "title"    : "[Android][Memory]記憶體優化+GC管理相關概念分享",
       "category" : "",
-      "tags"     : "Android, Kotlin, and Memory",
+      "tags"     : "Android and Kotlin",
       "url"      : "/2021/10/05/android-memory-note/",
       "date"     : "2021-10-05 17:42:21 +0800"
     } ,
@@ -299,7 +299,7 @@
     {
       "title"    : "Android開發 - RxJava搭配網路請求：實現Token重取與重新執行網路請求",
       "category" : "",
-      "tags"     : "Android and Kotlin",
+      "tags"     : "Android",
       "url"      : "/android-kt-rxjava",
       "date"     : "2021-02-19 21:37:48 +0800"
     } ,
@@ -307,7 +307,7 @@
     {
       "title"    : "Android Kotlin教學：解碼Google Maps Polyline路徑與繪製線條",
       "category" : "",
-      "tags"     : "Android, Kotlin, and Google map",
+      "tags"     : "Android",
       "url"      : "/2020/12/07/android-kt-map/",
       "date"     : "2020-12-07 21:22:14 +0800"
     } ,
@@ -315,7 +315,7 @@
     {
       "title"    : "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！",
       "category" : "",
-      "tags"     : "Android, Kotlin, inline, noinline, and crossinline",
+      "tags"     : "Android",
       "url"      : "/2020/11/30/android-kt-inline/",
       "date"     : "2020-11-30 21:01:43 +0800"
     } ,
@@ -323,7 +323,7 @@
     {
       "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03",
       "category" : "",
-      "tags"     : "Android and Kotlin",
+      "tags"     : "Android",
       "url"      : "/android/custom03",
       "date"     : "2020-11-21 15:44:20 +0800"
     } ,
@@ -331,7 +331,7 @@
     {
       "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02",
       "category" : "",
-      "tags"     : "Android and Kotlin",
+      "tags"     : "Android",
       "url"      : "/android/custom02",
       "date"     : "2020-11-20 16:04:13 +0800"
     } ,
@@ -339,7 +339,7 @@
     {
       "title"    : "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01",
       "category" : "",
-      "tags"     : "Android and Kotlin",
+      "tags"     : "Android",
       "url"      : "/android/custom01",
       "date"     : "2020-11-14 15:30:18 +0800"
     } ,
@@ -347,7 +347,7 @@
     {
       "title"    : "實作指南：如何在Android app內成功導入Huawei HMS Core 4.0 SDK",
       "category" : "",
-      "tags"     : "Android, Debug, Samsung, and knox",
+      "tags"     : "Android",
       "url"      : "/android/huawei_map",
       "date"     : "2020-09-15 10:06:32 +0800"
     } ,
@@ -355,7 +355,7 @@
     {
       "title"    : "[App開發]用 AIDL 來跨進程開發Android app吧 ！",
       "category" : "",
-      "tags"     : "Android and AIDL",
+      "tags"     : "Android",
       "url"      : "/android/aidl",
       "date"     : "2020-08-21 09:41:01 +0800"
     } 

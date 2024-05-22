@@ -4,7 +4,7 @@ title: "連接 Android app 應用：讓你的程式在不同進程中輕鬆溝�
 date: 2022-04-15 15:36:28 +0800
 image: cover/android-ipc-method-share-1.png
 tags: [Android,Debug]
-categories: Debug
+categories: Android教學
 excerpt: "探索Android app應用程式之間的跨進程通訊技術（IPC），讓你的應用程式在不同進程之間輕鬆溝通，達到更好的協作效果。"
 ---
 

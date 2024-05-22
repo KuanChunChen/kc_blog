@@ -4,7 +4,7 @@ title: "Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員
 date: 2022-04-18 16:37:48 +0800
 image: cover/android-catch-log-1.png
 tags: [Android,Debug]
-categories: Debug
+categories: Debug探討
 ---
 
 <div class="c-border-main-title-2">前言</div>

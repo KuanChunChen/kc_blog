@@ -4,7 +4,7 @@ title: "如何應對 Android 14 開發中的版本差異？Android 14快速適�
 date: 2024-05-15 10:33:18 +0800
 image: cover/android-version-adaptation-14.png
 tags: [Android]
-categories: Debug
+categories: SDK升級
 excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解決方案。"
 ---
 <div class="c-border-content-title-4">Android 14 平台的一些重要變更細節摘要，所有應用在該平台上行為改變</div>

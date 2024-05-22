@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "深入淺出的說明，Android Enterprise 完整研究筆記分享"
+title: "[Android Enterprise]深入淺出的說明，Android Enterprise 完整研究筆記分享"
 date: 2022-05-25 16:05:01 +0800
 image: cover/android-enterprise-1.png
 tags: [Android,Enterprise]
-categories: Android Enterprise
+categories: Android教學
 excerpt: "想要掌握 Android Enterprise 的技巧嗎？這份完整的研究筆記分享給你！深入淺出的說明 Android Enterprise 相關概念和實作方法，讓你快速學會如何管理企業級的 Android 裝置。"
 ---
 

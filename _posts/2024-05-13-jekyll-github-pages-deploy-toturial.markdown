@@ -5,7 +5,7 @@ date: 2024-05-13 14:21:13 +0800
 image: cover/jekyll_github_deploy.png
 tags: [Jekyll,html,githubpages]
 permalink: /jeykll_deploy_4_x
-categories: jekyll
+categories: Jekyll部署
 excerpt: "本文提供了一個詳細的指南，幫助您將您的 Github pages 網站遷移至 Jekyll 4.x 以上版本。涵蓋了各個配置的每個步驟，確保您能夠順利升級並享受 Jekyll 最新版本的強大功能。"
 ---
 

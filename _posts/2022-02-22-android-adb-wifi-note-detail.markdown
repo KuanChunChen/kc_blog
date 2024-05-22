@@ -4,7 +4,7 @@ title: "釋放 Android 11 adb wireless debug 的力量：從有線到無線，�
 date: 2022-02-22 15:16:12 +0800
 image: cover/android-adb-wirless-share-1.png
 tags: [Android,adb]
-categories: Android
+categories: Android教學
 excerpt: "想要釋放你的 Android 11 的真正潛力嗎？那就來探索無線 adb wireless debug 吧！從有線到無線，讓你的 debug 體驗更自由、更便利。"
 ---
 

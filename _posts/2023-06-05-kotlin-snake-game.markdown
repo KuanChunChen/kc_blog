@@ -5,7 +5,7 @@ date: 2023-06-05 17:24:06 +0800
 image: snake_game/kotlin_snake_game_post.png
 tags: [Kotlin,Android]
 permalink: /kotlin_snake_game
-categories: Kotlin
+categories: Android實作
 excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇遊戲，讓您在學習過程中充分體驗到遊戲開發的樂趣！無論您是初學者還是有經驗的開發者，都能藉由這個實作教學加深對Kotlin語言和遊戲開發的理解。讓我們一起重溫這款老少咸宜的遊戲，動手開創您自己的經典回憶吧！"
 ---
 

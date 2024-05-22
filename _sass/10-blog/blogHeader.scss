@@ -996,44 +996,6 @@ button.vjs-play-control.vjs-control.vjs-button {
  }
 }
 
-@media screen and (max-width: 475px) {
- .main-blog__title {
-  font-size: 20px;
- }
- .author-name {
-  font-size: 14px;
- }
- .main-blog__author {
-  flex-direction: column-reverse;
-  align-items: flex-start;
- }
- .author-detail {
-  margin-left: 0;
- }
- .main-blog .author-img {
-  margin-top: 14px;
- }
- .main-container {
-  padding: 0 20px 20px;
- }
- .header {
-  padding: 20px;
- }
- .sidebar.collapse {
-  width: 40px;
- }
- .sidebar {
-  align-items: center;
- }
- body {
-  padding: 0;
- }
- .container {
-  height: 100vh;
-  border-radius: 0;
-  max-height: 100%;
- }
-}
 
 
 ::-webkit-scrollbar {
