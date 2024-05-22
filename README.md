@@ -1,6 +1,6 @@
 
-# KC_BLOG
-This repo is the website that have serval tutorial.
+# Elegant Access - Your Majesty
+Elegant Access is a blog that share android know-how.
 
 ### 👋 Hello, I,m Kuan-Chun-Chen.
 ---
