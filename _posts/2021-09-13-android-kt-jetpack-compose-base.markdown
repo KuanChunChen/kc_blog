@@ -39,7 +39,7 @@ Jetpack Compose是一種完全用kotlin程式碼 <br>
 <br>
 所以如果先前對上述kotlin概念已經很熟悉了<br>
 對學習Jetpack Compose就有很大優勢<br>
-幾乎沒多久就能上手。<br>
+估計可以快速上手。<br>
 
 
 
@@ -64,7 +64,7 @@ Jetpack Compose是一種完全用kotlin程式碼 <br>
 <div class="c-border-main-title-2">具體做法</div>
 
 在此，<br>
-我們建立了一些基礎的小部件（widget）。<br>
+我建立了一些基礎的小部件（widget）。<br>
 當你實際上要在 Activity 或 Fragment 中使用時，<br>
 你可以根據需求進行重複使用，<br>
 這樣能更有效地開發和管理你的應用程式。<br>

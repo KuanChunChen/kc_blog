@@ -27,44 +27,50 @@ excerpt: "本篇教學介紹如何使用Kotlin在Android中使用Google Map API 
 <div class="c-border-content-title-4">第一步：理解資料</div>
 然而我們的需求是需要畫出整段行車路徑，所以預計使用剛剛取得的json資料，其中有歸納出幾個tips如下：<br>
 1.取得路徑相關資訊的資料位於json內的routes的array<br>
-2.routes裡面包含預估的走法，像平常用google map導航，他會跟你說 前方500m向左轉/向右轉…等等<br>
-3.而這次我們的重點是要畫出兩點之間的行徑路線，所以可以直接取得json格式內routes>overview_polyline>points，裡面是一串google經過encode壓縮的編碼<br>
+2.routes裡面包含預估的走法<br>
+像平常用google map導航<br>
+app會跟你說<br>
+前方500m向左轉/向右轉…等等<br>
+3.而這次我們的重點是要畫出兩點之間的行徑路線<br>
+所以可以直接取得json格式內`routes` > `overview_polyline` > `points`<br>
+裡面是一串google經過encode壓縮的編碼<br>
 
 
 <div class="c-border-content-title-4">第二步：理解polyline壓縮的演算法</div>
 
-(如果有興趣知道編碼演算法的可以看 google官方演算法)
-<a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm?hl=zh-tw">google官方Polyline Encoder Utility</a>
+(如果有興趣知道編碼演算法的可以看 google官方演算法)<br>
+<a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm?hl=zh-tw">google官方Polyline Encoder Utility</a><br>
 這邊我們會透過<br>
 Maps JavaScript API<br>
-去拿到一串不可讀資料<br>
-這串資料代表我們想要的兩點路徑<br>
+去拿到一串`非明文`的資料<br>
+這串資料代表我們想要畫線的兩點路徑<br>
 因為google官方將他encode了<br>
 
-在閱讀演算法後，大致解碼流程如下：<br>
-其中包含，把每個值轉為等效的Ascii，<br>
-將ascii 的 “ ? ”加入每個值（其實就是上面看到的 63 , ?的ascii就是 63），<br>
-每個值與0x20做邏輯閘運算，<br>
-位址reverse，<br>
-位址左移，<br>
-轉換為2進位，<br>
-原本的經緯度乘1e5…<br>
+我閱讀上述文件後，在此分享解碼流程依序如下：<br>
 
-原來在google官方文件有提到，<br>
-大部分的原因是為了在傳輸過程降低大量資料造成的空間消耗，<br>
-所以就是傳壓縮過的資料了<br>
+* 把每個值轉為等效的Ascii<br>
+* 將ascii 的 “ ? ”加入每個值（其實就是上面看到的 63 , ?的ascii就是 63）<br>
+* 每個值與0x20做邏輯閘運算<br>
+* 位址reverse<br>
+* 位址左移<br>
+* 轉換為2進位<br>
+* 原本的經緯度乘1e5…<br>
+
+在google官方文件有提到<br>
+大部分的原因是為了在傳輸過程`降低大量資料造成的空間消耗`<br>
+所以就壓縮資料了<br>
 
 
 <div class="c-border-content-title-4">第三步：解碼資料</div>
 那為了解決這個問題，只好去找decode的方法，<br>
 並預期解碼後，可以得到整個行徑路線的經緯度。<br>
 
-我google了，實現方法很簡單，<br>
-就是依照上面提到google官方演算法內的encode流程進行反向編程，<br>
+實現方法很簡單<br>
+依照上面提到google官方演算法內的encode流程進行反向編程<br>
 將拿到的polyline encode拿去反向步驟解碼，<br>
 則可以得到欲應用的經緯度陣列。<br>
 所以理論上是不管在哪個語言/平台都能實現<br><br>
-先把剛剛拿到的json進行解析，<br><br>
+先把剛剛拿到的`json進行解析`<br><br>
 
 這邊我就不展示json解析的過程了，<br>
 相信很多人都已經會了！<br>
@@ -100,18 +106,13 @@ Maps JavaScript API<br>
   <img src="/images/googlemap/map02.png" alt="Cover" width="70%"/>
 </div>
 
-另外這邊提供兩個網站，可以直接線上解碼，<br>
+另外這邊提供個網站，可以直接線上解碼，<br>
 讓你在開發時，測試自己的decode結果是不是對的<br>
 
 <ol>
   <li>
     <a href="https://developers.google.com/maps/documentation/utilities/polylineutility">google官方Polyline Encoder Utility)</a>
   </li>
-
-  <li>
-    <a href="https://open-polyline-decoder.60devs.com/">open-polyline-decoder(非官方)</a>
-  </li>
-
 </ol>
 
 覺得我的文章有幫助到你的小夥伴，請不吝嗇的給我些鼓勵吧！

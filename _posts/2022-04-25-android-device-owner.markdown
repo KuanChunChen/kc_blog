@@ -150,6 +150,13 @@ adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br
 ---
 補充：<br>
 除了Device Owner外<br>
-下面這個指令 也能透過adb 修改指定app權限<br>
+下面這個指令 也能透過adb 修改指定app配置<br>
 `adb shell pm grant com.your.package android.permission.CHANGE_CONFIGURATION`<br>
-不過他的層級就跟 Device Owner 不太一樣就是了<br>
+或直接加入`AndroidManifest.xml`也可以
+不過因為他在系統上的protectLevel被宣告為`signature|privileged`
+(現在看文件`signature|privileged`已被改為`signatureOrSystem`，效果跟之前一樣)
+這時候你要使用這個權限來改app配置就需要取得系統簽名或是有device owner權限之類的
+
+可以看看官方<a href="https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn
+" target="_blank">權限文件</a>，來了解`signature|privileged`
+

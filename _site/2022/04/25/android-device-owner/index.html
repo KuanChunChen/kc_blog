@@ -207,6 +207,7 @@
                             
                         <li><a class="dropdown-item" href="/about.html">WillyChen的個人簡歷</a></li>
                                                                
+                        <li><a class="dropdown-item" href="https://gist.github.com/KuanChunChen">參觀我的Gist</a></li>
                     </ul>
                 </li>
                 
@@ -662,9 +663,15 @@ adb shell dpm remove-active-admin com.your.package/<code class="language-plainte
 
 <p>補充：<br />
 除了Device Owner外<br />
-下面這個指令 也能透過adb 修改指定app權限<br />
+下面這個指令 也能透過adb 修改指定app配置<br />
 <code class="language-plaintext highlighter-rouge">adb shell pm grant com.your.package android.permission.CHANGE_CONFIGURATION</code><br />
-不過他的層級就跟 Device Owner 不太一樣就是了<br /></p>
+或直接加入<code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code>也可以
+不過因為他在系統上的protectLevel被宣告為<code class="language-plaintext highlighter-rouge">signature|privileged</code>
+(現在看文件<code class="language-plaintext highlighter-rouge">signature|privileged</code>已被改為<code class="language-plaintext highlighter-rouge">signatureOrSystem</code>，效果跟之前一樣)
+這時候你要使用這個權限來改app配置就需要取得系統簽名或是有device owner權限之類的</p>
+
+<p>可以看看官方<a href="https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn " target="_blank">權限文件</a>，來了解<code class="language-plaintext highlighter-rouge">signature|privileged</code></p>
+
 
       <div class="c-article__footer u-clearfix">
         <div class="c-article__tag">

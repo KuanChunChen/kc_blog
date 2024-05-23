@@ -64,7 +64,7 @@ excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn �
 以及套入資料
 <br>
 
-<h2>第二步：使用LazyColumn去實現list列表</h2>
+<div class="c-border-content-title-4">第二步：使用LazyColumn去實現list列表</div>
 
 再來只要使用LazyColumn呼叫你剛剛做好的item<br>
 這樣就能實作一個list列表了<br>
@@ -73,16 +73,15 @@ excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn �
 
 
 
-<h2>第三步：加入viewmodel去變化資料</h2>
-
-這邊是我這篇實作的viewmodel<br>
-使用了jetpack的viewmodel<br>
+<div class="c-border-content-title-4">第三步：加入viewmodel去變化資料</div>
+這是我這篇實作的viewmodel<br>
 以及livedata去觀察資料的變化<br>
 <script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br>
 <br>
 
-<font color="green">提示(hint) </font>
+
+<div class="c-border-content-title-1">提示(hint)</div>
 
 ```
 常常在code看到用底線_命名變數
@@ -95,35 +94,42 @@ _devices 與 devices
 所以這邊來分享下
 ```
 
-其實意義就是在一個是private<br>
-主要用來給這個class內去操作<br>
-其他要操作的就是用public的變數去呼叫<br>
-如這個上面這個例子來說<br>
-_devices就是用來給class內部呼叫 要變的話只用內部的fun去操作<br>
-或者像是這邊套了livedata<br>
-讓其他開放的public變數去觀察或者取用 如本例devices<br>
-並藉由getter / setter 讓外部呼叫可以直接更改<br>
-而不會動到主要的那個變數<br>
+其中會把_devices定義為是private<br>
+devices定義為public<br>
+`私有（private）`的變數用來給class內部操作<br>
+其他外部class想要操作devcies的就用public的變數去呼叫<br><br>
+如上面這個例子來說<br>
+_devices是用來給class內部呼叫<br> 
+通常會讓內部業務邏輯改此值<br>
+`避免多處重複操作`<br>
+或造成一些混亂<br>
+讓後續維護更困難<br><br>
 
+像是這邊套了livedata<br>
+讓開放的public變數可以被外部class去觀察使用 如本例devices<br>
+並藉由開放getter / setter function讓外部呼叫可以直接更改<br>
+而不會讓多處都重複操作 或多處要修改<br>
+避免以後要拔掉此功能或修正 會需要看很久<br>
+
+<div class="c-border-content-title-4">第四步：把viewmodel導入compose</div>
 <br>
-<br>
-把剛剛前面實作的list相關與viewmodel包成content:<br>
+把剛剛前面實作的list的compose與viewmodel合體:<br>
 <script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br>
 <br>
-這邊主要加入這行<br>
-使得jetpack viewmodel變成實際要用在view上的data<br>
+加入這行<br>
+使得viewmodel中的devices變成可以用能在compose改變ui的state<br>
 
 ```kotlin
 val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 ```
 
-這是我最後包成一個content的範例，供參考：<br>
+這是包成一個content的範例，供參考：<br>
 <script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br>
 
 
+<div class="c-border-content-title-4">第五步：實際應用在fragment上看看吧</div>
 
-<h2>第四步：加進fragment看看吧</h2>
 <br>
 記得導入viewmodel<br>
 
@@ -144,7 +150,7 @@ val model: DeviceViewModel by activityViewModels()
 新增下拉刷新<br><br>
 
 <a href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
-  <img src="/images/cover/ea_swiperefresh_app.png" alt="Cover" width="30%" >
+  <img src="/images/cover/ea_swiperefresh_app-new-1.png" alt="Cover" width="30%" >
 </a>
 
 <a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-swiperefresh/">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</a><br>
