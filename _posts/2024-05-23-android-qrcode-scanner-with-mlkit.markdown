@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【Android】用Google MLKit & CameraX 實作Android快速的QR code掃描應用
+title: 【Android】用Google MLKit & Android X Camera 實作Android快速的QR code掃描應用
 date: 2024-05-23 15:22:54 +0800
 image: cover/android-qrcode-scanner-with-mlkit.png
 tags: [Android]
@@ -10,7 +10,6 @@ excerpt: "如何提升Qr Code掃描器的效能，我使用Google MLKit & Camera
 ---
 
 <div class="c-border-content-title-4">本篇示範程式碼</div><br>
-下面會分享一些分析不同QR解碼器實作的內容<br>
 若想直接看程式碼怎麼寫可以：<a href="#tutorial">前往程式碼解析</a><br>
 這個專案中使用了Kotlin、Google的MLKit跟native的AndroidX camera搭配來實作QR掃瞄器<br>
 <div style="text-align: center">
