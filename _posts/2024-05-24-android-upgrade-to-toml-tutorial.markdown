@@ -67,6 +67,11 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 用`aapt dump badging appName.apk`去檢驗build來跟用`ibs.versions.minSdk.get()`設置的一致<br>
 <img src="/images/toml/010.png" width="100%"><br><br>
 
+* 低於AGP 8.1.0的配置需要在加入plugin{}上方加入`@Suppress("DSL_SCOPE_VIOLATION")`
+<img src="/images/toml/012.png" width="100%"><br><br>
+原因是因為gradle那邊的issue
+<a href="https://github.com/gradle/gradle/issues/22797">Version catalog accessors for plugin aliases shown as errors in IDE kotlin script editor #22797</a>
+
 * 再來就是plugins下的version.ref<br>
 不能設成null或empty <br>
 

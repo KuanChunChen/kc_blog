@@ -580,6 +580,12 @@ document.addEventListener('DOMContentLoaded', function() {
 用<code class="language-plaintext highlighter-rouge">aapt dump badging appName.apk</code>去檢驗build來跟用<code class="language-plaintext highlighter-rouge">ibs.versions.minSdk.get()</code>設置的一致<br />
 <img src="/images/toml/010.png" width="100%" /><br /><br /></p>
   </li>
+  <li>
+    <p>低於AGP 8.1.0的配置需要在加入plugin{}上方加入<code class="language-plaintext highlighter-rouge">@Suppress("DSL_SCOPE_VIOLATION")</code>
+<img src="/images/toml/012.png" width="100%" /><br /><br />
+原因是因為gradle那邊的issue
+<a href="https://github.com/gradle/gradle/issues/22797">Version catalog accessors for plugin aliases shown as errors in IDE kotlin script editor #22797</a></p>
+  </li>
   <li>再來就是plugins下的version.ref<br />
 不能設成null或empty <br /></li>
 </ul>
