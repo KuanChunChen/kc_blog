@@ -85,9 +85,9 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 <img src="/images/toml/011.png" width="50%"><br><br>
 
 <div class="c-border-content-title-1">為啥有些library沒設定version.ref還是能Build</div>
-* 第一次用`.toml`時會發現為啥有些沒配置version.ref
-還是能正常build
-<img src="/images/toml/014.png" width="50%"><br><br>
+* 第一次用`.toml`時會發現為啥有些沒配置version.ref<br>
+還是能正常build<br>
+<img src="/images/toml/014.png" width="80%"><br><br>
 這是因為compose的library提供一種為`Bom`的概念<br>
 當你引入`composeBom`的時候<br>
 再導入其他相關library且不設定版本時<br>
