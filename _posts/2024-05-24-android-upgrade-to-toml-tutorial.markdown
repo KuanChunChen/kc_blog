@@ -18,7 +18,7 @@ excerpt: ""
 用點擊的就可以看到內容 <br>
 
 * 像是以前建立一個Dependence.kt這種可能就要用雙Shift去搜尋<br>
-或去../Dependence.kt去尋找<br>
+或去`../Dependence.kt`下尋找<br>
 
 <div class="c-border-content-title-1">適用的AGP版本</div>
 
@@ -41,7 +41,7 @@ excerpt: ""
 提到`在7.0這次release支援了version catalogs這項實驗性功能`
 <img src="/images/toml/005.png" width="50%"><br><br>
 <a href="https://docs.gradle.org/7.0/release-notes.html">參考Gradle 7.0 release</a>
-那就是可以toml便可以在7.x使用了
+那便是toml可以在7.x使用了
 
 <div class="c-border-content-title-1">遷移可能會遇到的問題</div>
 * 有專案用到了這種方式引入library<br>
@@ -57,22 +57,25 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 
 * 過去會用kotlin object來配置版本參數，如下<br>
 <script src="https://gist.github.com/KuanChunChen/e529bd12f84310a4c1f05c237850f1ba.js"></script>
-因為想全部改成.toml
+如果想全部改成.toml
 實測在外部存取.toml配置的version<br>
 不能像是libs直接用<br>
 `libs.xx.xx.xxx去拿version`<br><br>
 只能直接用`get()`去拿到.toml內Versions的值<br>
-如：libs.versions.minSdk.get().toInt()<br>
+如：`libs.versions.minSdk.get().toInt()`<br>
 <script src="https://gist.github.com/KuanChunChen/950ea155ac70ee87ce9b2060667027fa.js"></script><br>
+不過如用此方式設定<br>
+在.toml裡面看不到哪處使用<br>
+<img src="/images/toml/013.png" width="50%"><br><br>
 用`aapt dump badging appName.apk`去檢驗build來跟用`ibs.versions.minSdk.get()`設置的一致<br>
 <img src="/images/toml/010.png" width="100%"><br><br>
 
 * 低於AGP 8.1.0的配置需要在加入plugin{}上方加入`@Suppress("DSL_SCOPE_VIOLATION")`
 <img src="/images/toml/012.png" width="100%"><br><br>
-原因是因為gradle那邊的issue
+原因是因為IDE那邊的issue
 <a href="https://github.com/gradle/gradle/issues/22797">Version catalog accessors for plugin aliases shown as errors in IDE kotlin script editor #22797</a>
 
-* 再來就是plugins下的version.ref<br>
+* 再來就是`[plugins]`下的version.ref<br>
 不能設成null或empty <br>
 
 因為有些專案是拿plugin + classpath去設置
