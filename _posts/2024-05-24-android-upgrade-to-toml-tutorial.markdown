@@ -67,7 +67,7 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 不過如用此方式設定<br>
 在.toml裡面看不到哪處使用<br>
 <img src="/images/toml/013.png" width="50%"><br><br>
-用`aapt dump badging appName.apk`去檢驗build來跟用`ibs.versions.minSdk.get()`設置的一致<br>
+用`aapt dump badging appName.apk`去檢驗build出來的與`ibs.versions.minSdk.get()`設置的一致<br>
 <img src="/images/toml/010.png" width="100%"><br><br>
 
 * 低於AGP 8.1.0的配置需要在加入plugin{}上方加入`@Suppress("DSL_SCOPE_VIOLATION")`
@@ -84,6 +84,20 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 會讓直接用plugins設定有衝突<br>
 <img src="/images/toml/011.png" width="50%"><br><br>
 
+<div class="c-border-content-title-1">為啥有些library沒設定version.ref還是能Build</div>
+* 第一次用`.toml`時會發現為啥有些沒配置version.ref
+還是能正常build
+<img src="/images/toml/014.png" width="50%"><br><br>
+這是因為compose的library提供一種為`Bom`的概念<br>
+當你引入`composeBom`的時候<br>
+再導入其他相關library且不設定版本時<br>
+他會根據你設定的composeBom版本<br>
+自動去mapping相關的library version<br>
+這樣其實只要設定composeBom 就能讓其有支援自動導入的地方設定成相容的版本了<br>
+滿方便的!<br>
+
+
+<a href="https://developer.android.com/develop/ui/compose/bom/bom-mapping">參考Bom mapping</a><br>
 <div class="c-border-content-title-4">遷移version catalogs方法</div>
 <div class = "table_container">
    <p>遷移解說</p>
