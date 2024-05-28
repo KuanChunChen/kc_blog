@@ -2,7 +2,7 @@
 layout: post
 title: Android 用Jektpack Compose 來開發app【04】 - Compose畫面篇
 date: 2024-05-28 14:32:37 +0800
-image: cover/
+image: cover/android-jetpack-compose-structure-part4.png
 tags: [Android,Kotlin]
 permalink: /android-jetpack-compose-structure-part4
 categories: JetpackCompose

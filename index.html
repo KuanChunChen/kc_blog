@@ -14,7 +14,7 @@ layout: home
 
 {% assign posts = site.posts | limit:2 %}
 {% assign portfolio = site.posts | where: "permalink", "/app_portfolio" | first %}
-{% assign last_post = site.posts | first %}
+{% assign assign_post = site.posts | where: "permalink", "/android-qrcode-scanner-with-mlkit" | first %}
 
 
 <div class="main-container">
@@ -42,13 +42,13 @@ layout: home
       		</div>
       	</a>
 
-			<a class="main-blog anim" href="{{last_post.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/' | prepend: site.baseurl | append : last_post.image}})">
+			<a class="main-blog anim" href="{{assign_post.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/' | prepend: site.baseurl | append : assign_post.image}})">
 				<div class="main-blog__title">
-					{{last_post.title}}
+					{{assign_post.title}}
 				</div>
 				<div class="main-blog__author tips">
 					<div class="main-blog__time">
-            {% capture words %}{{ last_post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words |
+            {% capture words %}{{ assign_post.content | number_of_words }}{% endcapture %}{% unless words contains "-" %}{{ words |
                 plus: 250 | divided_by: 250 | append: " minute read" }}{% endunless %}
 					</div>
 					<div class="author-img__wrapper">
@@ -61,7 +61,7 @@ layout: home
 							{{site.author-name}}
 						</div>
 						<div class="author-info">
-							<span></span>{{last_post.date | date: '%Y, %b %d'}}
+							<span></span>{{assign_post.date | date: '%Y, %b %d'}}
 						</div>
 					</div>
 				</div>

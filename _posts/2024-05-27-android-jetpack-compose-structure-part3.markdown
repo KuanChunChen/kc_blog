@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Android 用Jektpack Compose 來開發app【03】 - compose導航篇
+title: Android 用Jektpack Compose 來開發app【03】 - Compose導航篇
 date: 2024-05-27 15:42:39 +0800
-image: cover/
+image: cover/android-jetpack-compose-structure-part3.png
 tags: [Android,Kotlin]
 permalink: /android-jetpack-compose-structure-part3
 categories: JetpackCompose

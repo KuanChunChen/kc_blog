@@ -2,7 +2,7 @@
 layout: post
 title: Android 用Jektpack Compose 來開發app【02】 - DI注入篇
 date: 2024-05-27 15:27:05 +0800
-image: cover/
+image: cover/android-jetpack-compose-structure-part2.png
 tags: [Android,Kotlin]
 permalink: /android-jetpack-compose-structure-part2
 categories: JetpackCompose
