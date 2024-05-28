@@ -38,6 +38,9 @@ excerpt: "探索 Android 開發：我的作品集"
 
 <section id="airdroid">
 <h1 class="c-border-main-title">AirDroid時期做的作品</h1>
+<div class="c-border-content-title-1">Chat Insight AI</div>
+<br>
+{% include /portfolio/chatAI.html %}
 <div class="c-border-content-title-1">Safe Browser app</div>
 <br>
 {% include /portfolio/browser.html %}
