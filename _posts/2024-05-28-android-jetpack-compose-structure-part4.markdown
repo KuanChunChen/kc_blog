@@ -60,7 +60,7 @@ excerpt: ""
 
 <div class="c-border-content-title-4">透過flow來響應畫面更新</div>
 
-<div class="c-border-content-title-1">組合flow</div>
+<div class="c-border-content-title-1">建立flow</div>
 
 * 現在的app功能愈來愈多<br>
 所以取得值的來源或需求也增多了<br><br>
