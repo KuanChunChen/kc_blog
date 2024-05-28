@@ -47,6 +47,11 @@ ol {
     transition: all .3s ease-out;
   }
 
+  .rectangle-list a.current-page {
+          font-weight: bold;
+          color: #FF0000;
+  }
+
   .rectangle-list a:hover{
     background: #eee;
   }
