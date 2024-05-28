@@ -17,9 +17,10 @@ excerpt: ""
 
 <div class="c-border-content-title-1">專案建置</div>
 * 使用的library如下：
-{% include table/compose-use.html %}
-
-{% include table/compose-category.html %}
+<div id="category">
+    {% include table/compose-use.html %}
+    {% include table/compose-category.html %}
+</div>
 
 <div class="c-border-content-title-4">刻畫共用的畫面心得分享</div>
 * 與不同的UI/UX合作後<br>
@@ -96,3 +97,4 @@ combine會組合你的所有flow <br>
 這時候就能響應式更新畫面囉~<br>
 
 <script src="https://gist.github.com/KuanChunChen/a86bac16bd42eab68566b6b440fc6e5d.js"></script>
+<a class="link" href="#category" data-scroll>跳回目錄</a>

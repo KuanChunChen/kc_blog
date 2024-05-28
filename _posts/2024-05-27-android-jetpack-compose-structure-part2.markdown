@@ -19,9 +19,10 @@ excerpt: ""
 
 <div class="c-border-content-title-1">專案建置</div>
 * 使用的library如下：
-{% include table/compose-use.html %}
-
-{% include table/compose-category.html %}
+<div id="category">
+    {% include table/compose-use.html %}
+    {% include table/compose-category.html %}
+</div>
 
 <div class="c-border-content-title-4">導入DI注入 - Hilt</div>
 <div class="c-border-content-title-1">step1. 導入Hilt & KSP</div>
@@ -103,4 +104,6 @@ hilt會在class頭有加入`@AndroidEntryPoint`的地方提供inject的功能<br
 
 * 最後 當你需要取用這些instance只要直接在construct那邊inject 就可以用了
 <script src="https://gist.github.com/KuanChunChen/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
+
+<a class="link" href="#category" data-scroll>跳回目錄</a>
 

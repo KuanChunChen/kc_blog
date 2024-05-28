@@ -32,9 +32,11 @@ excerpt: ""
 有興趣可以<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">參考看看</a><br><br>
 
 * 實際的規劃如下：
-{% include table/compose-use.html %}
+<div id="category">
+    {% include table/compose-use.html %}
+    {% include table/compose-category.html %}
+</div>
 
-{% include table/compose-category.html %}
 <div class="c-border-content-title-4">實作Compose主題</div>
 
 * 以前在使用xml時，會透過加入色碼到colors.xml<br>
@@ -78,4 +80,5 @@ colorscheme就是套用前面實作的
 <div class="c-border-content-title-4">結語</div>
 * 第一部分就到這邊了<br>
 主要是先把前面的基礎建設打穩<br>
-後面開發就會很方便、有效率了!<br>
+後面開發就會很方便、有效率了!<br><br>
+<a class="link" href="#category" data-scroll>跳回目錄</a>

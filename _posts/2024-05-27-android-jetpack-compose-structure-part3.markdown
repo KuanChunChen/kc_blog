@@ -18,9 +18,10 @@ excerpt: ""
 
 <div class="c-border-content-title-1">初期建置</div>
 * 使用的library如下：
-{% include table/compose-use.html %}
-
-{% include table/compose-category.html %}
+<div id="category">
+    {% include table/compose-use.html %}
+    {% include table/compose-category.html %}
+</div>
 
 <div class="c-border-content-title-4">實作Navigation for Compose</div>
 * 這邊預計使用一個Main activity去導航、跳轉到其他畫面<br>
@@ -59,3 +60,6 @@ excerpt: ""
 
 實際使用：<br>
 <script src="https://gist.github.com/KuanChunChen/27b4d20765e035a36eed8ce204cbbc88.js"></script>
+
+<a class="link" href="#category" data-scroll>跳回目錄</a>
+
