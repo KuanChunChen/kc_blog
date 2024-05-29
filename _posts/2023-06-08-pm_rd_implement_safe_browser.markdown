@@ -144,67 +144,6 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
     </li>
 </ul>
 
-<div class="c-border-content-title-4">
-    內容過濾開發者參考 (推薦RD閱讀)
-</div>
-
-
-<ul>
-
-  <li>
-    這一part研究了若身為一個RD有哪些開發方式可以選擇：
-  </li>
-
-    <li><b>這兩種方案都需考慮</b>
-        <ul>
-            <li>自行開發browser內容過濾的話較單純，
-            若要限制系統內所有瀏覽器的話需再考慮是否使用輔助權限方案（下面方案有列出競品的實作方式供參考）
-            或是也有廠商是用proxy或dns來解決，
-            不過要開發輔助權限、代理就需<strong>更多時間</strong>，也可以列入考量。</li>
-            <li>若在考慮這些方法時需考慮是否雙平台可用</li>
-        </ul>
-    </li>
-    <li><strong>接入第三方SDK</strong> :
-        <ul>
-            <li>不同的第三方SDK，提供的威脅類型不同，若有些類型沒有的話，也需自行維護</li>
-            <li>若使用google服務<strong>Web Risk API</strong>(接網路請求API的話雙平台都可用)需查閱以下，了解其規則：
-                <ol>
-                    <li><a href="https://cloud.google.com/web-risk/sla">Web Risk Service Level Agreement</a></li>
-                    <li><a href="https://cloud.google.com/web-risk/quotas?hl=zh-cn">配额和限制</a></li>
-                    <li><a href="https://cloud.google.com/web-risk/docs/reference/rest/v1/ThreatType?hl=zh-cn">威脅類型</a></li>
-                </ol>
-            </li>
-            <li>若接入<strong>趨勢 HNS SDK</strong> ，需了解該SDK是否有提供我方目標的資料。
-                <ul>
-                    <li>因該SDK需接洽該公司客服，在網頁上也無顯示開發文件，僅能以下圖了解大概有提供的範圍：</li>
-                    <li>提供範圍與細項</li>
-                    <img src="/images/browser/002.png" alt="safe browser 02" />
-                    <img src="/images/browser/003.png" alt="safe browser 03" />
-                    <li>系統要求與雙平台支援的範圍</li>
-                    <img src="/images/browser/004.png" alt="safe browser 04" />
-                    <li>或可參考下面有解析趨勢科技的app，推測內容行為可能跟該app類似</li>
-                </ul>
-            </li>
-            <li>若接入<strong>CleanBrowsering</strong>，有以下注意事項：
-                <ol>
-                    <li>支援Android 9.0以上，透過設置內<strong>DNS-over-TLS (DOT) protocol</strong>去設定DNS：<a href="https://cleanbrowsing.org/help/docs/setup-private-dns-on-android-version-9/">方法</a>
-                    (因看該實作方法是用Android內的功能實現，推測IOS應該無支援)</li>
-                    <li>也需與該公司客服接洽，這邊是在網站上提供的過濾範圍：</li>
-                    <img src="/images/browser/005.png" alt="safe browser 05" />
-                </ol>
-            </li>
-        </ul>
-    </li>
-
-    <li><b>自行開發內容過濾的瀏覽器</b>
-        <ul>
-        可使用一些第三方開源，像是`PhishTank`（下方有列出實際範例），提供可能是釣魚網站的開源資料，
-        </ul>
-        <ul>另外需考量提供的目標類型，是不是預期的，若不是，希望怎麼維護...等等</ul>
-    </li>
-</ul>
-
-
 
 <div class="c-border-content-title-4">
     開發<b>內容過濾</b>功能思路參考(推薦RD閱讀)
