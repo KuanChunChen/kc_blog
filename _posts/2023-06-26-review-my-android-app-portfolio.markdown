@@ -12,7 +12,7 @@ excerpt: "探索 Android 開發：我的作品集"
 <div class="c-border-main-title-2">Previous</div>
 
 
-Skill set<br>
+* Skill set<br>
 Languages: Kotlin, Java<br>
 Declarative UI: Jetpack Compose, AndroidX xml<br>
 DI: Hilt, Dagger2, Koin<br>
@@ -24,10 +24,13 @@ Network & IPC: OkHttp, Retrofit, Socket, AIDL<br>
 Android Device control: Device Owner, Knox, Accessibility<br>
 Version Control: Git<br>
 Tool:adb, aapt, jd-gui, dex2jar, apktool, jekyll<br>
-General: Android, MVVM<br>
+General: Android, MVVM<br><br>
 
-
-
+* Hello everyone, I'm a experienced Android developer perficent in Kotlin and Java.<br>
+Today, I'd like to share some of my past works and experiences.<br>
+My portfolio showcases a variety of apps.<br> 
+I hope my work inspires your.<br>
+Feel free to contact me for more information. Thank you for watching!<br>
 
 <div class="c-border-content-title-4">tips：Swipe to view the next or previous image.</div>
 <br><br>
