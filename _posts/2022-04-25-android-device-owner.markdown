@@ -126,6 +126,78 @@ adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br
 `DeviceAdminReceiver`的子類<br>
 再將其加入Manifest.xml內即可<br>
 
+* 快速講一下步驟
+1. 繼承一個`DeviceAdminReceiver`
+
+```Kotlin
+class AdminReceiver : DeviceAdminReceiver() {
+    override fun onEnabled(context: Context, intent: Intent) { 
+    }
+
+    override fun onDisabled(context: Context, intent: Intent) {
+    } 
+}
+```
+
+2.
+實作權限宣告的device_admin.xml 在路徑`res/xml`下
+
+```xml
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>    
+        <limit-password />
+        <watch-login />
+        <reset-password />
+    </uses-policies>
+</device-admin>
+```
+
+3. 前兩項做的加入到manifest
+
+```xml
+<receiver
+    android:name=".MyAdminReceiver"
+    android:permission="android.permission.BIND_DEVICE_ADMIN">
+    <meta-data
+        android:name="android.app.device_admin"
+        android:resource="@xml/device_admin" />
+
+    <intent-filter>
+        <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+    </intent-filter>
+</receiver>
+``` 
+
+4. 透過程式碼去請求
+
+```kotlin
+fun startAskActiveAdmin() {
+    if (!isAdminActive) {
+        val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN)
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, deviceAdmin)
+        this.activity.startActivityForResult(intent, KnoxManager.DEVICE_ADMIN_ADD_RESULT_ENABLE)
+    }
+}
+```
+
+5. 處理返回結果
+
+```kotlin
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    if (requestCode == KnoxManager.DEVICE_ADMIN_ADD_RESULT_ENABLE) {
+        when (resultCode) {
+            RESULT_CANCELED -> {
+                logger.debug("RESULT_CANCELED")
+            }
+            RESULT_OK -> {
+                logger.debug("RESULT_OK ")
+      
+            }
+        }
+    }
+}
+```
+
 
 <div class="c-border-main-title-2">Device Owner 實作分享</div>
 
