@@ -18,9 +18,7 @@ categories: 其他筆記
 給定一個字串，內包含(,),{,},[,]等符號，如果符號有對稱到則返回true,反之false:<br>
 
 首先上我的解法：<br>
-<script src="https://gist.github.com/KuanChunChen/fc855c0ab9c4667df49b253595744d08.js"></script><br>
 
-概念：<br>
 主要是先取字串長度 中位數 並 轉 將字串換成array
 ```
       val strMedium = str.length / 2
