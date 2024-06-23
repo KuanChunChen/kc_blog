@@ -4,6 +4,28 @@
         <!-- social icon-->
         <div class="col-sm-12">
           <ul class="social-network">
+
+            <div class="language-dropdown">
+              <button class="language-dropbtn">Languages</button>
+              <div class="language-dropdown-content">
+                {% for lang in site.languages %}
+                  {% if site.lang != lang %}
+                    <a href="{% if lang == 'zh' %}{{ site.baseurl_root }}{% else %}{{ site.baseurl_root }}/{{ lang }}{% endif %}{{ page.url | remove_first: site.baseurl }}">
+                      {% if lang == "en" %}
+                        {% t global.english %}
+                      {% elsif lang == "zh" %}
+                        {% t global.chinese %}
+                      {% elsif lang == "ja" %}
+                        {% t global.japanese %}
+                      {% else %}
+                        {{ lang | upcase }}
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
             {% if site.social-twitter %}
             <li>
               <a class="waves-effect waves-dark" href="https://twitter.com/{{ site.social-twitter }}">

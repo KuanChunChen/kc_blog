@@ -1,0 +1,18 @@
+global:
+  chinese: 中国語
+  english: 英語
+  japanese: 日本語
+  pinned: ピン留め
+  history: アーカイブ
+categories:
+  portfolio: ポートフォリオ
+  android-tutorial: Androidチュートリアル
+  android-implementation: Android実装
+  kotlin: Kotlin
+  jetpack-compose: Jetpack Compose
+  other-notes: その他のノート
+  more: もっと見る
+  gist: 私のGistを訪問する
+sentence:
+  about: KotlinとJetpack Compose開発に特化したAndroid開発者です。常に学び続けたいと思っています。
+

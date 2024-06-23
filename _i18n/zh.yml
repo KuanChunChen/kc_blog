@@ -1,0 +1,17 @@
+global:
+  chinese: 中文
+  english: 英文
+  japanese: 日文
+  pinned: 精選視界
+  history: 往昔篇章
+categories:
+  portfolio: Portfolio
+  android-tutorial: Android教學
+  android-implementation: Android實作
+  kotlin: Kotlin
+  jetpack-compose: Jetpack Compose
+  other-notes: Notes
+  more: More
+  gist: 參觀我的Gist
+sentence:
+  about: I am an Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.

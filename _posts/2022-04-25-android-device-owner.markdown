@@ -127,7 +127,8 @@ adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br
 再將其加入Manifest.xml內即可<br>
 
 * 快速講一下步驟
-1. 繼承一個`DeviceAdminReceiver`
+1. 
+繼承一個`DeviceAdminReceiver`
 
 ```Kotlin
 class AdminReceiver : DeviceAdminReceiver() {
@@ -152,7 +153,8 @@ class AdminReceiver : DeviceAdminReceiver() {
 </device-admin>
 ```
 
-3. 前兩項做的加入到manifest
+3. 
+前兩項做的加入到manifest
 
 ```xml
 <receiver
@@ -168,7 +170,8 @@ class AdminReceiver : DeviceAdminReceiver() {
 </receiver>
 ``` 
 
-4. 透過程式碼去請求
+4. 
+透過程式碼去請求
 
 ```kotlin
 fun startAskActiveAdmin() {
@@ -180,7 +183,8 @@ fun startAskActiveAdmin() {
 }
 ```
 
-5. 處理返回結果
+5. 
+處理返回結果
 
 ```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

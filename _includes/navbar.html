@@ -11,7 +11,7 @@
         <!-- Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownPortfolio" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Portfolio
+                        {% t categories.portfolio %}
                         <span class="sr-only">(current)</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownPortfolio">
@@ -20,7 +20,7 @@
                         {% endfor %} {% for page in site.pages %} {% if page.tags contains 'portfolio' %}
                         <li><a class="dropdown-item" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
                         {% endif %} {% endfor %}
-                        <li><a class="dropdown-item" href="https://gist.github.com/KuanChunChen">參觀我的Gist</a></li>
+                        <li><a class="dropdown-item" href="https://gist.github.com/KuanChunChen">{% t categories.gist %}</a></li>
                     </ul>
                 </li>
                 
@@ -40,7 +40,7 @@
                 {% if categories.size > 5 %}
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdownMore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        More
+                        {% t categories.more %}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMore">
                         {% for category in categories offset:5 %}

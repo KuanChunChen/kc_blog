@@ -19,16 +19,16 @@ layout: home
 
 <div class="main-container">
 		<div class="main-header anim" style="--delay: .5s">
-			精選視界
+			{% t global.pinned %}
 		</div>
       <div class="main-blogs">
-        <a class="main-blog anim" href="{{portfolio.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/cover/' | prepend: site.baseurl | append: 'android_portfolio.png'}})">
+        <a class="main-blog anim" href="{{portfolio.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/cover/' | prepend: site.baseurl_root | append: 'android_portfolio.png'}})">
           <div class="main-blog__title">
             {{portfolio.title}}
           </div>
       		<div class="main-blog__author">
       			<div class="author-img__wrapper"><svg class="feather feather-check" viewbox="0 0 24 24">
-      			<path d="M20 6L9 17l-5-5"></path></svg> <img class="author-img" src="{{'/images/'|prepend:site.baseurl|append:'champion.JPG'}}"></div>
+      			<path d="M20 6L9 17l-5-5"></path></svg> <img class="author-img" src="{{'/images/'|prepend:site.baseurl_root|append:'champion.JPG'}}"></div>
       			<div class="author-detail">
       				<div class="author-name">{{site.author-name}}</div>
       				<div class="author-info">
@@ -42,7 +42,7 @@ layout: home
       		</div>
       	</a>
 
-			<a class="main-blog anim" href="{{assign_post.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/' | prepend: site.baseurl | append : assign_post.image}})">
+			<a class="main-blog anim" href="{{assign_post.url|prepend:site.baseurl}}" style="--delay: .2s; background-image: url({{'/images/' | prepend: site.baseurl_root | append : assign_post.image}})">
 				<div class="main-blog__title">
 					{{assign_post.title}}
 				</div>
@@ -55,7 +55,7 @@ layout: home
             <svg class="feather feather-check" viewbox="0 0 24 24">
               <path d="M20 6L9 17l-5-5"></path>
             </svg>
-            <img class="author-img" src="{{'/images/' | prepend: site.baseurl | append: 'champion.JPG'}}"></div>
+            <img class="author-img" src="{{'/images/' | prepend: site.baseurl_root | append: 'champion.JPG'}}"></div>
 					<div class="author-detail">
 						<div class="author-name">
 							{{site.author-name}}
@@ -68,7 +68,7 @@ layout: home
 			</a>
 		</div>
 		<div class="small-header anim" style="--delay: .3s">
-			往昔篇章
+			{% t global.history %}
 		</div>
 	</div>
 
@@ -77,7 +77,7 @@ layout: home
 
   <article class="c-post">
     {% if post.image %}
-    <a class="c-post-thumbnail o-opacity" style="background-image: url({{"/images/" | prepend: site.baseurl | append : post.image}})"
+    <a class="c-post-thumbnail o-opacity" style="background-image: url({{"/images/" | prepend: site.baseurl_root | append : post.image}})"
         href="{{post.url | prepend: site.baseurl}}"></a>
     {% else %} {% endif %}
     <div class="c-post-content">
