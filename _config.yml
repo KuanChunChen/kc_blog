@@ -41,7 +41,7 @@ markdown: kramdown
 permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-paginate
-
+  - jekyll-category-pages
 languages: ["zh", "en", "ja"]
 exclude_from_localizations: ["javascript", "images", "css", "search.json", "_includes", "tags"]
 default_locale_in_subfolder: false
