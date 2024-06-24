@@ -1,57 +1,54 @@
 ---
 layout: post
-title: "加速你對 WebRtc 和 Mqtt 的理解：名詞解釋筆記分享"
+title: "加速あなたのWebRtcとMqttの理解：用語解説ノート共有"
 date: 2022-02-14 13:50:12 +0800
 image: cover/mqtt-noun-1.png
 tags: [Coding]
 categories: 其他筆記
-excerpt: "本篇文章整理了WebRtc和Mqtt的名詞解釋筆記，讓你更深入理解這兩個技術的應用與原理。如果你對WebRtc和Mqtt感興趣，這篇文章絕對不容錯過！"
+excerpt: "この記事では、WebRtcとMqttの用語解説ノートを整理し、これらの技術の応用と原理をより深く理解できるようにします。WebRtcとMqttに興味があるなら、この記事は見逃せません！"
 ---
 
-<div class="c-border-main-title-2">前言</div>
-  - 因為在`Android工作需求`上遇到，<br>
-需串接Mqtt與webRtc，<br>
-所以大概了解一些名詞的意思，<br>
-不過這段主要還是由後端完成，<br>
-這邊身為Android工程師大概就是了解一下，<br>
-並且紀錄，未來有遇到可以再快速回憶下。<br>
+<div class="c-border-main-title-2">前書き</div>
+  - `Androidの仕事の要件`で出会ったため、<br>
+MqttとwebRtcを接続する必要があり、<br>
+いくつかの用語の意味を大まかに理解しましたが、<br>
+この部分は主にバックエンドが担当しています。<br>
+ここではAndroidエンジニアとして大まかに理解し、<br>
+記録しておき、将来出会ったときに素早く思い出せるようにします。<br>
 
-<div class="c-border-main-title-2"> MQTT 筆記</div>
-  - <a> QoS (Quality of Service)</a> : 訊息傳送服務的quality，有三種模式
-    * <a>At most once</a>  : 最多一次，容易丟包，適合不在意是否收到data的環境，因下次pulish很快會被推送
+<div class="c-border-main-title-2"> MQTT ノート</div>
+  - <a> QoS (Quality of Service)</a> : メッセージ送信サービスの品質には3つのモードがあります
+    * <a>At most once</a>  : 最大1回、パケットが失われやすく、データの受信を気にしない環境に適しています。次回のパブリッシュがすぐにプッシュされるため
 
-    * <a>At least once</a> : 至少一次，保證包一定會送到，只是可能收到重複的包
+    * <a>At least once</a> : 少なくとも1回、パケットが必ず届くことを保証しますが、重複したパケットを受信する可能性があります
 
-    * <a>Exactly once</a>  : 確定一次，確定只會送到一次包，只是收動重複包或包遺失的狀況，就會有錯誤處理，資源消耗更多
+    * <a>Exactly once</a>  : 正確に1回、パケットが1回だけ届くことを保証しますが、重複パケットやパケットの紛失が発生した場合、エラーハンドリングが必要で、リソース消費が多くなります
 
-    * <a> MQTT Header</a> : 固定2bytes，消耗更少
+    * <a> MQTT Header</a> : 固定2バイトで、消費が少ない
 
-    * <a>MQTT Session</a>：當MQTT Client 連上server時，可用 'Clean Session' flag 控制其state<br>
-      a. <a>'Clean Session' is 0</a> : 屬於persistent session，當client斷連時，session仍回保留直到其timeout<br>
-      b. <a>'Clean Session' is 1</a> : 屬於transient session，當client斷連即摧毀session<br>
+    * <a>MQTT Session</a>：MQTTクライアントがサーバーに接続するとき、'Clean Session'フラグでその状態を制御できます<br>
+      a. <a>'Clean Session' is 0</a> : 永続的なセッションに属し、クライアントが切断されても、セッションはタイムアウトするまで保持されます<br>
+      b. <a>'Clean Session' is 1</a> : 一時的なセッションに属し、クライアントが切断されるとセッションは破壊されます<br>
 
-    * <a>MQTT CONNECT Keep Alive </a>: MQTT連線時，攜帶一個Keep Alive的字節來代表keep alive時間，當沒有任何傳輸響應時，可帶PINGREQ去維持狀態，server則以PINGRESP回應。<br>
-     當Keep alive timeout則關閉連線(通常狀態下keep alive timeout*1.5為timeout時間，主要看server設定)。
-    * <a>LWT (last will and testament)</a> : 一種遺囑的概念，當MQTT client在不正常狀態下斷線，像是斷線時沒有呼叫
-     disconnect，這時server會puslish will message過去。
-    * <a>MQTT retained message </a> : 可以透過 RETAIN flag去設定 retained message ，retained message 會存在
-     broker，並且會傳給有subscribe這個topic的人，且一個topic只能有一個retained message
+    * <a>MQTT CONNECT Keep Alive </a>: MQTT接続時に、Keep Alive時間を表すバイトを持ち、何も送受信がない場合、PINGREQを送って状態を維持し、サーバーはPINGRESPで応答します。<br>
+     Keep Aliveタイムアウト時には接続を閉じます（通常の状態ではKeep Aliveタイムアウト*1.5がタイムアウト時間で、主にサーバー設定によります）。
+    * <a>LWT (last will and testament)</a> : 一種の遺言の概念で、MQTTクライアントが異常な状態で切断された場合、例えば切断時にdisconnectを呼び出さなかった場合、サーバーはwillメッセージをプッシュします。
+    * <a>MQTT retained message </a> : RETAINフラグを使ってretained messageを設定でき、retained messageはブローカーに保存され、このトピックをサブスクライブしている人に送信されます。また、1つのトピックには1つのretained messageしか存在できません。
 
 
-<div class="c-border-main-title-2">WebRtc相關</div>
-  - 了解以下名詞：
-      * <a>Signaling</a> : 用來交換設備與設備之間的metadata或傳遞資訊，常用的像是SDP，查看網路資料說WebRTC1.0為保留
-      Signaling的彈性，沒有特別強制規範其定義 ([可參考此篇](https://ithelp.ithome.com.tw/articles/10267612))
+<div class="c-border-main-title-2">WebRtc関連</div>
+  - 以下の用語を理解する：
+      * <a>Signaling</a> : デバイス間でメタデータや情報を交換するために使用されるもので、一般的にはSDPが使われます。WebRTC1.0ではSignalingの柔軟性を保つため、特に定義を強制していません ([参考記事](https://ithelp.ithome.com.tw/articles/10267612))
 
-      * <a> SDP (Session Description Protocol)</a> : Signaling server 在通訊時攜帶的一種資料規範，制定了指定字母代表某種資訊，如v為protocol version、s為session name、p為phone number...等
+      * <a> SDP (Session Description Protocol)</a> : Signalingサーバーが通信時に持つデータ規範で、特定の文字が特定の情報を表すように定められています。例えば、vはプロトコルバージョン、sはセッション名、pは電話番号など
 
-      * <a> STUN (Session Traversal Utilities for NAT) </a> : 一種支持NAT的網路協定，其中可以透過STUN得到可用的資料([可參考此篇](https://www.netadmin.com.tw/netadmin/zh-tw/technology/D790BCA2F14F46B4A02EAAF008577963))
+      * <a> STUN (Session Traversal Utilities for NAT) </a> : NATをサポートするネットワークプロトコルの一種で、STUNを通じて利用可能なデータを取得できます ([参考記事](https://www.netadmin.com.tw/netadmin/zh-tw/technology/D790BCA2F14F46B4A02EAAF008577963))
 
-      例如：取得公有IP(實際上真實IP，非NAT下私有IP)、port
-      * <a> TURN (Traversal Using Relay NAT) </a> : 一種支持NAT的網路協定，其特色：<br>
-         a. 資料傳輸是透過server，消耗的是server的資源<br>
-         b. 確保所有呼叫能在整個環境中運行<br>
-         c. 如果通訊過程中出現錯誤，可提供fallback<br>
+      例えば：公有IPの取得（実際のIP、NAT下のプライベートIPではない）、ポート
+      * <a> TURN (Traversal Using Relay NAT) </a> : NATをサポートするネットワークプロトコル、その特徴：<br>
+         a. データ転送はサーバーを介して行われ、サーバーのリソースを消費する<br>
+         b. すべての呼び出しが環境全体で実行できることを保証する<br>
+         c. 通信過程でエラーが発生した場合、フォールバックを提供できる<br>
 
-      * <a> ICE (Interactive Connectivity Establishment) </a> : 一種針對STUN & TURN 來規範其通訊標準
-      特色：會試圖找出server之間通訊的最佳距離
+      * <a> ICE (Interactive Connectivity Establishment) </a> : STUN & TURNの通信標準を規定するもの
+      特徴：サーバー間の通信の最適な距離を見つけようとする

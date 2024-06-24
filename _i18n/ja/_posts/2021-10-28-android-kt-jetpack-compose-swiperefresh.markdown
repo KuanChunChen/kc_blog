@@ -1,58 +1,58 @@
 ---
 layout: post
-title: "Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！"
+title: "Android Jetpack Compose SwipeRefresh：簡単にリストのプルダウンリフレッシュ機能を実現！"
 date: 2021-10-28 14:41:12 +0800
 image: cover/ea_swiperefresh_app-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-swiperefresh
-excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 SwipeRefresh運用，以輕鬆實現動態更新的列表資料。"
+excerpt: "この記事では、Jetpack Compose の LazyColumn と SwipeRefresh を使用して、動的に更新されるリストデータを簡単に実現する方法を紹介します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
-延續上一篇文章：<br>
+<div class="c-border-main-title-2">前書き</div>
+前回の記事の続き：<br>
 
 <a href="{{site.baseurl}}/android-kt-jetpack-compose-list/">
   <img src="/images/cover/ea-website-lazy-colume-cover-photo-new-1.png" alt="Cover" width="20%" >
 </a>
 
-<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-list/">Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</a><br>
+<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-list/">Jetpack Compose：LazyColumn + ViewModel を使用して動的に更新されるリストデータを簡単に実現</a><br>
 
-今天會繼續完整基於Jetpack Compose LazyColumn的下拉刷新功能<br>
+今日は Jetpack Compose LazyColumn に基づいたプルダウンリフレッシュ機能を引き続き紹介します<br>
 
-<div class="c-border-content-title-1">實作效果：下拉列表刷新</div>
+<div class="c-border-content-title-1">実装効果：プルダウンリストのリフレッシュ</div>
 
 <div align="center">
   <img src="/mov/jetpack/ea_swiperefresh_app.gif" width="30%"/>
 </div>
 
 
-<div class="c-border-content-title-4">用到相關知識</div>
+<div class="c-border-content-title-4">関連知識</div>
 * JetpackCompose SwipeRefresh, LazyColumn
 * Viewmodel
 
-結合之前所介紹的概念，<br>
-再應用 Jetpack Compose 中的 SwipeRefresh 元件，<br>
-就能輕鬆實現目標功能。<br>
+以前紹介した概念を組み合わせ、<br>
+Jetpack Compose の SwipeRefresh コンポーネントを適用することで、<br>
+目標機能を簡単に実現できます。<br>
 
 
-今天我們學習如何運用先前所學，<br>
-並將 SwipeRefresh 結合到應用程式中。<br>
-這個過程非常直觀，<br>
-只需要幾個簡單的步驟，<br>
-就可以為你的列表加入下拉刷新的功能。<br>
+今日は以前学んだことを活用し、<br>
+SwipeRefresh をアプリケーションに組み込む方法を学びます。<br>
+このプロセスは非常に直感的で、<br>
+いくつかの簡単なステップで、<br>
+リストにプルダウンリフレッシュ機能を追加できます。<br>
 
 
 <script src="https://gist.github.com/KuanChunChen/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
 
-<div class="c-border-content-title-4">各變數的意義</div>
+<div class="c-border-content-title-4">各変数の意味</div>
 
-state就是觀察是否下拉刷新的boolean<br>
+state はプルダウンリフレッシュが行われているかどうかを観察する boolean<br>
 
-onRefresh就是讓你帶入要做事情的scope<br>
+onRefresh は実行するタスクを指定するスコープ<br>
 
-indicator可以讓你下拉刷新時下來轉圈圈那個符號的細項設定<br>
-其中程式碼是這樣<br>
+indicator はプルダウンリフレッシュ時のインジケーターの詳細設定<br>
+コードは以下の通りです<br>
 ```
 indicator = { state, trigger ->
             SwipeRefreshIndicator(
@@ -66,20 +66,20 @@ indicator = { state, trigger ->
             )
 }
 ```
-其他的話依照上面命名名稱<br>
-可以設定一些 大小、背景色、箭頭是否出現、箭頭顏色、刷新距離等等<br>
+その他の設定は上記の名前に従って、<br>
+サイズ、背景色、矢印の表示有無、矢印の色、リフレッシュ距離などを設定できます<br>
 
-另外一個重點是<br>
-我們用了一個isRefreshing並放進SwipeRefresh需求的state變數中<br>
-swiperefresh的state<br>
-會根據你的狀態判斷是否顯示轉圈圈動畫<br>
-所以當狀態為true時<br>
-轉圈圈那個等待動畫就會存在<br>
-當改為false時<br>
-這邊我用livedata然後obsere as state<br>
-然後觀察刷新完取得資料才<br>
-讓他設定結束<br>
+もう一つの重要な点は、<br>
+isRefreshing を使用して SwipeRefresh に必要な state 変数に設定することです<br>
+swiperefresh の state は、<br>
+状態に応じてインジケーターアニメーションを表示するかどうかを判断します<br>
+したがって、状態が true の場合、<br>
+インジケーターの待機アニメーションが表示されます<br>
+false に変更すると、<br>
+ここでは livedata を使用して obsere as state し、<br>
+データ取得後にリフレッシュが完了したことを設定します<br>
 
-那其實這個下拉刷新<br>
-簡單就完成了<br>
-你也可以趕快試試！<br>
+このプルダウンリフレッシュは、<br>
+簡単に完了します<br>
+ぜひ試してみてください！<br>
+

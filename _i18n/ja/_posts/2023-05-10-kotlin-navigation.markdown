@@ -1,51 +1,49 @@
 ---
 layout: post
-title: "打造流暢Android App跳轉體驗！Navigation with Kotlin 一篇文章就能搞定你的APP跳轉問題！"
+title: "流暢なAndroidアプリの遷移体験を実現！KotlinでNavigationを使って、アプリの遷移問題を一気に解決！"
 date: 2023-05-15 16:06:16 +0800
 image: cover/navigation_with_kotlin-1.png
 tags: [Kotlin,Navigation,Android]
 permalink: /navigation_with_kotlin
 categories: Android教學
-excerpt: "「打造流暢Android App跳轉體驗！」使用 Jetpack Navigation with Kotlin，讓您的 APP 跳轉問題不再是問題。透過 Jetpack Navigation with Kotlin 的強大功能，您可以輕鬆管理 APP 中的各個畫面和操作流程，打造出更加順暢和易用的用戶體驗。"
+excerpt: "「流暢なAndroidアプリの遷移体験を実現！」Jetpack Navigation with Kotlinを使用して、アプリの遷移問題を解決します。Jetpack Navigation with Kotlinの強力な機能を活用することで、アプリ内の各画面や操作フローを簡単に管理し、よりスムーズで使いやすいユーザー体験を提供します。"
 ---
 
-
-<div class="c-border-main-title-2">Navigation 簡介</div>
+<div class="c-border-main-title-2">Navigation の紹介</div>
 <div class="c-border-content-title-4">
-    Navigation 是一個強大的庫<br>
+    Navigation は強力なライブラリです<br>
 </div>
 <p>
-    提供了一種簡單的方式來處理 Android 應用程序中不同fragment之間的導航。<br>
-    以下圖例<br>
-    是在專案中導入navigation<br>
-    並設置跳轉的例子<br>
-    我們看到當完成一個專案時<br>
-    可以一目瞭然整個轉案的跳轉邏輯<br>
+    Androidアプリケーション内の異なるフラグメント間のナビゲーションを簡単に処理する方法を提供します。<br>
+    以下の例は<br>
+    プロジェクトにnavigationを導入し<br>
+    遷移を設定する例です<br>
+    プロジェクトが完了したときに<br>
+    全体の遷移ロジックが一目でわかります<br>
 </p>
 
 <div class="p-img-container-single">
   <img src="/images/navigation/01.png" alt="navigation">
 </div><br>
 
-<div class="c-border-main-title-2">Navigation 導入開發</div>
+<div class="c-border-main-title-2">Navigation の導入開発</div>
 <div class="c-border-content-title-4">
-    將 Navigation 庫添加到項目的 build.gradle 文件中<br>
+    Navigation ライブラリをプロジェクトの build.gradle ファイルに追加します<br>
 </div>
 <p>
-    添加相關library至build.gradle內<br>
-    <b>注意：「Navigation」 元件必須使用 Android Studio 3.3 或以上版本</b>
+    関連するライブラリをbuild.gradleに追加します<br>
+    <b>注意：「Navigation」コンポーネントはAndroid Studio 3.3以上のバージョンが必要です</b>
 </p>
 <img src="/images/navigation/02.png" alt=""><br>
 
-
-<div class="c-border-main-title-2">Navigation 導入開發</div>
-<div class="c-border-content-title-4">0. 快速透過IDE建立</div>
+<div class="c-border-main-title-2">Navigation の導入開発</div>
+<div class="c-border-content-title-4">0. IDEを使って素早く作成</div>
 <p>
-  透過Android Studio<br>
+  Android Studioを使用して<br>
   <b>
-    右鍵單擊項目目錄中的 res 文件夾 > New > Android Resource File來新增Navigation xml。
+    プロジェクトディレクトリ内のresフォルダを右クリック > New > Android Resource FileでNavigation xmlを新規作成します。
   </b><br>
-  另外如果想純手動加入，也可以在res下建立 navigation folder 裡面新增nav_graph.xml<br>
+  また、手動で追加したい場合は、resフォルダ内にnavigationフォルダを作成し、その中にnav_graph.xmlを新規作成します<br>
 </p>
 
 <div class="p-img-container">
@@ -53,51 +51,50 @@ excerpt: "「打造流暢Android App跳轉體驗！」使用 Jetpack Navigation 
   <img src="/images/navigation/04.png" alt="navigation_04">
 </div>
 
-<div class="c-border-content-title-4">1. 建立&lt;fragment&gt; 與 設定startDestination</div>
+<div class="c-border-content-title-4">1. &lt;fragment&gt; の作成とstartDestinationの設定</div>
 
 <div class ="table_container">
-  <b>實際folder 結構</b>
+  <b>実際のフォルダ構造</b>
 </div>
 <div class="p-img-container-single">
   <img src="/images/navigation/05.png" alt="navigation_05">
 </div>
 
-<p>加入 fragment<br>
-  id = 命名 <br>
-  name = fragment的path<br>
-  label = 標示訊息或類似tag<br>
-  tools:layout = 要預覽顯示的layout xml resource
+<p>フラグメントを追加<br>
+  id = 名前を指定 <br>
+  name = フラグメントのパス<br>
+  label = メッセージやタグのようなもの<br>
+  tools:layout = プレビュー表示するレイアウトのxmlリソース
 </p>
 
-<p>加入 startDestination<br>
-  <b>例如：app:startDestination="@id/landingFragment"</b><br>
+<p>startDestinationを追加<br>
+  <b>例：app:startDestination="@id/landingFragment"</b><br>
 </p>
 <div class="p-img-container-single">
   <img src="/images/navigation/06.png" alt="navigation_06">
 </div>
 
-
-<div class="c-border-content-title-4">2. 在Activity的FragmentContainerView加入以下三行</div>
+<div class="c-border-content-title-4">2. ActivityのFragmentContainerViewに以下の3行を追加</div>
 <p>android:name="androidx.navigation.fragment.NavHostFragment"<br>
-app:navGraph="@navigation/navigation_main" (選擇性，加了會在IDE預覽)<br>
+app:navGraph="@navigation/navigation_main"（オプション、追加するとIDEでプレビュー可能）<br>
 app:defaultNavHost="true" </p>
 <div class="p-img-container-single">
   <img src="/images/navigation/07.png" alt="navigation_07">
 </div><br>
 
-<div class="c-border-content-title-4">3. 加入&lt;action&gt; 並設定目的地</div>
+<div class="c-border-content-title-4">3. &lt;action&gt;を追加し、目的地を設定</div>
 <p>
-在fragment內 加入action <br>
-加入後設定destination<br>
-如：app:destination="@id/signInFragment" <br>
-(action 寫在外面也可全域跳轉)</p>
+fragment内にactionを追加<br>
+追加後、destinationを設定<br>
+例：app:destination="@id/signInFragment" <br>
+（actionを外に書くと全域での遷移も可能）</p>
 <div class="p-img-container-single">
   <img src="/images/navigation/08.png" alt="navigation_08">
 </div><br>
 
-<div class="c-border-content-title-4">4. 程式碼添加跳轉目的地即可跳轉</div>
+<div class="c-border-content-title-4">4. コードに目的地への遷移を追加</div>
 <p>
-  直接在要跳轉的地方加入<br>
+  遷移したい場所に直接以下を追加<br>
   findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 </p>
 
@@ -106,15 +103,15 @@ app:defaultNavHost="true" </p>
 </div><br>
 
 
-<div class="c-border-content-title-4">5. 要跳轉Activity則跟上面&lt;fragment&gt;類似，換成&lt;activity&gt;即可</div><br>
+<div class="c-border-content-title-4">5. Activityへの遷移は上記の&lt;fragment&gt;と同様に、&lt;activity&gt;に変更</div><br>
 <div class="p-img-container-single">
   <img src="/images/navigation/010.png" alt="navigation_010">
 </div><br>
-<div class="c-border-content-title-4">6. 使用多張nav graph，可使用嵌套方式或 include</div>
+<div class="c-border-content-title-4">6. 複数のnav graphを使用する場合、ネストまたはincludeを使用</div>
 <p></p>
 
 <p>
-  直接再加入一張navigation的方式：
+  直接新しいnavigationを追加する方法：
 </p>
 
 <div class="p-img-container-single">
@@ -122,20 +119,20 @@ app:defaultNavHost="true" </p>
 </div>
 
 <p>
-  新增一張 nav graph xml後<br>
-  使用include導入的方式：
+  新しいnav graph xmlを追加後<br>
+  includeを使用して導入する方法：
 </p>
 <div class="p-img-container-single">
   <img src="/images/navigation/012.png" alt="navigation_012">
 </div><br>
 
 
-<div class="c-border-main-title-2">Navigation 開發案例 - dialog fragment</div>
-<div class="c-border-content-title-4">從dialog fragment進入</div>
+<div class="c-border-main-title-2">Navigation 開発事例 - dialog fragment</div>
+<div class="c-border-content-title-4">dialog fragmentからの遷移</div>
 <p>
-  跟上面一樣在nav graph 直接加入 dialog tag<br>
-  並導入你做好的DialogFragment就能用<br><br>
-  (id = 命名 , name = fragment的path,  label = 標示訊息或類似tag, tools:layout = 要顯示的layout xml resource)<br>
+  上記と同様にnav graphに直接dialogタグを追加<br>
+  作成したDialogFragmentを導入すれば使用可能<br><br>
+  （id = 名前, name = fragmentのパス, label = 表示メッセージまたはタグ, tools:layout = 表示するlayout xmlリソース）<br>
 </p>
 
 <div class="p-img-container-single">
@@ -143,91 +140,90 @@ app:defaultNavHost="true" </p>
 </div><br>
 
 
-<div class="c-border-main-title-2">Navigation 開發案例 - 傳遞變數</div>
-<div class="c-border-content-title-4">加入argument</div>
+<div class="c-border-main-title-2">Navigation 開発事例 - 変数の受け渡し</div>
+<div class="c-border-content-title-4">argumentを追加</div>
 <p>
-  一樣在nav graph 直接加入argument<br>
-  則可以預設帶入傳遞的變數
-  (argType = 變數型態, defaultValue = 預設值 )<br>
+  同様にnav graphに直接argumentを追加<br>
+  これにより、渡す変数をデフォルトで設定可能
+  （argType = 変数の型, defaultValue = デフォルト値）<br>
 </p>
 
 <div class="p-img-container-single">
   <img src="/images/navigation/014.png" alt="navigation_014">
 </div><br>
 
-<div class="c-border-content-title-4">程式碼傳遞變數</div>
-a. 不使用上面xml的方式預設值<br>
-可以下方兩組程式碼直接傳遞變數<br><br>
+<div class="c-border-content-title-4">コードで変数を渡す</div>
+a. 上記のxml方式を使用せずにデフォルト値を設定する場合<br>
+以下の2つのコードで直接変数を渡すことができます<br><br>
 
-b. 如果是有用xml方式帶入預設值的 <br>
-則可以用下面收變數的程式碼直接接收<br>
+b. xml方式でデフォルト値を設定している場合<br>
+以下のコードで変数を直接受け取ることができます<br>
 <script src="https://gist.github.com/KuanChunChen/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
 
-<div class="c-border-content-title-4">navigation有支援的變數型態</div>
+<div class="c-border-content-title-4">navigationがサポートする変数の型</div>
 <div class="p-img-container-single">
   <img src="/images/navigation/020.png" alt="navigation_020">
 </div><br>
 
 
-<div class="c-border-main-title-2">Navigation 開發案例 - 動畫</div>
+<div class="c-border-main-title-2">Navigation 開発事例 - アニメーション</div>
 
-<div class="c-border-content-title-4">支援直接設定跳轉動畫</div>
-帶入 enterAnim, exitAnim, popEnterAnim ,popExitAnim 則可以輕鬆預設跳轉動畫
+<div class="c-border-content-title-4">直接設定できる遷移アニメーションのサポート</div>
+enterAnim, exitAnim, popEnterAnim, popExitAnimを設定することで、簡単に遷移アニメーションをデフォルト設定できます
 <script src="https://gist.github.com/KuanChunChen/695048f8e71483c8671bacb0a8f71473.js"></script>
 
-<div class="c-border-content-title-4">支援Activity 加上彈出動畫</div>
-使用下方code 可以使用navigation內建的activity跳離動畫
+<div class="c-border-content-title-4">Activityにポップアップアニメーションを追加するサポート</div>
+以下のコードを使用すると、navigation内蔵のactivity離脱アニメーションを使用できます
 <script src="https://gist.github.com/KuanChunChen/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
 
 
-<div class="c-border-main-title-2">Navigation 開發案例 - 支援 multiple back stacks</div>
+<div class="c-border-main-title-2">Navigation 開発事例 - multiple back stacksのサポート</div>
 
-<div class="c-border-content-title-4">支援處理多個back stack 的方式</div>
-透過 Navigation 提供的api讓相關view關聯 <br>
-便可處理多個back stack跳轉問題<br>
-例如setupWithNavController 與bottom navigation view關聯 <br>
-setupActionBarWithNavController 與action bar關聯 <br>
+<div class="c-border-content-title-4">複数のback stackを処理する方法のサポート</div>
+Navigationが提供するAPIを使用して関連するビューを関連付けることで<br>
+複数のback stackの遷移問題を処理できます<br>
+例えば、setupWithNavControllerとbottom navigation viewを関連付ける<br>
+setupActionBarWithNavControllerとaction barを関連付ける<br>
 <script src="https://gist.github.com/KuanChunChen/fe1ee57edeaed321729525d4346014bc.js"></script>
 
-<div class="c-border-main-title-2">Navigation 開發案例 - popUpTo 及 popUpToInclusive</div>
-<div class="c-border-content-title-4">透過 popUpTo 導向目的地頁面時，移除該頁面stack上的所有頁面</div>
-<div class="c-border-content-title-4">透過 popUpToInclusive，把最上層相同的頁面移除</div>
+<div class="c-border-main-title-2">Navigation 開発事例 - popUpToおよびpopUpToInclusive</div>
+<div class="c-border-content-title-4">popUpToを使用して目的地ページに遷移する際、そのページのstack上のすべてのページを削除する</div>
+<div class="c-border-content-title-4">popUpToInclusiveを使用して、最上層の同じページを削除する</div>
 
 <p>
-  此圖，闡述了一般跳轉邏輯<br>
+  この図は、一般的な遷移ロジックを説明しています<br>
 </p>
 <div class="p-img-container-single">
   <img src="/images/navigation/015.png" alt="navigation_015">
 </div><br>
 
 <p>
-fragment依照順序跳轉 1 -> 2 -> 3 最後再從 3回到1 <br>
-且再次跳轉 1 -> 2 -> 3 再回到1 <br>
-此時眾fragment 在back stack內 順序為[1,2,3,1,2,3,1] <br>
+フラグメントは順番に遷移します 1 -> 2 -> 3 最後に3から1に戻ります <br>
+そして再び 1 -> 2 -> 3 に遷移して1に戻ります <br>
+この時、back stack内のフラグメントの順序は[1,2,3,1,2,3,1]です <br>
 
 <script src="https://gist.github.com/KuanChunChen/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
-若是想要跳轉回1的時候在stack內不再有目的fragment以上的內容可以在xml的action內加入 <br>
-popUpTo 與 popUpToInclusive <br>
-這邊便可以讓下次跳轉回目的地fragment 上方有個stack instance給清除掉<br>
+目的のフラグメント以上の内容がstack内に残らないようにするには、xmlのaction内に<br>
+popUpToおよびpopUpToInclusiveを追加します<br>
+これにより、次回目的地のフラグメントに遷移する際に、その上のstackインスタンスがクリアされます<br>
 </p>
 
-
-<div class="c-border-content-title-4">若以實際範例來看，加入前</div>
+<div class="c-border-content-title-4">実際の例を見てみると、追加前</div>
 
 <video style="align-items: center;height: 100vh;" width="70%" controls>
   <source src="/images/navigation/016.mov" type="video/mp4">
 </video>
 
-<div class="c-border-content-title-4">若以實際範例來看，加入後</div>
+<div class="c-border-content-title-4">実際の例を見てみると、追加後</div>
 
 <video style="align-items: center;height: 100vh;" width="70%" controls>
   <source src="/images/navigation/017.mov" type="video/mp4">
 </video>
 
 
-<div class="c-border-main-title-2">Navigation 開發案例 - NavOptions </div>
-<div class="c-border-content-title-4">透過 NavOptions 來設置NavController</div><br>
-同樣navigation也提供對應builder讓你設置上面講到過的一些功能，NavOptions範例：<br>
+<div class="c-border-main-title-2">Navigation 開発事例 - NavOptions </div>
+<div class="c-border-content-title-4">NavOptions を使って NavController を設定する</div><br>
+同様に、navigation も対応するビルダーを提供しており、上記の機能を設定できます。NavOptions の例：<br>
 
 ```
 val options = NavOptions.Builder()
@@ -235,20 +231,20 @@ val options = NavOptions.Builder()
     .build()
 ```
 
-最後跳轉時帶入
+最後に遷移時に渡す
 ```
 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,null, options)
 ```
-<div class="c-border-content-title-4">可進行的設置項目有：</div>
+<div class="c-border-content-title-4">設定可能な項目は以下の通りです：</div>
 <div class="p-img-container-single">
   <img src="/images/navigation/018.png" alt="navigation_018">
 </div><br>
 
-<div class="c-border-main-title-2">Navigation 參考資料</div><br>
+<div class="c-border-main-title-2">Navigation 参考資料</div><br>
 
 <div class = "table_container">
-  <a href="https://developer.android.com/guide/navigation?hl=zh-tw">官方文件</a><br>
-  <a href="https://tome.app/kcchen/navigation-with-kotlin-clhh1vxwh02wk9w3ynag6cmat">投影片解說</a>
+  <a href="https://developer.android.com/guide/navigation?hl=zh-tw">公式ドキュメント</a><br>
+  <a href="https://tome.app/kcchen/navigation-with-kotlin-clhh1vxwh02wk9w3ynag6cmat">スライド解説</a>
 </div><br>
 
 

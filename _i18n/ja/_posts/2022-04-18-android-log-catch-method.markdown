@@ -1,118 +1,116 @@
 ---
 layout: post
-title: "Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！"
+title: "Android Logcat 抓取テクニック教本、簡単にマスター：開発者でなくても理解できるlog取得テクニック！"
 date: 2022-04-18 16:37:48 +0800
 image: cover/android-catch-log-1.png
 tags: [Android,Debug]
 categories: Debug探討
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 
-* 今天我想跟大家分享一些讓你輕鬆抓取Android log的技巧！<br>
-  在開發過程中，常常會有這樣的問題：「有什麼方法可以快速抓log呢？」<br>
-  「怎麼讓測試或其他非開發人員也能輕鬆抓到Android log呢？」<br>
-  別擔心！我整理了一些簡單易懂的方法，希望能幫助你們更有效率地開發和測試。<br>
+* 今日は、Androidのログを簡単に取得するためのテクニックを皆さんに共有したいと思います！<br>
+  開発過程でよくある問題：「ログを素早く取得する方法は？」<br>
+  「テストや他の非開発者でも簡単にAndroidのログを取得する方法は？」<br>
+  心配しないでください！簡単でわかりやすい方法をいくつかまとめましたので、開発とテストをより効率的に行うための助けになれば幸いです。<br>
 
-<div class="c-border-main-title-2">快速抓取 Android log，從基本觀念開始！</div>
+<div class="c-border-main-title-2">Androidログを素早く取得するための基本概念！</div>
 
-  * 要抓Android的log，可以使用logcat這個工具，不過需要注意的是logcat只會抓取系統內部的log
-    - 抓取整包log：使用指令 adb logcat 來抓取整包log，<br>
-    可以透過指定篩選條件來只抓取特定的log，<br>
-    詳細的篩選方法可以參考[篩選log參考](https://developer.android.com/studio/command-line/logcat#options)
-    - 查看各個buffer的大小：使用指令 `adb logcat -g` 來查看各個buffer的大小。
-    - 查看不同buffer內的log：除了主要的buffer之外，<br>
-    還有其他的buffer可以查看，<br>
-    例如radio、events、system等等，<br>
-    可以使用    
+  * Androidのログを取得するには、logcatというツールを使用しますが、logcatはシステム内部のログしか取得しないことに注意が必要です。
+    - 全体のログを取得する：コマンド `adb logcat` を使用して全体のログを取得できます。<br>
+    特定のログだけを取得するためにフィルタ条件を指定することもできます。<br>
+    詳細なフィルタ方法については[フィルタログ参考](https://developer.android.com/studio/command-line/logcat#options)を参照してください。
+    - 各バッファのサイズを確認する：コマンド `adb logcat -g` を使用して各バッファのサイズを確認できます。
+    - 異なるバッファ内のログを確認する：主要なバッファ以外にも、<br>
+    radio、events、systemなどの他のバッファも確認できます。<br>
+    以下のコマンドを使用して特定のログを確認できます。<br>
     ```
     [adb] logcat [-b 'buffer name']
     ```
-    來查看特定的log，<br>
-    其中<buffer_name>為要查看的buffer名稱。<br>
-    例如：<br>
-    main buffer log :<br>
+    ここで、<buffer_name>は確認したいバッファの名前です。<br>
+    例：<br>
+    メインバッファログ：<br>
     <b>adb logcat -b main</b><br>
-    events buffer log : <br>
+    イベントバッファログ：<br>
     <b>adb logcat -b events</b><br>
-    以此類推
-    - 想了解各buffer區差異可參考官方文件 ：[查看備用日志緩衝區](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
+    など
+    - 各バッファの違いについては公式ドキュメントを参照してください：[代替ログバッファの確認](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
 
 <br>
 
-<div class="c-border-main-title-2">Android log 抓取思路</div>
-<div class="c-border-content-title-4">以下是幾個使用 adb 抓取 Android 系統 log 的方式：</div><br>
+<div class="c-border-main-title-2">Androidログ取得の考え方</div>
+<div class="c-border-content-title-4">以下はadbを使用してAndroidシステムのログを取得する方法です：</div><br>
 
 <p class ="table_container">
-  <i style="text-align: center;">需su權限</i><br>
- 1. 拉出 Kernel panic log : <b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br>
- 2. 印出 Kernel log：<b style="color:red;">adb shell cat /proc/kmsg</b> (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)<br>
- 3. Linux kernel-ring buffer log : <b style="color:red;">adb shell su dmesg</b><br>
- <a herf="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg指令參考</a>
+  <i style="text-align: center;">su権限が必要</i><br>
+ 1. カーネルパニックログを取得する：<b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br>
+ 2. カーネルログを出力する：<b style="color:red;">adb shell cat /proc/kmsg</b>（現在のログを取得し、同じコマンドを再度呼び出すと前回の終了後のログから表示されます）<br>
+ 3. Linuxカーネルリングバッファログ：<b style="color:red;">adb shell su dmesg</b><br>
+ <a herf="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesgコマンド参考</a>
 </p>
 
 <p class ="table_container">
-  <i style="text-align: center;">不需權限</i><br>
-  1. 拉出 ANR log : <b style="color:red;">adb pull /data/anr</b><br>
+  <i style="text-align: center;">権限不要</i><br>
+  1. ANRログを取得する：<b style="color:red;">adb pull /data/anr</b><br>
 </p>
 
-<div class="c-border-content-title-4">透過pc端執行adb logcat指令</div>
-  - 使用 adb logcat 亦可以取得當前連接的裝置log，如：
+<div class="c-border-content-title-4">PC端でadb logcatコマンドを実行する</div>
+  - adb logcatを使用して、現在接続されているデバイスのログを取得することもできます。例：
   ```
   adb logcat
   ```
 
  <br>
- <div class="c-border-content-title-4">從Android app用程式碼去抓log</div>
-  * 這個思路是透過開發人員用以下方式將抓log的功能寫在app內讓非開發人員去抓
-    - 開一個procees去執行commend :
-    例如：`Runtime.getRuntime().exec("logcat -b radio")`
+ <div class="c-border-content-title-4">Androidアプリからコードでログを取得する</div>
+  * この方法は、開発者が以下の方法でアプリ内にログ取得機能を組み込み、非開発者がログを取得できるようにするものです。
+    - コマンドを実行するプロセスを開く：
+    例：`Runtime.getRuntime().exec("logcat -b radio")`
 
-    - 在 Android 4.1 之前，<br>
-      開發者可以在 Manifest.xml 中添加 "READ_LOGS" 權限，<br>
-      獲得此權限後可以取得需要 su 權限才能取得的 log。<br>
+    - Android 4.1以前では、<br>
+      開発者はManifest.xmlに "READ_LOGS" 権限を追加することで、<br>
+      su権限が必要なログを取得することができました。<br>
 
-      但在 Android 4.1 之後，<br>
-      Google 將 "READ_LOGS" 權限列為十大不良權限，<br>
-      因此不再建議使用。可以參考 Google 開發者相關影片。<br>
-      [google developer相關影片](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
+      しかし、Android 4.1以降では、<br>
+      Googleは "READ_LOGS" 権限を不良権限のトップ10にリストアップしたため、<br>
+      使用が推奨されなくなりました。Google開発者の関連動画を参照してください。<br>
+      [Google開発者関連動画](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
 
-    - 因此 Android > 4.1 時 在app內抓取log使用權限被變更為 `“signature|privileged”`
-       等同於 需要有 `系統簽名` 或
-       build image時包在特權資料夾`../priv-app`的app ([特許權限白名單](https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn))
-       才能取得該`READ_LOGS`權限
+    - そのため、Android 4.1以降では、アプリ内でログを取得する権限が `“signature|privileged”` に変更されました。
+       これは `システム署名` が必要であるか、
+       ビルドイメージ時に特権フォルダ `../priv-app` にパッケージされたアプリ ([特許権限ホワイトリスト](https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn))
+       でなければ `READ_LOGS` 権限を取得できません。
 
-    - 如果透過PC下指令：
+    - PCからコマンドを実行する場合：
       `adb shell "pm grant <package name> android.permission.READ_LOGS && am force-stop <package name>" `
 
-       可以打開`READ_LOGS`權限 + 強制關閉app （因下完要重啟app才會生效）
-       要關閉權限則將`grant`改成`revoke`
+       これにより `READ_LOGS` 権限を有効にし、アプリを強制終了します（コマンド実行後にアプリを再起動する必要があります）。
+       権限を無効にするには `grant` を `revoke` に変更します。
 
 
 
-<div class="c-border-content-title-4">土法煉鋼：結合前面幾種</div>
-  - 開發人員編寫程式碼在android app 內寫下 log 至對應資料夾<br>
-    之後再用adb pull 拉出來
+<div class="c-border-content-title-4">手作業でのログ取得：前述の方法を組み合わせる</div>
+  - 開発者がAndroidアプリ内でログを対応するフォルダに書き込み、<br>
+    その後adb pullで取得する
 
-  - 例如：app寫好後，用adb pull拉出來<br>
+  - 例：アプリが完成した後、adb pullで取得する<br>
       `adb pull /sdcard/Android/data/your.package.name/files/`
 <br>
 
-<div class="c-border-content-title-4">另一種，更快的方法：Scrpit or shell 大法</div>
+<div class="c-border-content-title-4">別の、より迅速な方法：スクリプトまたはシェルの使用</div>
 
-  - 透過寫好的shell直接小黑窗執行在背景抓log
-  - 這邊分享個簡易的寫法：<br>
+  - シェルスクリプトを使用してバックグラウンドでログを取得する
+  - ここでは簡単なスクリプトの例を紹介します：<br>
 <script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
 <p class ="table_container">
-  1. 如果是需要<b style="color:red;">開發人員</b>要客製的話就是要從頭到尾自己了解上面這份code<br>
-  2. 但若是<b style="color:red;">非開發人員</b>直接複製上面code到txt 或空白檔案中<br>  
-     首先先確認電腦環境中有adb<br>
-     修改<b style="color:red;">packageName</b> 成指定的app包名<br>
-     配置<b style="color:red;">adbPath</b> 改成你adb的系統路徑<br>
-     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人，下載含有adb的就能執行)
-  4. (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br>
+  1. <b style="color:red;">開発者</b>がカスタマイズする場合は、上記のコードを完全に理解する必要があります。<br>
+  2. <b style="color:red;">非開発者</b>が上記のコードをtxtまたは空白のファイルにコピーする場合：<br>  
+     まず、PC環境にadbがインストールされていることを確認します。<br>
+     <b style="color:red;">packageName</b> を指定のアプリパッケージ名に変更します。<br>
+     <b style="color:red;">adbPath</b> をadbのシステムパスに変更します。<br>
+     （非開発者が使用する場合、./adbを同じフォルダに配置し、adbがインストールされていないPCでも実行できるようにすることも可能です）
+  4. （オプション）出力されるログファイル名をカスタマイズすることも可能で、タイムスタンプを追加して区別することもできます。<br>
 </p>
-  - 最後寫好就可以在小黑窗(mac terminal / win cmd)執行./your_add_log.sh<br>
-  就開始抓囉！<br>
+  - 最後にスクリプトを作成し、ターミナル（mac terminal / win cmd）で ./your_add_log.sh を実行します。<br>
+  これでログ取得が開始されます！<br>
   ![shell_log_start.png](/images/others/shell_log_start.png)

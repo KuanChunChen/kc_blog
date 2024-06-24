@@ -1,133 +1,122 @@
 ---
 layout: post
-title: "[Android教學]掌握 Android Device Owner 權限，企業級管理輕鬆上手！"
+title: "[Android教學]Android Device Owner権限をマスターし、企業レベルの管理を簡単に！"
 date: 2022-04-25 18:19:28 +0800
 image: cover/android-device-owner-1.png
 tags: [Android,Debug]
 categories: Android教學
-excerpt: "想要輕鬆管理企業級 Android 裝置？這份文章提供了完整的 Android Device Owner 權限請求與實際作用統整。"
-
+excerpt: "企業レベルのAndroidデバイスを簡単に管理したいですか？この記事では、Android Device Owner権限のリクエストと実際の使用方法について詳しく説明します。"
 ---
 
 
-<div class="c-border-main-title-2">前言：探索Device owner權限</div>
+<div class="c-border-main-title-2">前言：Device owner権限を探る</div>
+
+<div class="c-border-main-title-2">なぜDevice Ownerになるのか</div>
+通常の権限では満たせないニーズに遭遇したことはありますか？<br>
+例えば、<br>
+特定の画面を強制設定したり、<br>
+ユーザーが特定のアプリをアンインストールできないようにしたい場合、Device Owner権限が必要です。<br>
+
+
+要するに、<br>
+Device Owner権限は、通常の権限では対応できないニーズを満たすことができ、<br>
+使用するかどうかは具体的なアプリケーションのシナリオによります。<br><br>
+
+この権限を使用すると、Android公式が提供するDevicePolicyManagerのAPIを利用できます。<br>
+利用可能なAPIについては、Android公式のDevicePolicyManagerドキュメントを参照してください。<br>
+<a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager" target="_blank">DevicePolicyManagerドキュメント</a>
+
+<div class="c-border-main-title-2">Device Ownerになる方法</div>
+
+<div class="c-border-content-title-4">AndroidアプリをDevice Ownerにする方法はいくつかあります。以下はそのうちの二つです：</div>
 
 <p style="margin-top: 15px;" class="table_container">
-	在本系列文章中，我將分享我在Android開發中所遇到的問題，<br>
-	以及我如何解決這些問題的筆記。<br>
-	本文將探討Android內提供的Device owner權限，包括如何獲取和使用這些權限。
+	1. Factory Reset後、ウェルカム画面で「Welcome」を7回タップし、カメラを使ってQRコードをスキャンします。<br>
+	2. Factory Reset後、8回タップし、GMSでQRコードをスキャンします（GMSが必要）。
 </p>
 
-
-
-<div class="c-border-main-title-2">為何要成為Device Owner</div>
-你是否曾經遇到一些普通權限無法滿足的需求，該怎麼辦呢？<br>
-舉例來說，<br>
-如果你需要在設備上強制設置一個特定的畫面，<br>
-或者阻止用戶卸載特定應用，這時候就需要Device Owner權限。<br>
-
-
-總之，<br>
-Device Owner權限可以幫助開發者實現一些普通權限無法滿足的需求，<br>
-但是否需要使用則取決於具體的應用場景<br><br>
-
-這個權限可以讓你使用Android官方提供的 DevicePolicyManager內的API<br>
-可以參考Android官方提供的DevicePolicyManager文件，了解有哪些API可以使用。<br>
-<a href="https://developer.android.com/reference/android/app/admin/DevicePolicyManager" target="_blank">DevicePolicyManager文件</a>
-
-<div class="c-border-main-title-2">如何成為Device Owner</div>
-
-<div class="c-border-content-title-4">有幾種方式可以讓你的Android app成為device owner，其中包括以下兩種方法：</div>
+注意：メーカーによって方法が異なる場合があります。<br>
+しかし、ほとんどの場合、これらの方法が使えます。特別なOTAを使用している場合のみ、使用できない可能性があります。<br><br>
+次に、これらの手順を実行するためのQRコードを作成します。<br>
 
 <p style="margin-top: 15px;" class="table_container">
-	1.在 Factory Reset 後進入 welcome 頁面，點擊 Welcome 字樣七次，並使用開啟的相機掃描 QR Code。<br>
-	2.在 Factory Reset 後點擊八次，並使用 GMS 掃描 QR Code（需要 GMS）。
-</p>
-
-請注意，不同廠商可能採用不同的方式。<br>
-不過目前實測下來幾乎都可以用，除非是那種特製OTA才有機會不能用<br><br>
-接下來，你需要製作一個QR code 掃描來實現這兩個步驟。<br>
-
-<p style="margin-top: 15px;" class="table_container">
-1. 使用下方指令 apk_download_link帶入你apk的下載url<br>
+1. 以下のコマンドを使用し、apk_download_linkにAPKのダウンロードURLを入力します。<br>
 <b>curl -s [apk_download_link] | openssl dgst -binary -sha256 | openssl base64 | tr '+/' '-_' | tr -d '='</b><br><br>
 
-2. 利用下方Json格式，填好你的value<br>
-<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME</b>：填入你的packageName/AdminReceiver的路徑 <br>
-<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>：填入步驟1產生的hash code<br>
-<b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>：填入你的download url<br>
+2. 以下のJson形式を使用し、値を入力します。<br>
+   <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME</b>：パッケージ名/AdminReceiverのパスを入力 <br>
+   <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>：手順1で生成されたハッシュコードを入力<br>
+   <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>：ダウンロードURLを入力<br>
 </p>
 <script src="https://gist.github.com/KuanChunChen/8a9376c9f99b70090c2c45a58defdf09.js"></script>
 
 <p style="margin-top: 15px;" class="table_container">
-	3. 拿著步驟2的json格式 去產生QrCode<br>
-	之後只要在Factory Reset後照著前面兩種方式把QR code相機打開<br>
-	讓用戶去掃描你產生的QrCode<br>
-	待系統設定好後<br>
-	那隻App就會自動安裝加上變成Device Owner<br><br>
+	3. 手順2のjson形式を使ってQrCodeを生成します。<br>
+	その後、Factory Reset後に前述の2つの方法でQRコードカメラを開き、<br>
+	ユーザーに生成したQrCodeをスキャンさせます。<br>
+	システムが設定されると、<br>
+	そのアプリは自動的にインストールされ、Device Ownerになります。<br><br>
 
-	這種方式通常是讓非開發人員去用的<br>
-	例如：各端開發人員先上傳好apk<br>
-	之後有apk download url後<br>
-	用上方步驟產生hash code 以及製作json格式的資料並製成QrCode<br>
-	方便讓非開發人員 透過UI操作就能產生Device Owner app<br>
+	この方法は通常、開発者以外の人が使用するためのものです。<br>
+	例えば、各端末の開発者が先にapkをアップロードし、<br>
+	その後apkのダウンロードURLを取得したら、<br>
+	上記の手順でハッシュコードを生成し、json形式のデータを作成してQrCodeを生成します。<br>
+	これにより、開発者以外の人でもUI操作を通じてDevice Ownerアプリを生成できます。<br>
 </p>
 
-<div class="c-border-content-title-4">另一種方式，透過adb 指令讓指定app成為device owner</div>
-  這邊只要把你指定app的Admin Receiver的路徑打在下方指令之後<br>
-  就能讓該app變成device owner<br>
+<div class="c-border-content-title-4">別の方法：adbコマンドを使用して指定アプリをdevice ownerにする</div>
+  ここでは、指定アプリのAdmin Receiverのパスを以下のコマンドに入力するだけで、<br>
+  そのアプリをdevice ownerにすることができます。<br>
   `adb shell dpm set-device-owner com.your.package/com.your.package.receivers.AdminReceiver`
-   - 不過這個指令有些限制<br>
-   1.目前OS內不能有任何gms Account<br>
-   就是一般要使用google 服務都會要你登入google帳號，可以到setting裡面把它移除<br>
-   2.系統內只能存在一組用戶設定的Device owner，如果有的話可以先刪除，再重設需要的app<br>
+   - ただし、このコマンドにはいくつかの制限があります。<br>
+   1. 現在のOSにはGMSアカウントが一切存在しないこと。<br>
+   通常、Googleサービスを使用するためにはGoogleアカウントにログインする必要がありますが、設定でこれを削除できます。<br>
+   2. システム内にはユーザー設定のDevice ownerが1つしか存在できません。既に存在する場合は削除してから必要なアプリを再設定します。<br>
    `adb shell dumpsys device_policy`<br>
-   這個指令可以去看你目前OS內有的device owner情況
+   このコマンドで現在のOSに存在するdevice ownerの状況を確認できます。
 
-<div class="c-border-main-title-2">如何移除 Device Owner</div>
-<div class="c-border-content-title-4">透過指令移除</div><br>
+<div class="c-border-main-title-2">Device Ownerの削除方法</div>
+<div class="c-border-content-title-4">コマンドを使用して削除</div><br>
 `adb shell dpm remove-active-admin com.your.package/.receivers.AdminReceiver`
- - 這個指令需透過： <br>
- 在`AndroidManifest.xml的<application>`內 <br>
- 加入 android:testOnly="true"<br>
- 方能移除 Device Owner
- - 加入device owner 權限的app <br>
- 通常不能被被移除或adb install安裝<br>
- 可加入-r -f 來強制覆蓋 : adb install -r -f ../xxx.apk
- 或強制移除後再安裝
+ - このコマンドを使用するには： <br>
+ `AndroidManifest.xmlの<application>`内に <br>
+ `android:testOnly="true"`を追加する必要があります。<br>
+ これによりDevice Ownerを削除できます。
+ - Device owner権限を持つアプリは通常、削除やadb installでのインストールができません。<br>
+ `-r -f`オプションを追加して強制的に上書きするか、強制的に削除してから再インストールします。<br>
+ `adb install -r -f ../xxx.apk`
 
- * 透過官方API移除 <br>
- 在device owner app內 <br>
- 使用DevicePolicyManager內的 clearDeviceOwnerApp來移除權限<br>
+ * 公式APIを使用して削除 <br>
+ Device ownerアプリ内で <br>
+ `DevicePolicyManager`の`clearDeviceOwnerApp`を使用して権限を削除します。<br>
 
- * 直接Factory Reset手機<br>
- 以上其他方法都無法使用時，只能使出終極殺招XD
+ * 直接Factory Resetを行う <br>
+ 上記の他の方法がすべて使用できない場合、最終手段としてFactory Resetを行います。XD
 
- <div class="c-border-main-title-2">Device Admin Receiver建立</div>
+ <div class="c-border-main-title-2">Device Admin Receiverの作成</div>
 
-* 這個跟Admin權限相輔相成<br>
-需在要當成Device Owner的app內<br>
-建立一個 Admin Receiver <br>
-這樣你在使用Adb 取得權限時<br><br>
-才有後面那段Receiver可以去啟動<br>
-也就是<br>
-adb shell dpm remove-active-admin com.your.package/`.receivers.AdminReceiver`<br>
+* これはAdmin権限と補完関係にあります。<br>
+Device Ownerにするアプリ内に<br>
+Admin Receiverを作成する必要があります。<br>
+これにより、Adbを使用して権限を取得する際に<br><br>
+後続のReceiverが起動できるようになります。<br>
+つまり、<br>
+`adb shell dpm remove-active-admin com.your.package/.receivers.AdminReceiver`<br>
 
-* Admin權限就是： <br>
-在app內加入Admin權限所需的Receiver<br>
-所以使用者<br>
-也可以在設定內找到`裝置管理員`權限去打開<br>
-但是這跟Device Owner實際上是`不同`的權限 <br>
-`這邊不要搞混了`<br>
+* Admin権限とは： <br>
+アプリ内にAdmin権限が必要なReceiverを追加することです。<br>
+これにより、ユーザーは設定内で`装置管理者`権限を見つけて有効にすることができます。<br>
+ただし、これはDevice Ownerとは実際には`異なる`権限です。<br>
+`ここで混同しないようにしてください`<br>
 
-* 加入方法可參考官網：[文件](https://developer.android.com/guide/topics/admin/device-admin)<br>
-文件內也有提到一些實際應用例子 可參考<br>
-作法很簡單只需要產生<br>
-`DeviceAdminReceiver`的子類<br>
-再將其加入Manifest.xml內即可<br>
+* 追加方法は公式サイトを参照：[ドキュメント](https://developer.android.com/guide/topics/admin/device-admin)<br>
+ドキュメントには実際の使用例も記載されていますので、参考にしてください。<br>
+手順は非常に簡単で、<br>
+`DeviceAdminReceiver`のサブクラスを生成し、<br>
+それをManifest.xmlに追加するだけです。<br>
 
-* 快速講一下步驟
-1. 繼承一個`DeviceAdminReceiver`
+* 手順を簡単に説明します。
+1. `DeviceAdminReceiver`を継承する
 
 ```Kotlin
 class AdminReceiver : DeviceAdminReceiver() {
@@ -140,7 +129,7 @@ class AdminReceiver : DeviceAdminReceiver() {
 ```
 
 2.
-實作權限宣告的device_admin.xml 在路徑`res/xml`下
+`res/xml`のパスにdevice_admin.xmlの権限宣言を実装します
 
 ```xml
 <device-admin xmlns:android="http://schemas.android.com/apk/res/android">
@@ -152,7 +141,7 @@ class AdminReceiver : DeviceAdminReceiver() {
 </device-admin>
 ```
 
-3. 前兩項做的加入到manifest
+3. 前の2つの項目をマニフェストに追加します
 
 ```xml
 <receiver
@@ -168,7 +157,7 @@ class AdminReceiver : DeviceAdminReceiver() {
 </receiver>
 ``` 
 
-4. 透過程式碼去請求
+4. コードを通じてリクエストを行います
 
 ```kotlin
 fun startAskActiveAdmin() {
@@ -180,7 +169,7 @@ fun startAskActiveAdmin() {
 }
 ```
 
-5. 處理返回結果
+5. 戻り結果を処理します
 
 ```kotlin
 override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -199,36 +188,35 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 ```
 
 
-<div class="c-border-main-title-2">Device Owner 實作分享</div>
+<div class="c-border-main-title-2">Device Owner 実装共有</div>
 
-這邊分享一些之前做過遇到的例子<br>
-不過主要是大概講一下觀念跟實作的部分code<br>
-個人認為不會太難離解<br>
-所以就不會講太細<br>
+ここでは以前に行った例をいくつか共有します<br>
+ただし、主に概念と実装の一部のコードについて簡単に説明します<br>
+個人的にはそれほど難しくないと思います<br>
+なので詳細には説明しません<br>
 
-* 首先就是得拿到DevicePolicyManger與AdminReceiver的實例<br>
+* まず、DevicePolicyManagerとAdminReceiverのインスタンスを取得する必要があります<br>
 	<script src="https://gist.github.com/KuanChunChen/c12af22551a91a32a6f85cd3da7e3313.js"></script>
 
-* 拿到後，就可以依照自己需要的去呼叫，實作方法大同小異，所以這邊只大概舉幾個例子
+* 取得した後は、必要に応じて呼び出すことができます。実装方法はほぼ同じなので、ここではいくつかの例を挙げるだけにします
 
-	- `隱藏App`
+	- `アプリを隠す`
 	 <script src="https://gist.github.com/KuanChunChen/520157aaceb75c79cda052e10f576a26.js"></script>
-	- 加入`User Restriction`
+	- `ユーザー制限`を追加する
 	 <script src="https://gist.github.com/KuanChunChen/15286f247a2120b4320b4cf5f678560e.js"></script>
 
-* 其他更多例子可以參考google [github](https://github.com/googlesamples/android-testdpc) 內有使用Device Owner的 範例app
+* その他の例については、Googleの[github](https://github.com/googlesamples/android-testdpc)にあるDevice Ownerを使用したサンプルアプリを参照してください
 
 
 ---
-補充：<br>
-除了Device Owner外<br>
-下面這個指令 也能透過adb 修改指定app配置<br>
+補足：<br>
+Device Owner以外にも<br>
+以下のコマンドを使用してadbを通じて指定されたアプリの設定を変更することができます<br>
 `adb shell pm grant com.your.package android.permission.CHANGE_CONFIGURATION`<br>
-或直接加入`AndroidManifest.xml`也可以
-不過因為他在系統上的protectLevel被宣告為`signature|privileged`
-(現在看文件`signature|privileged`已被改為`signatureOrSystem`，效果跟之前一樣)
-這時候你要使用這個權限來改app配置就需要取得系統簽名或是有device owner權限之類的
+または直接`AndroidManifest.xml`に追加することもできます
+ただし、システム上のprotectLevelが`signature|privileged`として宣言されているため
+（現在のドキュメントでは`signature|privileged`が`signatureOrSystem`に変更されており、効果は以前と同じです）
+この権限を使用してアプリの設定を変更するには、システム署名を取得するか、device owner権限を持つ必要があります
 
-可以看看官方<a href="https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn
-" target="_blank">權限文件</a>，來了解`signature|privileged`
-
+公式の<a href="https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn
+" target="_blank">権限ドキュメント</a>を参照して、`signature|privileged`について理解してください

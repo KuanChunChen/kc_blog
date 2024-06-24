@@ -1,29 +1,29 @@
 ---
 layout: post
-title: "[Android開發思路]打造你的VPN app：Android VpnManager開發思路心得"
+title: "[Android開発の考え方] 自分のVPNアプリを作成する：Android VpnManager開発の考え方と心得"
 date: 2022-04-21 18:09:28 +0800
 image: cover/android-vpn-app-develop-1.png
 tags: [Android,Debug]
 categories: Android教學
-excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應用程序內實現VPN方案。在這篇文章中，我將分享我當時的研究筆記和相關的解決方案。"
+excerpt: "以下は私が過去にAndroidを開発していた際に直面した問題です：アプリ内でVPNソリューションを実現する方法。この投稿では、その時の研究ノートと関連する解決策を共有します。"
 
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 
 <p>
-  在這篇文章中，<br>
-  我們將分享開發自己研究的Android VPN 應用的思路，<br>
-  不論您是新手還是有經驗的開發者，<br>
-  這些筆記都將提供實用的指引，<br>
-  希望能對您有所幫助。<br>
+  この投稿では、<br>
+  自分で研究したAndroid VPNアプリの開発の考え方を共有します。<br>
+  初心者でも経験豊富な開発者でも、<br>
+  これらのノートは実用的なガイドを提供します。<br>
+  皆さんの役に立てば幸いです。<br>
 </p>
 
 
-<div class="c-border-main-title-2">前期可以考慮的問題</div>
-<div class="c-border-content-title-4">思考要怎麼實作，所以先研究了原生有哪些VPN加密連線方式</div>
+<div class="c-border-main-title-2">事前に考慮すべき問題</div>
+<div class="c-border-content-title-4">どのように実装するかを考えるため、まずはネイティブにどのようなVPN暗号化接続方式があるかを調査しました</div>
 
-  * 這邊看了原生Android AOSP source code內有的VPN連線加密方式：
+  * ここでは、ネイティブのAndroid AOSPソースコード内にあるVPN接続暗号化方式を見ました：
     - PPTP  
     - L2TP/IPSec PSK
     - IPSec Xauth Psk
@@ -33,100 +33,99 @@ excerpt: "以下是我過去開發Android時遇到的一個問題：如何在應
     - IPSec 混合 RSA
     - IPSec IKEv2 RSA
 
-  <div class="c-border-content-title-4">若是有個需求為，要實作VPN連線加密模式功能，則：</div>
-  - 官方原生提供的方法有:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
+  <div class="c-border-content-title-4">もしVPN接続暗号化モード機能を実装する必要がある場合：</div>
+  - 公式のネイティブ提供方法には:<a herf="https://developer.android.com/reference/android/net/VpnManager">VpnManager、</a>
   <a herf="https://developer.android.com/reference/android/net/VpnService">VpnService</a>
-    我研究後發現：
-      - 如果用`VpnManager` ，僅提供部分Vpn連線模式，且高版本(api 30上)才有提供
-      - 如果用`VpnService` ，僅提供基本的一些設定，無開放連線模式的接口給上層使用
+    調査の結果：
+      - `VpnManager`を使用する場合、一部のVpn接続モードのみが提供されており、高バージョン（API 30以上）でのみ利用可能
+      - `VpnService`を使用する場合、基本的な設定のみが提供されており、上層で使用するための接続モードのインターフェースは開放されていない
 
-  - `VpnManager`，需api 30才能使用，且只有開放部分protocol
-      - 另外有看到google issue tracker的網站中，<br>
-   有其他開發者有類似問題，並`詢問官方是否能開放下層的連線模式`給上層使用，<br>
-   官方人員回覆 後續有望開放：[點此查看](https://issuetracker.google.com/issues/203461112)<br>
-   表示也有其他人有類似需求，但目前官方暫無開發<br>
+  - `VpnManager`はAPI 30以上で使用可能で、一部のプロトコルのみが開放されている
+      - また、Googleのissue trackerサイトで、<br>
+   他の開発者が類似の問題を抱えており、`公式に下層の接続モードを上層で使用できるように開放してほしい`と質問しているのを見ました。<br>
+   公式の回答では、将来的に開放される可能性があるとのこと：[こちらをクリック](https://issuetracker.google.com/issues/203461112)<br>
+   つまり、他にも同様のニーズがあるが、現時点では公式の開発予定はない<br>
 
 
- *  之前提到官方只支援部分加密方式，其他的就得靠自己實作或串接第三方的lib啦！<br>
-    這張圖列出了官方支援的三種加密方式：IPSec IKEv2 PSK、IPSec IKEv2 RSA、IPSec User Pass。<br>
+ *  以前述べたように、公式は一部の暗号化方式のみをサポートしており、その他は自分で実装するか、サードパーティのライブラリを統合する必要があります。<br>
+    この図は、公式がサポートする3つの暗号化方式を示しています：IPSec IKEv2 PSK、IPSec IKEv2 RSA、IPSec User Pass。<br>
     ![vpn_limit.png](/images/others/vpn_limit.png)
 
-<div class="c-border-main-title-2">VPN實作的思路參考</div>
+<div class="c-border-main-title-2">VPN実装の考え方の参考</div>
 
-* 若使用`官方提供`的方法來實作，可以：
-     - `'連接類型'`：透過[VpnManager](https://developer.android.com/reference/android/net/VpnManager) (API level 30以上)的[provisionVpnProfile](https://developer.android.com/reference/android/net/VpnManager#provisionVpnProfile(android.net.PlatformVpnProfile))方法設定`PlatformVpnProfile`
-         - 官方定義一個新的類別 [PlatformVpnProfile](https://developer.android.com/reference/android/net/PlatformVpnProfile)
-           - 若搭配AOSP看的話，官方是提供這個類讓你`設定部分連線procotol`
-             最後到下層的Service時會幫你轉換成真正在Service用的VpnProfile類
-           - 也就是VpnManager的 `line 335` : [provisionVpnProfile(@NonNull PlatformVpnProfile profile)](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnManager.java;l=339;drc=03ba62861cd60978ba51c144071512b4aac291b7)
-        最後是用 toVpnProfile()幫你把`PlatformVpnProfile`轉為`VpnProfile`
+* `公式提供`の方法を使用する場合、以下のように実装できます：
+     - `'接続タイプ'`：[VpnManager](https://developer.android.com/reference/android/net/VpnManager) (APIレベル30以上)の[provisionVpnProfile](https://developer.android.com/reference/android/net/VpnManager#provisionVpnProfile(android.net.PlatformVpnProfile))メソッドを使用して`PlatformVpnProfile`を設定
+         - 公式は新しいクラス[PlatformVpnProfile](https://developer.android.com/reference/android/net/PlatformVpnProfile)を定義しています
+           - AOSPと組み合わせて見ると、公式はこのクラスを提供して`一部の接続プロトコルを設定`できるようにしています
+             最終的に下層のサービスに到達すると、サービスで使用されるVpnProfileクラスに変換されます
+           - つまり、VpnManagerの`line 335`：[provisionVpnProfile(@NonNull PlatformVpnProfile profile)](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnManager.java;l=339;drc=03ba62861cd60978ba51c144071512b4aac291b7)
+        最終的にはtoVpnProfile()を使用して`PlatformVpnProfile`を`VpnProfile`に変換します
 
-         - 其中[Ikev2VpnProfile.Builder](https://developer.android.com/reference/android/net/Ikev2VpnProfile.Builder#setRequiresInternetValidation(boolean)) 可以設定Ikev2相關連線設置，這個類其實就是實作`PlatformVpnProfile`讓你去設定開放的protocol模式
+- その[Ikev2VpnProfile.Builder](https://developer.android.com/reference/android/net/Ikev2VpnProfile.Builder#setRequiresInternetValidation(boolean))はIkev2関連の接続設定を行うことができ、このクラスは実際には`PlatformVpnProfile`を実装して、オープンなプロトコルモードを設定するためのものです。
 
-     - `'vpn設置相關'` : 通過[VpnService](https://developer.android.com/reference/android/net/VpnService)，在建立本地tunnel的時候加入`VpnService.Builder()`
-       - 官方 [VpnService架構圖](https://developer.android.com/guide/topics/connectivity/vpn#service)
-         - 此方法設定連線時的Tunnel，官方僅提供如下方example所示的方法
-         給開發者使用
-         - 雖然AOSP內有提供相關protocol連線，但是`尚未開放`給上層使用，
-       故若需要相關protocol進行連線，則需自行開發
-       - example :
-        ```kotlin
-       /***  Android level 14 up ***/
-       val builder = VpnService.Builder()
-       val localTunnel = builder
-                          .setSession('VPN名字')  
-                          .addAddress('服務器', 'prefix length')
-                          .addRoute('轉發路由', 'prefix length')
-                          .addDnsServer('DNS服務器')
-                          .addSearchDomain('DNS 搜索域')
-                          .establish()
-         ```
-
-<br>
-
-<div class="c-border-main-title-2">透過其他或第三方方案來實作Vpn app</div>
-<div class="c-border-content-title-4">若官方提供開放的方法，還無法滿足需求，則可考慮：</div>
-
-   - AnyConnect：第三方VPN供應商，目前看到第三方廠商的VPN服務
-      - [AnyConnect官方文件](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-android-anyconnect-4-10-.html)提到有提供 TLS、DTLS、IPsec IKEv2 等等的protocol
-      - 另一份[AnyConnect文件](https://www.cisco.com/c/en/us/products/collateral/security/anyconnect-secure-mobility-client/data_sheet_c78-527494.html)提到要使用IPsec IKEv2 連接 需要[Cisco Adaptive Security Appliance](https://www.cisco.com/c/en/us/products/security/adaptive-security-appliance-asa-software/index.html#~features) 8.4以上
-      - 使用此選項的話，需要與[廠商接洽](https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html#~deployment)，才能得知如何開發、細節等
-      - [此表](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect40/feature/guide/AnyConnect_Mobile_Platforms_and_Features_Guide.html)下方有個表解釋每個平台支持的Tunneling
-      - [AnyConnect 4.10 release note](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-android-anyconnect-4-10-.html)，文件較下面有提到Android版本上有部分相容性問題：
-        - 像是Android 5.0、6.0 省電模式會與該服務衝突
-        - Split DNS 無法在Android4.4 或 三星 5.x Android 設備運作
-   - `(供參考)` 看到網路上有一解法去設定VpnProfile，透過反射framework內的方法直接使用:[Create VPN profile on Android](https://stackoverflow.com/questions/9718289/create-vpn-profile-on-android)
-     - 但在Android 9.0以上此法已被修正，故推測有些較早期的手機可能使用這種方法 (若目標裝置在這之前，還能考慮)
-     - [修正公告](https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces)
-   - `(供參考)` 第三方 [openVpn](https://github.com/schwabe/ics-openvpn) 有提供Android開源
-     - [說明文件](https://community.openvpn.net/openvpn/wiki/Openvpn23ManPage)提到支援`SSL/TLS`協議`(僅支援該協議)`
-     - 加入openVpn到android專案方法：[點此](https://www.youtube.com/watch?v=gBMhaCujwrM)
-     - [ics-openvpn FAQ](https://ics-openvpn.blinkt.de/FAQ.html)也有提到三星5.0手機問題
+- `'VPN設定関連'` : [VpnService](https://developer.android.com/reference/android/net/VpnService)を通じて、ローカルトンネルを作成する際に`VpnService.Builder()`を追加します。
+  - 公式の [VpnServiceアーキテクチャ図](https://developer.android.com/guide/topics/connectivity/vpn#service)
+    - この方法は接続時のトンネルを設定し、公式には以下の例に示す方法のみが提供されています。
+    - AOSPには関連するプロトコル接続が提供されていますが、`まだ公開されていません`。
+    したがって、関連するプロトコルで接続する必要がある場合は、自分で開発する必要があります。
+    - 例 :
+    ```kotlin
+    /***  Android level 14 up ***/
+    val builder = VpnService.Builder()
+    val localTunnel = builder
+                       .setSession('VPN名前')  
+                       .addAddress('サーバー', 'prefix length')
+                       .addRoute('転送ルート', 'prefix length')
+                       .addDnsServer('DNSサーバー')
+                       .addSearchDomain('DNS検索ドメイン')
+                       .establish()
+    ```
 
 <br>
 
-<div class="c-border-main-title-2">其餘知識點</div>
+<div class="c-border-main-title-2">他の方法やサードパーティのソリューションを使用してVPNアプリを実装する</div>
+<div class="c-border-content-title-4">公式に提供されている方法では要件を満たせない場合、以下を検討できます：</div>
 
-- 透過app開啟自定義VpnService時，在Android 8.0 以上service運作新增[後台執行限制](https://developer.android.com/about/versions/oreo/background?hl=zh-cn#services)
+- AnyConnect：サードパーティのVPNプロバイダーで、現在サードパーティのVPNサービスが見られます。
+  - [AnyConnect公式ドキュメント](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-android-anyconnect-4-10-.html)には、TLS、DTLS、IPsec IKEv2などのプロトコルが提供されていると記載されています。
+  - 別の[AnyConnectドキュメント](https://www.cisco.com/c/en/us/products/collateral/security/anyconnect-secure-mobility-client/data_sheet_c78-527494.html)には、IPsec IKEv2接続を使用するには[Cisco Adaptive Security Appliance](https://www.cisco.com/c/en/us/products/security/adaptive-security-appliance-asa-software/index.html#~features) 8.4以上が必要と記載されています。
+  - このオプションを使用する場合、[ベンダーと連絡](https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html#~deployment)を取る必要があり、開発方法や詳細を知ることができます。
+  - [この表](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect40/feature/guide/AnyConnect_Mobile_Platforms_and_Features_Guide.html)の下部には、各プラットフォームがサポートするトンネリングについて説明する表があります。
+  - [AnyConnect 4.10リリースノート](https://www.cisco.com/c/en/us/td/docs/security/vpn_client/anyconnect/anyconnect410/release/notes/release-notes-android-anyconnect-4-10-.html)には、Androidバージョンに関する一部の互換性問題についても記載されています：
+    - 例えば、Android 5.0、6.0の省電力モードはこのサービスと競合します。
+    - Split DNSはAndroid 4.4またはSamsung 5.x Androidデバイスでは動作しません。
+- `(参考)` ネット上で見つけた方法で、反射フレームワーク内のメソッドを直接使用してVpnProfileを設定する：[Create VPN profile on Android](https://stackoverflow.com/questions/9718289/create-vpn-profile-on-android)
+  - しかし、Android 9.0以上ではこの方法は修正されているため、古いデバイスではこの方法が使用されている可能性があります（対象デバイスがこれ以前の場合、検討できます）。
+  - [修正アナウンス](https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces)
+- `(参考)` サードパーティの[openVpn](https://github.com/schwabe/ics-openvpn)はAndroidのオープンソースを提供しています。
+  - [ドキュメント](https://community.openvpn.net/openvpn/wiki/Openvpn23ManPage)には、`SSL/TLS`プロトコルをサポートしていると記載されています（`このプロトコルのみサポート`）。
+  - openVpnをAndroidプロジェクトに追加する方法：[こちら](https://www.youtube.com/watch?v=gBMhaCujwrM)
+  - [ics-openvpn FAQ](https://ics-openvpn.blinkt.de/FAQ.html)には、Samsung 5.0デバイスの問題についても記載されています。
+
+<br>
+
+<div class="c-border-main-title-2">その他の知識ポイント</div>
+
+- アプリを通じてカスタムVpnServiceを起動する際、Android 8.0以上ではサービスの動作に[バックグラウンド実行制限](https://developer.android.com/about/versions/oreo/background?hl=zh-cn#services)が追加されました。
    <br>
 
-- 追蹤[android-10.0.0_r1 aosp內的 VpnService.java](https://cs.android.com/android/platform/superproject/+/android-10.0.0_r1:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1) 其`line:176~179`使用了
-   [IConnectivityManager.aidl](https://cs.android.com/android/platform/superproject/+/android-10.0.0_r10:frameworks/base/core/java/android/net/IConnectivityManager.aidl;bpv=0;bpt=0)，但目前在framework層找不到實作aidl的痕跡，
-   故推測有可能是放在binder之類的，若要了解它怎麼實作的，可能要再研究底層code
+- [android-10.0.0_r1 aosp内の VpnService.java](https://cs.android.com/android/platform/superproject/+/android-10.0.0_r1:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1)の`line:176~179`では
+   [IConnectivityManager.aidl](https://cs.android.com/android/platform/superproject/+/android-10.0.0_r10:frameworks/base/core/java/android/net/IConnectivityManager.aidl;bpv=0;bpt=0)が使用されていますが、現在のところframework層でaidlの実装の痕跡は見つかっていません。
+   そのため、binderなどに置かれている可能性があり、実装方法を理解するにはさらに低レベルのコードを調査する必要があります。
    <br>
 
-- 追蹤 [Android 12 aosp內的 VpnService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1;l=178)，其`line:178~181`使用的aidl改成[IVpnManager.aidl](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/IVpnManager.aidl)，
-   source code內有另一個檔案為[VpnManagerService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1)
+- [Android 12 aosp内の VpnService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/VpnService.java;bpv=1;bpt=1;l=178)の`line:178~181`ではaidlが[IVpnManager.aidl](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/net/IVpnManager.aidl)に変更されています。
+   ソースコード内にはもう一つのファイルとして[VpnManagerService.Java](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/services/core/java/com/android/server/VpnManagerService.java;l=33;bpv=0;bpt=1)があります。
 
-   其中`line:293`的 `provisionVpnProfile(VpnProfile profile,...)`
-   這個method要求提供一個變數[VpnProfile](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&ss=android%2Fplatform%2Fsuperproject)
+   その`line:293`の `provisionVpnProfile(VpnProfile profile,...)`
+   このメソッドは変数[VpnProfile](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/com/android/internal/net/VpnProfile.java;l=61;bpv=0;bpt=0?q=VpnProfile&ss=android%2Fplatform%2Fsuperproject)を提供することを要求します。
 
-   點進去看VpnProfile的`line:97`得知其預設連線方案為：`public int type = TYPE_PPTP`  
+   VpnProfileの`line:97`を確認すると、そのデフォルト接続方式は：`public int type = TYPE_PPTP`です。
 
-   且看到VpnProfile可設定的連線模式有：<br>
+   また、VpnProfileで設定可能な接続モードは以下の通りです：<br>
    ![vpn_aosp_type.png](/images/others/vpn_aosp_type.png)<br>
-   不過這些目前僅在aosp內有支援這些連線模式<br>
-   且因為沒有開放出來，所以無法寫在app內直接使用<br>
-   總結來說<br>
-   一來非開發者只能從手機設定裡那邊修改<br>
-   二來開發者要自行實作只能從aosp那邊下手
+   ただし、これらは現在aosp内でのみサポートされています。<br>
+   公開されていないため、アプリ内で直接使用することはできません。<br>
+   まとめると、<br>
+   一般ユーザーは携帯電話の設定から変更するしかありません。<br>
+   開発者はaospから手をつけるしかありません。

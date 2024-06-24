@@ -1,90 +1,89 @@
 ---
 layout: post
-title: "來學習Jetpack Compose 在splash頁面加入動畫吧！"
+title: "Jetpack Composeでスプラッシュページにアニメーションを追加しよう！"
 date: 2021-09-17 15:02:11 +0800
 image: cover/ea-website-splash-cover-photo-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-splash
-excerpt: "透過Jetpack Compose，你可以輕鬆地為你的應用程式添加動態、生動的啟動頁面。
-在這篇文章中，我們將帶你一步步學習如何使用Jetpack Compose創建動畫頁面"
+excerpt: "Jetpack Composeを使えば、アプリケーションに動的で生き生きとしたスプラッシュページを簡単に追加できます。
+この記事では、Jetpack Composeを使ってアニメーションページを作成する方法をステップバイステップで学びます。"
 
 ---
 
 <div class="c-border-main-title-2">目標</div>
-這篇目標會是做出一個<br>
-簡單的splash 頁面<br>
-我們今天最後達成的目標會是這樣：<br>
+この記事の目標は、<br>
+シンプルなスプラッシュページを作成することです。<br>
+最終的に達成する目標は以下の通りです：<br>
 <br>
 
 <div align="center">
   <img src="/mov/jetpack/ea_splash_app.gif" width="60%"/>
 </div><br>
 
-<div class="c-border-main-title-2">前言</div>
-現在許多應用程式都會設計一個進入畫面，<br>
-以便讓用戶清楚地識別當前的應用程式或公司標誌，<br>
-確保用戶知道他們正在使用的是哪個應用程式。<br>
+<div class="c-border-main-title-2">前書き</div>
+現在、多くのアプリケーションには、<br>
+ユーザーが現在使用しているアプリケーションや会社のロゴを明確に識別できるようにするためのスプラッシュ画面が設計されています。<br>
 
-在本篇文章中，<br>
-我們將重點介紹如何實現一個簡單的跳轉功能，<br>
-並配合簡單的水平擴展動畫，<br>
-來達到今天的目標。<br>
-如果你對Jetpack Compose的基礎還不熟悉，<br>
-可以參考這篇文章以加深理解：<br>
+この記事では、<br>
+シンプルな遷移機能を実現し、<br>
+簡単な水平拡張アニメーションを組み合わせて、<br>
+今日の目標を達成する方法に焦点を当てます。<br>
+Jetpack Composeの基礎にまだ慣れていない場合は、<br>
+以下の記事を参考にして理解を深めてください：<br>
 <br>
 <div align="start">
   <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">
     <img src="/images/cover/ea-website-base-cover-photo-new-1.png" alt="Cover" width="20%" >
   </a>
 
-  <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">Android Jetpack Compose 基本應用教學</a>
+  <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">Android Jetpack Compose 基本応用チュートリアル</a>
 </div>
 
 
-<div class="c-border-content-title-4">這篇開始時，已經假設會基本概念了，所以還沒了解的可以參考上面那篇。</div>
+<div class="c-border-content-title-4">この記事は基本概念を理解していることを前提としていますので、まだ理解していない場合は上記の記事を参考にしてください。</div>
 
 ----
-<div class="c-border-content-title-4">第一步：想好頁面架構</div>
-首先，<br>
-我們需要先考慮這個頁面的整體結構。<br>
-通常習慣先想像最終畫面的樣子，<br>
-因此我透過使用一個Box元件作為不同圖層的概念來區分各個區塊。<br>
+<div class="c-border-content-title-4">第一歩：ページ構造を考える</div>
+まず、<br>
+このページの全体的な構造を考える必要があります。<br>
+通常、最終的な画面のイメージを先に考えます。<br>
+そのため、異なるレイヤーの概念を区別するためにBoxコンポーネントを使用します。<br>
 
 <script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
-<div class="c-border-content-title-4">第二步 ： 實作 splash頁logo動畫</div>
-在這一步中，我們將傳入一個函式型別的參數 <font color="red"> event:()->Unit = {} </font><br>
-這樣我們就能在之後觸發某個外部呼叫所要執行的動作。<br>
-同時，<br>
-我們也可以預設動畫的進場與退場時間，<br>
-以及執行傳入動作前的延遲時間。<br>
-這些參數可以根據需求自行調整，<br>
-但為了方便理解，我們先將它們寫在函式內部。<br>
+<div class="c-border-content-title-4">第二歩：スプラッシュページのロゴアニメーションを実装する</div>
+このステップでは、関数型のパラメータ <font color="red"> event:()->Unit = {} </font> を渡します。<br>
+これにより、後で外部呼び出しをトリガーして実行するアクションを設定できます。<br>
+同時に、<br>
+アニメーションの入場と退場の時間、<br>
+およびアクションを実行する前の遅延時間をデフォルトで設定できます。<br>
+これらのパラメータは必要に応じて調整できますが、<br>
+理解を容易にするために、関数内部に記述します。<br>
 
 <script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
-根據具體情況，<br>
-我希望我的 Logo 在頁面正中央並稍微偏上一點，<br>
-所以我加入了 Column 元件，並使用 Modifier 調整相關位置。<br>
-你可以參考下方程式碼的<font color="red">#23~#34行</font>，來調整相關位置。<br>
+具体的な状況に応じて、<br>
+ロゴをページの中央に配置し、少し上にずらしたいと思います。<br>
+そのため、Columnコンポーネントを追加し、Modifierを使用して位置を調整します。<br>
+以下のコードの<font color="red">#23~#34行</font>を参考にして位置を調整してください。<br>
 
 <br>
 <script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
-<div class="c-border-content-title-4">第三步 ： 本文重頭戲</div>
+<div class="c-border-content-title-4">第三歩：この記事のメインイベント</div>
 
-現在我們將進入動畫的關鍵部分，<br>
-使用了 Jetpack Compose 的 AnimatedVisibility。<br>
-這個類提供了許多內建的方法，<br>
-讓我們能夠快速實現一些基本的動畫效果。<br>
+現在私たちはアニメーションの重要な部分に入ります、<br>
+Jetpack Compose の AnimatedVisibility を使用します。<br>
+このクラスは多くの組み込みメソッドを提供しており、<br>
+基本的なアニメーション効果を迅速に実現することができます。<br>
 
-在這一部分，<br>
-我們先來看一下前面我們定義的一個 val 變數 state。<br>
-這是 Jetpack Compose 中經常使用的概念之一，<br>
-因為在單獨使用 Composable 寫程式碼時，<br>
-它不會自動在 XML 中進行更新。<br>
+この部分では、<br>
+まず前に定義した val 変数 state を見てみましょう。<br>
+これは Jetpack Compose でよく使われる概念の一つです。<br>
+なぜなら、単独で Composable を使用してコードを書くとき、<br>
+XML で自動的に更新されることはないからです。<br>
 
-<font color="red">要透過state告知composable更新</font><br>
+<font color="red">state を通じて composable に更新を通知する必要があります</font><br>
 
 ```Kotlin
 val state = remember {
@@ -95,31 +94,30 @@ val state = remember {
 }
 ```
 
-所以這邊用到 <font color="red">remember</font> 來記住（儲存） MutableTransitionState 物件<br>
+ここでは <font color="red">remember</font> を使って MutableTransitionState オブジェクトを記憶（保存）します。<br>
 
-這邊重點講一下 MutableTransitionState<br>
-它是一種包含了兩種狀態的 可觀察其狀態的項目<br>
-其中包含 <font color="red">currentState</font> 與 <font color="red">targetState</font><br>
+ここで重要なのは MutableTransitionState です。<br>
+これは二つの状態を含む、状態を観察可能な項目です。<br>
+その中には <font color="red">currentState</font> と <font color="red">targetState</font> が含まれます。<br>
 
-根據官方解釋 <br>
-當可觀察的state狀態改變時<br>
-會觸發系統讓compose去重組<br>
-所以我們可以利用這個特性<br>
-去實時變更我們compose元件的內容<br>
+公式の説明によると、<br>
+観察可能な state の状態が変わると、<br>
+システムが compose を再構成するようにトリガーされます。<br>
+したがって、この特性を利用して、<br>
+リアルタイムで compose コンポーネントの内容を変更することができます。<br>
 
-
-例如我這邊的例子是：<br>
-1.先宣告一個staus 初始狀態為 false<br>
-2.在使用AnimatedVisibility設定該visibleState為我剛剛宣告的staus<br>
-3.回到剛剛宣吿val staus的地方加入apply<br>
+例えば、ここでの例は：<br>
+1. まず、初期状態が false の staus を宣言します。<br>
+2. AnimatedVisibility を使用して、その visibleState を先ほど宣言した staus に設定します。<br>
+3. 先ほど宣言した val staus の場所に apply を追加します。<br>
 <br>
-其中概念是<br>
-利用了kotlin extension 概念apply去執行scope內的code<br>
-因apply可以取得父類內的特性<br>
-所以設定MutableTransitionState內的targetState變為ture<br>
-<font color="red">此舉動會讓MutableTransitionState發生改變<br></font>
-所以使用該staus的會觸發上方說過的特性<br>
-讓我們開發時有依據去判斷何時要改變compose<br>
+その概念は、<br>
+kotlin の extension 概念 apply を利用して scope 内のコードを実行します。<br>
+apply は親クラス内の特性を取得できるため、<br>
+MutableTransitionState 内の targetState を true に設定します。<br>
+<font color="red">この動作により MutableTransitionState が変化します。<br></font>
+したがって、この staus を使用するものは、上記の特性をトリガーします。<br>
+これにより、開発時に compose を変更するタイミングを判断する根拠が得られます。<br>
 
 ```kotlin
 val state = remember {
@@ -134,9 +132,9 @@ val state = remember {
     }
 ```
 
-也就是說，<br>
-使用上面方法觸發動畫<br>
-觸發後同時觸發Handler去執行跳轉的動作：<br>
+つまり、<br>
+上記の方法でアニメーションをトリガーし、<br>
+トリガー後に Handler を同時にトリガーしてジャンプ動作を実行します：<br>
 
 ```kotlin
 val state = remember {
@@ -153,34 +151,29 @@ val state = remember {
 ```
 <br>
 
+次に、<br>
+アニメーションの作成を開始します。<br>
+ここでも Jetpack Compose のライブラリを使用します。<br>
+具体的には AnimatedVisibility を使用します。<br>
 
-接下來，<br>
-我們將開始進行動畫的製作。<br>
-在這裡，<br>
-我們同樣使用了 Jetpack Compose 的庫，<br>
-具體來說是使用了 AnimatedVisibility。<br>
-
-在這個函式中，我們使用了以下幾個變數：<br>
-1.visibleState：這是控制動畫顯示狀態的變數。<br>
-透過前面提到的 remember 和 MutableTransitionState，<br>
-我們能夠觸發這個庫的動畫效果。<br><br>
-換句話說，當該狀態改變時，這個函式就會再次執行。<br>
-2.enter：這個變數用於定義動畫進場的效果。<br><br>
-3.exit：這個變數用於定義動畫退場的效果。<br>
+この関数では、以下の変数を使用します：<br>
+1. visibleState：これはアニメーションの表示状態を制御する変数です。<br>
+前述の remember と MutableTransitionState を通じて、<br>
+このライブラリのアニメーション効果をトリガーできます。<br><br>
+言い換えれば、この状態が変わると、この関数が再度実行されます。<br>
+2. enter：これはアニメーションの入場効果を定義する変数です。<br><br>
+3. exit：これはアニメーションの退場効果を定義する変数です。<br>
 <br>
-透過設定這些變數，<br>
-我們能夠控制動畫的出現與消失，<br>
-從而營造出令人驚艷的視覺效果。<br><br>
+これらの変数を設定することで、<br>
+アニメーションの出現と消失を制御し、<br>
+驚くべき視覚効果を生み出すことができます。<br><br>
 
+上記を理解した後、公式が提供するいくつかの組み込みアニメーションを適用できます。<br>
 
-理解上面後，就可以用官方提供的幾種內建動畫套入<br>
+入場には `expandHorizontally` を使用し、<br>
+退場には `fadeOut` を使用します。<br>
 
-
-進場使用 `expandHorizontally`<br>
-出場使用 `fadeOut`<br>
-
-
-也就是說在 enter與exit分別帶入要的動畫如下：<br>
+つまり、enter と exit にそれぞれ必要なアニメーションを次のように設定します：<br>
 ```kotlin
 AnimatedVisibility(
           visibleState = state,
@@ -201,9 +194,9 @@ AnimatedVisibility(
       }
 ```
 
-接著，<br>
-在 AnimatedVisibilityScope 的函式型別範圍內，<br>
-你可以加入你想要顯示的元件，<br>
-這樣就能呈現出動畫效果了。<br>
-<div class="c-border-main-title-2">最終成品，範例程式碼</div>
+次に、<br>
+AnimatedVisibilityScope の関数型範囲内で、<br>
+表示したいコンポーネントを追加できます。<br>
+これでアニメーション効果を表示できます。<br>
+<div class="c-border-main-title-2">最終成品、サンプルコード</div>
 <script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>

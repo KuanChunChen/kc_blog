@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[Android][Memory]記憶體優化+GC管理相關概念分享"
+title: "[Android][Memory]記憶体最適化+GC管理関連概念の共有"
 date: 2021-10-05 17:42:21 +0800
 image: cover/ea-website-android-memory.png
 tags: [Android,Kotlin]
@@ -8,121 +8,121 @@ categories: Android教學
 ---
 
 
-今天這篇<br>
-打算來透過寫筆記的方式<br>
-記錄關於我所了解的Android記憶體管理<br>
-這邊我打算會持續更新在同一個筆記內<br>
-如果我有讀到更多的Android記憶體管理知識<br>
-我會想要把它集中在同一篇<br>
+今日のこの投稿<br>
+メモを書く方法を通じて<br>
+私が理解しているAndroidのメモリ管理について記録しようと思います<br>
+ここでは同じメモに継続的に更新する予定です<br>
+もしもっとAndroidのメモリ管理知識を読んだら<br>
+それを一つの投稿に集中させたいと思います<br>
 
 
 <h2>Android Memory Note</h2>
 <br>
 heap：<br>
-Android virtual machine 會持續追蹤heap中的記憶體分配<br>
-而heap是一塊記憶體用來存放系統分配的 java / kotlin object<br>
+Android仮想マシンはheap内のメモリ割り当てを継続的に追跡します<br>
+heapはシステムが割り当てたjava/kotlinオブジェクトを格納するためのメモリ領域です<br>
 
 garbage collection(gc):<br>
- 其在Android中的目標只為了達成以下：
+ その目的は以下を達成するためです：
 <br>
 
-* 尋找用不到的objects
-* 回收這些objects用到的記憶體並將其返回給heap
+* 使用されていないオブジェクトを探す
+* これらのオブジェクトが使用しているメモリを回収し、heapに返す
 
-而在mutli-task環境中<br>
-Android會限制每個heap的size<br>
-這個size會根據Android裝置有多少可用RAM決定
+マルチタスク環境では<br>
+Androidは各heapのサイズを制限します<br>
+このサイズはAndroidデバイスの利用可能なRAMの量に基づいて決定されます
 <br><br>
 
-另外<br>
-當heap容量塞滿時<br>
-如果系統還嘗試分費記憶體<br>
-就有可能會得到 OutOfMemoryError <br>
+さらに<br>
+heap容量がいっぱいになると<br>
+システムがまだメモリを割り当てようとすると<br>
+OutOfMemoryErrorが発生する可能性があります<br>
 
 
 <h2>Frequent Garbage Collection</h2>
 <br>
-之前看國外文章他也稱GC為 memory churn<br>
-換句話說就是 <br>
-GC通常發生在短時間內需要記憶體時<br>
-由於heap空間不足<br>
-同時需要分配heap給app用<br>
-又需要同時解除heap空間來補充空間不足<br>
-所以如果頻繁觸發GC也會造成記憶體相關問題
+以前、海外の記事でGCをmemory churnとも呼んでいました<br>
+言い換えれば<br>
+GCは通常、短時間でメモリが必要なときに発生します<br>
+heap空間が不足しているため<br>
+アプリにheapを割り当てる必要があると同時に<br>
+heap空間を解放して不足を補う必要があります<br>
+したがって、頻繁にGCが発生するとメモリ関連の問題が発生する可能性があります
 
-來個例子：<br>
-同一時間<br>
-APP需要大量分配記憶體空間給你創建的objects<br>
-但因為heap空間不足<br>
-所以觸發了gc去回收heap空間<br><br>
-但因為一來一往的迭代中<br>
-造成app卡住<br>
-這時候通常不會顯示oom<br><br>
-但卻造成卡頓或當機<br>
-進而讓使用者體驗不佳<br>
+例を挙げると：<br>
+同時に<br>
+アプリが大量のメモリ空間をオブジェクトの作成に割り当てる必要がある場合<br>
+しかしheap空間が不足しているため<br>
+GCがトリガーされてheap空間を回収します<br><br>
+しかし、この繰り返しの過程で<br>
+アプリがフリーズすることがあります<br>
+この時点では通常、oomは表示されません<br><br>
+しかし、フリーズやクラッシュが発生し<br>
+ユーザー体験が悪化します<br>
 
 
-給個帶有code的例子：
+コード付きの例を挙げると：
 
 <script src="https://gist.github.com/KuanChunChen/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
-這個是常用的recycler view的實作adapter <br>
-那其中的bind()就是用來實現新的資料要產生item時的邏輯<br>
+これは一般的なRecyclerViewの実装アダプタです<br>
+その中のbind()は新しいデータが生成されるときのロジックを実現するためのものです<br>
 
 ```
 val demoBitmap = BitmapFactory.decodeResource(itemView.context.resources, R.drawable.bg_demo_photo)
 ```
-在這段bind()裡有一個固定的圖片要載入item內<br>
-若放在這裡<br>
-意思就會是每次bind時item都會重新加載一次bitmap圖片<br>
-若是在少量圖片或小專案中不會感覺到有所差異<br>
-但是當大量重複加載<br>
-或者當item有100個、1000個時<br>
-每個都重複加載<br>
-那對heap容量的消耗是相當大的<br>
+このbind()内には固定の画像をitemに読み込むコードがあります<br>
+ここに置くと<br>
+bindされるたびにitemが再度bitmap画像を読み込むことになります<br>
+少量の画像や小規模なプロジェクトでは違いを感じないかもしれませんが<br>
+大量に繰り返し読み込む場合や<br>
+itemが100個、1000個ある場合<br>
+それぞれが繰り返し読み込むと<br>
+heap容量の消費が非常に大きくなります<br>
 
-因此最簡單的方式可以把固定的東西改為只加載一次<br>
+したがって、最も簡単な方法は固定のものを一度だけ読み込むように変更することです<br>
 <script src="https://gist.github.com/KuanChunChen/baac7167d917ce9633f7d9346b3244ed.js"></script>
 
-或是也可以用一些第三方的lib去將圖片存入緩存<br>
-進而減少加載的次數<br>
-當然使用緩存也是有可能造成OOM<br>
-所以也需要定義或特地條件下必需清除緩存等<br>
-可以根據專案遇到的問題去優化<br>
+または、サードパーティのライブラリを使用して画像をキャッシュに保存し<br>
+読み込み回数を減らすこともできます<br>
+もちろん、キャッシュを使用するとOOMが発生する可能性もあるため<br>
+特定の条件下でキャッシュをクリアする必要があります<br>
+プロジェクトで遭遇する問題に応じて最適化できます<br>
 
 
 <h2>Android Memory Leak</h2>
 <br>
 
 
-gc 無法清除掉的object leak 的 reference<br>
-因為它認為可能有些地方還需要使用這個reference<br>
-同常這種情況就稱為memory leak<br>
+gcが解放できないオブジェクトの参照漏れ<br>
+それはどこかでこの参照がまだ必要だと考えているためです<br>
+このような状況は通常、メモリリークと呼ばれます<br>
 
-Inner Classes :當內部類與外部類有reference時，有可能產生memory leak<br>
-例如：
+Inner Classes : 内部クラスと外部クラスが参照を持つと、メモリリークが発生する可能性があります<br>
+例：
 <script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
-像是上面這段code<br>
-就是因為內部class存取了外部showResult<br>
-而因為AsyncTask會在背景執行<br>
-可能遇到activity已經finish了<br>
-但AsyncTask還在執行<br>
-因此可能造成memory leak<br>
+上記のコードのように<br>
+内部クラスが外部のshowResultを参照しているため<br>
+AsyncTaskがバックグラウンドで実行されると<br>
+activityが終了しても<br>
+AsyncTaskがまだ実行されている可能性があり<br>
+そのためメモリリークが発生する可能性があります<br>
 
-解決這問題的思路<br>
-可以把呼叫外部類的方法拿掉<br>
-或是改用其他方法去存取外部累<br>
-如可以使用弱引用<br>
+問題を解決するためのアプローチ<br>
+外部クラスのメソッド呼び出しを削除する<br>
+または他の方法で外部クラスにアクセスする<br>
+例えば弱参照を使用する<br>
 <script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
 
-用weakreference依舊可以存取外部類<br>
-不過他不會像是強引用一樣強以至於不會持續保留在記憶體內<br>
-當gc沒有找到object的強引用時則會去找它並將到設為null<br>
+弱参照を使用しても外部クラスにアクセスできます<br>
+しかし、強参照のように強力ではないため、メモリ内に持続的に保持されることはありません<br>
+ガベージコレクタがオブジェクトの強参照を見つけられない場合、それを探してnullに設定します<br>
 
-Anonymous Classes:有些匿名類存活的時間比外部時間長<br>
-造成memory leak<br>
+匿名クラス: 一部の匿名クラスは外部クラスよりも長く生存することがあります<br>
+これがメモリリークを引き起こします<br>
 
-Static Variables: 使用companion object 或static 來修飾某些類時
-會造成object一開始就載入<br>
-之後釋放不掉<br>
-導致memory leak<br>
-例如 static activity
+静的変数: companion objectやstaticを使用してクラスを修飾すると<br>
+オブジェクトが最初からロードされ<br>
+その後解放されない<br>
+これがメモリリークを引き起こします<br>
+例えば static activity

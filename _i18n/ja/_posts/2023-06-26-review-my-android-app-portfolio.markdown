@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Android Portfolio：我的作品集"
+title: "Android Portfolio：私の作品集"
 date: 2023-06-26 18:35:06 +0800
 image: cover/android_portfolio.png
 tags: [portfolio,android]
 permalink: /app_portfolio
 categories: 作品集
-excerpt: "探索 Android 開發：我的作品集"
+excerpt: "探索 Android 開発：私の作品集"
 ---
 
-<div class="c-border-main-title-2">Previous</div>
+<div class="c-border-main-title-2">前へ</div>
 
 
 * Skill set<br>
@@ -26,11 +26,11 @@ Version Control: Git<br>
 Tool:adb, aapt, jd-gui, dex2jar, apktool, jekyll<br>
 General: Android, MVVM<br><br>
 
-* Hello everyone, I'm a experienced Android developer perficent in Kotlin and Java.<br>
-Today, I'd like to share some of my past works and experiences.<br>
-My portfolio showcases a variety of apps.<br> 
-I hope my work inspires your.<br>
-Feel free to contact me for more information. Thank you for watching!<br>
+* 皆さんこんにちは、私はKotlinとJavaに精通した経験豊富なAndroid開発者です。<br>
+今日は、過去の作品と経験を共有したいと思います。<br>
+私のポートフォリオには様々なアプリが掲載されています。<br> 
+私の作品があなたのインスピレーションになれば幸いです。<br>
+詳細についてはお気軽にお問い合わせください。ご覧いただきありがとうございます！<br>
 
 <div class="c-border-content-title-4">tips：Swipe to view the next or previous image.</div>
 <br><br>

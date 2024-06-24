@@ -1,118 +1,115 @@
 ---
 layout: post
-title: "Kotlin Flow 重構網路連線 詳細步驟教學"
+title: "Kotlin Flow 重構ネットワーク接続 詳細手順ガイド"
 date: 2023-05-24 15:56:16 +0800
 image: cover/retrofit_with_kotlin_flow-1.png
 tags: [Kotlin,Android]
 permalink: /kotlin_flow_refactor
 categories: Kotlin
-excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教學將為您提供詳細的步驟指南，讓您在實現高效、穩定的網路連線時能夠游刃有餘"
+excerpt: "Kotlin Flowを使ってネットワーク接続をリファクタリングする方法を簡単にマスターしましょう。本ガイドでは、効率的で安定したネットワーク接続を実現するための詳細な手順を提供します。"
 ---
 
-
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 <div class="c-border-content-title-4">
-    Kotlin提供了一個強大的工具Flow
+    Kotlinは強力なツールFlowを提供しています
 </div>
 
 <p>
-    Kotlin Flow 是一個基於協程的異步編程庫，<br>
-    它提供了一種響應式的方式來處理資料流，<br>
-    並能與異步操作無縫集成。<br><br>
+    Kotlin Flowはコルーチンに基づく非同期プログラミングライブラリで、<br>
+    データストリームを処理するためのリアクティブな方法を提供し、<br>
+    非同期操作とシームレスに統合できます。<br><br>
 
-    將 Kotlin Flow 應用於網路請求，<br>
-    我們可以以一種優雅而簡潔的方式處理異步任務，<br>
-    並使程式碼更具可讀性和可維護性。<br><br>
+    Kotlin Flowをネットワークリクエストに適用することで、<br>
+    非同期タスクをエレガントかつ簡潔に処理でき、<br>
+    コードの可読性と保守性が向上します。<br><br>
 
     <div class="c-border-content-title-4">
-        幾年前，我也曾經分享過RxJava的版本，如果有興趣可以再回頭看一下
+        数年前にRxJavaのバージョンも共有しましたので、興味があればご覧ください。
     </div>
     <div class="table_container">
       <a href="{{site.baseurl}}/android-kt-rxjava">
       <img src="/images/cover/ea-website-rxjava-cover-photo-new-1.png" alt="Cover" width="25%" >
-      Android開發 - RxJava搭配網路請求：實現Token重取與重新執行網路請求</a>
+      Android開発 - RxJavaを使ったネットワークリクエスト：トークン再取得と再リクエストの実装</a>
     </div>
 
 </p>
 
-<div class="c-border-main-title-2">Kotlin flow實際使用</div>
+<div class="c-border-main-title-2">Kotlin Flowの実際の使用</div>
 <div class="c-border-content-title-4">
-    在實際呼叫 Flow 並進行收集（collect）時，需要在 Coroutine Scope 中加入它，如下所示：<br>
+    実際にFlowを呼び出して収集（collect）する際には、Coroutine Scopeに追加する必要があります。以下のように：<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/6922457ce9a309d18258b1ac50ed77a6.js"></script>
 </p>
 <div class = "table_container">
-  <p>程式碼解說</p>
-  在上述程式碼中，我們使用 Coroutine Scope 的 lifecycleScope 來操作我們的flow。<br>
-  透過我們寫好的api來獲取一個flow 並進行collect<br>
-  中途我們也加入checkStatusAndRefreshToken 去檢查 token過期與否<br>
-  若成立時會自動刷新跟重發請求<br><br>
-  接著，我們使用 catch 函式來捕捉可能發生的異常，<br>
-  並在異常處理中執行相應的操作<br>
-  若前述步驟接成功則可在<br>
-  <b>collect</b> 中取得返回值，<br>
-  並進行我們的邏輯處理。<br>
+  <p>コード解説</p>
+  上記のコードでは、Coroutine ScopeのlifecycleScopeを使用してflowを操作しています。<br>
+  作成したAPIを通じてflowを取得し、collectを行います。<br>
+  途中でcheckStatusAndRefreshTokenを追加してトークンの有効期限を確認し、<br>
+  有効期限が切れている場合は自動的にリフレッシュしてリクエストを再送します。<br><br>
+  次に、catch関数を使用して発生する可能性のある例外をキャッチし、<br>
+  例外処理で適切な操作を実行します。<br>
+  前述のステップが成功した場合、<br>
+  <b>collect</b>で戻り値を取得し、<br>
+  ロジック処理を行います。<br>
 </div><br>
 
-
-<div class="c-border-main-title-2">Kotlin flow 實際開發</div>
-<div class="c-border-content-title-4">使用Kotlin flow 取代原本的retrofit call 的callback或RxJava操作符，程式碼如下</div>
+<div class="c-border-main-title-2">Kotlin Flowの実際の開発</div>
+<div class="c-border-content-title-4">Kotlin Flowを使用して、元のretrofitコールのコールバックやRxJavaのオペレーターを置き換えます。コードは以下の通りです。</div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
 </p>
 
 <div class = "table_container">
-  <p>程式碼解說</p>
-  在上面的程式碼中，<br>
-  我們定義了一個 startLogin() 函式，它返回一個 Flow，其中包含目標資料。<br>
-  接著新增一個 request body，<br>
-  並執行 login API 請求。<br><br>
+  <p>コード解説</p>
+  上記のコードでは、<br>
+  目標データを含むFlowを返すstartLogin()関数を定義しています。<br>
+  次にリクエストボディを追加し、<br>
+  login APIリクエストを実行します。<br><br>
 
+  ここでは、verifyResponse関数を使用して実行されたAPIリクエストの戻り値が期待通りかどうかを確認します。<br>
+  <b>（下でverifyResponseのコードを説明します）。</b><br>
+  問題がなければ、emitを使用して結果をFlowに発射します。<br><br>
 
-  在這裡，我們使用 verifyResponse 函式來判斷執行的 API 請求返回值是否符合預期<br>
-  <b>（下方會解釋 verifyResponse 的程式碼）。</b><br>
-  確認沒問題後，我們使用 emit 將結果發射到 Flow 中。<br><br>
-
-  <b>請注意</b><br>
-  我們將這個 Flow 的執行緒切換至 IO 執行緒 （.flowOn(Dispatchers.IO)），<br>
-  以確保網路請求在非主執行緒中執行。
+<b>注意してください</b><br>
+このFlowのスレッドをIOスレッドに切り替えています（.flowOn(Dispatchers.IO)）。<br>
+これにより、ネットワークリクエストがメインスレッド以外で実行されることが保証されます。
 </div><br>
 
-<div class="c-border-content-title-4">新增一個verifyResponse 檢查api請求是否如預期</div>
+<div class="c-border-content-title-4">verifyResponseを追加してAPIリクエストが期待通りかどうかを確認する</div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
 </p>
 
 <div class = "table_container">
-  <p>程式碼解說</p>
-  在上面的程式碼中，<br>
-  使用泛型 T 來讓函式能夠符合多種 API 返回結果的情況。<br><br>
+  <p>コードの説明</p>
+  上記のコードでは、<br>
+  ジェネリック型Tを使用して、関数がさまざまなAPIの戻り値に対応できるようにしています。<br><br>
 
-  首先判斷 API 請求的 HTTP 狀態碼是否介於 200 到 300 之間。<br>
-  接著，我們檢查伺服器返回的回應內容是否為空。<br>
-  如果以上條件成立，<br>
-  則拋出相應的例外異常。<br>
+  まず、APIリクエストのHTTPステータスコードが200から300の間にあるかどうかを確認します。<br>
+  次に、サーバーから返されたレスポンスの内容が空でないかを確認します。<br>
+  これらの条件が満たされる場合、<br>
+  対応する例外をスローします。<br>
 </div><br>
 
 
-<div class="c-border-content-title-4">新增一個checkStatusAndRefreshToken 當api請求token過期會自動refresh token並重新請求原api</div>
+<div class="c-border-content-title-4">checkStatusAndRefreshTokenを追加して、APIリクエストのトークンが期限切れの場合に自動的にトークンをリフレッシュし、元のAPIを再リクエストする</div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
 </p>
 
 <div class = "table_container">
-  <p>程式碼解說</p>
-  在上面的程式碼中，<br>
-  使用extension，<br>
-  並定義為Flow&lt;BaseResult&lt;T&gt;&gt;<br><br>
+  <p>コードの説明</p>
+  上記のコードでは、<br>
+  拡張関数を使用し、<br>
+  Flow&lt;BaseResult&lt;T&gt;&gt;として定義しています。<br><br>
 
-  主要是拿取得api請求的response來做check<br>
-  使用泛型返回結果，以符合多api返回可以共用<br><br>
+  主にAPIリクエストのレスポンスをチェックするために使用します。<br>
+  ジェネリック型の戻り値を使用して、複数のAPIの戻り値に対応できるようにしています。<br><br>
 
-  帶入function type的變數 tokenRefresh 與apiCall，<br>
-  分別用來指定重新呼叫取得token 與重叫的目標api接口<br>
-  上面程式碼中也做了當條件符合自定義的error code時，則會發emit<br>
+  関数タイプの変数tokenRefreshとapiCallを渡し、<br>
+  それぞれトークンを再取得するための呼び出しと、再呼び出しの対象となるAPIエンドポイントを指定します。<br>
+  上記のコードでは、条件がカスタムエラーコードに一致する場合にemitを発行するようにしています。<br>
 </div><br>
 
 
@@ -120,37 +117,36 @@ excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教
 <div class="c-border-main-title-2">結論</div>
 
 <div class = "table_container">
-  <p>總結</p>
-  透過使用 Kotlin Flow 來重構網路請求取代 RxJava 或 Retrofit callback，<br>
-  我們可以獲得更強大且彈性的異步編程能力。<br>
-  使用 Kotlin Flow 可以使程式碼更具可讀性和可維護性，<br>
-  同時提供了更優雅的方式來處理異步操作。<br><br>
+  <p>まとめ</p>
+  Kotlin Flowを使用してネットワークリクエストを再構築し、RxJavaやRetrofitのコールバックを置き換えることで、<br>
+  より強力で柔軟な非同期プログラミング能力を得ることができます。<br>
+  Kotlin Flowを使用することで、コードの可読性と保守性が向上し、<br>
+  非同期操作をより優雅に処理する方法を提供します。<br><br>
 
-  在改動程式碼的過程中，<br>
-  我們使用了 Kotlin Flow 來替換原本的 Retrofit callback，將 API 請求封裝在 Flow 中，<br>
-  並透過 emit 發出目標資料。同時，我們新增了 verifyResponse 函式來檢查 API 請求是否符合預期，<br>
-  包括檢查 HTTP 狀態碼是否在 200~300 範圍內以及檢查回應的內容是否為空。<br><br>
+  コードの変更過程で、<br>
+  Kotlin Flowを使用して元のRetrofitコールバックを置き換え、APIリクエストをFlowにカプセル化し、<br>
+  emitを通じてターゲットデータを発行しました。同時に、APIリクエストが期待通りかどうかを確認するためにverifyResponse関数を追加し、<br>
+  HTTPステータスコードが200〜300の範囲内にあるかどうかやレスポンスの内容が空でないかを確認しました。<br><br>
 
-  另外，<br>
-  我們也引入了 checkStatusAndRefreshToken 函式，<br>
-  當 API 請求的 token 過期時，它能夠自動刷新 token 並重新發起原始的 API 請求，<br>
-  透過這個機制可以確保 API 請求的順利執行。<br><br>
+  さらに、<br>
+  checkStatusAndRefreshToken関数を導入し、<br>
+  APIリクエストのトークンが期限切れの場合に自動的にトークンをリフレッシュし、元のAPIリクエストを再発行できるようにしました。<br>
+  このメカニズムにより、APIリクエストの円滑な実行が保証されます。<br><br>
 
-  總括而言，<br>
-  使用 Kotlin Flow 可以改善網路請求的程式結構，<br>
-  使異步操作更加容易管理和處理。<br>
-  可以提升程式碼的可讀性、可維護性和可擴展性，同時也帶來了更好的異步編程體驗。<br><br>
+  総括すると、<br>
+  Kotlin Flowを使用することでネットワークリクエストのコード構造を改善し、<br>
+  非同期操作をより管理しやすく、処理しやすくします。<br>
+  コードの可読性、保守性、拡張性が向上し、より良い非同期プログラミング体験を提供します。<br><br>
 
-  另外像是<br>
-  有一些lib幫你寫好 retrofit call 轉換成flow<br>
-  可以直接套在retrofit的interface中<br>
-  但是這種lib比較偏第三方或個人分享<br>
-  有時候在某些project或產品<br>
-  導入lib都需評估的狀況下<br>
-  不會導入太多不常用的lib<br>
-  就會自己刻<br>
+  また、<br>
+  retrofitのコールをflowに変換するlibもいくつかあります。<br>
+  これをretrofitのインターフェースに直接適用することができます。<br>
+  しかし、このようなlibは第三者や個人の共有に偏っていることが多く、<br>
+  特定のプロジェクトや製品では、libの導入を評価する必要があるため、<br>
+  あまり使用されないlibを導入しないことがあります。<br>
+  その場合、自分で実装することになります。<br>
 
-  當然可以用的都是好方法<br>
-  找到最符合你專案環境的方法並有效率的解決問題也是很重要的！<br>
+  もちろん、使用できる方法はすべて良い方法です。<br>
+  プロジェクト環境に最も適した方法を見つけ、効率的に問題を解決することも重要です！<br>
 
 </div><br>

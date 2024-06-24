@@ -1,159 +1,158 @@
 ---
 layout: post
-title: 【Android】用Google MLKit & Android X Camera 實作Android快速的QR code掃描應用
+title: 【Android】Google MLKit & Android X Cameraを使用してAndroidの高速QRコードスキャンアプリを実装
 date: 2024-05-23 15:22:54 +0800
 image: cover/android-qrcode-scanner-with-mlkit.png
 tags: [Android]
 permalink: /android-qrcode-scanner-with-mlkit
 categories: Android實作
-excerpt: "如何提升Qr Code掃描器的效能，我使用Google MLKit & CameraX 實作Android快速的QR code掃描應用"
+excerpt: "QRコードスキャナーの性能を向上させる方法として、Google MLKit & CameraXを使用してAndroidの高速QRコードスキャンアプリを実装しました"
 ---
 
-<div class="c-border-content-title-4">本篇示範程式碼</div><br>
-若想直接看程式碼怎麼寫可以：<a href="#tutorial">前往程式碼解析</a><br>
-這個專案中使用了Kotlin、Google的MLKit跟native的AndroidX camera搭配來實作QR掃瞄器<br>
+<div class="c-border-content-title-4">本記事のサンプルコード</div><br>
+コードの書き方を直接見たい場合は：<a href="#tutorial">コード解析へ</a><br>
+このプロジェクトでは、Kotlin、GoogleのMLKit、およびネイティブのAndroidXカメラを使用してQRスキャナーを実装しています<br>
 <div style="text-align: center">
-	<a href="https://github.com/KuanChunChen/MLKit_qr_code_scanner_example" target="_blank" class="btn btn-primary" role="button">Demo source code</a>
+	<a href="https://github.com/KuanChunChen/MLKit_qr_code_scanner_example" target="_blank" class="btn btn-primary" role="button">デモソースコード</a>
 </div><br>
 
-<div class="c-border-content-title-4">實作效果</div><br>
+<div class="c-border-content-title-4">実装効果</div><br>
 <img src="/images/mlkit/002.gif" width="30%"><br><br>
 
-<div class="c-border-content-title-4">前言</div>
-過去我們都會使用一些第三方套件做qrcode掃瞄器<br>
-像是zxing、zbar之類的<br>
-剛好過去在專案中遇到QA反饋說目前的qrcode掃描器準確性沒那麼高<br>
-所以我去了解下並實際測試，終於知道了為何`準確性沒那麼高`<br><br>
+<div class="c-border-content-title-4">前書き</div>
+過去には、いくつかのサードパーティライブラリを使用してQRコードスキャナーを作成していました<br>
+例えばzxingやzbarなどです<br>
+過去のプロジェクトで、現在のQRコードスキャナーの精度がそれほど高くないというQAのフィードバックを受けました<br>
+そこで調査し、実際にテストを行った結果、なぜ`精度がそれほど高くない`のかがわかりました<br><br>
 
-實際上是因為：<br>
-專案上用的是舊`android.hardware.Camera`相機搭配`zbar`去解析QR code<br>
-並以側邊的角度去或離QRcode距離較遠<br>
+実際の原因は：<br>
+プロジェクトで使用していたのは古い`android.hardware.Camera`カメラと`zbar`を組み合わせてQRコードを解析していたためです<br>
+QRコードからの距離が遠かったり、斜めの角度からスキャンしていたりしました<br>
 
-導致這種的qr code scanner好像沒有ios快的感覺<br>
+そのため、このようなQRコードスキャナーはiOSほど速く感じられませんでした<br>
 
-所以這篇決定實做看看用google的`mlkit`來實作
+そこで今回は、Googleの`mlkit`を使用して実装してみることにしました
 
-<div class="c-border-content-title-4">MLkit有什麼差異呢？</div>
-  - 這個 API 需要 `Android API 21` 以上
-  - 該API提供兩種版本<br>
-  一個可以從gms動態下載module<br>
-  一個使用library自帶module，如圖：
+<div class="c-border-content-title-4">MLkitの違いは何ですか？</div>
+  - このAPIは`Android API 21`以上が必要です
+  - このAPIは2つのバージョンを提供しています<br>
+  一つはgmsから動的にモジュールをダウンロードするもの<br>
+  もう一つはライブラリに組み込まれたモジュールを使用するものです。以下の図のように：
     <img src="/images/mlkit/001.png" width="80%"><br><br>
-  - 我參考範例，使用新的原生相機library `androidx.camera`搭配使用`ML Kit`<br>
-	與原本zbar搭配使用`android.hardware.Camera`的專案比較：<br>
-	↪ 兩個相機library都是從Android API 21以上支援<br>
-	↪ zbar搭配使用`android.hardware.Camera`的版本代碼有三處workaround<br>
-	我推測是原本寫這個專案或以前範例為了在activity中去解決初始化相機問題<br>
-	所以採用下面這樣的寫法：<br>
+  - 私は新しいネイティブカメラライブラリ`androidx.camera`を使用して`ML Kit`と組み合わせて使用する例を参考にしました<br>
+	元のzbarと`android.hardware.Camera`を組み合わせて使用するプロジェクトと比較して：<br>
+	↪ どちらのカメラライブラリもAndroid API 21以上でサポートされています<br>
+	↪ zbarと`android.hardware.Camera`を組み合わせて使用するバージョンのコードには3つのワークアラウンドがあります<br>
+	これは元々このプロジェクトを書いた人や以前の例が、アクティビティ内でカメラの初期化問題を解決するために以下のような書き方を採用していたためだと推測されます：<br>
     <img src="/images/mlkit/002.png" width="80%"><br><br>
     <img src="/images/mlkit/003.png" width="80%"><br><br>
     <img src="/images/mlkit/004.png" width="80%"><br><br>
-    ↪ 實際看了`android.hardware.Camera`不是thread-safe，且後面已經被@Deprecated
+    ↪ 実際に見てみると、`android.hardware.Camera`はスレッドセーフではなく、後に@Deprecatedになっています
 	<img src="/images/mlkit/005.png" width="50%"><br><br>
 	<img src="/images/mlkit/006.png" width="80%"><br><br>
-	↪ 另一方面，新的 `androidx.camera.core.Camera` 自帶生命週期可以去處理相機週期問題<br>
-	可以避免一些奇怪的生命週期問題<br>
-  ✅ 所以推測換成新的`androidx.camera.core.Camera`可以讓自己更有效的避免生命週期的問題(因為可以自己控制)<br><br>
-  - 新的 androidx.camera.core.Camera 自帶生命週期可以去處理相機週期問題，可以避免一些奇怪生命週期的問題
+	↪ 一方、新しい`androidx.camera.core.Camera`はライフサイクルを持っており、カメラのライフサイクル問題を処理できます<br>
+	これにより、いくつかの奇妙なライフサイクル問題を回避できます<br>
+  ✅ したがって、新しい`androidx.camera.core.Camera`に切り替えることで、ライフサイクルの問題をより効果的に回避できると推測されます（自分で制御できるため）<br><br>
+  - 新しいandroidx.camera.core.Cameraはライフサイクルを持っており、カメラのライフサイクル問題を処理でき、いくつかの奇妙なライフサイクル問題を回避できます
   	<img src="/images/mlkit/007.png" width="80%"><br><br>
-  - 掃描器解碼使用MLkit的BarcodeScannerOptions<br>
-  有提升多種可解析條碼類型<br>
-  可以參考<a href="https://developers.google.com/ml-kit/vision/barcode-scanning/android?hl=zh-tw#1.-configure-the-barcode-scanner">這個網址</a>裡面有提到可支援的格式，下面為掃瞄器解碼代碼：
+  - スキャナーのデコードにはMLkitのBarcodeScannerOptionsを使用します<br>
+  これにより、解析可能なバーコードの種類が増えました<br>
+  サポートされているフォーマットについては<a href="https://developers.google.com/ml-kit/vision/barcode-scanning/android?hl=zh-tw#1.-configure-the-barcode-scanner">このURL</a>を参照してください。以下はスキャナーのデコードコードです：
 	<img src="/images/mlkit/008.png" width="80%"><br><br>
 
-<div class="c-border-content-title-4">實作MLKit後實際測試</div>
-  - 在`LG K520 Android 11`上測試
+<div class="c-border-content-title-4">MLKitの実装後の実際のテスト</div>
+  - `LG K520 Android 11`でテスト
 
-  - 在`LG K520 Android 11`上實測相機整體運行時間都沒有差太多<br>
-  實際上`init相機`到`解析qr code`都約1s秒 <br>
-  但是可避免`生命週期導致的相機crash風險`
-  - 實測會比原本的方案，響應速度有快一點 （手機好一點的才話看不出來，體感較小）<br>
-  例如`zbar`+ `android.hardware.Camera` 會完全`對焦完`才開始解qr code<br>
-  `mlkit` + `androidx.camera.core.Camera` `對焦到一半`就能開始解qr code<br>
+  - `LG K520 Android 11`で実際にテストしたところ、カメラの全体的な動作時間に大きな差はありませんでした。<br>
+  実際には、`カメラの初期化`から`QRコードの解析`まで約1秒かかります。<br>
+  しかし、`ライフサイクルによるカメラのクラッシュリスク`を回避できます。
+  - 実際のテストでは、元の方法よりも応答速度が少し速くなりました（良いスマホでは違いがわかりにくく、体感は小さいです）。<br>
+  例えば、`zbar`+ `android.hardware.Camera`は完全に`フォーカスが完了`してからQRコードの解析を開始しますが、<br>
+  `mlkit` + `androidx.camera.core.Camera`は`フォーカスが半分`完了した時点でQRコードの解析を開始できます。<br>
 
-  - 圖片左邊為使用`zbar` ，右邊為使用 `ML kit` （此gif 降速`0.25倍`）
-  - `androidx.camera.core.Camera` 可以處理生命週期相關問題<br>
-  新方案放慢`0.25倍`看，體感上會變成：`先等一陣子才顯示相機`(圖右)
+  - 左の画像は`zbar`を使用、右の画像は`ML kit`を使用しています（このGIFは`0.25倍`に減速しています）。
+  - `androidx.camera.core.Camera`はライフサイクルに関連する問題を処理できます。<br>
+  新しい方法では`0.25倍`に減速して見ると、体感的には`少し待ってからカメラが表示される`（右の画像）ようになります。
     <img src="/images/mlkit/001.gif" width="80%"><br><br>
-  - 不過提升`比較有感`的是，當你用奇怪的角度 或是 相機距離比較遠 會比較容易掃描到
+  - しかし、`より感じられる`のは、奇妙な角度やカメラが遠い場合でもスキャンしやすくなることです。
 
-<div class="c-border-content-title-4">對新版相機android.hardware.Camera在app中進行調教</div>
-- 建立ImageAnalysis時加入目標解析度設置`.setTargetResolution(Size(screenResolutionForCamera.x, screenResolutionForCamera.y))`
-- 其中 screenResolutionForCamera 是拿螢幕解析度去設置相機目標解析度<br>
-  有設置相機目標解析度與否的差異在 `相機在離得遠的掃成功機率較高`<br>
-- `另外補充`：其中該api java doc文件有提到
-  1. `沒`設定TargetResolution的相機預設解析度是`640*480`
-  2. 設定後也會有優先順序去選擇實際的`Resolution`
-  3. 這邊是大綱：優先選擇接近設定且大於的的Target Resolution的 > 優先選擇接近設定且小於的Target Resolution 的>其中分辨率的比例會由提供的`Size`優先決定
-  4. 因此推測，有可能因為`硬體限制`導致每台能解析的`遠近`程度有所差異
+<div class="c-border-content-title-4">新しいカメラandroid.hardware.Cameraのアプリ内での調整</div>
+- ImageAnalysisを作成する際に目標解像度設定を追加します`.setTargetResolution(Size(screenResolutionForCamera.x, screenResolutionForCamera.y))`
+- ここで、screenResolutionForCameraは画面解像度を使用してカメラの目標解像度を設定します。<br>
+  カメラの目標解像度を設定するかどうかの違いは、`カメラが遠くからスキャンする成功率が高い`ことです。<br>
+- `補足`：このAPIのJavaドキュメントには以下のことが記載されています。
+  1. 目標解像度を設定しない場合、カメラのデフォルト解像度は`640*480`です。
+  2. 設定後も優先順位に従って実際の`解像度`が選択されます。
+  3. ここでは概要を示します：設定に近く、かつ大きい目標解像度を優先的に選択します。次に、設定に近く、かつ小さい目標解像度を選択します。その際、解像度の比率は提供された`サイズ`によって優先的に決定されます。
+  4. したがって、`ハードウェアの制約`により、各デバイスで解析できる`距離`の程度が異なる可能性があります。
 	<img src="/images/mlkit/009.png" width="80%"><br><br>
 
 <div class="c-border-content-title-4">結果</div>    
- - 經過上面的這些調整與優化，再請QA同仁幫忙測試的時候<br>
- 他反饋跟以前提供的app的準確度確實提升了<br>
- 細問之後他說確實從`側邊`或`離比較遠的地方掃描成功率`或`被偵測到的機率更高`了
- 至此...解決了一個問題XD
+ - 上記の調整と最適化を行った後、QAの同僚にテストを依頼しました。<br>
+ 彼のフィードバックによると、以前提供したアプリよりも精度が向上したとのことです。<br>
+ 詳細を尋ねると、`側面`や`遠くからのスキャン成功率`や`検出される確率`が確かに高くなったと言っていました。
+ これで一つの問題が解決しましたXD
 
 <section id="tutorial">
-<div class="c-border-content-title-4">程式碼開發教學</div><br>
+<div class="c-border-content-title-4">コード開発チュートリアル</div><br>
 </section>
-  - 感謝大家看完上面的分析<br>
-  我在本篇最上面放了source code<br>
-  有興趣的可以直接clone下來去改<br>
+  - 上記の分析を読んでいただきありがとうございます。<br>
+  このページの最上部にソースコードを掲載しました。<br>
+  興味がある方は直接クローンして変更してみてください。<br>
 
-  - 下面我將分享主要的QR code掃瞄器的程式碼解析<br>
-  有興趣的可以參考
+  - 以下では、主なQRコードスキャナーのコード解析を共有します。<br>
+  興味がある方は参考にしてください。
 <div class="c-border-content-title-1">BaseCameraLifecycleObserver</div>    
 <script src="https://gist.github.com/KuanChunChen/c99170df495f4c7352a9c81f54f63bb7.js"></script>
 <div class = "table_container">
-  <p>程式碼解說</p>
-  BaseCameraLifecycleObserver這個類主要是用來讓其他繼承<br>
-  有些基本的相機init的內容<br>
-  也處理了一些生命週期相關的內容<br>
-  (e.g.對應週期相機的處理)<br>
-  也開放了對外method可以手動開啟或關閉相機<br><br>
+  <p>コード解説</p>
+  BaseCameraLifecycleObserverクラスは、他のクラスが継承するための基本的なクラスです。<br>
+  基本的なカメラの初期化内容が含まれています。<br>
+  また、ライフサイクルに関連する内容も処理しています。<br>
+  （例：ライフサイクルに対応したカメラの処理）<br>
+  また、カメラを手動でオンまたはオフにするためのメソッドも公開しています。<br><br>
   <p>cameraProviderDeferred</p>
-  比較值得一提的是，這邊用了一個cameraProviderDeferred<br>
-  用來取得ProcessCameraProvider<br>
-  因為該行為較為耗時 所以使用異步操作來做較為靈活<br>
-  (不過我也有試過直接實例化ProcessCameraProvider<br>
-  大多數情況不容易遇到一些ANR或卡住的情況<br>
-  只有偶發1、2次在比較舊的機型，如Android 5.0)<br><br>
+  特筆すべきは、ここでcameraProviderDeferredを使用していることです。<br>
+  これはProcessCameraProviderを取得するためのものです。<br>
+  この操作は時間がかかるため、非同期操作を使用して柔軟に対応しています。<br>
+  （ただし、ProcessCameraProviderを直接インスタンス化することも試しました。<br>
+  ほとんどの場合、ANRやフリーズの問題は発生しませんが、<br>
+  古いデバイス（例：Android 5.0）では稀に1、2回発生することがあります。）<br><br>
 
-  這邊的概念就是<br>
-  CompletableDeferred其中用了.apply<br>
-  在apply範圍內會去創建ProcessCameraProvider<br>
-  在需要使用的地方使用`await()`去等待<br>
-  同時達成了異步操作也能等待實際創建了再去操作<br><br>
+  ここでの概念は<br>
+  CompletableDeferredの中で.applyを使用していることです<br>
+  applyの範囲内でProcessCameraProviderを作成します<br>
+  必要な場所で`await()`を使用して待機します<br>
+  非同期操作を行いながら、実際に作成されるのを待って操作を行うことができます<br><br>
 
-  其中completableDeferred跟一般Deferred的差異在於<br>
-  他可以用complete()去手動控制完成時機<br>
-  剛好適用本例<br>
-  需要等待ProcessCameraProvider listener返回<br>
-  才能得知初始化完成<br>
+  CompletableDeferredと一般的なDeferredの違いは<br>
+  complete()を使用して手動で完了のタイミングを制御できることです<br>
+  この例に適しています<br>
+  ProcessCameraProviderのリスナーが返されるのを待つ必要があります<br>
+  初期化が完了したことを知るためです<br>
 </div><br>
 
 
 <div class="c-border-content-title-1">ScannerLifecycleObserver</div>    
 <script src="https://gist.github.com/KuanChunChen/6bbc490b5ce7596a2218c9b2beadd6c9.js"></script>
 <div class = "table_container">
-  <p>程式碼解說</p>
-  ScannerLifecycleObserver就比較單純了<br>
-  繼承了BaseCameraLifecycleObserver<br>
-  主要是寫一些可能根據專案需求才需要的feature<br>
-  像是一些擴充的內容<br>
-  如<b>getCameraDisplayOrientation</b><br>
-  可以用來調整相機支援的解析度<br>
-  或getImageAnalysis拿到ImageAnalysis<br>
-  ImageAnalysis主要是MLKit中用來設定可以解析哪些條碼類型<br>
+  <p>コード解説</p>
+  ScannerLifecycleObserverは比較的シンプルです<br>
+  BaseCameraLifecycleObserverを継承しています<br>
+  主にプロジェクトの要件に応じて必要な機能をいくつか記述しています<br>
+  例えば、いくつかの拡張内容<br>
+  <b>getCameraDisplayOrientation</b>のようなものです<br>
+  カメラがサポートする解像度を調整するために使用できます<br>
+  またはgetImageAnalysisでImageAnalysisを取得します<br>
+  ImageAnalysisは主にMLKitでどのバーコードタイプを解析できるかを設定するために使用されます<br>
 
 </div><br>
 <div class="c-border-content-title-1">ScannerAnalyzer</div>    
 <script src="https://gist.github.com/KuanChunChen/7c3d18a8025bb0959b1339f633120c99.js"></script>
 
 <div class = "table_container">
-   <p>程式碼解說</p>
-  ScannerAnalyzer則是拿來針對條碼做解析的實作<br>
-  繼承了BaseCameraLifecycleObserver<br>
-  因為我們是要解QR code所以用了<b>FORMAT_QR_CODE</b>
+   <p>コード解説</p>
+  ScannerAnalyzerはバーコードを解析するための実装です<br>
+  BaseCameraLifecycleObserverを継承しています<br>
+  QRコードを解析するために<b>FORMAT_QR_CODE</b>を使用しています
 </div><br>

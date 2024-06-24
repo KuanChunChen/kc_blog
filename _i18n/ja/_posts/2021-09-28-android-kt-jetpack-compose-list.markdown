@@ -1,87 +1,83 @@
 ---
 layout: post
-title: "Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料"
+title: "Jetpack Compose：使用 LazyColumn + ViewModel で動的に更新されるリストデータを簡単に実現"
 date: 2021-09-28 11:03:41 +0800
 image: cover/ea-website-lazy-colume-cover-photo-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-list
-excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 ViewModel，以輕鬆實現動態更新的列表資料。"
+excerpt: "この記事では、Jetpack Compose の LazyColumn と ViewModel を使用して、動的に更新されるリストデータを簡単に実現する方法を紹介します。"
 ---
-<div class="c-border-main-title-2">前言</div>
-過去製作listview從 ListView -> RecyclerView -> 使用不同Adapter，都做過，
-現在進化到 Jetpack Compose 也能輕鬆製作列表了。<br>
-在我實際實作後，<br>
-發現這個過程相當簡單。<br>
-現在我想與大家分享我的經驗，<br>
-讓大家參考。<br>
-其中主要的難點是如何將 ViewModel 銜接到 Jetpack Compose 的程式碼中。<br>
+<div class="c-border-main-title-2">前書き</div>
+過去に ListView -> RecyclerView -> 異なる Adapter を使用してリストビューを作成してきましたが、今では Jetpack Compose を使用して簡単にリストを作成できるようになりました。<br>
+実際に実装してみたところ、<br>
+このプロセスは非常に簡単でした。<br>
+今、私の経験を皆さんと共有したいと思います。<br>
+参考にしてください。<br>
+主な難点は、ViewModel を Jetpack Compose のコードにどのように接続するかです。<br>
 
-<h2>實作效果：list列表與動態變更資料</h2>
+<h2>実装効果：リストと動的データ変更</h2>
 <div align="center">
   <img src="/mov/jetpack/ea_list_app.gif" width="50%"/>
 </div>
 
 <br>
 
-<div class="c-border-content-title-4">用到相關知識</div>
+<div class="c-border-content-title-4">関連知識</div>
 * JetpackCompose
 * Viewmodel
 
 
-<div class="c-border-main-title-2">實作</div>
-<div class="c-border-content-title-4">第一步：做出list的item</div>
-這步跟以往用recycler view 做xml很像<br>
-也是先實作每個item想要長的模樣<br>
-因為前面幾篇有講過類似概念<br>
-所以不再贅述<br>
-有興趣想了解可以回去看前面的文章<br>
+<div class="c-border-main-title-2">実装</div>
+<div class="c-border-content-title-4">第一歩：リストのアイテムを作成する</div>
+このステップは、以前の RecyclerView で XML を作成するのと非常に似ています。<br>
+まず、各アイテムの見た目を実装します。<br>
+前のいくつかの記事で同様の概念について説明しているので、<br>
+ここでは詳しく説明しません。<br>
+興味がある方は前の記事を参照してください。<br>
 
 <div align="start">
   <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">
     <img src="/images/cover/ea-website-base-cover-photo-new-1.png" alt="Cover" width="40%" >
   </a>
-  <a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-base/">Android Jetpack Compose 基本應用教學</a><br><br>
+  <a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-base/">Android Jetpack Compose 基本応用チュートリアル</a><br><br>
 
   <a href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash">
     <img src="/images/cover/ea-website-splash-cover-photo-new-1.png" alt="Cover" width="40%" >
   </a>
 
-  <a align="right" href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">來學習Jetpack Compose 在splash頁面加入動畫吧！</a><br>
+  <a align="right" href="{{site.baseurl}}/2021/09/17/android-kt-jetpack-compose-splash/">Jetpack Compose でスプラッシュ画面にアニメーションを追加しよう！</a><br>
 
 
 </div>
 
 <br>
-直接看實作item範例 ：<br>
+アイテムの実装例を直接見てみましょう：<br>
 <br>
 
 <script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
 <br>
-主要就是實作item <br>
-可以搭配你自定義的data model、navigate引導等等 <br>
-然後配置好你各個元件要在的位置<br>
-以及套入資料
+主にアイテムを実装します。<br>
+カスタムデータモデル、ナビゲーションガイドなどと組み合わせることができます。<br>
+各コンポーネントの配置場所を設定し、<br>
+データを適用します。
 <br>
 
-<div class="c-border-content-title-4">第二步：使用LazyColumn去實現list列表</div>
+<div class="c-border-content-title-4">第二歩：LazyColumn を使用してリストを実現する</div>
 
-再來只要使用LazyColumn呼叫你剛剛做好的item<br>
-這樣就能實作一個list列表了<br>
-如下：
+次に、LazyColumn を使用して先ほど作成したアイテムを呼び出します。<br>
+これでリストを実装できます。<br>
+以下のように：
 <script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script>
 
-
-
-<div class="c-border-content-title-4">第三步：加入viewmodel去變化資料</div>
-這是我這篇實作的viewmodel<br>
-以及livedata去觀察資料的變化<br>
+<div class="c-border-content-title-4">第三步：ViewModelを追加してデータを変更する</div>
+これはこの実装のViewModelです<br>
+そしてLiveDataを使ってデータの変化を観察します<br>
 <script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br>
 <br>
 
-
-<div class="c-border-content-title-1">提示(hint)</div>
+<div class="c-border-content-title-1">ヒント(hint)</div>
 
 ```
 常常在code看到用底線_命名變數
@@ -94,63 +90,62 @@ _devices 與 devices
 所以這邊來分享下
 ```
 
-其中會把_devices定義為是private<br>
-devices定義為public<br>
-`私有（private）`的變數用來給class內部操作<br>
-其他外部class想要操作devcies的就用public的變數去呼叫<br><br>
-如上面這個例子來說<br>
-_devices是用來給class內部呼叫<br> 
-通常會讓內部業務邏輯改此值<br>
-`避免多處重複操作`<br>
-或造成一些混亂<br>
-讓後續維護更困難<br><br>
+ここでは_devicesをprivateとして定義します<br>
+devicesをpublicとして定義します<br>
+`private`変数はクラス内部で操作するために使用します<br>
+他の外部クラスがdevicesを操作したい場合はpublic変数を使って呼び出します<br><br>
+上記の例のように<br>
+_devicesはクラス内部で呼び出すために使用します<br>
+通常は内部のビジネスロジックがこの値を変更します<br>
+`多くの場所で重複操作を避ける`<br>
+または混乱を引き起こすことを避けます<br>
+後続のメンテナンスを容易にします<br><br>
 
-像是這邊套了livedata<br>
-讓開放的public變數可以被外部class去觀察使用 如本例devices<br>
-並藉由開放getter / setter function讓外部呼叫可以直接更改<br>
-而不會讓多處都重複操作 或多處要修改<br>
-避免以後要拔掉此功能或修正 會需要看很久<br>
+ここではLiveDataを使用しています<br>
+公開されたpublic変数が外部クラスから観察され使用されることができます 例：devices<br>
+公開されたgetter / setter関数を通じて外部から直接変更できます<br>
+多くの場所で重複操作を避けることができます<br>
+将来的にこの機能を削除または修正する必要がある場合、長時間かかることを避けます<br>
 
-<div class="c-border-content-title-4">第四步：把viewmodel導入compose</div>
+<div class="c-border-content-title-4">第四步：ViewModelをComposeに導入する</div>
 <br>
-把剛剛前面實作的list的compose與viewmodel合體:<br>
+前に実装したリストのComposeとViewModelを統合します:<br>
 <script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br>
 <br>
-加入這行<br>
-使得viewmodel中的devices變成可以用能在compose改變ui的state<br>
+この行を追加します<br>
+ViewModelのdevicesがComposeでUIを変更できるstateになります<br>
 
 ```kotlin
 val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 ```
 
-這是包成一個content的範例，供參考：<br>
+これはコンテンツとしてパッケージ化された例です、参考にしてください：<br>
 <script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br>
 
-
-<div class="c-border-content-title-4">第五步：實際應用在fragment上看看吧</div>
+<div class="c-border-content-title-4">第五步：実際にFragmentで試してみましょう</div>
 
 <br>
-記得導入viewmodel<br>
+ViewModelを導入することを忘れないでください<br>
 
 ```kotlin
 val model: DeviceViewModel by activityViewModels()
 ```
 
-之後帶帶入剛剛完成的content內<br>
-看範例：<br>
+その後、先ほど完成したコンテンツに導入します<br>
+例を見てください：<br>
 
 <script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
 
-所以之後要只要觀察到viewmodel內livedata有變化後<br>
-畫面就會自動更新了<br>
-真的挺方便啊！<br>
+そのため、ViewModel内のLiveDataに変化があると<br>
+画面が自動的に更新されます<br>
+本当に便利ですね！<br>
 
-接下來會介紹如何<br>
-新增下拉刷新<br><br>
+次に紹介するのは<br>
+プルダウンリフレッシュの追加方法です<br><br>
 
 <a href="{{site.baseurl}}/2021/10/28/android-kt-jetpack-compose-swiperefresh/">
   <img src="/images/cover/ea_swiperefresh_app-new-1.png" alt="Cover" width="30%" >
 </a>
 
-<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-swiperefresh/">Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！</a><br>
+<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-swiperefresh/">Android Jetpack Compose SwipeRefresh：リストのプルダウンリフレッシュ機能を簡単に実現！</a><br>

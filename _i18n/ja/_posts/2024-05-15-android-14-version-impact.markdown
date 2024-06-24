@@ -1,26 +1,26 @@
 ---
 layout: post
-title: "如何應對 Android 14 開發中的版本差異？Android 14快速適配指南！"
+title: "Android 14 開発中のバージョン差異にどう対応するか？Android 14迅速適応ガイド！"
 date: 2024-05-15 10:33:18 +0800
 image: cover/android-version-adaptation-14.png
 tags: [Android]
 categories: SDK升級
-excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解決方案。"
+excerpt: "この記事では、Android 14バージョンのアップグレードによる開発上の課題とその解決策について紹介します。"
 ---
-<div class="c-border-content-title-4">Android 14 平台的一些重要變更細節摘要，所有應用在該平台上行為改變</div>
-<div class="c-border-content-title-1">核心功能</div><br>
+<div class="c-border-content-title-4">Android 14 プラットフォームのいくつかの重要な変更点の概要、すべてのアプリケーションの動作がこのプラットフォームで変更されます</div>
+<div class="c-border-content-title-1">コア機能</div><br>
 
-* 系統不再預設授予精確鬧鐘的權限，需要應用自行申請。
-   - Android 14 不再預設對target SDK >= 33 的app同意權限`SCHEDULE_EXACT_ALARM `<br>
-   （預設情況下，設定為`拒絕`）
-   - 這個是之前android 12(之前的<a href="{{site.baseurl}}/2022/08/24/android-12-version-impact/">筆記</a>)新增的權限
+* システムはもはや正確なアラームの権限をデフォルトで付与しなくなり、アプリケーションが自ら申請する必要があります。
+   - Android 14 は target SDK >= 33 のアプリに対して権限 `SCHEDULE_EXACT_ALARM` をデフォルトで同意しなくなりました<br>
+   （デフォルトでは `拒否` に設定されています）
+   - これは以前の Android 12（以前の<a href="{{site.baseurl}}/2022/08/24/android-12-version-impact/">ノート</a>）で追加された権限です
 
-   當時只需要在AndroidManifest.xml宣告即可
-   現在需`請求權限`
-   - `請求權限`步驟：
-     1. 使用`AlarmManager.canScheduleExactAlarms()` 檢查有無權限
-     2. 在 `onResume()`中調用含有`ACTION_REQUEST_SCHEDULE_EXACT_ALARM`的 intent
-     3. 範例：
+   当時は AndroidManifest.xml に宣言するだけで済みましたが
+   今は `権限をリクエスト` する必要があります
+   - `権限をリクエスト` する手順：
+     1. `AlarmManager.canScheduleExactAlarms()` を使用して権限があるかどうかを確認します
+     2. `onResume()` 内で `ACTION_REQUEST_SCHEDULE_EXACT_ALARM` を含むインテントを呼び出します
+     3. 例：
      ```Kotlin
      override fun onResume() {
            …  
@@ -35,41 +35,41 @@ excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解�
            }
         }
      ```
-   - 官方也有建議如果不是必要使用精確鬧鐘，也可以移除：[點此](https://developer.android.com/about/versions/14/changes/schedule-exact-alarms?authuser=7&hl=zh-cn#use-cases)
+   - 公式も、正確なアラームを使用する必要がない場合は削除することを推奨しています：[こちらをクリック](https://developer.android.com/about/versions/14/changes/schedule-exact-alarms?authuser=7&hl=zh-cn#use-cases)
 
 
-  * 當應用進入`緩存狀態(cached state)`時，context 註冊的廣播會被加入queue中。
-    - 此時收到的廣播會進入queue中，下次app返回`前台`或離開`緩存狀態`時，會再依序返回給app。
-    - 緩存狀態(cached state)：簡單理解就是在後台的 App，目前不在前台的進程，因此，如果系統其他地方需要內存，系統可以根據需要自由地終止這些進程。
-    - 只有context註冊的會，`靜態註冊不會`，如：AndroidManifest.xml加入boardcast.
+  * アプリが `キャッシュ状態（cached state）` に入ると、コンテキストで登録されたブロードキャストはキューに追加されます。
+    - この時に受信したブロードキャストはキューに入り、次にアプリが `前景` に戻るか `キャッシュ状態` を離れると、順次アプリに返されます。
+    - キャッシュ状態（cached state）：簡単に言うと、バックグラウンドにあるアプリで、現在前景にないプロセスです。そのため、システムの他の部分がメモリを必要とする場合、システムは必要に応じてこれらのプロセスを自由に終了できます。
+    - コンテキストで登録されたものだけが対象で、`静的に登録されたものは対象外` です。例：AndroidManifest.xml にブロードキャストを追加する場合。
 
-<div class="c-border-content-title-1">應用管理</div>
+<div class="c-border-content-title-1">アプリ管理</div>
 
-   * app只能終止自己的後台進程，無法影響其他應用。
-     - target SDK 34 後，無法再使用`killBackgroundProcesses`去關閉其他app
-     - 若您的app中有使用該方法去關閉其他app background process，以後可能失效
-   * 第一個請求 MTU 的 GATT 客戶端的 MTU 設置為 `517` byte，並`忽略`針對該 ACL 連線的所有後續 MTU 請求。
-       - 簡單來說是指 app中的 GATT 客戶端創建並連線後(BluetoothGatt#connect)後<br>
-       第一次使用API `BluetoothGatt#requestMtu(int)` 設定MTU時，系統設成517 byte<br>
-       - 相關科普：
-       `MTU（Maximum Transmission Unit` : 可以在單一封包中發送的最大資料量<br>
-       `藍芽核心規範 5.2 版`：官方有這個改動主要為了個嚴格遵守此規範。[點擊查看規範](https://www.bluetooth.com/wp-content/uploads/2020/01/Bluetooth_5.2_Feature_Overview.pdf)
-       - 如未來有要實作Gatt連接`藍芽裝置`並設置mtu可參考：[此篇教學](https://blog.csdn.net/qq_38436214/article/details/132334688)
-       - `若您的產品有實際與藍芽裝置傳輸資料`，<br>
-       因為MTU的限制，可能會遇到很多情況，需要適配。<br>
-       例如：gatt設置 MTU，但目標藍芽裝置不支援，可能需有配套方案<br>
-       或是 藍芽裝置因android 14調整，fireware需跟著調整等等...<br>
+   * アプリは自分自身のバックグラウンドプロセスのみを終了でき、他のアプリには影響を与えられません。
+     - target SDK 34 以降、`killBackgroundProcesses` を使用して他のアプリを閉じることはできなくなります
+     - もしアプリ内でこの方法を使用して他のアプリのバックグラウンドプロセスを閉じている場合、将来的には無効になる可能性があります
+   * 最初に MTU をリクエストする GATT クライアントの MTU 設定は `517` バイトに設定され、その ACL 接続に対するすべての後続の MTU リクエストは `無視` されます。
+       - 簡単に言うと、アプリ内の GATT クライアントが作成され接続された後（BluetoothGatt#connect）、<br>
+       最初に API `BluetoothGatt#requestMtu(int)` を使用して MTU を設定すると、システムは 517 バイトに設定します<br>
+       - 関連知識：
+       `MTU（Maximum Transmission Unit）`：単一のパケットで送信できる最大データ量<br>
+       `Bluetooth Core Specification 5.2`：この変更はこの規格を厳格に遵守するために行われました。[規格を見る](https://www.bluetooth.com/wp-content/uploads/2020/01/Bluetooth_5.2_Feature_Overview.pdf)
+       - 将来的に GATT 接続を実装して `Bluetooth デバイス` に接続し、MTU を設定する場合は：[このチュートリアル](https://blog.csdn.net/qq_38436214/article/details/132334688) を参照してください
+       - `もし製品が実際に Bluetooth デバイスとデータを転送する場合`、<br>
+       MTU の制限により多くの状況に適応する必要があるかもしれません。<br>
+       例：GATT で MTU を設定するが、ターゲットの Bluetooth デバイスがサポートしていない場合、対応策が必要になるかもしれません<br>
+       または、Android 14 の調整により Bluetooth デバイスのファームウェアも調整が必要になるなど...<br>
 
-<div class="c-border-content-title-1">用戶體驗</div>
+<div class="c-border-content-title-1">ユーザーエクスペリエンス</div>
 
-* 新的權限讓User去選哪些是要被存取的`照片`和`影片`。
-    - Android 14 新增 `照片選擇`權限`READ_MEDIA_VISUAL_USER_SELECTED`
-    - 使用`READ_MEDIA_VISUAL_USER_SELECTED`可以讓用戶`選擇`哪些要被存取的`照片`、`影片`<br>
-    或是選擇`全部`同意被取用，如下圖，會出現兩種選項讓使用者選：<br>
+* 新しい権限により、ユーザーはどの`写真`や`ビデオ`がアクセスされるかを選択できます。
+    - Android 14では、新しい`写真選択`権限`READ_MEDIA_VISUAL_USER_SELECTED`が追加されました。
+    - `READ_MEDIA_VISUAL_USER_SELECTED`を使用すると、ユーザーはアクセスされる`写真`や`ビデオ`を`選択`できます。<br>
+    または、すべてのアクセスを許可することもできます。以下の図のように、ユーザーには2つのオプションが表示されます。<br>
     <img src="/images/android14/001.png" width="35%">
 
-    - `Android 13` 那時候已經有細化一次權限，<br>
-    使用`READ_MEDIA_VIDEO`、`READ_MEDIA_IMAGES`來一次存取`所有`圖片、影片：<a href="{{site.baseurl}}/2022/08/25/android-13-version-impact/">之前的android 13筆記</a>
+    - `Android 13`では、すでに一度権限が細分化されており、<br>
+    `READ_MEDIA_VIDEO`、`READ_MEDIA_IMAGES`を使用して`すべて`の画像やビデオにアクセスできます：<a href="{{site.baseurl}}/2022/08/25/android-13-version-impact/">以前のAndroid 13のメモ</a>
       ```kotlin
          <!-- Devices running Android 12L (API level 32) or lower  -->
          <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -82,13 +82,13 @@ excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解�
          <!-- To handle the reselection within the app on Android 14 (API level 34) -->
          <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
       ```
-    - 以上方式均可以根據需求去調配，但是
-    Android 14若未使用`READ_MEDIA_VISUAL_USER_SELECTED`，會走[compatibility mode](https://developer.android.com/about/versions/14/changes/partial-photo-video-access?authuser=7&hl=zh-cn#compatibility-mode)
+    - 上記の方法はニーズに応じて調整できますが、
+    Android 14で`READ_MEDIA_VISUAL_USER_SELECTED`を使用しない場合は、[互換モード](https://developer.android.com/about/versions/14/changes/partial-photo-video-access?authuser=7&hl=zh-cn#compatibility-mode)が適用されます。
 
-    - compatibility mode （兼容模式）：每次都會跳一次讓使用者選擇要授權哪些照片、影片可以被app使用。
-    - 官方說法是為了提升`用戶隱私`的一種方式。
+    - 互換モード：毎回、どの写真やビデオがアプリで使用されるかをユーザーに選択させる。
+    - 公式の説明では、これは`ユーザープライバシー`を向上させる方法の一つです。
 
-    - 實際例子：
+    - 実際の例：
       ```kotlin
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
            requestPermissions.launch(arrayOf(READ_MEDIA_IMAGES, READ_MEDIA_VIDEO, READ_MEDIA_VISUAL_USER_SELECTED))
@@ -98,19 +98,18 @@ excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解�
            requestPermissions.launch(arrayOf(READ_EXTERNAL_STORAGE))
        }
       ```
-      或看官方取得權限範例:[點此](https://developer.android.com/about/versions/14/changes/partial-photo-video-access?authuser=7&hl=zh-cn#permissions)
-  * 新行為：`不可關閉`通知變更成`可以`被用戶關閉。[官方文件](https://developer.android.com/about/versions/14/behavior-changes-all?hl=zh-tw&authuser=7#non-dismissable-notifications)
-    - Android 14 已更改此行為，允許使用者關閉此類通知
-    - 簡單來說：目前使用 `Notification.Builder#setOngoing(true)`、`NotificationCompat.Builder#setOngoing(true)`
-    來設定 Notification.FLAG_ONGOING_EVENT 阻止使用者關閉前台通知`將會失效`
-    - 實測效果會變這樣(左邊：Android 14, 右邊:Android 11)：<br>
+      または公式の権限取得例を参照：[こちら](https://developer.android.com/about/versions/14/changes/partial-photo-video-access?authuser=7&hl=zh-cn#permissions)
+  * 新しい動作：`閉じられない`通知がユーザーによって`閉じられる`ようになりました。[公式ドキュメント](https://developer.android.com/about/versions/14/behavior-changes-all?hl=zh-tw&authuser=7#non-dismissable-notifications)
+    - Android 14では、この動作が変更され、ユーザーがこの種の通知を閉じることができるようになりました。
+    - 簡単に言うと、現在`Notification.Builder#setOngoing(true)`、`NotificationCompat.Builder#setOngoing(true)`を使用してNotification.FLAG_ONGOING_EVENTを設定し、ユーザーが前景通知を閉じるのを防ぐことが`無効`になります。
+    - 実際の効果はこのようになります（左：Android 14、右：Android 11）：<br>
       <img src="/images/android14/002.gif" width="35%">
-    - 不過以下兩種情況，還未禁止：
-      1. 手機處於鎖定
-      2. 用戶選擇`清除所有`通知時
-    - 然後以下類型，目前也不影響：
-      1. CallStyle 通知：簡單說就是`電話類`通知
-      如：
+    - ただし、以下の2つの状況ではまだ禁止されていません：
+      1. デバイスがロックされている場合
+      2. ユーザーが`すべての通知をクリア`を選択した場合
+    - また、以下のタイプには現在影響しません：
+      1. CallStyle通知：簡単に言うと`電話関連`の通知
+      例：
       ```Kotlin
          val builder = NotificationCompat.Builder(context, CHANNEL_ID)
              .setSmallIcon(R.drawable.notification_icon)
@@ -125,66 +124,66 @@ excerpt: "本文將介紹 Android 14 版本升級帶來的開發挑戰以及解�
              .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
       ```
 
-      2. 成為 企業設備政策控制器 (DPC) 和支援軟體包
+      2. 企業デバイスポリシーコントローラー (DPC) とサポートソフトウェアパッケージ
 
-<div class="c-border-content-title-1">無障礙功能</div>
+<div class="c-border-content-title-1">アクセシビリティ機能</div>
 
-* 非線性字體放大至 200%。
-   - 指Android 調整 系統支援`文本字體`放大高達 200%<br>
-     尚未適配前，可能會發生字體放大後排版不如預期。
-   - 可以用以下方法來適配
-     1. a. 始終使用`sp`來設置文本字體大小
-     2. b. 也可用程式碼方式設置
-     使用 `TypedValue.applyDimension()`：sp 轉pixel
-     `TypedValue.deriveDimension()`：pixel轉sp
-     3. c. (optional) 對 `lineHeight` 使用 sp 單位：若使用 dp 或 px 为单位<br>
-     在此情況下文本無法縮放或讓文字看起來變狹宰<br>
-     同時在textSize 和 lineHeight使用sp設置<br>
-     系統或隨著設定調整行高跟字體大小。
-     (`主要自己的產品有沒有需要設置行高`)
-     4. d. [官方文件](https://developer.android.com/about/versions/14/features?authuser=7&hl=zh-cn#sp-units)
-   - 測試方法：
-     開啟`設定`>`無障礙` > `顯示大小和文字`
-     在字號選項中，點選加號 (+) 圖標，調整成最大倍率。
-   - 對`編譯`上沒什麼影響，主要是遇到可能需要再額外適配一下，
-   在比較舊的寫法會看到字體設置用dp，或是一些代碼`用dp轉pixel`，
-   所以若遇到可以順手改下，或是養成習慣用官方推薦的解法
+* 非線形フォントの拡大が200%まで可能に。
+   - Androidシステムが`テキストフォント`を最大200%まで拡大できるように調整されました。<br>
+     適応されていない場合、フォントが拡大されるとレイアウトが予期しない形になる可能性があります。
+   - 以下の方法で適応できます：
+     1. a. 常に`sp`を使用してテキストフォントサイズを設定する
+     2. b. コードで設定することも可能です
+     `TypedValue.applyDimension()`を使用：spをピクセルに変換
+     `TypedValue.deriveDimension()`を使用：ピクセルをspに変換
+     3. c. (オプション) `lineHeight`にsp単位を使用：dpまたはpx単位を使用する場合<br>
+     この場合、テキストが拡大されないか、文字が狭く見える可能性があります。<br>
+     textSizeとlineHeightの両方にspを設定することで、<br>
+     システムが設定に応じて行の高さとフォントサイズを調整します。
+     (`主に自社製品で行の高さを設定する必要があるかどうか`)
+     4. d. [公式ドキュメント](https://developer.android.com/about/versions/14/features?authuser=7&hl=zh-cn#sp-units)
+   - テスト方法：
+     `設定`>`アクセシビリティ` > `表示サイズとテキスト`
+     フォントサイズオプションで、プラス（+）アイコンをクリックし、最大倍率に調整します。
+   - `コンパイル`にはほとんど影響はありませんが、追加の適応が必要な場合があります。
+   古い方法ではフォント設定にdpを使用している場合や、`dpをピクセルに変換する`コードが見られます。
+   そのため、見つけた場合は公式の推奨方法に変更する習慣をつけると良いでしょう。
 
 <div class="c-border-content-title-1">安全性</div>
-* `targetSdkVersion` API 級別的最低安裝要求提升至 `23`。
-  - 主要是`Android 14`之後只能安裝 targetSdkVersion `>= 23` 的 app
+* `targetSdkVersion` API レベルの最低インストール要件が `23` に引き上げられました。
+  - 主に`Android 14`以降では targetSdkVersion `>= 23` のアプリのみインストール可能です。
 
-  - 不過如果開發時單純要測試可以用以下adb 指令：<br>
-  `adb install --bypass-low-target-sdk-block 檔案名稱.apk`<br>
+  - ただし、開発時に単純にテストする場合は以下のadbコマンドを使用できます：<br>
+  `adb install --bypass-low-target-sdk-block ファイル名.apk`<br>
 
-  - 官方主要用意是`遏止惡意軟題`用舊版本繞過新版本對安全性的約束條件，<br>
-  例如：利用targetSDK 22，繞過`Android 6.0 Marshmallo (API 23)`對權限的請求限制。<br>
+  - 公式の主な目的は、`悪意のあるソフトウェア`が古いバージョンを利用して新しいバージョンのセキュリティ制約を回避するのを防ぐことです。<br>
+  例えば：targetSDK 22を利用して、`Android 6.0 Marshmallow (API 23)`の権限リクエスト制限を回避することなど。<br>
 
- * Google play上顯示的數據安全資訊有調整：主要根據提供的訊息去顯示，<br>
-實際對app不會有編譯上影響，主要是上架後頁面上顯示的資訊，<br>
-這邊就看大家自己的app或產品是否接受或是否需要調整，可參考這個網址：[點此](https://support.google.com/googleplay/android-developer/answer/10787469?authuser=7&hl=zh-Hans#zippy=%2C%E5%A6%82%E6%9E%9C%E6%82%A8%E7%9A%84%E5%BA%94%E7%94%A8%E4%BC%9A%E5%88%86%E4%BA%AB%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E7%94%A8%E6%88%B7%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88%E4%BF%A1%E6%81%AF)<br>
-* 系統通知：現在若app有分享位置給第三方lib，則會通知用戶 30天內哪些app有分享位置給第三方。<br>
+ * Google Play上で表示されるデータセキュリティ情報が調整されました：提供された情報に基づいて表示されますが、<br>
+アプリ自体にはコンパイル上の影響はありません。主に公開後のページ上で表示される情報です。<br>
+この点については、各自のアプリや製品が受け入れるかどうか、または調整が必要かどうかを確認してください。参考URL：[こちら](https://support.google.com/googleplay/android-developer/answer/10787469?authuser=7&hl=zh-Hans#zippy=%2C%E5%A6%82%E6%9E%9C%E6%82%A8%E7%9A%84%E5%BA%94%E7%94%A8%E4%BC%9A%E5%88%86%E4%BA%AB%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E7%94%A8%E6%88%B7%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BB%80%E4%B9%88%E4%BF%A1%E6%81%AF)<br>
+* システム通知：現在、アプリが位置情報を第三者のライブラリに共有している場合、ユーザーに通知されます。30日以内にどのアプリが位置情報を第三者に共有したかが通知されます。<br>
   <img src="/images/android14/003.png" width="60%">
-* 您可以使用媒體儲存區查詢列有儲存特定媒體檔案應用程式的 OWNER_PACKAGE_NAME 資料欄<br>
-自 Android 14 版本起，除非符合下列至少一項條件，否則系統將遮蓋此值：
-  - 儲存媒體檔案的應用程式會具備一律可由其他應用程式瀏覽的套件名稱。
-  - 查詢媒體儲存區的應用程式會要求 QUERY_ALL_PACKAGES 權限。
+* メディアストレージのクエリで特定のメディアファイルを保存しているアプリケーションの OWNER_PACKAGE_NAME フィールドを使用できます。<br>
+Android 14 バージョン以降、以下の条件のいずれかを満たさない限り、システムはこの値を隠します：
+  - メディアファイルを保存するアプリケーションが他のアプリケーションから常に閲覧可能なパッケージ名を持っている。
+  - メディアストレージをクエリするアプリケーションが QUERY_ALL_PACKAGES 権限を要求している。
 
 
-<div class="c-border-content-title-4">以Android 14 為目標的app，行為改變</div>
+<div class="c-border-content-title-4">Android 14 をターゲットとするアプリの動作変更</div>
 
-* 對於以 Android 14（API 等級 34）或更高版本為目標平台的應用<br>
-Android 14 會在呼叫 BluetoothAdapter#getProfileConnectionState() 方法時強制執行 `BLUETOOTH_CONNECT` 權限。<br>
-  - 若有使用到需要在 `AndroidManifest.xml` 新增該權限
-  - 使用前檢查是否已授予權限
+* Android 14（API レベル 34）またはそれ以上をターゲットとするアプリに対して<br>
+Android 14 は BluetoothAdapter#getProfileConnectionState() メソッドを呼び出す際に `BLUETOOTH_CONNECT` 権限を強制します。<br>
+  - 使用する場合は `AndroidManifest.xml` にその権限を追加する必要があります。
+  - 使用前に権限が付与されているか確認してください。
 
-* JobScheduler 如果使用`setRequiredNetworkType`或`setRequiredNetwork`，<br>
-  現在需要聲明`ACCESS_NETWORK_STATE`權限<br>
-  否則Android 14 或更高版本時，會導致SecurityException。<br>
+* JobScheduler が `setRequiredNetworkType` または `setRequiredNetwork` を使用する場合、<br>
+  現在は `ACCESS_NETWORK_STATE` 権限を宣言する必要があります。<br>
+  そうしないと、Android 14 以降では SecurityException が発生します。<br>
 
-* 對`隱式` intent 和待處理 intent 的限制：Android 14新增對implicit intent使用上的限制
-  - implicit intent現在只能使用已經exported的組件上，可以設定定成`exported = true`，或是使用`explicit intent`<br>
-  e.g. 使用 `explicit intent` 或是 `exported = true`
+* `インプリシット` インテントと保留中のインテントの制限：Android 14 ではインプリシットインテントの使用に制限が追加されました。
+  - インプリシットインテントは現在、エクスポートされたコンポーネントでのみ使用できます。`exported = true` を設定するか、`エクスプリシットインテント` を使用してください。<br>
+  例：`エクスプリシットインテント` を使用するか、`exported = true` を設定する
 
   ```xml
   <activity android:name=".MyActivity" android:exported="true">
@@ -206,68 +205,67 @@ Android 14 會在呼叫 BluetoothAdapter#getProfileConnectionState() 方法時�
    context.startActivity(explicitIntent)
   ```
 
-  - 使用 `mutable` pending intent時未指定軟體包名時，可能拋出異常<br>
-  有exception例子，使用`FLAG_MUTABLE`的pending intent：<br>
+  - `mutable` 保留中のインテントを使用する際にパッケージ名を指定しない場合、例外が発生する可能性があります。<br>
+  例外の例として、`FLAG_MUTABLE` の保留中のインテントを使用する場合：<br>
   ```
   Intent intent = new Intent(Intent.ACTION_VIEW);
   PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
   ```
-  加入package name 避免exception：<br>
+  例外を避けるためにパッケージ名を追加する：<br>
   ```
    Intent intent = new Intent(Intent.ACTION_VIEW);
    intent.setPackage("com.example.myapp");
    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
   ```
-* 現在需要在context註冊的Boardcast receiver中加入flag<br>
-  `RECEIVER_EXPORTED` 或 `RECEIVER_NOT_EXPORTED`，用以保護應用程式免受安全漏洞的影響
+* 現在、コンテキストに登録されたBroadcast receiverにフラグを追加する必要があります。<br>
+  `RECEIVER_EXPORTED` または `RECEIVER_NOT_EXPORTED` を使用して、アプリケーションをセキュリティ脆弱性から保護します。
 
-  ```
-   val receiverFlags = if (listenToBroadcastsFromOtherApps) {
+```
+ val receiverFlags = if (listenToBroadcastsFromOtherApps) {
       ContextCompat.RECEIVER_EXPORTED
    } else {
       ContextCompat.RECEIVER_NOT_EXPORTED
    }
    ContextCompat.registerReceiver(context, br, filter, receiverFlags)
-  ```
+```
 
-* 現在使用動態代碼加載的檔案必需要設定成`read only`<br>
-否則會exception<br>
-因官方考慮其[安全性](https://developer.android.com/privacy-and-security/security-tips?authuser=7&hl=zh-cn#DynamicCode)
-  - 官方對於已存在加載文件的[建議](https://developer.android.com/about/versions/14/behavior-changes-14?authuser=7&hl=zh-cn#handle-existing-files)
-  - 如果必須動態載入程式碼，請使用以下方法<br>
-  在動態檔案（例如 DEX、JAR 或 APK 檔案）開啟並寫入任何內容之前立即將其設為read only ：
+* 現在使用動的コードを読み込むファイルは`read only`に設定する必要があります<br>
+そうしないと例外が発生します<br>
+これは公式がその[安全性](https://developer.android.com/privacy-and-security/security-tips?authuser=7&hl=zh-cn#DynamicCode)を考慮しているためです
+  - 既存の読み込みファイルに対する公式の[提案](https://developer.android.com/about/versions/14/behavior-changes-14?authuser=7&hl=zh-cn#handle-existing-files)
+  - 動的にコードを読み込む必要がある場合は、以下の方法を使用してください<br>
+  動的ファイル（例えば DEX、JAR または APK ファイル）を開いて内容を書き込む前にすぐにそれをread onlyに設定します：
 
   ```Kotlin
    val jar = File("DYNAMICALLY_LOADED_FILE.jar")
    val os = FileOutputStream(jar)
    os.use {
-       // Set the file to read-only first to prevent race conditions
+       // レースコンディションを防ぐために最初にファイルを読み取り専用に設定
        jar.setReadOnly()
-       // Then write the actual file content
+       // その後、実際のファイル内容を書き込む
    }
    val cl = PathClassLoader(jar, parentClassLoader)
    ```
 
-* 為防止zip遍歷的漏洞<br>
-現在使用ZipInputStream.getNextEntry()時，路徑中包含`..`、`/`會拋出`ZipException`<br>
-  - 如果想要退出此驗證步驟，可以直接呼叫`dalvik.system.ZipPathValidator.clearCallback().`<br><br>
+* zipトラバーサルの脆弱性を防ぐため<br>
+現在、ZipInputStream.getNextEntry()を使用する際、パスに`..`、`/`が含まれていると`ZipException`がスローされます<br>
+  - この検証ステップをスキップしたい場合は、`dalvik.system.ZipPathValidator.clearCallback()`を直接呼び出すことができます。<br><br>
 
-* `USE_FULL_SCREEN_INTENT`：android11以上會用來顯示全屏通知<br>
-  但在Android 14 上，僅能在`通話`和`鬧鐘`類型的app上使用<br>
-  在`2024/05/31`後google play會撤銷其他使用到該權限的app。<br>
-  - 目前可以用 API `NotificationManager#canUseFullScreenIntent()`檢查是否可以用全屏通知。
-  - 若沒有權限，可以請求`ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT`權限。<br><br>
+* `USE_FULL_SCREEN_INTENT`：Android 11以上では全画面通知を表示するために使用されます<br>
+  しかし、Android 14では、`通話`および`アラーム`タイプのアプリでのみ使用できます<br>
+  2024/05/31以降、Google Playはこの権限を使用する他のアプリを撤回します。<br>
+  - 現在、API `NotificationManager#canUseFullScreenIntent()`を使用して全画面通知を使用できるかどうかを確認できます。
+  - 権限がない場合は、`ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT`権限を要求できます。<br><br>
 
-* 現在使用foregroundService一定要宣告`android:foregroundServiceType`屬性
-  - 此屬性是在Android10導入，現在Android14變成一定要宣告，否則會跳錯誤。
-  - 其中官方提供`13`種type，讓開發者宣告，參考[文件](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=zh-tw&authuser=7)
-  - 官方建議，`若與上述type無關`，可以把邏輯遷移到 `WorkManager` 或`使用者啟動的資料移轉作業`。
-  - 若使用上面type宣告，每種type需宣告的權限不盡相同，例如：我方專案常用到的`mediaProjection`，需完成以下步驟：<br>
-    a. 在AndroidManifest.xml中宣告`android:foregroundServiceType
-mediaProjection`<br>
-    b. 除了原本的ForegroundService權限，還要宣告`FOREGROUND_SERVICE_MEDIA_PROJECTION`權限<br>
-    c. 在執行startForeground前需要使用`createScreenCaptureIntent()` 方法，向使用者確認權限，才能啟動foreground service。<br>
-    d. 呼叫startForeground時，需加入`FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION`<br>
+* 現在、foregroundServiceを使用する場合は必ず`android:foregroundServiceType`属性を宣言する必要があります
+  - この属性はAndroid 10で導入されましたが、現在はAndroid 14で必ず宣言する必要があります。そうしないとエラーが発生します。
+  - 公式は開発者が宣言するための`13`種類のタイプを提供しています。詳細は[ドキュメント](https://developer.android.com/about/versions/14/changes/fgs-types-required?hl=zh-tw&authuser=7)を参照してください。
+  - 公式の提案として、`上記のタイプに関連しない場合`は、ロジックを`WorkManager`または`ユーザーが起動するデータ転送操作`に移行することができます。
+  - 上記のタイプを宣言する場合、各タイプに必要な権限は異なります。例えば、私たちのプロジェクトでよく使用される`mediaProjection`の場合、以下の手順を完了する必要があります：<br>
+    a. AndroidManifest.xmlで`android:foregroundServiceType mediaProjection`を宣言する<br>
+    b. 元のForegroundService権限に加えて、`FOREGROUND_SERVICE_MEDIA_PROJECTION`権限も宣言する必要があります<br>
+    c. startForegroundを実行する前に、`createScreenCaptureIntent()`メソッドを使用してユーザーの権限を確認し、foreground serviceを起動できるようにする必要があります。<br>
+    d. startForegroundを呼び出す際に、`FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION`を追加する必要があります<br>
 
     ```kotlin
      startForeground(
@@ -276,56 +274,56 @@ mediaProjection`<br>
          ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
     ```
 
-  - 其他type觀念類似，但需宣告的權限或加入的ServiceInfo，會根據不同type有不同的值，請參考上面提到的文件。
-  - 除上述，目前使用`AirDroid Remote Supprt`來調整看看，有幾個方向可以修正此問題
-    a. 使用`dataSync`這個type來繞過此問題。<br>
-       `dataSync`他在`執行階段`沒有額外要求要取得其他權限，所以原本流程較不會被影響到，<br>
-       -> `風險`：若全部都宣告`dataSync`，短期可以修改量少，且不太會影響到流程，但會跟官方文件上的type無相關。<br>
-       (官方有在每個type下說明，不同type適合的職責)<br>
-       發現`dataSync`，官方已經備註日後會`淘汰`此type，如圖<br>
+  - 他のタイプも同様の概念ですが、宣言する権限や追加するServiceInfoはタイプによって異なるため、上記のドキュメントを参照してください。
+  - 上記以外にも、現在`AirDroid Remote Support`を使用してこの問題を調整するためのいくつかの方向性があります
+    a. この問題を回避するために`dataSync`タイプを使用する。<br>
+       `dataSync`は`実行時`に追加の権限を取得する必要がないため、元のフローにあまり影響を与えません。<br>
+       -> `リスク`：すべてを`dataSync`に宣言すると、短期的には変更量が少なく、フローにあまり影響を与えませんが、公式ドキュメントのタイプとは関連しません。<br>
+       （公式は各タイプの下で、異なるタイプに適した職務を説明しています）<br>
+       `dataSync`は公式が将来的に`廃止`する予定であることが記載されています。以下の図を参照してください<br>
        <img src="/images/android14/004.png" width="70%"><br>
-    b. 在`執行階段`需額外取得權限的，在原本流程中執行到startForeground前，去向使用者取得權限<br>
-       例如：`mediaProjection`在startForeground前，要求要先呼叫createScreenCaptureIntent() 去取得mediaProjection的權限。<br>
-       這裡嘗試去做了個示範<br>
-       更新你的build sdk version<br>
+    b. `実行時`に追加の権限を取得する必要がある場合、元のフローでstartForegroundを実行する前にユーザーから権限を取得する<br>
+       例えば、`mediaProjection`はstartForegroundの前にcreateScreenCaptureIntent()を呼び出してmediaProjectionの権限を取得する必要があります。<br>
+       ここでデモを行いました<br>
+       build sdk versionを更新してください<br>
        <script src="https://gist.github.com/KuanChunChen/7c4a8ef7b18660749a8acec308992d2b.js"></script>
-       加入以下權限<br>
+       以下の権限を追加してください<br>
        <script src="https://gist.github.com/KuanChunChen/1f396d04ca999787104f31dd735a4ae0.js"></script>
-       根據你的需求加入 foreground service type<br>
+       必要に応じてforeground service typeを追加してください<br>
        <script src="https://gist.github.com/KuanChunChen/333cca6030d4e727740f89ca74e529de.js"></script>
 
-       -> `實際可能遇到的問題分享`：我在先前寫過的`Service`代碼裡，<br>
-       已經有加入過`foregroundServiceType` (之前是非強制)，<br>
-       這個`service`中有method會去操作class內的action，<br>
-       例如 startForegroundService<br>
-       所以根據官方文件，在android14以上，<br>
-       需呼叫`createScreenCaptureIntent()`取得權限，<br>
-       雖說上面加入上述的sample，可以避免crash產生，<br>
-       但是原本預期的流程就會跟`原本方案`不一樣，<br>
-       需再花時間拆分邏輯，測試、修改整體代碼...等。<br>
-       因為每次都需要針對forground service取得上述權限<br>
-       代表以前做的產品或方案有用到forground service都需要做調整<br>
+       -> `実際に遭遇する可能性のある問題の共有`：以前に書いた`Service`コードには、<br>
+       すでに`foregroundServiceType`を追加していました（以前は必須ではありませんでした）。<br>
+       この`service`には、クラス内のアクションを操作するメソッドがあります。<br>
+       例えば、startForegroundService<br>
+       したがって、公式ドキュメントによると、android14以上では、<br>
+       `createScreenCaptureIntent()`を呼び出して権限を取得する必要があります。<br>
+       上記のサンプルを追加することでクラッシュを回避できますが、<br>
+       元々の予期されたフローとは異なるため、<br>
+       ロジックを分割し、全体のコードをテスト・修正するための時間が必要です。<br>
+       毎回フォアグラウンドサービスのために上記の権限を取得する必要があるため、<br>
+       以前に作成した製品やソリューションでフォアグラウンドサービスを使用している場合、調整が必要です。<br>
 
-       - 備註：【執行階段】，這邊指的是，執行`startForeground`時。<br>
-       實測上，若`沒有照文件`在`執行前`去取得對應的權限，則會產生`exception`並`crash`
-       - Crash實例如下<br>
+       - 備考：【実行時】、ここでは`startForeground`を実行する時を指します。<br>
+       実際のテストでは、`ドキュメントに従わず`に`実行前`に対応する権限を取得しないと、`例外`が発生し`クラッシュ`します。
+       - クラッシュの例は以下の通りです。<br>
        <img src="/images/android14/005.png" width="60%"><br>
-   c. 後來交叉測試了幾種情況<br>
-       -  `Manifest`中用 `|` 宣告多種foregroundServiceType<br>
+   c. その後、いくつかの状況でクロステストを行いました。<br>
+       -  `Manifest`で `|` を使用して複数のforegroundServiceTypeを宣言<br>
        <img src="/images/android14/006.png" width="60%"><br>
-       並在原始碼中搭配`不同版本的判斷`給予`不同類型`的`foregroundServiceType`<br>
+       そして、ソースコード内で`異なるバージョンの判定`に基づいて`異なるタイプ`の`foregroundServiceType`を指定<br>
        <img src="/images/android14/007.png" width="60%">
 
-       - 其中有嘗試若原始碼中不加`foregroundServiceType`，<br>
-       會`crash`並顯示沒有`FOREGROUND_SERVICE_MICROPHONE`權限<br>
-       （宣告`多種type`的情況下）<br>
+       - ソースコード内で`foregroundServiceType`を追加しない場合、<br>
+       `FOREGROUND_SERVICE_MICROPHONE`権限がないと表示されて`クラッシュ`します<br>
+       （複数のタイプを宣言した場合）<br>
        <img class="zoomable" onclick="zoomImage(this)" src="/images/android14/008.png" width="60%">
 
-         所以又跑去測試其他Service，<br>
-         Manifest中單純只加入`dataSync`的，<br>
-         就算原始碼中不輸入任何`foregroundServiceType`也不會`crash`<br>
-         但混用`microphone`的用空的`foregroundServiceType`卻會`crash`<br>
-         （左邊會`crash`，右邊正常運行，可點擊放大）<br>
+         そのため、他のServiceをテストしました。<br>
+         Manifestに単純に`dataSync`を追加した場合、<br>
+         ソースコード内で`foregroundServiceType`を入力しなくてもクラッシュしません。<br>
+         しかし、`microphone`を混用し、空の`foregroundServiceType`を使用すると`クラッシュ`します。<br>
+         （左側は`クラッシュ`し、右側は正常に動作します。クリックして拡大できます）<br>
            <div style="display: flex;">
                <img src="/images/android14/009.png" width= "45%" style="margin-right: 10px;">
                <img src="/images/android14/010.png" width= "45%" >

@@ -1,62 +1,62 @@
 ---
 layout: post
-title: "資料結構複習，Linked List 全攻略！"
+title: "資料構造復習、Linked List 全攻略！"
 date: 2022-06-28 11:46:12 +0800
 image: cover/data-structure/cpu-linked-list.jpg
 tags: [data structure, algorithm]
 categories: 其他筆記
-excerpt: "學習 Linked List 複習資料結構，包含優勢、缺點，以及 Kotlin 實作方式。完整攻略，助你了解 Linked List 的 Time Complexity 和操作方法。"
+excerpt: "Linked List を学び、資料構造を復習します。利点、欠点、Kotlin の実装方法を含む完全攻略。Linked List の時間計算量と操作方法を理解するのに役立ちます。"
 
 ---
 
-<div class="c-border-main-title-2">Linked list 特性</div>
-Linked List 是由不連續的記憶體位址組成，透過指標（pointer）互相連結元素（elements）的資料結構。
+<div class="c-border-main-title-2">Linked list の特性</div>
+Linked List は不連続のメモリアドレスで構成され、ポインタ（pointer）を通じて要素（elements）を相互にリンクするデータ構造です。
 
-<div class="c-border-main-title-2"> Linked list 優點</div>
-相較於 Array，Linked List 具有以下優點：<br><br>
+<div class="c-border-main-title-2"> Linked list の利点</div>
+Array と比較して、Linked List には以下の利点があります：<br><br>
 
-1.Linked List 大小彈性，不需要預先指定大小。<br>
-2.插入、刪除元素時的成本較低，只需要改變指標指向即可，不需要整個轉移。<br>
-3.不需要連續的記憶體空間，因此更加靈活。<br>
-
-
-<div class="c-border-main-title-2"> Linked list 缺點</div>
-相較於 Array，Linked List 具有以下缺點：<br>
-
-1.隨機訪問效率較差，只能從第一個節點開始遍歷。<br>
-2.需要為每個節點指標提供額外的記憶體空間。<br>
-3.無法直接使用相對位址。因為array為連續位址，所以可以有相對位址，但linked list則沒有<br>
+1.Linked List はサイズが柔軟で、事前にサイズを指定する必要がありません。<br>
+2.要素の挿入や削除のコストが低く、ポインタの指向を変更するだけで済み、全体を移動する必要がありません。<br>
+3.連続したメモリ空間を必要としないため、より柔軟です。<br>
 
 
-<div class="c-border-main-title-2">Linked list 組成</div>
-Linked List 中的每個節點包含以下兩個元素：<br>
+<div class="c-border-main-title-2"> Linked list の欠点</div>
+Array と比較して、Linked List には以下の欠点があります：<br>
 
-1.資料（Data）<br>
-2.指標（Pointer）<br
+1.ランダムアクセスの効率が悪く、最初のノードから順に走査する必要があります。<br>
+2.各ノードのポインタに追加のメモリ空間が必要です。<br>
+3.相対アドレスを直接使用できません。Array は連続アドレスのため相対アドレスが使用できますが、Linked List では使用できません。<br>
+
+
+<div class="c-border-main-title-2">Linked list の構成</div>
+Linked List の各ノードは以下の2つの要素を含みます：<br>
+
+1.データ（Data）<br>
+2.ポインタ（Pointer）<br>
 <div class="c-border-content-title-4">
-   以下是 Kotlin 實現 Linked List 的程式碼
+   以下は Kotlin で Linked List を実装するコードです
 </div>
  <script src="https://gist.github.com/KuanChunChen/ad9e538b06afc720f0785a4471fd6145.js"></script>
 
 <div class="c-border-content-title-4">
-   以下是遍歷Traversal Linked List 的程式碼
+   以下は Linked List を走査するコードです
 </div>
 
 <script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
 <div class="c-border-content-title-4">
-  除了上述的程式碼，你也可以使用 Kotlin 的 Data Class 實現 Linked List：
+  上記のコードに加えて、Kotlin の Data Class を使用して Linked List を実装することもできます：
 </div>
 <script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
 
 <div class="c-border-content-title-4">
-  Linked List Complexity
+  Linked List の複雑度
 </div><br>
 <table class="rwd-table">
     <tr>
-      <th>Time Complexity</th>
-      <th>Worst Case</th>
-      <th>Average Case</th>
+      <th>時間計算量</th>
+      <th>最悪の場合</th>
+      <th>平均の場合</th>
     </tr>
     <tr>
       <td>Search</td>

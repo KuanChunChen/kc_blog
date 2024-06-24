@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Android 用Jektpack Compose 來開發app【01】 - 初期建構篇
+title: Android 用Jektpack Compose 來開発app【01】 - 初期構築篇
 date: 2024-05-27 14:07:32 +0800
 image: cover/android-jetpack-compose-structure-part1.png
 tags: [Android,Kotlin]
@@ -9,80 +9,80 @@ categories: JetpackCompose
 excerpt: ""
 ---
 
-<div class="c-border-content-title-4">前言</div>
-* 距離上一次發`Jetpack compose`相關的文章已是<br>
-2~3年前<br><br>
-其間斷斷續續會稍微碰到<br>
-不過都沒有好好的系統性的去研究<br><br>
-剛好近期<br>
-有機會開發整個專案全用Compose來完成的經驗<br>
-所以經過一番摸索後<br>
-有些心得<br><br>
-決定把這個過程寫成筆記分享給大家<br>
+<div class="c-border-content-title-4">前書き</div>
+* 前回`Jetpack compose`に関する記事を投稿してから<br>
+2〜3年が経ちました<br><br>
+その間、断続的に少し触れていましたが<br>
+体系的に研究することはありませんでした<br><br>
+ちょうど最近<br>
+プロジェクト全体をComposeで開発する機会がありました<br>
+そのため、いろいろと試行錯誤した結果<br>
+いくつかの心得があります<br><br>
+この過程をメモとして皆さんと共有することにしました<br>
 
 
-<div class="c-border-content-title-1">專案建置</div>
+<div class="c-border-content-title-1">プロジェクトの構築</div>
 
-* 首先會先決定這次要用的library是哪些<br>
-這次選用為官方最新推薦的來做挑戰<br><br>
+* まず、今回使用するライブラリを決定します<br>
+今回は公式の最新の推奨ライブラリを使用して挑戦します<br><br>
 
-* 其中某些library 也是最新版本AS創建new project會套用的<br>
-像是`material3`、`kts+toml的配置`、`jetpack compose`等等<br>
-另外，之前有分享過`toml`遷移時會遇到的問題<br>
-有興趣可以<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">參考看看</a><br><br>
+* その中のいくつかのライブラリは、最新バージョンのASで新しいプロジェクトを作成する際にも適用されます<br>
+例えば`material3`、`kts+tomlの設定`、`jetpack compose`などです<br>
+また、以前に`toml`移行時に遭遇する問題について共有したことがあります<br>
+興味がある方は<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">参考にしてください</a><br><br>
 
-* 實際的規劃如下：
+* 実際の計画は以下の通りです：
 <div id="category">
     {% include table/compose-use.html %}
     {% include table/compose-category.html %}
 </div>
 
-<div class="c-border-content-title-4">實作Compose主題</div>
+<div class="c-border-content-title-4">Composeテーマの実装</div>
 
-* 以前在使用xml時，會透過加入色碼到colors.xml<br>
-再把color resource ID 放到styles.xml去達成黑暗模式的主題配置<br><br>
-現在用了`compose`就可以透過`.kt`來配置該app的主題<br>
-根據每個專案需求不同可自行配置<br>
-我個人習慣先根據`UX/UX設計稿`去設定的`ColorScheme`、`shpae`、`typo`、`statusBarColor`、`navigationBarColor`...等等<br>
-而不是一頁一頁個別去設計<br>
-這樣可以節省很多重複開發的時間<br>
+* 以前はxmlを使用して、colors.xmlに色コードを追加し<br>
+color resource IDをstyles.xmlに配置してダークモードのテーマ設定を行っていました<br><br>
+現在は`compose`を使用して`.kt`でアプリのテーマを設定できます<br>
+各プロジェクトのニーズに応じて自由に設定できます<br>
+私は個人的に`UX/UXデザイン稿`に基づいて`ColorScheme`、`shape`、`typo`、`statusBarColor`、`navigationBarColor`などを設定するのが好きです<br>
+一ページずつ個別に設計するのではなく<br>
+これにより、重複した開発時間を大幅に節約できます<br>
 
 
-<div class="c-border-content-title-1">step1. 加入compose相關lib以及material3</div>
+<div class="c-border-content-title-1">step1. compose関連libおよびmaterial3の追加</div>
 <script src="https://gist.github.com/KuanChunChen/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
-這邊就依照需求自行導入<br>
-實際使用toml是用這種寫法：`implementation(libs.androidx.material3)`<br>
-放在你的`build.gradle.kts(:app)`中<br><br>
- * `tips`: 上面這邊的多個library在導入androidx-compose-bom時支援自動mapping對應library的版本，所以這邊就不一定需要輸入version.ref<br>
-<div class="c-border-content-title-1">step2. 配置通用的Theme包含color、shpae、typo</div>
+ここではニーズに応じて導入します<br>
+実際にtomlを使用する場合は次のように記述します：`implementation(libs.androidx.material3)`<br>
+これを`build.gradle.kts(:app)`に配置します<br><br>
+ * `tips`: 上記の複数のライブラリはandroidx-compose-bomを導入する際に対応するライブラリのバージョンを自動的にマッピングするため、version.refを入力する必要はありません<br>
+<div class="c-border-content-title-1">step2. 共通のテーマ（color、shape、typo）の設定</div>
 
-這邊有關於Material 3 theme的
-<a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>文檔</a>
+こちらはMaterial 3テーマに関する
+<a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>ドキュメント</a>
 
 <script src="https://gist.github.com/KuanChunChen/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
 <script src="https://gist.github.com/KuanChunChen/6315bd0157777d118f0def22f2f7e288.js"></script>
 
-<div class="c-border-content-title-1">step3. 實際使用theme</div>
-這邊分別是設定狀態列、導航欄、theme等等<br>
-colorscheme就是套用前面實作的
+<div class="c-border-content-title-1">step3. 実際にテーマを使用する</div>
+ここではステータスバー、ナビゲーションバー、テーマなどの設定を行います<br>
+colorschemeは前述の実装を適用します
 <script src="https://gist.github.com/KuanChunChen/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
-在Activity或Screen中使用：<br>
+ActivityやScreenで使用する場合：<br>
 <script src="https://gist.github.com/KuanChunChen/eef8ce349264ca797f6644676a588ffa.js"></script>
 
-<div class="c-border-content-title-1">(Optional) step4. 製作通用toolbar</div>
-* 這邊則是做一個通用的toolbar<br>
-因為通常由ui/ux設計師出圖的話<br>
-多數時候toolbar會是相近的效果呈現<br>
-我自己就會先根據設計稿把toolbar寫好通用的<br>
-這邊就看大家需不需要做這步<br>
-如下：<br>
+<div class="c-border-content-title-1">(オプション) step4. 汎用ツールバーを作成する</div>
+* ここでは汎用のツールバーを作成します<br>
+通常、UI/UXデザイナーがデザインを提供する場合<br>
+多くの場合、ツールバーは似たような効果を持つことが多いです<br>
+私はデザインに基づいて汎用のツールバーを先に作成します<br>
+このステップが必要かどうかは皆さん次第です<br>
+以下のように：<br>
 <script src="https://gist.github.com/KuanChunChen/448372236d5ae5dd508b69a3c5e350ac.js"></script>
-這邊是實際使用`MainAppBarConfig`<br>
-主要是要在MainAppBarConfig裡面	加入想要的樣式或點擊反應<br>
-接著放到`Scaffold`內的`topBar`就可以了
+ここでは実際に`MainAppBarConfig`を使用します<br>
+主にMainAppBarConfigに必要なスタイルやクリック反応を追加し<br>
+それを`Scaffold`内の`topBar`に配置するだけです
 <script src="https://gist.github.com/KuanChunChen/0d011cba78589066d77d921d2e029a5e.js"></script>
 <div class="c-border-content-title-4">結語</div>
-* 第一部分就到這邊了<br>
-主要是先把前面的基礎建設打穩<br>
-後面開發就會很方便、有效率了!<br><br>
-<a class="link" href="#category" data-scroll>跳回目錄</a>
+* 第一部はここまでです<br>
+主に前述の基礎をしっかりと固めることが目的です<br>
+後の開発が非常に便利で効率的になります!<br><br>
+<a class="link" href="#category" data-scroll>目次に戻る</a>

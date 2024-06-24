@@ -1,38 +1,38 @@
 ---
 layout: post
-title: "連接 Android app 應用：讓你的程式在不同進程中輕鬆溝通的IPC方案教學！"
+title: "連接 Android アプリケーション：異なるプロセス間で簡単に通信するIPCソリューションのチュートリアル！"
 date: 2022-04-15 15:36:28 +0800
 image: cover/android-ipc-method-share-1.png
 tags: [Android,Debug]
 categories: Android教學
-excerpt: "探索Android app應用程式之間的跨進程通訊技術（IPC），讓你的應用程式在不同進程之間輕鬆溝通，達到更好的協作效果。"
+excerpt: "Androidアプリケーション間のプロセス間通信技術（IPC）を探求し、異なるプロセス間で簡単に通信し、より良い協力効果を達成する方法を紹介します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 
-* 今天我要分享的是「跨應用程式溝通」的相關方案。<br>
-  在我之前的工作經驗中，曾經有客戶問過我這方面的問題，<br>
-  所以我整理了相關資訊，並在這裡分享給大家。<br>
-  這份分享涵蓋了多種IPC相關的方案，<br>
-  讓有這方面需求的朋友可以一次獲取多種方案，<br>
-  以便更快地實現應用程式之間的溝通和協作。
+* 今日は「アプリケーション間通信」に関するソリューションを共有します。<br>
+  以前の仕事経験で、クライアントからこの分野について質問されたことがありました。<br>
+  そのため、関連情報を整理し、ここで皆さんと共有します。<br>
+  この共有は、複数のIPC関連ソリューションをカバーしており、<br>
+  この分野に関心のある方が一度に多くのソリューションを取得し、<br>
+  アプリケーション間の通信と協力を迅速に実現できるようにします。
 
 
-<div class="c-border-main-title-2">比較常見的Android app層 IPC方案</div>
-  * `IPC科普：Inter-Process Communication`，譯為進程間通信或者跨進程通信
-    - `ContentProvider` : 原生的組件，提供對外接口 (實作該lib的增、刪、改、查)，讓不同APP間能跨process存取共同資料。
-      - 使用場景 : 較適合不同App需要共同資料，如存取SQL數據庫、共同文件...等，另外聯絡人、電話簿也是採用此法，讓其他應用取得
-      - 若要知道資料更新狀態需額外註冊Observer<br>
+<div class="c-border-main-title-2">一般的なAndroidアプリ層のIPCソリューション</div>
+  * `IPC科普：Inter-Process Communication`、プロセス間通信またはクロスプロセス通信と訳されます
+    - `ContentProvider` : ネイティブコンポーネントで、外部インターフェースを提供します（このライブラリの追加、削除、変更、検索を実装）。異なるアプリ間でプロセスを超えて共通データにアクセスできます。
+      - 使用シーン : 異なるアプリが共通データを必要とする場合に適しています。例えば、SQLデータベースへのアクセス、共通ファイルなど。また、連絡先や電話帳もこの方法を採用しており、他のアプリが取得できるようにしています。
+      - データの更新状態を知るには、追加でObserverを登録する必要があります<br>
       <br>
-    - `AIDL`：一種對外接口的語言，定義.aidl檔案，並實作其接口後，透過binder實現跨進程的存取，可以自定義input、output型別，可多線程處理多個請求<br>
-       - [官方 - AIDL 實作參考](https://developer.android.com/guide/components/aidl)
+    - `AIDL`：外部インターフェースの言語で、.aidlファイルを定義し、そのインターフェースを実装した後、バインダーを介してプロセス間のアクセスを実現します。入力、出力タイプをカスタマイズでき、マルチスレッドで複数のリクエストを処理できます<br>
+       - [公式 - AIDL 実装参考](https://developer.android.com/guide/components/aidl)
      ```
-     Binder : Linux Kernal 下的一種 driver
+     Binder : Linuxカーネル下のドライバの一種
      ```
      <br>
 
-    - `Messenger`：官方提供的一種方案，相較AIDL較輕量的方案，使用Handler、Ｍessage實作，同樣透過binder來運作，不過一次僅能處理一個請求<br>
-        - [官方- Messenger實作參考](https://developer.android.com/guide/components/bound-services#Messenger)
+    - `Messenger`：公式が提供するソリューションで、AIDLに比べて軽量です。Handler、Messageを使用して実装し、同じくバインダーを介して動作しますが、一度に一つのリクエストしか処理できません<br>
+        - [公式- Messenger実装参考](https://developer.android.com/guide/components/bound-services#Messenger)
 
         <br>
 
@@ -42,141 +42,140 @@ excerpt: "探索Android app應用程式之間的跨進程通訊技術（IPC）�
            <tr>
              <th class="tg-vrid"></th>
              <th class="tg-vrid">特性</th>
-             <th class="tg-vrid">開發上的差異</th>
+             <th class="tg-vrid">開発上の違い</th>
              <th class="tg-vrid">使用時機</th>
            </tr>
          </thead>
          <tbody>
            <tr>
              <td class="tg-3b1y">AIDL</td>
-             <td class="tg-3b1y">1.實時通信<br>2.同時接收多個請求並同時處理</td>
-             <td class="tg-3b1y">1.  <span style="color:#DD496E;background-color:#181B1C">.aidl</span> 能定義接口的input、output<br>開發上更直覺，呼叫時只需直接呼叫接口
-             <br>2.支援多個數據型別(Int、String...等)</td>
-             <td class="tg-3b1y">接口量多時<br>需時常處理請求</td>
+             <td class="tg-3b1y">1.リアルタイム通信<br>2.複数のリクエストを同時に受信し、同時に処理</td>
+             <td class="tg-3b1y">1.  <span style="color:#DD496E;background-color:#181B1C">.aidl</span> でインターフェースの入力、出力を定義できる<br>開発が直感的で、呼び出し時に直接インターフェースを呼び出すだけ
+             <br>2.複数のデータタイプ（Int、Stringなど）をサポート</td>
+             <td class="tg-3b1y">インターフェースが多い場合<br>頻繁にリクエストを処理する必要がある場合</td>
            </tr>
            <tr>
              <td class="tg-3rup">Messenger</td>
-             <td class="tg-3rup">1.實時通信<br>2.同時接收多個請求但是需排隊處理</td>
-             <td class="tg-3rup">1. 需在服務端與客戶端各自建立Messenger<br>來處理Message收與發<span style="font-weight:400;font-style:normal"></span><br>2.通過Message類傳遞資料</td>
-             <td class="tg-3rup">接口量不多<br>只需偶爾處理請求時</td>
+             <td class="tg-3rup">1.リアルタイム通信<br>2.複数のリクエストを同時に受信するが、順番に処理</td>
+             <td class="tg-3rup">1. サーバー側とクライアント側でそれぞれMessengerを作成する必要がある<br>Messageの送受信を処理するため<span style="font-weight:400;font-style:normal"></span><br>2.Messageクラスを通じてデータを伝達</td>
+             <td class="tg-3rup">インターフェースが少ない場合<br>時々リクエストを処理するだけで良い場合</td>
            </tr>
          </tbody>
        </table>
 
-       <br>
+<br>
 
-    - `Socket` : 雙方約定好IP，在本地端進行連線，形成一個C/S架構，以處理請求，部署範圍較大(區網內)
+- `Socket` : 双方がIPを約束し、ローカルで接続を行い、C/S構造を形成してリクエストを処理する。展開範囲は広い（ローカルネットワーク内）。
 
-      <table class="rwd-table">
-      <thead>
-        <tr>
-          <th class="tg-vrid"></th>
-          <th class="tg-vrid">性能</th>
-          <th class="tg-vrid">安全性</th>
-          <th class="tg-vrid">開發上的差異</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="tg-3b1y">Binder</td>
-          <td class="tg-3b1y">傳遞請求僅拷貝一次</td>
-          <td class="tg-3b1y">傳遞請求限制在Binder層內</td>
-          <td class="tg-3b1y">接口量多時<br>需時常處理請求</td>
-        </tr>
-        <tr>
-          <td class="tg-3rup">Soecket</td>
-          <td class="tg-3rup">傳遞請求需拷貝二次<br></td>
-          <td class="tg-3rup">傳遞請求暴露在整個區網內<br></td>
-          <td class="tg-3rup">接口量不多<br>只需偶爾處理請求時</td>
-        </tr>
-      </tbody>
-      </table>
+  <table class="rwd-table">
+  <thead>
+    <tr>
+      <th class="tg-vrid"></th>
+      <th class="tg-vrid">性能</th>
+      <th class="tg-vrid">安全性</th>
+      <th class="tg-vrid">開発上の違い</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="tg-3b1y">Binder</td>
+      <td class="tg-3b1y">リクエストの転送は一度だけコピー</td>
+      <td class="tg-3b1y">リクエストの転送はBinder層内に制限</td>
+      <td class="tg-3b1y">インターフェースが多い場合<br>頻繁にリクエストを処理する必要がある</td>
+    </tr>
+    <tr>
+      <td class="tg-3rup">Socket</td>
+      <td class="tg-3rup">リクエストの転送は二度コピーが必要<br></td>
+      <td class="tg-3rup">リクエストの転送はローカルネットワーク全体に露出<br></td>
+      <td class="tg-3rup">インターフェースが少ない場合<br>時折リクエストを処理するだけでよい</td>
+    </tr>
+  </tbody>
+  </table>
 
-        - [拷貝次數差異詳解點此](https://tw511.com/a/01/9215.html)
-
-      <br>
-
-    - `BroadCast` : 一種在Android系統內 讓App間接收、發送廣播的方式，來達成進程間交換資訊的作法
-
-        - 接收廣播 ： 註冊廣播器後即可接收到廣播，而又分為兩種註冊方式
-
-           1. 靜態註冊 : AndroidMestfest.xml 內註冊後 ,當該app未啟動時，若收到相關廣播，則會開啟該App來接收廣播
-           (限Android 8.0下，8開始後，移除靜態註冊)
-           2. 動態註冊 : 透過Context註冊, 此種方式只要context還存在，就會收到廣播<br>
-
-        - 發送廣播 ：
-
-           1. `sendOrderedBroadcast`: 依照優先級順序，一次只會有一個接收器收到廣播，並支援中途停止發送廣播
-               - 當多個app的接收器優先順序一樣時，會照最先安裝的app發送
-           2. `sendBroadcast` : 隨機順序向所有接收器發送，效率更高，只是會一次性發送資料給所有註冊的接收器
-           3. `LocalBroadcastManager.sendBroadcast` : 只在同個 app 中發送廣播
-
-        - 特性 ：
-
-           1. 有註冊相同廣播的接收器都能收到廣播，若要阻止全域收到廣播，
-           可加上自定義權限，限制指定app才能接收，
-           另外Android 4.0以上也有提供`setPackage(String)`，設置指定app接收
-           2. 在註冊BroadcastReceiver接收廣播器時，onReceive()方法在主線程上執行，
-           因怕耗時操作會影響到主線程，故官方建議操作維持要在10s內
-
-        - 安全考量 ：
-
-           1. 有可能第三方人士取得該自定義權限字串或設置的packageName，加到自己的app中，去收你的廣播資料
-           2. 廣播的命名是全域性的，如有人惡意註冊相同名稱，可以進行偽裝發送請求
-
-        - [官方 - 廣播相關](https://developer.android.com/guide/components/broadcasts)
+  - [コピー回数の違いの詳細はこちら](https://tw511.com/a/01/9215.html)
 
 <br>
-<div class="c-border-main-title-2"> Android app層 IPC方案 可能遭遇的安全性問題</div>
 
-* 接口被未授權用戶盜用：
-     - `BoardCast` :
-       - 發送廣播時，誰都能攔截廣播內容
-         - 對策：
-            1. Android 4 上使用setPackage(String)指定包名接收
-            2. 增加權限字段，讓同樣有宣告該字段的App接收
-       - 加上權限或指定包名後，若有人取得該字段或偽裝包名，則可以進行攔截、發送廣播
-         - 對策：
-            1. 混淆相關代碼，增加破解時間
-     - `Socket`：
-       - 公開接口，需暴露在整個區網下，知道IP的人都能用
-         - 對策：
-            1. 驗證用戶身份(自定義Token : 加密sha256、md5、aes、des...等)、權限
-            2. 使用Binder相關IPC方案，降低暴露範圍
-     - `AIDL`：
-       - 擁有.aidl檔的人，可以自行開發新的客戶端連進來
-         - 對策：
-           1. 驗證正在存取接口的UID (android.os.Process.myUid())
-           2. 驗證App permission `signature` ，讓擁有簽名的app才能存取: [權限指南](https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn#plevel)
-     - `Messenger`：
-       - bindService時，使用 `Intent().component = ComponentName("包名", "包名:Service名")`，讓得知包名、service名的人也能連
-         - 對策：
-              1. 類似上方AIDL解法，驗證UID、驗證簽名
-     - `ContentProvider`：
-       - contentProvider透過URI來定位資料表位置，當URI洩漏時，則可輕鬆讀取資料
-         - URI洩漏後其他衍生：
-              1. 透過drozer指令，即可讀取你的contentProvider敏感資訊
-              2. SQL注入 : ContentProvider使用資料表儲存共享資料，當自定義SQL語法，沒設計好時，有可能因非參數化設置，導致被SQL注入攻擊
-         - 對策：
-              1. 驗證權限、簽名
-              2. 混淆代碼
-              3. 若使用到SQL語法去寫，可以改用官方提供函數，避免人工定義時的錯誤機率。
+- `BroadCast` : Androidシステム内でアプリ間でブロードキャストを受信・送信する方法で、プロセス間で情報を交換する手法。
+
+  - ブロードキャストの受信 ： ブロードキャストレシーバーを登録すると、ブロードキャストを受信できる。登録方法は2種類ある。
+
+     1. 静的登録 : AndroidManifest.xml 内で登録すると、そのアプリが起動していない場合でも関連するブロードキャストを受信するとアプリが起動する。
+     （Android 8.0以降は静的登録が削除された）
+     2. 動的登録 : Contextを通じて登録。この方法ではcontextが存在する限りブロードキャストを受信する。<br>
+
+  - ブロードキャストの送信 ：
+
+     1. `sendOrderedBroadcast`: 優先順位に従って、一度に一つのレシーバーがブロードキャストを受信し、途中で送信を停止することができる。
+         - 複数のアプリのレシーバーの優先順位が同じ場合、最初にインストールされたアプリに送信される。
+     2. `sendBroadcast` : ランダムな順序で全てのレシーバーに送信し、効率が高いが、全ての登録されたレシーバーに一度にデータを送信する。
+     3. `LocalBroadcastManager.sendBroadcast` : 同じアプリ内でのみブロードキャストを送信する。
+
+  - 特性 ：
+
+     1. 同じブロードキャストを登録しているレシーバーは全てブロードキャストを受信できる。全体にブロードキャストが届かないようにするには、カスタム権限を追加して特定のアプリだけが受信できるようにする。また、Android 4.0以上では`setPackage(String)`を提供しており、特定のアプリに受信を設定できる。
+     2. BroadcastReceiverを登録してブロードキャストを受信する際、onReceive()メソッドはメインスレッドで実行されるため、時間のかかる操作がメインスレッドに影響を与える可能性がある。したがって、操作は10秒以内に維持することが推奨される。
+
+  - セキュリティ考慮 ：
+
+     1. 第三者がカスタム権限文字列や設定されたpackageNameを取得し、自分のアプリに追加してブロードキャストデータを受信する可能性がある。
+     2. ブロードキャストの名前はグローバルであるため、誰かが同じ名前で悪意のある登録を行うと、偽装してリクエストを送信することができる。
+
+  - [公式 - ブロードキャスト関連](https://developer.android.com/guide/components/broadcasts)
+
+<br>
+<div class="c-border-main-title-2"> Androidアプリ層のIPCソリューションで遭遇する可能性のあるセキュリティ問題</div>
+
+* インターフェースが未承認ユーザーに盗用される：
+  - `BroadCast` :
+    - ブロードキャストを送信する際、誰でもブロードキャスト内容を傍受できる。
+      - 対策：
+         1. Android 4 ではsetPackage(String)を使用してパッケージ名を指定して受信。
+         2. 権限フィールドを追加し、同じフィールドを宣言しているアプリだけが受信できるようにする。
+    - 権限やパッケージ名を指定した後、誰かがそのフィールドを取得したり、パッケージ名を偽装した場合、ブロードキャストを傍受・送信できる。
+      - 対策：
+         1. 関連コードを難読化し、解読時間を増やす。
+  - `Socket`：
+    - 公開インターフェースはローカルネットワーク全体に露出し、IPを知っている人は誰でも使用できる。
+      - 対策：
+         1. ユーザーの身元を確認（カスタムトークン：sha256、md5、aes、desなどで暗号化）、権限。
+         2. Binder関連のIPCソリューションを使用し、露出範囲を減らす。
+  - `AIDL`：
+    - .aidlファイルを持っている人は、新しいクライアントを開発して接続できる。
+      - 対策：
+        1. インターフェースにアクセスしているUIDを確認（android.os.Process.myUid()）。
+        2. アプリの権限`signature`を確認し、署名を持っているアプリだけがアクセスできるようにする：[権限ガイド](https://developer.android.com/guide/topics/manifest/permission-element?hl=zh-cn#plevel)。
+  - `Messenger`：
+    - bindService時に、`Intent().component = ComponentName("パッケージ名", "パッケージ名:サービス名")`を使用すると、パッケージ名やサービス名を知っている人も接続できる。
+      - 対策：
+           1. 上記のAIDLの解決策と同様に、UIDを確認し、署名を確認する。
+  - `ContentProvider`：
+    - contentProviderはURIを通じてデータベースの位置を特定するため、URIが漏洩するとデータを簡単に読み取ることができる。
+      - URIが漏洩した後のその他の派生：
+           1. drozerコマンドを使用すると、contentProviderの機密情報を読み取ることができる。
+           2. SQLインジェクション：ContentProviderはデータベースを使用して共有データを保存するため、カスタムSQL文が適切に設計されていない場合、パラメータ化されていない設定によりSQLインジェクション攻撃を受ける可能性がある。
+      - 対策：
+           1. 権限、署名を確認する。
+           2. コードを難読化する。
+           3. SQL文を使用する場合、公式が提供する関数を使用し、手動で定義する際のエラーの可能性を避ける。
 
 ~~~
-  * 以上有用到 Manifest.xml 宣告的元件，如：BroadCast、ContentProvider 可設置：
-     當 android:exported="true" 時，如果不做任何處理，可以接受來自其他 App 的訪問
-     當 android:exported="false" 時，限制為只接受來自同一個 App 或一個具有相同 `user ID` 的 App 的訪問
-    -> 用來限制只能在當前用戶組使用 （Android 4.2後支援多用戶）
+  * 以上有用到 Manifest.xml 宣言的コンポーネント、例えば：BroadCast、ContentProvider は以下のように設定できます：
+     android:exported="true" の場合、何も処理をしないと他のアプリからのアクセスを受け入れることができます
+     android:exported="false" の場合、同じアプリまたは同じ `user ID` を持つアプリからのアクセスのみを許可します
+    -> 現在のユーザーグループ内でのみ使用を制限するために使用されます（Android 4.2以降でマルチユーザーをサポート）
 
-  * `user ID`：就是有多少個實際用戶，即手機主帳號、訪客等多用戶
-    `uid`：與app process相關，每個用戶的每的應用的uid不同。
-    `appid`：包名相同的appid都一樣，即使是不同用戶。
+  * `user ID`：実際のユーザー数、つまり携帯電話のメインアカウント、ゲストなどのマルチユーザー
+    `uid`：アプリプロセスに関連し、各ユーザーの各アプリのuidは異なります。
+    `appid`：パッケージ名が同じであれば、異なるユーザーでもappidは同じです。
 ~~~
 
 <br>
-<div class="c-border-main-title-2">IPC方案 支持的數據類型 (根據library內目前看到支援的類型)</div>
-  * `BoardCast` : 透過Intent傳遞資料，其可帶bundle，而bundle支援：byte、char、short、float、string、parcelable、serializable等等
-  * `Socket` ： 透過 BufferedWriter寫出資料、BufferedReader接收資料，根據source code，目前支援 ：string、int、char[]
+<div class="c-border-main-title-2">IPCソリューションがサポートするデータタイプ (現在library内でサポートされているタイプに基づく)</div>
+  * `BoardCast` : Intentを介してデータを渡し、bundleを持つことができ、bundleはbyte、char、short、float、string、parcelable、serializableなどをサポートします
+  * `Socket` ： BufferedWriterを介してデータを書き出し、BufferedReaderでデータを受信します。ソースコードに基づくと、現在サポートされているのは：string、int、char[]
   * `AIDL` ： int、long、char、boolean、string、charSequence、list、map、parcelable
-  * `Messenger` ：透過Message傳遞資料，其可帶bundle，支援類型類似上方BoardCast
-  * `ContentProvider` ：透過ContentValues把資料存進對應URI的資料表，再由其他需用此資料拿URI取得，ContentValues支援的類型：String、Byte、Short、Integer、Long、Float、Double、Boolean、byte[]..等
+  * `Messenger` ：Messageを介してデータを渡し、bundleを持つことができ、サポートされるタイプは上記のBoardCastに類似しています
+  * `ContentProvider` ：ContentValuesを介してデータを対応するURIのデータベースに保存し、他の必要なデータを持つURIを取得します。ContentValuesがサポートするタイプは：String、Byte、Short、Integer、Long、Float、Double、Boolean、byte[]など
+
+

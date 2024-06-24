@@ -1,138 +1,137 @@
 ---
 layout: post
-title: "快速學會在Android App中調整元素間距 - 使用Kotlin extension程式碼設定間距"
+title: "Androidアプリで要素間のマージンを調整する方法 - Kotlin拡張コードを使用してマージンを設定"
 date: 2022-12-25 17:05:12 +0800
 image: cover/kotlin-clear-code-maring-layout-xml-constarint-layout-1.png
 tags: [Android,Kotlin,Extension]
 permalink: /clear_use_extension_to_set_margin
 categories: Kotlin
-excerpt: "在Android App中，調整元素間距是一個常見的需求，而使用Kotlin extension程式碼設定間距可以快速且簡單地達成此目的。在這篇文章中，我們將一步一步地學習如何使用這個技巧，讓您的App看起來更加美觀和專業。"
+excerpt: "Androidアプリで要素間のマージンを調整することは一般的なニーズです。Kotlin拡張コードを使用してマージンを設定することで、この目的を迅速かつ簡単に達成できます。この記事では、このテクニックを一歩一歩学び、アプリをより美しくプロフェッショナルに見せる方法を紹介します。"
 ---
 
-<h1 style="background-color:powderblue;">&nbsp;&nbsp;前言</h1>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;前書き</h1>
 
-今天要跟大家分享一個超簡單的小技巧，<br>
-讓你在設計 Android App 時可以用`程式碼`調整元素的間距。<br>
-這個方法用起來不僅方便，而且還可以讓你的設計更加美觀。<br>
-就算你是剛入門工程師，也可以輕鬆掌握！<br>
-跟著我一起來學吧！<br>
+今日は、超簡単な小技を皆さんに共有します。<br>
+Androidアプリを設計する際に、`コード`を使って要素のマージンを調整する方法です。<br>
+この方法は便利なだけでなく、デザインをより美しくすることができます。<br>
+初心者のエンジニアでも簡単にマスターできます！<br>
+一緒に学びましょう！<br>
 
-<h1 style="background-color:powderblue;">&nbsp;&nbsp;基本的方法</h1>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;基本的な方法</h1>
 
-在Android中調整元素間距有多種方法，本文將介紹使用Kotlin extension程式碼設定間距的方法。<br>
-在這之前我們先了解一下<br>
-在xml裡面設定view間距的話<br>
-最直接的僅需一行而已<br>
+Androidで要素間のマージンを調整する方法は複数ありますが、この記事ではKotlin拡張コードを使用してマージンを設定する方法を紹介します。<br>
+その前に、<br>
+xmlでviewのマージンを設定する場合、<br>
+最も直接的な方法は一行だけです。<br>
 `android:layout_marginLeft="30dp"`<br>
 
-有些情況下<br>
-當需求方要求你動態設定 Android View 元素間的間距時<br>
-通常可以用下面的的方法:<br>
+場合によっては、<br>
+要求者がAndroid View要素間のマージンを動的に設定するよう求めることがあります。<br>
+通常、以下の方法を使用できます。<br>
 <script src="https://gist.github.com/KuanChunChen/60e47ade8cf051643f9075e8157c6ded.js"></script>
 <br>
-這個方法需要實例化一個 LayoutParams<br>
-並且需要設定上下左右間距後才能 set 到你的 View 上<br>
-但如果你需要在多個地方都使用這個設定間距的方法<br>
-那就會讓程式碼變得冗長且難以維護。<br>
+この方法では、LayoutParamsをインスタンス化し、<br>
+上下左右のマージンを設定してからViewにセットする必要があります。<br>
+しかし、複数の場所でこのマージン設定方法を使用する必要がある場合、<br>
+コードが冗長になり、保守が難しくなります。<br>
 
-為了解決這個問題，<br>
-你可以使用 Kotlin Extension 去實作設定間距的方法，<br>
-這樣就能夠讓你的程式碼更簡潔且易於維護。<br>
+この問題を解決するために、<br>
+Kotlin Extensionを使用してマージン設定方法を実装できます。<br>
+これにより、コードがより簡潔で保守しやすくなります。<br>
 
-<h1 style="background-color:powderblue;">&nbsp;&nbsp;使用kotlin extension來完成</h1>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Kotlin Extensionを使用して実装</h1>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;step0. 這邊先展示一下完整的擴充function</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;ステップ0. まずは完全な拡張関数を示します</h4>
 <script src="https://gist.github.com/KuanChunChen/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
 
 <p class="table_container">
-  這段程式碼已經可以直接使用了<br>
-  複製到你的專案內<br>
-  直接拿到你的view呼叫就行了！<br>
+  このコードはすでに直接使用できます。<br>
+  プロジェクトにコピーして、<br>
+  直接viewを呼び出すだけです！<br>
   vb.btConfirmZero.margin(top = 0F)<br>
   vb.btConfirmOne.margin(bottom = 30F,right = 2F)<br>
   vb.btConfirmTwo.margin(bottom = 10F,left = 3F) <br>
-  <a class="link" href="#step5" data-scroll>這邊都懂的話可以直接跳到step5.</a>
+  <a class="link" href="#step5" data-scroll>ここまで理解できたら、直接ステップ5に進んでください。</a>
 </p><br>
 
-
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step1. 要如何實作呢？</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;ステップ1. どのように実装するか？</h4>
 <div class="c-border-content-title-4">
-  首先先建立一個function如下
+  まず、以下のように関数を作成します。
 </div><br>
 <script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script><br>
 
 <div class="table_container">
-  <p>上面程式碼解說</p>
+  <p>上記のコードの説明</p>
   <ol class="rectangle-list">
     <li>
       <a href="https://kotlinlang.org/docs/lambdas.html#function-types" target="_blank">
-        這邊我們傳入一個 function type 命名為block<br>
-        它其實就是一種Kotlin變數(可能別的語言也有 但是Java還沒支援)<br>
-          <b style="color:blue;">(Function type解釋可以參考:點此)</b><br>
-          使用function type 可以讓你用lambda去操作(Java雖有lambda，不過目前並沒有function type)
+        ここでは、blockという名前のfunction typeを渡します。<br>
+        これはKotlinの変数の一種です（他の言語にもあるかもしれませんが、Javaはまだサポートしていません）。<br>
+          <b style="color:blue;">（Function typeの説明はこちらを参照:クリック）</b><br>
+          Function typeを使用すると、lambdaを操作できます（Javaにもlambdaがありますが、現在のところfunction typeはありません）。
       </a>
     </li>
 
-    <li>
-      <a href="javascript:void(0)">
-        我們這邊使用泛型<br>
-        且用了型別轉換去轉換泛型<br>
-        有可能因為編譯時被認為是隱式型別強轉而產生錯誤<br>
-        因此如果在沒有明確類別<br>
-        直接強轉則可能遇到<br>
-        <b style="color:red;">`xxxxClass cannot be cast to zzzzClass` </b>這種的錯誤<br>
-        或是有些編譯器會直接提示你<b style="color:red;">`unchecked cast`</b>警告語<br><br>
+<li>
+  <a href="javascript:void(0)">
+    我々はここでジェネリックを使用しています<br>
+    そして型変換を使用してジェネリックを変換しました<br>
+    コンパイル時に暗黙の型キャストと見なされてエラーが発生する可能性があります<br>
+    したがって、明確なクラスがない場合<br>
+    直接キャストすると<br>
+    <b style="color:red;">`xxxxClass cannot be cast to zzzzClass` </b>のようなエラーが発生する可能性があります<br>
+    または、一部のコンパイラは直接<b style="color:red;">`unchecked cast`</b>警告を表示します<br><br>
 
-        當然你也可以 帶入clazz: Class之類的 來判斷實際的類是什麼<br>
-        但這樣code會變得更多<br>
-        當類別一多時就會寫更多的code、一直做重複的事...等等<br><br>
+    もちろん、clazz: Classのようなものを渡して実際のクラスを判断することもできます<br>
+    しかし、そうするとコードが増えます<br>
+    クラスが多くなると、さらに多くのコードを書き、同じことを繰り返すことになります...など<br><br>
 
-        所以這邊用了`reified`來作為解決方法<br>
-        他是一種kotlin提供來解決這類問題的一個用法<br>
-        -> 使用reified必需帶`inline`<br>
-      </a>
-    </li>
-  </ol>
+    したがって、ここでは`reified`を解決策として使用しました<br>
+    これは、この種の問題を解決するためにKotlinが提供する使い方の一つです<br>
+    -> reifiedを使用するには`inline`を付ける必要があります<br>
+  </a>
+</li>
+</ol>
 </div><br>
 
 <div class="c-border-content-title-4">
-    之後我們就可以這樣呼叫
+  その後、次のように呼び出すことができます
 </div><br>
 <script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
 <div class="table_container">
-  <p>上面程式碼解說</p>
+  <p>上記のコードの説明</p>
   <span>
-    這邊其實就是為了符合不同的 <b>ViewGroup.LayoutParams</b><br>
-    讓未來如果有更多繼承 <b>ViewGroup.LayoutParams</b> 的實體類想進行操作<br>
-    可以更有彈性<br>
+    ここでは、異なる<b>ViewGroup.LayoutParams</b>に対応するためです<br>
+    将来、<b>ViewGroup.LayoutParams</b>を継承する実体クラスが増えた場合<br>
+    より柔軟に操作できるようにします<br>
   </span>
 </div><br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. 寫一個dp to px的method</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. dpをpxに変換するメソッドを書く</h4>
 <script src="https://gist.github.com/KuanChunChen/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
 
-  - 這邊很簡單
-  主要是為了配合設定間距時使用的是pixel
-  所以寫了個轉換方法
+- ここは非常に簡単です
+  主に間隔を設定する際にピクセルを使用するため
+  変換メソッドを書きました
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. 透過擴充好的layoutParams去對layout的parameter做修改</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. 拡張したlayoutParamsを使用してレイアウトのパラメータを変更する</h4>
 <script src="https://gist.github.com/KuanChunChen/b64909a750c6a73306a1d1885f763f67.js"></script>
 <div class="table_container">
-  <p>上面程式碼解說</p>
+  <p>上記のコードの説明</p>
   <span>
-    這邊透過剛寫好的 <b>View.layoutParams</b> 去操作我們要設定的view<br><br>
+    ここでは、先ほど書いた<b>View.layoutParams</b>を使用して設定したいビューを操作します<br><br>
 
-    以前在java要設定都一定要一次輸入上下左右四個parmater<br>
-    因此這邊我們用<br>
+    以前はJavaで設定する際、必ず上下左右の4つのパラメータを一度に入力する必要がありました<br>
+    したがって、ここでは<br>
     <b>left: Float? = null, top: Float? = null, right: Float? = null, bottom: Float? = null</b><br>
-    來預設四個位置的間距都是null<br>
-    再使用kotlin null safe的特性去檢查，如<br>
+    として、4つの位置の間隔をすべてnullに設定します<br>
+    そしてKotlinのnull安全の特性を使用してチェックします。例えば<br>
     <b>left?.run { leftMargin = convertDpToPixel(this) }</b><br>
-    確定有值才會去設定margin間距值<br>
-    我們既不用擔心會null exception又能彈性的只輸入我們想改的位置就好<br>
+    値がある場合にのみマージンの間隔値を設定します<br>
+    null例外を心配する必要がなく、変更したい位置だけを柔軟に入力できます<br>
   </span>
 </div><br>
 
-<h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5.最後輕鬆使用</h4>
+<h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5. 最後に簡単に使用する</h4>
 
-  <script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>
+<script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>

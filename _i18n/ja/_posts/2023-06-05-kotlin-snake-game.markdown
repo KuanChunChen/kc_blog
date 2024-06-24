@@ -1,106 +1,106 @@
 ---
 layout: post
-title: "Android Kotlin ：經典貪吃蛇遊戲重現，寫好到遊玩不用一天！"
+title: "Android Kotlin：クラシックなスネークゲームの再現、1日で作って遊べる！"
 date: 2023-06-05 17:24:06 +0800
 image: snake_game/kotlin_snake_game_post.png
 tags: [Kotlin,Android]
 permalink: /kotlin_snake_game
 categories: Android實作
-excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇遊戲，讓您在學習過程中充分體驗到遊戲開發的樂趣！無論您是初學者還是有經驗的開發者，都能藉由這個實作教學加深對Kotlin語言和遊戲開發的理解。讓我們一起重溫這款老少咸宜的遊戲，動手開創您自己的經典回憶吧！"
+excerpt: "このチュートリアルでは、クラシックなスネークゲームを一歩一歩作成し、ゲーム開発の楽しさを存分に体験していただきます！初心者から経験豊富な開発者まで、この実践的なチュートリアルを通じてKotlin言語とゲーム開発の理解を深めることができます。一緒にこの老若男女に愛されるゲームを再現し、自分だけのクラシックな思い出を作りましょう！"
 ---
 
-
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 <div class="c-border-content-title-4">
-    在本篇教學中
+    このチュートリアルでは
 </div>
 <p>
-我們將學習如何使用 Android 的自定義 View 來實現經典的 Snake 遊戲。
+AndroidのカスタムViewを使用してクラシックなスネークゲームを実現する方法を学びます。
 <div class="c-border-content-title-4">
-    以下是我們將要實現的功能
+    以下は実現する機能です
 </div>
-1.蛇的移動和轉向<br>
-2.隨機生成食物<br>
-3.蛇吃食物後增長<br>
-4.碰到邊界或自身時遊戲重置<br>
+1.蛇の移動と方向転換<br>
+2.ランダムに食べ物を生成<br>
+3.蛇が食べ物を食べると成長<br>
+4.境界または自身に衝突したときにゲームをリセット<br>
 <div align="center">
   <img src="/images/snake_game/snake_demo.gif" alt="Cover" width="20%"/>
 </div>
 </p>
 
-<div class="c-border-main-title-2">實作貪食蛇的view</div>
+<div class="c-border-main-title-2">スネークゲームのViewの実装</div>
 <div class="c-border-content-title-4">
-    創建一個自定義 View 類<br>
+    カスタムViewクラスの作成<br>
 </div>
 <p>
 
   <script src="https://gist.github.com/KuanChunChen/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-      首先，創建一個名為 SnakeGameView 的自定義 View 類，並繼承自 View 類。<br>
+    <p>コード解説</p>
+      まず、SnakeGameViewという名前のカスタムViewクラスを作成し、Viewクラスを継承します。<br>
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    定義變量和初始化<br>
+    変数の定義と初期化<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-      在 SnakeGameView 類中，定義遊戲所需的變量，如蛇的位置、大小、方向等。<br>
-      以下概略解釋各項用途<br>
-      screenWidth:畫布寬(蛇可以跑的區域)<br>
-      screenHeight:畫布長(蛇可以跑的區域)<br>
-      snakeSize: 蛇的大小<br>
-      snake:整隻蛇座標存在LinkedList內<br>
-      food：食物座標<br>
-      foodPaint：食物樣式<br>
-      direction：蛇頭方向<br>
-      score：得分<br>
-      updateHandler：做一個間隔事件，讓貪食蛇持續更新畫面<br>
-      snakeHeadBitmap：蛇頭的bitmap圖<br>
-      snakeBodyBitmap：蛇身的bitmap圖<br>
-      borderColor：邊框顏色<br>
-      borderWidth：邊框寬度<br>
-      borderPaint：邊框樣式<br>
-      pendingDirection：即將轉向的方向<br>
+    <p>コード解説</p>
+      SnakeGameViewクラス内で、蛇の位置、サイズ、方向など、ゲームに必要な変数を定義します。<br>
+      以下は各項目の用途の概要です<br>
+      screenWidth:キャンバスの幅（蛇が走れる領域）<br>
+      screenHeight:キャンバスの高さ（蛇が走れる領域）<br>
+      snakeSize: 蛇のサイズ<br>
+      snake:蛇全体の座標をLinkedListに格納<br>
+      food：食べ物の座標<br>
+      foodPaint：食べ物のスタイル<br>
+      direction：蛇の頭の方向<br>
+      score：スコア<br>
+      updateHandler：スネークゲームの画面を継続的に更新するための間隔イベント<br>
+      snakeHeadBitmap：蛇の頭のビットマップ画像<br>
+      snakeBodyBitmap：蛇の体のビットマップ画像<br>
+      borderColor：境界線の色<br>
+      borderWidth：境界線の幅<br>
+      borderPaint：境界線のスタイル<br>
+      pendingDirection：次に向かう方向<br>
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    設置遊戲畫面尺寸<br>
+    ゲーム画面のサイズ設定<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    在 SnakeGameView 類中，<br>
-    我們需要覆寫 onMeasure 方法，<br>
-    以便根據蛇的大小調整遊戲畫面的尺寸。<br>
-    此範例展示了如何讓遊戲畫面自適應，<br>
-    使其能夠剛好能讓蛇完整走完。<br>
-    主要原因是不同廠牌手機的尺寸和密度各有差異，<br>
-    可能導致設定的畫面尺寸與蛇寬、高不同，<br>
-    從而影響遊戲效果。為了確保使用者體驗的一致性，採用了這種設計。<br>
-    開發者可以根據自己的需求進行相應的調整。
+    <p>コード解説</p>
+    SnakeGameViewクラス内で、<br>
+    onMeasureメソッドをオーバーライドして、<br>
+    蛇のサイズに基づいてゲーム画面のサイズを調整する必要があります。<br>
+    この例では、ゲーム画面が自動的に適応し、<br>
+    蛇が完全に移動できるようにする方法を示しています。<br>
+    主な理由は、異なるメーカーのスマートフォンのサイズと密度が異なるため、<br>
+    設定された画面サイズと蛇の幅、高さが異なる可能性があり、<br>
+    ゲームの効果に影響を与える可能性があるためです。<br>
+    ユーザー体験の一貫性を確保するために、この設計が採用されています。<br>
+    開発者は自分のニーズに応じて適切に調整できます。
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    繪製蛇和食物<br>
+    蛇と食べ物の描画<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/6d59bfaf552bade337814b0016fd0725.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    在 SnakeGameView ，<br>
-    onDraw 方法中，<br>
-    我們去繪製蛇和食物。<br>
-    這個範例我們用bitmap導入蛇頭、身體資源<br>
-    去客製化貪食蛇外觀<br>
-    另外，因為蛇會一直移動需要轉動方向<br>
-    所以使用Matrix() + rotationAngle 去設定旋轉角度<br>
+    <p>コード解説</p>
+    SnakeGameView の<br>
+    onDraw メソッドで、<br>
+    蛇と食べ物を描画します。<br>
+    この例では、ビットマップを使用して蛇の頭と体のリソースを導入し、<br>
+    貪食蛇の外観をカスタマイズします。<br>
+    また、蛇は常に移動し方向を変える必要があるため、<br>
+    Matrix() + rotationAngle を使用して回転角度を設定します。<br>
     <pre>
     val rotationAngle = when (direction) {
       Direction.UP -> 180f
@@ -113,74 +113,72 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
           matrix.postRotate(rotationAngle, bodyBitmap.width / 2f, bodyBitmap.height / 2f)
           matrix.postTranslate(part.x.toFloat(), part.y.toFloat())
           canvas.drawBitmap(bodyBitmap, matrix, null)</pre>
-    也可以根據自己的需求進行相應的調整。<br>
+    自分のニーズに応じて適切に調整することもできます。<br>
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    遊戲邏輯<br>
+    ゲームロジック<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/d3d6fa84b498999473e0ed041fcb48be.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    新增一個 updateGame 方法，實現遊戲的主要邏輯，如蛇的移動、碰撞檢測等。<br>
-    其中resetGame()可以自行定義當撞到牆或自己要進行什麼步驟<br>
-    如：跳出彈框、結束畫面...等等。
-
+    <p>コード解説</p>
+    ゲームの主要なロジック（蛇の移動、衝突検出など）を実装するために、updateGame メソッドを追加します。<br>
+    resetGame() では、壁や自分に衝突したときに実行する手順を定義できます。<br>
+    例：ポップアップを表示、終了画面など。
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    生成食物<br>
+    食べ物の生成<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/3f8e352778a37d355b2afb2607013b23.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    新增一個generateFood 方法，實現隨機生成食物的功能。<br>
-    把隨機生成的x,y座標，指定給前面宣告好的food物件，<br>
-    這樣之後在onDraw時，<br>
-    就能實現隨機產生食物的效果。<br>
+    <p>コード解説</p>
+    ランダムに食べ物を生成するために、generateFood メソッドを追加します。<br>
+    ランダムに生成された x, y 座標を前に宣言した food オブジェクトに指定します。<br>
+    これにより、onDraw 時にランダムに食べ物を生成する効果が実現できます。<br>
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    更新方向<br>
+    方向の更新<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    為了讓蛇能夠根據用戶的操作轉向，<br>
-    我們需要實現一個 updateDirection 方法。
+    <p>コード解説</p>
+    蛇がユーザーの操作に応じて方向を変えるために、<br>
+    updateDirection メソッドを実装する必要があります。
   </div><br>
 </p>
 
 
 <div class="c-border-content-title-4">
-    資源回收<br>
+    リソースの解放<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    為了避免內存泄漏，我們需要實現一個回收使用的資源，如bitmap。
-    讓之後接回activity or fragment 生命週期時可以釋放掉。
+    <p>コード解説</p>
+    メモリリークを避けるために、ビットマップなどの使用済みリソースを解放するメソッドを実装する必要があります。<br>
+    これにより、後でアクティビティやフラグメントのライフサイクルに戻ったときにリソースを解放できます。
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    接回fragment/activity 並設置按鈕事件<br>
+    フラグメント/アクティビティを接続し、ボタンイベントを設定する<br>
 </div>
 <p>
   <script src="https://gist.github.com/KuanChunChen/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
   <script src="https://gist.github.com/KuanChunChen/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
   <div class = "table_container">
-    <p>程式碼解說</p>
-    這是最後一步了，<br>
-    把前面實作的view接回fragment或activity<br>
-    再加上可以互動的按鈕就能實現與使用者互動的貪食蛇了！<br>
-    我這邊是使用自製的 joystickView 或者是你也可以使用四個按鈕去做上下左右的移動<br>
+    <p>コードの説明</p>
+    これが最後のステップです。<br>
+    前に実装したビューをフラグメントまたはアクティビティに接続し、<br>
+    インタラクティブなボタンを追加することで、ユーザーと対話できるスネークゲームが実現します！<br>
+    ここでは自作のジョイスティックビューを使用していますが、上下左右の移動には4つのボタンを使用することもできます。<br>
   </div><br>
 </p>

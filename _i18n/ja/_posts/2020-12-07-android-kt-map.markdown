@@ -80,39 +80,40 @@ Maps JavaScript API<br>
 <script src="https://gist.github.com/KuanChunChen/5099e838a2d8d9af507eb94e250b33b8.js"></script>
 
 
-依照官網的流程寫出 decode function （Kotlin version），<br>
-這邊提供我用Kotlin寫的例子
-可以依照你的需求，修改成你需求的樣子<br>
-（如修改返回的model…等等）：<br>
+公式サイトの手順に従ってデコード関数（Kotlinバージョン）を書きます。<br>
+ここでは私がKotlinで書いた例を提供します。
+あなたのニーズに応じて、必要な形に変更できます。<br>
+（例えば、返されるモデルの変更など）：<br>
 
 <script src="https://gist.github.com/KuanChunChen/17a978f6831fa8c0f2f80adffa1803ad.js"></script>
 ```
-這裡有一個重點，經過反轉的polyline編碼，返回的經緯度是相反的，所以你在處理經緯資料的時候，記得要把位置相反過來
+ここで重要なのは、反転されたポリラインエンコードを通過すると、返される緯度と経度が逆になることです。したがって、緯度と経度のデータを処理する際には、位置を逆にすることを忘れないでください。
 ```
 <br>
-第二步，將取得polyline encode帶入decode function :<br>
+次に、取得したポリラインエンコードをデコード関数に渡します。<br>
 <script src="https://gist.github.com/KuanChunChen/e9cf66a41cc014870cb8bab4c188a10a.js"></script><br>
 
-解碼後，可以取得類似下方的格式<br>
+デコード後、以下のような形式を取得できます。<br>
 
 <script src="https://gist.github.com/KuanChunChen/bf80d28f5abdd748f1def92a30e557ed.js"></script><br>
 
-這樣得到我們想要畫線的經緯度陣列，即可在google map使用PolylineOption 去畫線了：<br>
+このようにして、描画したい緯度経度の配列を取得し、GoogleマップでPolylineOptionを使用して線を描画できます。<br>
 
 <script src="https://gist.github.com/KuanChunChen/5eb77674995ca2e3422eed17825b22a6.js"></script><br>
 
-最後畫線得出結果如圖 (紅色路徑)：<br>
+最終的に描画された結果は以下の図のようになります（赤いルート）：<br>
 <div align="center">
   <img src="/images/googlemap/map02.png" alt="Cover" width="70%"/>
 </div>
 
-另外這邊提供個網站，可以直接線上解碼，<br>
-讓你在開發時，測試自己的decode結果是不是對的<br>
+さらに、オンラインでデコードできるウェブサイトを提供します。<br>
+開発中に自分のデコード結果が正しいかどうかをテストできます。<br>
 
 <ol>
   <li>
-    <a href="https://developers.google.com/maps/documentation/utilities/polylineutility">google官方Polyline Encoder Utility)</a>
+    <a href="https://developers.google.com/maps/documentation/utilities/polylineutility">Google公式Polyline Encoder Utility</a>
   </li>
 </ol>
 
-覺得我的文章有幫助到你的小夥伴，請不吝嗇的給我些鼓勵吧！
+私の記事があなたに役立ったと思ったら、ぜひ応援してください！
+

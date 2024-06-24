@@ -1,112 +1,113 @@
 ---
 layout: post
-title: "掌握 Android 持久化存儲：Kotlin 與 Room 資料庫實戰教學"
+title: "Androidの永続ストレージをマスターする：KotlinとRoomデータベース実践講座"
 date: 2023-08-14 09:45:01 +0800
 image: cover/kotlin_room-1.png
-tags: [Kotlin,Android]
+tags: [Kotlin, Android]
 permalink: /kotlin_room
 categories: Android教學
-excerpt: "在這篇實戰教學中，我們將深入探討如何在 Android 應用程式中使用 Kotlin 與 Room 來實現持久化存儲。無論你是初學者還是有經驗的開發者，這篇教學都將為你提供實用的知識和技巧，讓你能夠更有效地開發 Android 應用程式。讓我們一起探索 Kotlin 與 Room 資料庫的強大功能，並將它們完美地融入到你的下一個 Android 項目中吧!"
+excerpt: "この実践講座では、AndroidアプリケーションでKotlinとRoomを使用して永続ストレージを実現する方法を詳しく探ります。初心者から経験豊富な開発者まで、この講座は実用的な知識とテクニックを提供し、Androidアプリケーションの開発をより効率的に行えるようにします。KotlinとRoomデータベースの強力な機能を一緒に探求し、次のAndroidプロジェクトに完璧に組み込みましょう！"
 ---
+
 <div class="c-border-main-title-2">前言</div>
 
-1.根據需求導入要用的Room library <br>
-2.Room 主體為以下三種：Entity、DAO、Database<br>
-3.為防止查詢封鎖 UI，Room 不允許在主執行緒上存取資料庫<br>
+1.必要に応じて使用するRoomライブラリを導入します。<br>
+2.Roomの主なコンポーネントは以下の三つです：Entity、DAO、Database<br>
+3.クエリがUIをブロックするのを防ぐために、Roomはメインスレッドでのデータベースアクセスを許可しません。<br>
 
-<div class="c-border-main-title-2">實作</div>
-<div class="c-border-content-title-1">1.建立Entity </div><br>
-透過Room的<b style="color:red;">@Entity</b>標籤可以幫你建立db的table<br>
-<b style="color:red;">@PrimaryKey</b>幫你建立了每組資料唯一的Primary key<br>
-命名table 欄位 可以直接用變數 如 ：id<br>
-也可以使用 <b style="color:red;">@ColumnInfo(name = "name")</b> 指定欄位名稱<br>
+<div class="c-border-main-title-2">実装</div>
+<div class="c-border-content-title-1">1. Entityの作成</div><br>
+Roomの<b style="color:red;">@Entity</b>アノテーションを使用してデータベースのテーブルを作成できます。<br>
+<b style="color:red;">@PrimaryKey</b>アノテーションは各データセットにユニークなプライマリキーを作成します。<br>
+テーブルの列を変数として命名することもできます。例：id<br>
+また、<b style="color:red;">@ColumnInfo(name = "name")</b>を使用して列名を指定することもできます。<br>
 
 <script src="https://gist.github.com/KuanChunChen/051bf1984f9e40c090ee894112a46178.js"></script>
 
-<div class="c-border-content-title-1">2.建立DAO</div><br>
-透過Room的<b style="color:red;">@Dao</b>標籤可以幫你建立操作db資料的方式<br>
-如 <b style="color:red;">@Insert</b> ：可以讓你插入到table內<br>
-<b style="color:red;">@Query</b> ：可以讓你自定義SQL執行<br>
-一些常用的SQL可參考[官方文件](https://developer.android.com/training/data-storage/room/accessing-data?hl=zh-cn)<br>
-<b style="color:red;">@Delete</b> ：刪除資料<br>
-<b style="color:red;">@Insert(onConflict = OnConflictStrategy.REPLACE)</b> ：當遇到有衝突Primary key時 會Replace而不是忽略或不做事<br>
-<b style="color:red;">@Update</b>： 更新資料<br>
+<div class="c-border-content-title-1">2. DAOの作成</div><br>
+Roomの<b style="color:red;">@Dao</b>アノテーションを使用して、データベース操作の方法を作成できます。<br>
+例：<b style="color:red;">@Insert</b> ：テーブルに挿入できます。<br>
+<b style="color:red;">@Query</b> ：カスタムSQLを実行できます。<br>
+一般的なSQLの使用方法については、[公式ドキュメント](https://developer.android.com/training/data-storage/room/accessing-data?hl=zh-cn)を参照してください。<br>
+<b style="color:red;">@Delete</b> ：データを削除します。<br>
+<b style="color:red;">@Insert(onConflict = OnConflictStrategy.REPLACE)</b> ：衝突するプライマリキーがある場合、無視せずに置き換えます。<br>
+<b style="color:red;">@Update</b>： データを更新します。<br>
 
 <script src="https://gist.github.com/KuanChunChen/3961ad6afcdf02507c3cb00f9c298b44.js"></script>
-<div class="c-border-content-title-1">3.建立Database</div><br>
-使用<b style="color:red;">@Database</b>來創建一個RoomDatabase<br>
-entities 是你要建立的資料表<br>
-version 是更新版本用<br>
+<div class="c-border-content-title-1">3. Databaseの作成</div><br>
+<b style="color:red;">@Database</b>を使用してRoomDatabaseを作成します。<br>
+entitiesは作成するデータテーブルです。<br>
+versionは更新バージョン用です。<br>
 <script src="https://gist.github.com/KuanChunChen/1d50c50c8e8d9393dd1a00164b5eda51.js"></script>
 
 <div class="c-border-content-title-1">4.Build Database</div><br>
-直接用下面code 來獲得RoomDatabase 實例<br>
+直接以下のコードを使用して、RoomDatabaseのインスタンスを取得します。<br>
 <script src="https://gist.github.com/KuanChunChen/b79c0ac20805aad583d8f7215983e0d5.js"></script>
 
-<div class="c-border-content-title-1">5.實際操作Room</div><br>
-透過前面寫好的DAO直接操作<br>
+<div class="c-border-content-title-1">5.実際にRoomを操作する</div><br>
+前に書いたDAOを使って直接操作します<br>
 <script src="https://gist.github.com/KuanChunChen/e9f32283de317a26089f8995868f8eb2.js"></script>
 
 
-<div class="c-border-main-title-2">其他用法</div>
-<div class="c-border-content-title-1">非同步DAO用法</div>
-<div class="c-border-content-title-4">支援程度</div>
-1.Room 2.1 支援suspend function，並使用Coroutines<br>
-2.Room 2.2 支援Flow
-3.其他也有支援RxJava、LiveData、Guava...等，有興趣可看：<a herf="https://developer.android.com/training/data-storage/room/async-queries?hl=zh-tw#rxjava">官方文件</a>
-<div class="c-border-content-title-4">Coroutines 操作Room用法</div>
+<div class="c-border-main-title-2">その他の使い方</div>
+<div class="c-border-content-title-1">非同期DAOの使い方</div>
+<div class="c-border-content-title-4">サポートの程度</div>
+1.Room 2.1はsuspend関数をサポートし、Coroutinesを使用します<br>
+2.Room 2.2はFlowをサポートします
+3.その他にもRxJava、LiveData、Guavaなどをサポートしています。興味がある方は：<a herf="https://developer.android.com/training/data-storage/room/async-queries?hl=zh-tw#rxjava">公式ドキュメント</a>をご覧ください
+<div class="c-border-content-title-4">CoroutinesでRoomを操作する方法</div>
 <script src="https://gist.github.com/KuanChunChen/f3680a49a0472cb138d7ceb3ddaf9955.js"></script>
 
-<div class="c-border-content-title-4">Flow、LiveData操作Room用法</div>
+<div class="c-border-content-title-4">Flow、LiveDataでRoomを操作する方法</div>
 <script src="https://gist.github.com/KuanChunChen/f6bed0958c62e4a59c98fc52ee96969b.js"></script>
 
-完成上面操作介面後，照一般使用coroutines、flow、LiveData方式即可
+上記の操作インターフェースを完了した後は、通常のcoroutines、flow、LiveDataの方法で使用できます
 
-<div class="c-border-content-title-1">想要預先建立資料庫內容.db檔</div>
-若想要針對資料庫內存有預設資料可將存放資料的.db預先埋入儲存路徑，再透過createFromAsset創建<br>
-或者想要用File建立，則改成<b style="color:red;">.createFromFile(File("mypath"))</b>即可<br>
+<div class="c-border-content-title-1">事前にデータベース内容を作成する.dbファイル</div>
+データベースにデフォルトデータを含めたい場合、データを格納する.dbファイルを事前に保存パスに埋め込み、createFromAssetを使用して作成します<br>
+またはFileを使用して作成したい場合は、<b style="color:red;">.createFromFile(File("mypath"))</b>に変更します<br>
 <script src="https://gist.github.com/KuanChunChen/0719203d8066a043883d6c9cb03d3b32.js"></script>
 
-<div class="c-border-content-title-1">類型轉換器</div>
-當原生支援的的變數類型不夠用，剛好又想自訂時，<br>
-可用<b style="color:red;">@TypeConverters</b><br>
-轉換變數型態，並讓它能在Room中使用。<br>
-假設需要在 Room 資料庫中保存 Date，Room 不知道如何保存 Date 物件，可以用：<br>
-<div class="c-border-content-title-4">創建TypeConverter</div>
+<div class="c-border-content-title-1">タイプコンバーター</div>
+ネイティブでサポートされている変数タイプが不足している場合、カスタムしたい場合は、<br>
+<b style="color:red;">@TypeConverters</b>を使用して<br>
+変数タイプを変換し、Roomで使用できるようにします。<br>
+例えば、RoomデータベースにDateを保存する必要がある場合、RoomはDateオブジェクトの保存方法を知りませんが、次のようにできます：<br>
+<div class="c-border-content-title-4">TypeConverterを作成する</div>
 <script src="https://gist.github.com/KuanChunChen/e55fe47c2f6a123350ee57d7221b04ba.js"></script>
-<div class="c-border-content-title-4">加入到DB</div>
+<div class="c-border-content-title-4">DBに追加する</div>
 <script src="https://gist.github.com/KuanChunChen/ef76282b6e16583ca9b27e5928e75f21.js"></script>
-<div class="c-border-content-title-4">能在Room中使用了</div>
+<div class="c-border-content-title-4">Roomで使用できるようになりました</div>
 <script src="https://gist.github.com/KuanChunChen/c4e96bf29b2fe2a6605d026920984592.js"></script>
 
-<div class="c-border-content-title-1">Room程式碼上的一些使用技巧</div>
-<div class="c-border-content-title-4">1.可支援tableName用標籤形式定義 且 支援多重主鍵primaryKeys</div>
+<div class="c-border-content-title-1">Roomコードのいくつかの使用テクニック</div>
+<div class="c-border-content-title-4">1.tableNameをラベル形式で定義し、複数の主キーprimaryKeysをサポートする</div>
 
 <script src="https://gist.github.com/KuanChunChen/3e6a2690d888e8f5f389d43c3a7de414.js"></script>
-<div class="c-border-content-title-4">2.建立Embedded物件，並讓data class 建立儲存欄位</div>
+<div class="c-border-content-title-4">2.Embeddedオブジェクトを作成し、data classで保存フィールドを作成する</div>
 <script src="https://gist.github.com/KuanChunChen/48ae4b2ae0f50b05542e33007d451134.js"></script>
-<div class="c-border-content-title-4">3.定義資料表關聯</div>
-有兩張表<br>
-某些case下想要取得兩表對應的資料來做使用<br>
+<div class="c-border-content-title-4">3.データベースのリレーションを定義する</div>
+2つのテーブルがあります<br>
+特定のケースで2つのテーブルの対応するデータを取得して使用したい場合<br>
 <script src="https://gist.github.com/KuanChunChen/0dff70f438d0308cf7b271578bc8655d.js"></script>
-加入 對應的父、子entity，以此例，分別是UserEntity、HistoryEntity。<br>
-再來加入<b style="color:red;">@Relation</b> 其中需要入對應的唯一鍵值，如primaryKey。<br>
-以此例來說parentColumn對應的是UserEntity的primaryKey<br>
-entityColumn對應的是HistoryEntity的primaryKey<br>
+対応する親、子エンティティを追加します。この例では、それぞれUserEntity、HistoryEntityです。<br>
+次に、<b style="color:red;">@Relation</b>を追加します。ここでは対応する一意のキー値（例えばprimaryKey）を指定します。<br>
+この例では、parentColumnはUserEntityのprimaryKeyに対応し、<br>
+entityColumnはHistoryEntityのprimaryKeyに対応します<br>
 <script src="https://gist.github.com/KuanChunChen/f396d299150f77b7d5162b583ff51b9b.js"></script>
-最後再在DAO加入操作方法：<br>
-其中加入<b style="color:red;">@Transaction</b>，可以保證數據的一致性，<br>
-因有時候數據庫進行多個操作時，<br>
-如操作A表再次操作B表，<br>
-若中間A表成功取出，B表失敗，<br>
-這時返回的結果可能是錯的，<br>
-所以使用<b style="color:red;">@Transaction</b> 可以讓取得資料要就全部成功，不然就全部失敗，<br>
-不會讓操作段在一半，使得資料取出怪怪的。<br>
+最後にDAOに操作メソッドを追加します：<br>
+ここで<b style="color:red;">@Transaction</b>を追加することで、データの一貫性を保証できます。<br>
+データベースが複数の操作を行う場合、<br>
+例えばAテーブルを操作してからBテーブルを操作する場合、<br>
+途中でAテーブルが成功してBテーブルが失敗した場合、<br>
+返される結果が間違っている可能性があります。<br>
+したがって、<b style="color:red;">@Transaction</b>を使用することで、データの取得が全て成功するか、全て失敗するかのどちらかになり、<br>
+操作が途中で中断されることがなく、データの取得が不正確になることを防ぎます。<br>
 <script src="https://gist.github.com/KuanChunChen/dfb5667f16cee00795e54b3d402ce018.js"></script>
-<div class="c-border-content-title-4">4.針對資料庫做版本遷移</div>
- - 自動更新：@Database內的version，加入遷移版本：AutoMigration (from = 1, to = 2)會讓資料庫隨version自動版本遷移。
+<div class="c-border-content-title-4">4.データベースのバージョン移行</div>
+ - 自動更新：@Database内のversionにAutoMigration (from = 1, to = 2)を追加することで、データベースはversionに従って自動的にバージョン移行します。
 <script src="https://gist.github.com/KuanChunChen/2e2978b908ea4a289888ce29677c3886.js"></script>
- - 手動更新：透過 Migration 定義遷移的SQL指令
+ - 手動更新：Migrationを使用して移行のSQLコマンドを定義します
  <img src="/images/room/01.png" alt="room 1">
- 在build Room db時加入Migration，例如：
+ Room dbをビルドする際にMigrationを追加します。例えば：
  <script src="https://gist.github.com/KuanChunChen/9eeeca3b183f77f047f6ed6f437b220c.js"></script>

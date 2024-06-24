@@ -1,86 +1,83 @@
 ---
 layout: post
-title: "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大關鍵字教學！"
+title: "【Android/Kotlin】極速掌握 inline / noinline / crossinline 三大キーワードの教え！"
 date: 2020-11-30 21:01:43 +0800
 image: cover/android-kt-inline-1.png
 tags: [Android]
 categories: Kotlin
-excerpt: "在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。這些關鍵字可以在函數聲明中使用，它們可以對函數進行不同的行為修改，進而影響代碼的運行方式和性能。"
+excerpt: "Kotlinプログラミングでは、inline、noinline、crossinlineは一般的なキーワードです。これらのキーワードは関数宣言で使用でき、関数の動作を変更し、コードの実行方法やパフォーマンスに影響を与えることができます。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">前書き</div>
 
-在 Kotlin 編程中，inline、noinline 和 crossinline 是常見的關鍵字。<br>
-這些關鍵字可以在函數聲明中使用，<br>
-它們可以對函數進行不同的行為修改，<br>
-進而影響代碼的運行方式和性能。<br>
-本篇文章將詳細介紹這三個關鍵字的使用方式和區別，<br>
-並提供相關的代碼示例和實際應用場景。
+Kotlinプログラミングでは、inline、noinline、crossinlineは一般的なキーワードです。<br>
+これらのキーワードは関数宣言で使用でき、<br>
+関数の動作を変更し、<br>
+コードの実行方法やパフォーマンスに影響を与えることができます。<br>
+この記事では、これら3つのキーワードの使用方法と違いについて詳しく説明し、<br>
+関連するコード例と実際の使用シーンを提供します。
 
 <div class="c-border-content-title-4">inline</div>
 
-inline 實際上的作用，<br>
-就是會在編譯的時候把你有使用inline的function內容直接複製到執行處，<br>
-而不是直接實例化一個物件，<br>
-藉由inline來減少實例化物件來提升效能<br>
-先簡單的說，我們寫一個funcion會寫成像下方這樣：<br>
+inlineの実際の効果は、<br>
+コンパイル時にinlineを使用した関数の内容を実行箇所に直接コピーすることです。<br>
+オブジェクトを直接インスタンス化するのではなく、<br>
+inlineを使用してオブジェクトのインスタンス化を減らし、パフォーマンスを向上させます。<br>
+簡単に言うと、関数を書くときは以下のように書きます：<br>
 <script src="https://gist.github.com/KuanChunChen/626f82a8e911cb4ab227f0bffc4220b9.js"></script>
 <br>
 
-
-然而，如果帶入一般變數的function直接加上inline，<br>
-某些IDE可能會提醒你這樣直接使用，<br>
-並不會增加效能表現。
-像是下面這邊示範，<br>
-只有帶入一般變數並使用inline，<br>
-則編譯器跳黃底提醒，<br>
-說明了預期要帶入function type 變數才能有效提升效能表現。<br>
+しかし、一般的な変数を持つ関数に直接inlineを追加すると、<br>
+一部のIDEはこのように直接使用しても、<br>
+パフォーマンスが向上しないと警告するかもしれません。<br>
+以下の例のように、<br>
+一般的な変数を持つ関数にinlineを使用すると、<br>
+コンパイラは黄色の背景で警告を表示し、<br>
+関数型変数を渡すことでパフォーマンスが向上することを示します。<br>
 
 <div align="center">
   <img src="/images/inline/inline-02.png" alt="Cover" width="1000%"/>
 </div>
 <br>
-所以，我們試著寫出一個帶入function type的function，<br>
-並寫一個一樣的function帶有inline，就像這樣：<br>
+そこで、関数型変数を持つ関数を作成し、<br>
+同じ関数にinlineを追加してみます：<br>
 
 <script src="https://gist.github.com/KuanChunChen/0b924c1634435c157fba4a73f3c4afc9.js"></script>
 <br>
 
-這兩個執行後你會發現返回的結果一樣，<br>
-但是實際上，<br>
-如果你反編譯這段code出來看的話(如下)，<br>
-你會發現，沒有用inline，<br>
-程式在跑的時候，<br>
-會針對你的lambda function創建一個新的instance，<br>
-也就是會實例化一個新的物件，<br>
-如果你剛好有一段code需要重複運用到這個function，<br>
-他就會重複創建物件，<br>
-因此可能會花比較多效能去處理這個lambda function，<br>
-所以如果使用inline 就可以降低這方面效能的消耗。<br>
+これらを実行すると、結果は同じであることがわかりますが、<br>
+実際には、<br>
+このコードを逆コンパイルしてみると（以下のように）、<br>
+inlineを使用しない場合、<br>
+プログラムはlambda関数の新しいインスタンスを作成します。<br>
+つまり、新しいオブジェクトをインスタンス化します。<br>
+コードの一部がこの関数を繰り返し使用する必要がある場合、<br>
+オブジェクトを繰り返し作成することになります。<br>
+そのため、lambda関数を処理するためにより多くのパフォーマンスを消費する可能性があります。<br>
+inlineを使用すると、このパフォーマンスの消費を減らすことができます。<br>
 
 <script src="https://gist.github.com/KuanChunChen/0edf38ee27045d23b0b490ca4381f286.js"></script>
 
 <br>
 
-提示：**(Function1）null.INSTANCE**，是反編譯器找不到等效的Java 類的顯示。
+ヒント：**(Function1）null.INSTANCE**は、逆コンパイラが等価なJavaクラスを見つけられないことを示しています。
 
+上記の例から、lambda関数を使用する際に、<br>
+inlineを使用すると処理のパフォーマンスが向上することがわかります。<br>
+しかし、実際に使用するタイミングはいつでしょうか？例を挙げて説明します。<br>
 
-從上面的例子可以單看出，使用lambda function的當下，<br>
-如果用inline，可以提升處理的效能，<br>
-但實際上，我們會使用的時機呢？這邊我舉個例子<br>
-
-假設你有個情境，是需要重複呼叫某個帶有lambda 的function，比較沒經驗的可能會直接這樣寫：
+例えば、lambdaを持つ関数を繰り返し呼び出す必要がある状況があるとします。経験の浅い人は次のように書くかもしれません：
 
 <script src="https://gist.github.com/KuanChunChen/6f5a374bee3a35b754d5f551b170f969.js"></script>
 <br>
 
-可以看到，在你反編譯後，<br>
-你會看到你雖然達成了你用的重複執行10次，<br>
-但同時，你也重複創建了10次同樣的物件，<br>
+逆コンパイルすると、<br>
+10回の繰り返し実行を達成していることがわかりますが、<br>
+同時に同じオブジェクトを10回作成していることもわかります。<br>
 
-所以當你比較有經驗後，你可以：<br>
-**1.把lambda function在迴圈外部創建**<br>
-這樣同樣能提升效能，但既然都使用kotlin了，那就使用inline也可以。<br>
+経験を積むと、次のようにできます：<br>
+**1. lambda関数をループの外部で作成する**<br>
+これによりパフォーマンスが向上しますが、Kotlinを使用しているので、inlineを使用することもできます。<br>
 <script src="https://gist.github.com/KuanChunChen/c7535ba99806202c354e571447b99c68.js"></script>
 <br>
 
@@ -90,66 +87,59 @@ inline 實際上的作用，<br>
 
 <br>
 
+このように、inlineを使用する利点がわかります。<br>
 
-這樣的話，你就能看出，使用inline的優勢，<br>
-
-好了，接下來說說noinline 跟crossinline有什麼差別嗎，<br>
-其實剩下這兩個關鍵字，<br>
-我感覺是用來輔助inline的，<br>
-他不像inline一樣，是加在fun前面，<br>
-他反而是用來設定function type(or lambda function)的。<br>
+さて、次にnoinlineとcrossinlineの違いについて説明します。<br>
+実際、残りの2つのキーワードは、<br>
+inlineを補助するためのものだと感じます。<br>
+inlineのようにfunの前に付けるのではなく、<br>
+function type（またはlambda function）を設定するためのものです。<br>
 
 <div class="c-border-content-title-4">noinline</div>
-noinline的概念，其實更簡單了，<br>
-當你了解inline，就會明白為何我說這兩個是輔助了，<br>
-這個的用途，<br>
-是當你一個inline function內含有多個function type時，<br>
-你可以去控制，哪個lambda 要使用inline，例如：
+noinlineの概念は、実際にはもっと簡単です。<br>
+inlineを理解すれば、なぜこれら2つが補助的なものかがわかります。<br>
+この用途は、<br>
+1つのinline function内に複数のfunction typeが含まれている場合に、<br>
+どのlambdaにinlineを使用するかを制御するためのものです。例えば：
 
 <script src="https://gist.github.com/KuanChunChen/b6f489a19d880c3a6f89e53d90521dd5.js"></script>
 <br>
-因此，你也能依照需求，去選擇要不要用inline
+したがって、必要に応じてinlineを使用するかどうかを選択できます。
 <br>
 
 <div class="c-border-content-title-4">crossinline</div>
-先來個前導概念：<br>
-當你在使用lambda function時，<br>
-如果在宣告的lambda function 裡面加入return ，<br>
-會導致呼叫時，使用lambda function的地方直接return出該function：<br>
+まず前提概念として：<br>
+lambda functionを使用する際に、<br>
+宣言されたlambda function内にreturnを追加すると、<br>
+呼び出し時にlambda functionを使用している場所から直接returnされます。<br>
 <script src="https://gist.github.com/KuanChunChen/e9fdbb9fc2aefe4841853b23d1db8714.js"></script><br>
 
-
-
-這時候，你不想要跳出整個inline function ，<br>
-你可以用像上方code提到的，直接將原本的return改成 return@getMinutesWithInline 這樣，<br>
-他就只會跳出宣告的lambda function。<br>
-或是你也能使用crossinline的關鍵字，<br>
-他也是用來修飾lambda function的，<br>
-也是輔助inline使用的，<br>
-功效是可以避免有return時，直接被return出去！<br>
-
+この時、inline function全体から抜け出したくない場合、<br>
+上記のコードのように、元のreturnをreturn@getMinutesWithInlineに変更することで、<br>
+宣言されたlambda functionからのみ抜け出すことができます。<br>
+または、crossinlineキーワードを使用することもできます。<br>
+これもlambda functionを修飾するためのもので、<br>
+inlineを補助するためのものです。<br>
+効果としては、returnがある場合に直接外部のプログラムフローに影響を与えないようにすることができます。<br>
 
 <script src="https://gist.github.com/KuanChunChen/940839c5f5bbaf854a0c243748192758.js"></script>
 
-
-
 <div class="c-border-main-title-2">結論</div>
-使用 inline<br>
-能夠降低程式呼叫lambda function時重複創建實例化<br>
-藉此提升效率<br>
-使用 inline 能避免建立過多的實例化物件<br>
-使用 noinline 可以讓lambda 不使用inline<br>
-使用 crossinline 可以避免lambda 中的 return 影響外部程式流程<br>
-
+inlineを使用することで、<br>
+プログラムがlambda functionを呼び出す際にインスタンス化を繰り返すことを減らし、<br>
+効率を向上させることができます。<br>
+inlineを使用することで、過剰なインスタンス化オブジェクトの作成を避けることができます。<br>
+noinlineを使用することで、lambdaがinlineを使用しないようにすることができます。<br>
+crossinlineを使用することで、lambda内のreturnが外部のプログラムフローに影響を与えるのを防ぐことができます。<br>
 
 <div class="card py-4 h-100">
     <div class="card-body text-center">
         <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-        <h4 class="text-uppercase m-0">inline / noinline / crossinline範例程式碼</h4>
+        <h4 class="text-uppercase m-0">inline / noinline / crossinlineのサンプルコード</h4>
         <hr class="my-4 mx-auto" />
         <div style="font-size: 1.5em;">
           <a href="https://github.com/KuanChunChen/KC_InlineDemo/blob/master/app/src/main/java/k/c/horialtal/move/sheet/kc_inlinedemo/InlineUtil.kt">
-Sample Code</a>
+サンプルコード</a>
         </div>
     </div>
 </div>
