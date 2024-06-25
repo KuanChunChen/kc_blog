@@ -2,7 +2,7 @@
 .language-dropbtn {
   background-color: transparent;
   color: white;
-  
+
   font-size: 16px;
   border: none;
 }
@@ -62,20 +62,19 @@
 
 @media (max-width: 650px) {
   .language-dropbtn {
-    position: relative;
-    width: 140px;
-    display: inline-block;
-    overflow-y: hidden;
-    z-index: 2;
+    width: 100%;
+    display: block;
   }
 
   .language-dropdown-content {
-    position: absolute;
-    background-color: #f9f9f9;
+    position: static;
     width: 100%;
-    z-index: 3;
-    left: -150px;
-    top: -210px;
-    overflow-y: scroll;
+    max-height: none;
+    overflow-y: auto;
+    box-shadow: none;
+  }
+
+  .language-dropdown-content.show {
+    display: block;
   }
 }

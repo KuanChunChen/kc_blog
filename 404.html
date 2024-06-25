@@ -33,9 +33,13 @@ permalink: /404.html
       </div>
     </div>
   </header>
-  <h1>Sorry!</h1>
-  <h1 style="font-weight:bold; font-size: 18px;">We can't seem to find the resource you're looking for.</h1>
-  <p>The requested page could not be found.</p>
-  <p style="font-size: 16px; opacity: 0.7">Please check that the Web site address is spelled correctly.<br>Or go to our <a href="{{site.baseurl}}/">home page</a>, and use the menus to navigate to a specific section.</p>
+  <h1>{% t errorPage.title %}</h1>
+  <h1 style="font-weight:bold; font-size: 18px;">{% t errorPage.not_found_page_1 %}</h1>
+  <p>{% t errorPage.not_found_page_2 %}</p>
+  <p style="font-size: 16px; opacity: 0.7">
+    {% assign help_text = site.translations[site.lang].errorPage.not_found_help %}
+    {% assign replaced_text = help_text | replace: '%{baseurl}', site.baseurl_root %}
+    {{ replaced_text | markdownify }}
+  </p>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5317402524376092" crossorigin="anonymous"></script>
 </div>

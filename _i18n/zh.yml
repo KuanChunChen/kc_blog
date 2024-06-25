@@ -6,12 +6,19 @@ global:
   history: 往昔篇章
 categories:
   portfolio: Portfolio
-  android-tutorial: Android教學
-  android-implementation: Android實作
+  android_tutorial: Android教學
+  android_implementation: Android實作
   kotlin: Kotlin
-  jetpack-compose: Jetpack Compose
-  other-notes: Notes
+  jetpack_compose: Jetpack Compose
+  other_notes: Notes
   more: More
   gist: 參觀我的Gist
 sentence:
   about: I am an Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.
+errorPage:
+  title: Sorry!
+  not_found_page_1: We can't seem to find the resource you're looking for.
+  not_found_page_2: The requested page could not be found.
+  not_found_help: "Please check that the Web site address is spelled correctly.<br>Or go to our <a href=\"%{baseurl}/\">home page</a>, and use the menus to navigate to a specific section."
+
+

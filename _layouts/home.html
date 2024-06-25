@@ -101,3 +101,19 @@ layout: default
 
   
 </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  function updateNavbarHeight() {
+    const navbar = document.querySelector('.navbar');
+    const navbarHeight = navbar.offsetHeight;
+    document.documentElement.style.setProperty('--navbar-height', `${navbarHeight}px`);
+  }
+
+  // Update the height on load
+  updateNavbarHeight();
+
+  // Update the height on window resize
+  window.addEventListener('resize', updateNavbarHeight);
+});
+</script>

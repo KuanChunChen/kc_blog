@@ -10,3 +10,6 @@ images/.DS_Store
 .github/.DS_Store
 
 _site/
+Gemfile.lock
+_i18n/ja/_posts/.chatgpt-md-translator
+_i18n/ja/_posts/.prompt.md
