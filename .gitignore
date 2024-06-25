@@ -13,3 +13,10 @@ _site/
 Gemfile.lock
 _i18n/ja/_posts/.chatgpt-md-translator
 _i18n/ja/_posts/.prompt.md
+_i18n/ja/process_md_files.sh
+_i18n/en/.chatgpt-md-translator
+_i18n/en/.prompt.md
+_i18n/en/process_md_files.sh
+_i18n/zh/_posts/.chatgpt-md-translator
+_i18n/zh/_posts/.prompt.md
+_i18n/zh/process_md_files.sh

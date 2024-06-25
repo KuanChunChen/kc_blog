@@ -1,20 +1,20 @@
 ---
 layout: post
-title: "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02"
+title: "Learning Android Kotlin Custom UI Techniques - Switching Views and Dropdown Animation Tutorial - 02"
 date: 2020-11-20 16:04:13 +0800
 image: cover/android-photo.jpg
 permalink: /android/custom02
 tags: [Android]
 categories: Android實作
-excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。"
+excerpt: "In this tutorial, you will learn how to use Android Kotlin custom UI techniques, specifically how to implement switching views and dropdown animations."
 ---
 
-Hello,大家好,這裡是Elegant Access的 KC，<br>
-歡迎大家繼續回來看如何客製化，<br>
-左右切換view與動畫的下拉欄的實作篇，<br>
-接下來的段落，我就會來介紹，該如何一步一步完成這個客製化的view！<br>
+Hello, everyone, this is KC from Elegant Access,<br>
+Welcome back to the implementation part of customizing<br>
+switching views and dropdown animations.<br>
+In the following paragraphs, I will introduce how to complete this custom view step by step!<br>
 <br>
-首先我們因為要客製化自己的view，所以需要先創一個類，例如這邊，我取名為 HorizontalMoveView ：
+First, since we need to customize our own view, we need to create a class. For example, here, I named it HorizontalMoveView:
 <br>
 <br>
 
@@ -24,52 +24,44 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 <br>
 <br>
-建造這個類，並繼承你想要使用的layout，這邊想要讓view擁有什麼特性而繼承什麼，可以依照你的需求去調整，例如我想要用FrameLayout：
+Create this class and inherit the layout you want to use. You can adjust it according to your needs, depending on what characteristics you want the view to have. For example, I want to use FrameLayout:
 
 <script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
 
 <br>
 <br>
 
-
-接著來創建這個view包含哪些東西，所以要創建自定義的xml來當作這個view的外觀，例如：我這個view包含了webview,image view,recycler view等等的佈局，可以依照需求去自定義。
-
+Next, create what this view contains, so you need to create a custom XML to serve as the appearance of this view. For example, my view includes a webview, image view, recycler view, etc. You can customize it according to your needs.
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-jpg06.png" alt="Cover" width="30%"/>
 </div>
 
-
-
 <br>
 <br>
-上面那張圖的佈局實際上的code如下：
+The actual code for the layout in the above image is as follows:
 <script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script>
 
 <br>
 <br>
 
-這邊的佈局比較基本，沒有什麼特別難的地方，主要是依照讀者的專案需求，來定義想要的佈局，不一定要照上面的也可以，但我習慣分檔，避免檔案都混在一起，這時候你只要在剛剛創建的 HorizontalMoveView 裡面去加載這張佈局，如下：
+This layout is relatively basic and not particularly difficult. It mainly depends on the reader's project requirements to define the desired layout. You don't have to follow the above exactly, but I prefer to separate files to avoid mixing them together. At this point, you just need to load this layout in the HorizontalMoveView you just created, as follows:
 
 <script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
 
 <br>
 <br>
 
-
-那到這邊，你就算完成第一步了，你已經可以創建你自己的custom view，但注意，因為到目前都只有空殼而已，只有外皮，都還沒寫任何的function去支持你的custom view ，所以目前，你可以呼叫你的custom view來用，但沒有任何功能，只有一個畫面顯示在那邊而已，所以你還必需要去寫他的功能來用。
-這邊要先嘗試呼叫剛寫好的view，可以這樣：
-
+At this point, you have completed the first step. You can now create your own custom view, but note that so far, it's just an empty shell with no functions to support your custom view. So currently, you can call your custom view to use it, but it has no functionality, just a display. Therefore, you still need to write its functions to use it.
+Here, try calling the view you just wrote like this:
 
 <script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
 
-
 <br>
 <br>
 
-
-把你剛剛客製的view加入你要用的地方，至於你的custom view在哪，就要看你存放的package了，把你的package路徑加上你的file name就可以了。
-目前寫到這邊，你大概可以呼叫出一張空白的view了，因為還沒寫function，所以可能會長得像下面這樣：
+Add your custom view to the place where you want to use it. As for where your custom view is, it depends on the package you stored it in. Just add your package path and your file name.
+At this point, you can probably call out a blank view because no functions have been written yet, so it might look like this:
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-jpg07.png" alt="Cover" width="30%"/>
@@ -77,25 +69,25 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 <br>
 <br>
-那今天這邊先告一段落，接下來我會一一介紹寫一些function或定義recycler view 等等來完成我們的整個view。
-接著收看，繼續實作左右滑動的recycler view：
+Let's stop here for today. Next, I will introduce how to write some functions or define a recycler view, etc., to complete our entire view.
+Stay tuned for the continuation of implementing the horizontal sliding recycler view:
 
 <div class="table_container">
   <a href="{{site.baseurl}}/2020/11/21/android-kotlin-custom-view-03/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
-  <a href="{{site.baseurl}}/android/custom03">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 03</a>
+<a href="{{site.baseurl}}/android/custom03">Learn Android Kotlin Custom UI Techniques - Switching Views and Dropdown Animation Tutorial - 03</a>
 </div>
 
-回去看前導：
+Go back to the prelude:
 
 <div class="table_container">
   <a href="{{site.baseurl}}/2020/11/14/android-kotlin-custom-view-01/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
-  <a href="{{site.baseurl}}/android/custom01">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01</a>
+  <a href="{{site.baseurl}}/android/custom01">Learn Android Kotlin Custom UI Techniques - Switching Views and Dropdown Animation Tutorial - 01</a>
 </div>
 
 <br>

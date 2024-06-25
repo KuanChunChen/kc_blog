@@ -1,33 +1,33 @@
 ---
 layout: post
-title: "Android Jetpack Compose 基本應用教學"
+title: "Android Jetpack Compose Basic Tutorial"
 date: 2021-09-13 16:00:48 +0800
 image: cover/ea-website-base-cover-photo-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-base
-excerpt: "歡迎來到 Android Jetpack Compose 基本應用教學！在本教學中，我們將帶你進入 Jetpack Compose 的世界，透過一步步的指導，讓你掌握 Compose 的基本概念和技巧。"
+excerpt: "Welcome to the Android Jetpack Compose Basic Tutorial! In this tutorial, we will introduce you to the world of Jetpack Compose, guiding you step by step to master the basic concepts and techniques of Compose."
 
 ---
 
-<div class="c-border-main-title-2">前言</div>
-在2021/7/28的時候<br>
-google官方終於發佈了Jetpack Compose 穩定版1.0了 <br>
-有興趣看官網發布文的可以看 <a href = "https://android-developers.googleblog.com/2021/07/jetpack-compose-announcement.html">這裡</a> <br>
+<div class="c-border-main-title-2">Introduction</div>
+On 2021/7/28<br>
+Google officially released Jetpack Compose stable version 1.0 <br>
+If you are interested in the official announcement, you can check <a href = "https://android-developers.googleblog.com/2021/07/jetpack-compose-announcement.html">here</a> <br>
 
 <br>
-那今天這篇我打算來分享一些基本的如何用jetpack compose來做一些元件用在android app上面
+Today, I plan to share some basics on how to use Jetpack Compose to create components for Android apps.
 <br>
 <br>
-Jetpack Compose是一種完全用kotlin程式碼 <br>
-去取代原本用.xml檔寫的view或layout <br>
-寫出來只會有.kt檔案 <br>
-減少了大部分的xml檔。 <br>
+Jetpack Compose is entirely written in Kotlin code <br>
+replacing the traditional .xml files used for views or layouts <br>
+resulting in only .kt files <br>
+which reduces the majority of XML files. <br>
 
-<div class="c-border-content-title-4">Jetpack compose 裡面用了大量kotlin中獨有的特色</div><br>
+<div class="c-border-content-title-4">Jetpack Compose utilizes many unique features of Kotlin</div><br>
 
 <div class="table_container">
-  <p>Kotlin 一些基本概念</p>
+  <p>Some basic concepts of Kotlin</p>
   <ol class="rectangle-list">
     <li><a href="javascript:void(0)">Lambda expression</a></li>
     <li><a href="javascript:void(0)">Function type</a></li>
@@ -37,104 +37,101 @@ Jetpack Compose是一種完全用kotlin程式碼 <br>
 </div>
 
 <br>
-所以如果先前對上述kotlin概念已經很熟悉了<br>
-對學習Jetpack Compose就有很大優勢<br>
-估計可以快速上手。<br>
+So if you are already familiar with the above Kotlin concepts<br>
+you will have a significant advantage in learning Jetpack Compose<br>
+and can quickly get started. <br>
 
+<div class="c-border-content-title-4">First, let's look at the differences between the two</div>
 
-
-<div class="c-border-content-title-4">首先我們先看看兩者的差異</div>
-
-像是這是使用 xml 寫一個簡單toolbar的方式：<br>
+Here is a simple toolbar written in XML:<br>
 <script src="https://gist.github.com/KuanChunChen/46bbdced14c9e3c26023854bed33c60d.js"></script><br>
 
-而這則是用jetpack compose來寫toolbar<br>
+And here is the toolbar written in Jetpack Compose:<br>
 
 <script src="https://gist.github.com/KuanChunChen/80743e79901a8c98b87655ff8f020193.js"></script><br>
 
+This change allows us to control views entirely with code.<br>
+At the same time,<br>
+it makes it more convenient to use variables of function types,<br>
+to control the functionality needed for the views.<br>
+Since we are implementing with pure Kotlin code,<br>
+we can more flexibly use conditionals to control the visibility of views.<br>
+This gives us greater flexibility when designing applications.<br>
 
-這樣的改變使得我們能夠完全用程式碼來控制視圖（view）。<br>
-同時，<br>
-也讓使用一些函式型別（function type）的變數更加方便，<br>
-以便控制視圖實現所需的功能。<br>
-由於使用純Kotlin程式碼來實作，<br>
-我們能夠更靈活地使用判斷式來控制視圖的顯示與否。<br>
-這使得我們在設計應用程式時具有更大的彈性。<br>
+<div class="c-border-main-title-2">Specific Implementation</div>
 
-<div class="c-border-main-title-2">具體做法</div>
-
-在此，<br>
-我建立了一些基礎的小部件（widget）。<br>
-當你實際上要在 Activity 或 Fragment 中使用時，<br>
-你可以根據需求進行重複使用，<br>
-這樣能更有效地開發和管理你的應用程式。<br>
-這種模組化的設計方式讓你能夠快速構建功能豐富且可重複使用的界面元素，<br>
-大大節省開發時間並提高代碼的可維護性。<br>
+Here,<br>
+I have created some basic widgets.<br>
+When you actually use them in an Activity or Fragment,<br>
+you can reuse them as needed,<br>
+which allows for more efficient development and management of your application.<br>
+This modular design approach enables you to quickly build feature-rich and reusable interface elements,<br>
+greatly saving development time and improving code maintainability.<br>
 
 <br>
-最後做出來在IDE預覽可能會長成這樣<br>
-左邊寫code右邊是預覽畫面<br>
+The final result in the IDE preview might look like this<br>
+Code on the left and preview on the right<br>
 
 <div align="center">
     <img src="/images/jetpack_compose/jc01.png" alt="Cover" width="100%" >  
 </div>
 
 
-<div class="c-border-content-title-4">前期準備工作</div>
+<div class="c-border-content-title-4">Preliminary Work</div>
 
-必需更新android studio到Arctic Fox版本<br>
-才能透過IDE預覽Composable元件<br>
+You must update Android Studio to the Arctic Fox version<br>
+to preview Composable components through the IDE.<br>
 
-官方下載位置：
-<a href="https://developer.android.com/studio?hl=zh-cn" class="btn btn-primary" role="button">下载 Android Studio Arctic Fox</a>
+Official download location:
+<a href="https://developer.android.com/studio?hl=zh-cn" class="btn btn-primary" role="button">Download Android Studio Arctic Fox</a>
 <br>
 <br>
 
-<div class="c-border-content-title-4">第一步</div>
-先加入相關lib 至 gradle dependencies內 :<br>
+<div class="c-border-content-title-4">Step One</div>
+First, add the relevant libraries to the gradle dependencies:<br>
 <script src="https://gist.github.com/KuanChunChen/c18119da90591482e2f6f5b6cb67bdec.js"></script>
 <br>
 <br>
 <br>
 
-<div class="c-border-content-title-4">第二步</div>
-加入@Composable用以來說明你的這個fun是jetpack compose的元件<br>
+<div class="c-border-content-title-4">Step Two</div>
+Add @Composable to indicate that your function is a Jetpack Compose component.<br>
 <script src="https://gist.github.com/KuanChunChen/d8ecd7b8977a5d2e11cb89e00b1e2d04.js"></script>
 <br>
 <br>
 <br>
-那這裡的
+Here,
 
 ```
 Modifier
 ```
-這是一個在 Jetpack Compose 中常常使用的介面，<br>
-用於擴充元件的屬性。<br>
-在這裡，<br>
-使用變數作為函式參數的形式，<br>
-意味著當你呼叫 AppBar 元件時，<br>
-你可以自定義 Modifier，<br>
-設定該元件的背景色、動畫、字體等等屬性。<br>
+is an interface frequently used in Jetpack Compose,<br>
+to extend the properties of components.<br>
+Here,<br>
+using a variable as a function parameter,<br>
+means that when you call the AppBar component,<br>
+you can customize the Modifier,<br>
+setting properties such as the background color, animation, font, etc.<br>
 
-<h6>(根據你所使用的官方元件的不同，依照該元件的 Modifier 實現方式來設定不同的內容。) </h6>
+<h6>(Depending on the official component you are using, set different contents according to the implementation of that component's Modifier.) </h6>
 <br>
 
-<div class="c-border-content-title-4"><font color="green">選擇性(optional) </font></div>
+<div class="c-border-content-title-4"><font color="green">Optional</font></div>
 
-你可以使用 Column 來對你使用 Jetpack Compose 建立的視圖進行排序。<br>
-Column 提供了一種類似於 LinearLayout 的垂直排列方式，<br>
-當你需要添加多個元件時非常實用。<br>
-通過使用 Column，你可以輕鬆將多個元件垂直排列在一起，<br>
-使你的界面佈局更加結構化和易於管理。<br>
+You can use Column to arrange the views you create with Jetpack Compose.<br>
+Column provides a vertical arrangement similar to LinearLayout,<br>
+which is very useful when you need to add multiple components.<br>
+By using Column, you can easily arrange multiple components vertically,<br>
+making your interface layout more structured and easier to manage.<br>
 <script src="https://gist.github.com/KuanChunChen/203f5c350db588cc6b3730f9b326710c.js"></script>
 ---
 
 
-開始加入官方lib內建的funtion 直接快速做出一個toolbar<br>
-例如 TopAppBar<br>
+Start adding functions built into the official library to quickly create a toolbar.<br>
+For example, TopAppBar<br>
 <script src="https://gist.github.com/KuanChunChen/66d842982f99a753c786594e918abe16.js"></script>
 
-那這邊你會看到一些<br>
+Here you will see some<br>
 
 ```Kotlin
 modifier = ... ,
@@ -144,50 +141,50 @@ contentColor = ...,
 ```
 
 <br>
-其實就是利用 kt內特性  Named argument 跟 function type 等<br>
-讓你在用fun時更能有效的去擴充程式碼<br>
+This actually utilizes Kotlin features like Named arguments and function types,<br>
+allowing you to more effectively extend the code when using functions.<br>
 
-另外，這邊我們就可以利用funtion type變數<font color="red">
+Additionally, here we can use a function type variable<font color="red">
 content: @Composable RowScope.() -> Unit</font>
-去加入一個Image 在TopAppBar左邊：<br>
+to add an Image to the left side of the TopAppBar:<br>
 
-(這邊你可以按cmd+左鍵 去看TopAppBar的源碼知道RowScope在幹嘛)
+(You can press cmd+left click here to see the source code of TopAppBar and understand what RowScope does)
 
 
 <script src="https://gist.github.com/KuanChunChen/049c22e6449d00c4aa529c33fc6cb76f.js"></script>
 
 <br>
-到這邊就快速完成一個易擴充、能重複用的簡單widget了..
+At this point, you have quickly completed a simple, extensible, and reusable widget.
 <br>
 
-<div class="c-border-content-title-4">第三步</div>
-那要開始預覽的話要怎麼用呢？
-你只要再寫一個fun並加入 @Preview
-再按下refresh就能看到IDE右邊會顯示你剛剛做的view了
-(如果沒看到可以點 右邊Design 或 split來打開預覽畫面)
+<div class="c-border-content-title-4">Step Three</div>
+So how do you start the preview?
+You just need to write another function and add @Preview
+Then press refresh to see the view you just created displayed on the right side of the IDE.
+(If you don't see it, you can click Design or split on the right to open the preview screen)
 
 <script src="https://gist.github.com/KuanChunChen/eac588083154d8faf5c8f15fff868798.js"></script>
 <br>
-<div class="c-border-content-title-4">第四步</div>
-那實際應用上<br>
-你可以再包成一個content讓你去呼叫<br>
-這樣你的畫面就能分得很細<br>
-未來再維護上會更有效率<br>
+<div class="c-border-content-title-4">Step Four</div>
+In practical application<br>
+You can wrap it into a content to call it<br>
+This way, your screen can be divided very finely<br>
+Future maintenance will be more efficient<br>
 <br>
 
-像是這樣來包一個完整邏輯的layout<br>
-這樣你未來要改layout長相就能從這裡改<br>
-你的基本元件有的一些功能就不用特別修改<br>
+For example, wrap a complete logic layout like this<br>
+This way, if you want to change the layout appearance in the future, you can change it here<br>
+Some functions of your basic components do not need to be specially modified<br>
 <script src="https://gist.github.com/KuanChunChen/34565f4c1e1394cb2e5b1d50ded7093b.js"></script>
 
-實際做出來：
+Actual result:
 <div align="center">
     <img src="/images/jetpack_compose/jc02.png" alt="Cover" width="100%" >  
 </div>
 <br>
-<div class="c-border-content-title-4">最後一步</div>
+<div class="c-border-content-title-4">Final Step</div>
 
-完成上面的步驟<br>
-你就可以在fragment或activity裡設定你的layout了<br>
-相當簡潔<br>
+After completing the above steps<br>
+You can set your layout in the fragment or activity<br>
+Quite concise<br>
 <script src="https://gist.github.com/KuanChunChen/d697201a60570da069cd3cc4f0ce425c.js"></script>

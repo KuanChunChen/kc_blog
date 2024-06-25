@@ -1,128 +1,122 @@
 ---
 layout: post
-title: "[Android][Memory]記憶體優化+GC管理相關概念分享"
+title: "[Android][Memory] Memory Optimization + GC Management Concepts Sharing"
 date: 2021-10-05 17:42:21 +0800
 image: cover/ea-website-android-memory.png
 tags: [Android,Kotlin]
 categories: Android教學
 ---
 
-
-今天這篇<br>
-打算來透過寫筆記的方式<br>
-記錄關於我所了解的Android記憶體管理<br>
-這邊我打算會持續更新在同一個筆記內<br>
-如果我有讀到更多的Android記憶體管理知識<br>
-我會想要把它集中在同一篇<br>
-
+Today's post<br>
+I plan to take notes<br>
+to record what I understand about Android memory management<br>
+I intend to keep updating this note<br>
+If I learn more about Android memory management<br>
+I want to consolidate it in this one post<br>
 
 <h2>Android Memory Note</h2>
 <br>
-heap：<br>
-Android virtual machine 會持續追蹤heap中的記憶體分配<br>
-而heap是一塊記憶體用來存放系統分配的 java / kotlin object<br>
+heap:<br>
+The Android virtual machine continuously tracks memory allocation in the heap<br>
+The heap is a block of memory used to store system-allocated java/kotlin objects<br>
 
-garbage collection(gc):<br>
- 其在Android中的目標只為了達成以下：
+garbage collection (gc):<br>
+Its goal in Android is to achieve the following:
 <br>
 
-* 尋找用不到的objects
-* 回收這些objects用到的記憶體並將其返回給heap
+* Find unused objects
+* Reclaim the memory used by these objects and return it to the heap
 
-而在mutli-task環境中<br>
-Android會限制每個heap的size<br>
-這個size會根據Android裝置有多少可用RAM決定
+In a multi-task environment<br>
+Android limits the size of each heap<br>
+This size is determined by the amount of available RAM on the Android device
 <br><br>
 
-另外<br>
-當heap容量塞滿時<br>
-如果系統還嘗試分費記憶體<br>
-就有可能會得到 OutOfMemoryError <br>
-
+Additionally<br>
+When the heap is full<br>
+If the system still tries to allocate memory<br>
+It may result in an OutOfMemoryError<br>
 
 <h2>Frequent Garbage Collection</h2>
 <br>
-之前看國外文章他也稱GC為 memory churn<br>
-換句話說就是 <br>
-GC通常發生在短時間內需要記憶體時<br>
-由於heap空間不足<br>
-同時需要分配heap給app用<br>
-又需要同時解除heap空間來補充空間不足<br>
-所以如果頻繁觸發GC也會造成記憶體相關問題
+Previously, I read an article that also referred to GC as memory churn<br>
+In other words<br>
+GC usually occurs when memory is needed in a short period<br>
+Due to insufficient heap space<br>
+It needs to allocate heap space for the app<br>
+While simultaneously freeing up heap space to compensate for the shortage<br>
+So frequent GC triggers can also cause memory-related issues
 
-來個例子：<br>
-同一時間<br>
-APP需要大量分配記憶體空間給你創建的objects<br>
-但因為heap空間不足<br>
-所以觸發了gc去回收heap空間<br><br>
-但因為一來一往的迭代中<br>
-造成app卡住<br>
-這時候通常不會顯示oom<br><br>
-但卻造成卡頓或當機<br>
-進而讓使用者體驗不佳<br>
+For example:<br>
+At the same time<br>
+The app needs to allocate a large amount of memory space for the objects you create<br>
+But due to insufficient heap space<br>
+GC is triggered to reclaim heap space<br><br>
+But in the back-and-forth iterations<br>
+The app gets stuck<br>
+Usually, it won't show an OOM<br><br>
+But it causes lag or crashes<br>
+Leading to a poor user experience<br>
 
-
-給個帶有code的例子：
+Here's an example with code:
 
 <script src="https://gist.github.com/KuanChunChen/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
-這個是常用的recycler view的實作adapter <br>
-那其中的bind()就是用來實現新的資料要產生item時的邏輯<br>
+This is a common implementation of a recycler view adapter<br>
+The bind() method is used to implement the logic for generating new items<br>
 
 ```
 val demoBitmap = BitmapFactory.decodeResource(itemView.context.resources, R.drawable.bg_demo_photo)
 ```
-在這段bind()裡有一個固定的圖片要載入item內<br>
-若放在這裡<br>
-意思就會是每次bind時item都會重新加載一次bitmap圖片<br>
-若是在少量圖片或小專案中不會感覺到有所差異<br>
-但是當大量重複加載<br>
-或者當item有100個、1000個時<br>
-每個都重複加載<br>
-那對heap容量的消耗是相當大的<br>
+In this bind() method, there is a fixed image to be loaded into the item<br>
+If placed here<br>
+It means that each time bind() is called, the item will reload the bitmap image<br>
+In small projects or with a few images, you won't notice much difference<br>
+But with a large number of repeated loads<br>
+Or when there are 100 or 1000 items<br>
+Each one reloading<br>
+It consumes a significant amount of heap space<br>
 
-因此最簡單的方式可以把固定的東西改為只加載一次<br>
+Therefore, the simplest way is to load fixed items only once<br>
 <script src="https://gist.github.com/KuanChunChen/baac7167d917ce9633f7d9346b3244ed.js"></script>
 
-或是也可以用一些第三方的lib去將圖片存入緩存<br>
-進而減少加載的次數<br>
-當然使用緩存也是有可能造成OOM<br>
-所以也需要定義或特地條件下必需清除緩存等<br>
-可以根據專案遇到的問題去優化<br>
-
+Or you can use some third-party libraries to cache the images<br>
+Reducing the number of loads<br>
+Of course, using cache can also cause OOM<br>
+So you need to define or clear the cache under specific conditions<br>
+You can optimize based on the issues encountered in the project<br>
 
 <h2>Android Memory Leak</h2>
 <br>
 
+gc cannot clear object leaks with references<br>
+Because it thinks some places might still need this reference<br>
+This situation is commonly referred to as a memory leak<br>
 
-gc 無法清除掉的object leak 的 reference<br>
-因為它認為可能有些地方還需要使用這個reference<br>
-同常這種情況就稱為memory leak<br>
-
-Inner Classes :當內部類與外部類有reference時，有可能產生memory leak<br>
-例如：
+Inner Classes: When inner classes have references to outer classes, it can cause memory leaks<br>
+For example:
 <script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
-像是上面這段code<br>
-就是因為內部class存取了外部showResult<br>
-而因為AsyncTask會在背景執行<br>
-可能遇到activity已經finish了<br>
-但AsyncTask還在執行<br>
-因此可能造成memory leak<br>
+Like the code above<br>
+Because the inner class accesses the outer showResult<br>
+And since AsyncTask runs in the background<br>
+The activity might have finished<br>
+But AsyncTask is still running<br>
+This can cause a memory leak<br>
 
-解決這問題的思路<br>
-可以把呼叫外部類的方法拿掉<br>
-或是改用其他方法去存取外部累<br>
-如可以使用弱引用<br>
+Solution to this problem<br>
+You can remove the method call to the external class<br>
+or use other methods to access the external class<br>
+such as using weak references<br>
 <script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
 
-用weakreference依舊可以存取外部類<br>
-不過他不會像是強引用一樣強以至於不會持續保留在記憶體內<br>
-當gc沒有找到object的強引用時則會去找它並將到設為null<br>
+Using weak references can still access the external class<br>
+but it won't be as strong as a strong reference, so it won't persist in memory<br>
+When the garbage collector (GC) does not find a strong reference to the object, it will look for it and set it to null<br>
 
-Anonymous Classes:有些匿名類存活的時間比外部時間長<br>
-造成memory leak<br>
+Anonymous Classes: Some anonymous classes live longer than the external class<br>
+causing memory leaks<br>
 
-Static Variables: 使用companion object 或static 來修飾某些類時
-會造成object一開始就載入<br>
-之後釋放不掉<br>
-導致memory leak<br>
-例如 static activity
+Static Variables: Using companion objects or static to modify certain classes<br>
+will cause the object to load initially<br>
+and then not be released<br>
+leading to memory leaks<br>
+for example, static activity

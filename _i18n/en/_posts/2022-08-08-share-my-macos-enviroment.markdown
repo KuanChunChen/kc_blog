@@ -24,3 +24,4 @@ I will be sharing my top picks and explaining why they have become integral to m
 
 <div class="c-border-content-title-4">Here's my powerlevel10k configuration document, this document describes the configuration settings for my p10k.zsh shell.</div>
 {% include example/linux/p10k.html %}
+

@@ -1,152 +1,152 @@
 ---
 layout: post
-title: "Android低功耗藍芽Gatt連線教學：使用Kotlin實作"
+title: "Android Low Energy Bluetooth Gatt Connection Tutorial: Implementing with Kotlin"
 date: 2021-11-12 16:16:32 +0800
 image: cover/bluetooth_with_kotlin-1.png
 tags: [Android,Bluetooth]
 categories: Android教學
-excerpt: "本篇文章介紹了如何使用Android平台上的Kotlin語言實現低功耗藍芽Gatt連線，內容包括建立Gatt連線、讀取Gatt服務、設置Gatt特性並進行數據通訊等。"
+excerpt: "This article introduces how to implement Low Energy Bluetooth Gatt connection using Kotlin on the Android platform. The content includes establishing Gatt connections, reading Gatt services, setting Gatt characteristics, and performing data communication."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-我花了一些時間複習之前工作所實作的低功耗藍牙連接。<br>
-由於我擔心會忘記，<br>
-所以想重新回顧一下並做個紀錄，<br>
-希望也能幫助到需要實作的各位。<br>
+I spent some time reviewing the Low Energy Bluetooth connection I implemented in previous work.<br>
+Because I was worried I might forget,<br>
+I wanted to revisit and document it,<br>
+hoping it can also help those who need to implement it.<br>
 
-Android 12之後新增了 權限相關處理，大家可以注意一下！<br>
-這邊是我處理的方式，大家可以參考：
+After Android 12, new permission-related handling was added, so take note!<br>
+Here is how I handled it, for your reference:
 <script src="https://gist.github.com/KuanChunChen/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
 
-
-最終目標是這樣<br>
-可以串回之前幾篇jetpack compose的練習<br>
-讓資料變成真實存在的資料<br><br>
-且最後能連接gatt藍芽<br>
+The ultimate goal is this<br>
+To integrate with previous Jetpack Compose practices<br>
+Making the data real and existent<br><br>
+And finally, to connect to Gatt Bluetooth<br>
 
 <div align="center">
   <img src="/mov/jetpack/ea_ble_discovery.gif" width="30%" alt="bluetooth" />
 </div>
 
+<div class="c-border-main-title-2">Basic Concepts</div>
+First, let's introduce<br>
+the methods of Bluetooth scanning<br>
+There are roughly three<br>
 
-<div class="c-border-main-title-2">基本概念</div>
-首先介紹下<br>
-藍芽掃描的方法<br>
-大致上有三種<br>
+BluetoothAdapter.startDiscovery() -> Scans both classic Bluetooth and BLE Bluetooth<br>
+BluetoothAdapter.startLeScan() -> Used to scan Low Energy Bluetooth ---- Deprecated <br>
+BluetoothLeScanner.startScan() -> New BLE scanning method<br>
 
-BluetoothAdapter.startDiscovery() -> 掃描經典藍芽和BLE藍芽兩種<br>
-BluetoothAdapter.startLeScan() -> 用來掃描低功耗藍芽 ---- 已被棄用 <br>
-BluetoothLeScanner.startScan() -> 新的BLE掃描方法<br>
+However, looking at the API notes<br>
+startLeScan is currently deprecated<br>
+It was deprecated in API 21<br>
 
-不過看了API內的註解<br>
-目前startLeScan已被棄用<br>
-是在api21時被棄用<br>
-
-我也順便查了各個發現藍芽裝置的API來做比較<br>
+I also checked various APIs for discovering Bluetooth devices for comparison<br>
 
 <div class="c-border-content-title-4">fun startDiscovery ():boolean</div><br>
 <div class="table_container">
     <ol class="rectangle-list">
         <li>
-          <a href="javascript:void(0)">掃描過程通常執行12秒</a>
+          <a href="javascript:void(0)">The scanning process usually runs for 12 seconds</a>
         </li>
         <li>
-          <a href="javascript:void(0)">是異步調用</a>
+          <a href="javascript:void(0)">It is an asynchronous call</a>
         </li>
         <li>
-          <a href="javascript:void(0)">透過註冊廣播來執行不同步驟，如：<br>
-                ACTION_DISCOVERY_STARTED -> 當Discovery開始 <br>
-                ACTION_DISCOVERY_FINISHED -> 當Discovery完成<br>
-                BluetoothDevice.ACTION_FOUND -> 發現藍芽裝置 <br>
+          <a href="javascript:void(0)">Executed through registering broadcasts for different steps, such as:<br>
+                ACTION_DISCOVERY_STARTED -> When Discovery starts <br>
+                ACTION_DISCOVERY_FINISHED -> When Discovery finishes<br>
+                BluetoothDevice.ACTION_FOUND -> When a Bluetooth device is found <br>
           </a>
         </li>
 
         <li>
-          <a href="javascript:void(0)">當執行連接藍芽裝置時<br>
-          不能處於startDiscovery中<br>
-          需呼叫cancelDiscovery()來結束發現<br>
-          </a>
-        </li>
-
-        <li>
-          <a href="javascript:void(0)">
-          Discovery並非由Activity管理<br><br>
-          而是system service<br>
-          所以為了以防萬一必需使用cancelDiscovery()<br>
-          確保Discovery沒有在執行<br>
-          避免在連線藍芽裝置時<br>
-          device還在Discovery<br>
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">Discovery只能發現目前是可被發現的藍芽裝置
-          </a>
-        </li>
-
-        <li>
-          <a href="javascript:void(0)">可觀察ACTION_STATE_CHANGED是否為STATE_ON
-                如果當前藍芽state並非STATE_ON則API會返回false<br>
-                用於確定目前是可獲得更新的值的狀態<br>
-                <img src="/images/bluetooth/android_state.png" alt="Cover" width="100%">
-          </a>
-        </li>
-
-        <li>
-          <a href="javascript:void(0)">如果使用的目標版本小於等於Build.VERSION_CODES#R<br>
-                則需要向使用者要求Manifest.permission#BLUETOOTH_ADMIN權限<br>
-                <img src="/images/bluetooth/android_R.png" alt="Cover" width="100%" >
+          <a href="javascript:void(0)">When connecting to a Bluetooth device<br>
+          It cannot be in startDiscovery<br>
+          You need to call cancelDiscovery() to end the discovery<br>
           </a>
         </li>
 
         <li>
           <a href="javascript:void(0)">
-            如果使用的目標版本大於等於Build.VERSION_CODES#S<br>
-            則需要向使用者要求Manifest.permission#BLUETOOTH_SCAN權限<br>
-            <img src="/images/bluetooth/android_S.png" alt="Cover" width="100%" >
+          Discovery is not managed by the Activity<br><br>
+          But by the system service<br>
+          So, to be safe, you must use cancelDiscovery()<br>
+          To ensure Discovery is not running<br>
+          To avoid the device still being in Discovery<br>
+          when connecting to a Bluetooth device<br>
           </a>
         </li>
-
-
         <li>
-          <a href="javascript:void(0)">除此之外<br>
-          你可以要求Manifest.permission#ACCESS_FINE_LOCATION權限<br>
-          來增加可交互的藍芽裝置種類<br>
-          當然你也可以在<b>uses-permission</b>新增usesPermissionFlags="neverForLocation" tag<br>
-          來避免要求位置權限<br>
-          但同時可以搜尋到的裝置種類會有所限制<br>
+          <a href="javascript:void(0)">Discovery can only find currently discoverable Bluetooth devices
           </a>
         </li>
-    </ol>
+
+```markdown
+<li>
+  <a href="javascript:void(0)">Observe if ACTION_STATE_CHANGED is STATE_ON
+        If the current Bluetooth state is not STATE_ON, the API will return false<br>
+        Used to determine if the current state is one where updated values can be obtained<br>
+        <img src="/images/bluetooth/android_state.png" alt="Cover" width="100%">
+  </a>
+</li>
+
+<li>
+  <a href="javascript:void(0)">If the target version used is less than or equal to Build.VERSION_CODES#R<br>
+        You need to request the Manifest.permission#BLUETOOTH_ADMIN permission from the user<br>
+        <img src="/images/bluetooth/android_R.png" alt="Cover" width="100%" >
+  </a>
+</li>
+
+<li>
+  <a href="javascript:void(0)">
+    If the target version used is greater than or equal to Build.VERSION_CODES#S<br>
+    You need to request the Manifest.permission#BLUETOOTH_SCAN permission from the user<br>
+    <img src="/images/bluetooth/android_S.png" alt="Cover" width="100%" >
+  </a>
+</li>
+
+<li>
+  <a href="javascript:void(0)">Additionally<br>
+  You can request the Manifest.permission#ACCESS_FINE_LOCATION permission<br>
+  To increase the types of interactive Bluetooth devices<br>
+  Of course, you can also add the usesPermissionFlags="neverForLocation" tag in <b>uses-permission</b><br>
+  To avoid requesting location permissions<br>
+  But the types of devices that can be searched will be limited<br>
+  </a>
+</li>
+</ol>
 </div>
 
 <div class="c-border-content-title-4">fun startScan ( callback:ScanCallback )</div>
 <div class="table_container">
   <ol class="rectangle-list">
-      <li><a href="javascript:void(0)">開始 Bluetooth LE 掃描，掃描結果會透過callback返回</a></li>
-      <li><a href="javascript:void(0)">因為這個沒有帶filters，<br>
-      所以省電的預設當螢幕關閉會stopScan，<br>
-      重新開啟後會resume</a></li>
-      <li><a href="javascript:void(0)">如果使用的目標版本大於等於Build.VERSION_CODES#Q ，<br>
-      則需要向使用者要求Manifest.permission#ACCESS_FINE_LOCATION權限</a></li>
+      <li><a href="javascript:void(0)">Start Bluetooth LE scan, scan results will be returned via callback</a></li>
+      <li><a href="javascript:void(0)">Because this does not include filters,<br>
+      The default power-saving mode will stopScan when the screen is off,<br>
+      And resume when the screen is turned back on</a></li>
+      <li><a href="javascript:void(0)">If the target version used is greater than or equal to Build.VERSION_CODES#Q,<br>
+      You need to request the Manifest.permission#ACCESS_FINE_LOCATION permission from the user</a></li>
       <li>
-      <a href="javascript:void(0)">如果使用的目標版本小於等於Build.VERSION_CODES#R ，<br>
-      則需要向使用者要求Manifest.permission#BLUETOOTH_ADMIN權限
+      <a href="javascript:void(0)">If the target version used is less than or equal to Build.VERSION_CODES#R,<br>
+      You need to request the Manifest.permission#BLUETOOTH_ADMIN permission from the user
         <img src="/images/bluetooth/android_R.png" alt="Cover" width="100%">
       </a>
-
       </li>
-      <li><a href="javascript:void(0)">如果使用的目標版本大於等於Build.VERSION_CODES#S，<br>
-      則需要向使用者要求Manifest.permission#BLUETOOTH_SCAN權限
+      <li><a href="javascript:void(0)">If the target version used is greater than or equal to Build.VERSION_CODES#S,<br>
+      You need to request the Manifest.permission#BLUETOOTH_SCAN permission from the user
       <img src="/images/bluetooth/android_S.png" alt="Cover" width="100%">
       </a>
+```
 
+
+```html
       </li>
-      <li><a href="javascript:void(0)">除此之外 你可以要求Manifest.permission#ACCESS_FINE_LOCATION權限，<br>
-      來增加可交互的藍芽裝置種類，<br>
-      當然你也可以在&lt;uses-permission&gt;新增usesPermissionFlags="neverForLocation" tag，<br>
-      來避免要求位置權限，<br>
-      但同時可以搜尋到的裝置種類會有所限制</a></li>
+      <li><a href="javascript:void(0)">Additionally, you can request the Manifest.permission#ACCESS_FINE_LOCATION permission,<br>
+      to increase the types of interactive Bluetooth devices,<br>
+      of course, you can also add the usesPermissionFlags="neverForLocation" tag in &lt;uses-permission&gt;,<br>
+      to avoid requesting location permissions,<br>
+      but the types of devices that can be discovered will be limited</a></li>
   </ol>
 </div><br>
 
@@ -154,31 +154,31 @@ BluetoothLeScanner.startScan() -> 新的BLE掃描方法<br>
 <div class="table_container">
   <ol class="rectangle-list">
       <li>
-        <a href="javascript:void(0)">特性包含上方startScan ( callback:ScanCallback ) 的 六條
+        <a href="javascript:void(0)">Features include the six items from the above startScan ( callback:ScanCallback )
         </a>
       </li>
       <li>
         <a href="https://developer.android.com/reference/android/bluetooth/le/ScanFilter">
-        透過ScanFilter 去篩選掃描的結果，<br>
-        主要支援下面幾項，<br>
+        Use ScanFilter to filter the scan results,<br>
+        mainly supporting the following items,<br>
           <img src="/images/bluetooth/android_filter.png" alt="bluetooth android filter" width="80%">
         </a>
       </li>
       <li><a href="https://developer.android.com/reference/android/bluetooth/le/ScanSettings#summary">
-      也透過ScanSettings去設定要針對返回的callback去做怎樣處理，<br>
-      如：返回每個過濾成功的資料、只返回第一個過濾成功的資料...等等</a></li>
+      Also use ScanSettings to set how to handle the returned callback,<br>
+      such as: return each successfully filtered data, only return the first successfully filtered data... etc.</a></li>
   </ol>
 </div><br>
 
-<div class="c-border-main-title-2">實際開發：如何進行藍芽掃描</div>
+<div class="c-border-main-title-2">Actual Development: How to Perform Bluetooth Scanning</div>
 
-在manifest中加入上述所需權限<br>
+Add the required permissions mentioned above in the manifest<br>
 <script src="https://gist.github.com/KuanChunChen/fc855c0ab9c4667df49b253595744d08.js"></script><br>
 
 
-<div class="c-border-content-title-4">在程式碼的地方要求權限</div>
-下面寫了一個extension<br>
-可以通用<br>
+<div class="c-border-content-title-4">Request Permissions in the Code</div>
+Below is an extension<br>
+that can be used universally<br>
 
 ```kotlin
   requestMultiplePermissions(Manifest.permission.ACCESS_FINE_LOCATION,...
@@ -186,21 +186,21 @@ BluetoothLeScanner.startScan() -> 新的BLE掃描方法<br>
 <script src="https://gist.github.com/KuanChunChen/42ac3a41e2b7d44eb84f5072c09fd359.js"></script>
 
 
-<div class="c-border-content-title-4">取得BluetoothAdapter實例</div><br>
+<div class="c-border-content-title-4">Obtain an Instance of BluetoothAdapter</div><br>
 ```kotlin
 private val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
 ```
 
-<div class="c-border-content-title-4">註冊接收廣播</div>
+<div class="c-border-content-title-4">Register to Receive Broadcasts</div>
 
-註冊監聽BluetoothDevice.ACTION_FOUND<br>
+Register to listen for BluetoothDevice.ACTION_FOUND<br>
 
 ```
 val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
     requireContext().registerReceiver(receiver, filter)
 ```
-繼承一個BroadcastReceiver<br>
-然後使用receiver type的形式返回結果bleDevice<br>
+Extend a BroadcastReceiver<br>
+and use the receiver type to return the result bleDevice<br>
 ```kotlin
 private val receiver = DeviceListBoardCast { bleDevice ->
 
@@ -282,125 +282,120 @@ private val receiver = DeviceListBoardCast { bleDevice ->
   去找特定的Characteristic<br>
   (這邊Characteristic就看跟硬體的協議或定義)<br>
 
-  當藍芽裝置數值有改變就會用onCharacteristicChanged通知你<br>
+When the Bluetooth device value changes, it will notify you with onCharacteristicChanged<br>
 
-  4. 然後writeCharacteristic可以讓你寫值進指定的Characteristic<br>
-  一樣當有結果會進到<br>
-  onCharacteristicWrite
+4. Then, writeCharacteristic allows you to write values into the specified Characteristic<br>
+Similarly, when there is a result, it will go to<br>
+onCharacteristicWrite
 </div><br>
 
-gattCallback範例：
+gattCallback example:
 <script src="https://gist.github.com/KuanChunChen/6e9f5f10af4619fe3d13167a1d599e95.js"></script>
 
-<div class="c-border-content-title-4">開始連線</div>
-做一個connect的函式<br>
-其實主要就是以下兩段去做連線<br>
+<div class="c-border-content-title-4">Start Connection</div>
+Create a connect function<br>
+The main part is to connect using the following two lines<br>
 ```
 val device = bluetoothAdapter!!.getRemoteDevice(address)
 ```
-跟
+and
 ```
 bluetoothGatt = device.connectGatt(this, false, gattCallback)
 ```
-把要連線的adress丟進去<br>
-拿到想要連線的BluetoothDevice<br>
-再用device內的方法connectGatt去綁定Gatt裝置<br>
-當然同時要丟入前面寫好的gattCallback<br>
-前面只是做一連串的null確認<br>
-確保app 不會因null而crash<br>
+Pass the address you want to connect to<br>
+Get the BluetoothDevice you want to connect to<br>
+Then use the connectGatt method in the device to bind the Gatt device<br>
+Of course, you also need to pass in the gattCallback written earlier<br>
+The previous part is just a series of null checks<br>
+To ensure the app does not crash due to null<br>
 <script src="https://gist.github.com/KuanChunChen/aa1c6a31dc8ee2a38432db88ec0125b3.js"></script><br>
 
+In the instantiation of gattCallback,<br>
+you will find a method named broadcastUpdate.<br>
+This method is mainly used to send broadcast messages,<br>
+you can define what to do in different situations according to your needs,<br>
+or what broadcast messages to return.<br>
 
-在 gattCallback 的實例化中，<br>
-你會發現有一個名為 broadcastUpdate 的方法。<br>
-這個方法主要是用來發送廣播訊息，<br>
-你可以根據自己的需求去定義遇到什麼情況要做什麼事，<br>
-或要回傳什麼廣播訊息。<br>
+Simple connection and device search<br>
+That's about it<br>
 
-簡單的連接與尋找裝置<br>
-大概就是這樣<br>
-
-接著藍芽最重要的就是終端之間的通訊<br>
-所以如果想要收送資料<br>
-必需要找出service與characteristic<br>
-這邊先上個圖<br>
+Next, the most important thing in Bluetooth is communication between terminals<br>
+So if you want to send and receive data<br>
+You need to find the service and characteristic<br>
+Here is a diagram<br>
 
 <img src="/images/bluetooth/ble_logo.png" alt="Cover" width="50%" >
-這是藍芽連接時大概的關係圖<br>
+This is a general relationship diagram when connecting Bluetooth<br>
 
-
-所以我們透過以下方法找出：<br>
+So we find it through the following method:<br>
 <script src="https://gist.github.com/KuanChunChen/2b6fb90e97f14b00e6a942b43f653644.js"></script>
-將前面透過廣播取得的gatt service帶入<br>
-就可以透過遍歷去取得characteristic<br>
+Bring in the gatt service obtained through the broadcast earlier<br>
+Then you can traverse to get the characteristic<br>
 
-那因為android官方已經有幫你包好characteristic的類了<br>
-所以你要讀取只要透過相關function呼叫:<br>
+Since the official Android has already wrapped the characteristic class for you<br>
+To read, you just need to call the relevant function:<br>
 
 <script src="https://gist.github.com/KuanChunChen/51be18e662704d9cf0241cc27f5f961b.js"></script>
 <br>
 
-並且他會在之前定義的BluetoothGattCallback內的<br>
-onCharacteristicRead返回給你<br>
-你只要定義好接收廣播就可以得到資料<br>
+And it will return to you in the previously defined BluetoothGattCallback<br>
+onCharacteristicRead<br>
+You just need to define the broadcast reception to get the data<br>
 
 <script src="https://gist.github.com/KuanChunChen/ebb8318578499bec7f6cf97f4bc93063.js"></script>
 
-
-另外藍芽裡面也有一種notify的方法：<br>
+Additionally, there is also a notify method in Bluetooth:<br>
 
 <script src="https://gist.github.com/KuanChunChen/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
 
-一樣返回結果<br>
-BluetoothGattCallback裡面<br>
-onCharacteristicChanged去看<br>
+Similarly, it returns the result<br>
+In BluetoothGattCallback<br>
+Check onCharacteristicChanged<br>
 <script src="https://gist.github.com/KuanChunChen/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
 
-
-如果想看怎麼透過第三方工具<br>
-擷取藍芽封包可以參考：<br>
+If you want to see how to capture Bluetooth packets through third-party tools<br>
+You can refer to:<br>
 
 <div class="table_container">
   <a href="{{site.baseurl}}/2021/11/12/android-bluetooth-hci-packet/">
   <img src="/images/cover/ea-android_bluetooth_hci_packet.png" alt="Cover" width="25%" >
-  [Android][Kotlin]如何抓取Android手機中 Bluetooth 藍芽封包日誌</a>
+  [Android][Kotlin] How to Capture Bluetooth Packet Logs on Android Phones</a>
 </div>
 
+<div class="c-border-main-title-2">Bluetooth Module Notes: Includes Classic Bluetooth (BT) and Low Energy Bluetooth (LTE)</div>
+<div class="c-border-content-title-4">Classic Bluetooth (BT)</div>
+Includes Bluetooth 1.0 / 1.2 / 2.0+EDR / 2.1+EDR / 3.0+EDR and other developments and improvements<br>
+Generally refers to modules below Bluetooth 4.0<br>
+Typically used for data transmission with larger volumes<br>
+Examples: voice, music, higher data volume transmission, etc.<br>
 
-<div class="c-border-main-title-2">藍芽模組筆記:有 經典藍芽(BT) 與 低功耗藍牙(LTE)</div>
-<div class="c-border-content-title-4">經典藍芽(BT)</div>
-包含 藍芽1.0 / 1.2 / 2.0+EDR / 2.1+EDR / 3.0+EDR 等基礎上發展和完善起來的<br>
-泛指藍芽4.0以下的模組<br>
-一般用於資料量比較大的傳輸<br>
-如：語音、音樂、較高資料量傳輸等<br>
+Classic Bluetooth modules can be further subdivided into<br>
+Traditional Bluetooth modules and High-Speed Bluetooth modules<br>
 
-經典藍芽模組可再細分為<br>
-傳統藍芽模組和高速藍芽模組<br>
-
-傳統藍芽模組在2004年推出<br>
-主要代表是支援藍芽2.1協議的模組<br>
-傳統藍芽有3個功率級別<br>
+Traditional Bluetooth modules were introduced in 2004<br>
+The main representative is the module supporting the Bluetooth 2.1 protocol<br>
+Traditional Bluetooth has 3 power levels<br>
 Class1 / Class2 / Class3<br>
-分別支援100m / 10m / 1m的傳輸距離<br>
+Supporting transmission distances of 100m / 10m / 1m respectively<br>
 
 <br>
-高速藍芽模組在2009年推出<br>
-速率提高到約24Mbps<br>
-是傳統藍芽模組的八倍<br>
+High-Speed Bluetooth modules were introduced in 2009<br>
+The speed increased to about 24Mbps<br>
+Eight times that of traditional Bluetooth modules<br>
 
-<div class="c-border-content-title-4">低功耗藍芽模組(BLE)</div>
+<div class="c-border-content-title-4">Low Energy Bluetooth Module (BLE)</div>
 
-泛指藍芽4.0或更高的模組<br>
-藍芽低功耗技術是低成本、短距離<br>
-可工作在2.4GHz ISM射頻頻段<br>
-因為BLE技術採用非常快速的連線方式<br>
-因此平時可以處於“非連線”狀態（節省能源）<br>
+Generally refers to modules of Bluetooth 4.0 or higher<br>
+Bluetooth Low Energy technology is low-cost, short-range<br>
+Can operate in the 2.4GHz ISM radio frequency band<br>
+Because BLE technology uses a very fast connection method<br>
+It can usually be in a "non-connected" state (saving energy)<br>
 
-Android手機藍芽4.x都是雙模藍芽(既有經典藍芽也有低功耗藍芽)<br>
+Android phones with Bluetooth 4.x are all dual-mode Bluetooth (both Classic Bluetooth and Low Energy Bluetooth)<br>
 
-<div class="c-border-main-title-2">Kotlin + jetpack compose 藍芽app範例</div>
+<div class="c-border-main-title-2">Kotlin + Jetpack Compose Bluetooth App Example</div>
 
-最後我之前寫了一個範例，最近終於整理上來，有需要的可以參考看看
-  <a style ="color:white;" herf="https://github.com/KuanChunChen/elegantAccessApp">可參考此篇</a>
+Finally, I wrote an example before, and recently organized it. Those who need it can refer to it
+  <a style ="color:white;" href="https://github.com/KuanChunChen/elegantAccessApp">You can refer to this article</a>
 
 <a>{% include google/google_ad_client.html %}</a>

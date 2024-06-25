@@ -1,77 +1,76 @@
 ---
 layout: post
-title: "來學習Jetpack Compose 在splash頁面加入動畫吧！"
+title: "Learn to Add Animations to the Splash Screen with Jetpack Compose!"
 date: 2021-09-17 15:02:11 +0800
 image: cover/ea-website-splash-cover-photo-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-splash
-excerpt: "透過Jetpack Compose，你可以輕鬆地為你的應用程式添加動態、生動的啟動頁面。
-在這篇文章中，我們將帶你一步步學習如何使用Jetpack Compose創建動畫頁面"
+excerpt: "With Jetpack Compose, you can easily add dynamic and lively splash screens to your application. In this article, we will guide you step-by-step on how to create an animated splash screen using Jetpack Compose."
 
 ---
 
-<div class="c-border-main-title-2">目標</div>
-這篇目標會是做出一個<br>
-簡單的splash 頁面<br>
-我們今天最後達成的目標會是這樣：<br>
+<div class="c-border-main-title-2">Objective</div>
+The goal of this article is to create a<br>
+simple splash screen.<br>
+Our final goal for today will look like this:<br>
 <br>
 
 <div align="center">
   <img src="/mov/jetpack/ea_splash_app.gif" width="60%"/>
 </div><br>
 
-<div class="c-border-main-title-2">前言</div>
-現在許多應用程式都會設計一個進入畫面，<br>
-以便讓用戶清楚地識別當前的應用程式或公司標誌，<br>
-確保用戶知道他們正在使用的是哪個應用程式。<br>
+<div class="c-border-main-title-2">Introduction</div>
+Nowadays, many applications design an entry screen<br>
+to clearly identify the current application or company logo,<br>
+ensuring that users know which application they are using.<br>
 
-在本篇文章中，<br>
-我們將重點介紹如何實現一個簡單的跳轉功能，<br>
-並配合簡單的水平擴展動畫，<br>
-來達到今天的目標。<br>
-如果你對Jetpack Compose的基礎還不熟悉，<br>
-可以參考這篇文章以加深理解：<br>
+In this article,<br>
+we will focus on how to implement a simple transition function,<br>
+along with a simple horizontal expansion animation,<br>
+to achieve today's goal.<br>
+If you are not yet familiar with the basics of Jetpack Compose,<br>
+you can refer to this article to deepen your understanding:<br>
 <br>
 <div align="start">
   <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">
     <img src="/images/cover/ea-website-base-cover-photo-new-1.png" alt="Cover" width="20%" >
   </a>
 
-  <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">Android Jetpack Compose 基本應用教學</a>
+  <a href="{{site.baseurl}}/android-kt-jetpack-compose-base">Android Jetpack Compose Basic Tutorial</a>
 </div>
 
 
-<div class="c-border-content-title-4">這篇開始時，已經假設會基本概念了，所以還沒了解的可以參考上面那篇。</div>
+<div class="c-border-content-title-4">This article assumes you already understand the basic concepts, so if you haven't, please refer to the article above.</div>
 
 ----
-<div class="c-border-content-title-4">第一步：想好頁面架構</div>
-首先，<br>
-我們需要先考慮這個頁面的整體結構。<br>
-通常習慣先想像最終畫面的樣子，<br>
-因此我透過使用一個Box元件作為不同圖層的概念來區分各個區塊。<br>
+<div class="c-border-content-title-4">Step 1: Plan the Page Structure</div>
+First,<br>
+we need to consider the overall structure of this page.<br>
+It is usually a habit to first imagine the final look of the screen,<br>
+so I use a Box component to conceptually separate different layers.<br>
 
 <script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
-<div class="c-border-content-title-4">第二步 ： 實作 splash頁logo動畫</div>
-在這一步中，我們將傳入一個函式型別的參數 <font color="red"> event:()->Unit = {} </font><br>
-這樣我們就能在之後觸發某個外部呼叫所要執行的動作。<br>
-同時，<br>
-我們也可以預設動畫的進場與退場時間，<br>
-以及執行傳入動作前的延遲時間。<br>
-這些參數可以根據需求自行調整，<br>
-但為了方便理解，我們先將它們寫在函式內部。<br>
+<div class="c-border-content-title-4">Step 2: Implement the Splash Screen Logo Animation</div>
+In this step, we will pass a function type parameter <font color="red"> event:()->Unit = {} </font><br>
+so that we can trigger an external call to perform an action later.<br>
+At the same time,<br>
+we can also preset the entry and exit times of the animation,<br>
+as well as the delay time before executing the passed action.<br>
+These parameters can be adjusted according to needs,<br>
+but for ease of understanding, we will write them inside the function first.<br>
 
 <script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
-根據具體情況，<br>
-我希望我的 Logo 在頁面正中央並稍微偏上一點，<br>
-所以我加入了 Column 元件，並使用 Modifier 調整相關位置。<br>
-你可以參考下方程式碼的<font color="red">#23~#34行</font>，來調整相關位置。<br>
+Depending on the specific situation,<br>
+I want my logo to be in the center of the page and slightly above,<br>
+so I added a Column component and used Modifier to adjust the position.<br>
+You can refer to lines <font color="red">#23~#34</font> in the code below to adjust the position.<br>
 
 <br>
 <script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
-<div class="c-border-content-title-4">第三步 ： 本文重頭戲</div>
+<div class="c-border-content-title-4">Step 3: The Main Event</div>
 
 現在我們將進入動畫的關鍵部分，<br>
 使用了 Jetpack Compose 的 AnimatedVisibility。<br>

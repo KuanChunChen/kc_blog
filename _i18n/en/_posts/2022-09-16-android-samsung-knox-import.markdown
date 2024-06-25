@@ -1,166 +1,166 @@
 ---
 layout: post
-title: "打造更安全的Android應用程式！ 學習導入Samsung Knox SDK的簡單方法"
+title: "Create More Secure Android Applications! Learn the Simple Way to Integrate Samsung Knox SDK"
 date: 2022-09-16 14:41:08 +0800
 image: cover/samsung-android-knox-1.png
 tags: [Android,Debug,Samsung,knox]
 categories: Android教學
 ---
 
-<div class="c-border-main-title-2">Samsung Knox SDK 是一個安全解決方案</div>
+<div class="c-border-main-title-2">Samsung Knox SDK is a Security Solution</div>
 
 <div class="c-border-content-title-4">
-  提供多種安全性控制和管理選項，讓企業輕鬆地保護其敏感數據和應用程序。
-  可以讓開發者在應用程式中實現以下功能：
+  It provides various security control and management options, allowing enterprises to easily protect their sensitive data and applications.
+  Developers can implement the following features in their applications:
 </div>
 <p class = "table_container">
-  <b>安全容器</b>：可用於分隔和保護企業數據和應用程式，以防止非授權的訪問。<br>
-  <b>VPN</b>：可用於建立安全的VPN連接，以保護網絡流量和數據。<br>
-  <b>加密</b>：可用於將數據加密，以保護其在傳輸過程中的安全性。<br>
-  <b>策略管理</b>：可用於管理設備設置和策略，例如密碼規則、設備鎖定、數據清除等。<br>
-  <b>身份驗證</b>：可用於實現強大的身份驗證功能，包括生物識別驗證和智能卡驗證。<br>
-  <b>安全更新</b>：可用於安全地更新應用程式和操作系統，以提高整體安全性。<br><br>
+  <b>Secure Container</b>: Used to separate and protect enterprise data and applications from unauthorized access.<br>
+  <b>VPN</b>: Used to establish a secure VPN connection to protect network traffic and data.<br>
+  <b>Encryption</b>: Used to encrypt data to ensure its security during transmission.<br>
+  <b>Policy Management</b>: Used to manage device settings and policies, such as password rules, device locking, data wiping, etc.<br>
+  <b>Authentication</b>: Used to implement strong authentication features, including biometric and smart card authentication.<br>
+  <b>Security Updates</b>: Used to securely update applications and operating systems to enhance overall security.<br><br>
 
-  這篇文章主要會解說<br>
-  Samsung knox sdk 導入時的一些基本觀念<br>
-  以及<b>遇到的坑</b>跟你們分享<br>
+  This article mainly explains<br>
+  some basic concepts when integrating the Samsung Knox SDK<br>
+  and shares <b>the pitfalls encountered</b> with you<br>
 </p>
 
-<div class="c-border-main-title-2">前導</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-* 目前支持與對應的samsung 手機與版本:[參考](https://www.samsungknox.com/en/knox-platform/supported-devices)
-  - 不支援knox的時候，官方提供的建議與方法：[參考](https://docs.samsungknox.com/admin/fundamentals/faqs/kba-349-about-android-others-android-go-devices.htm)
-  - 各knox服務[參考](https://docs.samsungknox.com/admin/knox-admin-portal/welcome.htm)
-* 下載、安裝Knox SDK
-  - 根據官網[Install the SDK](https://docs.samsungknox.com/dev/knox-sdk/install-sdk.htm) 將相關SDK導入專案
-  - 導入時會遇到要用哪一版可參考[mapping表](https://docs.samsungknox.com/dev/common/knox-version-mapping.htm)
-  - 需取得[license key](https://docs.samsungknox.com/dev/common/tutorial-get-a-license.htm)
-     - 若開發的是 Knox 2.7前的版本，生成的license key 可以「選擇」向後兼容的key
-     - license key 分為 `Development Key`、與 `Commercial Key` 可根據`測試`或`發布` 配置
-     - 關聯apk：只有關聯的apk才能使用生成的license key
-     `(在後台有個optional的選項，可以打勾關聯或不選)`
-     - 實測後，`Development Key` 同一帳號下只能有一把
-     -> [license key規則與限制](https://docs.samsungknox.com/dev/common/knox-licenses.htm)
-  - 開發時激活license key 不同Knox版本有不同方式 : [參考這](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)
-  - Knox開發相關範例官方有提供：[參考](https://docs.samsungknox.com/dev/knox-sdk/tutorial-overview.htm)
+* Currently supported Samsung phones and versions: [Reference](https://www.samsungknox.com/en/knox-platform/supported-devices)
+  - When Knox is not supported, the official suggestions and methods: [Reference](https://docs.samsungknox.com/admin/fundamentals/faqs/kba-349-about-android-others-android-go-devices.htm)
+  - Various Knox services: [Reference](https://docs.samsungknox.com/admin/knox-admin-portal/welcome.htm)
+* Download and install Knox SDK
+  - According to the official website [Install the SDK](https://docs.samsungknox.com/dev/knox-sdk/install-sdk.htm), import the relevant SDK into the project
+  - When importing, you may encounter which version to use, refer to the [mapping table](https://docs.samsungknox.com/dev/common/knox-version-mapping.htm)
+  - Obtain a [license key](https://docs.samsungknox.com/dev/common/tutorial-get-a-license.htm)
+     - If developing a version before Knox 2.7, the generated license key can be "optionally" backward compatible
+     - License keys are divided into `Development Key` and `Commercial Key`, which can be configured according to `testing` or `release`
+     - Associated APK: Only the associated APK can use the generated license key
+     `(There is an optional option in the backend that can be checked or unchecked)`
+     - After testing, `Development Key` can only have one under the same account
+     -> [License key rules and restrictions](https://docs.samsungknox.com/dev/common/knox-licenses.htm)
+  - Activating the license key during development varies with different Knox versions: [Refer here](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)
+  - Official examples related to Knox development are provided: [Reference](https://docs.samsungknox.com/dev/knox-sdk/tutorial-overview.htm)
 
   * Knox license
-    - [license可用權限列表](https://docs.samsungknox.com/dev/common/license-permissions.htm)
-    - [license三種比較好讀版](https://docs.google.com/spreadsheets/d/1Os01grTu-vDTVm5SL8VVn1QZ4NH_3gbHDT9ILAGhiEM/edit?usp=sharing)
-    - 後台實測後看到SDK license key 更細分為：
-        - `KPE Development` : 測試環境用, key 存活時間`0.5年`
-        - `KPE Standard`: 允許存取 Standard permissions, 10,000,000 seats, key 存活時間`2年`
-        - `KPE Premium`:  允許存取 Standard, Premium, and Custom permissions, 10,000,000 seats ,key 存活時間`2年`
-        - `KPE DualDAR`:  允許存取 Standard, Premium, Custom and DualDAR permissions, 與代理商洽談按年數或永久訂閱
-    - 開發權限聲明：
-        - `Knox 3.0` 提供宣告部分權限，可在AndroidManifest.xml宣告Knox權限，如果未宣告，則預設全部Knox權限開啟，如果宣告，則只允許使用宣告的權限，[參考](https://docs.samsungknox.com/dev/common/tutorial-knox-permissions.htm)
+    - [List of available license permissions](https://docs.samsungknox.com/dev/common/license-permissions.htm)
+    - [Three more readable versions of the license](https://docs.google.com/spreadsheets/d/1Os01grTu-vDTVm5SL8VVn1QZ4NH_3gbHDT9ILAGhiEM/edit?usp=sharing)
+    - After backend testing, the SDK license key is further divided into:
+        - `KPE Development`: For testing environments, key lifespan `0.5 years`
+        - `KPE Standard`: Allows access to Standard permissions, 10,000,000 seats, key lifespan `2 years`
+        - `KPE Premium`: Allows access to Standard, Premium, and Custom permissions, 10,000,000 seats, key lifespan `2 years`
+        - `KPE DualDAR`: Allows access to Standard, Premium, Custom, and DualDAR permissions, negotiated with agents for annual or permanent subscription
+    - Development permission declaration:
+        - `Knox 3.0` provides the declaration of partial permissions, which can be declared in AndroidManifest.xml. If not declared, all Knox permissions are enabled by default. If declared, only the declared permissions are allowed. [Reference](https://docs.samsungknox.com/dev/common/tutorial-knox-permissions.htm)
 
-  * 目前與原生`AirDroid Biz`用的 DevicePolicyManager初步對比 (僅先比對相似API，`可討論想用哪些，再測試實際行為`)
-    - 所有權限可[看這](https://docs.google.com/spreadsheets/d/1Os01grTu-vDTVm5SL8VVn1QZ4NH_3gbHDT9ILAGhiEM/edit?usp=sharing)
-    - 實際比對`常用DevicePolicyManager`與 Knox提供的功能參考
+  * Current preliminary comparison with native `AirDroid Biz` using DevicePolicyManager (only comparing similar APIs for now, `can discuss which ones to use, then test actual behavior`)
+    - All permissions can be [viewed here](https://docs.google.com/spreadsheets/d/1Os01grTu-vDTVm5SL8VVn1QZ4NH_3gbHDT9ILAGhiEM/edit?usp=sharing)
+    - Actual comparison of `commonly used DevicePolicyManager` and Knox provided functionalities for reference
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ09cQTkBr3L2di8b886ZcjEA9FMlv0trg90SgQFMg4okJx3YERuAXBNDtdSzmVRdxmSXxWMdchBaXL/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" height="700"
        width="80%"></iframe>
 
-  * 連結參考
-    - [Samsung Knox開發者官網](https://developer.samsungknox.com/#)
-    - [開發者文件官網](https://docs.samsungknox.com/dev/index.htm)
-    - [Knox SDK介紹](https://docs.samsungknox.com/dev/knox-sdk/index.htm)
-    - [Knox API文件](https://docs.samsungknox.com/devref/knox-sdk/reference/packages.html)
+  * Reference Links
+    - [Samsung Knox Developer Official Website](https://developer.samsungknox.com/#)
+    - [Developer Documentation Official Website](https://docs.samsungknox.com/dev/index.htm)
+    - [Knox SDK Introduction](https://docs.samsungknox.com/dev/knox-sdk/index.htm)
+    - [Knox API Documentation](https://docs.samsungknox.com/devref/knox-sdk/reference/packages.html)
 
-<div class="c-border-main-title-2">Knox架構開發者文件</div>
+<div class="c-border-main-title-2">Knox Architecture Developer Documentation</div>
 
-  - Samsung Knox提供 web-base 與 device-base兩種方式來做使用，其目前的架構：  
+  - Samsung Knox provides both web-based and device-based methods for use. Its current architecture:  
    <img src="https://docs.samsungknox.com/dev/common/images/knox-ecosystem.png" width="60%"/><br>
 
-<div class="c-border-main-title-2">Activite license note</div>
-   * android 6.0.1 samsung s6 ,測試`Knox 3.8`
-     - 下載samsung開發者後台的Knox 3.8版 ，使用方法[knox3.7.1 higher](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)，解析URI時，報exception
-     - 改用[knox2.7 lower](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm)報出`java.lang.RuntimeException: Stub!`<br>
-       -> 解決方法：加入`supportlib.jar`並加入gradle dependencies<br>
-       `用IDE的Add as library功能的需注意以下`：
-       這裡需將原本knox sdk與supportlib 兩個jar檔案改成以下，runtime才不會再報錯
+<div class="c-border-main-title-2">Activate License Note</div>
+   * Android 6.0.1 Samsung S6, testing `Knox 3.8`
+     - Downloaded Knox 3.8 version from Samsung developer backend, usage method [knox3.7.1 higher](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm), encountered exception when parsing URI
+     - Switched to [knox2.7 lower](https://docs.samsungknox.com/dev/knox-sdk/tutorial-activate-license.htm) and encountered `java.lang.RuntimeException: Stub!`<br>
+       -> Solution: Add `supportlib.jar` and include in gradle dependencies<br>
+       `When using the Add as library feature in IDE, note the following`:
+       Here, the original knox sdk and supportlib jar files need to be changed as follows, otherwise runtime errors will occur
        <script src="https://gist.github.com/KuanChunChen/fefe8c4005184dbaecf0d20645709ba8.js"></script>
 
-     - 上述成功後激活license key時，需啟動admin權限，不然會回傳`internal error`<br>
+     - After the above steps, when activating the license key, admin permissions need to be enabled, otherwise `internal error` will be returned<br>
        <script src="https://gist.github.com/KuanChunChen/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
 
-     - 這裡有個坑 啟動license時需使用Boardcast接收返回結果
-         - 但目前官方文件顯示 knox 啟用license 的廣播action 是使用
+     - There is a pitfall here: when activating the license, a Broadcast receiver needs to be used to receive the return result
+         - However, the current official documentation shows that the broadcast action for activating the Knox license is
            <script src="https://gist.github.com/KuanChunChen/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
-          但是舊版 Knox API level 19 (Knox 2.6) 上實測Knox不會發上面Action，而是如下
+          But in the old Knox API level 19 (Knox 2.6), Knox does not send the above Action, instead it sends the following
            <script src="https://gist.github.com/KuanChunChen/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
-         - 這邊看到官方說 [2.x升級3.x時nameSpace有改](https://docs.samsungknox.com/dev/knox-sdk/new-intent-names.htm) (Knox api 30這版開始改了)
+         - It is noted here that the official documentation states [namespace changes when upgrading from 2.x to 3.x](https://docs.samsungknox.com/dev/knox-sdk/new-intent-names.htm) (starting from Knox API 30)
 
-         - 所以他這邊提供一個方法：[參考](https://docs.samsungknox.com/dev/knox-sdk/support-older-devices.htm)
-            - 就是加入`supportlib.jar` 並把上方連結內的相關receiver加入`Manifest.xml`
+- So here is a method provided: [Reference](https://docs.samsungknox.com/dev/knox-sdk/support-older-devices.htm)
+  - Just add `supportlib.jar` and include the relevant receivers from the link above into `Manifest.xml`
 
-* android 12 samsung A52s ,測試`Knox 3.8`
+* Android 12 Samsung A52s, tested `Knox 3.8`
 
-  - 使用`knox3.7.1 higher` 與 `knox2.7 lower` 方法皆可以啟用license key
+  - Using both `knox3.7.1 higher` and `knox2.7 lower` methods can activate the license key
 
 
-* 其他行為
-  - 開發者後台目前能下載的有 Knox SDK 3.3 ~ 3.8 ，<br>
-    上述test case都使用Knox3.8 能過編譯，<br>
-    但可能部分行為僅支持其對應的版本，<br>
-    後來有在Android 12上測試 Knox 3.3，<br>
-    這時用`knox3.7.1 higher`active就會崩潰，<br>
-    在Android 6.0.1 Knox 3.8 使用`knox3.7.1 higher`active同樣會崩潰<br>
+* Other behaviors
+  - Currently, the developer backend allows downloading Knox SDK 3.3 ~ 3.8,<br>
+    The above test cases all use Knox 3.8 and can compile,<br>
+    but some behaviors may only support their corresponding versions.<br>
+    Later, Knox 3.3 was tested on Android 12,<br>
+    and using `knox3.7.1 higher` to activate it will crash,<br>
+    Similarly, using `knox3.7.1 higher` to activate on Android 6.0.1 Knox 3.8 will also crash.<br>
 
-<div class="c-border-main-title-2">開發遇到的事及研究</div>
+<div class="c-border-main-title-2">Development Issues and Research</div>
 
- * Vpn 開發
-   - 根據開發文件 有提供兩種Vpn方案
-       1. 跟之前研究的原生[Android Vpn Service](https://growi.airdroid.com/RD/Android%20Vpn%20%E7%9B%B8%E9%97%9C%E6%96%B9%E6%A1%88)類似
-       Knox在此基礎上擴展相關功能：[參考](https://docs.samsungknox.com/dev/knox-sdk/vpn-integrate-apps.htm)
+* Vpn Development
+  - According to the development documents, two Vpn solutions are provided:
+    1. Similar to the previously researched native [Android Vpn Service](https://growi.airdroid.com/RD/Android%20Vpn%20%E7%9B%B8%E9%97%9C%E6%96%B9%E6%A1%88)
+       Knox extends related functions on this basis: [Reference](https://docs.samsungknox.com/dev/knox-sdk/vpn-integrate-apps.htm)
 
-       2. 另一個則是[GenericVpnPolicy API](https://docs.samsungknox.com/devref/knox-sdk/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html)<br>
-       `createVpnProfile`，其提到提供對應的JSON格式來設定其vpn profile<br>
-       不同json format對應不同模式<br>
-       可參考：[vpn JSON格式](https://docs.samsungknox.com/dev/knox-sdk/VPN-json.htm)
-       -> 目前Knox文件與之前需求類似的有 : <br>
-       ipsec Hybrid RSA 、PSK、xauth RSA、IKE2 PSK、IKE2 RSA...等等<br>
-       另外文件中寫到`Knox api level 35 Deprecated` -> 對應至`Android 12`
+    2. The other is [GenericVpnPolicy API](https://docs.samsungknox.com/devref/knox-sdk/reference/com/samsung/android/knox/net/vpn/GenericVpnPolicy.html)<br>
+       `createVpnProfile`, which mentions providing the corresponding JSON format to set its vpn profile.<br>
+       Different JSON formats correspond to different modes.<br>
+       Refer to: [vpn JSON format](https://docs.samsungknox.com/dev/knox-sdk/VPN-json.htm)
+       -> Currently, the Knox documents have similar requirements as before:<br>
+       ipsec Hybrid RSA, PSK, xauth RSA, IKE2 PSK, IKE2 RSA... etc.<br>
+       Additionally, the document states `Knox api level 35 Deprecated` -> Corresponding to `Android 12`
 
- * LockScreen Password
-   - 生物解鎖，設置指紋解鎖或臉部解鎖：[點此](https://docs.samsungknox.com/dev/knox-sdk/biometrics.htm)
+* LockScreen Password
+  - Biometric unlock, set up fingerprint unlock or face unlock: [Click here](https://docs.samsungknox.com/dev/knox-sdk/biometrics.htm)
 
-<div class="c-border-main-title-2">分享實際開發啟動license與knox permission的思路</div>
-  其實如何啟動Knox只需要看官方文件上的方式去想就可<br>
-  這邊我提供我規劃的思維給大家，如下：
- - 目前將它包成dagger2 module
-  - 結構如圖 ：<br>
+<div class="c-border-main-title-2">Sharing Practical Development Ideas for Activating License and Knox Permission</div>
+  Actually, to activate Knox, you just need to follow the method in the official documents.<br>
+  Here I provide my planned thought process for everyone, as follows:
+- Currently, it is packaged as a dagger2 module.
+  - The structure is as shown in the picture:<br>
   ![knox_module.png](/images/others/knox_module.png)
-      - `ExampleKnoxActivity` 用來demo 裡面會放一些其他類實作的呼叫範例
-      - 之後只需要inject `KnoxManager`跟init`KnoxModule`就能使用
+      - `ExampleKnoxActivity` is used for demo purposes and will contain some examples of other class implementations.
+      - Later, you only need to inject `KnoxManager` and initialize `KnoxModule` to use it.
 
       ![knox_inject_01.png](/images/others/knox_inject_01.png)<br>
 
       ![knox_inject_02.png](/images/others/knox_inject_02.png)<br>
 
-      - `KnoxLicense`內存放一些常數與key值可再自行變更，未來如要不上傳key也可再調整
-      - 實際使用只需了解`KnoxManager`
-      - 主要新增了註冊/解綁knox廣播、起/停用license等功能
-        後續主要會從`KnoxManager`新增相關func
-      - 其中 `KnoxLicenseReceiver` 因為官方Knox3.7含以下的只有提供Boardcast的方式來接收激活成功與否<br>
-      這邊利用Kotlin特性包好<br>
-      實際使用knoxManager內的方法註冊並返回結果<br>
+      - `KnoxLicense` stores some constants and key values that can be changed. In the future, if you don't want to upload the key, it can be adjusted.
+      - To use it, you only need to understand `KnoxManager`.
+      - Mainly added functions for registering/unbinding Knox broadcasts, activating/deactivating licenses, etc.
+        Subsequent related functions will mainly be added from `KnoxManager`.
+      - Among them, `KnoxLicenseReceiver` is because the official Knox 3.7 and below only provide a Broadcast method to receive activation success or failure.<br>
+      Here, it is well packaged using Kotlin features.<br>
+      The actual method in knoxManager is used to register and return the result.<br>
       ![knox_inject_03.png](/images/others/knox_inject_03.png)
 
-  `理論上用Koin當DI也可，而且個人也比較喜歡Koin，之後有空再寫一篇koin寫的DI`
+`Theoretically, you can also use Koin for DI, and personally, I prefer Koin. I'll write an article about DI with Koin when I have time.`
 
-* 加入knox permission
-  - 加入權限宣告至manifest
+* Add Knox permission
+  - Add permission declaration to the manifest
   ![knox_permission.png](/images/others/knox_permission.png)
-  - Knox API 30是新舊包名的分水嶺，<br>
-  這次實測Knox API 19 無法使用新的permission request 如：<br>
+  - Knox API 30 is the watershed between old and new package names.<br>
+  In this test, Knox API 19 could not use the new permission request such as:<br>
   `com.samsung.android.knox.permission.KNOX_APP_MGMT` <br>
-  使用`com.example.supportlibclient.SUPPORT_PERMISSION`才成功<br>
+  Using `com.example.supportlibclient.SUPPORT_PERMISSION` was successful.<br>
 
-  - runtime permission
+  - Runtime permission
     ![knox_run_time_permission_01.png](/images/others/knox_run_time_permission.png)<br>
 
 
-* 其他相關<br>
-  部分API操控需解析對應URI 這邊拉出共用的<br>
+* Other related<br>
+  Some API manipulations require parsing the corresponding URI. Here is a shared example.<br>
   ![knox_constant.png](/images/others/knox_constant.png)

@@ -1,120 +1,119 @@
 ---
 layout: post
-title: "Android 15 Beta版本釋出!開發者如何應對新的版本限制？"
+title: "Android 15 Beta Version Released! How Should Developers Respond to New Version Restrictions?"
 date: 2024-05-16 13:59:07 +0800
 image: cover/android-version-adaptation-15.png
 tags: [Android]
 categories: SDK升級
-excerpt: "本文將介紹 Android 15 版本升級帶來的開發挑戰以及解決方案。"
+excerpt: "This article introduces the development challenges and solutions brought by the Android 15 version upgrade."
 ---
 
-<div class="c-border-content-title-4">前言</div>
+<div class="c-border-content-title-4">Introduction</div>
 
-Android 15 於近日發布了 Beta版<br>
-新版本稱作 `VanillaIceCream 香草冰淇淋`<br>
+Android 15 has recently released its Beta version<br>
+The new version is called `VanillaIceCream`<br>
 <img src="/images/android15/002.png" width="80%"><br>
 
-以下是roadmap:<br>
+Here is the roadmap:<br>
 <img src="/images/android15/001.png" width="80%"><br>
-其中詳細日程可參考：<a href="https://developer.android.com/about/versions/15/overview?hl=zh-cn">官網</a>
+For detailed schedule, please refer to: <a href="https://developer.android.com/about/versions/15/overview?hl=zh-cn">Official Website</a>
 <br>
-<div class="c-border-content-title-4">Android 15上所有應用會影響</div>
+<div class="c-border-content-title-4">All Applications on Android 15 Will Be Affected</div>
 
-<div class="c-border-content-title-1">軟體包行為修改</div>
-* 在class `ApplicationInfo` 中<br>
-過去存在一個名為`FLAG_STOPPED`的標籤<br>
-其行為是指目前是否app為`停止狀態`<br>
-過去`停止狀態`的判定為 用戶強制停止應用程式時被設定，應用程式會保持此狀態。<br>
+<div class="c-border-content-title-1">Package Behavior Modifications</div>
+* In the class `ApplicationInfo`<br>
+There used to be a flag named `FLAG_STOPPED`<br>
+Its behavior indicated whether the app was in a `stopped state`<br>
+Previously, the `stopped state` was set when the user force-stopped the application, and the application would remain in this state.<br>
 
-* 另一方便要讓系統判定app離開`停止狀態`的話<br>
-過去可以透過`使用者點擊開啟app`、或一些互動視窗打開app可以改變狀態<br>
+* On the other hand, to let the system determine that the app has left the `stopped state`<br>
+Previously, this could be done by `the user clicking to open the app` or some interactive windows opening the app to change the state<br>
 
-  &#x21AA; 這邊是官方`原文`：<br>
+  &#x21AA; Here is the official `original text`:<br>
   `directly launching the app or indirectly interacting with the app.`<br>
   `(through the sharesheet or a widget, selecting the app as live wallpaper, etc.)`<br>
-  指出android14可透過`使用者點擊開啟app`與`一些互動視窗間接打開`<br>
-  其中舉的例子有`sharesheet`、`widget`、`選擇當作壁紙等等`<br>
+  It indicates that in Android 14, the state could be changed by `the user clicking to open the app` and `some interactive windows indirectly opening the app`<br>
+  Examples given include `sharesheet`, `widget`, `selecting as wallpaper`, etc.<br>
 
-* 對比最新`Android 15` 系統中的 `FLAG_STOPPED` 有以下修改與擴充。<br>
-  1. 現在當系統判定為 `FLAG_STOPPED`時會停止所有`pending intents`的操作<br>
-  2. 當系統發現`離開` FLSG_STOPPED時 會發送`ACTION_BOOT_COMPLETED`廣播<br>
-     官方指出可讓開發者透過此廣播恢復pending intent.<br><br>
+* Compared to the latest `Android 15` system, the `FLAG_STOPPED` has the following modifications and extensions.<br>
+  1. Now, when the system determines `FLAG_STOPPED`, it will stop all `pending intents` operations<br>
+  2. When the system detects `leaving` FLAG_STOPPED, it will send an `ACTION_BOOT_COMPLETED` broadcast<br>
+     The official statement indicates that developers can use this broadcast to restore pending intents.<br><br>
 
-  &#x21AA; 這邊是官方`原文`說明15對`FLAG_STOPPED`判定的調整：<br>
+  &#x21AA; Here is the official `original text` explaining the adjustments to `FLAG_STOPPED` in version 15:<br>
 `Apps should only be removed from the stopped state through direct or indirect user action.`<br>
-  也就是說只有 直接或非直接的動作 會改變被系統判定為`停止狀態`<br>
+  This means that only direct or indirect actions will change the system's determination of the `stopped state`<br>
 
-* 從上述可以理解出對此狀態判定更嚴格了<br>
+* From the above, it can be understood that the determination of this state has become stricter<br>
 
-  &#x21AA; 不過上述原文看起來沒有明確指出何謂`indirect user action.`<br>
-  後續有遇到可參考
+  &#x21AA; However, the original text above does not clearly define what `indirect user action` means.<br>
+  Refer to future updates if encountered
 
-* 另外可以透過 `Application StartInfo.wasForceStopped() `方法判斷上述狀態。
+* Additionally, the `Application StartInfo.wasForceStopped()` method can be used to determine the above state.
 
-<div class="c-border-content-title-1">支援16 KB page sizes</div>
+<div class="c-border-content-title-1">Support for 16 KB Page Sizes</div>
 
-* 官方針對RAM運用的策略做優化<br>
-過去android只支援`4 KB memory page sizes`<br>
-現在提升到`16 KB page sizes`<br>
-並預計`明年`上到Google Play（15上已有，但不確定是不是到時候會強制16KB編譯的app &#x2728;)<br>	
-將page size提升主要是為了優化`ram密集型的工作`，使其用起來更有效率<br>
-不過這是針對軟體的優化<br>
-主要是針對未來`製造商陸續研發出更大、更高效能的ram`時app能順利運行且具有兼容性<br>
- ✅  `page size` 是用來表示記憶體裡面的操作單位，通常是2的次方，如：2KB、4KB、8KB等。<br>
+* The official strategy for RAM usage has been optimized<br>
+Previously, Android only supported `4 KB memory page sizes`<br>
+Now it has been increased to `16 KB page sizes`<br>
+It is expected to be available on Google Play next year (it is already available on version 15, but it is uncertain whether apps will be required to compile with 16KB at that time &#x2728;)<br>	
+The main purpose of increasing the page size is to optimize `RAM-intensive tasks`, making them more efficient<br>
+However, this is an optimization for software<br>
+It is mainly aimed at ensuring that apps can run smoothly and be compatible when future `manufacturers develop larger and more efficient RAM`<br>
+ ✅  `Page size` is used to represent the unit of operation in memory, usually a power of 2, such as 2KB, 4KB, 8KB, etc.<br>
 
-* 對`app開發者`影響：<br>
-  &#x21AA; 若有使用Ndk編譯、直接或間接使用到SDK編譯可能會需要重新配置`16 KB page sizes`的app<br><br>
+* Impact on `app developers`:<br>
+  &#x21AA; If you use Ndk for compilation, or directly or indirectly use SDK for compilation, you may need to reconfigure the app for `16 KB page sizes`<br><br>
 <img src="/images/android15/004.png" width="80%"><br><br>
-  &#x21AA; `短期`內專案應該不太受影響<br>
-  &#x21AA; `未來`等正式上線Google play 可能會遇到`16 KB page sizes` 相關問題<br><br>
+  &#x21AA; Projects should not be significantly affected in the `short term`<br>
+  &#x21AA; In the `future`, when officially launched on Google Play, you may encounter issues related to `16 KB page sizes`<br><br>
 <img src="/images/android15/006.png" width="80%"><br>
 
- ✅   遇到`兼容問題`可以參考<a href="https://developer.android.com/guide/practices/page-sizes#build">官網</a>調整編譯方式
+ ✅   If you encounter `compatibility issues`, you can refer to the <a href="https://developer.android.com/guide/practices/page-sizes#build">official website</a> to adjust the compilation method.
 
-* 判別是不是會受到影響可透過`android studio`內`APK Analyzer`來判斷編譯的是否用到native code(或`指令反編譯`去看)<br>
-  &#x21AA; 把apk拖到android studio 內<br>
-  &#x21AA; 查看lib資料夾是否出現`任意`.so檔(全稱shared object)<br>
-若出現則表示你的app`有`native code編譯出來的<br>
-若`沒出lib 或 .so `則代表可能`非`native code<br>
+* To determine if you will be affected, you can use `APK Analyzer` in `Android Studio` to check if native code is used in the compilation (or use `disassembly` to check)<br>
+  &#x21AA; Drag the apk into Android Studio<br>
+  &#x21AA; Check if any `.so` files (shared object files) appear in the lib folder<br>
+If they appear, it means your app `has` native code compiled<br>
+If `no lib or .so` appears, it means it is likely `not` native code<br>
 <img src="/images/android15/005.png" width="80%"><br>
 
-✅ 官方指出`有用到native code`則需要`rebuild app` to 16KB device.
+✅ The official statement indicates that if `native code` is used, you need to `rebuild the app` for 16KB devices.
 
-這邊有幾種初判斷參考：<br>
-↪ 使用到任何C/C++ (native) code，通常是加入NDK相關，或JNI等等。<br>
-↪ 使用的任何第三方庫用到任意native labraries。<br>
-↪ 使用任意第三方的builder若使用任意native libraries。<br>
+Here are some preliminary judgment references:<br>
+↪ Using any C/C++ (native) code, usually involving NDK or JNI.<br>
+↪ Using any third-party libraries that involve native libraries.<br>
+↪ Using any third-party builders that use native libraries.<br>
 
-* 下圖是`16 KB page sizes`這項功能優化後<br>
-對系統效能的提升<br>
+* The image below shows the performance improvement of the system after optimizing the `16 KB page sizes` feature<br>
 <img src="/images/android15/007.png" width="80%">
 
-<div class="c-border-content-title-1">新增 Private space功能</div>
-此功能為新增一個隱藏app的空間或類似應用鎖<br>
-需輸入密碼才能打開存取應用<br>
-不過`官方目前上面提示有bug`<br>
+<div class="c-border-content-title-1">New Private Space Feature</div>
+This feature adds a hidden space for apps or a similar app lock<br>
+A password is required to open and access the app<br>
+However, the `official currently indicates there is a bug`<br>
 <img src="/images/android15/008.png" width="80%"><br>
-實測模擬器也找不到該功能<br>
-不過官方有提到該功能會限制app可見性<br>
+Testing on the emulator also couldn't find this feature<br>
+However, the official mentioned that this feature will restrict app visibility<br>
 `Because apps in the private space have restricted visibility,`<br>
-後面可以用的時候可再看看自己的app放進去會不會有問題<br>
-如：不確定像是QueryAllPackagesPermission`的功能會不會跟預期不同<br>
-到時候可再試試<br>
+You can check later if there are any issues when putting your app into it<br>
+For example: It is uncertain if features like `QueryAllPackagesPermission` will behave as expected<br>
+You can test it later<br>
 
-<div class="c-border-content-title-1">最小Target SDK 改為 24</div>
-* 跟上版android 14類似，一樣是為了避免用太舊的api鑽一些漏洞<br>
-在`android 15`上 target`需要`大於24才能安裝<br>
-裝不了會顯示`INSTALL_FAILED_DEPRECATED_SDK_VERSION`<br>
-一樣可以用下列指令 安裝不符合規定的apk<br><br>
+<div class="c-border-content-title-1">Minimum Target SDK Changed to 24</div>
+* Similar to the previous Android 14 version, this is to prevent exploiting old APIs<br>
+In `Android 15`, the target `needs` to be greater than 24 to install<br>
+If not, it will show `INSTALL_FAILED_DEPRECATED_SDK_VERSION`<br>
+You can use the following command to install non-compliant apks<br><br>
 
   ```
   adb install --bypass-low-target-sdk-block FILENAME.apk
   ```
 
-#### UI/UX調整
-<div class="c-border-content-title-1">UI/UX調整</div>
-* 移除開發者選項中的`predictive back animations`<br>
-並且讓開發者可在app中設置<br><br>
+#### UI/UX Adjustments
+<div class="c-border-content-title-1">UI/UX Adjustments</div>
+* Removed `predictive back animations` from developer options<br>
+And allowed developers to set it in the app<br><br>
 
   ```
   <application
@@ -124,18 +123,17 @@ Android 15 於近日發布了 Beta版<br>
   ...
   </application>
   ```
-  ✅ 看看`predictive back animations`是什麼 ：<a href="https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture">參考</a>
+  ✅ Check what `predictive back animations` are: <a href="https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture">Reference</a>
 
 
 
-<div class="c-border-content-title-1">棄用</div>
-日常淘汰部份api：
-<a href="https://developer.android.com/about/versions/15/deprecations">參考api棄用</a><br><br>
+<div class="c-border-content-title-1">Deprecations</div>
+Routine deprecation of some APIs:
+<a href="https://developer.android.com/about/versions/15/deprecations">Reference API deprecations</a><br><br>
 
-
-<div class="c-border-content-title-4">以Android 15為目標的應用會影響</div>
-<div class="c-border-content-title-1">foreground services相關調整</div>
-* 禁止在BOOT_COMPLETED廣播時啟動以下foreground service
+<div class="c-border-content-title-4">Impacts on Apps Targeting Android 15</div>
+<div class="c-border-content-title-1">Adjustments Related to Foreground Services</div>
+* Prohibited from starting the following foreground services during the BOOT_COMPLETED broadcast
    - dataSync
    - camera
    - mediaPlayback
@@ -143,53 +141,53 @@ Android 15 於近日發布了 Beta版<br>
    - mediaProjection
    - microphone
  
-&#x21AA; 若強行啟動會拋`ForegroundServiceStartNotAllowedException`
+&#x21AA; Forcing a start will throw `ForegroundServiceStartNotAllowedException`
 
-* 針對`dataSync`的終極審判<br>
-   &#x21AA; dataSync的service現在每24hr內只能跑6hr，時間到了系統會呼叫`Service.onTimeout(int, int)`<br>
-   此時必需在收到timeout幾秒內呼叫`Service.stopSelf()`<br>
-   &#x21AA; 若時間到了沒有呼叫`stopSelf`，則出現錯誤<br>
-  `A foreground service of ##fgs_type  did not stop within its timeout: ##component_name.`<br>
-   &#x21AA; 當系統呼叫`Service.onTimeout(int, int)`則該service不再被認為是foreground service<br>
-   &#x21AA; 在目前beta2版本拋出的錯誤視為`ANR`，但在後續會改成`exception`.<br>
-   &#x21AA; 上述限制為所有dataSync service共同遵守，如：24hr內已經執行4hr dataSync，則接下來其他dataSync只能執行2hr
-   &#x21AA; 或者官方推薦遷移成其他方式：<a href="https://developer.android.com/about/versions/15/changes/datasync-migration">替代方案</a>
+* Ultimate judgment for `dataSync`<br>
+   &#x21AA; The dataSync service can now only run for 6 hours within a 24-hour period. When the time is up, the system will call `Service.onTimeout(int, int)`<br>
+   At this point, you must call `Service.stopSelf()` within a few seconds of receiving the timeout<br>
+   &#x21AA; If `stopSelf` is not called when the time is up, an error will occur<br>
+  `A foreground service of ##fgs_type did not stop within its timeout: ##component_name.`<br>
+   &#x21AA; When the system calls `Service.onTimeout(int, int)`, the service is no longer considered a foreground service<br>
+   &#x21AA; In the current beta2 version, the thrown error is considered an `ANR`, but it will be changed to an `exception` in subsequent versions.<br>
+   &#x21AA; The above restrictions apply to all dataSync services collectively. For example, if 4 hours of dataSync have already been executed within 24 hours, other dataSync services can only run for 2 more hours
+   &#x21AA; Alternatively, it is recommended to migrate to other methods: <a href="https://developer.android.com/about/versions/15/changes/datasync-migration">Alternative Solutions</a>
 
 
-* 新增forground service type：<a href="https://developer.android.com/about/versions/15/behavior-changes-15#mediaprocessing-fgs-type">mediaProcessing</a><br>
-  &#x21AA; 此type跟上面dataSync有相同的規則<br>
-  &#x21AA; `mediaProcessing`的service現在每24hr內只能跑6hr，時間到了系統會呼叫`Service.onTimeout(int, int)`<br>
-  此時必需在收到timeout幾秒內呼叫`Service.stopSelf()`<br>
-  &#x21AA; 當系統呼叫`Service.onTimeout(int, int)`則該service不再被認為是foreground service<br>
-  &#x21AA; 官方提供的替代方案與上方dataSync不同：<a href="https://developer.android.com/develop/background-work/services/foreground-services#purpose-built-apis">替代方案</a>
+* New foreground service type: <a href="https://developer.android.com/about/versions/15/behavior-changes-15#mediaprocessing-fgs-type">mediaProcessing</a><br>
+  &#x21AA; This type follows the same rules as dataSync above<br>
+  &#x21AA; The `mediaProcessing` service can now only run for 6 hours within a 24-hour period. When the time is up, the system will call `Service.onTimeout(int, int)`<br>
+  At this point, you must call `Service.stopSelf()` within a few seconds of receiving the timeout<br>
+  &#x21AA; When the system calls `Service.onTimeout(int, int)`, the service is no longer considered a foreground service<br>
+  &#x21AA; The official alternative solutions differ from those for dataSync: <a href="https://developer.android.com/develop/background-work/services/foreground-services#purpose-built-apis">Alternative Solutions</a>
 
-* 上述type要reset timer 文件中是提到<br>
-用戶把app移到前景才會reset<br>   
+* To reset the timer for the above types, the documentation mentions<br>
+The timer is reset when the user brings the app to the foreground<br>   
 <img src="/images/android15/004.png" width="80%"><br>
 
-* 也可嘗試使用special case <br>
-   - <a href="https://developer.android.com/about/versions/14/changes/fgs-types-required?authuser=7&hl=zh-tw#special-use">點此查看</a>
-   - 不過官方會需要提供說明並經過審核才能上架
-<div class="c-border-content-title-1">限制透過持有SYSTEM_ALERT_WINDOW來啟動foreground service的限制</div>
-* 之前透過SYSTEM_ALERT_WINDOW來啟動foreground service 即使app是在背景也可以work<br>
-  現在需加一個步驟：需透過`TYPE_APPLICATION_OVERLAY`起動一個overlay window且需要是可見的<br>
-↪ 若未達成上述新需求則拋`ForegroundServiceStartNotAllowedException.`<br>
+* You can also try using special cases <br>
+   - <a href="https://developer.android.com/about/versions/14/changes/fgs-types-required?authuser=7&hl=zh-tw#special-use">Click here to view</a>
+   - However, the official review and approval are required for listing
+<div class="c-border-content-title-1">Restrictions on Starting Foreground Services via SYSTEM_ALERT_WINDOW</div>
+* Previously, starting a foreground service via SYSTEM_ALERT_WINDOW would work even if the app was in the background<br>
+  Now an additional step is required: an overlay window must be started via `TYPE_APPLICATION_OVERLAY` and it must be visible<br>
+↪ If the new requirement is not met, `ForegroundServiceStartNotAllowedException` will be thrown.<br>
 
-<div class="c-border-content-title-1">勿擾模式行為變更</div>
+<div class="c-border-content-title-1">Do Not Disturb Mode Behavior Changes</div>
 
-* Target sdk Android 15 以上的app不再支援設置`勿擾模式Do Not Disturb (DND)`的 `global state`或 `policy`<br>
-↪ 影響到之前透過`setInterruptionFilter(INTERRUPTION_FILTER_ALL)`做設置的app<br>
+* Apps targeting SDK Android 15 and above no longer support setting the `Do Not Disturb (DND)` `global state` or `policy`<br>
+↪ Affects apps that previously set this through `setInterruptionFilter(INTERRUPTION_FILTER_ALL)`<br>
 
-<div class="c-border-content-title-1">針對OpenJDK 17的改變</div>
+<div class="c-border-content-title-1">Changes for OpenJDK 17</div>
 
-* Android 15針對此調整了api使用方式，有用到可以再注意<br>
-使用以下function format 字串時新增exception<br>
+* Android 15 has adjusted the API usage for this, so take note if you are using it<br>
+An exception is now thrown when using the following functions to format strings<br>
   - String.format(String, Object[])
   - String.format(Locale, String, Object[])
   - Formatter.format(String, Object[])
   - Formatter.format(Locale, String, Object[])
 
-↪ 當誤用`$0`的時候會拋出
+↪ When misusing `$0`, it will throw
   `IllegalFormatArgumentIndexException`: Illegal format argument index = 0
 
   ```kotlin
@@ -199,68 +197,63 @@ Android 15 於近日發布了 Beta版<br>
   val formattedString = String.format("Name: %0$s, Age: %1$d", name, age);
   ```
 
-* 針對此<a herf="https://bugs.openjdk.org/browse/JDK-8301574">issue</a>
-調整`Random` class
-現在`Random.ints()`不會返回跟`Random.nextInt()`相同的值
-所以現在`不應該`預期兩者是`==`的
+* Adjustments to the `Random` class for this <a herf="https://bugs.openjdk.org/browse/JDK-8301574">issue</a>
+Now `Random.ints()` will not return the same value as `Random.nextInt()`
+So now you `should not` expect the two to be `==`
   - Random.ints(long)
   - Random.ints(long, int, int)
   - Random.ints(int, int)
   - Random.ints()
 
-<div class="c-border-content-title-1">更安全的後台啟動Activity</div>
-* 從 Android 10 起後台 activity 啟動就受到限制，而 `Android 15 透過添加其他控制`，來`防止惡意後台應用程式`將其他應用程式帶到前台。
-* 現在新增一種flag能設定，背景activity無法打開另一個app的activity
+<div class="c-border-content-title-1">Safer Background Activity Launch</div>
+* Since Android 10, background activity launches have been restricted, and `Android 15 adds additional controls` to `prevent malicious background apps` from bringing other apps to the foreground.
+* A new flag can now be set to prevent a background activity from opening another app's activity
 
   ```
   <application android:allowCrossUidActivitySwitchFromBelow="false" >
   ```
 
-  實際修改為：要打開的activity跟stack最上層 app `UID不匹配`的話則無法打開
-  ↪ 用來防止app打開另一個不同的app
+  The actual modification is: if the activity to be opened and the top app in the stack `do not match in UID`, it cannot be opened
+  ↪ Used to prevent an app from opening another different app
 
-* 其他針對後台啟動activity的限縮
-   - 現在`PendingIntent`預設`關掉背景啟動activity`(block background activity launches)
+* Other restrictions on background activity launches
+   - Now `PendingIntent` defaults to `blocking background activity launches`
 
-<div class="c-border-content-title-1">使用者體驗UI改善</div>
-* 此調整針對使用者體驗調整，此處大概描述下：
-  - `Edge-to-edge enforcement`：邊到邊強制執行，android 15上會對畫面直邊緣強制內縮
-  不過有提到使用`material 3`不會受此影響，實測`使用material 3的app`確實與原本UI一至<br>
+<div class="c-border-content-title-1">User Experience UI Improvements</div>
+* This adjustment is aimed at improving user experience, briefly described here:
+  - `Edge-to-edge enforcement`: Enforced edge-to-edge, on Android 15 the screen will be forced to inset from the edges
+  However, it is mentioned that using `material 3` will not be affected, and testing shows that `apps using material 3` indeed have the same UI as before<br>
   <img src="/images/android15/011.png" width="80%"><br>
-  其他UI如有可能受影響可注意<br>
+  Other UIs that may be affected should be noted<br>
   <img src="/images/android15/010.png" width="80%"><br><br>
-  &#x21AA; 上方第三個圖為使用windowInsets.getInsets之類的去做調整後<br>
-  或者可以使用material 3<br>
+  &#x21AA; The third image above shows adjustments made using windowInsets.getInsets or similar<br>
+  Alternatively, you can use material 3<br>
   
-  - `elegantTextHeight attribute defaults to true`：預設elegantTextHeight屬性為`true`<br>
+  - `elegantTextHeight attribute defaults to true`: The elegantTextHeight attribute defaults to `true`<br>
   <img src="/images/android15/012.png" width="80%"><br>
 
-  - `Stable configuration`：針對configuration相關的行為調整，可能影響螢幕轉向、system bar尺寸的判斷相關<br>
-	<a href="https://developer.android.com/about/versions/15/behavior-changes-15#stable-configuration">直接點此看</a>
-  - `Locale-aware default line height for EditText`：根據不同語言來調整edittext的高度可能變不同<br>
+  - `Stable configuration`: Adjustments to configuration-related behaviors, which may affect screen orientation and system bar size judgments<br>
+	<a href="https://developer.android.com/about/versions/15/behavior-changes-15#stable-configuration">Click here to see</a>
+  - `Locale-aware default line height for EditText`: Adjusts the height of EditText based on different languages<br>
   	<img src="/images/android15/013.png" width="80%"><br>
-  	✅ 可再看看如果變動後是否可接受<br>
-  如要取消可以直接把 `useLocalePreferredLineHeightForMinimum` attribute 設為 false
-  - `TextView width changes for complex letter shapes`：預設文字的寬度指派規則有所調整<br>
-  使得複雜的文字有更多空間<br>
-  ✅ 若想`停用/啟用`可直接設定attribute `setShiftDrawingOffsetForStartOverhang`<br>
- 
-* 其他UI/UX細節直接參考這邊比較完整:<a href="https://developer.android.com/about/versions/15/behavior-changes-15#ux">點此</a>
+  	✅ Check if the changes are acceptable<br>
+  To cancel, you can directly set the `useLocalePreferredLineHeightForMinimum` attribute to false
+  - `TextView width changes for complex letter shapes`: Adjustments to the default text width assignment rules<br>
+  Giving more space to complex letters<br>
+  ✅ To `disable/enable`, directly set the attribute `setShiftDrawingOffsetForStartOverhang`<br>
 
+* For other UI/UX details, refer to the more complete information here: <a href="https://developer.android.com/about/versions/15/behavior-changes-15#ux">Click here</a>
 
-<div class="c-border-content-title-1">Camera and media新增限制</div>
-* 若要請求`音頻焦點 (audio focus)`現在必需是`top app` 或是`audio-related foreground service`否則返回
-  AUDIOFOCUS_REQUEST_FAILED
-* 目前會被判定是`audio-related foreground service`有：
-   -  mediaPlayback
-   -  camera
-   -  microphone
-   -  phoneCall
+<div class="c-border-content-title-1">New Camera and Media Restrictions</div>
+* To request `audio focus`, it must now be the `top app` or an `audio-related foreground service`, otherwise it will return AUDIOFOCUS_REQUEST_FAILED.
+* Currently, the following are considered `audio-related foreground services`:
+   - mediaPlayback
+   - camera
+   - microphone
+   - phoneCall
    <br>
-   ✅ 學習音頻焦點 (audio focus) <a href="https://developer.android.com/media/optimize/audio-focus">直接點此看</a><br>
+   ✅ Learn about audio focus <a href="https://developer.android.com/media/optimize/audio-focus">Click here to view</a><br>
 
 <div class="c-border-content-title-1">Updated non-SDK restrictions</div>
-* 日常版本更新都有的：<a href="https://developer.android.com/guide/app-compatibility/restrictions-non-sdk-interfaces#list-names">直接點此看</a><br>
- 	✅  `非SDK`：涵蓋範圍內的 Java 的方法。此類介面是 SDK 的內部實作細節，可能隨時會被修改，且不對開發者另行通知。
-
-
+* Regular version updates include: <a href="https://developer.android.com/guide/app-compatibility/restrictions-non-sdk-interfaces#list-names">Click here to view</a><br>
+   ✅ `Non-SDK`: Java methods within the scope. These interfaces are internal implementation details of the SDK and may be modified at any time without notice to developers.

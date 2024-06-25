@@ -1,58 +1,58 @@
 ---
 layout: post
-title: "Android Jetpack Compose SwipeRefresh：輕鬆實現列表的下拉刷新功能！"
+title: "Android Jetpack Compose SwipeRefresh: Easily Implement Pull-to-Refresh for Lists!"
 date: 2021-10-28 14:41:12 +0800
 image: cover/ea_swiperefresh_app-new-1.png
 tags: [Android,Kotlin,JetpackCompose]
 categories: JetpackCompose
 permalink: /android-kt-jetpack-compose-swiperefresh
-excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn 和 SwipeRefresh運用，以輕鬆實現動態更新的列表資料。"
+excerpt: "This article introduces how to use LazyColumn and SwipeRefresh in Jetpack Compose to easily implement dynamically updating list data."
 ---
 
-<div class="c-border-main-title-2">前言</div>
-延續上一篇文章：<br>
+<div class="c-border-main-title-2">Introduction</div>
+Continuing from the previous article:<br>
 
 <a href="{{site.baseurl}}/android-kt-jetpack-compose-list/">
   <img src="/images/cover/ea-website-lazy-colume-cover-photo-new-1.png" alt="Cover" width="20%" >
 </a>
 
-<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-list/">Jetpack Compose：使用 LazyColumn + ViewModel 輕鬆實現動態更新的列表資料</a><br>
+<a align="right" href="{{site.baseurl}}/android-kt-jetpack-compose-list/">Jetpack Compose: Easily Implement Dynamically Updating List Data with LazyColumn + ViewModel</a><br>
 
-今天會繼續完整基於Jetpack Compose LazyColumn的下拉刷新功能<br>
+Today we will continue to fully implement the pull-to-refresh feature based on Jetpack Compose LazyColumn.<br>
 
-<div class="c-border-content-title-1">實作效果：下拉列表刷新</div>
+<div class="c-border-content-title-1">Implementation Effect: Pull-to-Refresh List</div>
 
 <div align="center">
   <img src="/mov/jetpack/ea_swiperefresh_app.gif" width="30%"/>
 </div>
 
 
-<div class="c-border-content-title-4">用到相關知識</div>
+<div class="c-border-content-title-4">Related Knowledge Used</div>
 * JetpackCompose SwipeRefresh, LazyColumn
-* Viewmodel
+* ViewModel
 
-結合之前所介紹的概念，<br>
-再應用 Jetpack Compose 中的 SwipeRefresh 元件，<br>
-就能輕鬆實現目標功能。<br>
+Combining the concepts introduced earlier,<br>
+and applying the SwipeRefresh component in Jetpack Compose,<br>
+you can easily achieve the target functionality.<br>
 
 
-今天我們學習如何運用先前所學，<br>
-並將 SwipeRefresh 結合到應用程式中。<br>
-這個過程非常直觀，<br>
-只需要幾個簡單的步驟，<br>
-就可以為你的列表加入下拉刷新的功能。<br>
+Today we will learn how to use what we have learned before,<br>
+and integrate SwipeRefresh into the application.<br>
+This process is very intuitive,<br>
+and with just a few simple steps,<br>
+you can add pull-to-refresh functionality to your list.<br>
 
 
 <script src="https://gist.github.com/KuanChunChen/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
 
-<div class="c-border-content-title-4">各變數的意義</div>
+<div class="c-border-content-title-4">Meaning of Each Variable</div>
 
-state就是觀察是否下拉刷新的boolean<br>
+`state` is a boolean that observes whether a pull-to-refresh is happening.<br>
 
-onRefresh就是讓你帶入要做事情的scope<br>
+`onRefresh` allows you to input the scope of the task to be done.<br>
 
-indicator可以讓你下拉刷新時下來轉圈圈那個符號的細項設定<br>
-其中程式碼是這樣<br>
+`indicator` allows you to set the details of the spinning symbol that appears during pull-to-refresh.<br>
+The code for this is as follows:<br>
 ```
 indicator = { state, trigger ->
             SwipeRefreshIndicator(
@@ -66,20 +66,20 @@ indicator = { state, trigger ->
             )
 }
 ```
-其他的話依照上面命名名稱<br>
-可以設定一些 大小、背景色、箭頭是否出現、箭頭顏色、刷新距離等等<br>
+Other settings can be configured according to the names above,<br>
+such as size, background color, arrow appearance, arrow color, refresh distance, etc.<br>
 
-另外一個重點是<br>
-我們用了一個isRefreshing並放進SwipeRefresh需求的state變數中<br>
-swiperefresh的state<br>
-會根據你的狀態判斷是否顯示轉圈圈動畫<br>
-所以當狀態為true時<br>
-轉圈圈那個等待動畫就會存在<br>
-當改為false時<br>
-這邊我用livedata然後obsere as state<br>
-然後觀察刷新完取得資料才<br>
-讓他設定結束<br>
+Another key point is<br>
+we use an `isRefreshing` variable and put it into the `state` variable required by SwipeRefresh.<br>
+The state of SwipeRefresh<br>
+will determine whether to show the spinning animation based on your status.<br>
+So when the status is `true`,<br>
+the spinning waiting animation will be present.<br>
+When it changes to `false`,<br>
+here I use `LiveData` and observe it as state,<br>
+and then observe the data retrieval after refreshing<br>
+to set it to end.<br>
 
-那其實這個下拉刷新<br>
-簡單就完成了<br>
-你也可以趕快試試！<br>
+This pull-to-refresh<br>
+is simply completed.<br>
+You can also try it out quickly!<br>

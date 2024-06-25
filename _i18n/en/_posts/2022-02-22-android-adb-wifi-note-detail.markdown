@@ -1,68 +1,68 @@
 ---
 layout: post
-title: "釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗教學！"
+title: "Unleashing the Power of Android 11 adb Wireless Debug: From Wired to Wireless, Explore a Freer Debugging Experience!"
 date: 2022-02-22 15:16:12 +0800
 image: cover/android-adb-wirless-share-1.png
 tags: [Android,adb]
 categories: Android教學
-excerpt: "想要釋放你的 Android 11 的真正潛力嗎？那就來探索無線 adb wireless debug 吧！從有線到無線，讓你的 debug 體驗更自由、更便利。"
+excerpt: "Want to unlock the true potential of your Android 11? Explore wireless adb wireless debug! From wired to wireless, make your debugging experience freer and more convenient."
 ---
 
-<div class="c-border-main-title-2">前言</div>
-因應專案需求，
-我們不斷地尋找使用 ADB Debug 的新方式，<br>
-最近發現 Android 推出了一種方式。<br>
-在這裡，我們分享了adb wireless debug的研究心得。
+<div class="c-border-main-title-2">Introduction</div>
+In response to project needs,
+we are constantly looking for new ways to use ADB Debug,<br>
+and recently discovered a method introduced by Android.<br>
+Here, we share our research findings on adb wireless debug.
 
 
 <div align="start" class="table_container">
-  如果您還不熟悉 ADB wifi來Debug，之前我們也分享過相關的心得，建議您可以參考一下。<br>
+  If you are not yet familiar with using ADB wifi for debugging, we have previously shared related insights, which you might find useful.<br>
   <a href="{{site.baseurl}}/2022/02/15/android-adb-wifi-note/">
     <img src="/images/others/adb_wifi.png" alt="Cover" width="30%"/>
   </a>
-  <a href="{{site.baseurl}}/2022/02/15/android-adb-wifi-note/">擁抱無線：教你使用adb無線連接Android實機！</a>
+  <a href="{{site.baseurl}}/2022/02/15/android-adb-wifi-note/">Embrace Wireless: Guide to Using adb to Wirelessly Connect to Android Devices!</a>
 </div><br>
 
-<div class="c-border-main-title-2">針對Android 11 新出的adb wireless debug 研究
-  <a style ="color:white;" herf="https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+">可參考此篇</a>
+<div class="c-border-main-title-2">Research on the New adb Wireless Debug in Android 11
+  <a style ="color:white;" herf="https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+">Refer to this article</a>
 </div>
 
-<div class="c-border-content-title-4"><b style="color:red;">Android 11</b> 後續版本才新增wireless debug功能，首先環境需達到：</div>
-  1.Android 11 以上<br>
-  2.連接的電腦或自己包的環境下 platform tool SDK版本必需大於 30.0.0 (<b style="color:red;">adb version</b> 可查看當前sdk version)<br>
-  3.需在同個區域網路下<br>
-<div class="c-border-content-title-4">實際操作 <b>**(不需要 USB 線)**</b></div>
-  1.Android手機至setting開啟開發者模式並進入找到‘Wireless debugging’開啟<br>
-  2.進入Wireless debugging子選單<br>
-  3.點pair device with code 進入查看ip、port還有paring code.<br>
-  4.Terminal上 <b>adb pair `ipaddr`:`port`</b> 輸入指令配對<br>
-  5.出現 <b>Enter pairing code:</b> 則輸入步驟3看到的paring code.<br>
+<div class="c-border-content-title-4"><b style="color:red;">Android 11</b> and later versions have added the wireless debug feature. The environment requirements are:</div>
+  1. Android 11 or above<br>
+  2. The connected computer or the self-built environment must have a platform tool SDK version greater than 30.0.0 (<b style="color:red;">adb version</b> can check the current SDK version)<br>
+  3. Must be on the same local network<br>
+<div class="c-border-content-title-4">Actual Operation <b>**(No USB Cable Needed)**</b></div>
+  1. On the Android phone, go to settings, enable developer mode, and find 'Wireless debugging' to turn it on<br>
+  2. Enter the Wireless debugging submenu<br>
+  3. Click pair device with code to view the IP, port, and pairing code.<br>
+  4. On the terminal, enter the command <b>adb pair `ipaddr`:`port`</b> to pair<br>
+  5. When <b>Enter pairing code:</b> appears, enter the pairing code seen in step 3.<br>
 
-<div class="c-border-content-title-4">特色</div>
-  1.Wireless debugging內可看到已經配對過的device，可管理刪除<br>
-  2.下次重開會自動重連<br>
-  3.無需USB線即可配對<br>
-  4.與舊版(Android10以下)adb 連wifi不同 ，舊版每次連都要手動重連<br>
-    - 簡述Android 10 以下 adb連線方法  **(需要借助 USB 線)**<br>
-    切換tcpip port : <b style="color:red;">adb tcpip <port></b><br>
-    <b style="color:red;">adb connect <ip>:<port></b> 輸入ip 與剛剛的port來連接<br>
+<div class="c-border-content-title-4">Features</div>
+  1. In Wireless debugging, you can see the devices that have been paired and manage or delete them<br>
+  2. It will automatically reconnect the next time you restart<br>
+  3. Pairing can be done without a USB cable<br>
+  4. Unlike the old version (below Android 10) adb connecting to wifi, the old version requires manual reconnection each time<br>
+    - Brief description of the adb connection method below Android 10 **(Requires USB Cable)**<br>
+    Switch tcpip port: <b style="color:red;">adb tcpip <port></b><br>
+    <b style="color:red;">adb connect <ip>:<port></b> Enter the IP and the port just used to connect<br>
 
-<div class="c-border-main-title-2">其他筆記</div>
+<div class="c-border-main-title-2">Other Notes</div>
 
-  - Android 11 AOSP 內develop option 內的 WirelessDebuggingFragment內 看看能否知道如何產生pair code<br>
-    -> AOSP folder路徑 ：<br>
+  - In Android 11 AOSP, check the WirelessDebuggingFragment in the developer options to see how the pairing code is generated<br>
+    -> AOSP folder path:<br>
      `/Android/11/packages/apps/Settings/com/android/settings/development/WirelessDebuggingFragment.java`<br>
 
-    這邊我看的結果看起來他需要特殊的key才能產生，<br>
-    不確定 `應用層` 能不能做到 <br>
-    有興趣研究的可以再去AOSP內看看<br>
+    Here, it looks like a special key is needed to generate it,<br>
+    Not sure if the `application layer` can achieve this <br>
+    Those interested in researching can check it out in AOSP<br>
 
-  - 部分機種Android 11 沒支援，意思是有可能廠商會鎖這項功能，如：LG 手機<br>
-     -> 開發者選項中看不到wireless debuging選項，<br>
-     故實際有無支援還是要看該廠商燒的OTA有沒有帶<br>
+  - Some Android 11 devices do not support it, meaning manufacturers might lock this feature, such as LG phones<br>
+     -> You won't see the wireless debugging option in the developer options,<br>
+     So whether it is supported or not depends on whether the OTA provided by the manufacturer includes it<br>
 
-  - `adb connect <ip>:<port> 連線`` <br>
-     -> 用這個來測試連線是否能連到wireless debug 頁面上的那組<b style="color:red;">IP:port</b><br>
-     但這指令一種是用來連線tcpip的ip(需要線)<br>
-     另一種則是恢復有記錄在wireless debuging下已pair過的device<br>
-     故僅能拿來手動恢復連線<br>
+  - `adb connect <ip>:<port> connection` <br>
+     -> Use this to test if you can connect to the IP:port displayed on the wireless debug page<b style="color:red;">IP:port</b><br>
+     But this command is used to connect to the tcpip IP (requires a cable)<br>
+     Another use is to restore a device that has been paired under wireless debugging<br>
+     So it can only be used to manually restore the connection<br>

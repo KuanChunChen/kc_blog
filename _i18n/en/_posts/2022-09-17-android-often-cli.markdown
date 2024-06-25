@@ -1,40 +1,40 @@
 ---
 layout: post
-title: "分享我在 2022 年開發Android App中最常用的指令"
+title: "Sharing the Most Frequently Used Commands in Android App Development in 2022"
 date: 2022-09-17 17:21:13 +0800
 image: cover/android-cmd-terminal-1.png
 tags: [Android,CLI,adb,brew,develop]
 categories: Android教學
-excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的指令，讓你更加熟悉這些指令並加強你的開發技能"
+excerpt: "A developer shares the most frequently used commands during the development process in 2022, helping you become more familiar with these commands and enhance your development skills."
 ---
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;Preview</h1>
 
- * when I am developing that I always used `brew` to install some cli tool.
-   -  install brew<br>
+ * When I am developing, I always use `brew` to install some CLI tools.
+   -  Install brew<br>
    `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;Android</h1>
 
- * How to install test `aab` file
-   -  install bundletool<br>
+ * How to install a test `aab` file
+   -  Install bundletool<br>
       `brew install bundletool`
 
-   -  switch to your aab file folder and convert it to apk file<br>
+   -  Switch to your aab file folder and convert it to an apk file<br>
       `bundletool build-apks --bundle=./app.aab --output=./app.apks`
 
-   -  install apk<br>
+   -  Install apk<br>
       `bundletool install-apks --apks=app.apks`
 
  <br>
 
- * `Adb` tool that I often used
+ * `Adb` tool that I often use
    - Clear app data<br>
    `adb shell pm clear your.package.name`
 
    - Delete app <br>
-   `adb uninstall  your.package.name`
+   `adb uninstall your.package.name`
 
    - Search app package<br>
    `adb shell pm list packages | grep 'keyword'`
@@ -43,12 +43,12 @@ excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的
    `adb shell pm disable-user 'your.package.name'`
 
    - Open app<br>
-   `adb shell am start -n  your.package.name`
+   `adb shell am start -n your.package.name`
 
-   - Open app and goto assign page<br>
+   - Open app and go to a specific page<br>
    `adb shell am start -n your.package.name/your.assign.activity.path`
 
-   - Forec-stop apps<br>
+   - Force-stop apps<br>
    `adb shell am force-stop your.package.name`
 
    - Open Accessibility page<br>
@@ -67,7 +67,7 @@ excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的
    `adb shell dumpsys device_policy`
 
    - Grant app permissions<br>
-   `adb shell "pm grant  your.package.name android.permission.YourPermission && am force-stop elegant.access.aidltest"`
+   `adb shell "pm grant your.package.name android.permission.YourPermission && am force-stop elegant.access.aidltest"`
 
    - Pull files<br>
     `adb pull /your/path`
@@ -78,13 +78,13 @@ excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的
    - Catch android log<br>
       <div align="start">
       See
-        <a href="{{site.baseurl}}/2022/04/18/android-log-catch-method/">[Android][2022][Debug][Problem Solved Series]Android log 抓取方式彙整-讓非開發人員更快抓log</a>
+        <a href="{{site.baseurl}}/2022/04/18/android-log-catch-method/">[Android][2022][Debug][Problem Solved Series]Android log capture methods - Helping non-developers quickly capture logs</a>
       </div>
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;bootloader</h1>
 
 
- * The step of recovery Android phone use the office OTA
+ * The steps to recover an Android phone using the official OTA
   1. Update bootloader<br>
     `fastboot flash bootloader bootloader-bullhead-xxxVersion.img`
   2. Reboot bootloader<br>
@@ -110,14 +110,14 @@ excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的
   12. Reboot android OS<br>
     `fastboot reboot`
 
-* This [office website](https://developers.google.com/android/ota) can find the office OTA .
+* This [official website](https://developers.google.com/android/ota) can find the official OTA.
 
 <br>
 
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;Git</h1>
-<h4 style = "background-color:tomato; color:white;">&nbsp;&nbsp;I like to use git command line to control my repo instead of git GUI tool.</h4>
+<h4 style = "background-color:tomato; color:white;">&nbsp;&nbsp;I prefer to use the git command line to control my repo instead of a git GUI tool.</h4>
 
-   - Let your git graph not merge together and not commit after you sent the cli.<br>
+   - Prevent your git graph from merging together and avoid committing after you send the CLI.<br>
    `git merge --no-ff --no-commit hash`
 
    - Edit your commit <br>
@@ -126,13 +126,13 @@ excerpt: "一位開發者分享了他在2022年開發過程中使用最頻繁的
    - Rebase and sync your local repo with remote <br>
     `git pull origin --rebase`
 
-   - Story/Recovery/Show your not finish work  <br>
+   - Store/Recover/Show your unfinished work  <br>
    `git stash --include-untracked 、 git stash pop、 git list`
 
    - See your local git info <br>
     `git config -l`
 
-   - Base git concept <br>
+   - Basic git concepts <br>
     `git add , git commit , git push , git checkout, git pull , git cherry-pick, git branch , git remote...etc.`
 
 <br>

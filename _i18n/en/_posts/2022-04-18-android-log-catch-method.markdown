@@ -1,118 +1,115 @@
 ---
 layout: post
-title: "Android Logcat 抓取技巧教學，讓你輕鬆掌握：非開發人員也能懂的log抓取技巧！"
+title: "Android Logcat Capture Techniques Tutorial: Easy Grasp for Non-Developers!"
 date: 2022-04-18 16:37:48 +0800
 image: cover/android-catch-log-1.png
 tags: [Android,Debug]
 categories: Debug探討
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-* 今天我想跟大家分享一些讓你輕鬆抓取Android log的技巧！<br>
-  在開發過程中，常常會有這樣的問題：「有什麼方法可以快速抓log呢？」<br>
-  「怎麼讓測試或其他非開發人員也能輕鬆抓到Android log呢？」<br>
-  別擔心！我整理了一些簡單易懂的方法，希望能幫助你們更有效率地開發和測試。<br>
+* Today, I want to share some tips on how to easily capture Android logs!<br>
+  During the development process, there are often questions like: "Is there a quick way to capture logs?"<br>
+  "How can testers or other non-developers easily capture Android logs?"<br>
+  Don't worry! I've compiled some simple and easy-to-understand methods to help you develop and test more efficiently.<br>
 
-<div class="c-border-main-title-2">快速抓取 Android log，從基本觀念開始！</div>
+<div class="c-border-main-title-2">Quickly Capture Android Logs, Starting with Basic Concepts!</div>
 
-  * 要抓Android的log，可以使用logcat這個工具，不過需要注意的是logcat只會抓取系統內部的log
-    - 抓取整包log：使用指令 adb logcat 來抓取整包log，<br>
-    可以透過指定篩選條件來只抓取特定的log，<br>
-    詳細的篩選方法可以參考[篩選log參考](https://developer.android.com/studio/command-line/logcat#options)
-    - 查看各個buffer的大小：使用指令 `adb logcat -g` 來查看各個buffer的大小。
-    - 查看不同buffer內的log：除了主要的buffer之外，<br>
-    還有其他的buffer可以查看，<br>
-    例如radio、events、system等等，<br>
-    可以使用    
+  * To capture Android logs, you can use the logcat tool. However, note that logcat only captures internal system logs.
+    - Capture the entire log: Use the command `adb logcat` to capture the entire log.<br>
+    You can specify filter conditions to capture only specific logs.<br>
+    For detailed filtering methods, refer to [Log Filtering Reference](https://developer.android.com/studio/command-line/logcat#options)
+    - Check the size of each buffer: Use the command `adb logcat -g` to check the size of each buffer.
+    - View logs in different buffers: Besides the main buffer, there are other buffers you can view,<br>
+    such as radio, events, system, etc.<br>
+    You can use    
     ```
     [adb] logcat [-b 'buffer name']
     ```
-    來查看特定的log，<br>
-    其中<buffer_name>為要查看的buffer名稱。<br>
-    例如：<br>
-    main buffer log :<br>
+    to view specific logs.<br>
+    Here, `<buffer_name>` is the name of the buffer you want to view.<br>
+    For example:<br>
+    Main buffer log:<br>
     <b>adb logcat -b main</b><br>
-    events buffer log : <br>
+    Events buffer log:<br>
     <b>adb logcat -b events</b><br>
-    以此類推
-    - 想了解各buffer區差異可參考官方文件 ：[查看備用日志緩衝區](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
+    And so on.
+    - For differences between buffers, refer to the official documentation: [View Alternative Log Buffers](https://developer.android.com/studio/command-line/logcat#alternativeBuffers)
 
 <br>
 
-<div class="c-border-main-title-2">Android log 抓取思路</div>
-<div class="c-border-content-title-4">以下是幾個使用 adb 抓取 Android 系統 log 的方式：</div><br>
+<div class="c-border-main-title-2">Android Log Capture Approach</div>
+<div class="c-border-content-title-4">Here are some ways to capture Android system logs using adb:</div><br>
 
 <p class ="table_container">
-  <i style="text-align: center;">需su權限</i><br>
- 1. 拉出 Kernel panic log : <b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br>
- 2. 印出 Kernel log：<b style="color:red;">adb shell cat /proc/kmsg</b> (抓取當前那次的log、第二次呼叫同指令會從上次結束後的log後面開始顯示)<br>
- 3. Linux kernel-ring buffer log : <b style="color:red;">adb shell su dmesg</b><br>
- <a herf="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg指令參考</a>
+  <i style="text-align: center;">Requires su permissions</i><br>
+ 1. Extract Kernel panic log: <b style="color:red;">adb pull /sys/fs/pstore/console-ramoops</b><br>
+ 2. Print Kernel log: <b style="color:red;">adb shell cat /proc/kmsg</b> (captures the current log; calling the same command a second time will display logs starting from the end of the previous capture)<br>
+ 3. Linux kernel-ring buffer log: <b style="color:red;">adb shell su dmesg</b><br>
+ <a href="https://man7.org/linux/man-pages/man1/dmesg.1.html">dmesg Command Reference</a>
 </p>
 
 <p class ="table_container">
-  <i style="text-align: center;">不需權限</i><br>
-  1. 拉出 ANR log : <b style="color:red;">adb pull /data/anr</b><br>
+  <i style="text-align: center;">No permissions required</i><br>
+  1. Extract ANR log: <b style="color:red;">adb pull /data/anr</b><br>
 </p>
 
-<div class="c-border-content-title-4">透過pc端執行adb logcat指令</div>
-  - 使用 adb logcat 亦可以取得當前連接的裝置log，如：
+<div class="c-border-content-title-4">Execute adb logcat Command via PC</div>
+  - Using `adb logcat` can also capture logs from the currently connected device, such as:
   ```
   adb logcat
   ```
 
- <br>
- <div class="c-border-content-title-4">從Android app用程式碼去抓log</div>
-  * 這個思路是透過開發人員用以下方式將抓log的功能寫在app內讓非開發人員去抓
-    - 開一個procees去執行commend :
-    例如：`Runtime.getRuntime().exec("logcat -b radio")`
+<br>
+<div class="c-border-content-title-4">Capture Logs from Android App Using Code</div>
+* This approach involves developers writing the log capture functionality within the app so that non-developers can capture logs.
+  - Start a process to execute the command:
+    For example: `Runtime.getRuntime().exec("logcat -b radio")`
 
-    - 在 Android 4.1 之前，<br>
-      開發者可以在 Manifest.xml 中添加 "READ_LOGS" 權限，<br>
-      獲得此權限後可以取得需要 su 權限才能取得的 log。<br>
+  - Before Android 4.1,<br>
+    developers could add the "READ_LOGS" permission in Manifest.xml,<br>
+    and with this permission, they could obtain logs that required su permissions.<br>
 
-      但在 Android 4.1 之後，<br>
-      Google 將 "READ_LOGS" 權限列為十大不良權限，<br>
-      因此不再建議使用。可以參考 Google 開發者相關影片。<br>
-      [google developer相關影片](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
+    However, after Android 4.1,<br>
+    Google classified the "READ_LOGS" permission as one of the top ten harmful permissions,<br>
+    so it is no longer recommended. You can refer to related Google developer videos.<br>
+    [Google Developer Related Video](https://www.youtube.com/watch?v=WDDgoxvQsrQ&t=1323s)
 
-    - 因此 Android > 4.1 時 在app內抓取log使用權限被變更為 `“signature|privileged”`
-       等同於 需要有 `系統簽名` 或
-       build image時包在特權資料夾`../priv-app`的app ([特許權限白名單](https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn))
-       才能取得該`READ_LOGS`權限
+  - Therefore, for Android > 4.1, the permission to capture logs within the app was changed to `“signature|privileged”`,
+    which means it requires a `system signature` or
+    the app must be placed in the privileged folder `../priv-app` during the build ([Privileged Permission Whitelist](https://source.android.google.cn/devices/tech/config/perms-whitelist?hl=zh-cn))
+    to obtain the `READ_LOGS` permission.
 
-    - 如果透過PC下指令：
-      `adb shell "pm grant <package name> android.permission.READ_LOGS && am force-stop <package name>" `
+  - If using a PC to issue commands:
+    `adb shell "pm grant <package name> android.permission.READ_LOGS && am force-stop <package name>"`
 
-       可以打開`READ_LOGS`權限 + 強制關閉app （因下完要重啟app才會生效）
-       要關閉權限則將`grant`改成`revoke`
+    This can enable the `READ_LOGS` permission and force-stop the app (since the app needs to be restarted for the changes to take effect).
+    To disable the permission, change `grant` to `revoke`.
 
+<div class="c-border-content-title-4">Manual Method: Combining Previous Methods</div>
+- Developers can write code in the Android app to log to the corresponding folder<br>
+  and then use adb pull to retrieve it.
 
-
-<div class="c-border-content-title-4">土法煉鋼：結合前面幾種</div>
-  - 開發人員編寫程式碼在android app 內寫下 log 至對應資料夾<br>
-    之後再用adb pull 拉出來
-
-  - 例如：app寫好後，用adb pull拉出來<br>
-      `adb pull /sdcard/Android/data/your.package.name/files/`
+- For example: after the app is written, use adb pull to retrieve it<br>
+  `adb pull /sdcard/Android/data/your.package.name/files/`
 <br>
 
-<div class="c-border-content-title-4">另一種，更快的方法：Scrpit or shell 大法</div>
+<div class="c-border-content-title-4">Another, Faster Method: Script or Shell Method</div>
 
-  - 透過寫好的shell直接小黑窗執行在背景抓log
-  - 這邊分享個簡易的寫法：<br>
+- Use a pre-written shell script to capture logs in the background directly from the command line.
+- Here is a simple example:<br>
 <script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
-<p class ="table_container">
-  1. 如果是需要<b style="color:red;">開發人員</b>要客製的話就是要從頭到尾自己了解上面這份code<br>
-  2. 但若是<b style="color:red;">非開發人員</b>直接複製上面code到txt 或空白檔案中<br>  
-     首先先確認電腦環境中有adb<br>
-     修改<b style="color:red;">packageName</b> 成指定的app包名<br>
-     配置<b style="color:red;">adbPath</b> 改成你adb的系統路徑<br>
-     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人，下載含有adb的就能執行)
-  4. (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br>
+<p class="table_container">
+  1. If <b style="color:red;">developers</b> need to customize it, they should fully understand the code above.<br>
+  2. If <b style="color:red;">non-developers</b> are using it, they can copy the code above into a txt or blank file.<br>
+     First, ensure that adb is available in the computer environment.<br>
+     Modify <b style="color:red;">packageName</b> to the specified app package name.<br>
+     Configure <b style="color:red;">adbPath</b> to your adb system path.<br>
+     (If you are providing it for non-developers, you can also configure ./adb in the same folder path so that those without adb installed can execute it by downloading the one with adb included.)
+  4. (optional) You can customize the output log file name and include timestamps for differentiation, etc.<br>
 </p>
-  - 最後寫好就可以在小黑窗(mac terminal / win cmd)執行./your_add_log.sh<br>
-  就開始抓囉！<br>
+- Finally, you can execute ./your_add_log.sh in the command line (mac terminal / win cmd)<br>
+  to start capturing logs!<br>
   ![shell_log_start.png](/images/others/shell_log_start.png)

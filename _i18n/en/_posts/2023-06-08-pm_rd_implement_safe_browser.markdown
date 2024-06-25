@@ -1,70 +1,68 @@
 ---
 layout: post
-title: "PM、RD看過來，從零開始制定或開發App瀏覽器！"
+title: "PMs and RDs, Look Here: Starting from Scratch to Develop or Create an App Browser!"
 date: 2023-06-08 18:35:06 +0800
 image: cover/safe_browser_post-1.png
 tags: [Kotlin,Android]
 permalink: /safe_browser
 categories: 其他筆記
-excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生活不可或缺的一部分。本文將探討制定或開發應用程式瀏覽器方案的方向。"
+excerpt: "Having a convenient and easy-to-use app browser has become an indispensable part of modern life. This article will explore the direction of developing or creating an app browser solution."
 ---
 
-
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 <p>
 
   <div class = "table_container">
-    <p>自製瀏覽器指南</p>
-    擁有一個方便易用的應用程式瀏覽器已經成為現代生活不可或缺的一部分。<br>
-    本文將探討制定或開發應用程式瀏覽器方案的方向，<br>
-    提供有關於專案管理（PM）和研發團隊（RD）合作的參考，透過前期調研，確保開發過程的流暢和高品質成果。<br>
+    <p>Guide to Creating Your Own Browser</p>
+    Having a convenient and easy-to-use app browser has become an indispensable part of modern life.<br>
+    This article will explore the direction of developing or creating an app browser solution,<br>
+    providing references for collaboration between project management (PM) and research and development teams (RD), ensuring a smooth development process and high-quality results through preliminary research.<br>
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    以下是我們可能會遇到的問題
+    Here are the problems we might encounter
 </div>
 <p>
 <ol>
-    <li><b>需求</b>
+    <li><b>Requirements</b>
       <ul>
-        <li>想要自己做一個app瀏覽器，需要包含市面上大部分瀏覽器該有的功能，搜尋、分頁、下載、最愛、分享...等</li>
-        <li>支援過濾網址url、篩選、攔截網站...等功能</li>
+        <li>Want to create an app browser that includes most of the features available in mainstream browsers, such as search, tabs, downloads, favorites, sharing, etc.</li>
+        <li>Support for URL filtering, site blocking, etc.</li>
       </ul>
     </li><br>
 
-    <li><b>兼容性測試：</b>
+    <li><b>Compatibility Testing:</b>
       <ul>
         <li>
-        自己開發瀏覽器，<br>
-        所以要確保瀏覽器大部分功能都有，<br>
-        以免其他家的功能有，自家卻沒有，那就尷尬了...<br>
+        Developing your own browser,<br>
+        so you need to ensure that most of the browser's features are present,<br>
+        to avoid the embarrassment of other browsers having features that yours lacks...<br>
 
         </li><br>
-        <li>開發web開啟各網頁可能會有兼容性問題，可以看<a href="https://blog.user.today/inapp-browser-webview-problem">這篇文章</a>的說明</li><br>
-        <li>需要測試下自己實作的瀏覽器是否支援考html tag：
+        <li>Developing a web browser might have compatibility issues with various web pages. You can refer to <a href="https://blog.user.today/inapp-browser-webview-problem">this article</a> for more information.</li><br>
+        <li>Need to test whether your self-developed browser supports HTML tags:
           <ul>
-            <li><a href="http://beta.html5test.com/">html5 功能檢測</a></li>
+            <li><a href="http://beta.html5test.com/">HTML5 Feature Detection</a></li>
           </ul>
         </li>
       </ul>
     </li><br>
 
-    <li><b>確認自製瀏覽器需求</b>
+    <li><b>Confirming Requirements for Self-Developed Browser</b>
       <ul>
-        <li>因為還沒開始做，首先得確認一下自家目標瀏覽器要達到什麼程度<br>
-          尚無明確要開發到怎樣的Browser時<br>
-          可以研究幾個第三方browser<br>
-          決定到底要從webview開始刻還是透過一些open source去改<br>
-          當然若要用open source 也需注意 授權問題<br>
-
+        <li>Since development hasn't started yet, first confirm the target level for your browser.<br>
+          If there is no clear goal for the browser,<br>
+          you can research several third-party browsers,<br>
+          and decide whether to start from WebView or modify some open-source projects.<br>
+          Of course, if you use open-source projects, you also need to pay attention to licensing issues.<br>
 
         </li><br>
 
         <li>
-        這張表列出兩個第三方瀏覽器與自己從webview開始刻瀏覽器的差異<br>
-        提供給後續需求做參考、討論實際要的功能，<br>
-        也利於決策是否要用第三方source或自行開發<br>
+        This table lists the differences between two third-party browsers and a browser developed from WebView.<br>
+        It provides references for subsequent requirements and discussions on the actual features needed,<br>
+        and helps in deciding whether to use third-party sources or develop independently.<br>
         <img src="/images/browser/001.png" alt="safe browser 01" />
 
         </li>
@@ -73,222 +71,216 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
 </ol>
 </p>
 
-<div class="c-border-main-title-2">Url內容過濾</div>
+<div class="c-border-main-title-2">URL Content Filtering</div>
 
 <p>
 
   <div class = "table_container">
-    <p>開發一個app的安全瀏覽器...</p>
-      想要實現安全策略的瀏覽器，內容包含過濾網頁瀏覽內容，<br>
-      例如限制瀏覽一些分級的網站，讓自家的瀏覽器更安全...<br>
-      就得針對URL做過濾
+    <p>Developing a Secure Browser for an App...</p>
+      To implement a secure strategy for the browser, including filtering web browsing content,<br>
+      such as restricting access to certain rated websites to make your browser safer...<br>
+      you need to filter URLs.
   </div><br>
 </p>
 
 <div class="c-border-content-title-4">
-    方案方向參考 (推薦PM閱讀)
+    Reference Directions for Solutions (Recommended for PMs)
 </div>
 
 <ul>
   <li>
-  實作 <b>內容過濾</b> 的方案，<br>
-  主要分為 <b>接入第三方SDK</b> 跟 <b>自行實作</b>，<br>
+  Implementing <b>content filtering</b> solutions,<br>
+  mainly divided into <b>integrating third-party SDKs</b> and <b>self-implementation</b>,<br>
   </li>
 
-    <li><b>這兩種方案都需考慮</b>
-        <ul>
-            <li>自行開發browser內容過濾的話較單純，
-            若要限制系統內所有瀏覽器的話需再考慮是否使用輔助權限方案（下面方案有列出競品的實作方式供參考）
-            或是也有廠商是用proxy或dns來解決，
-            不過要開發輔助權限、代理就需<strong>更多時間</strong>，也可以列入考量。</li>
-            <li>若在考慮這些方法時需考慮是否雙平台可用</li>
-        </ul>
-    </li>
-    <li><strong>接入第三方SDK</strong> :
-        <ul>
-            <li>不同的第三方SDK，提供的威脅類型不同，若有些類型沒有的話，也需自行維護</li>
-            <li>若使用google服務<strong>Web Risk API</strong>(接網路請求API的話雙平台都可用)需查閱以下，了解其規則：
-                <ol>
-                    <li><a href="https://cloud.google.com/web-risk/sla">Web Risk Service Level Agreement</a></li>
-                    <li><a href="https://cloud.google.com/web-risk/quotas?hl=zh-cn">配额和限制</a></li>
-                    <li><a href="https://cloud.google.com/web-risk/docs/reference/rest/v1/ThreatType?hl=zh-cn">威脅類型</a></li>
-                </ol>
-            </li>
-            <li>若接入<strong>趨勢 HNS SDK</strong> ，需了解該SDK是否有提供我方目標的資料。
-                <ul>
-                    <li>因該SDK需接洽該公司客服，在網頁上也無顯示開發文件，僅能以下圖了解大概有提供的範圍：</li>
-                    <li>提供範圍與細項</li>
-                    <img src="/images/browser/002.png" alt="safe browser 02" />
-                    <img src="/images/browser/003.png" alt="safe browser 03" />
-                    <li>系統要求與雙平台支援的範圍</li>
-                    <img src="/images/browser/004.png" alt="safe browser 04" />
-                    <li>或可參考下面有解析趨勢科技的app，推測內容行為可能跟該app類似</li>
-                </ul>
-            </li>
-            <li>若接入<strong>CleanBrowsering</strong>，有以下注意事項：
-                <ol>
-                    <li>支援Android 9.0以上，透過設置內<strong>DNS-over-TLS (DOT) protocol</strong>去設定DNS：<a href="https://cleanbrowsing.org/help/docs/setup-private-dns-on-android-version-9/">方法</a>
-                    (因看該實作方法是用Android內的功能實現，推測IOS應該無支援)</li>
-                    <li>也需與該公司客服接洽，這邊是在網站上提供的過濾範圍：</li>
-                    <img src="/images/browser/005.png" alt="safe browser 05" />
-                </ol>
-            </li>
-        </ul>
-    </li>
+<li><b>Both options need to be considered</b>
+    <ul>
+        <li>Developing browser content filtering on your own is simpler. If you want to restrict all browsers within the system, you need to consider whether to use auxiliary permission schemes (the following schemes list the implementation methods of competitors for reference). Some vendors use proxy or DNS to solve this issue. However, developing auxiliary permissions or proxies will require <strong>more time</strong>, which should also be taken into account.</li>
+        <li>When considering these methods, you need to consider whether they are available on both platforms.</li>
+    </ul>
+</li>
+<li><strong>Integrate third-party SDK</strong>:
+    <ul>
+        <li>Different third-party SDKs provide different types of threats. If some types are not provided, you will need to maintain them yourself.</li>
+        <li>If using Google's <strong>Web Risk API</strong> (available on both platforms when connecting to the network request API), you need to review the following to understand its rules:
+            <ol>
+                <li><a href="https://cloud.google.com/web-risk/sla">Web Risk Service Level Agreement</a></li>
+                <li><a href="https://cloud.google.com/web-risk/quotas?hl=zh-cn">Quotas and Limits</a></li>
+                <li><a href="https://cloud.google.com/web-risk/docs/reference/rest/v1/ThreatType?hl=zh-cn">Threat Types</a></li>
+            </ol>
+        </li>
+        <li>If integrating <strong>Trend Micro HNS SDK</strong>, you need to understand whether the SDK provides the data we target.
+            <ul>
+                <li>Since this SDK requires contacting the company's customer service, and the development documents are not displayed on the webpage, you can only understand the approximate range provided through the following images:</li>
+                <li>Scope and details provided</li>
+                <img src="/images/browser/002.png" alt="safe browser 02" />
+                <img src="/images/browser/003.png" alt="safe browser 03" />
+                <li>System requirements and the range of dual-platform support</li>
+                <img src="/images/browser/004.png" alt="safe browser 04" />
+                <li>Or you can refer to the analysis of Trend Micro's app below to speculate that the content behavior might be similar to that app.</li>
+            </ul>
+        </li>
+        <li>If integrating <strong>CleanBrowsing</strong>, note the following:
+            <ol>
+                <li>Supports Android 9.0 and above. Set DNS through the <strong>DNS-over-TLS (DOT) protocol</strong> in the settings: <a href="https://cleanbrowsing.org/help/docs/setup-private-dns-on-android-version-9/">Method</a> (Since this implementation method uses the function within Android, it is speculated that iOS might not support it)</li>
+                <li>You also need to contact the company's customer service. Here is the filtering range provided on the website:</li>
+                <img src="/images/browser/005.png" alt="safe browser 05" />
+            </ol>
+        </li>
+    </ul>
+</li>
 
-    <li><b>自行開發內容過濾的瀏覽器</b>
-        <ul>
-        可使用一些第三方開源，像是`PhishTank`（下方有列出實際範例），提供可能是釣魚網站的開源資料，
-        </ul>
-        <ul>另外需考量提供的目標類型，是不是預期的，若不是，希望怎麼維護...等等</ul>
-    </li>
+<li><b>Develop a content-filtering browser on your own</b>
+    <ul>
+        You can use some third-party open-source resources, such as `PhishTank` (actual examples are listed below), which provides open-source data that might be phishing websites.
+    </ul>
+    <ul>Additionally, you need to consider whether the target types provided are as expected. If not, how do you want to maintain them, etc.</ul>
+</li>
 </ul>
 
-
 <div class="c-border-content-title-4">
-    開發<b>內容過濾</b>功能思路參考(推薦RD閱讀)
+    Development <b>Content Filtering</b> Function Reference (Recommended for RD Reading)
 </div>
 
 <ul>
     <li>
-        接入市場上現有SDK,如Google的
-        <a href="https://developers.google.com/safe-browsing">Safe Browsing api</a>、
-        <a href="https://cloud.google.com/web-risk?hl=zh-cn">Web Risk API</a>或是趨勢的
-        <a href="https://www.trendmicro.com/zh_tw/business/products/iot/home-network-security-sdk.html">HNS SDK</a>等等產品。<br>
-        <a href="https://cleanbrowsing.org/filters/">CleanBrowsing</a>可以透過設定DNS的方式去做到過濾的動作<br>
-        下方我們列出各種方法的作法讓開發者去參考<br>
+        Integrate existing SDKs in the market, such as Google's
+        <a href="https://developers.google.com/safe-browsing">Safe Browsing API</a>,
+        <a href="https://cloud.google.com/web-risk?hl=zh-cn">Web Risk API</a>, or Trend Micro's
+        <a href="https://www.trendmicro.com/zh_tw/business/products/iot/home-network-security-sdk.html">HNS SDK</a>, etc.<br>
+        <a href="https://cleanbrowsing.org/filters/">CleanBrowsing</a> can perform filtering by setting DNS.<br>
+        Below, we list various methods for developers to reference.<br>
         <ul>
             <li>
-                <b>Safe Browsing API</b> (非商用) vs <b>Web Risk API</b> (此方案需付費)
+                <b>Safe Browsing API</b> (Non-commercial) vs <b>Web Risk API</b> (This solution requires payment)
                 <ul>
                     <li>
-                        Safe Browsing API 僅供非商業用途使用，若要商用需使用
-                        <a href="https://cloud.google.com/web-risk?hl=zh-tw">Web Risk API</a>
+                        Safe Browsing API is for non-commercial use only. For commercial use, you need to use
+                        <a href="https://cloud.google.com/web-risk?hl=zh-tw">Web Risk API</a>.
                     </li>
                     <li>
-                        <a href="https://cloud.google.com/web-risk/docs/apis">Web Risk Rest API 文件參考</a>
-                         ：這個API 檢查、過濾url是否是威脅類型，實際開發時透過https request完成。
+                        <a href="https://cloud.google.com/web-risk/docs/apis">Web Risk Rest API Documentation</a>
+                         : This API checks and filters URLs to see if they are of a threat type, implemented via HTTPS requests during actual development.
                     </li>
                     <li>
-                        Web Risk提供的API類型
+                        Types of APIs provided by Web Risk
                         <ol>
                             <li>
                                 <a href="https://cloud.google.com/web-risk/docs/update-api?hl=zh-cn">Lookup API</a>
-                                : 丟指定<b>threatTypes</b>跟目標url後，由後台查詢後返回威脅類型與最後有效時間
+                                : After specifying <b>threatTypes</b> and target URL, the backend queries and returns the threat type and the last valid time.
                             </li><br>
                             <li>
                                 <a href="https://cloud.google.com/web-risk/docs/update-api?hl=zh-cn">Update API</a>
-                                : 下載web risk的 hash list，之後存在本地端，讓開發可以在本地檢查後，發現匹配可以再用其他API去確認
+                                : Downloads the web risk hash list, stores it locally, allowing developers to check locally and use other APIs to confirm if a match is found.
                             </li><br>
                             <li>
                                 <a href="https://cloud.google.com/web-risk/docs/evaluate-api?hl=zh-cn">Evaluate API</a>
-                                :丟指定<b>threatTypes</b>跟目標url後，由後台查詢後返回結果威脅類型與信任等級
+                                : After specifying <b>threatTypes</b> and target URL, the backend queries and returns the threat type and trust level.
                             </li><br>
                             <li>
                                 <a href="https://cloud.google.com/web-risk/docs/submission-api?hl=zh-cn">Submission API</a>
-                                :回報給服務端認為是風險url
+                                : Reports URLs considered risky to the server.
                             </li><br>
                         </ol>
                     </li>
                     <li>
-                        Web Risk API提供的威脅類型
+                        Types of threats provided by Web Risk API
                         <br>
                         <img src="/images/browser/006.png" alt="safe browser 06" >
                     </li>
                 </ul>
             </li>
             <li>
-                <b>HNS SDK</b> 該平台上未提供SDK開發文件，若使用此方案需待接洽後才可得知（不過下方有研究該公司旗下的安全產品，大概看了下功能，推測此SDK應該可以包含這些需求）。
+                <b>HNS SDK</b> This platform does not provide SDK development documentation. If using this solution, you need to contact them for more information (However, after researching the company's security products, it is speculated that this SDK should meet these requirements).
             </li>
             <li>
-                CleanBrowsing 使用該方案的話，可能需了解是否可以透過code設定 Encrypted DNS – DNS over TLS support
+                CleanBrowsing If using this solution, you may need to understand if it can be set via code for Encrypted DNS – DNS over TLS support.
                 <ul>
                     <li>
-                        查看該產品，也是有取得輔助權限與admin:
-                        <a href="https://cleanbrowsing.org/help/docs/cleanbrowsing-on-android/#step-2-give-accessibility-control-to-app">流程文件</a>
+                        Check the product, it also has auxiliary permissions and admin:
+                        <a href="https://cleanbrowsing.org/help/docs/cleanbrowsing-on-android/#step-2-give-accessibility-control-to-app">Process Documentation</a>
                     </li>
                 </ul>
             </li>
         </ul>
     </li>
     <li>
-        <b>自己內部開發</b>
+        <b>Internal Development</b>
         <ul>
             <li>
-                網址黑名單、內容解析過濾資料來源
+                URL blacklist, content parsing and filtering data sources
                 <ul>
                     <li>
-                        有個開源維護的第三方釣魚網站列表 <a href="https://www.phishtank.com/phish_search.php?verified=u&active=y">PhishTank</a>
-                        目前看起來都有持續在維護，有提供確認是在線釣魚網站約7萬多筆，也有提供疑似釣魚網站
+                        There is an open-source maintained third-party phishing site list <a href="https://www.phishtank.com/phish_search.php?verified=u&active=y">PhishTank</a>
+                        It appears to be continuously maintained, providing about 70,000 confirmed active phishing sites, and also provides suspected phishing sites.
                         <br>
                         <img src="/images/browser/007.png" alt="safe browser 07" >
 
+</li>
+</ul>
+  <li>
+    <b>
+      The official website FAQ states that it can be used commercially
+    </b><br>
+    <img src="/images/browser/008.png" alt="safe browser 08" >
+  </li>
+</li>
+<li>
+    Refer to competitors to develop URL blacklists and content parsing filters
+    <ul>
+        <li>
+            Later, I checked the <a href="https://www.trendmicro.com/zh_tw/forHome/products/ms.html">Trend Micro Mobile Security app</a> which also provides browser protection features
+            <br>
+        </li>
 
-                    </li>
-                </ul>
-                  <li>
-                    <b>
-                      官網FAQ內說明可以商用
-                    </b><br>
-                    <img src="/images/browser/008.png" alt="safe browser 08" >
-                  </li>
-            </li>
-            <li>
-                參考競品來開發 網址黑名單、內容解析過濾
-                <ul>
-                    <li>
-                        後來查看  <a href="https://www.trendmicro.com/zh_tw/forHome/products/ms.html">趨勢科技的行動安全防護app</a> 內也有提供 瀏覽器防護相關功能
-                        <br>
-                    </li>
+        <li>
+          It is speculated that it also uses accessibility permissions to obtain the browser URL for corresponding processing<br>
+          The place where the app enables accessibility permissions also mentions this method<br>
+          <img src="/images/browser/009.png" alt="safe browser 09" width="40%" >
+        </li>
 
-                    <li>
-                      推測其應該也是使用輔助權限去取得瀏覽器url再做對應處理<br>
-                      該app開啟輔助權限的地方也有提到以此法進行<br>
-                      <img src="/images/browser/009.png" alt="safe browser 09" width="40%" >
-                    </li>
+        <li>
+          Here is a demo to capture the Chrome URL<br>
+          First, create Accessibility, then add the <b>target package name</b> in the declaration XML<br>
+          Then, in the code, retrieve the EditText to get the URL on the screen:<br>
+          <div>
+               <img src="/images/browser/010.png" alt="safe browser 10" width = "45%"/>
+               <img src="/images/browser/011.png" alt="safe browser 11" width = "45%"/>
+           </div>
+        </li><br>
 
-                    <li>
-                      這邊做了一個抓chrome url 的demo<br>
-                      先建立Accessibility，在宣告xml的地方加入 <b>目標包名</b><br>
-                      接著在code的地方去取其edittext就能實現取得螢幕上的url：<br>
-                      <div>
-                           <img src="/images/browser/010.png" alt="safe browser 10" width = "45%"/>
-                           <img src="/images/browser/011.png" alt="safe browser 11" width = "45%"/>
-                       </div>
-                    </li><br>
+        <li>
+          Log of the actual URL obtained<br>
+          <img src="/images/browser/012.png" alt="safe browser 12" >
+        </li><br>
 
-                    <li>
-                      取得實際url的 log<br>
-                      <img src="/images/browser/012.png" alt="safe browser 12" >
-                    </li><br>
+        <li>
+          Additionally,<br>
+          it seems to handle commonly used apps,<br>
+          if it is not a commonly used app or difficult to capture the package name,<br>
+          the competitor provides an option to select the app to protect,<br>
+          and then connects through a VPN (presumably with a proxy or DNS filtering)<br>
+          <img src="/images/browser/013.png" alt="safe browser 13" >
+        </li><br>
 
-                    <li>
-                      另外，<br>
-                      其應該是針對常用app做處理，<br>
-                      若不是常用或是難以抓到包名的app，<br>
-                      該競品則是用提供選擇要防護的app，<br>
-                      然後透過vpn去連線(推測應該是有設proxy或dns去過濾)<br>
-                      <img src="/images/browser/013.png" alt="safe browser 13" >
-                    </li><br>
-
-                    <li>
-                      該app也有做網站類型過濾，<br>
-                      看起來是依照分類去細分網站再進行過濾<br><br>
-                      <img src="/images/browser/015.png" alt="safe browser 15" >
-                      <img src="/images/browser/014.gif" alt="safe browser 14" >
-                    </li><br>
-                </ul>
-            </li>  
-        </ul>
-    </li>
+        <li>
+          The app also performs website type filtering,<br>
+          it appears to subdivide websites by category for filtering<br><br>
+          <img src="/images/browser/015.png" alt="safe browser 15" >
+          <img src="/images/browser/014.gif" alt="safe browser 14" >
+        </li><br>
+    </ul>
+</li>  
+</ul>
+</li>
 </ul>
 
-<div class="c-border-main-title-2">開發瀏覽器功能 方向參考</div>
+<div class="c-border-main-title-2">Browser Feature Development Reference</div>
 <p>
 
   <div class = "table_container">
-    <p>自製瀏覽器指南</p>
-    這個章節，主要是用來實現，某些瀏覽器功能，目前紀錄，我曾經有遇到過的
+    <p>Custom Browser Guide</p>
+    This section is mainly for implementing certain browser features. Currently, I am documenting the ones I have encountered.
   </div><br>
 </p>
 
@@ -300,35 +292,35 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
 
 <ul>
   <li>
-  這個方案主要是，<br>
-  google 本身library裡面提供的，<br>
-  透過發intent的方式，<br>
-  讓指定url在chrome裡面打開<br>
-  如果設備上沒有chrome或是沒有支援custom tabs的browser，<br>
-  <br>還是會發intent調用系統browser(通常是預設browser)。<br>
-  另外使用custom tabs的頁面會有固定的menu選項，<br>
-  其中一個會允許open in chrome，<br>
-  頁面的上客制化可定制範圍也受限在chrome裡<br>
+  This solution mainly involves,<br>
+  using the library provided by Google itself,<br>
+  by sending an intent,<br>
+  to open the specified URL in Chrome.<br>
+  If the device does not have Chrome or a browser that supports custom tabs,<br>
+  <br>it will still send an intent to invoke the system browser (usually the default browser).<br>
+  Additionally, the page using custom tabs will have fixed menu options,<br>
+  one of which allows opening in Chrome.<br>
+  The customization scope of the page is also limited within Chrome.<br>
   <a href="https://qq157755587.github.io/2016/08/12/custom-tabs-best-practices/"><b>reference</b></a>
 
   </li>
 </ul>
 
 <div class="c-border-content-title-4">
-  瀏覽器限制黑白名單
+  Browser Whitelist and Blacklist
 </div>
 
 <ul>
   <li>
-    在webview 設定webViewClient時<br>
-    發現不符合限制的url 則跳轉到別頁<br>
+    When setting the webViewClient in WebView,<br>
+    if a URL does not meet the restrictions, it will redirect to another page.<br>
      <pre>
      public boolean shouldOverrideUrlLoading(WebView view, String url) {
          if (!isUrlValid(url)) {
              view.loadUrl("file:///android_asset/error.html");
              return true;
          }
-         return false; // 返回 false 表示正常加載該 URL
+         return false; // Returning false means the URL will load normally
      }
      </pre>
 
@@ -336,13 +328,13 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
 </ul>
 
 <div class="c-border-content-title-4">
-  若是遇到版本問題
+  If You Encounter Version Issues
 </div>
 
 <ul>
   <li>
-    去設定webview的userAgentString <br>
-    再根據版本進行適配 (但也需要剛好該url的服務端有支援)<br>
+    Set the userAgentString of the WebView,<br>
+    and adapt according to the version (but the server of the URL must also support it).<br>
      <pre>
      currentWebView!!.settings.userAgentString = resources.getStringArray(R.array.user_agent_data)[2]
      currentWebView!!.reload()
@@ -350,26 +342,26 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
 
   </li>
   <li>
-    user_agent_data 裡面預設瀏覽器agent的設定<br>
+    The default browser agent settings in user_agent_data<br>
     <img src="/images/browser/016.png" alt="safe browser 16" >
 
   </li>
 
   <li>
-    遇到部分web元件不顯示，可能試試看是否該元件需要JavaScript<br>
+    If some web components do not display, check if the component requires JavaScript.<br>
     <pre>
-    currentWebView!!.settings.javaScriptEnabled = ture // or false
+    currentWebView!!.settings.javaScriptEnabled = true // or false
     </pre>
   </li>
 
   <li>
-    要支援webview搜尋<br>
-    可以根據目標搜尋引擎輸入對應url再修改後面帶的值即可<br>
+    To support WebView search,<br>
+    you can input the corresponding URL for the target search engine and modify the value at the end.<br>
     <pre>
-    範例用google搜尋：
-    https://www.google.com/search?q=搜尋的內容
+    Example using Google search:
+    https://www.google.com/search?q=search content
     </pre>
-    再在app上提供使用者要預設何種搜尋引擎<br>
+    Then provide the user with the option to set the default search engine in the app.<br>
     <img src="/images/browser/017.png" alt="safe browser 17" >
 
   </li>
@@ -377,51 +369,50 @@ excerpt: "擁有一個方便易用的應用程式瀏覽器已經成為現代生�
 
 
 <div class="c-border-content-title-4">
-    若要直接用open source可參考
+    If You Want to Use Open Source Directly
 </div>
 
 <p>
 
   <div class = "table_container">
-    <p>透過第三方開源來改</p>
-    因為現在開源很多，所以其他人開源出來很多好東西，<br>
-    所以若能直接從他們的專案去改，<br>
-    剛然可以節省很多時間，<br>
-    但這部分就需有能力改的動才行，<br>
-    且制定方案的時候也需要注意該開源linense是否可以商用。<br>
-    以下我也順便研究了幾種，<br>
-    給大家參考。<br>
+    <p>Modify Through Third-Party Open Source</p>
+    Since there are many open-source projects now, many good things are available from others.<br>
+    If you can directly modify their projects,<br>
+    it can save a lot of time.<br>
+    However, you need the capability to make those modifications,<br>
+    and when formulating a plan, you need to ensure the open-source license allows commercial use.<br>
+    Below are a few I have researched for your reference.<br>
   </div><br>
 
-  <h4>1. <a href="https://github.com/arunkumar9t2/lynket-browser">lynket</a></h4>
+<h4>1. <a href="https://github.com/arunkumar9t2/lynket-browser">lynket</a></h4>
 
 <ul>
-  <li>License : GNU v3 Public License.</li>
+  <li>License: GNU v3 Public License.</li>
 </ul>
 
 <h4>2.<a href="https://github.com/duckduckgo/Android"> duckduckgo </a> </h4>
 <p></p>
 <ul>
-  <li>目前看到較完整的是duckduckgo這款<br>
-  純Kotlin實現、source code易讀</li>
-  <li>License : Apache 2.0 license.</li>
+  <li>Currently, the most complete one is duckduckgo.<br>
+  Implemented purely in Kotlin, source code is easy to read.</li>
+  <li>License: Apache 2.0 license.</li>
 </ul>
 
 <h4>3. <a href="https://github.com/scoute-dich/browser">foss browser</a></h4>
 
 <ul>
   <li>License: AGPL-3.0</li>
-  <li>因License問題，暫不考慮</li>
-  <li>是 FOSS，以純Java開發</li>
-  <li>該open source有的功能</li>
+  <li>Due to license issues, not considered for now.</li>
+  <li>It is FOSS, developed purely in Java.</li>
+  <li>Has the features of open source.</li>
 </ul>
 
 <h4>4. <a href="https://github.com/hazuki0x0/YuzuBrowser">Yuzu browser</a> </h4>
 <ul>
   <li>Apache License 2.0</li>
-  <li>純Kotlin實現 ，<br>
-  不過我下載官方code來build時，<br>
-  有遇到一些mac版本問題，<br>
-  大家有遇到需要再自行調整</li>
+  <li>Implemented purely in Kotlin,<br>
+  but when I downloaded the official code to build,<br>
+  I encountered some issues with the mac version.<br>
+  If anyone else encounters this, adjustments may be needed.</li>
 </ul>
 </p>

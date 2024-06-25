@@ -1,157 +1,153 @@
 ---
 layout: post
-title: "想要增加網站收益？學習如何在網站中加入 Google AdSense - 教學"
+title: "Want to Increase Website Revenue? Learn How to Add Google AdSense to Your Site - Tutorial"
 date: 2022-09-26 14:44:32 +0800
 image: cover/html-google-adsense-2022-1.png
 tags: [html,adsense,google,extra income,tutorial]
 categories: 其他筆記
-excerpt: "想要增加網站收益？這份教學教你如何在網站中加入 Google AdSense，輕鬆學會廣告收益方式。快來學習吧！"
+excerpt: "Want to increase website revenue? This tutorial teaches you how to add Google AdSense to your site and easily learn how to earn from ads. Come and learn!"
 ---
 
-<h1 style="background-color:powderblue;">&nbsp;&nbsp;前言</h1>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp;Introduction</h1>
 
-今天這篇文章<br>
-要一步一步來解說<br>
-`google adsense`是什麼？<br>
-並透過投放廣告來獲得收益的手把手教學<br>
+Today's article<br>
+will explain step by step<br>
+what `google adsense` is<br>
+and provide a hands-on tutorial on how to earn revenue by placing ads<br>
 
-<h1 style="background-color:powderblue;">&nbsp;&nbsp; Google AdSense教學</h1>
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Google AdSense 是什麼？</h4>
+<h1 style="background-color:powderblue;">&nbsp;&nbsp; Google AdSense Tutorial</h1>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;What is Google AdSense?</h4>
 
-首先給不懂 `adsense` 是什麼的小夥伴一個概念<br>
-他是google提供的一種替需求方投放廣告的一種服務<br>
-也就是說有廠商想投放廣告透過google的投放廣告服務<br>
-這時候需要有曝光的人幫他曝光廣告<br>
-你使用`adsense` <br>
-就可以成為替google發布廣告的人<br>
-進而取得`分潤`<br>
+First, for those who don't know what `adsense` is<br>
+it is a service provided by Google for advertisers to place ads<br>
+In other words, if a company wants to place ads through Google's ad placement service<br>
+they need someone to expose the ads<br>
+By using `adsense`<br>
+you can become the person who publishes ads for Google<br>
+and earn a `share of the revenue`<br>
 
-例如<br>
-你可以在你的網站發佈如下樣式的廣告：<br>
+For example<br>
+you can publish ads on your website in the following style:<br>
 {% include google/adsense/ad_subject.html %}
 
-如果還是不懂<br>
-我覺得最貼切的形容<br>
-勝不過一張圖來解釋<br>
+If you still don't understand<br>
+I think the best way to explain<br>
+is with a picture<br>
 ![01.png](/images/adsense/01.png)<br><br>
 
-沒錯<br>
-這張圖是`google adsense首頁`的截圖<br>
-就是你替google發佈廣告<br>
-google幫你做的一個統計以及實際收益、餘額等等<br>
-想要用看到這張圖的話可以照下面的步驟XD<br>
+That's right<br>
+this picture is a screenshot of the `Google AdSense homepage`<br>
+It shows the statistics, actual revenue, balance, etc., for the ads you publish for Google<br>
+If you want to see this page, you can follow the steps below XD<br>
 
 <br>
-<h3 style="background-color:tomato; color:white;">&nbsp;&nbsp;步驟1 - 通過審核</h3>
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;開始註冊</h4>
-首先你需要到
+<h3 style="background-color:tomato; color:white;">&nbsp;&nbsp;Step 1 - Pass the Review</h3>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Start Registration</h4>
+First, you need to go to
 <a href="https://www.google.com/adsense/">
-<img style ="border:3px solid black;" src="/images/cover/adsense.jpeg" alt="Cover" width="30%" > </a> 內註冊帳號
+<img style ="border:3px solid black;" src="/images/cover/adsense.jpeg" alt="Cover" width="30%" > </a> to register an account
 <br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;加入你的網站</h4>
-接著進到該網頁後<br>
-在左邊找到`網站`這個選項<br>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Add Your Website</h4>
+Next, after entering the webpage<br>
+find the `Sites` option on the left<br>
 <img style ="border:3px solid black;" src="/images/adsense/02.png" alt="Cover" width="30%" ><br><br>
-你會看到右邊有個按鈕`新增網站`可以讓你加入你的網站，點擊它<br>
+You will see a button on the right `Add Site` that allows you to add your website, click it<br>
 <img style ="border:3px solid black;" src="/images/adsense/03.png"><br><br>
 
-接著<br>
-你可以看到一個頁面<br>
-要你輸入你的`domain name` (*備註1) <br>
-(或是一般認知的網址、URL...等等)<br>
-輸入後按下儲存並繼續<br>
+Next<br>
+you will see a page<br>
+asking you to enter your `domain name` (*Note 1)<br>
+(or commonly known as URL, website address, etc.)<br>
+After entering, click Save and Continue<br>
 <img src="/images/adsense/04.png"><br><br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;加入html code到 head 內並要求審核</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Add HTML Code to Head and Request Review</h4>
 
-這時候如果<br>
-你的網站通過`google掃描`成功後<br>
-會返回上一頁<br>
-並會多了你剛剛輸入的網址<br>
-通常第一次輸入會是`未審核`的狀態<br>
-這時你可能會看到一串code<br>
+At this point, if<br>
+your website passes the `Google scan` successfully<br>
+you will be returned to the previous page<br>
+and the URL you just entered will be added<br>
+Usually, the first entry will be in `unreviewed` status<br>
+You might see a string of code<br>
 <script src="https://gist.github.com/KuanChunChen/ce78fcc8c41a93621a2af59d052c55da.js"></script>
-你需要把它加到你的網站內`<head>`標籤內<br>
-因為第一次google官方要審核你的網站<br>
-是不是符合規定、是否有奇怪的內容、內容太少等等因素<br>
+You need to add it to the `<head>` tag of your website<br>
+because Google needs to review your website for the first time<br>
+to check if it meets the requirements, if there is any strange content, if the content is too little, etc.<br>
 <img style ="border:3px solid black;" src="/images/adsense/05.png"><br><br>
-所以如果你確認你的網站都ok也有加入他要求的code<br>
-就點選右下角`要求審查`<br>
-這時候等個`幾個小時`或`1~2天`<br>
-官方就會寄信給你<br>
-通知你是否審核成功<br>
+So if you confirm that your website is okay and you have added the required code<br>
+click the `Request Review` button at the bottom right<br>
+Then wait for `a few hours` or `1-2 days`<br>
+Google will send you an email<br>
+informing you whether the review was successful<br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;審核成功</h4>
-成功會收到類似下方的信件<br>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Review Successful</h4>
+You will receive a letter similar to the one below upon success<br>
 <img style ="border:3px solid black;" src="/images/adsense/06.png"><br><br>
 
-
-<h3 style="background-color:tomato; color:white;">&nbsp;&nbsp;步驟2 - 定義廣告</h3>
+<h3 style="background-color:tomato; color:white;">&nbsp;&nbsp;Step 2 - Define Ads</h3>
 <br>
 
-只要你通過審核後<br>
-你就可以開始在你的網站上投放廣告<br>
-網站左邊點`廣告`就可以看下圖的畫面<br>
+Once you pass the review<br>
+You can start placing ads on your website<br>
+Click `Ads` on the left side of the website to see the screen below<br>
 <img style ="border:3px solid black;" src="/images/adsense/07.png"><br><br>
 
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;By Site - Official Automatic Ad Placement</h4>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;按網站 - 官方自動投放廣告位置</h4>
+`By Site` will automatically insert ads into your website<br>
+This way, you don't have to modify the code yourself<br>
+But you also can't decide the ad placement<br>
+So, to make the website look less odd<br>
+You might consider using `By Ad Unit` to place ads<br>
 
-`按網站`的話會自動在你的網站內插入廣告<br>
-這樣你可以不用自行修改程式<br>
-但這樣廣告位置也不能自己決定了<br>
-所以如果為了網站看起來不要太怪<br>
-還是會考慮`按廣告單元`來投放廣告<br>
+Method:
+On the `By Site` page, find the URL you want to place ads on and click the `Edit Icon`<br>
+After entering, turn on the `Auto Ads` toggle button on the right<br>
+Ads will be automatically placed on your website within 1-2 hours<br>
 
-作法：
-在 `按網站`這頁找到你要投放的網址點擊`編輯圖示`<br>
-進去後右邊`自動廣告`的toggle按鈕打開<br>
-則在1~2小時內就會自動幫你投放廣告到你的網站上<br>
-
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;按廣告單元 - 自定義廣告位置</h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;By Ad Unit - Custom Ad Placement</h4>
 <br>
 
-`按廣告單元`點進來後會看到下面畫面<br>
+After clicking `By Ad Unit`, you will see the screen below<br>
 <img style ="border:3px solid black;" src="/images/adsense/08.png"><br><br>
-這邊有提供四種廣告樣式給你使用<br>
-隨意選一種你想要的進去看<br>
-例如`多媒體廣告`<br>
+There are four types of ad styles available for you to use<br>
+Choose any one you want to see<br>
+For example, `Display Ads`<br>
 <img style ="border:3px solid black;" src="/images/adsense/09.png"><br>
-他會讓你設定你想要的形狀<br>
-以及預覽廣告大概的樣子<br>
-但實際還是放到你網頁上才會知道真實長怎樣<br>
-之後按下右下角`建立`<br>
-就會自動幫你產生程式碼<br>
+It will allow you to set the shape you want<br>
+And preview the approximate appearance of the ad<br>
+But you will only know the real look when it is placed on your webpage<br>
+Then click `Create` at the bottom right<br>
+It will automatically generate the code for you<br>
 <img style ="border:3px solid black;" src="/images/adsense/11.png"><br>
-這時候複製貼上這串程式碼<br>
-到你網頁想要的位置<br>
-就能自定義排序了<br>
+At this point, copy and paste this code<br>
+To the position you want on your webpage<br>
+You can then customize the arrangement<br>
 
-<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;動態內廣告 - 圖片在上 </h4>
+<h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;In-Feed Ads - Image on Top</h4>
 {% include google/adsense/ad_dynamic_top.html %}
 <br>
 
-
 <div style ="border:3px solid green;"  alt="Cover" width="30%" >
- <p style = "background-color:tomato; color:white;">小補充 備註1</p>
- 關於domain name是什麼？<br><br>
+ <p style = "background-color:tomato; color:white;">Additional Note 1</p>
+ What is a domain name?<br><br>
 
- 其實就是你要把網站放在網路上供人瀏覽<br>
- 你必需要先有開放IP位置<br>
- 之後把你的網站放到開放IP的根目錄<br>
- 並運行你的server(如果有的話)<br>
- 或最基本的放一個 index.html檔 或 .txt檔 也可以讓別人用瀏覽器瀏覽<br><br>
+ Actually, if you want to put your website on the internet for people to browse<br>
+ You need to have an open IP address first<br>
+ Then put your website in the root directory of the open IP<br>
+ And run your server (if you have one)<br>
+ Or at the very least, put an index.html file or .txt file so others can browse it with a browser<br><br>
 
- 這時候你不想要其他人用IP連進來<br>
- (有時候可能是方便使用者記得你的網站、未來轉移Server考量...等原因)<br>
- 你就可以去找domain name來代替你的IP位址<br>
- 讓User連進來時是容易記憶的網址<br><br>
+ At this point, if you don't want others to connect using the IP<br>
+ (Sometimes for user convenience, future server migration considerations, etc.)<br>
+ You can find a domain name to replace your IP address<br>
+ So that users can connect using an easy-to-remember URL<br><br>
 
- 通常<br>
- 你可以在一些第三方domain name出租網站去租<br>
- 或是用一些第三方網站產生供應商<br>
- 直接提供一整套的服務給你<br>
- 但如果你有能力自己全套自己做<br>
- 當然是最省錢的<br>
+ Usually<br>
+ You can rent from some third-party domain name rental websites<br>
+ Or use some third-party website providers<br>
+ That offer a complete set of services<br>
+ But if you have the ability to do everything yourself<br>
+ It is, of course, the most cost-effective<br>
 </div>

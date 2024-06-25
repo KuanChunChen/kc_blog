@@ -1,164 +1,163 @@
 ---
 layout: post
-title: "如何應對 Android 12 開發中的版本差異？關鍵技巧大公開！"
+title: "How to Handle Version Differences in Android 12 Development? Key Tips Revealed!"
 date: 2022-08-24 14:39:48 +0800
 image: cover/android-version-adaptation-12-1.png
 tags: [Android,Debug,ota,aosp]
 categories: SDK升級
-excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解決方案。透過分享一些關鍵技巧，希望能幫助開發人員在應對版本差異時更加得心應手，順利完成開發任務。"
+excerpt: "This article will introduce the development challenges brought by the Android 12 version upgrade and their solutions. By sharing some key tips, we hope to help developers handle version differences more smoothly and complete their development tasks successfully."
 ---
 
 <p class="table_container">
-  這篇文章將與您分享我的開發經驗，<br>
-  著重於探討 Android 版本升級帶來的挑戰及解決方案。<br>
-  透過分析我所遇到的問題，<br>
-  希望能為您在開發過程中遇到類似問題提供一些有價值的見解。<br><br>
-  如需看了官方改了什麼<br>
-  可以直接去
+  This article will share my development experience with you,<br>
+  focusing on the challenges and solutions brought by Android version upgrades.<br>
+  By analyzing the problems I encountered,<br>
+  I hope to provide some valuable insights for you when facing similar issues during the development process.<br><br>
+  If you want to see what the official changes are,<br>
+  you can directly go to
   <a href="https://developer.android.com/about/versions/13/changes/battery#restricted-background-battery-usage" target="_blank">
-    Android Developer 觀看</a>
+    Android Developer</a>
 </p>
 
-<div class="c-border-main-title-2">Android 12 受影響的功能</div>
+<div class="c-border-main-title-2">Features Affected by Android 12</div>
 <div class="c-border-content-title-4">
-   Android 12以上 新增OS相機與麥克風 權限開關
+   New OS Camera and Microphone Permission Switches in Android 12 and Above
 </div>
-  - 使用者可透過start bar內的快捷按鈕 或是設定內`相機或麥克風存取權`的開關做 開啟/關閉
-  - 可能影響使用到相機的使用體驗，<br>
-  即使開啟相機權限，<br>
-  但只要使用者關閉相機存取權，<br>
-  則會給一個黑屏的相機<br>
-  麥克風亦是如此:[參考](https://developer.android.com/training/permissions/explaining-access#toggles)
+  - Users can enable/disable through the quick buttons in the start bar or the `Camera or Microphone Access` switch in settings.
+  - This may affect the user experience with the camera,<br>
+  even if the camera permission is enabled,<br>
+  as long as the user disables camera access,<br>
+  it will show a black screen for the camera.<br>
+  The same applies to the microphone: [Reference](https://developer.android.com/training/permissions/explaining-access#toggles)
 
-  - 目前看到有下方code ，可去偵測系統是否支援，來給使用者做提示，目前暫時沒看到可以判斷是否開啟的API
+  - Currently, the following code can be used to detect if the system supports it and provide a prompt to the user. There is no API to determine if it is enabled.
   <script src="https://gist.github.com/KuanChunChen/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
 
   <div class="c-border-content-title-4">
-     Android 12以上 棄用了 ACTION_CLOSE_SYSTEM_DIALOGS:  
-     <a href="https://developer.android.com/about/versions/12/behavior-changes-all#close-system-dialogs" target="_blank">參考</a>
+     Deprecated ACTION_CLOSE_SYSTEM_DIALOGS in Android 12 and Above:  
+     <a href="https://developer.android.com/about/versions/12/behavior-changes-all#close-system-dialogs" target="_blank">Reference</a>
   </div>
-   - 但在Android 13上實測 開啟`輔助權限`時，還是可以送出 ACTION_CLOSE_SYSTEM_DIALOGS
-   但沒開就不會收到該廣播
+   - However, in Android 13, it was tested that when `Accessibility Permission` is enabled, ACTION_CLOSE_SYSTEM_DIALOGS can still be sent.
+   If not enabled, the broadcast will not be received.
 
    <div class="c-border-content-title-4">
-      Android 12以上 對splash 畫面新增預設啟動畫面
-      <a href="https://developer.android.com/guide/topics/ui/splash-screen/migrate" target="_blank">可透過該頁面教學遷移新的splash</a>
+      New Default Splash Screen in Android 12 and Above
+      <a href="https://developer.android.com/guide/topics/ui/splash-screen/migrate" target="_blank">Migration guide</a>
    </div>
 
-   - 如下多了一個預設icon的啟動畫面<br>
+   - A new default icon splash screen is added as shown below:<br>
      ![android12_splash_icon.gif](/images/others/android12_splash_icon.gif)
-   - 這邊實測後，目前這個default splash screen無提供移除的方法<br>
-     只有移除原本自定義Activity不顯示畫面但還是可跑原本週期的方法<br>
-     官方也針對新的splash screen有一些規格:<a href="https://developer.android.com/guide/topics/ui/splash-screen#elements" target="_blank">參考</a><br>
+   - After testing, there is currently no method to remove this default splash screen.<br>
+     Only the method to remove the original custom Activity that does not display the screen but still runs the original cycle.<br>
+     The official documentation also provides some specifications for the new splash screen: <a href="https://developer.android.com/guide/topics/ui/splash-screen#elements" target="_blank">Reference</a><br>
 
-   - 調整思路：<br>
-     - 將`implementation 'androidx.core:core-splashscreen:1.0.0'`加入build.gradle<br>
-     這邊需注意min sdk要求為21以上<br>
+   - Adjustment approach:<br>
+     - Add `implementation 'androidx.core:core-splashscreen:1.0.0'` to build.gradle<br>
+     Note that the minimum SDK requirement is 21 and above.<br>
      ![android12_splash_min_sdk.png](/images/others/android12_splash_min_sdk.png)
-     - 設定新的splash screen的Theme
+     - Set the new splash screen Theme
      <script src="https://gist.github.com/KuanChunChen/dd55d7b2cb70cedf158763083390d426.js"></script>
-      `windowSplashScreenBackground`為背景顏色，實測只能設定@color<br>
-      `windowSplashScreenAnimatedIcon`為中間那個圓型view的icon，可設置圖片，但大小只能依照官方公佈的<br>
-      `windowSplashScreenBrandingImage`為icon下方一小塊的背景圖片<br>
-      `windowSplashScreenAnimationDuration`為動畫時間<br>
-      <a href="https://developer.android.com/guide/topics/ui/splash-screen#set-theme" target="_blank">其他屬性</a>
+      `windowSplashScreenBackground` is the background color, which can only be set to @color.<br>
+      `windowSplashScreenAnimatedIcon` is the icon for the circular view in the middle, which can be set to an image, but the size must follow the official specifications.<br>
+      `windowSplashScreenBrandingImage` is the small background image below the icon.<br>
+      `windowSplashScreenAnimationDuration` is the animation duration.<br>
+      <a href="https://developer.android.com/guide/topics/ui/splash-screen#set-theme" target="_blank">Other properties</a>
       <br>
 
-     - 將新的SplashTheme加入`AndrodManifest.xml`
+     - Add the new SplashTheme to `AndroidManifest.xml`
 
-     - 加入初始code
+     - Add initial code
      <script src="https://gist.github.com/KuanChunChen/7799d22f3d2839965678d9f75435bda5.js"></script>
 
-     `SplashScreen.installSplashScreen(this)`需在`super.onCreate`前<br>
+     `SplashScreen.installSplashScreen(this)` must be called before `super.onCreate`<br>
      <br>
      `splashScreen.setKeepOnScreenCondition(() -> true );`<br>
-     這行可以讓原本舊的activity畫面不顯示但activity週期會跑<br>
-     但這個做法就是用新的官方splash，原本客製化的畫面就不顯示了，這邊各位`product owner可自行考量   `
-
+     This line ensures that the old activity screen does not display, but the activity lifecycle will still run.<br>
+     However, this approach uses the new official splash screen, so the original customized screen will not be displayed. Product owners can consider this as needed.
 
   <div class="c-border-content-title-4">
-    在Android target sdk 12以上 在intent-filter中未宣告android:exported 的值 則可能造成無法安裝
+    On Android target SDK 12 and above, if the value of android:exported is not declared in the intent-filter, it may cause installation failure.
   </div>
 
-  - 如圖，當編譯後要安裝，則顯示如下 `INSTALL_PARSE_FAILED_MANIFEST_MALFORMED` 錯誤
+  - As shown, when compiling and installing, the following error `INSTALL_PARSE_FAILED_MANIFEST_MALFORMED` is displayed:
    ![android12_exported_crash.png](/images/others/android12_exported_crash.png)<br>
-  - 另外當使用到PendingIntent時也需加入對應flags不然會報錯：
+  - Additionally, when using PendingIntent, corresponding flags must be added to avoid errors:
     <script src="https://gist.github.com/KuanChunChen/7ba7f042607cde3cb472af503088bce9.js"></script>
-  - 解法 ＆ Demo：<br>
-    - 需在每個PendingIntent創建處加入`FLAG_IMMUTABLE`或 `FLAG_MUTABLE` 標籤<br>
-    - 以及加入最新work-runtime： `implementation 'androidx.work:work-runtime:2.7.1'`<br>
+  - Solution & Demo:<br>
+    - Add `FLAG_IMMUTABLE` or `FLAG_MUTABLE` tags at each PendingIntent creation.<br>
+    - Also, add the latest work-runtime: `implementation 'androidx.work:work-runtime:2.7.1'`<br>
     ![android12_workmanager.png](/images/others/android12_workmanager.png)<br>
-    - 備註<br>
-      - 這邊以Airdroid為例的話 目前Airdroid & httphelper repo分開所以其他有的地方也需修正
-      - 隱性PendingIntent也需修改，因implement的library內也有用到PendingIntent
-      如以目前`Airdroid`專案內使用到google analytics 17.0.0版，但亦出現error提示
-      (這種要實際跑到該段code才會知道是否有PendingIntent的error)
+    - Notes<br>
+      - For example, in the Airdroid project, since Airdroid & httphelper repo are separate, other places also need to be corrected.
+      - Implicit PendingIntent also needs modification, as libraries used in the implementation may also use PendingIntent.
+      For instance, the current `Airdroid` project uses Google Analytics version 17.0.0, but errors are still prompted.
+      (You will only know if there is a PendingIntent error when running that specific code segment)
       ![android_12_error_01.png](/images/others/android_12_error_01.png)
-      這時候將版本升上去即可
+      In this case, upgrading the version will suffice:
       `implementation 'com.google.android.gms:play-services-analytics:18.0.1'`
 
   <div class="c-border-content-title-4">
-    把Target sdk 升到32時 setAppCacheEnabled(flag Boolean)與setAppCachePath(path String)被移除了   
+    When upgrading the target SDK to 32, setAppCacheEnabled(flag Boolean) and setAppCachePath(path String) are removed.
   </div>
 
-   因為Chromium將這項功能移除，所以sdk變成不再支援:<a href="https://web.dev/appcache-removal/" target="_blank">參考</a>
+   Since Chromium has removed this feature, the SDK no longer supports it: <a href="https://web.dev/appcache-removal/" target="_blank">Reference</a>
   ![android12_appcache.png](/images/others/android12_appcache.png)
 
   <div class="c-border-content-title-4">
-    把Target sdk 升到32時 ，背景運行時啟用前景服務受到
-      <a href="https://developer.android.com/guide/components/foreground-services#background-start" target="_blank">限制</a>
+    When upgrading the target SDK to 32, enabling foreground services while running in the background is restricted:
+      <a href="https://developer.android.com/guide/components/foreground-services#background-start" target="_blank">Reference</a>
   </div><br>
-  這個目前實測在SDK 32上，還是可以在後台執行前台服務<br>
-  先嘗試了在後台Service中執行StartForegroundService，不過可以正常執行，這邊會再追蹤看看<br><br>
+  Currently, testing on SDK 32 shows that foreground services can still run in the background.<br>
+  Initially tried running StartForegroundService in the background Service, and it worked fine. This will be monitored further.<br><br>
 
-  官方建議使用WorkManager 來替代執行：
-  <a href="https://developer.android.com/about/versions/12/foreground-services?hl=zh-cn#recommended-alternative" target="_blank">參考</a>
+  The official recommendation is to use WorkManager as a replacement for execution:
+  <a href="https://developer.android.com/about/versions/12/foreground-services?hl=zh-cn#recommended-alternative" target="_blank">Reference</a>
 
 
   <div class="c-border-content-title-4">
-    為了鼓勵節省系统資源
+    To encourage saving system resources
   </div>
 
- 鬧鐘管理器 API 在Androd 12需聲明`SCHEDULE_EXACT_ALARM`權限才能使用
+ Alarm Manager API in Android 12 requires declaring the `SCHEDULE_EXACT_ALARM` permission to use
 
 
  <div class="c-border-content-title-4">
-   Android 12以上針對移動傳感器做了採樣率的限制
-   <a href="https://developer.android.com/guide/topics/sensors/sensors_overview#sensors-rate-limiting" target="_blank">參考(英文官網才看得到，中文沒這段)</a>
+   Android 12 has imposed sampling rate limits on motion sensors
+   <a href="https://developer.android.com/guide/topics/sensors/sensors_overview#sensors-rate-limiting" target="_blank">Reference (only available on the English official website, not in Chinese)</a>
  </div>
 
- 使用registerListener()來註冊傳感監聽器來monitor sensor events時，最高採樣率限制200Hz<br>
- 想用更高HZ則必需加入`HIGH_SAMPLING_RATE_SENSORS`權限<br>
+ When using registerListener() to register a sensor listener to monitor sensor events, the maximum sampling rate is limited to 200Hz<br>
+ To use a higher Hz, you must add the `HIGH_SAMPLING_RATE_SENSORS` permission<br>
 
  <div class="c-border-content-title-4">
-    Android 12 大致位置/精確位置 的 行為變更
+    Android 12 behavior changes for approximate/precise location
  </div>
 
- 在此版本上要求請求 大致位置/精確位置 權限時，<br>
- 需同時請求`ACCESS_FINE_LOCATION`與`ACCESS_COARSE_LOCATION`，<br>
- 才會顯示新的位置權限請求框<br>
- 有遇到的可以注意下: <a href="https://developer.android.com/training/location/permissions#approximate-request" target="_blank">參考</a>
+ In this version, when requesting approximate/precise location permissions,<br>
+ you need to request both `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` simultaneously,<br>
+ to display the new location permission request dialog<br>
+ If you encounter this, take note: <a href="https://developer.android.com/training/location/permissions#approximate-request" target="_blank">Reference</a>
 
  <div class="c-border-content-title-4">
-    Android 12對藍牙權限做了權責分離
+    Android 12 has separated Bluetooth permissions
  </div>
-  原本使用藍芽相關api時需宣告<br>
-  `Manifest.permission.BLUETOOTH_ADMIN`與`Manifest.permission.ACCESS_FINE_LOCATION`<br>
-  來獲取搜尋附近藍芽裝置<br>
+  Previously, when using Bluetooth-related APIs, you needed to declare<br>
+  `Manifest.permission.BLUETOOTH_ADMIN` and `Manifest.permission.ACCESS_FINE_LOCATION`<br>
+  to search for nearby Bluetooth devices<br>
 
-  有遇到用startDiscovery..等API來搜尋附近裝置<br>
-  使用舊的權限在Target 32時，`API返回fail 或部分API直接crash `<br>
+  If you encounter using startDiscovery.. and other APIs to search for nearby devices<br>
+  Using the old permissions when targeting API 32, `API returns fail or some APIs directly crash`<br>
   ![android12_ble.png](/images/others/android12_ble_crash.png)<br>
 
-  可類似這樣修改：<br>
-  1. 舊的權限加入`android:maxSdkVersion="30"`
-  2. 根據需求宣告新的權限`BLUETOOTH_CONNECT`, `BLUETOOTH_SCAN`或`BLUETOOTH_ADVERTISE `
+  You can modify it like this:<br>
+  1. Add `android:maxSdkVersion="30"` to the old permissions
+  2. Declare new permissions `BLUETOOTH_CONNECT`, `BLUETOOTH_SCAN`, or `BLUETOOTH_ADVERTISE` as needed
   ![android12_ble.png](/images/others/android12_ble.png)
-  3. 以前runtime權限請求只要求`ACCESS_FINE_LOCATION`權限，現在分開了，得在runtime時新增上述`藍芽權限請求`<br>
+  3. Previously, runtime permission requests only required the `ACCESS_FINE_LOCATION` permission, now they are separated, and you need to add the above `Bluetooth permission requests` at runtime<br>
 
 
-  參考
-  <a href="https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#startDiscovery()" target="_blank">api文檔</a>
-    與<a href="https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher" target="_blank">藍牙權限分離說明</a><br>
-  這裏是簡單demo如何改<br>
+  Reference
+  <a href="https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#startDiscovery()" target="_blank">API documentation</a>
+    and <a href="https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher" target="_blank">Bluetooth permission separation explanation</a><br>
+  Here is a simple demo on how to modify<br>
   <script src="https://gist.github.com/KuanChunChen/cd5950dcc9247ea889e835a4085694f8.js"></script>

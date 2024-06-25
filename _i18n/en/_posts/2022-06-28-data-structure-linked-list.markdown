@@ -1,51 +1,49 @@
 ---
 layout: post
-title: "資料結構複習，Linked List 全攻略！"
+title: "Review of Data Structures: The Ultimate Guide to Linked Lists!"
 date: 2022-06-28 11:46:12 +0800
 image: cover/data-structure/cpu-linked-list.jpg
 tags: [data structure, algorithm]
 categories: 其他筆記
-excerpt: "學習 Linked List 複習資料結構，包含優勢、缺點，以及 Kotlin 實作方式。完整攻略，助你了解 Linked List 的 Time Complexity 和操作方法。"
+excerpt: "Learn about Linked Lists to review data structures, including advantages, disadvantages, and Kotlin implementation methods. A complete guide to help you understand the time complexity and operations of Linked Lists."
 
 ---
 
-<div class="c-border-main-title-2">Linked list 特性</div>
-Linked List 是由不連續的記憶體位址組成，透過指標（pointer）互相連結元素（elements）的資料結構。
+<div class="c-border-main-title-2">Characteristics of Linked Lists</div>
+A Linked List is a data structure composed of non-contiguous memory addresses, linking elements through pointers.
 
-<div class="c-border-main-title-2"> Linked list 優點</div>
-相較於 Array，Linked List 具有以下優點：<br><br>
+<div class="c-border-main-title-2">Advantages of Linked Lists</div>
+Compared to Arrays, Linked Lists have the following advantages:<br><br>
 
-1.Linked List 大小彈性，不需要預先指定大小。<br>
-2.插入、刪除元素時的成本較低，只需要改變指標指向即可，不需要整個轉移。<br>
-3.不需要連續的記憶體空間，因此更加靈活。<br>
+1. Linked Lists are flexible in size and do not require a pre-specified size.<br>
+2. The cost of inserting and deleting elements is lower, as it only requires changing the pointer direction without needing to shift the entire structure.<br>
+3. They do not require contiguous memory space, making them more flexible.<br>
 
+<div class="c-border-main-title-2">Disadvantages of Linked Lists</div>
+Compared to Arrays, Linked Lists have the following disadvantages:<br>
 
-<div class="c-border-main-title-2"> Linked list 缺點</div>
-相較於 Array，Linked List 具有以下缺點：<br>
+1. Random access efficiency is lower, as traversal must start from the first node.<br>
+2. Additional memory space is needed for pointers in each node.<br>
+3. Relative addressing cannot be used directly. Arrays have contiguous addresses, allowing for relative addressing, but Linked Lists do not.<br>
 
-1.隨機訪問效率較差，只能從第一個節點開始遍歷。<br>
-2.需要為每個節點指標提供額外的記憶體空間。<br>
-3.無法直接使用相對位址。因為array為連續位址，所以可以有相對位址，但linked list則沒有<br>
+<div class="c-border-main-title-2">Composition of Linked Lists</div>
+Each node in a Linked List contains the following two elements:<br>
 
-
-<div class="c-border-main-title-2">Linked list 組成</div>
-Linked List 中的每個節點包含以下兩個元素：<br>
-
-1.資料（Data）<br>
-2.指標（Pointer）<br
+1. Data<br>
+2. Pointer<br>
 <div class="c-border-content-title-4">
-   以下是 Kotlin 實現 Linked List 的程式碼
+   Below is the code for implementing a Linked List in Kotlin
 </div>
  <script src="https://gist.github.com/KuanChunChen/ad9e538b06afc720f0785a4471fd6145.js"></script>
 
 <div class="c-border-content-title-4">
-   以下是遍歷Traversal Linked List 的程式碼
+   Below is the code for traversing a Linked List
 </div>
 
 <script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
 <div class="c-border-content-title-4">
-  除了上述的程式碼，你也可以使用 Kotlin 的 Data Class 實現 Linked List：
+  Besides the above code, you can also implement a Linked List using Kotlin's Data Class:
 </div>
 <script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
 

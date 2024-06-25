@@ -1,91 +1,85 @@
 ---
 layout: post
-title: "擁抱無線：教你使用adb無線連接Android實機教學！"
+title: "Embrace Wireless: A Guide to Using ADB for Wireless Connection to Android Devices!"
 date: 2022-02-15 13:46:32 +0800
 image: others/adb_wifi.png
 tags: [Android,adb]
 categories: Android教學
-excerpt: "本文教你如何使用adb透過wifi連接Android實機，讓你不再受到煩人的有線限制，輕鬆進行開發與測試。"
+excerpt: "This article teaches you how to use ADB to connect to Android devices via Wi-Fi, freeing you from the hassle of cables and making development and testing easier."
 ---
 
+<div class="c-border-main-title-2">Introduction</div>
+This article primarily documents how to use the adb wifi CLI to connect to an Android phone.<br>
+It is suitable for users who want to develop and debug in a wireless network environment.<br>
+In the past, we often used the features of Android Studio to connect phones,
+but using adb wifi is also a good method.<br>
+Therefore, I specifically searched for related information and compiled it into notes,<br>
+for my future reference and to hopefully help other users!<br>
 
-<div class="c-border-main-title-2">前言</div>
-本篇主要記錄如何使用 adb wifi cli 連接 Android 手機，<br>
-適用於想要在無線網路環境下進行開發和debug的使用者。<br>
-過去，我們常常使用 Android Studio 的功能來連接手機，
-但其實使用 adb wifi 也不失為一種好方法。<br>
-因此，我特別查詢了相關資料並整理成筆記，<br>
-方便自己以後查閱，也希望能對其他使用者有所幫助！<br>
-
-
-
- <div class="table_container">
-    <span style="text-align:center;">另外android 11 也新增了另一種方法，供測試或debug的方案：</span><br>
+<div class="table_container">
+    <span style="text-align:center;">Additionally, Android 11 has introduced another method for testing or debugging:</span><br>
    <a href="{{site.baseurl}}/2022/02/22/android-adb-wifi-note-detail/">
      <img src="/images/others/adb_wifi.png" alt="Cover" width="30%"/>
    </a>
-   <a href="{{site.baseurl}}/2022/02/22/android-adb-wifi-note-detail/">釋放 Android 11 adb wireless debug 的力量：從有線到無線，探索更自由的debug體驗！</a>
- </div><br>
+   <a href="{{site.baseurl}}/2022/02/22/android-adb-wifi-note-detail/">Unleash the Power of Android 11 ADB Wireless Debug: From Wired to Wireless, Explore a Freer Debugging Experience!</a>
+</div><br>
 
+<div class="c-border-main-title-2">Practical Steps</div><br>
 
+1. Ensure the computer and Android phone are on the same local network.<br>
+2. Connect the Android phone to the computer using a USB cable and enable developer mode.<br>
+3. Use the following command to find the phone's IP address:<br>
 
-<div class="c-border-main-title-2">實際作法</div><br>
+```linux
+adb shell ifconfig
+```
+4. You will find an IP similar to 192.168.xxx.xxx.<br>
+<img src="/images/others/ipconfig.png"/><br>
+5. Use the following command to switch to TCP/IP mode:<br>
+```linux
+adb tcpip <port>
+```
+-> You can specify the port yourself.<br>
 
- 1.讓電腦與Android手機進入同一個區域網路<br>
- 2.用USB線將Android手機連上電腦 要開啟開發者mode<br>
- 3.透過以下指令尋找手機ip位址<br>
+6. Finally, use the command:<br>
+```
+adb connect 192.168.0.101:5555
+```
+(5555 is the port you set earlier)
+At this point, you can control your phone using adb wifi.
 
- ```linux
- adb shell ifconfig
- ```
- 4.會找到類似192.168.xxx.xxx的IP<br>
- <img src="/images/others/ipconfig.png"/><br>
- 5.用以下指令切換到tcp/ip模式<br>
- ```linux
- adb tcpip <port>
- ```
- -> 這邊的port是可以自己指定的<br>
+Supplement:
+Later, I encountered a method to connect to an Android TV,
+but there was no USB slot available.
+In this case, you can go to Settings -> Wi-Fi -> find the IP under the same network,
+so you don't need to use commands.
 
+<div class="c-border-content-title-4">Here's a Tip:</div>
+Previously, I always used the adb wifi plugin downloaded from Android Studio to connect to the phone (the effect of this plugin is the same as above).<br>
+Since the port set by the plugin is always the same,<br>
+and others in the company also use the same port settings or the same plugin,<br>
+if you don't change the port,<br>
+and your IP happens to be assigned to a colleague's old IP,<br>
+there is a chance that using the command on the same local network,<br>
+you can install APKs on your phone through your IP and port.<br>
+However, this happens occasionally.<br>
+You can use scrcpy to see what others are doing XD (just kidding).<br><br>
+So it's better to set different ports.
 
- 6. 最後使用指令<br>
- ```
- adb connect 192.168.0.101:5555
- ```
- (5555是你前面設定的port)
- 至此就能用adb wifi控制你的手機了
+<div class="c-border-main-title-2">Other Notes</div>
+- Additional details for adb connection below Android 10:
+  - To connect using `adb connect`, **you need to connect the USB cable at least once** to set your TCP/IP port.
+  After that, you can connect directly with the same IP and port without the cable.
 
- 補充：
- 後來遇到要連線上android TV的方式
- 但剛好沒遇到沒有usb插槽的情況
- 這時候就可以去設定->wifi->同個網路下去找ip
- 就不用透過指令
-
- <div class="c-border-content-title-4">這邊分享一個雷：</div>
-由於之前一直使用android studio下載的adb wifi插件來連接手機(該插件的效果就跟上面一樣)，<br>
-又因該插件所設定的端口都是相同的，<br>
-且公司中有其他人也使用同樣的端口設定或同一套插件，<br>
-而沒去改port的話，<br>
-又剛好你們的ip被分發到上一次另一位同事的舊IP，<br>
-則有機會在同一區域網路下使用指令，<br>
-即可透過你的IP和端口安裝APK到你的手機。<br>
-不過這個就是爾偶發生<br>
-只是就可以趁機用 scrcpy看別人在幹嘛而已XD（誤<br><br>
-所以還是要設不同的port比較好
-
-<div class="c-border-main-title-2">其他筆記</div>
-- 補充Android 10 以下的 adb連線細節
-  - 使用`adb connect`連上手機 **至少需連接一次USB線**，需先設定你的tcpip的port
- 之後不用插線只要同ip跟port就能直接連
-
-  - 一些俗稱adb wifi 插件通常預設port為5555，故有機會手機已設定過adb tcpip port
- 有人同區網又知道你的ip，就能輕易嘗試connect，並控制手機
- (這裡試過 ， 對沒設定過 `adb tcpip` 的直接用預設5555 會被refused)
- ![adb-connect.png](/images/others/adb-connect.png)
-  - 要斷連用 `adb disconnect <ip>:<port>`
-  - 主要運作在adb server下 ，用 `adb kill-server` 亦會斷連
-  - 找手機本地IP可以用 `adb shell ifconfig`，可看到類似的如下：
- ```
- wlan0   Link encap:Ethernet  HWaddr F0:XX:B7:XX:XX:97
+  - Some so-called adb wifi plugins usually have a default port of 5555, so if the phone has already set the adb TCP/IP port,
+  someone on the same network who knows your IP can easily try to connect and control the phone.
+  (Tested here, if `adb tcpip` is not set, using the default 5555 will be refused)
+  ![adb-connect.png](/images/others/adb-connect.png)
+  - To disconnect, use `adb disconnect <ip>:<port>`.
+  - It mainly operates under the adb server, using `adb kill-server` will also disconnect.
+  - To find the phone's local IP, you can use `adb shell ifconfig`, which will show something similar:
+  ```
+  wlan0   Link encap:Ethernet  HWaddr F0:XX:B7:XX:XX:97
          inet addr:192.168.X01.XXX  Bcast:192.XXX.X01.255  Mask:255.255.255.0
          inet6 addr: fe80::fxxxx:x2xx:fee1:7d97/64 Scope: Link
          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
@@ -93,7 +87,8 @@ excerpt: "本文教你如何使用adb透過wifi連接Android實機，讓你不�
          TX packets:574 errors:0 dropped:0 overruns:0 carrier:0
          collisions:0 txqueuelen:1000
          RX bytes:198035 TX bytes:125461
- ```
-   或是用這串CLI `adb shell ip route | awk '{print $9}'`
-   直接取得目標IP<br>
-    ![adb-ip-photo.png](/images/others/adb-ip-photo.png)
+  ```
+  or use this CLI `adb shell ip route | awk '{print $9}'` to directly get the target IP.<br>
+  ![adb-ip-photo.png](/images/others/adb-ip-photo.png)
+
+It looks like you haven't pasted the Markdown content yet. Please provide the content you want translated, and I'll handle the translation while adhering to the specified rules.

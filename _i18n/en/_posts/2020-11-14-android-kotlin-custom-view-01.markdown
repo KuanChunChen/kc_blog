@@ -1,18 +1,17 @@
 ---
 layout: post
-title: "學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 01"
+title: "Learning Android Kotlin Custom UI Techniques - Switching Views and Dropdown Animation Tutorial - 01"
 date: 2020-11-14 15:30:18 +0800
 image: cover/android-photo.jpg
 permalink: /android/custom01
 tags: [Android]
 categories: Android實作
-excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客製UI的技巧，具體來說是如何實現左右切換view和動畫的下拉欄。"
+excerpt: "In this tutorial, you will learn how to use Android Kotlin custom UI techniques, specifically how to implement switching views and dropdown animations."
 ---
 
-<h1 class="c-border-main-title-2">實際效果</h1>
+<h1 class="c-border-main-title-2">Actual Effect</h1>
 
-
-首先最容易讓人理解的方式，就是直接先上影片，效果如影片：
+The easiest way to understand is to watch the video first. The effect is as shown in the video:
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-git01.gif" alt="Cover" width="30%"/>
@@ -20,52 +19,47 @@ excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客�
 
 <p> </p>
 <p> </p>
-在這個demo裡面你會看到的有：
+In this demo, you will see:
 
 <div class="table_container">
   <ol class="rectangle-list">
-    <li><a href="javascript:void(0)">下拉bottom sheet</a></li>
-    <li><a href="javascript:void(0)">Recycler view 左右滑動</a></li>
-    <li><a href="javascript:void(0)">Recycler view 中每個Item點擊時切換</a></li>
-    <li><a href="javascript:void(0)">Recycler view初始化時置中</a></li>
-    <li><a href="javascript:void(0)">Recycler view 中Item margin設置</a></li>
-    <li><a href="javascript:void(0)">WebView 跳轉到應用程式</a></li>
+    <li><a href="javascript:void(0)">Dropdown bottom sheet</a></li>
+    <li><a href="javascript:void(0)">Recycler view left and right swipe</a></li>
+    <li><a href="javascript:void(0)">Switching items on click in Recycler view</a></li>
+    <li><a href="javascript:void(0)">Centering Recycler view on initialization</a></li>
+    <li><a href="javascript:void(0)">Setting item margins in Recycler view</a></li>
+    <li><a href="javascript:void(0)">WebView redirect to application</a></li>
   </ol>
 </div>
 
-
-我也繼承了下面的一些類（只列出主要用到的類）有
+I also inherited some classes (only listing the main ones used):
 
 <div class="table_container">
   <ol class="rectangle-list">
     <li><a href="javascript:void(0)">LinearLayoutManager</a></li>
     <li><a href="javascript:void(0)">BottomSheetBehavior</a></li>
     <li><a href="javascript:void(0)">ItemDecoration</a></li>
-    <li><a href="javascript:void(0)">OnScrollListener …等等，<br>還有其他的類就不一一列出來了。</a></li>
+    <li><a href="javascript:void(0)">OnScrollListener …etc.,<br> other classes are not listed here.</a></li>
   </ol>
 </div><br>
 
-
-
-本篇我會先介紹這個demo 的一些特色，如下：
-像是能夠隨著滑動，正中央imageView淡入，淡出的效果。
+In this article, I will first introduce some features of this demo, such as:
+The effect of the central imageView fading in and out as you scroll.
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-jpg01.jpeg" alt="Cover" width="30%" >
   <img src="/images/kt-demo-custom/kt-demo-jpg02.jpeg" alt="Cover" width="30%" >
 </div>
 
-
-第二步，就是客製出一條左右滑動的recycler view，包含：
+The second step is to customize a left and right sliding recycler view, including:
 
 <div class="table_container">
   <ol class="rectangle-list">
-    <li><a href="javascript:void(0)">客製化recycler view 包含其中細項的調整</a></li>
-    <li><a href="javascript:void(0)">間距設置</a></li>
-    <li><a href="javascript:void(0)">滑動時動畫（字體變色，漸層，變更view等）</a></li>
+    <li><a href="javascript:void(0)">Customizing the recycler view including detailed adjustments</a></li>
+    <li><a href="javascript:void(0)">Setting spacing</a></li>
+    <li><a href="javascript:void(0)">Animations during scrolling (font color change, gradient, view change, etc.)</a></li>
   </ol>
 </div><br>
-
 
 <div align="center">
   <img src="/images/kt-demo-custom/kt-demo-jpg03.jpeg" alt="Cover" width="30%" >
@@ -75,19 +69,19 @@ excerpt: "在這篇教學文章中，你將學習如何使用Android Kotlin客�
 <br>
 <br>
 <br>
-最後，就是比較常見的就一些參數調整，<br>
-色碼設置，<br>
-或其他view區塊設置等等，<br>
-如果喜歡的接下去看吧！<br>
+Finally, here are some common parameter adjustments, <br>
+color code settings, <br>
+or other view block settings, etc. <br>
+If you're interested, keep reading! <br>
 
-請參考：
+Please refer to:
 
 <div class="table_container">
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-02/">
     <img src="/images/cover/android-photo.jpg" alt="Cover" width="30%" >
   </a>
 
-  <a href="{{site.baseurl}}/android/custom02">學習Android Kotlin 客製UI的技巧－左右切換view與動畫的下拉欄教學 - 02</a>
+  <a href="{{site.baseurl}}/android/custom02">Learn Android Kotlin Custom UI Techniques - Switching Views and Dropdown Animation Tutorial - 02</a>
 </div>
 
 <br>

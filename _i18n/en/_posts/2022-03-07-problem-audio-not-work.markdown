@@ -1,70 +1,70 @@
 ---
 layout: post
-title: "Android Audio 適配疑難雜症分享：探討如何解決 Android 設備上的音頻問題"
+title: "Android Audio Troubleshooting: Exploring Solutions for Audio Issues on Android Devices"
 date: 2022-03-07 14:31:22 +0800
 image: cover/android-audio-share-1.png
 tags: [Android,Debug]
 categories: Debug探討
-excerpt: "我們將探討如何解決 Android 設備上的音頻問題，如果你是 Android 開發人員或對音頻技術感興趣，這份分享絕對不能錯過！"
+excerpt: "We will explore how to solve audio issues on Android devices. If you are an Android developer or interested in audio technology, this share is a must-read!"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-在今天的分享中，我們將探討當兩個客戶端設備進行連接時，<br>
-通過手機收音並播放到另一端時，其中一端的聲音會出現一些問題，<br>
-例如雜訊、音量不穩定和突然變化等。<br>
-我們將分析這些問題的可能原因，<br>
-並提供解決方案，<br>
-如果你有類似的問題，<br>
-或者對此感興趣，<br>
-歡迎參考這份分享。
+In today's share, we will explore the issues that arise when two client devices are connected, <br>
+and audio is recorded on one phone and played on the other. <br>
+Problems such as noise, unstable volume, and sudden changes in volume may occur. <br>
+We will analyze the possible causes of these issues <br>
+and provide solutions. <br>
+If you have similar problems <br>
+or are interested in this topic, <br>
+feel free to refer to this share.
 
-<div class="c-border-main-title-2">分析過程分享</div>
-<div class="c-border-content-title-4">第一步：覆現問題</div>
-   * 在 `Samsnug SM-G900I Android 6.0.2` 上測試 覆現得到的結果<br>
-      - 情況: 背景有播放音樂的時<br>
-     Clinet A  與 Client B 連線成功時 愈進行通話 (收音傳給另一端) <br>
-     Clinet A 手機音樂聲音會有雜訊、忽大忽小聲、突然變大聲等<br>
-      - 預期: 背景有播放音樂的時 播放音樂不受影響
+<div class="c-border-main-title-2">Analysis Process Share</div>
+<div class="c-border-content-title-4">Step 1: Reproduce the Issue</div>
+   * Tested on `Samsung SM-G900I Android 6.0.2` and reproduced the results<br>
+      - Situation: When background music is playing<br>
+     When Client A and Client B successfully connect and start a call (audio is transmitted to the other end) <br>
+     Client A's phone music will have noise, fluctuating volume, and sudden increases in volume<br>
+      - Expectation: Background music should not be affected when playing music
 
-<div class="c-border-content-title-4">第二步：找問題方向</div>
-   * 初期方向以下列幾個方式來嘗試解決此問題
-     - Read App source code 並試著把某些code mute掉測試哪段會實際影響<br>
-       例如：`Mute掉AudioRecord、AudioTrack`等，以此來降低問題範圍<br>
+<div class="c-border-content-title-4">Step 2: Identify the Problem Direction</div>
+   * Initially, try to solve the problem using the following methods
+     - Read the app source code and try muting certain code segments to test which part actually affects the issue<br>
+       For example: `Mute AudioRecord, AudioTrack`, etc., to narrow down the problem scope<br>
 
-     - `發想相關可能性`，如 研究`音頻焦點`：
-       因此發現其特性<br>
-       手機一次只能有一個app拿到音频焦点<br>
-       各個app也可以自行設置焦點遺失的監聽<br>
-       故若偵測到此監聽<br>
-       則各個app有可能自行降低音量(此為不可控)<br>
-       不過會再研究看看目前程式碼有無行為會取音频焦点<br>
-     - Surf the internet and find if there are same problem others used to occur.<br>
-       例如：參考網路文章
-        1. [Android音頻與其他應用重音的問題](https://www.itread01.com/content/1541940035.html)
-        2. [Android Developer 处理音频输出的变化](https://developer.android.com/guide/topics/media-apps/volume-and-earphones)
-        3. [Android 音頻系統](https://www.twblogs.net/a/5d160b34bd9eee1e5c828cb5)
-        4. [Android Developer 管理音频焦点](https://developer.android.com/guide/topics/media-apps/audio-focus)
+     - `Brainstorm related possibilities`, such as studying `audio focus`:
+       It was discovered that<br>
+       only one app can hold the audio focus at a time on a phone<br>
+       Each app can also set its own focus loss listener<br>
+       So if this listener is detected<br>
+       each app might lower the volume on its own (this is uncontrollable)<br>
+       However, further research will be conducted to see if the current code has any behavior that takes audio focus<br>
+     - Surf the internet and find if others have encountered the same problem.<br>
+       For example: Refer to online articles
+        1. [Issues with Android Audio and Other Apps Overlapping](https://www.itread01.com/content/1541940035.html)
+        2. [Android Developer Handling Changes in Audio Output](https://developer.android.com/guide/topics/media-apps/volume-and-earphones)
+        3. [Android Audio System](https://www.twblogs.net/a/5d160b34bd9eee1e5c828cb5)
+        4. [Android Developer Managing Audio Focus](https://developer.android.com/guide/topics/media-apps/audio-focus)
 
-<div class="c-border-content-title-4">第三步：找問題答案</div>
-  * 為了降低解決問題時間與提升效率達到預期效果，<br>
-    所以會先經歷上面第二步，思考看看可能的方向與解法，<br>
-    避免一開始就一腦砸下去研究，<br>
-    研究到最後才發現找錯方向，<br>
-    間接變成你更沒效率，<br>
-    所以我習慣都會先思考一下可能性<br>
+<div class="c-border-content-title-4">Step 3: Find the Solution</div>
+  * To reduce the time to solve the problem and improve efficiency to achieve the expected results,<br>
+    we will first go through step two above, think about possible directions and solutions,<br>
+    to avoid diving into research from the start,<br>
+    only to find out later that the wrong direction was taken,<br>
+    indirectly making you less efficient,<br>
+    so I usually think about the possibilities first<br>
 
-  * 所以透過上面分析，後來有幸發現幾種方法
-      - 透過調整`硬體抽象層HAL`，<br>
-        但是因為我們是開發Android應用層，<br>
-        所以要改`HAL`的可能性就很低了，<br>
-        除非是硬體開發商，想從根本改變這個規則<br>
-        這邊是網路上其他人分享改法：<br>
-        [调试笔记 --- 实时录音会有呲呲噪音问题](https://blog.csdn.net/kris_fei/article/details/71223117)
+  * Through the above analysis, we later fortunately discovered several methods
+      - By adjusting the `Hardware Abstraction Layer (HAL)`,<br>
+        but since we are developing Android applications,<br>
+        the possibility of changing `HAL` is very low,<br>
+        unless you are a hardware developer wanting to fundamentally change this rule<br>
+        Here is a method shared by others online:<br>
+        [Debugging Notes --- Real-time Recording Noise Issue](https://blog.csdn.net/kris_fei/article/details/71223117)
 
-      - 另一種則是，修改AudioSource收音來源
-        ```Java
-         AudioSource.DEFAULT:默認音頻來源
+- Another way is to modify the AudioSource recording source
+  ```Java
+   AudioSource.DEFAULT:默認音頻來源
          AudioSource.MIC:麥克風（一般主mic的音源）
          AudioSource.VOICE_UPLINK:電話上行
          AudioSource.VOICE_DOWNLINK:電話下行
@@ -74,22 +74,22 @@ excerpt: "我們將探討如何解決 Android 設備上的音頻問題，如果�
          AudioSource.VOICE_COMMUNICATION:網路語音通話  (用於網路通話的音源 如VoIP)
          AudioSource.VOICE_PERFORMANCE 實時處理錄音並播放的音源（通常用於卡拉ok app）
          AudioSource.REMOTE_SUBMIX 音頻子混音的音源
-        ```
-        我們原本的source code是使用 `AudioSource.VOICE_COMMUNICATION`<br>
-        經實測使用`AudioSource.MIC` or `AudioSource.VOICE_RECOGNITION` 來錄音 <br>
-        這個情境下則不會 有雜音 或聲音變大變小的情形<br>
+  ```
+  Our original source code uses `AudioSource.VOICE_COMMUNICATION`<br>
+  After testing, using `AudioSource.MIC` or `AudioSource.VOICE_RECOGNITION` for recording<br>
+  In this scenario, there will be no noise or fluctuations in volume<br>
 
-        `嘗試後行為記錄`：<br>
-        (這邊是for我這個例子，如果你也遇到一樣 可以參考看看 但還是建議自行測測看)<br>
-          - `AudioSource.VOICE_COMMUNICATION` 會造成大小聲、破音、雜音，能收到音但Parent收到的音頻聽起來有延遲<br>
+  `Behavior after testing`:<br>
+  (This is for my example. If you encounter the same issue, you can refer to this, but it is still recommended to test it yourself)<br>
+    - `AudioSource.VOICE_COMMUNICATION` causes volume fluctuations, distortion, and noise. The sound can be received, but the audio received by the Parent sounds delayed<br>
 
-          - `AudioSource.VOICE_PERFORMANCE` 不會大小聲、但Parent端收不到音<br>
-          - `AudioSource.REMOTE_SUBMIX` 不會大小聲、但收音只收得到系統按鍵音<br>
+    - `AudioSource.VOICE_PERFORMANCE` does not cause volume fluctuations, but the Parent end cannot receive the sound<br>
+    - `AudioSource.REMOTE_SUBMIX` does not cause volume fluctuations, but only system key sounds can be recorded<br>
 
-<div class="c-border-main-title-2">其餘知識點紀錄</div>
+<div class="c-border-main-title-2">Other Knowledge Points</div>
 
-* 後來發現 Audio HAL 存在版本差異
-快速科普各Android版本的Audio HAL使用差異：
+* Later, it was discovered that there are version differences in Audio HAL
+Quick overview of the differences in Audio HAL usage across various Android versions:
   <table class="rwd-table">
     <thead>
       <tr>
@@ -99,7 +99,7 @@ excerpt: "我們將探討如何解決 Android 設備上的音頻問題，如果�
     </thead>
     <tbody>
       <tr>
-        <td class="tg-72zf">Less then Android 8</td>
+        <td class="tg-72zf">Less than Android 8</td>
         <td class="tg-72zf">Old HAL</td>
       </tr>
       <tr>
@@ -124,46 +124,46 @@ excerpt: "我們將探討如何解決 Android 設備上的音頻問題，如果�
       </tr>
     </tbody>
   </table>
-   × 內容依據官方公佈，若供應商未自行更改Audio HAL的前提下版本如上
+   × Content is based on official announcements, assuming the vendor has not independently modified the Audio HAL version as listed above
 
-   * 舊版Audio HAL資訊可參考：[官方文檔](https://source.android.com/devices/architecture/hal)<br>
+   * Information on the old Audio HAL can be referenced from: [Official Documentation](https://source.android.com/devices/architecture/hal)<br>
 
-   * 可查看 [舊版Audio HAL Source code](https://android.googlesource.com/platform/hardware/libhardware/+/master/include/hardware/audio.h)
+   * You can view the [Old Audio HAL Source Code](https://android.googlesource.com/platform/hardware/libhardware/+/master/include/hardware/audio.h)
    <br>
 
-   * [舊版Audio.h](hardware/libhardware/include/hardware/audio.h)
+   * [Old Audio.h](hardware/libhardware/include/hardware/audio.h)
    <br>
 
-   * 新版Audio HAL則可[參考這](https://cs.android.com/android/platform/superproject/+/master:hardware/interfaces/audio/README.md)
-     故可能各版本HAL間有些微差異，可針對問題研究並在應用層調配成最符合需求的樣子
+   * For the new Audio HAL, you can [refer here](https://cs.android.com/android/platform/superproject/+/master:hardware/interfaces/audio/README.md)
+     Therefore, there may be slight differences between HAL versions, and you can study the issues and adjust at the application layer to best meet your needs
    <br>
 
-   * 使用指令 `adb shell lshal` 可查看當前HIDL的版本 (Android 8.0後才有接一層HIDL出來)
-`HIDL = 可以想像成HAL的AIDL`
+   * Use the command `adb shell lshal` to check the current HIDL version (HIDL was introduced after Android 8.0)
+`HIDL = You can think of it as the AIDL of HAL`
 
-<div class="c-border-main-title-2">終場總結</div>
- * 最後這個問題
-  我那時候就改了一個小小的地方
-  就是把收音的
-  `AudioSource.VOICE_COMMUNICATION`改成`AudioSource.MIC`
-  就能達到預期的效果
+<div class="c-border-main-title-2">Final Summary</div>
+ * For this last issue,
+  I made a small change at that time,
+  which was changing the audio source
+  from `AudioSource.VOICE_COMMUNICATION` to `AudioSource.MIC`
+  to achieve the desired effect.
 
- * 有時候解決一個問題，<br>
-  因經驗 或 問題可能無法一眼看出，<br>
-  像是這種硬體調適的問題，<br>
-  可能就需要一一的去了解與分析，<br>
-  最後雖然只做了一行code改變，<br>
-  但你卻可以從解決問題的過程中<br>
-  更了解你在開發的東西實際的一些know-how<br>
-  也助於未來遇到其他問題或 可能有相關的<br>
-  這些就能變成你未來的經驗<br>
+ * Sometimes solving a problem,<br>
+  due to experience or the nature of the problem, it may not be immediately apparent,<br>
+  like this kind of hardware tuning issue,<br>
+  you might need to understand and analyze it step by step,<br>
+  in the end, although you only made a one-line code change,<br>
+  you can gain a better understanding of the practical know-how<br>
+  of what you are developing through the problem-solving process,<br>
+  which will help you in the future when encountering other issues or related problems.<br>
+  These experiences can become valuable for you in the future.<br>
 
- * 當然還是得看不同問題<br>
-  決定要花多少時間去解<br>
-  是不是有助於你的發展<br>
-  這些都是你必須自己去思考的<br>
+ * Of course, it still depends on the specific problem<br>
+  to decide how much time to spend on solving it,<br>
+  and whether it contributes to your development.<br>
+  These are things you need to think about yourself.<br>
 
- * 不過我習慣研究多一點<br>
-  以免到時候解決問被問問題<br>
-  不知道自己怎解的<br>
-  所以算是額外的一種保險行為<br>
+ * However, I tend to research a bit more<br>
+  to avoid being asked how I solved a problem<br>
+  and not knowing the answer.<br>
+  So, it's an additional form of insurance.<br>
