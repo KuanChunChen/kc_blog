@@ -21,7 +21,7 @@ permalink: /tags/
 <section class="c-blog-tags o-opacity">
 
   <ul class="l-categories card">
-    <h1>Tags</h1>
+    <h1>{% t categories.tags %}</h1>
     {% for item in (0..site.tags.size) %}{% unless forloop.last %}
     {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
     <div id="h_{{ forloop.index0 }}" class="card-header d-flex justify-content-between hide-border-bottom">

@@ -18,8 +18,8 @@ permalink: /categories/
 </header>
 
 <section class="c-blog-tags o-opacity">
-    <h1>Categories in Blog</h1>
     <ul class="c-category__list l-categories card">
+        <h1>{% t categories.category %}</h1>
         {% for category in site.categories %}
         {% capture category_name %}{{ category | first }}{% endcapture %}
         <div id="h_{{ forloop.index0 }}" class="card-header d-flex justify-content-between hide-border-bottom">
