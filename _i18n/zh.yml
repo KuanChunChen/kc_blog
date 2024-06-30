@@ -6,12 +6,10 @@ global:
   history: 往昔篇章
 categories:
   portfolio: Portfolio
-  android_tutorial: Android教學
-  android_implementation: Android實作
-  kotlin: Kotlin
-  jetpack_compose: Jetpack Compose
-  other_notes: Notes
-  more: More
+  category: Categories
+  tags: Tags
+  about: About
+  archives: Roadmap
   gist: 參觀我的Gist
 sentence:
   about: I am an Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.

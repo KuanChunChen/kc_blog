@@ -23,41 +23,26 @@
                         <li><a class="dropdown-item" href="https://gist.github.com/KuanChunChen">{% t categories.gist %}</a></li>
                     </ul>
                 </li>
-                
 
-                {% assign categories = site.categories %} {% for category in categories limit:5 %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown{{ category[0] }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ category[0] }} ({{ category[1].size }})
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ category[0] }}">
-                        {% for post in category[1] %}
-                        <li><a class="dropdown-item" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endfor %}
-                {% if categories.size > 5 %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdownMore" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% t categories.more %}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMore">
-                        {% for category in categories offset:5 %}
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="#" id="navbarDropdown{{ category[0] }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ category[0] }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                {% for post in category[1] %}
-                                <li><a class="dropdown-item" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% endif %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ '/categories' | prepend: site.baseurl }}">{% t categories.category %}</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ '/tags' | prepend: site.baseurl }}">{% t categories.tags %}</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ '/archives' | prepend: site.baseurl }}">{% t categories.archives %}</a>
+              </li>
+
+          <li class="nav-item">
+                  <a class="nav-link" href="{{ '/about' | prepend: site.baseurl }}">{% t categories.about %}</a>
+              </li>
+
+
+
+
 
                 <!-- End Dropdown Menu -->
             </ul>

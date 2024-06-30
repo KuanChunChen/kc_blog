@@ -6,12 +6,10 @@ global:
   history: アーカイブ
 categories:
   portfolio: ポートフォリオ
-  android_tutorial: Androidチュートリアル
-  android_implementation: Android実装
-  kotlin: Kotlin
-  jetpack_compose: Jetpack Compose
-  other_notes: その他のノート
-  more: もっと見る
+  category: カテゴリー
+  tags: タグ
+  about: 私について
+  archives: ロードマップ
   gist: 私のGistを訪問する
 sentence:
   about: KotlinとJetpack Compose開発に特化したAndroid開発者です。常に学び続けたいと思っています。

@@ -6,12 +6,10 @@ global:
   history: Archive
 categories:
   portfolio: Portfolio
-  android_tutorial: Android Tutorials
-  android_implementation: Android Implementations
-  kotlin: Kotlin
-  jetpack_compose: Jetpack Compose
-  other_notes: Other Notes
-  more: More
+  category: Categories
+  tags: Tags
+  about: About
+  archives: Roadmap
   gist: Visit my Gist
 sentence:
   about: I am an Android developer focusing on Kotlin and Jetpack Compose development. Always hungry to keep learning.
