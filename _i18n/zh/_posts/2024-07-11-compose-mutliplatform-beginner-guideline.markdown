@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "【Compose Multiplatform】專案轉移探討與開發指南"
-date: 2024-07-10 18:30:20 +0800
+date: 2024-07-11 18:30:20 +0800
 image: cover/compose_multiplatform_guide.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-guide
