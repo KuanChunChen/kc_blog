@@ -17,6 +17,11 @@ SqlDelight 提供了一個強大的解決方案<br>
 本文將介紹如何在跨平台環境中<br>
 使用 SqlDelight 進行資料庫操作<br>
 
+<div id="category">
+    {% include table/compose-multiplatform-category.html %}
+</div>
+
+
 <div class="c-border-main-title-2">實作步驟</div>
 <div class="c-border-content-title-1">1. 導入 SqlDelight</div>
 首先，在專案中導入 SqlDelight：<br>

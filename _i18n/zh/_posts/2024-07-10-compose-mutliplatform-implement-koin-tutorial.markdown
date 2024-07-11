@@ -18,6 +18,11 @@ Koin 作為一個輕量級的 DI 框架<br>
 本文將介紹如何在 Compose Multiplatform 中<br>
 使用 Koin 進行依賴注入<br>
 
+<div id="category">
+    {% include table/compose-multiplatform-category.html %}
+</div>
+
+
 <div class="c-border-main-title-2">實作步驟</div>
 <div class="c-border-content-title-1">1. 導入庫</div>
 在 .toml 文件中添加：<br>

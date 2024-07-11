@@ -18,6 +18,11 @@ Android 平台需要 Context 而 iOS 不需要<br>
 本文將介紹如何在使用 Koin 進行依賴注入時<br>
 成功的解決這個問題<br>
 
+<div id="category">
+    {% include table/compose-multiplatform-category.html %}
+</div>
+
+
 <div class="c-border-main-title-2">實作方法</div>
 <div class="c-border-content-title-1">1. 使用 expect 和 actual 關鍵字</div>
 首先<br>

@@ -15,6 +15,10 @@ Compose Multiplatform (CMP) 為開發者提供了跨平台開發的強大工具<
 但從 Compose 專案轉移到 CMP 也面臨一些挑戰<br>
 本文將詳細介紹轉移過程中的關鍵點和注意事項<br>
 
+<div id="category">
+    {% include table/compose-multiplatform-category.html %}
+</div>
+
 <div class="c-border-main-title-2">前期轉移成本</div>
 
 CMP 開發時需要熟悉多個資料夾的結構：<br>
@@ -25,6 +29,11 @@ CMP 開發時需要熟悉多個資料夾的結構：<br>
 
 在各環境下導入需要的庫：<br>
 <img src="/images/compose/011.png" alt="Cover" width="50%"/><br>
+
+因預設使用lib.version.toml來配置 <br>
+需了解.toml<br>
+這邊有以前寫的筆記<br>
+<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">可參考</a>
 
 <div class="c-border-main-title-2">Compose Project 到 CMP Project 庫的轉移參考</div><br>
 * 假設我們原本製作Android專案都是用一些較常用的lib、或是官方推薦的(如表格左邊)<br>

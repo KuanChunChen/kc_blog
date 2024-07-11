@@ -18,6 +18,10 @@ excerpt: "本文介紹了如何在 Compose Multiplatform 專案中實現跨平�
 本文將介紹如何在跨平台環境中<br>
 實現 DataStore 的本地化儲存<br>
 
+<div id="category">
+    {% include table/compose-multiplatform-category.html %}
+</div>
+
 <div class="c-border-main-title-2">實作步驟</div>
 <div class="c-border-content-title-1">1. 導入庫</div>
 在 .toml 文件中添加：<br>
