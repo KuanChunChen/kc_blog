@@ -43,11 +43,11 @@ CMP 開發時需要熟悉多個資料夾的結構：<br>
 
 <div class="c-border-main-title-2">可能遇到的問題</div>
 
-1. 跨平台需求差異：<br>
+1.跨平台需求差異：<br>
    例如 Android 需要 Context，iOS 不需要：<br>
    <script src="https://gist.github.com/KuanChunChen/d4594b6b1b1e92509fa34c67233b301d.js"></script><br>
-   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-di-context">【Compose Multiplatform 】跨平台App但Android需要context作法並搭配Koin</a>
-2. 平台特定實現：<br>
+   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-di-context">【Compose Multiplatform 】跨平台App但Android需要context作法並搭配Koin</a><br>
+2.平台特定實現：<br>
    像是手機端常用本地持久化儲存 <br>
    在Android會使用dataStore去處理這個相關問題<br>
    那要怎麼在多平台去使用呢？<br>
@@ -61,9 +61,9 @@ CMP 開發時需要熟悉多個資料夾的結構：<br>
    所以就算分平台實作還是可以用純.kt去寫 <br>
    就像是上面的iosMain中實作的dataStore一樣<br><br>
 
-   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-datastore">【Compose Multiplatform】手機本地持久化儲存DataStore實作</a>
+   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-datastore">【Compose Multiplatform】手機本地持久化儲存DataStore實作</a><br>
 
-3. CMP庫的兼容性問題或Bug持續修正中：<br>
+3.CMP庫的兼容性問題或Bug持續修正中：<br>
    例如 SqlDelight 2.0.0 版本在 iOS 上的Build會錯誤：<br>
     - 解決方法 1：導入 stately-common<br>
     - 解決方法 2：升級到 2.0.1 以上版本<br>
