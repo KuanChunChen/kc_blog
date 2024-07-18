@@ -21,6 +21,11 @@ Compose Multiplatform (CMP) 為開發者提供了跨平台開發的強大工具<
 
 <div class="c-border-main-title-2">前期轉移成本</div>
 
+前期需要先了解CMP是怎麼實現跨平台<br>
+所以需要花點時間了解<br>
+他的專案結構<br>
+下面快速帶你看過去<br>
+
 CMP 開發時需要熟悉多個資料夾的結構：<br>
 <img src="/images/compose/009.png" alt="Cover" width="30%"/><br>
 
@@ -31,7 +36,11 @@ CMP 開發時需要熟悉多個資料夾的結構：<br>
 <img src="/images/compose/011.png" alt="Cover" width="50%"/><br>
 
 因預設使用lib.version.toml來配置 <br>
-需了解.toml<br>
+所以需了解.toml<br>
+不過其實很容易<br>
+用官方預設就可以了<br>
+除非有需要自己特別配置<br><br>
+
 這邊有以前寫的筆記<br>
 <a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">可參考</a>
 
@@ -78,7 +87,18 @@ Google 在 2024 年 5 月 14 日的博客中提到了對 KMP 的支持：<br>
 <div class="c-border-main-title-2">總結</div>
 
 - CMP 提供了強大的跨平台開發能力，但需要適應新的專案結構
-- 大部分常用庫都有對應的 CMP 版本
+- 大部分常用庫都有對應的 CMP 版本<br>
+像是常在開發Compose App的 就可以直接用<br> 
+DateStore、Room、
 - 處理平台差異時，使用 expect 和 actual 關鍵字很有幫助
-- 注意庫的版本兼容性問題
-- 關注 Google 和社區的最新動態，以獲得更多支持和資源
+- 注意庫的版本兼容性問題<br>
+目前開發起來<br>
+遇到好幾個配置上的兼容性問題<br>
+如：Room 在Kotlin 2.0.0配置兼容性問題<br>
+CMP配置CocoaPod時遇到embedAndSign錯誤問題<br>
+
+- 關注 Google 的最新動態，以獲得更多支持和資源<br>
+因為我試過直接問GPT<br>
+他可能沒那麼準<br>
+很多兼容問題還是要自己爬文<br>
+或者等之後更資料更多時也許才會回答更精確的答案<br>
