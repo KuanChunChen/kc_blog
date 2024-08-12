@@ -43,7 +43,7 @@ excerpt: ""
 再把color resource ID 放到styles.xml去達成黑暗模式的主題配置<br><br>
 現在用了`compose`就可以透過`.kt`來配置該app的主題<br>
 根據每個專案需求不同可自行配置<br>
-我個人習慣先根據`UX/UX設計稿`去設定的`ColorScheme`、`shpae`、`typo`、`statusBarColor`、`navigationBarColor`...等等<br>
+我個人習慣先根據`UX/UX設計稿`去設定的`ColorScheme`、`shape`、`typography`、`statusBarColor`、`navigationBarColor`...等等<br>
 而不是一頁一頁個別去設計<br>
 這樣可以節省很多重複開發的時間<br>
 
@@ -54,7 +54,7 @@ excerpt: ""
 實際使用toml是用這種寫法：`implementation(libs.androidx.material3)`<br>
 放在你的`build.gradle.kts(:app)`中<br><br>
  * `tips`: 上面這邊的多個library在導入androidx-compose-bom時支援自動mapping對應library的版本，所以這邊就不一定需要輸入version.ref<br>
-<div class="c-border-content-title-1">step2. 配置通用的Theme包含color、shpae、typo</div>
+<div class="c-border-content-title-1">step2. 配置通用的Theme包含color、shape、typography</div>
 
 這邊有關於Material 3 theme的
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>文檔</a>

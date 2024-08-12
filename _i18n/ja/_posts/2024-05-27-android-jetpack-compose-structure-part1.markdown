@@ -43,7 +43,7 @@ excerpt: ""
 color resource IDをstyles.xmlに配置してダークモードのテーマ設定を行っていました<br><br>
 現在は`compose`を使用して`.kt`でアプリのテーマを設定できます<br>
 各プロジェクトのニーズに応じて自由に設定できます<br>
-私は個人的に`UX/UXデザイン稿`に基づいて`ColorScheme`、`shape`、`typo`、`statusBarColor`、`navigationBarColor`などを設定するのが好きです<br>
+私は個人的に`UX/UXデザイン稿`に基づいて`ColorScheme`、`shape`、`typography`、`statusBarColor`、`navigationBarColor`などを設定するのが好きです<br>
 一ページずつ個別に設計するのではなく<br>
 これにより、重複した開発時間を大幅に節約できます<br>
 
@@ -54,7 +54,7 @@ color resource IDをstyles.xmlに配置してダークモードのテーマ設�
 実際にtomlを使用する場合は次のように記述します：`implementation(libs.androidx.material3)`<br>
 これを`build.gradle.kts(:app)`に配置します<br><br>
  * `tips`: 上記の複数のライブラリはandroidx-compose-bomを導入する際に対応するライブラリのバージョンを自動的にマッピングするため、version.refを入力する必要はありません<br>
-<div class="c-border-content-title-1">step2. 共通のテーマ（color、shape、typo）の設定</div>
+<div class="c-border-content-title-1">step2. 共通のテーマ（color、shape、typography）の設定</div>
 
 こちらはMaterial 3テーマに関する
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>ドキュメント</a>

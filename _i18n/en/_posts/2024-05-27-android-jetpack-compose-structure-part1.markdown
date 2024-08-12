@@ -41,7 +41,7 @@ If interested, you can <a href="{{site.baseurl}}/android-upgrade-to-toml-tutoria
 Then place the color resource ID into styles.xml to achieve dark mode theme configuration<br><br>
 Now with `compose`, you can configure the app's theme through `.kt`<br>
 You can configure it according to the needs of each project<br>
-Personally, I prefer to set `ColorScheme`, `shape`, `typo`, `statusBarColor`, `navigationBarColor`, etc., based on `UX/UX design drafts`<br>
+Personally, I prefer to set `ColorScheme`, `shape`, `typography`, `statusBarColor`, `navigationBarColor`, etc., based on `UX/UX design drafts`<br>
 Rather than designing each page individually<br>
 This saves a lot of repetitive development time<br>
 
@@ -52,7 +52,7 @@ Import as needed<br>
 The actual usage of toml is written like this: `implementation(libs.androidx.material3)`<br>
 Place it in your `build.gradle.kts(:app)`<br><br>
  * `tips`: The multiple libraries above support automatic mapping of corresponding library versions when importing androidx-compose-bom, so you don't necessarily need to input version.ref<br>
-<div class="c-border-content-title-1">step2. Configure a common Theme including color, shape, typo</div>
+<div class="c-border-content-title-1">step2. Configure a common Theme including color, shape, typography</div>
 
 Here is the documentation on Material 3 theme
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>documentation</a>
