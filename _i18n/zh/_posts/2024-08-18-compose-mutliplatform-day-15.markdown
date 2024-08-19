@@ -33,60 +33,60 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">前期配置</div>
 
-`注意1`. Room版本`2.7.0-alpha01`之後才支援KMM。
+`注意1`. Room版本`2.7.0-alpha01`之後才支援KMM。<br><br>
 
 `注意2`.
-`Room`在`CMP` or `KMP`中的`Build.gradle.kts`配置可能需要搭配`ksp`
-ksp導入時可能會因為kotlin版本不同
-而出現`ksp版本太低`或提示`需更新版本` 並且無法Build過
-這時候可以去官方github找跟Kotlin能搭配的版本
-可參考這：[ksp releases](https://github.com/google/ksp/releases)
+`Room`在`CMP` or `KMP`中的`Build.gradle.kts`配置可能需要搭配`ksp`<br>
+ksp導入時可能會因為kotlin版本不同<br>
+而出現`ksp版本太低`或提示`需更新版本` 並且無法Build過<br>
+這時候可以去官方github找跟Kotlin能搭配的版本<br>
+可參考這：[ksp releases](https://github.com/google/ksp/releases)<br><br>
 
-`注意3`. 使用kotlin搭配ksp會檢查ksp版本跟kotlin相容性
-當使用kotlin 2.0.0 時，gradle sync時顯示版本太低或不相容時
-會出現 `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation`
-或 `[KSP2] Annotation value is missing in nested annotations`
+`注意3`. 使用kotlin搭配ksp會檢查ksp版本跟kotlin相容性<br>
+當使用kotlin 2.0.0 時，gradle sync時顯示版本太低或不相容時<br>
+會出現 `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation`<br>
+或 `[KSP2] Annotation value is missing in nested annotations`<br>
 
 
 ## CMP配置Room時可能遇到的問題
 
-一開始遇到`[KSP2] Annotation value is missing in nested annotations`
-後來在網上搜尋研究後發現可以
-在`gradle.property`中加入`ksp.useKSP2=true`可以解決這個問題
+一開始遇到`[KSP2] Annotation value is missing in nested annotations`<br>
+後來在網上搜尋研究後發現可以<br>
+在`gradle.property`中加入`ksp.useKSP2=true`可以解決這個問題<br><br>
 
-上面解決了一個問題後
-雖然可以`gradle sync`
-但在用`ksp`配置`Room`又會遇到問題
-例如配置`ksp(libs.androidx.room.compiler)`後
-會出現`[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`
+上面解決了一個問題後<br>
+雖然可以`gradle sync`<br>
+但在用`ksp`配置`Room`又會遇到問題<br>
+例如配置`ksp(libs.androidx.room.compiler)`後<br>
+會出現`[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
 
-後來我發現
-問題的原因是官方文件上的配置主要針對 `Kotlin 1.9.0` 版本
-然而，Kotlin 升級到 `2.0.0` 之後
-與 `KSP` 的搭配方式有所調整
-有些網友也有遇到
-以下是我找到的幾個相關 Issue 回報
-有興趣的話可以看看：
-[Issue 1](https://github.com/google/ksp/issues/1896)
-[Issue 2](https://youtrack.jetbrains.com/issue/KT-68981)
-[Issue 3](https://github.com/google/ksp/issues/1833)
+後來我發現<br>
+問題的原因是官方文件上的配置主要針對 `Kotlin 1.9.0` 版本<br>
+然而，Kotlin 升級到 `2.0.0` 之後<br>
+與 `KSP` 的搭配方式有所調整<br>
+有些網友也有遇到<br>
+以下是我找到的幾個相關 Issue 回報<br>
+有興趣的話可以看看：<br>
+[Issue 1](https://github.com/google/ksp/issues/1896)<br>
+[Issue 2](https://youtrack.jetbrains.com/issue/KT-68981)<br>
+[Issue 3](https://github.com/google/ksp/issues/1833)<br>
 
-有人建議將 Kotlin 版本降到與 KSP 相同的版本來解決問題
-但因為現在使用官方 `Wizard` 生成的 `CMP` 預設已經是 `Kotlin 2.0.0`
-所以我還是選擇秉持著「用新不用舊」的原則 XD。
+有人建議將 Kotlin 版本降到與 KSP 相同的版本來解決問題<br>
+但因為現在使用官方 `Wizard` 生成的 `CMP` 預設已經是 `Kotlin 2.0.0`<br>
+所以我還是選擇秉持著「用新不用舊」的原則 XD。<br><br>
 
-如果想在 `Kotlin 2.0.0` 上成功搭建 `Room`
-可能需要使用一些`暫時的解決方案`
-在官方修復這個問題之前
-可以參考以下配置方法
-來讓 `Room` 正常運作在 `Kotlin 2.0.0` 上
+如果想在 `Kotlin 2.0.0` 上成功搭建 `Room`<br>
+可能需要使用一些`暫時的解決方案`<br>
+在官方修復這個問題之前<br>
+可以參考以下配置方法<br>
+來讓 `Room` 正常運作在 `Kotlin 2.0.0` 上<br><br>
 
-下方我將開始分享如何配置2.0.0上使用Room
+下方我將開始分享如何配置2.0.0上使用Room<br>
 
 ## CMP上使用`kotlin 2.0.0`實作ROOM
 
-* 步驟1. 在專案中導入 `Room`
-  需在`libs.version.toml` 文件中添加：
+* 步驟1. 在專案中導入 `Room`<br>
+  需在`libs.version.toml` 文件中添加：<br>
 
 ```toml
 [versions]
@@ -150,15 +150,15 @@ tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach
 
 * 步驟3. 使用workaround實現RoomDatabas
 
-這個是現階段的workaround
-如果你要用kotlin 2.0.0版本搭配Room就得先做
-因為現在與ksp的`兼容性`需等待官方修復
+這個是現階段的workaround<br>
+如果你要用kotlin 2.0.0版本搭配Room就得先做<br>
+因為現在與ksp的`兼容性`需等待官方修復<br><br>
 
-主要是建立Room時候會繼承Room的`RoomDatabase`
-正常來說編譯完成後會幫你產生AppDataBase的實作
-不過目前版本缺少`clearAllTables`
-所以這邊手動先自己加入
-當暫時的解
+主要是建立Room時候會繼承Room的`RoomDatabase`<br>
+正常來說編譯完成後會幫你產生AppDataBase的實作<br>
+不過目前版本缺少`clearAllTables`<br>
+所以這邊手動先自己加入<br>
+當暫時的解<br>
 
 ```kotlin
 // in ~/commonMain/db/AppDataBase.kt
@@ -227,20 +227,20 @@ actual val platformModule: Module = module {
 
 ## 在commonMain實作ROOM
 
-Room 的核心概念是透過面向物件的方式操作本地資料庫
+Room 的核心概念是透過面向物件的方式操作本地資料庫<br><br>
 
-透過實作 `RoomDatabase`、`DAO`（資料存取物件）、和`Entity`(實體類別)
-可以方便地對資料庫進行操作
+透過實作 `RoomDatabase`、`DAO`（資料存取物件）、和`Entity`(實體類別)<br>
+可以方便地對資料庫進行操作<br><br>
 
-`AppDatabase`：實作`RoomDatabase`的類別，其中帶入Room的annotation `@Database`
-裡面可以針對entity做宣告，以及做版本遷移...等
+`AppDatabase`：實作`RoomDatabase`的類別，其中帶入Room的annotation `@Database`<br>
+裡面可以針對entity做宣告，以及做版本遷移...等<br><br>
 
-`dao` : 建立一個interface，並搭配些許的SQL cmd 讓操作DB可以使用物件導向方式
+`dao` : 建立一個interface，並搭配些許的SQL cmd 讓操作DB可以使用物件導向方式<br><br>
 
-`entity`: 主要是把建立table變成物件導向的方式
-這邊使用`@Entity` annotation去宣告其為Room的entity
-加入到RoomDatabase()後進行編譯
-就會在你的DB產生對應的table
+`entity`: 主要是把建立table變成物件導向的方式<br>
+這邊使用`@Entity` annotation去宣告其為Room的entity<br>
+加入到RoomDatabase()後進行編譯<br>
+就會在你的DB產生對應的table<br>
 
 
 * 實作`AppDatabase`

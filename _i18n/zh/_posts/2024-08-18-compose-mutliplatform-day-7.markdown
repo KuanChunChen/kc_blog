@@ -12,11 +12,11 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">前言</div>
 
-`Compose Multiplatform (簡稱CMP)` 
+`Compose Multiplatform (簡稱CMP)` <br><br>
 
-今天我們要討論的是
-如何在`CMP`的通用邏輯中使用`Material Design3 Theme` (或稱Material 3)
-並在Compose UI中使用 Material 3 建立應用程式UI
+今天我們要討論的是<br>
+如何在`CMP`的通用邏輯中使用`Material Design3 Theme` (或稱Material 3)<br>
+並在Compose UI中使用 Material 3 建立應用程式UI<br>
 
 
 <div id="category">
@@ -25,18 +25,18 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">Material Design3 Theme</div>
 
-在 Compose Multiplatform 中應用 Material Design3 Theme (Material 3)
-是建立直觀和一致的用戶界面的重要步驟
-Material 3 是 Google 推出的設計規範
-它提供了一套新的設計原則
-旨在提升用戶體驗
+在 Compose Multiplatform 中應用 Material Design3 Theme (Material 3)<br>
+是建立直觀和一致的用戶界面的重要步驟<br>
+Material 3 是 Google 推出的設計規範<br>
+它提供了一套新的設計原則<br>
+旨在提升用戶體驗<br>
 
 <div class="c-border-content-title-1">預期</div>
 
-* 我們會客製化一個function `ElegantAccessComposeTheme { }`
-  把Compose元件放入到寫好的`funtion type` or `lambda function`內
-  就可以套用我們自定義的`Material 3 Theme`
-  來達到統一管理UI theme設定的issue
+* 我們會客製化一個function `ElegantAccessComposeTheme { }`<br>
+  把Compose元件放入到寫好的`funtion type` or `lambda function`內<br>
+  就可以套用我們自定義的`Material 3 Theme`<br>
+  來達到統一管理UI theme設定的issue<br>
 
 
 ```kotlin
@@ -57,10 +57,10 @@ fun App() {
 
 ## 實作Matrial 3
 
-* 步驟1. 導入 Material 3 主題
-  在 `CMP專案` 的`build.gradle.kts`中
-  引入 Material 3 library
-  可以在 `build.gradle.kts` 文件的`commonMain`中配置相關的依賴項：
+* 步驟1. 導入 Material 3 主題<br>
+  在 `CMP專案` 的`build.gradle.kts`中<br>
+  引入 Material 3 library<br>
+  可以在 `build.gradle.kts` 文件的`commonMain`中配置相關的依賴項：<br>
 
 ```kotlin
     sourceSets {
@@ -72,12 +72,12 @@ fun App() {
     }
 ```
 
-* 步驟2. 實作  Material 3 主題
-  我們搭配Kotlin特性`function type` 寫一個function
-  可以只套用這個functino就能去設定UI共用通則
-  會寫出下面的程式碼
-  這邊把一些常用的UI Designs加進來
-  包括`暗黑模式`、`狀態欄顏色`、`通用Material主題`
+* 步驟2. 實作  Material 3 主題<br>
+  我們搭配Kotlin特性`function type` 寫一個function<br>
+  可以只套用這個functino就能去設定UI共用通則<br>
+  會寫出下面的程式碼<br>
+  這邊把一些常用的UI Designs加進來<br>
+  包括`暗黑模式`、`狀態欄顏色`、`通用Material主題`<br>
 
 ```kotlin
 // in .~/commonMain/..
@@ -106,18 +106,18 @@ fun ElegantAccessComposeTheme(
 }
 ```
 
-`程式碼關鍵部分解說`：
-1. function中帶入一個變數使用compose中提供的 `isSystemInDarkTheme()`
-   直接判斷是否為Dark mode
-2. `content: @Composable () -> Unit` 則是宣告一個function type變數
-   讓開發者可以從外部丟入 function type `{}`的內容
-3. `colorScheme`：這邊則是判斷是否為DarkMode，並返回對應的顏色scheme
-4. `setStatusBarStyle(backgroundColor, isDarkTheme)`: 因為是CMP所以我們寫了個expect fun讓他可以去各平台設定status bar顏色
-5. `MaterialTheme(colorScheme, typography, shapes, content)` :這邊則是呼叫Material3中自帶的function去設定包括`主題色`、`字體`、`元件形狀`...等
+`程式碼關鍵部分解說`：<br>
+1. function中帶入一個變數使用compose中提供的 `isSystemInDarkTheme()`<br>
+   直接判斷是否為Dark mode<br>
+2. `content: @Composable () -> Unit` 則是宣告一個function type變數<br>
+   讓開發者可以從外部丟入 function type `{}`的內容<br>
+3. `colorScheme`：這邊則是判斷是否為DarkMode，並返回對應的顏色scheme<br>
+4. `setStatusBarStyle(backgroundColor, isDarkTheme)`: 因為是CMP所以我們寫了個expect fun讓他可以去各平台設定status bar顏色<br>
+5. `MaterialTheme(colorScheme, typography, shapes, content)` :這邊則是呼叫Material3中自帶的function去設定包括`主題色`、`字體`、`元件形狀`...等<br>
 
-* 步驟3. 實作colorScheme
-  這邊使用Compose內提供的`darkColorScheme`或是`lightColorScheme`
-  去設定`暗黑模式`或`亮色模式`要用的Color來源
+* 步驟3. 實作colorScheme<br>
+  這邊使用Compose內提供的`darkColorScheme`或是`lightColorScheme`<br>
+  去設定`暗黑模式`或`亮色模式`要用的Color來源<br>
 
 > Dark mode
 
@@ -235,9 +235,9 @@ object ColorResources {
 }
 ```
 
-* 步驟4. 實作shapes
-  這邊是定義通用、常用的圓角數值
-  有時候UI Designs 滿常會要求某個dialog或是某個元件背景要有圓角的
+* 步驟4. 實作shapes<br>
+  這邊是定義通用、常用的圓角數值<br>
+  有時候UI Designs 滿常會要求某個dialog或是某個元件背景要有圓角的<br>
 
 ```kotlin
 // in .~/commonMain/..
@@ -252,12 +252,12 @@ val shapes = Shapes(
 ```
 
 
-* 步驟5. 實作createTypography function來設定字體
+* 步驟5. 實作createTypography function來設定字體<br><br>
 
-實作function `createTypography`
-並把前面做好的`colorScheme`丟進來
-並使用`TextStyle`去設定各種字體的大小
-可以根據UI/UX Designer的設計去決定
+實作function `createTypography`<br>
+並把前面做好的`colorScheme`丟進來<br>
+並使用`TextStyle`去設定各種字體的大小<br>
+可以根據UI/UX Designer的設計去決定<br>
 
 ```kotlin
 // in .~/commonMain/..
@@ -349,10 +349,10 @@ fun createTypography(colorScheme: ColorScheme) = Typography(
 
 * 步驟6. 實作設定status bar樣式
 
-commonMain中加入 `expect function` setStatusBarStyle
-因雙平台status bar不同
-我們需要設定Android跟iOS平台
-所以透過`expect` 實作function
+commonMain中加入 `expect function` setStatusBarStyle<br>
+因雙平台status bar不同<br>
+我們需要設定Android跟iOS平台<br>
+所以透過`expect` 實作function<br>
 [看expect與autual觀念請點我](https://ithelp.ithome.com.tw/articles/10343983)
 
 ```kotlin
@@ -365,7 +365,7 @@ expect fun setStatusBarStyle(
 )
 ```
 
-> 實作 android autual 來設定Android Status Bar
+> 實作 android actual 來設定Android Status Bar
 
 這邊跟前面不同的是
 這個要放在android實作資料夾下
@@ -387,10 +387,10 @@ actual fun setStatusBarStyle(backgroundColor: Color, isDarkTheme: Boolean) {
 }
 ```
 
-> 實作iOS autual 來設定iOS Status Bar
+> 實作iOS actual 來設定iOS Status Bar
 
-這邊跟前面不同的是
-這個要放在iOS實作資料夾下
+跟前面不同的是<br>
+這個要放在iOS實作資料夾下<br>
 
 ```kotlin
 // in .~/iosMain/StatusBarStyle.ios.kt
@@ -409,10 +409,10 @@ actual fun setStatusBarStyle(backgroundColor: Color, isDarkTheme: Boolean) {
 }
 ```
 
-* 步驟7.
-  最後
-  在要使用Material 3 的地方
-  直接加入下面該主題：
+* 步驟7.<br>
+  最後<br>
+  在要使用Material 3 的地方<br>
+  直接加入下面該主題：<br>
 
 ```
 @Preview
@@ -426,17 +426,17 @@ fun PreviewSettingScreen() {
 ```
 
 ## 實際使用
-主題設定後
-可以這樣使用
+主題設定後<br>
+可以這樣使用<br><br>
 
-例如：
-字體的`bodySmall `
-是前面在寫`createTypography` 寫的
-所以你只要去拿你預期中對應的變數即可
+例如：<br>
+字體的`bodySmall `<br>
+是前面在寫`createTypography` 寫的<br>
+所以你只要去拿你預期中對應的變數即可<br>
 
-顏色也一樣
-colorScheme是前面寫好的
-你去選你要對應的顏色即可
+顏色也一樣<br>
+colorScheme是前面寫好的<br>
+你去選你要對應的顏色即可<br>
 
 > 字體設定
 ```kotlin
@@ -457,5 +457,5 @@ Icon(
 )
 ```
 
-以上 就能透過一次性的把主題色給設定好
-以後要改也很方便只要改一個地方
+以上 就能透過一次性的把主題色給設定好<br>
+以後要改也很方便只要改一個地方<br>

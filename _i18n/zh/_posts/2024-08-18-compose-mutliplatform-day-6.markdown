@@ -12,17 +12,17 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">前言</div>
 
-`Compose Multiplatform (簡稱CMP)`
-昨天我們大致瞭解了一下CMP的專案結構
+`Compose Multiplatform (簡稱CMP)`<br>
+昨天我們大致瞭解了一下CMP的專案結構<br>
 
-我們從昨天的[CMP的專案結構理解與編譯配置](https://ithelp.ithome.com.tw/articles/10343569)
-中的專案結構可以知道
-CMP專案可以在
+我們從昨天的[CMP的專案結構理解與編譯配置](https://ithelp.ithome.com.tw/articles/10343569)<br>
+中的專案結構可以知道<br>
+CMP專案可以在<br>
 
-`commonMain`下寫共用邏輯
-`androidMain` 下寫Android平台的邏輯
-`iosMain` 下寫iOS平台的邏輯
-`desktopMain` 下寫Desktop平台的邏輯
+`commonMain`下寫共用邏輯<br>
+`androidMain` 下寫Android平台的邏輯<br>
+`iosMain` 下寫iOS平台的邏輯<br>
+`desktopMain` 下寫Desktop平台的邏輯<br>
 
 ```
 YourProjectName
@@ -39,12 +39,12 @@ YourProjectName
 └── ...
 ```
 
-接下來我們可以開始一步一步來理解
-`CMP`的程式碼進入點
-因為涉及跨平台實作
-所以總覺得需要好好理解下
-程式碼是怎麼運作以及怎麼進到各自平台的
-所以`今天將詳細解說下CMP在跨平台的程式進入點`
+接下來我們可以開始一步一步來理解<br>
+`CMP`的程式碼進入點<br>
+因為涉及跨平台實作<br>
+所以總覺得需要好好理解下<br>
+程式碼是怎麼運作以及怎麼進到各自平台的<br>
+所以`今天將詳細解說下CMP在跨平台的程式進入點`<br>
 
 
 <div id="category">
@@ -52,22 +52,22 @@ YourProjectName
 </div>
 
 <div class="c-border-main-title-2">理解CMP程式的進入點</div>
-我們先簡單了解一下 **Compose Multiplatform** 跟 **Kotlin Multiplatform** 
+我們先簡單了解一下 **Compose Multiplatform** 跟 **Kotlin Multiplatform** <br>
 
-* 當然在CMP創建好的時候就已經幫你建立好這些進入點
-  這邊`僅需理解概念`即可
+* 當然在CMP創建好的時候就已經幫你建立好這些進入點<br>
+  這邊`僅需理解概念`即可<br>
 
-* 在CMP的commonMain下共用的程式碼進入點
-  `預期` 在androidMain、iOSMain..等跨平台程式碼
-  都會去呼叫這個共用函示
-  來達到共用程式碼的目的
+* 在CMP的commonMain下共用的程式碼進入點<br>
+  `預期` 在androidMain、iOSMain..等跨平台程式碼<br>
+  都會去呼叫這個共用函示<br>
+  來達到共用程式碼的目的<br>
 
-* 這裡建立了一個共用的App()函式
-  其中包含了
-    1. `自定義的通用UI Theme`
-    2. 使用了koin 注入viewmodel
-    3. 自定義Compose UI的進入點
-       (這個後面章節會解釋如何自定義UI Theme、使用koin、自定義Compose UI...等主題)
+* 這裡建立了一個共用的App()函式<br>
+  其中包含了<br>
+    1. `自定義的通用UI Theme`<br>
+    2. 使用了koin 注入viewmodel<br>
+    3. 自定義Compose UI的進入點<br>
+       (這個後面章節會解釋如何自定義UI Theme、使用koin、自定義Compose UI...等主題)<br>
 
 ```kotlin
 // in ../commonMain/App.kt
@@ -108,8 +108,8 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-- 其中Android的`Android Manifest.xml`中會宣告這個`MainActivity`的`<activity>`tag
-  以及開啟App的初始頁面`<intent-filter>`
+- 其中Android的`Android Manifest.xml`中會宣告這個`MainActivity`的`<activity>`tag<br>
+  以及開啟App的初始頁面`<intent-filter>`<br>
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -153,7 +153,7 @@ fun MainViewController() = ComposeUIViewController {
 
 ## Desktop 程式進入點
 
-* `desktopMain`中實際呼叫commonMain中共用的App()函式
+* `desktopMain`中實際呼叫commonMain中共用的App()函式<br>
   其中透過compose裡面的 `application 函式` 搭配`Window` 來完成desktop application
 ```kotlin
 // in ../desktopMain/main.kt
@@ -167,9 +167,9 @@ fun main() = application {
 }
 ```
 
-* CMP中的desktop也是透過JVM去編譯
-  如果你要把他Build出來
-  則在環境中使用下方gradle cmd 即可
+* CMP中的desktop也是透過JVM去編譯<br>
+  如果你要把他Build出來<br>
+  則在環境中使用下方gradle cmd 即可<br>
 ```groovy
 ./gradlew desktopRun -DmainClass=MainKt --quiet
 ```
@@ -183,28 +183,28 @@ fun main() = application {
 ## 開發共用邏輯
 -----
 
-* 理解完上方進入點後
-  我們可以開始開發共用邏輯
-  來達到`只用一份Code`製作多個平台的應用程式
+* 理解完上方進入點後<br>
+  我們可以開始開發共用邏輯<br>
+  來達到`只用一份Code`製作多個平台的應用程式<br>
 
-* 由下方圖片可看到
-  我們大部分的時間會花在`./commonMain`上
-  主要的邏輯開發都在此
-  除了有些依賴各自平台的內容，例如：檔案系統、檔案選擇器...等等
-  才會透過`expect` 跟 `autual` 來實作
-  (後面章節會也會再講怎麼用expect跟autual)
+* 由下方圖片可看到<br>
+  我們大部分的時間會花在`./commonMain`上<br>
+  主要的邏輯開發都在此<br>
+  除了有些依賴各自平台的內容，例如：檔案系統、檔案選擇器...等等<br>
+  才會透過`expect` 跟 `autual` 來實作<br>
+  (後面章節會也會再講怎麼用expect跟autual)<br>
 
 ![https://ithelp.ithome.com.tw/upload/images/20240806/20168335aIrr6vFWgQ.png](https://ithelp.ithome.com.tw/upload/images/20240806/20168335aIrr6vFWgQ.png)
 
-* 不過到目前為止
-  即便是`desktop平台`或`iOS平台` 有自己的檔案系統
-  導致在commonMain共用邏輯中需要自己實作
-  但在`KMM`或`CMP`中
-  都已經有支援透過`kotlin`程式碼
-  來寫這些跨平台內容的Library了
-  你只需要在`Gradle中配置`即可
+* 不過到目前為止<br>
+  即便是`desktop平台`或`iOS平台` 有自己的檔案系統<br>
+  導致在commonMain共用邏輯中需要自己實作<br>
+  但在`KMM`或`CMP`中<br>
+  都已經有支援透過`kotlin`程式碼<br>
+  來寫這些跨平台內容的Library了<br>
+  你只需要在`Gradle中配置`即可<br>
 
-例如：透過Kotlin來實作desktop的檔案相關操作：
+例如：透過Kotlin來實作desktop的檔案相關操作：<br>
 
 ``` kotlin
 // ../desktop/PlatformFile.desktop.kt

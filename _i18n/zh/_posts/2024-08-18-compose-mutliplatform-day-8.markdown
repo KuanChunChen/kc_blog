@@ -12,30 +12,30 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">前言</div>
 
-`Compose Multiplatform (簡稱CMP)`
+`Compose Multiplatform (簡稱CMP)`<br>
 
-昨天已經建好我們的通用 Material3 Theme
-今天我們就可以開始來刻畫跨平台App的畫面了
-在`CMP`中使用`Compose`來刻Android 以及 iOS的畫面
-而我們的Compose UI 在CMP中完全都是在`commonMain`中
-換句話說UI的部分都能共用
+昨天已經建好我們的通用 Material3 Theme<br>
+今天我們就可以開始來刻畫跨平台App的畫面了<br>
+在`CMP`中使用`Compose`來刻Android 以及 iOS的畫面<br>
+而我們的Compose UI 在CMP中完全都是在`commonMain`中<br>
+換句話說UI的部分都能共用<br>
 
-又因為Android現在也是全面推從使用`Compose`開發原生App
-所以對之前已經上手Compose的人就很吃香
+又因為Android現在也是全面推從使用`Compose`開發原生App<br>
+所以對之前已經上手Compose的人就很吃香<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
 <div class="c-border-main-title-2">刻我們的第一個Compose畫面</div>
-* 我們先來看一下如何在`CMP`中使用Compose建立一個最基本的Hello World畫面
-(一個萬年不變的例子`Hello world` XD)
+* 我們先來看一下如何在`CMP`中使用Compose建立一個最基本的Hello World畫面<br>
+(一個萬年不變的例子`Hello world` XD)<br>
 
-因為`Compose` 採用 `宣告式UI`
-只需在要實作的function前面 加入`@Composable`
-就可以變成一個Compose的UI元件
+因為`Compose` 採用 `宣告式UI`<br>
+只需在要實作的function前面 加入`@Composable`<br>
+就可以變成一個Compose的UI元件<br><br>
 
-在CMP的`commonMain`中加入以下
+在CMP的`commonMain`中加入以下<br>
 
 ```kotlin
 // in ~/commonMain/
@@ -46,9 +46,9 @@ fun Greeting(name: String) {
 }
 ```
 
-* 當要預覽的時候
-  你只要再開一個function並在前面加入`@Preview`
-  就可以在IDE上看到Compose的預覽畫面
+* 當要預覽的時候<br>
+  你只要再開一個function並在前面加入`@Preview`<br>
+  就可以在IDE上看到Compose的預覽畫面<br>
 
 ```kotlin
 // in ~/commonMain/
@@ -58,24 +58,24 @@ fun Greeting(name: String) {
 fun GreetingPreview() { Greeting("Compose") }
 ```
 
-實際可以看到IDE右邊會有`@Preview`的畫面
+實際可以看到IDE右邊會有`@Preview`的畫面<br>
 ![https://ithelp.ithome.com.tw/upload/images/20240808/20168335d20zAEax6y.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335d20zAEax6y.png)
 
 ## Compose的元件的Modifier
 
-> Modifier 是`Compose` 中用來修飾和配置元件的工具
-它提供了多種功能來改變Compose UI元件的行為和外觀
+> Modifier 是`Compose` 中用來修飾和配置元件的工具<br>
+它提供了多種功能來改變Compose UI元件的行為和外觀<br>
 
-如果你輸入了一個`Modifier`
-然後點開來看就可以看到
-他裡面
-提供了各種選項讓你去設定UI行為和外觀
-像是，backgroundcolor、align、height、width、onClick....等
-相當的多 有興趣可以自己再去看看：
+如果你輸入了一個`Modifier`<br>
+然後點開來看就可以看到<br>
+他裡面<br>
+提供了各種選項讓你去設定UI行為和外觀<br>
+像是，backgroundcolor、align、height、width、onClick....等<br>
+相當的多 有興趣可以自己再去看看：<br>
 ![https://ithelp.ithome.com.tw/upload/images/20240808/20168335DlpR4RAnuN.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335DlpR4RAnuN.png)
 
-* 前一天有跟著我建立Theme
-  就可以試著使用`Material3 theme`來設定元件背景顏色
+* 前一天有跟著我建立Theme<br>
+  就可以試著使用`Material3 theme`來設定元件背景顏色<br>
 
 ```kotlin 
 // in ~/commonMain/
@@ -91,8 +91,8 @@ fun App() {
 }
 ```
 
-然後像是這樣 加入一個`Column` 在Text外
-並透過`Modifier.background(color = MaterialTheme.colorScheme.background)`
+然後像是這樣 加入一個`Column` 在Text外<br>
+並透過`Modifier.background(color = MaterialTheme.colorScheme.background)`<br>
 ```kotlin
 // in ~/commonMain/
 
@@ -110,12 +110,12 @@ fun Greeting(name: String) {
 
 ## 建立Compose頂部工具列 topbar
 
-* 因為在寫App不管是Andoird或iOS的場景上
-  很常會需要`客製化 toolbar`
+* 因為在寫App不管是Andoird或iOS的場景上<br>
+  很常會需要`客製化 toolbar`<br>
 
 ![https://ithelp.ithome.com.tw/upload/images/20240808/20168335HemLYAG73B.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335HemLYAG73B.png)
 
-* 這時候我們可以建立一個可以重用的topbar
+* 這時候我們可以建立一個可以重用的topbar<br>
 ```kotlin
 //in ~/commonMain/
 @OptIn(ExperimentalMaterial3Api::class)
@@ -142,23 +142,23 @@ fun MainAppBar(
 }
 ```
 
-此處的`核心概念`：
-1. 使用Compose原生TopAppBar： `CenterAlignedTopAppBar`
-2. 考慮到不同畫面可能會有不同的topbar內容
-   所以另外做了一個data class `MainAppBarConfig`
-   要使用topBar時
-   不用重複寫TopAppBar
-   只要創建 `MainAppBarConfig` 的實例即可
-3. 常用的變數有提出來
-   讓其可以被設置
-   例如：`elevation`
+此處的`核心概念`：<br>
+1. 使用Compose原生TopAppBar： `CenterAlignedTopAppBar`<br>
+2. 考慮到不同畫面可能會有不同的topbar內容<br>
+   所以另外做了一個data class `MainAppBarConfig`<br>
+   要使用topBar時<br>
+   不用重複寫TopAppBar<br>
+   只要創建 `MainAppBarConfig` 的實例即可<br>
+3. 常用的變數有提出來<br>
+   讓其可以被設置<br>
+   例如：`elevation`<br>
 
 
 
 > 實作data class `MainAppBarConfig`
 
-可以自定義一些常用會被調整的東西
-像是標題長度數、標題文字、樣式、返回鍵圖示...等等
+可以自定義一些常用會被調整的東西<br>
+像是標題長度數、標題文字、樣式、返回鍵圖示...等等<br>
 
 ```kotlin
 // in ~/commonMain/
@@ -189,9 +189,9 @@ fun DefaultTitleText(titleText: String, marqueeNum: Int) {
 
 ## TopBar實際使用
 
-* 這裡我們將創建 `createSetting` 函數。
-  就是用前面寫好的`MainAppBarConfig`
-  輸入你要設定的內容
+* 這裡我們將創建 `createSetting` 函數。<br>
+  就是用前面寫好的`MainAppBarConfig`<br>
+  輸入你要設定的內容<br>
 
 ```kotlin
 // in ~/commonMain/
@@ -206,12 +206,12 @@ private fun createSettingConfig(
 )
 ```
 
-註：如果你想實現返回按鈕的跳轉功能
-可能需要將跳轉事件傳入函數
-不過，使用 `NavController` 會更加靈活
-`NavController` 可以管理所有路由
-你只需在需要跳轉時指定定義好的字符串即可
-`關於這部分的詳細說明，會在後面的章節中解釋`
+註：如果你想實現返回按鈕的跳轉功能<br>
+可能需要將跳轉事件傳入函數<br>
+不過，使用 `NavController` 會更加靈活<br>
+`NavController` 可以管理所有路由<br>
+你只需在需要跳轉時指定定義好的字符串即可<br>
+`關於這部分的詳細說明，會在後面的章節中解釋`<br>
 
 
 * 實際使用
@@ -236,8 +236,8 @@ fun SettingScreen(navController: NavController) {
 ## 實際例子
 -----
 
-* 利用上面的概念
-  我們可以簡單實作一個Setting頁面
+* 利用上面的概念<br>
+  我們可以簡單實作一個Setting頁面<br>
 
 ```kotlin 
 // in ~/commonMain/

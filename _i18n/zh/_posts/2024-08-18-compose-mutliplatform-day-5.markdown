@@ -12,27 +12,27 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">前言</div>
 
-`Compose Multiplatform (簡稱CMP)`
-昨天我們才剛完成安裝CMP的模擬器的配置
+`Compose Multiplatform (簡稱CMP)`<br>
+昨天我們才剛完成安裝CMP的模擬器的配置<br>
 
-前面一直忘了講
-其實我是希望這系列文章
-可以讓`初學者`甚至不是開發`Mobile App`的人
-也能入門
-所以有些地方比較囉唆講比較多
-還望大家見諒XDDD
+前面一直忘了講<br>
+其實我是希望這系列文章<br>
+可以讓`初學者`甚至不是開發`Mobile App`的人<br>
+也能入門<br>
+所以有些地方比較囉唆講比較多<br>
+還望大家見諒XDDD<br><br>
 
-那今天 會介紹CMP專案的結構
-跟`Gradle配置`的調整
-以及`lib.version.toml`在CMP專案的用途
+那今天 會介紹CMP專案的結構<br>
+跟`Gradle配置`的調整<br>
+以及`lib.version.toml`在CMP專案的用途<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
 <div class="c-border-main-title-2">CMP專案結構</div>
-這邊是當你建立完CMP專案
-預設的`專案結構`
+這邊是當你建立完CMP專案<br>
+預設的`專案結構`<br>
 
 ```
 YourProjectName
@@ -58,8 +58,8 @@ YourProjectName
 └── settings.gradle.kts
 ```
 
-這裡整理成每個資料夾或檔案的用途
-希望能幫助初學者能更快理解
+這裡整理成每個資料夾或檔案的用途<br>
+希望能幫助初學者能更快理解<br><br>
 
 * `YourProjectName`: 專案名也是整個專案root資料夾
 * `build`: 編譯過程中的輸出文件，這個是編譯產生，所以可以加入到`.gitignore`
@@ -84,18 +84,18 @@ YourProjectName
 * `settings.gradle.kts`: 定義`CMP`專案設置的Gradle文件。
 
 <div class="c-border-main-title-2">使用lib.version.toml配置Gradle依賴項</div>
-`libs.versions.toml` 是一個用於管理專案依賴版本的設定文件
-特別是在使用 Gradle 進行建置的專案中
+`libs.versions.toml` 是一個用於管理專案依賴版本的設定文件<br>
+特別是在使用 Gradle 進行建置的專案中<br><br>
 
-根據Gradle官方文件
-提到在`Gradle 7.0` 版本release支援了這項功能
-而他們也會稱這項feature叫做 `version catalogs`
+根據Gradle官方文件<br>
+提到在`Gradle 7.0` 版本release支援了這項功能<br>
+而他們也會稱這項feature叫做 `version catalogs`<br><br>
 
-這個檔案使用 TOML（Tom's Obvious, Minimal Language）格式來定義依賴項的版本訊息
-從而在專案中集中管理這些訊息，提高維護性和可讀性。
+這個檔案使用 TOML（Tom's Obvious, Minimal Language）格式來定義依賴項的版本訊息<br>
+從而在專案中集中管理這些訊息，提高維護性和可讀性。<br><br>
 
 
-以下是一個 libs.versions.toml 範例及其介紹：
+以下是一個 libs.versions.toml 範例及其介紹：<br>
 ```.toml
 [versions]
 agp = "8.2.0"
@@ -111,33 +111,33 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ```
 
-`關鍵部分說明`：
+`關鍵部分說明`：<br><br>
 
-* 版本定義 `[versions]`:
-  這一部分用來定義專案中所使用的各個相依性的版本號
-  例如，kotlin = "2.0.10-RC" 表示 Kotlin 的版本為 2.0.10-RC。
+* 版本定義 `[versions]`:<br>
+  這一部分用來定義專案中所使用的各個相依性的版本號<br>
+  例如，kotlin = "2.0.10-RC" 表示 Kotlin 的版本為 2.0.10-RC。<br>
 
-* 依賴項定義 `[libraries]`:
-  這一部分用來定義專案中實際使用的依賴項及其版本資訊
-  每個函式庫定義了 `module` 和 `version.ref`
-  其中 `module` 是依賴項的 `Maven`
-  `version.ref` 則引用了上面定義的`版本號`
-  - 例如 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-  - 表示 androidx-activityCompose 標準函式庫的版本引用了 androidx-activityCompose 定義的版本號 1.9.0。
+* 依賴項定義 `[libraries]`:<br>
+  這一部分用來定義專案中實際使用的依賴項及其版本資訊<br>
+  每個函式庫定義了 `module` 和 `version.ref`<br>
+  其中 `module` 是依賴項的 `Maven`<br>
+  `version.ref` 則引用了上面定義的`版本號`<br>
+  - 例如 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }<br>
+  - 表示 androidx-activityCompose 標準函式庫的版本引用了 androidx-activityCompose 定義的版本號 1.9.0。<br>
 
-* 插件定義 `[plugins]`:
-  這一部分用來定義專案中使用的插件及其版本資訊
-  每個插件定義了 `id` 和 `version.ref`
-  其中 `id` 是插件的標識符
-  `version.ref` 則也是引用了上面定義的版本號
+* 插件定義 `[plugins]`:<br>
+  這一部分用來定義專案中使用的插件及其版本資訊<br>
+  每個插件定義了 `id` 和 `version.ref`<br>
+  其中 `id` 是插件的標識符<br>
+  `version.ref` 則也是引用了上面定義的版本號<br>
   - 例如，kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
   - 表示 kotlinMultiplatform Plugin的版本引用了 kotlin 定義的版本號 `2.0.10-RC`。
 
-* 當配置好上方`.toml`
-  點擊sync project之後
-  就可以直接在Gradle配置中
-  透過`libs.xxx.xx`的方式來配置依賴項目
-  例如：
+* 當配置好上方`.toml`<br>
+  點擊sync project之後<br>
+  就可以直接在Gradle配置中<br>
+  透過`libs.xxx.xx`的方式來配置依賴項目<br>
+  例如：<br>
 > implementation(libs.androidx.activity.compose)
 
 
@@ -147,18 +147,18 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 
 ## build.gradle.kts(:composeApp)
 
-`build.gradle.kts(:composeApp)` 是一個用於配置 `CMP`專案的 Gradle 建置腳本檔
-它使用 ｀Kotlin DSL（Domain Specific Language）來定義建配置`
-這種方式提供了更強的`類型安全性`(Null safety)和`更好的 IDE 支援`
+`build.gradle.kts(:composeApp)` 是一個用於配置 `CMP`專案的 Gradle 建置腳本檔<br>
+它使用 ｀Kotlin DSL（Domain Specific Language）來定義建配置`<br>
+這種方式提供了更強的`類型安全性`(Null safety)和`更好的 IDE 支援`<br><br>
 
-主要影響你的App編譯時的行為
+主要影響你的App編譯時的行為<br>
 
-但因為`CMP`專案的 `build.gradle.kts` 內容較長
-所以我分Part來講
+但因為`CMP`專案的 `build.gradle.kts` 內容較長<br>
+所以我分Part來講<br>
 
-* `plugins` 區塊：用來導入插件
-  導入對應插件則是使用`lib.version.toml`上宣告的plugin
-  如下：
+* `plugins` 區塊：用來導入插件<br>
+  導入對應插件則是使用`lib.version.toml`上宣告的plugin<br>
+  如下：<br>
 ```
 plugins {
     alias(libs.plugins.multiplatform)
@@ -170,36 +170,36 @@ plugins {
 }
 ```
 
-`kotlin` 區塊：
-這邊主要是放入針對`CMP`專案的配置項
-像是一些`共用文件`(String, 圖片...等)的配置
-編譯JDK
-或是不同目標平台的設置
+`kotlin` 區塊：<br>
+這邊主要是放入針對`CMP`專案的配置項<br>
+像是一些`共用文件`(String, 圖片...等)的配置<br>
+編譯JDK<br>
+或是不同目標平台的設置<br>
 
-這邊簡單地解釋下：
+這邊簡單地解釋下：<br>
 * `androidTarget > compilerOptions > jvmTarget.set(JvmTarget.JVM_17)`
-  設定用JDK 17來編譯
+  設定用JDK 17來編譯<br>
 
-* `cocoapods` :透過`Gradle`導入`cocoapods`來使用iOS的framework
+* `cocoapods` :透過`Gradle`導入`cocoapods`來使用iOS的framework<br>
 
-* `listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { target -> ...` :
-  針對iOS做配置，例如使用`cinterops` 橋接iOS
-  使CMP能用指定的iOS framework
+* `listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { target -> ...` :<br>
+  針對iOS做配置，例如使用`cinterops` 橋接iOS<br>
+  使CMP能用指定的iOS framework<br>
 
-* `sourceSets > androidMain.dependencies` 與  `commonMain.dependencies`..等 ：
-  這邊可以針對不同平台指定想要導入的依賴項
-  例如： androidMain這個區塊是導入`android`要用的library
-  commonMain這個區塊是導入`共同邏輯`要用的library
-  甚至也可以用iosMain 導入`iOS`要用的library
+* `sourceSets > androidMain.dependencies` 與  `commonMain.dependencies`..等 ：<br>
+  這邊可以針對不同平台指定想要導入的依賴項<br>
+  例如： androidMain這個區塊是導入`android`要用的library<br>
+  commonMain這個區塊是導入`共同邏輯`要用的library<br>
+  甚至也可以用iosMain 導入`iOS`要用的library<br>
 
-不過下方例子是使用橋接的方式
-所以用了
-`listOf(iosX64(), iosArm64(), iosSimulatorArm64())`
-來導入iOS framework
-這邊先簡單帶過
-後面章節會針對iOS橋接做更詳細說明
+不過下方例子是使用橋接的方式<br>
+所以用了<br>
+`listOf(iosX64(), iosArm64(), iosSimulatorArm64())`<br>
+來導入iOS framework<br>
+這邊先簡單帶過<br>
+後面章節會針對iOS橋接做更詳細說明<br>
 
-* 下方則是 一個簡單的`build.gradle.kts`範例
+* 下方則是 一個簡單的`build.gradle.kts`範例<br>
 
 ```.gradle.kts
 kotlin {
@@ -293,17 +293,17 @@ kotlin {
 }
 ```
 
-* 可以看到
-  如果你想要在
-  共用邏輯導入`material3`
-  就直接在commomMain的block中導入即可
-  不過可能會有人好奇
-  為啥這邊是`compose`.material而不是libs.xxxxxx
-  這是因為
-  當你導入KMM插件後
-  他有內建一下compose專案常用的library
-  讓你可以直接用
-  而`不用`自己再去lib.version.toml中宣告
+* 可以看到<br>
+  如果你想要在<br>
+  共用邏輯導入`material3`<br>
+  就直接在commomMain的block中導入即可<br>
+  不過可能會有人好奇<br>
+  為啥這邊是`compose`.material而不是libs.xxxxxx<br>
+  這是因為<br>
+  當你導入KMM插件後<br>
+  他有內建一下compose專案常用的library<br>
+  讓你可以直接用<br>
+  而`不用`自己再去lib.version.toml中宣告<br>
 
 ```
 commonMain.dependencies {
