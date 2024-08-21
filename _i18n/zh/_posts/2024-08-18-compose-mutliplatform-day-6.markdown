@@ -83,7 +83,7 @@ fun App() {
 }
 ```
 
-<div class="c-border-content-title-1"> Android App 程式進入點</div>
+<div class="c-border-content-title-1">Android App 程式進入點</div>
 
 * `Android`實際呼叫commonMain中共用的App()函式
 

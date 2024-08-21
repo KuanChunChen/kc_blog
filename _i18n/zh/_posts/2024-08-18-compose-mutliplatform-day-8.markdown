@@ -59,9 +59,9 @@ fun GreetingPreview() { Greeting("Compose") }
 ```
 
 實際可以看到IDE右邊會有`@Preview`的畫面<br>
-![https://ithelp.ithome.com.tw/upload/images/20240808/20168335d20zAEax6y.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335d20zAEax6y.png)
+<img src="/images/compose/048.png" alt="Cover" width="100%"/><br/>
 
-## Compose的元件的Modifier
+<div class="c-border-content-title-1">Compose的元件的Modifier</div>
 
 > Modifier 是`Compose` 中用來修飾和配置元件的工具<br>
 它提供了多種功能來改變Compose UI元件的行為和外觀<br>
@@ -72,7 +72,8 @@ fun GreetingPreview() { Greeting("Compose") }
 提供了各種選項讓你去設定UI行為和外觀<br>
 像是，backgroundcolor、align、height、width、onClick....等<br>
 相當的多 有興趣可以自己再去看看：<br>
-![https://ithelp.ithome.com.tw/upload/images/20240808/20168335DlpR4RAnuN.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335DlpR4RAnuN.png)
+<img src="/images/compose/049.png" alt="Cover" width="100%"/><br/>
+
 
 * 前一天有跟著我建立Theme<br>
   就可以試著使用`Material3 theme`來設定元件背景顏色<br>
@@ -107,13 +108,11 @@ fun Greeting(name: String) {
 }
 ```
 
-
-## 建立Compose頂部工具列 topbar
+<div class="c-border-content-title-1">建立Compose頂部工具列 topbar</div>
 
 * 因為在寫App不管是Andoird或iOS的場景上<br>
   很常會需要`客製化 toolbar`<br>
-
-![https://ithelp.ithome.com.tw/upload/images/20240808/20168335HemLYAG73B.png](https://ithelp.ithome.com.tw/upload/images/20240808/20168335HemLYAG73B.png)
+  <img src="/images/compose/050.png" alt="Cover" width="100%"/><br/>
 
 * 這時候我們可以建立一個可以重用的topbar<br>
 ```kotlin
@@ -187,8 +186,7 @@ fun DefaultTitleText(titleText: String, marqueeNum: Int) {
 }
 ```
 
-## TopBar實際使用
-
+<div class="c-border-content-title-1">TopBar實際使用</div>
 * 這裡我們將創建 `createSetting` 函數。<br>
   就是用前面寫好的`MainAppBarConfig`<br>
   輸入你要設定的內容<br>
@@ -231,10 +229,7 @@ fun SettingScreen(navController: NavController) {
 }
 ```
 
------
-
-## 實際例子
------
+<div class="c-border-main-title-2">實際例子</div>
 
 * 利用上面的概念<br>
   我們可以簡單實作一個Setting頁面<br>

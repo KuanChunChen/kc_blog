@@ -54,8 +54,7 @@ fun App() {
 
 }
 ```
-
-## 實作Matrial 3
+<div class="c-border-content-title-1">實作Material 3</div>
 
 * 步驟1. 導入 Material 3 主題<br>
   在 `CMP專案` 的`build.gradle.kts`中<br>
@@ -424,8 +423,8 @@ fun PreviewSettingScreen() {
     }
 }
 ```
+<div class="c-border-content-title-1">實際使用</div>
 
-## 實際使用
 主題設定後<br>
 可以這樣使用<br><br>
 
