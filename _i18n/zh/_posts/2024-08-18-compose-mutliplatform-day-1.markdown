@@ -57,7 +57,7 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 Android 使用`xml`來實作layout<br>
 或近幾年Android演變成用Compose實作UI<br><br>
 
-而 `IOS`只能使用SwiftUI來實作<br><br>
+`IOS`使用SwiftUI來實作<br><br>
 
 而`CMP`則 延伸KMP的概念<br>
 同樣可以 撰寫 共用程式碼<br>
@@ -66,6 +66,8 @@ Android 使用`xml`來實作layout<br>
 <div class="c-border-content-title-1">預覽</div>
 
 像下圖是我只用Compose就能一次刻畫`多平台的畫面`<br>
+<img src="/images/compose/015.png" alt="Cover" width="50%" /><br />
+
 當然這是用`Material Design 3` 刻出來的畫面<br>
 有人可能會在意跟IOS的規範不一樣<br><br>
 
@@ -112,7 +114,7 @@ Android 使用`xml`來實作layout<br>
 是有可能會在CMP中<br>
 陸續增加更多的支援<br>
 是滿令人期待的<br>
-![images](https://ithelp.ithome.com.tw/upload/images/20240801/201683354dhxSR3TkE.png)<br>
+<img src="/images/compose/014.png" alt="Cover" width="50%" /><br />
 (圖片來源：Google Blog)<br>
 
 

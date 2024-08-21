@@ -4,7 +4,7 @@ title: "Compose Multiplatform 實戰：CMP中跨平台Android、iOS程式碼的�
 date: 2024-08-18 17:17:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
-permalink: /compose-multiplatform-day-5
+permalink: /compose-multiplatform-day-6
 categories: ComposeMultiplatform
 excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
 這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"

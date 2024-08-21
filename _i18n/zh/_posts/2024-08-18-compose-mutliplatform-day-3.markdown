@@ -4,7 +4,7 @@ title: "Compose Multiplatform 實戰：續戰，用Wizard創建CMP專案"
 date: 2024-08-18 17:13:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
-permalink: /compose-multiplatform-day-2
+permalink: /compose-multiplatform-day-3
 categories: ComposeMultiplatform
 excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
 這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
@@ -14,7 +14,7 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 
 `Compose Multiplatform (簡稱CMP)`<br>
-昨天我們才剛完成安裝CMP的環境<br><br>
+昨天我們才剛完成安裝CMP的環境<br>
 
 如果以寫程式的角度來看<br>
 其實任何檔案或結構<br>
@@ -23,14 +23,14 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 甚至用指令去寫也可<br>
 例如<br>
 `touch xxx.kt`<br>
-然後`vim` 去改每個檔案<br><br>
+然後`vim` 去改每個檔案<br>
 
 但這樣太麻煩了<br>
 所以我們在創建專案<br>
-通常會用一些已經幫你配置好的專案結構<br><br>
+通常會用一些已經幫你配置好的專案結構<br>
 
 像是以CMP來講<br>
-我們就可以用官方提供的`Wizard`來創建<br><br>
+我們就可以用官方提供的`Wizard`來創建<br>
 
 所以今天我們就來暸解下<br>
 怎麼透過`Wizard`創建CMP的專案<br>
