@@ -43,7 +43,7 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 <div class="c-border-content-title-1">那CMP跟KMP的區別是什麼？</div>
 
 其實兩者都旨在簡化跨平台專案的開發<br>
-減少為不同平台編寫和維護相同程式碼的時間<br><br>
+減少為不同平台編寫和維護相同程式碼的時間<br>
 
 可以透過Gradle的配置<br>
 搭配共用Source Code的開發來減少開發時程<br>
@@ -69,7 +69,7 @@ Android 使用`xml`來實作layout<br>
 <img src="/images/compose/015.png" alt="Cover" width="50%" /><br />
 
 當然這是用`Material Design 3` 刻出來的畫面<br>
-有人可能會在意跟IOS的規範不一樣<br><br>
+有人可能會在意跟IOS的規範不一樣<br>
 
 但我過去實務經驗告訴我<br>
 在做專案時<br>
@@ -77,7 +77,7 @@ Android 使用`xml`來實作layout<br>
 大多會要求以IOS的畫面為主<br>
 
 因此除了一些各自平台的元件除外<br>
-自己細刻還是可以刻到跟IOS極度相似的畫面<br><br>
+自己細刻還是可以刻到跟IOS極度相似的畫面<br>
 
 所以這部分就看每個人的`Use case`<br>
 去決定會不會在意了XD<br>
@@ -106,10 +106,10 @@ Android 使用`xml`來實作layout<br>
 <div class="c-border-main-title-2">結語</div>
 
 明天開始<br>
-會開始寫筆記讓大家更了解`Compose Multiplatform`<br><br>
+會開始寫筆記讓大家更了解`Compose Multiplatform`<br>
 
 另外CMP也在不斷更新<br>
-像是從Google發佈的文章看來<br><br>
+像是從Google發佈的文章看來<br>
 
 是有可能會在CMP中<br>
 陸續增加更多的支援<br>
@@ -122,7 +122,3 @@ Android 使用`xml`來實作layout<br>
 有可能會遇到各式各樣的情況<br>
 網路上資料也沒那麼充足<br>
 所以大家有遇到問題也能討論、互相學習成長<br>
-
-<div class="c-border-main-title-2">附錄</div>
-同時我也整理了相關內容在我的部落格<br>
-想要看看的可以[點擊連結查看](https://elegantaccess.org/compose-multiplatform-guide)<br>

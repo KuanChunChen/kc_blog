@@ -29,7 +29,7 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 所以我們在創建專案<br>
 通常會用一些已經幫你配置好的專案結構<br>
 
-像是以CMP來講<br>
+像是以`CMP`來講<br>
 我們就可以用官方提供的`Wizard`來創建<br>
 
 所以今天我們就來暸解下<br>
@@ -48,11 +48,11 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 進到該網頁後<br>
 你會看到如下畫面<br>
-![Wizard](https://ithelp.ithome.com.tw/upload/images/20240803/20168335CtPWaT7Hi9.png)
+<img src="/images/compose/027.png" alt="Cover" width="50%" /><br />
 
 並依照你自己的需求去修改專案的名稱、包名..等等<br>
 
-以下是根據上圖 把一些設定快速帶一下：<br>
+> 根據上圖 把設定快速帶一下
 
 `Project Name`：是針對你這個專案設定名稱<br>
 主要會影響你`Build app出來的名稱`<br>
@@ -81,11 +81,9 @@ Do not share UI (use only SwiftUI)
 
 完成後就點擊Download<br>
 可以得到一個幫你創建好的專案<br>
-![CMPP](https://ithelp.ithome.com.tw/upload/images/20240803/20168335ycbaz969VV.png)
+<img src="/images/compose/028.png" alt="Cover" width="70%" /><br/>
 
------
-
-#### 導入到IDE中
+<div class="c-border-content-title-1">導入到IDE中</div>
 
 解壓縮上一步驟得到的`Zip壓縮檔`<br>
 之後就可以透過`Android Studio`中的 `import project`<br>
@@ -93,15 +91,13 @@ Do not share UI (use only SwiftUI)
 讓他能在IDE中做編輯<br>
 
 找到`File > New > import project`<br>
-![Import project](https://ithelp.ithome.com.tw/upload/images/20240803/20168335iskk1sqkm5.png)
+<img src="/images/compose/029.png" alt="Cover" width="50%" /><br/>
 
 在彈出的檔案選擇器中<br>
 選擇剛剛解壓縮的`資料夾`即可<br>
-![CMPWizard](https://ithelp.ithome.com.tw/upload/images/20240803/20168335Z04fXsCa1b.png)
+<img src="/images/compose/030.png" alt="Cover" width="70%" /><br/>
 
------
-
-## 額外加碼分享【Compose Multiplatform Wizard】<br>
+<div class="c-border-content-title-1">額外加碼分享【Compose Multiplatform Wizard】</div>
 前面幾天有說過CMP相關的社群目前都滿活躍的<br>
 或是主要在開發的公司`JetBrains`<br>
 目前都有持續在維護或更新<br>
@@ -114,7 +110,7 @@ Do not share UI (use only SwiftUI)
 `Compose Multiplatform Wizard`其用途也是他也是透過網頁幫你產生以`Compose`為UI的專案<br>
 然後多了一些可以幫你導入CMP常用library的選項<br>
 
-![https://ithelp.ithome.com.tw/upload/images/20240805/20168335gsN9GpkWL7.png](https://ithelp.ithome.com.tw/upload/images/20240805/20168335gsN9GpkWL7.png)
+<img src="/images/compose/031.png" alt="Cover" width="50%" /><br />
 
 跟上面一樣<br>
 輸入想要的Project Name 跟Project ID<br>
