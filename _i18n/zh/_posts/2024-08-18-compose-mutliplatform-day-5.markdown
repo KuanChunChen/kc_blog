@@ -145,7 +145,7 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 
 * 另外這邊是[用.toml遷移至version catalogs會遇到的問題](https://elegantaccess.org/android-upgrade-to-toml-tutorial)，歡迎大家參考
 
-## build.gradle.kts(:composeApp)
+<div class="c-border-content-title-1"> build.gradle.kts(:composeApp)</div>
 
 `build.gradle.kts(:composeApp)` 是一個用於配置 `CMP`專案的 Gradle 建置腳本檔<br>
 它使用 ｀Kotlin DSL（Domain Specific Language）來定義建配置`<br>

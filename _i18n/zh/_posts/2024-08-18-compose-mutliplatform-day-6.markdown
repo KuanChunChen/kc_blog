@@ -64,10 +64,10 @@ YourProjectName
 
 * 這裡建立了一個共用的App()函式<br>
   其中包含了<br>
-    1. `自定義的通用UI Theme`<br>
-    2. 使用了koin 注入viewmodel<br>
-    3. 自定義Compose UI的進入點<br>
-       (這個後面章節會解釋如何自定義UI Theme、使用koin、自定義Compose UI...等主題)<br>
+  1.`自定義的通用UI Theme`<br>
+  2.使用了koin 注入viewmodel<br>
+  3.自定義Compose UI的進入點<br>
+  (這個後面章節會解釋如何自定義UI Theme、使用koin、自定義Compose UI...等主題)<br>
 
 ```kotlin
 // in ../commonMain/App.kt
@@ -83,7 +83,8 @@ fun App() {
 }
 ```
 
-## Android App 程式進入點
+<div class="c-border-content-title-1"> Android App 程式進入點</div>
+
 * `Android`實際呼叫commonMain中共用的App()函式
 
 ```kotlin
@@ -127,7 +128,8 @@ class MainActivity : ComponentActivity() {
     </manifest>
   ```
 
-## iOS App 程式進入點
+<div class="c-border-content-title-1"> iOS App 程式進入點</div>
+
 * `iosMain`實際呼叫commonMain中共用的App()函式
 
 ```
@@ -149,9 +151,10 @@ fun MainViewController() = ComposeUIViewController {
 ```
 
 * 實際在`iOS`會去呼叫上面`MainViewController.kt`內的函式`MainViewController()`
-  ![MainViewController](https://ithelp.ithome.com.tw/upload/images/20240806/20168335IzCytxhSRX.png)
+  <img src="/images/compose/045.png" alt="Cover" width="100%"/><br/>
 
-## Desktop 程式進入點
+
+<div class="c-border-content-title-1">Desktop 程式進入點</div>
 
 * `desktopMain`中實際呼叫commonMain中共用的App()函式<br>
   其中透過compose裡面的 `application 函式` 搭配`Window` 來完成desktop application
@@ -175,13 +178,9 @@ fun main() = application {
 ```
 
 * 或者可以透過IDE直接把這個Gradle task加入到Run Configuration內
+<img src="/images/compose/046.png" alt="Cover" width="90%"/><br/>
 
-![https://ithelp.ithome.com.tw/upload/images/20240806/20168335boaUmzrnXa.png](https://ithelp.ithome.com.tw/upload/images/20240806/20168335boaUmzrnXa.png)
-
------
-
-## 開發共用邏輯
------
+<div class="c-border-main-title-2">開發共用邏輯</div>
 
 * 理解完上方進入點後<br>
   我們可以開始開發共用邏輯<br>
@@ -194,7 +193,7 @@ fun main() = application {
   才會透過`expect` 跟 `autual` 來實作<br>
   (後面章節會也會再講怎麼用expect跟autual)<br>
 
-![https://ithelp.ithome.com.tw/upload/images/20240806/20168335aIrr6vFWgQ.png](https://ithelp.ithome.com.tw/upload/images/20240806/20168335aIrr6vFWgQ.png)
+<img src="/images/compose/047.png" alt="Cover" width="80%"/><br/>
 
 * 不過到目前為止<br>
   即便是`desktop平台`或`iOS平台` 有自己的檔案系統<br>
