@@ -112,7 +112,7 @@ fun BottomNavigation(navController: NavController) {
 8. NavigationBarItem的參數就跟之前的其他comsable類似<br>
    可以根據開發者情境去調整內容<br><br>
 
-## 實際使用
+<div class="c-border-content-title-1">實際使用</div>
 
 還記得我們前面的`Compose Navigation`外面包了一層`Scaffold`嗎？<br>
 這時候<br>
@@ -157,7 +157,7 @@ fun ElegantAccessApp(
 }
 ```
 
-## 如果有的頁面不想顯示NavigationBar怎麼辦？
+<div class="c-border-content-title-1"> 如果有的頁面不想顯示NavigationBar怎麼辦？</div>
 
 那這時候<br>
 就可以寫一個function `shouldShowBottomBar`<br>

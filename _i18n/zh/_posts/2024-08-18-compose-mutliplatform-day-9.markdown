@@ -82,9 +82,7 @@ actual class FileSystem {
 }
 ```
 
------
-
-## 實際例子
+<div class="c-border-main-title-2"">實際例子</div>
 
 * 像是前天在設定[material 3](https://ithelp.ithome.com.tw/articles/10343654)的主題時<br>
   會去設定一個`expect` function 稱作 setStatusBarStyle<br>
@@ -163,9 +161,8 @@ actual val platformModule: Module = module {
 }
 ```
 
------
-## 小技巧
------
+<div class="c-border-main-title-2">小技巧</div>
+
 IDE 提供了一種方式<br>
 使你更容易分辨所實作的 `class` 是在哪個平台下<br>
 當你在共享程式碼中撰寫 `expect` 關鍵字時<br>

@@ -90,7 +90,7 @@ kotlin {
 ```
 
 
-## 實作資料表
+<div class="c-border-content-title-1">實作資料表</div>
 
 在 `commonMain/sqldelight/database` 目錄下創建 `.sq` 文件：<br>
 ![https://ithelp.ithome.com.tw/upload/images/20240814/201683356KGhBaS0kq.png](https://ithelp.ithome.com.tw/upload/images/20240814/201683356KGhBaS0kq.png)
@@ -126,7 +126,8 @@ CREATE TABLE VocabularyEntity (
  WHERE id IS :id;
 ```
 
-## 實作跨平台的sqlDelight內容
+<div class="c-border-content-title-1">實作跨平台的sqlDelight內容</div>
+
 前面說過<br>
 可能因為Android、iOS平台的相容性不同<br>
 所以table相關操作邏輯可以共通<br>
@@ -165,7 +166,7 @@ actual class DatabaseDriverFactory {
 2. `AndroidSqliteDriver` ： 在 Android平台的需要輸入`context`，所以在autual class `DatabaseDriverFactory`建構子放入<br><br>
 3. `NativeSqliteDriver`：iOS的SqliteDriver<br>
 
-## koin注入跨平台DB驅動
+<div class="c-border-content-title-1">koin注入跨平台DB驅動</div>
 
 前面天數有提到<br>
 當有`跨平台`的內容時<br>
@@ -202,7 +203,7 @@ actual val platformModule: Module = module {
    並搭配`koin`去依賴注入<br>
 
 
-## 實際使用
+<div class="c-border-content-title-1">實際使用</div>
 
 以下是獲得 `AppDatabase` 並進行操作的示例<br>
 SqlDelight會幫你轉成物件導向可以操作的方法讓你使用<br>
@@ -227,7 +228,7 @@ class LearningDataStore (private val db: AppDatabase) {
 }
 ```
 
-## 結語
+<div class="c-border-main-title-2">結語</div>
 
 這是前期`CMP` 提供的一個local db的一個解決方案<br>
 用來共用跨平台的db邏輯<br>

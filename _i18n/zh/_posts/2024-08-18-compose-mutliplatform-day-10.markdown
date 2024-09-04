@@ -35,7 +35,8 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 </div>
 
 <div class="c-border-main-title-2">簡介Compose Multiplatform</div>
-## 將對應的lib & version加入lib.versions.toml
+
+<div class="c-border-content-title-1">將對應的lib & version加入lib.versions.toml</div>
 
 * 如下面示範，完成後`sync gradle`
 ```toml
@@ -47,7 +48,8 @@ navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-co
 
 ```
 
-## 將Library導入build.gradle.kts中
+
+<div class="c-border-content-title-1">將Library導入build.gradle.kts中</div>
 
 * 這次一樣是共用的 所以在`commonMain`中加入以下：
 
@@ -60,8 +62,7 @@ navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-co
         }
     }
 ```
-
-## 實作Compose Navigation
+<div class="c-border-content-title-1">實作Compose Navigation</div>
 
 * 還記得我們之前的 程式碼進入點`App()`嗎?
   這次我們創一個func `ElegantAccessApp()` (可造自己喜歡命名)

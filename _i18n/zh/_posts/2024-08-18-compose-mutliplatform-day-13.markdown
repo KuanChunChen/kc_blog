@@ -44,7 +44,8 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 而不是在物件內部創建instance<br>
 這樣可以使得程式碼更加靈活和可測試<br>
 
-## 沒有 Dependency Injection 的樣子<br>
+<div class="c-border-content-title-1">沒有 Dependency Injection 的樣子</div>
+
 我們來看一個前幾天建StateFlow時用到viewmodel的例子<br>
 這邊我們需要手動創建`SettingViewModel實例`  且 `內部有多個class需init`<br>
 
@@ -77,7 +78,7 @@ class SettingViewModel() {
 
 ```
 
-## 加入 koin 的樣子
+<div class="c-border-content-title-1">加入 koin 的樣子</div>
 
 如果透過DI來導入viewmodel<br>
 則你不需要自己去創建instance<br>
@@ -95,8 +96,7 @@ fun NavGraphBuilder.routeSettingScreen(
 
 ```
 
-
-### 不過這樣乍看之下是不是根本沒差？
+<div class="c-border-content-title-1">不過這樣乍看之下是不是根本沒差？</div>
 
 因為只是把創建實例變成透過 koinViewModel 去注入而已<br>
 
@@ -146,13 +146,10 @@ class SettingViewModel(private val a: A, private val b: B,...) {
 val viewModel = koinViewModel<SettingViewModel>()
 ```
 
------
+<div class="c-border-main-title-2">在CMP中實作koin</div>
 
-## 在CMP中實作koin
+<div class="c-border-content-title-1">將對應的 lib & version 加入 lib.versions.toml</div>
 
------
-
-## 將對應的 lib & version 加入 lib.versions.toml<br>
 首先<br>
 我們需要在 `lib.versions.toml` 文件中加入 `koin` 的依賴和版本號<br>
 完成後<br>
@@ -169,7 +166,7 @@ koin-compose-viewmodel= { module = "io.insert-koin:koin-compose-viewmodel", vers
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 ```
 
-## 將Library導入build.gradle.kts中
+<div class="c-border-content-title-1">將Library導入build.gradle.kts中</div>
 
 * 這次一樣是共用的 所以在`commonMain`中加入以下：
 
@@ -183,7 +180,7 @@ koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComp
     }
 ```
 
-## CMP配置多平台koin
+<div class="c-border-content-title-1">CMP配置多平台koin</div>
 
 (記得我們前面[各平台的進入點](https://ithelp.ithome.com.tw/articles/10343651)嗎？<br>
 忘記的話可以回去看看)<br>
@@ -302,7 +299,8 @@ class UIViewControllerWrapperImpl(private val viewController: UIViewController) 
    而根據`前面的程式碼`<br>
    我們前面autual 的 `platformModule` 也會被帶進來<br><br>
 
-## CMP實作koin 共用module
+<div class="c-border-content-title-1">CMP實作koin 共用module</div>
+
 前個區塊主要介紹了在多個目標平台上進行開發的方法<br>
 現在，我們終於可以開始開發共用模組<br>
 在 `koin` 中製作模組也相對直觀<br><br>
@@ -340,7 +338,8 @@ val viewModelModule = module {
    你就可以`透過koin`幫你`inject`進來<br>
 
 
-## CMP實際使用koin注入
+<div class="c-border-content-title-1"> CMP實際使用koin注入</div>
+
 現在我們能開心`解放`複雜的手動創instance了
 
 ```kotlin
@@ -355,8 +354,8 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
+<div class="c-border-main-title-2">總結</div>
 
-## 總結
 - Koin 能在 Compose Multiplatform 使用
 - 通過適當的配置，可以在不同平台上靈活使用 Koin
 - 使用 Koin 可以大大簡化跨平台項目的依賴管理

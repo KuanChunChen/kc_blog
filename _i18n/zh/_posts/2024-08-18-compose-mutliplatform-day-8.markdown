@@ -112,7 +112,7 @@ fun Greeting(name: String) {
 
 * 因為在寫App不管是Andoird或iOS的場景上<br>
   很常會需要`客製化 toolbar`<br>
-  <img src="/images/compose/050.png" alt="Cover" width="100%"/><br/>
+  <img src="/images/compose/050.png" alt="Cover" width="50%"/><br/>
 
 * 這時候我們可以建立一個可以重用的topbar<br>
 ```kotlin

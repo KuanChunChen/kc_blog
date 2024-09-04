@@ -33,7 +33,8 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 設計來持有和觀察狀態變化<br>
 特別適合在`Compose` 中使用<br>
 
-#### StateFlow 的特點
+<div class="c-border-content-title-1">StateFlow 的特點</div>
+
 1. `持有最新狀態`：StateFlow 始終持有最新的狀態值<br>
    並且當狀態發生變化時<br>
    會自動通知所有觀察者<br>
@@ -56,7 +57,8 @@ val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 val uiState by viewModel.uiState.collectAsState()          
 ```
 
-## 實做StateFlow管理UI狀態
+
+<div class="c-border-content-title-1">實做StateFlow管理UI狀態</div>
 
 假設我們有一個 實作好的`SettingScreen`<br>
 目前都只有顯示畫面<br>
@@ -198,8 +200,7 @@ fun NavGraphBuilder.routeSettingScreen(
 你只需要在你的 Compose UI 中去收集該狀態<br>
 並透過該state去修改你的UI即可<br>
 
-
-## 實際使用
+<div class="c-border-content-title-1">實際使用</div>
 
 可以透過<br>
 `val uiState by viewModel.uiState.collectAsState()`<br>
@@ -289,8 +290,9 @@ fun SettingScreen(navController: NavController, viewModel: SettingViewModel) {
 }
 ```
 
-### 最終成效
-最後看看上面這個例子的結果
+<div class="c-border-main-title-2">最終成效</div>
+
+最後看看上面這個例子的結果<br>
 ![GIF](https://i.imgur.com/gT7j8sR.gif)
 
 

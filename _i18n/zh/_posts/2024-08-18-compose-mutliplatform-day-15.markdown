@@ -48,7 +48,7 @@ ksp導入時可能會因為kotlin版本不同<br>
 或 `[KSP2] Annotation value is missing in nested annotations`<br>
 
 
-## CMP配置Room時可能遇到的問題
+<div class="c-border-content-title-1">CMP配置Room時可能遇到的問題</div>
 
 一開始遇到`[KSP2] Annotation value is missing in nested annotations`<br>
 後來在網上搜尋研究後發現可以<br>
@@ -83,7 +83,8 @@ ksp導入時可能會因為kotlin版本不同<br>
 
 下方我將開始分享如何配置2.0.0上使用Room<br>
 
-## CMP上使用`kotlin 2.0.0`實作ROOM
+
+<div class="c-border-content-title-1">CMP上使用`kotlin 2.0.0`實作ROOM</div>
 
 * 步驟1. 在專案中導入 `Room`<br>
   需在`libs.version.toml` 文件中添加：<br>
@@ -179,10 +180,11 @@ interface DB {
 }
 ```
 
-## 實際開發Room
+<div class="c-border-content-title-1">實際開發Room</div>
 
 * 前面我們一樣需要 建立所有目標平台的`RoomDatabase.Builder`
-```
+
+```kotlin
 // in ~/androidMain
 fun getAppDatabase(context: Context): RoomDatabase.Builder<AppDatabase> {
     val dbFile = context.getDatabasePath("app.db")
@@ -208,7 +210,7 @@ fun getAppDatabase(): RoomDatabase.Builder<AppDatabase> {
 }
 ```
 
-## RoomDatabase.Builder搭配koin
+<div class="c-border-content-title-1">RoomDatabase.Builder搭配koin</div>
 
 ``` kotlin
 //in ~/androidMain
@@ -225,7 +227,7 @@ actual val platformModule: Module = module {
 }
 ```
 
-## 在commonMain實作ROOM
+<div class="c-border-content-title-1">在commonMain實作ROOM</div>
 
 Room 的核心概念是透過面向物件的方式操作本地資料庫<br><br>
 
@@ -302,8 +304,8 @@ interface VocabularyDao {
 ```
 
 * 建立`Entity`
-```kotlin
 
+```kotlin
 @Entity
 data class VocabularyEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
