@@ -92,7 +92,7 @@ categories: Debug探討
 
 <div class="c-border-content-title-4">土法煉鋼：結合前面幾種</div>
   - 開發人員編寫程式碼在android app 內寫下 log 至對應資料夾<br>
-    之後再用adb pull 拉出來
+    之後再用`adb pull`拉出來
 
   - 例如：app寫好後，用adb pull拉出來<br>
       `adb pull /sdcard/Android/data/your.package.name/files/`
@@ -109,10 +109,10 @@ categories: Debug探討
   2. 但若是<b style="color:red;">非開發人員</b>直接複製上面code到txt 或空白檔案中<br>  
      首先先確認電腦環境中有adb<br>
      修改<b style="color:red;">packageName</b> 成指定的app包名<br>
-     配置<b style="color:red;">adbPath</b> 改成你adb的系統路徑<br>
-     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝adb的人，下載含有adb的就能執行)
-  4. (optional) 可以自定義輸出的log file name 也可以自行帶入時間碼來區分等等<br>
+     配置<b style="color:red;">adbPath</b> 改成你`adb`的系統路徑<br>
+     (如果你要給非開發人員用 也可以配置./adb 在你同個資料夾的路徑 讓電腦沒裝`adb`的人，下載含有`adb`的就能執行)<br>
+  4. (optional) 可以自定義輸出的`log file name` 也可以自行帶入時間碼來區分等等<br>
 </p>
-  - 最後寫好就可以在小黑窗(mac terminal / win cmd)執行./your_add_log.sh<br>
+  - 最後寫好就可以在小黑窗(mac terminal / win cmd)執行`./your_add_log.sh`<br>
   就開始抓囉！<br>
   ![shell_log_start.png](/images/others/shell_log_start.png)
