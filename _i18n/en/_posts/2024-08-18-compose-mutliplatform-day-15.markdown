@@ -121,6 +121,7 @@ commonMain.dependencies {
     - 最外層加入tasks.withType
     - 加入room schemas配置
     - 加入plugins配置
+
 ```kotlin
 plugins {
     alias(libs.plugins.ksp)
