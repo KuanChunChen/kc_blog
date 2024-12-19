@@ -52,7 +52,8 @@ $(document).ready(function () {
     var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
     var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 //    var requestUrl = siteBaseUrl + '/page/' + nextPage;
-    var requestUrl = siteBaseUrl + '/page/' + nextPage;
+      var requestUrl = 'https://' + window.location.hostname + '/page/' + nextPage;
+
     $.get(requestUrl, function (data) {
       var htmlData = $.parseHTML(data);
       var $articles = $(htmlData).find('article');
