@@ -52,19 +52,17 @@ function loadMorePosts() {
   var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
   var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-  // 使用相對路徑，瀏覽器會自動使用當前協議
-  var requestUrl = '/page/' + nextPage;
+  // 使用當前網站的完整網址做為基礎
+  var baseUrl = window.location.href.split('/')[0] + '//' + window.location.host;
+  var requestUrl = baseUrl + '/page/' + nextPage;
 
-  $.ajax({
-    url: requestUrl,
-    type: 'GET',
-    beforeSend: function(xhr) {
-      // 確保請求使用與當前頁面相同的協議
-      xhr.setRequestHeader('X-Forwarded-Proto', window.location.protocol.slice(0, -1));
-    },
-    success: function(data) {
+  // 使用 fetch API 代替 jQuery 的 ajax
+  fetch(requestUrl)
+    .then(response => response.text())
+    .then(data => {
       var htmlData = $.parseHTML(data);
       var $articles = $(htmlData).find('article');
+
       $postsContainer.attr('data-page', nextPage).append($articles);
 
       if ($postsContainer.attr('data-totalPages') == nextPage) {
@@ -72,12 +70,11 @@ function loadMorePosts() {
       }
 
       $(_this).removeClass('is-loading');
-    },
-    error: function(xhr, status, error) {
+    })
+    .catch(error => {
       console.error('Load more posts failed:', error);
       $(_this).removeClass('is-loading');
-    }
-  });
+    });
 }
 
   /* ==============================
