@@ -52,15 +52,16 @@ function loadMorePosts() {
   var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
   var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-  $.ajax({
-    url: '/page/' + nextPage,
-    type: 'GET',
-    headers: {
-      'Accept': 'text/html',
-      'X-Requested-With': null  // 移除 XMLHttpRequest 標頭
-    },
-    success: function(data) {
-      var htmlData = $.parseHTML(data);
+  // 使用原生 XMLHttpRequest
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/page/' + nextPage, true);
+
+  // 移除所有自定義 header
+  xhr.setRequestHeader('Accept', 'text/html');
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var htmlData = $.parseHTML(xhr.responseText);
       var $articles = $(htmlData).find('article');
 
       $postsContainer.attr('data-page', nextPage).append($articles);
@@ -68,11 +69,16 @@ function loadMorePosts() {
       if ($postsContainer.attr('data-totalPages') == nextPage) {
         $('.c-load-more').remove();
       }
-    },
-    complete: function() {
-      $(_this).removeClass('is-loading');
     }
-  });
+    $(_this).removeClass('is-loading');
+  };
+
+  xhr.onerror = function() {
+    console.error('Request failed');
+    $(_this).removeClass('is-loading');
+  };
+
+  xhr.send();
 }
 
   /* ==============================
