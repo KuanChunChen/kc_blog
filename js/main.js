@@ -52,22 +52,16 @@ function loadMorePosts() {
   var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
   var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-  $.ajax({
-    url: '/page/' + nextPage,
-    method: 'GET',
-    cache: false,
-    headers: {
-      'Cache-Control': 'no-cache',
-      'Pragma': 'no-cache'
-    },
-    beforeSend: function(xhr) {
-      // 確保使用與當前頁面相同的協議
-      if (window.location.protocol === 'https:') {
-        xhr.setRequestHeader('X-Forwarded-Proto', 'https');
-      }
-    },
-    success: function(data) {
-      var htmlData = $.parseHTML(data);
+  // 構建 HTTPS URL
+  var secureUrl = 'https://' + window.location.host + '/page/' + nextPage;
+
+  // 使用 XMLHttpRequest
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', secureUrl, true);
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var htmlData = $.parseHTML(xhr.responseText);
       var $articles = $(htmlData).find('article');
 
       $postsContainer.attr('data-page', nextPage).append($articles);
@@ -75,14 +69,18 @@ function loadMorePosts() {
       if ($postsContainer.attr('data-totalPages') == nextPage) {
         $('.c-load-more').remove();
       }
-    },
-    error: function(xhr, status, error) {
-      console.error('Load more posts failed:', error);
-    },
-    complete: function() {
-      $(_this).removeClass('is-loading');
+    } else {
+      console.error('Load more posts failed:', xhr.statusText);
     }
-  });
+    $(_this).removeClass('is-loading');
+  };
+
+  xhr.onerror = function() {
+    console.error('Load more posts failed: Network error');
+    $(_this).removeClass('is-loading');
+  };
+
+  xhr.send();
 }
 
   /* ==============================
