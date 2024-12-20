@@ -46,18 +46,25 @@ $(document).ready(function () {
 
   $(".c-load-more").click(loadMorePosts);
 
-  function loadMorePosts() {
-    var _this = this;
-    var $postsContainer = $('.c-posts');
-    var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
-    var totalPages = parseInt($postsContainer.attr('data-totalPages'));
-//    var requestUrl = siteBaseUrl + '/page/' + nextPage;
-      var requestUrl = 'https://' + window.location.hostname + '/page/' + nextPage;
+function loadMorePosts() {
+  var _this = this;
+  var $postsContainer = $('.c-posts');
+  var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
+  var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-    $.get(requestUrl, function (data) {
+  // 使用相對路徑，瀏覽器會自動使用當前協議
+  var requestUrl = '/page/' + nextPage;
+
+  $.ajax({
+    url: requestUrl,
+    type: 'GET',
+    beforeSend: function(xhr) {
+      // 確保請求使用與當前頁面相同的協議
+      xhr.setRequestHeader('X-Forwarded-Proto', window.location.protocol.slice(0, -1));
+    },
+    success: function(data) {
       var htmlData = $.parseHTML(data);
       var $articles = $(htmlData).find('article');
-
       $postsContainer.attr('data-page', nextPage).append($articles);
 
       if ($postsContainer.attr('data-totalPages') == nextPage) {
@@ -65,8 +72,13 @@ $(document).ready(function () {
       }
 
       $(_this).removeClass('is-loading');
-    });
-  }
+    },
+    error: function(xhr, status, error) {
+      console.error('Load more posts failed:', error);
+      $(_this).removeClass('is-loading');
+    }
+  });
+}
 
   /* ==============================
   // Smooth scroll to the tags page
