@@ -47,6 +47,7 @@ jobs:
       - name: Clean _site
         run: |
           rm -rf _site
+          rm -rf .jekyll-cache
 
       - name: Setup Pages
         id: pages
