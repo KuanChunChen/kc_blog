@@ -52,33 +52,22 @@ function loadMorePosts() {
   var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
   var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-  // 使用原生 XMLHttpRequest
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/page/' + nextPage, true);
+  // 使用相對路徑，讓 Jekyll 自己處理 baseurl
+  var requestUrl = '/page/' + nextPage;
 
-  // 移除所有自定義 header
-  xhr.setRequestHeader('Accept', 'text/html');
+  // 使用標準的 jQuery ajax
+  $.get(requestUrl, function (data) {
+    var htmlData = $.parseHTML(data);
+    var $articles = $(htmlData).find('article');
 
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      var htmlData = $.parseHTML(xhr.responseText);
-      var $articles = $(htmlData).find('article');
+    $postsContainer.attr('data-page', nextPage).append($articles);
 
-      $postsContainer.attr('data-page', nextPage).append($articles);
-
-      if ($postsContainer.attr('data-totalPages') == nextPage) {
-        $('.c-load-more').remove();
-      }
+    if ($postsContainer.attr('data-totalPages') == nextPage) {
+      $('.c-load-more').remove();
     }
-    $(_this).removeClass('is-loading');
-  };
 
-  xhr.onerror = function() {
-    console.error('Request failed');
     $(_this).removeClass('is-loading');
-  };
-
-  xhr.send();
+  });
 }
 
   /* ==============================
