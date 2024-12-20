@@ -70,6 +70,7 @@ function loadMorePosts() {
   });
 }
 
+
   /* ==============================
   // Smooth scroll to the tags page
   ============================== */
