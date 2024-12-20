@@ -52,35 +52,21 @@ function loadMorePosts() {
   var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
   var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-  // 構建 HTTPS URL
-  var secureUrl = 'https://' + window.location.host + '/page/' + nextPage;
+  var requestUrl = window.location.origin + siteBaseUrl + '/page/' + nextPage;
 
-  // 使用 XMLHttpRequest
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', secureUrl, true);
 
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      var htmlData = $.parseHTML(xhr.responseText);
-      var $articles = $(htmlData).find('article');
+  $.get(requestUrl, function (data) {
+    var htmlData = $.parseHTML(data);
+    var $articles = $(htmlData).find('article');
 
-      $postsContainer.attr('data-page', nextPage).append($articles);
+    $postsContainer.attr('data-page', nextPage).append($articles);
 
-      if ($postsContainer.attr('data-totalPages') == nextPage) {
-        $('.c-load-more').remove();
-      }
-    } else {
-      console.error('Load more posts failed:', xhr.statusText);
+    if ($postsContainer.attr('data-totalPages') == nextPage) {
+      $('.c-load-more').remove();
     }
-    $(_this).removeClass('is-loading');
-  };
 
-  xhr.onerror = function() {
-    console.error('Load more posts failed: Network error');
     $(_this).removeClass('is-loading');
-  };
-
-  xhr.send();
+  });
 }
 
   /* ==============================
