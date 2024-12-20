@@ -46,29 +46,26 @@ $(document).ready(function () {
 
   $(".c-load-more").click(loadMorePosts);
 
-function loadMorePosts() {
-  var _this = this;
-  var $postsContainer = $('.c-posts');
-  var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
-  var totalPages = parseInt($postsContainer.attr('data-totalPages'));
+  function loadMorePosts() {
+    var _this = this;
+    var $postsContainer = $('.c-posts');
+    var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
+    var totalPages = parseInt($postsContainer.attr('data-totalPages'));
+    var requestUrl = siteBaseUrl + '/page/' + nextPage;
 
-  // 使用相對路徑，讓 Jekyll 自己處理 baseurl
-  var requestUrl = '/page/' + nextPage;
+    $.get(requestUrl, function (data) {
+      var htmlData = $.parseHTML(data);
+      var $articles = $(htmlData).find('article');
 
-  // 使用標準的 jQuery ajax
-  $.get(requestUrl, function (data) {
-    var htmlData = $.parseHTML(data);
-    var $articles = $(htmlData).find('article');
+      $postsContainer.attr('data-page', nextPage).append($articles);
 
-    $postsContainer.attr('data-page', nextPage).append($articles);
+      if ($postsContainer.attr('data-totalPages') == nextPage) {
+        $('.c-load-more').remove();
+      }
 
-    if ($postsContainer.attr('data-totalPages') == nextPage) {
-      $('.c-load-more').remove();
-    }
-
-    $(_this).removeClass('is-loading');
-  });
-}
+      $(_this).removeClass('is-loading');
+    });
+  }
 
   /* ==============================
   // Smooth scroll to the tags page
