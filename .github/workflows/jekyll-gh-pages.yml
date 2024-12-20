@@ -48,7 +48,6 @@ jobs:
         run: |
           rm -rf _site
           rm -rf .jekyll-cache
-          rm -rf js/main.js 
 
       - name: Setup Pages
         id: pages
