@@ -47,13 +47,19 @@ $(document).ready(function () {
   $(".c-load-more").click(loadMorePosts);
 
 function loadMorePosts() {
-    var _this = this;
-    var $postsContainer = $('.c-posts');
-    var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
-    var totalPages = parseInt($postsContainer.attr('data-totalPages'));
-    var requestUrl = siteBaseUrl + '/page/' + nextPage;
+  var _this = this;
+  var $postsContainer = $('.c-posts');
+  var nextPage = parseInt($postsContainer.attr('data-page')) + 1;
+  var totalPages = parseInt($postsContainer.attr('data-totalPages'));
 
-    $.get(requestUrl, function (data) {
+  $.ajax({
+    url: '/page/' + nextPage,
+    type: 'GET',
+    headers: {
+      'Accept': 'text/html',
+      'X-Requested-With': null  // 移除 XMLHttpRequest 標頭
+    },
+    success: function(data) {
       var htmlData = $.parseHTML(data);
       var $articles = $(htmlData).find('article');
 
@@ -62,10 +68,12 @@ function loadMorePosts() {
       if ($postsContainer.attr('data-totalPages') == nextPage) {
         $('.c-load-more').remove();
       }
-
+    },
+    complete: function() {
       $(_this).removeClass('is-loading');
-    });
-  }
+    }
+  });
+}
 
   /* ==============================
   // Smooth scroll to the tags page
