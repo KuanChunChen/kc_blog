@@ -5,9 +5,9 @@ baseurl: "https://elegantaccess.org" # the subpath of your site, e.g. /blog
 url: "https://elegantaccess.org" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author
-author-name:    Willy Chen
-author-image:   champion.JPG
-author-job:     Android Developer
+author-name:    WaitZ
+author-image:   C1.JPG
+author-job:     Developer
 author-email:
 author-twitter:
 author-linkedin:
@@ -20,7 +20,7 @@ social-facebook:  eleg.aces
 social-github:    KuanChunChen
 social-pinterest:
 social-instagram: eleg.aces.kc
-social-youtube:
+social-youtube: @WaitZshigoto
 social-vk:
 social-linkedin:
 

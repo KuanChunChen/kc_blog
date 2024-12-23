@@ -246,5 +246,4 @@ class LearningDataStore (private val db: AppDatabase) {
 我將會介紹另一種本地資料庫 `Room`<br>
 大家可以參考之後<br>
 再決定要用哪一種<br><br>
-[Compose Multiplatform 實戰：CMP中使用ROOM開發跨平台資料庫 & 疑難雜症
-](https://ithelp.ithome.com.tw/articles/10344763)
+<a href="{{site.baseurl}}/compose-multiplatform-day-15">Compose Multiplatform 實戰：CMP中使用ROOM開發跨平台資料庫 & 疑難雜症</a>
