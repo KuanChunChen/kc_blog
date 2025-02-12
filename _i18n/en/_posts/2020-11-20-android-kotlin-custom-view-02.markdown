@@ -93,6 +93,6 @@ Go back to the prelude:
 <br>
 
 Created by Elegant Access's KC.<br>
-Copyright (c) 2024 All rights reserved.<br>
+Copyright (c) 2025 All rights reserved.<br>
 Instagram  : https://www.instagram.com/eleg.aces.kc/<br>
 Github : https://github.com/KuanChunChen<br>
