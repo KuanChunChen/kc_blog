@@ -2,7 +2,7 @@
 layout: post
 title: "舊專案升級TargetSDK 35問題紀錄"
 date: 2025-03-12 09:29:10 +0800
-image: cover/android-target-sdk-35.png
+image: cover/android-sdk-35-cover.svg
 tags: [Android]
 permalink: /android-target-sdk-35
 categories: SDK升級

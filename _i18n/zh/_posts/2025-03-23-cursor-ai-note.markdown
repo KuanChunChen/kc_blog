@@ -2,7 +2,7 @@
 layout: post
 title: "用Cursor IDE 來輔助開發code"
 date: 2025-03-23 09:29:10 +0800
-image: cover/cursor-ide-cover.png
+image: cover/cursor-ide-cover.svg
 tags: [cursor]
 permalink: /cursor-ai-note
 categories: cursor
