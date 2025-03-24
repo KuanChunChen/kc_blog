@@ -15,7 +15,7 @@ excerpt: "Android15 適配筆記"
 <div class="c-border-main-title-2">升級到target sdk 35 遇到gradle不相容</div>
 * 這時候需要把gradle升級到8.0+ 才能解決，不過會遇到諸多問題...
 
-<div class="c-border-main-title-2">Inconsistent JVM-target compatibility</div>
+<div class="c-border-main-title-2">Inconsistent JVM-target compatibility</div><br>
 <img src="/images/sdk35/001.png" alt="target sdk 35">
 
 * 解法1:
@@ -29,11 +29,10 @@ kotlin.jvm.target.validation.mode = IGNORE
 ```java
 COMPILE_JAVA_VERSION=17
 ```
-並在對應的build.gradle指定java版本
+並在對應的build.gradle指定java版本<br>
 <img src="/images/sdk35/002.png" alt="target sdk 35">
 
-<div class="c-border-main-title-2">Product Flavor 'global' contains custom BuildConfig fields, but the feature is disabled</div>
-
+<div class="c-border-main-title-2">Product Flavor 'global' contains custom BuildConfig fields, but the feature is disabled</div><br>
 <img src="/images/sdk35/003.png" alt="target sdk 35">
 
 * 解法:
@@ -42,7 +41,7 @@ COMPILE_JAVA_VERSION=17
 android.defaults.buildfeatures.buildconfig=true
 ```
 
-<div class="c-border-main-title-2">AIDL error</div>
+<div class="c-border-main-title-2">AIDL error</div><br>
 <img src="/images/sdk35/004.png" alt="target sdk 35">
 
 
@@ -52,7 +51,7 @@ android.defaults.buildfeatures.buildconfig=true
 android.defaults.buildfeatures.aidl=true
 ```
 
-<div class="c-border-main-title-2">Manifest merger failed : Attribute property#android.adservices.AD_SERVICES_CONFIG</div>
+<div class="c-border-main-title-2">Manifest merger failed : Attribute property#android.adservices.AD_SERVICES_CONFIG</div><br>
 <img src="/images/sdk35/005.png" alt="target sdk 35">
 
 * 解法:
@@ -64,7 +63,7 @@ https://issuetracker.google.com/issues/327696048
 https://stackoverflow.com/questions/78085458/manifest-merger-failed-with-agp-8-3-0
 https://stackoverflow.com/questions/78350965/manifest-merger-failed-attribute-propertyandroid-adservices-ad-services-confi
 
-<div class="c-border-main-title-2">AndroidAnnotation error</div>
+<div class="c-border-main-title-2">AndroidAnnotation error</div><br>
 <img src="/images/sdk35/006.png" alt="target sdk 35">
 
 * 在gradle.properties加上
@@ -72,7 +71,7 @@ https://stackoverflow.com/questions/78350965/manifest-merger-failed-attribute-pr
 android.nonFinalResIds=false
 ```
 
-* 錯誤變成:
+* 錯誤變成:<br>
 <img src="/images/sdk35/007.png" alt="target sdk 35">
 
 * AA(AndroidAnnotation)該建立的file都沒有建立成功。根據AA的[debug方法](https://growi.airdroid.com/5f23bd91c1319c0047d6ba61#androidannotations)，在build資料夾裡查看androidannotations.log:
@@ -109,7 +108,7 @@ javaCompileOptions {
 ```
 成功通過compile! 但是開啟app會[crash](#default-firebaseapp-is-not-initialized)
 
-<div class="c-border-main-title-2">Default FirebaseApp is not initialized</div>
+<div class="c-border-main-title-2">Default FirebaseApp is not initialized</div><br>
 <img src="/images/sdk35/008.png" alt="target sdk 35">
 
 * Firebase會透過FirebaseInitProvider這個ContentProvider做自動初始化，不需要再額外自行加上FirebaseApp.initializeApp(Context)。
@@ -182,11 +181,11 @@ ERROR: R8: Missing class java.lang.invoke.StringConcatFactory (referenced from: 
   - https://mvnrepository.com/artifact/org.greenrobot/greendao-gradle-plugin
   - https://github.com/greenrobot/greenDAO/commit/1c45c2c581a5cd1dc2da025b3628d60dcf65bbed
 
-* 後面會再遇到另一個error
-  ![Screenshot 2025-02-27 at 4.52.27 PM.png](/attachment/67c027d0ddf687cea7bb58c7)
+* 後面會再遇到另一個error<br>
+  <img src="/images/sdk35/009.png" alt="target sdk 35">
   - 這時候把gradle中設定greendao的targetGenDir
-    改成`targetGenDir = file("$buildDir/generated/source/greendao")`
-    ![Screenshot 2025-02-27 at 4.52.56 PM.png](/attachment/67c027ecddf687cea7bb59a7)
+    改成`targetGenDir = file("$buildDir/generated/source/greendao")`<br>
+    <img src="/images/sdk35/010.png" alt="target sdk 35">
   - 同時在kapt中加入對應的arguments
       ```kotlin
       kapt {

@@ -44,13 +44,13 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 
 #### 使用插件開啟模擬器
 1. 到marketplace下載emulator插件
-   <img src="/images/cursor/044.png" alt="flutter"><br>
+   <br><img src="/images/cursor/044.png" alt="flutter"><br>
 
 2. 以上圖這款為例，按下`win/command + shift + p`打開IDE的指令欄，輸入`emulator`
-   <img src="/images/cursor/045.png" alt="flutter"><br>
+   <br><img src="/images/cursor/045.png" alt="flutter"><br>
 
 3. 之後按下enter後跟著步驟走選擇要用的模擬器，即可
-   <img src="/images/cursor/046.png" alt="flutter"><br>
+   <br><img src="/images/cursor/046.png" alt="flutter"><br>
 
 ## 在Cursor中能一鍵Build Android apk嗎？
 
@@ -362,10 +362,10 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 ```
 
 2. 接著使用快捷鍵`win/command` + `shift` + `p` 打開輸入匡後輸入`Run Task`，接著按下`Enter`
-   <img src="/images/cursor/047.png" alt="flutter"><br>
+   <br><img src="/images/cursor/047.png" alt="flutter"><br>
 
 3. 最終可以根據自己的需求，客製build flow
-<img src="/images/cursor/048.gif" alt="flutter"><br>
+   <br><img src="/images/cursor/048.gif" alt="flutter"><br>
 
 
 ## Android Studio常用快捷鍵在Cursor中能用嗎？
@@ -373,23 +373,23 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 #### 整行上/下移
 * 開發時，常會需要調整程式碼的位置，或移到其他行測試效果
     - 在`AS` 用 `win/command` + `shift` +`↑/↓`
-      <img src="/images/cursor/049.gif" alt="flutter"><br>
+      <br><img src="/images/cursor/049.gif" alt="flutter"><br>
     - Cursor(vscode) 則使用`alt/option` + `↑/↓`
-      <img src="/images/cursor/050.gif" alt="flutter"><br>
+      <br><img src="/images/cursor/050.gif" alt="flutter"><br>
 
 
 #### 複製整行
 * 有時候類似的代碼，想要快速複製整行
     - 在`AS` 用 `win/command` + `D`
-      <img src="/images/cursor/051.gif" alt="flutter"><br>
+      <br><img src="/images/cursor/051.gif" alt="flutter"><br>
     - Cursor(vscode) 用 `win/command` + `shift` +`D`
-      <img src="/images/cursor/052.gif" alt="flutter"><br>
+      <br><img src="/images/cursor/052.gif" alt="flutter"><br>
 
 #### 快速補全/提示
 * 以前在Android Studio常用的快速補全
     - 在`AS` 用 `Alt/option`+`Enter`
     - Cursor(vscode) 用 `win/command` + `.`
-      <img src="/images/cursor/053.png" alt="flutter"><br>
+      <br><img src="/images/cursor/053.png" alt="flutter"><br>
 
 <a id="custom-tag"></a>
 #### 其他待補充...
@@ -420,9 +420,9 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 * Debug 體驗較差
     - Android Studio 提供完整的 Logcat 監控、Breakpoint 偵錯，而 Cursor 的 Debugger實測後似乎不能用在Android native上面
     - wait-for-debugger 問題。
-      <img src="/images/cursor/054.png" alt="flutter"><br>
+      <br><img src="/images/cursor/054.png" alt="flutter"><br>
 
 ### 故目前還是推薦Cursor, AS兩者交替使用， 除非已經都很熟悉，就當作純編輯器搭配AI來使用
 ## 其他
 mac / win 鍵盤對應
-<img src="/images/cursor/055.png" alt="flutter"><br>
+<br><img src="/images/cursor/055.png" alt="flutter"><br>

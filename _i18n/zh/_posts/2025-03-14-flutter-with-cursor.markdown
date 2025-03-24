@@ -16,20 +16,20 @@ excerpt: "Cursor (vscode) build flutter"
 <div class="c-border-main-title-2">🛠 在IDE中設定flutter run環境</div>
 ## 前言
 0. 安裝flutter 所需環境，不過[上一篇](https://growi.airdroid.com/67beb564ddf687cea7ba5021)寫過了，所以這邊就直接跳過。
-1. 在`MARKPLACE / EXTENSION` 中 下載flutter插件
+1. 在`MARKPLACE / EXTENSION` 中 下載flutter插件<br>
 <img src="/images/flutter/012.png" alt="flutter"><br>
 
 2. 安裝好`重啟IDE`，按下`win/command + shift + p` 會跳出內建command tool
    同時輸入`flutter doctor`，並點中執行
 
-   <img src="/images/flutter/013.png" alt="flutter"><br>
+   <br><img src="/images/flutter/013.png" alt="flutter"><br>
 
    會開始幫你跑檢查 (`主要就是確認你ide有就緒的flutter env可用`)
 
-   <img src="/images/flutter/014.png" alt="flutter"><br>
+   <br><img src="/images/flutter/014.png" alt="flutter"><br>
 
 3. 接著在專案下建立`../.vscode/launch.json`
-   <img src="/images/flutter/015.png" alt="flutter"><br>
+   <br><img src="/images/flutter/015.png" alt="flutter"><br>
   - 用以下的json format 去建立flutter的build 配置
     ```json
     {
@@ -62,9 +62,9 @@ excerpt: "Cursor (vscode) build flutter"
 
   - 也可以透過IDE產生，比較新的IDE有`一鍵產生launch.json配置`的功能
     找到Build& Debug，並且點擊`create a launch.json file`
-    <img src="/images/flutter/016.png" alt="flutter"><br>
+    <br><img src="/images/flutter/016.png" alt="flutter"><br>
     IDE會讓你選你要配置什麼專案，例如fluter就是選`Dart & Flutter`
-    <img src="/images/flutter/017.png" alt="flutter"><br>
+    <br><img src="/images/flutter/017.png" alt="flutter"><br>
 
 4. 接著左上角按下播放鈕，或者在IDE中按下`F5`，即可開始透過IDE build flutter
 
@@ -103,10 +103,10 @@ excerpt: "Cursor (vscode) build flutter"
     其中`--dmg-title`的值會透過inputs的merber `dmgTitle`去拿
 
 2. 透過IDE選擇`Build macOS DMG` 腳本
-   <img src="/images/flutter/018.png" alt="flutter"><br>
+   <br><img src="/images/flutter/018.png" alt="flutter"><br>
 
 3. 因為我們有設定`dmgTitle`，所以IDE會跳出一欄 讓你輸入想要的名稱
-   <img src="/images/flutter/019.png" alt="flutter"><br>
+   <br><img src="/images/flutter/019.png" alt="flutter"><br>
 
 4. 接著就會打開terminal auto build
-   <img src="/images/flutter/020.gif" alt="flutter"><br>
+   <br><img src="/images/flutter/020.gif" alt="flutter"><br>

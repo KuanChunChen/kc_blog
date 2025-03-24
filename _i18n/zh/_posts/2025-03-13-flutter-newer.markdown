@@ -61,44 +61,45 @@ export PATH=$PATH:"$HOME/fvm/default/bin"
 
 #### 3. 用`flutter doctor`查看目前環境還缺少什麼，來決定要安裝哪些
 * 若要build `android、macos、ios`則需要下載android studio 跟xcode
-* 即時都安裝了，還是有可能有些問題，例如：android tool 跟ios CocoaPods 安裝不完整，導致有error
+* 即時都安裝了，還是有可能有些問題，例如：android tool 跟ios CocoaPods 安裝不完整，導致有error<br>
   <img src="/images/flutter/002.png" alt="flutter"><br>
 
 * 以我這邊來說，遇到三個問題
-  - `cmdline-tools`找不到
+  - `cmdline-tools`找不到<br>
     <img src="/images/flutter/003.png" alt="flutter"><br>
     - 透過`Android tool`中的 `sdkManager`去安裝，若你知道sdkManager路徑，或者有設定在環境變數中，則直接用指令安裝`cmdline-tools`
        ```cmd
        $ANDROID_SDK_ROOT/tools/bin/sdkmanager --install "cmdline-tools;latest"
        ```
-    - 這邊可能遇到java版本相容性問題，若遇到可以切換local java version，我這邊是把java 切換回8，則正常
+    - 這邊可能遇到java版本相容性問題，若遇到可以切換local java version，我這邊是把java 切換回8，則正常<br>
       <img src="/images/flutter/004.png" alt="flutter"><br>
-  - `CocoaPods`不相容：
+  - `CocoaPods`不相容：<br>
     <img src="/images/flutter/005.png" alt="flutter"><br>
 
     - 可用`sudo gem install cocoapods`指令，去安裝最新版
-  - `沒有`同意Android license：
+  - `沒有`同意Android license：<br>
     <img src="/images/flutter/006.png" alt="flutter"><br>
     可以用下列指令`同意`
       ```
        flutter doctor --android-licenses
       ```
 
-* `再次用flutter doctor` 確定是否成功，成功即可開發或編譯flutter
+* `再次用flutter doctor` 確定是否成功，成功即可開發或編譯flutter<br>
   <img src="/images/flutter/007.png" alt="flutter"><br>
 
 ## Run on Target devices directly
-* cd到你的flutter專案`根目錄`底下
+* cd到你的flutter專案`根目錄`底下<br>
   <img src="/images/flutter/008.png" alt="flutter"><br>
 * 直接run，他會下載缺少的資源、tool，之後會`讓你選`你想要run的目標平台，就會run出來
     ```
     flutter run
     ```
+  <br>
   <img src="/images/flutter/009.png" alt="flutter"><br>
 
 ## Build macOS dmg檔
 
-* cd到你的flutter專案`根目錄`底下
+* cd到你的flutter專案`根目錄`底下<br>
   <img src="/images/flutter/008.png" alt="flutter"><br>
 
 * 確認針對macOS的編譯有打開
@@ -110,7 +111,7 @@ export PATH=$PATH:"$HOME/fvm/default/bin"
     flutter build macos
     ```
   - Build完後會出現`xxx.app`
-    <img src="/images/flutter/010.png" alt="flutter"><br>
+    <br><img src="/images/flutter/010.png" alt="flutter"><br>
 
 * 上面出現的xxx.app 還僅僅是app而已，若需要`.dmg`，則需要繼續對其進行打包
 
@@ -120,7 +121,7 @@ export PATH=$PATH:"$HOME/fvm/default/bin"
     ```
   - 把前面build好的xxx.app 進行打包：
     - `--dmg-title`：可以設定安裝包在磁碟機上的名稱
-      <img src="/images/flutter/011.png" alt="flutter"><br>
+      <br><img src="/images/flutter/011.png" alt="flutter"><br>
     ```
     create-dmg build/macos/Build/Products/Release/xxx.app --dmg-title="你的應用名稱" --overwrite
     ```
