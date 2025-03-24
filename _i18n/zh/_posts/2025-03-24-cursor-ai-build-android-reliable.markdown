@@ -2,7 +2,7 @@
 layout: post
 title: "用Cursor IDE 來開發Android可行性"
 date: 2025-03-24 09:29:10 +0800
-image: cover/cursor_with_android.png
+image: cover/cursor-android-cover.svg
 tags: [cursor]
 permalink: /cursor-ai-with-android
 categories: cursor

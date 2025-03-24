@@ -2,11 +2,11 @@
 layout: post
 title: "Cursor (vscode) build flutter"
 date: 2025-03-14 09:29:10 +0800
-image: cover/flutter.png
+image: cover/cursor-flutter-cover.png
 tags: [flutter,cursor]
 permalink: /flutter-use-cursor
 categories: flutter
-excerpt: "什麼是 Flutter？"
+excerpt: "Cursor (vscode) build flutter"
 ---
 
 <div class="c-border-main-title-2">前言</div>
