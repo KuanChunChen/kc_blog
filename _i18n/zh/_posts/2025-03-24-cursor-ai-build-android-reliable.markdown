@@ -56,11 +56,11 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 
 #### 透過launch.json一鍵建構
 
-1. 老樣子，在 根目錄 下建立：`.vscode/launch.json`<br>
-   並請IDE或AI幫你直接產生<br>
-   加入launch腳本內容
+* 老樣子，在 根目錄 下建立：`.vscode/launch.json`<br>
+  並請IDE或AI幫你直接產生<br>
+  加入launch腳本內容<br>
 
-```
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -84,12 +84,11 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 }
 ```
 
-
 - 不過目前測下來，支援度在`native android`沒那麼全<br>
   例如：使用name為`Android launch`的腳本<br>
   打開app時會進入waitting for debugger<br>
-  但`Cursor IDE`又沒有android studio的debug工具<br>
-  可以往下一步，使用`Cursor (vscode)`的debug action似乎無效<br>
+  但`Cursor IDE`又沒有android studio的debug工具 可以往下一步<br>
+  使用`Cursor (vscode)`的debug action似乎無效<br>
 
 
 #### 透過task.json來建構
