@@ -23,14 +23,14 @@ excerpt: "用Cursor IDE 來開發Android可行性"
     - 通常安裝`Android Studio`時，整包就會預設安裝emulator了
     - 現在要在環境中使用，所以你必需找到對應的路徑，加入環境變數中
     - Windows 加入到 `環境變數`中
-         ```java
+      ```java
          C:\Users\你的用戶名\AppData\Local\Android\Sdk\emulator
-         ```
+      ```
     - MacOS 加入到 `.zshrc` 末尾
-        ```java
+      ```java
          export ANDROID_HOME=$HOME/Library/Android/sdk
          export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-         ```
+      ```
 
 1. 使用以下指令列出環境中`可用的AVD模擬器`
     ```java
@@ -56,7 +56,9 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 
 #### 透過launch.json一鍵建構
 
-1. 老樣子，在 根目錄 下建立：`.vscode/launch.json`，並請IDE或AI幫你直接產生，加入launch腳本內容
+1. 老樣子，在 根目錄 下建立：`.vscode/launch.json`<br>
+   並請IDE或AI幫你直接產生<br>
+   加入launch腳本內容
 
 ```
 {
@@ -83,19 +85,24 @@ excerpt: "用Cursor IDE 來開發Android可行性"
 ```
 
 
-- 不過目前測下來，支援度在`native android`沒那麼全
-  例如：使用name為`Android launch`的腳本，打開app時會進入waitting for debugger，但`Cursor IDE`又沒有android studio的debug工具，可以往下一步，使用`Cursor (vscode)`的debug action似乎無效
+- 不過目前測下來，支援度在`native android`沒那麼全<br>
+  例如：使用name為`Android launch`的腳本<br>
+  打開app時會進入waitting for debugger<br>
+  但`Cursor IDE`又沒有android studio的debug工具<br>
+  可以往下一步，使用`Cursor (vscode)`的debug action似乎無效<br>
 
 
 #### 透過task.json來建構
 
-透過自定義task，比較能用到過去常常在Android開發用到的工具來當指令，建構整個工作流程，
-例如adb, gradle, logcat ...等等
+透過自定義task<br>
+比較能用到過去常常在Android開發用到的工具來當指令<br>
+建構整個工作流程<br>
+例如adb, gradle, logcat ...等等<br>
 
 1. 在 根目錄 下建立：`.vscode/task.json`，並請AI幫你直接產生相關內容
 
-這邊我放一個常用的(`每個json object都是一個task`)，有需要可以參考，
-(部分參數可以替換，或請AI幫你產成非hardcode，例如下方`Pixel_7_API_33`, `package name`...等)
+這邊我放一個常用的(`每個json object都是一個task`)，有需要可以參考，<br>
+(部分參數可以替換，或請AI幫你產成非hardcode，例如下方`Pixel_7_API_33`, `package name`...等)<br>
 ```json
 {
   "version": "2.0.0",
