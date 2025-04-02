@@ -398,9 +398,8 @@ excerpt: "用Cursor IDE 來開發Android可行性"
       <br><img src="/images/cursor/053.png" alt="flutter"><br>
 
 <a id="custom-tag"></a>
-#### 其他待補充...
 
-## 在Cursor上純開發Android的優缺點
+<div class="c-border-main-title-2">在Cursor上純開發Android的優缺點</div>
 #### 優點
 * 使用Cursor內建AI工具，達成透過prompt編寫程式碼
 * 輕量化
@@ -429,6 +428,6 @@ excerpt: "用Cursor IDE 來開發Android可行性"
       <br><img src="/images/cursor/054.png" alt="flutter"><br>
 
 ### 故目前還是推薦Cursor, AS兩者交替使用， 除非已經都很熟悉，就當作純編輯器搭配AI來使用
-## 其他
+<div class="c-border-main-title-2">其他</div> 
 mac / win 鍵盤對應
 <br><img src="/images/cursor/055.png" alt="flutter"><br>
