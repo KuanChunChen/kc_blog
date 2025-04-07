@@ -5,11 +5,7 @@ Elegant Access is a blog that share android know-how.
 ### 👋 Hello
 ---
 <p align="left">
-<a href="https://github.com/waitzShigoto"><img src="https://img.shields.io/badge/github-%23000000.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
 <a href="mailto:saintchris1113@gmail.com"><img src="https://img.shields.io/badge/gmail-%23d44638.svg?&style=for-the-badge&logo=gmail&logoColor=white"/></a>
-<a href="https://www.instagram.com/eleg.aces.kc/"><img src="https://img.shields.io/badge/instagram-%23FFFFFF.svg?&style=for-the-badge&logo=instagram"/></a>
-<a href="https://elegant-access-kc.medium.com/android-kotlin-rxjava-%E9%80%B2%E9%9A%8E%E7%AF%87-rxjava-%E9%80%B2%E9%9A%8E%E7%94%A8%E6%B3%95-%E4%B8%80%E5%80%8Bextension-funcion%E5%AF%A6%E7%8F%BE%E6%89%80%E6%9C%89%E7%B6%B2%E8%B7%AF%E9%80%A3%E7%B7%9Atoken%E9%87%8D%E5%8F%96%E9%87%8D%E9%80%A3-f1c5311bb449"><img src="https://img.shields.io/badge/medium-%23000000.svg?&style=for-the-badge&logo=medium&logoColor=white"/></a>    
-
 </p>
 
 Hi there, I,m a android developer specialize in Kotlin and Java.
