@@ -50,7 +50,7 @@ Jetpack Composeの基礎にまだ慣れていない場合は、<br>
 通常、最終的な画面のイメージを先に考えます。<br>
 そのため、異なるレイヤーの概念を区別するためにBoxコンポーネントを使用します。<br>
 
-<script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
 <div class="c-border-content-title-4">第二歩：スプラッシュページのロゴアニメーションを実装する</div>
 このステップでは、関数型のパラメータ <font color="red"> event:()->Unit = {} </font> を渡します。<br>
@@ -61,14 +61,14 @@ Jetpack Composeの基礎にまだ慣れていない場合は、<br>
 これらのパラメータは必要に応じて調整できますが、<br>
 理解を容易にするために、関数内部に記述します。<br>
 
-<script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
 具体的な状況に応じて、<br>
 ロゴをページの中央に配置し、少し上にずらしたいと思います。<br>
 そのため、Columnコンポーネントを追加し、Modifierを使用して位置を調整します。<br>
 以下のコードの<font color="red">#23~#34行</font>を参考にして位置を調整してください。<br>
 
 <br>
-<script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
+<script src="https://gist.github.com/waitzShigoto/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
 <div class="c-border-content-title-4">第三歩：この記事のメインイベント</div>
 
@@ -199,4 +199,4 @@ AnimatedVisibilityScope の関数型範囲内で、<br>
 表示したいコンポーネントを追加できます。<br>
 これでアニメーション効果を表示できます。<br>
 <div class="c-border-main-title-2">最終成品、サンプルコード</div>
-<script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5953666a7808fbdfb4de564d07a6314e.js"></script>

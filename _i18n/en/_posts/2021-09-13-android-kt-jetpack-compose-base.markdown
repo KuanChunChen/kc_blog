@@ -44,11 +44,11 @@ and can quickly get started. <br>
 <div class="c-border-content-title-4">First, let's look at the differences between the two</div>
 
 Here is a simple toolbar written in XML:<br>
-<script src="https://gist.github.com/KuanChunChen/46bbdced14c9e3c26023854bed33c60d.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/46bbdced14c9e3c26023854bed33c60d.js"></script><br>
 
 And here is the toolbar written in Jetpack Compose:<br>
 
-<script src="https://gist.github.com/KuanChunChen/80743e79901a8c98b87655ff8f020193.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/80743e79901a8c98b87655ff8f020193.js"></script><br>
 
 This change allows us to control views entirely with code.<br>
 At the same time,<br>
@@ -89,14 +89,14 @@ Official download location:
 
 <div class="c-border-content-title-4">Step One</div>
 First, add the relevant libraries to the gradle dependencies:<br>
-<script src="https://gist.github.com/KuanChunChen/c18119da90591482e2f6f5b6cb67bdec.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c18119da90591482e2f6f5b6cb67bdec.js"></script>
 <br>
 <br>
 <br>
 
 <div class="c-border-content-title-4">Step Two</div>
 Add @Composable to indicate that your function is a Jetpack Compose component.<br>
-<script src="https://gist.github.com/KuanChunChen/d8ecd7b8977a5d2e11cb89e00b1e2d04.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d8ecd7b8977a5d2e11cb89e00b1e2d04.js"></script>
 <br>
 <br>
 <br>
@@ -123,13 +123,13 @@ Column provides a vertical arrangement similar to LinearLayout,<br>
 which is very useful when you need to add multiple components.<br>
 By using Column, you can easily arrange multiple components vertically,<br>
 making your interface layout more structured and easier to manage.<br>
-<script src="https://gist.github.com/KuanChunChen/203f5c350db588cc6b3730f9b326710c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/203f5c350db588cc6b3730f9b326710c.js"></script>
 ---
 
 
 Start adding functions built into the official library to quickly create a toolbar.<br>
 For example, TopAppBar<br>
-<script src="https://gist.github.com/KuanChunChen/66d842982f99a753c786594e918abe16.js"></script>
+<script src="https://gist.github.com/waitzShigoto/66d842982f99a753c786594e918abe16.js"></script>
 
 Here you will see some<br>
 
@@ -151,7 +151,7 @@ to add an Image to the left side of the TopAppBar:<br>
 (You can press cmd+left click here to see the source code of TopAppBar and understand what RowScope does)
 
 
-<script src="https://gist.github.com/KuanChunChen/049c22e6449d00c4aa529c33fc6cb76f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/049c22e6449d00c4aa529c33fc6cb76f.js"></script>
 
 <br>
 At this point, you have quickly completed a simple, extensible, and reusable widget.
@@ -163,7 +163,7 @@ You just need to write another function and add @Preview
 Then press refresh to see the view you just created displayed on the right side of the IDE.
 (If you don't see it, you can click Design or split on the right to open the preview screen)
 
-<script src="https://gist.github.com/KuanChunChen/eac588083154d8faf5c8f15fff868798.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eac588083154d8faf5c8f15fff868798.js"></script>
 <br>
 <div class="c-border-content-title-4">Step Four</div>
 In practical application<br>
@@ -175,7 +175,7 @@ Future maintenance will be more efficient<br>
 For example, wrap a complete logic layout like this<br>
 This way, if you want to change the layout appearance in the future, you can change it here<br>
 Some functions of your basic components do not need to be specially modified<br>
-<script src="https://gist.github.com/KuanChunChen/34565f4c1e1394cb2e5b1d50ded7093b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/34565f4c1e1394cb2e5b1d50ded7093b.js"></script>
 
 Actual result:
 <div align="center">
@@ -187,4 +187,4 @@ Actual result:
 After completing the above steps<br>
 You can set your layout in the fragment or activity<br>
 Quite concise<br>
-<script src="https://gist.github.com/KuanChunChen/d697201a60570da069cd3cc4f0ce425c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d697201a60570da069cd3cc4f0ce425c.js"></script>

@@ -60,7 +60,7 @@ Leading to a poor user experience<br>
 
 Here's an example with code:
 
-<script src="https://gist.github.com/KuanChunChen/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
 This is a common implementation of a recycler view adapter<br>
 The bind() method is used to implement the logic for generating new items<br>
 
@@ -77,7 +77,7 @@ Each one reloading<br>
 It consumes a significant amount of heap space<br>
 
 Therefore, the simplest way is to load fixed items only once<br>
-<script src="https://gist.github.com/KuanChunChen/baac7167d917ce9633f7d9346b3244ed.js"></script>
+<script src="https://gist.github.com/waitzShigoto/baac7167d917ce9633f7d9346b3244ed.js"></script>
 
 Or you can use some third-party libraries to cache the images<br>
 Reducing the number of loads<br>
@@ -94,7 +94,7 @@ This situation is commonly referred to as a memory leak<br>
 
 Inner Classes: When inner classes have references to outer classes, it can cause memory leaks<br>
 For example:
-<script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
 Like the code above<br>
 Because the inner class accesses the outer showResult<br>
 And since AsyncTask runs in the background<br>
@@ -106,7 +106,7 @@ Solution to this problem<br>
 You can remove the method call to the external class<br>
 or use other methods to access the external class<br>
 such as using weak references<br>
-<script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
+<script src="https://gist.github.com/waitzShigoto/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
 
 Using weak references can still access the external class<br>
 but it won't be as strong as a strong reference, so it won't persist in memory<br>

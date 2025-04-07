@@ -49,7 +49,7 @@ excerpt: ""
 
 
 <div class="c-border-content-title-1">step1. 加入compose相關lib以及material3</div>
-<script src="https://gist.github.com/KuanChunChen/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
 這邊就依照需求自行導入<br>
 實際使用toml是用這種寫法：`implementation(libs.androidx.material3)`<br>
 放在你的`build.gradle.kts(:app)`中<br><br>
@@ -59,15 +59,15 @@ excerpt: ""
 這邊有關於Material 3 theme的
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>文檔</a>
 
-<script src="https://gist.github.com/KuanChunChen/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
-<script src="https://gist.github.com/KuanChunChen/6315bd0157777d118f0def22f2f7e288.js"></script>
+<script src="https://gist.github.com/waitzShigoto/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6315bd0157777d118f0def22f2f7e288.js"></script>
 
 <div class="c-border-content-title-1">step3. 實際使用theme</div>
 這邊分別是設定狀態列、導航欄、theme等等<br>
 colorscheme就是套用前面實作的
-<script src="https://gist.github.com/KuanChunChen/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
 在Activity或Screen中使用：<br>
-<script src="https://gist.github.com/KuanChunChen/eef8ce349264ca797f6644676a588ffa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eef8ce349264ca797f6644676a588ffa.js"></script>
 
 <div class="c-border-content-title-1">(Optional) step4. 製作通用toolbar</div>
 * 這邊則是做一個通用的toolbar<br>
@@ -76,11 +76,11 @@ colorscheme就是套用前面實作的
 我自己就會先根據設計稿把toolbar寫好通用的<br>
 這邊就看大家需不需要做這步<br>
 如下：<br>
-<script src="https://gist.github.com/KuanChunChen/448372236d5ae5dd508b69a3c5e350ac.js"></script>
+<script src="https://gist.github.com/waitzShigoto/448372236d5ae5dd508b69a3c5e350ac.js"></script>
 這邊是實際使用`MainAppBarConfig`<br>
 主要是要在MainAppBarConfig裡面	加入想要的樣式或點擊反應<br>
 接著放到`Scaffold`內的`topBar`就可以了
-<script src="https://gist.github.com/KuanChunChen/0d011cba78589066d77d921d2e029a5e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0d011cba78589066d77d921d2e029a5e.js"></script>
 <div class="c-border-content-title-4">結語</div>
 * 第一部分就到這邊了<br>
 主要是先把前面的基礎建設打穩<br>

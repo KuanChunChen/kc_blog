@@ -59,7 +59,7 @@ LINEチャットボットと連携して自動返信機能を実現すること�
   例えば、ポート番号やメインプログラムの Application.module のパッケージパスなどです。<br>
 
 
-  <script src="https://gist.github.com/KuanChunChen/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
+  <script src="https://gist.github.com/waitzShigoto/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
   次に、application.ktファイルを作成します。<br>
   ```Kotlin
   fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -76,7 +76,7 @@ LINEチャットボットと連携して自動返信機能を実現すること�
   ここでは、前述の.confファイルで指示されたサーバーブロックを実行します。<br>
   Kotlinの拡張機能を使って記述しています。<br>
 
-<script src="https://gist.github.com/KuanChunChen/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
 以下は実装時の例です。<br>
 KtorがGsonをサポートしてJSONを解析できるようにするために、<br>
 関連するコードを追加しました。<br>
@@ -132,7 +132,7 @@ LINE公式があなたのサーバーを呼び出したことを確認できま�
 これにより、悪意のある人物があなたのサーバーを攻撃するのを防ぐことができます。<br>
 
 ここに私のKotlinでの署名検証の書き方を示します。<br>
-<script src="https://gist.github.com/KuanChunChen/dab3f90689f9aa887d01c225caadd348.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dab3f90689f9aa887d01c225caadd348.js"></script>
 
 次に、LINE Developer APIを学習し続けます。<br>
 例えば、LINE Botがチャットルームで自動的にメッセージを返信するようにするには、<br>
@@ -178,7 +178,7 @@ enum class TextCommandType(var type: String){
   }
 ```
 
-<script src="https://gist.github.com/KuanChunChen/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
 
 ここに一例を示します。<br>
 主に、特定のコマンドがサードパーティのAPIを呼び出して取引ペアを取得する方法です。<br><br>

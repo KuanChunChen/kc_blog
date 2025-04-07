@@ -64,7 +64,7 @@ GCがトリガーされてheap空間を回収します<br><br>
 
 コード付きの例を挙げると：
 
-<script src="https://gist.github.com/KuanChunChen/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
 これは一般的なRecyclerViewの実装アダプタです<br>
 その中のbind()は新しいデータが生成されるときのロジックを実現するためのものです<br>
 
@@ -81,7 +81,7 @@ itemが100個、1000個ある場合<br>
 heap容量の消費が非常に大きくなります<br>
 
 したがって、最も簡単な方法は固定のものを一度だけ読み込むように変更することです<br>
-<script src="https://gist.github.com/KuanChunChen/baac7167d917ce9633f7d9346b3244ed.js"></script>
+<script src="https://gist.github.com/waitzShigoto/baac7167d917ce9633f7d9346b3244ed.js"></script>
 
 または、サードパーティのライブラリを使用して画像をキャッシュに保存し<br>
 読み込み回数を減らすこともできます<br>
@@ -100,7 +100,7 @@ gcが解放できないオブジェクトの参照漏れ<br>
 
 Inner Classes : 内部クラスと外部クラスが参照を持つと、メモリリークが発生する可能性があります<br>
 例：
-<script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
 上記のコードのように<br>
 内部クラスが外部のshowResultを参照しているため<br>
 AsyncTaskがバックグラウンドで実行されると<br>
@@ -112,7 +112,7 @@ AsyncTaskがまだ実行されている可能性があり<br>
 外部クラスのメソッド呼び出しを削除する<br>
 または他の方法で外部クラスにアクセスする<br>
 例えば弱参照を使用する<br>
-<script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
+<script src="https://gist.github.com/waitzShigoto/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
 
 弱参照を使用しても外部クラスにアクセスできます<br>
 しかし、強参照のように強力ではないため、メモリ内に持続的に保持されることはありません<br>

@@ -24,7 +24,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 首先第一步，很簡單，要先定義一個recycler view用的adapter，那這邊我習慣，先做其中的item的xml，所以如下：
 
-<script src="https://gist.github.com/KuanChunChen/b1a45501587bf59e8008b261c8439f72.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b1a45501587bf59e8008b261c8439f72.js"></script>
 
 
 <br><br>
@@ -40,7 +40,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 一樣也用了泛型，去取代未來可能會重複寫到類似code的地方，<br>
 所以會看起來像下面這樣：<br>
 
-<script src="https://gist.github.com/KuanChunChen/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
 在上面這個adapter裡面，<br>
 我的code變得很少，<br>
 因為我先寫好了一個抽象類，<br>
@@ -49,7 +49,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 另外我的base adapter會長這樣，<br>
 主要是抽象了一些方法：
 
-<script src="https://gist.github.com/KuanChunChen/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
 
 
 這裡主要講一些我抽象的方法
@@ -104,7 +104,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 只要呼叫下方code，<br>
 就能有基本的recycler view了:<br>
 
-<script src="https://gist.github.com/KuanChunChen/16987a5a8f9039f913b3e490da226e76.js"></script>
+<script src="https://gist.github.com/waitzShigoto/16987a5a8f9039f913b3e490da226e76.js"></script>
 
 
 那這邊的switchRecyclerView是上一篇
@@ -123,7 +123,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 
 所以我們需要繼承RecyclerView.ItemDecoration()，如下:
 
-<script src="https://gist.github.com/KuanChunChen/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
 
 <br>
 
@@ -183,7 +183,7 @@ var sideVisibleWidth =
 接著，只需要在指定條件下，去指定我們的item間隔即可，如下：
 <br>
 
-<script src="https://gist.github.com/KuanChunChen/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
 
 
 <br>
@@ -196,7 +196,7 @@ var sideVisibleWidth =
 
 接著我們繼承 RecyclerView.OnScrollListener()來計算滑動時的監聽器:
 
-<script src="https://gist.github.com/KuanChunChen/9e98788c170b119d4da62124eb7523f3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e98788c170b119d4da62124eb7523f3.js"></script>
 
 <br>
 
@@ -214,7 +214,7 @@ SwitchRecyclerScrollerListener(private var mPosition: Int, private val itemWith:
 
 接著override onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int)，去取得左右橫移時的滑動量，<br>
 
-<script src="https://gist.github.com/KuanChunChen/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
 
 
 我們在onscroll裡面取得dx，他代表左右橫移的滑動量，<br>
@@ -246,6 +246,6 @@ if (moveTotalCount != 0) {
 最後，你只要把你剛剛寫的那些繼承的類，拿出來用，<br>
 就可以得到一個左右滑動的recycler view了，這邊是我實際使用時的範例：<br>
 
-<script src="https://gist.github.com/KuanChunChen/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
 
 <br>

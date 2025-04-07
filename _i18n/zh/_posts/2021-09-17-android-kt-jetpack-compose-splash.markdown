@@ -51,7 +51,7 @@ excerpt: "透過Jetpack Compose，你可以輕鬆地為你的應用程式添加�
 通常習慣先想像最終畫面的樣子，<br>
 因此我透過使用一個Box元件作為不同圖層的概念來區分各個區塊。<br>
 
-<script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
 <div class="c-border-content-title-4">第二步 ： 實作 splash頁logo動畫</div>
 在這一步中，我們將傳入一個函式型別的參數 <font color="red"> event:()->Unit = {} </font><br>
@@ -62,14 +62,14 @@ excerpt: "透過Jetpack Compose，你可以輕鬆地為你的應用程式添加�
 這些參數可以根據需求自行調整，<br>
 但為了方便理解，我們先將它們寫在函式內部。<br>
 
-<script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
 根據具體情況，<br>
 我希望我的 Logo 在頁面正中央並稍微偏上一點，<br>
 所以我加入了 Column 元件，並使用 Modifier 調整相關位置。<br>
 你可以參考下方程式碼的<font color="red">#23~#34行</font>，來調整相關位置。<br>
 
 <br>
-<script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
+<script src="https://gist.github.com/waitzShigoto/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
 <div class="c-border-content-title-4">第三步 ： 本文重頭戲</div>
 
@@ -206,4 +206,4 @@ AnimatedVisibility(
 你可以加入你想要顯示的元件，<br>
 這樣就能呈現出動畫效果了。<br>
 <div class="c-border-main-title-2">最終成品，範例程式碼</div>
-<script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5953666a7808fbdfb4de564d07a6314e.js"></script>

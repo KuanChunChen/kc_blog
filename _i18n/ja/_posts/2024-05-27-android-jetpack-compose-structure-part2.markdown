@@ -28,22 +28,22 @@ DI注入を導入し始めることを考えています<br>
 <div class="c-border-content-title-1">step1. Hilt & KSPの導入</div>
 * Hiltを使用するためには以下のtomlを設定する必要があります<br>
 主にhiltライブラリと、hiltを導入するためにkspを使用します<br>
-<script src="https://gist.github.com/KuanChunChen/a529e6aef2c4cb054a593689b86ab962.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a529e6aef2c4cb054a593689b86ab962.js"></script>
 
 * build.gradle.kts(:app)にプラグインを追加
-<script src="https://gist.github.com/KuanChunChen/ca4d1179d072db1f781831ce3ae367a6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ca4d1179d072db1f781831ce3ae367a6.js"></script>
 
 * build.gradle.kts(:yourAppName)に導入：
-<script src="https://gist.github.com/KuanChunChen/0cecaed97e600ccd7069722e2cc62c42.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0cecaed97e600ccd7069722e2cc62c42.js"></script>
 
 * build.gradle.kts(:app)に導入：
-<script src="https://gist.github.com/KuanChunChen/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
 
 <div class="c-border-content-title-1">step2. Hiltアプリケーションの実装</div>
 * 公式ドキュメントに記載されています<br>
 Hiltを導入するには必ず`@HiltAndroidApp`を含める必要があります<br>
 そのため、Applicationを実装します<br>
-<script src="https://gist.github.com/KuanChunChen/648bd2e1d642c5ea108af87e7700a7de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/648bd2e1d642c5ea108af87e7700a7de.js"></script>
 
 実際に追加しないと、以下のエラーが発生します：<br>
 `Caused by: java.lang.IllegalStateException: Hilt Activity must be attached to an @HiltAndroidApp Application. Did you forget to specify your Application's class name in your manifest's application 's android:name attribute?`
@@ -53,10 +53,10 @@ Hiltを導入するには必ず`@HiltAndroidApp`を含める必要がありま�
 hiltはクラスの先頭に`@AndroidEntryPoint`を追加した場所でinject機能を提供します<br>
 
 * それでは、Hiltを使用したViewmodelを試してみましょう
-<script src="https://gist.github.com/KuanChunChen/c76e7ce4bc7743832372ae66ae651f03.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c76e7ce4bc7743832372ae66ae651f03.js"></script>
 
 実際の使用例：
-<script src="https://gist.github.com/KuanChunChen/412d3db62610456139c5231632f5d2dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/412d3db62610456139c5231632f5d2dd.js"></script>
 
 <div class="c-border-content-title-1">モジュールの追加</div>
 * DIは必要なクラスを提供するためにモジュールを追加できます<br>
@@ -66,7 +66,7 @@ DIを通じてインスタンスを生成してくれます<br>
 `provideKotlinxJsonConverter`はJson形式を解析するコンバータを提供します<br>
 `provideCustomConverter`はHTTPリクエストのレスポンス形式を定義するためのものです<br>
 `provideBaseRetrofitBuilder`はRetrofitのインスタンスを提供します<br>
-<script src="https://gist.github.com/KuanChunChen/1127653dde42bc2bca111e274a7ba521.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1127653dde42bc2bca111e274a7ba521.js"></script>
 
 上記のソースコードには`@Named("xxx")`という行があります<br>
 これはインスタンスの名前を示すためのものです<br>
@@ -81,7 +81,7 @@ Hiltがコンパイル時にどのインスタンスを注入するかを判断�
 ただし、Hiltは唯一のインスタンスを見つけて注入します<br>
 
 実際の使用例：<br>
-<script src="https://gist.github.com/KuanChunChen/a1b8b91295e8016cabc733463f6db0c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a1b8b91295e8016cabc733463f6db0c9.js"></script>
 * DIを使用して注入すると、自分でクラスのインスタンスを初期化する必要がなくなります<br>
 DIを通じて処理され、うまく使用すれば<br>
 コードがよりシンプルで読みやすくなります<br>
@@ -100,9 +100,9 @@ DIを通じて処理され、うまく使用すれば<br>
 例えば、ネットワークリクエスト<br>
 サーバーが提供する仕様が同じであれば<br>
 APIサービスの開発に集中するだけで済みます
-<script src="https://gist.github.com/KuanChunChen/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
 
 * 最後に、これらのインスタンスを使用する必要がある場合は、コンストラクトで直接注入するだけで使用できます
-<script src="https://gist.github.com/KuanChunChen/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
 
 <a class="link" href="#category" data-scroll>目次に戻る</a>

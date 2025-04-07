@@ -24,7 +24,7 @@ excerpt: "Android Enterpriseの技術を習得したいですか？この完全�
            `curl -X GET https://androidmanagement.googleapis.com/v1/{parent=enterprises/*}/devices`
            上記 `{parent=enterprises/*}` は形式 `enterprises/{enterprise-id}` を使用
            Response :
-      <script src="https://gist.github.com/KuanChunChen/ecdf9831492804818412a9d190889fe1.js"></script>
+      <script src="https://gist.github.com/waitzShigoto/ecdf9831492804818412a9d190889fe1.js"></script>
 
         2. http DELETEでenterpriseデバイスを削除  
            `curl -X DELETE https://androidmanagement.googleapis.com/v1/{name=enterprises/*/devices/*}`
@@ -72,7 +72,7 @@ excerpt: "Android Enterpriseの技術を習得したいですか？この完全�
   後のリクエストボディの`{json=ResourcePolicy}`に対応する[Resource Policy format](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies#Policy)を入力します<br>
 
        - リクエストボディにはkey passwordRequirementsがあり、ここに対応する[PasswordRequirements json format](https://developers.google.com/android/management/reference/rest/v1/PasswordRequirements)を設定します
-       <script src="https://gist.github.com/KuanChunChen/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
 <br>
 * Android Management API ボトムバーのボタンをロックする
   - 同様にHTTP Patch [enterprises.policies](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies/patch)を通じて、リクエストボディ内の`SystemNavigation`を設定してボトムバーの表示を制御します

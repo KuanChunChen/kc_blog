@@ -28,7 +28,7 @@ is as simple as one line:<br>
 In some cases,<br>
 when the client requires you to dynamically set the spacing between Android View elements,<br>
 you can usually use the following method:<br>
-<script src="https://gist.github.com/KuanChunChen/60e47ade8cf051643f9075e8157c6ded.js"></script>
+<script src="https://gist.github.com/waitzShigoto/60e47ade8cf051643f9075e8157c6ded.js"></script>
 <br>
 This method requires instantiating a LayoutParams<br>
 and setting the top, bottom, left, and right margins before setting it to your View.<br>
@@ -42,7 +42,7 @@ making your code more concise and easier to maintain.<br>
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;Using Kotlin Extension to Achieve This</h1>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step 0. Here is the complete extension function</h4>
-<script src="https://gist.github.com/KuanChunChen/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
 
 <p class="table_container">
   This code is ready to use.<br>
@@ -58,7 +58,7 @@ making your code more concise and easier to maintain.<br>
 <div class="c-border-content-title-4">
   First, create a function as follows
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/9aec2350bcd7231a162da047508d76be.js"></script><br>
 
 <div class="table_container">
   <p>Explanation of the above code</p>
@@ -98,7 +98,7 @@ making your code more concise and easier to maintain.<br>
 <div class="c-border-content-title-4">
   After that, we can call it like this
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
 <div class="table_container">
   <p>Explanation of the above code</p>
   <span>
@@ -109,14 +109,14 @@ making your code more concise and easier to maintain.<br>
 </div><br>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. Write a method to convert dp to px</h4>
-<script src="https://gist.github.com/KuanChunChen/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
 
 - This is very simple
   Mainly to match the use of pixels when setting margins
   So a conversion method was written
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. Modify the layout parameters through the extended layoutParams</h4>
-<script src="https://gist.github.com/KuanChunChen/b64909a750c6a73306a1d1885f763f67.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b64909a750c6a73306a1d1885f763f67.js"></script>
 <div class="table_container">
   <p>Explanation of the above code</p>
   <span>
@@ -135,7 +135,7 @@ making your code more concise and easier to maintain.<br>
 
 <h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5. Finally, use it easily</h4>
 
-<script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>
 ```
 
 It looks like you haven't pasted the Markdown content yet. Please provide the text you want translated, and I'll get started on the translation for you.

@@ -42,7 +42,7 @@ I hope to provide some valuable insights for you when facing similar issues duri
   - AirDroid requests `All Files Access Permission`, so no modification is needed currently. Below is the Intent to navigate to that page: <br>
     `new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);`
   - For modifications, refer to the demo:
-  <script src="https://gist.github.com/KuanChunChen/d75998c921b176e659c911a938da4930.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d75998c921b176e659c911a938da4930.js"></script>
 
   <div class="c-border-content-title-4">
        Changes in Notification Permissions in Android 13

@@ -102,7 +102,7 @@ categories: Debug探討
 
   - 透過寫好的shell直接小黑窗執行在背景抓log
   - 這邊分享個簡易的寫法：<br>
-<script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
 <p class ="table_container">
   1. 如果是需要<b style="color:red;">開發人員</b>要客製的話就是要從頭到尾自己了解上面這份code<br>

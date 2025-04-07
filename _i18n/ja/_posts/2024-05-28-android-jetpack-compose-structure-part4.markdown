@@ -36,17 +36,17 @@ UI/UXデザインの画面を描くことが多くなります<br>
 <div class="c-border-content-title-1">Edittext</div>
 <img src="/images/compose/002.png" width="100%"><br><br>
 
-<script src="https://gist.github.com/KuanChunChen/1a5a6e77cbaa7565c95152467d9aa6eb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1a5a6e77cbaa7565c95152467d9aa6eb.js"></script>
 
 
 <div class="c-border-content-title-1">Dialog</div>
 <img src="/images/compose/003.png" width="100%"><br><br>
 
-<script src="https://gist.github.com/KuanChunChen/9eb6c6296cfab8ec4e17f5e151f3a205.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9eb6c6296cfab8ec4e17f5e151f3a205.js"></script>
 
 <div class="c-border-content-title-1">Dialog</div>
 <img src="/images/compose/004.png" width="100%"><br><br>
-<script src="https://gist.github.com/KuanChunChen/055ae82beba153468b22473973fc97e8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/055ae82beba153468b22473973fc97e8.js"></script>
 
 <div class="c-border-content-title-4">必要な画面を組み立てる</div>
 * 次に、さまざまな画面を組み立てることができます<br>
@@ -71,12 +71,12 @@ UI/UXデザインの画面を描くことが多くなります<br>
 例えば、ネットワークリクエストやローカルDBの大量データのクエリ時など<br>
 そのため、flowを使用してデータがemitされるのを待つことができます<br>
 ここで少し例を挙げます：
-<script src="https://gist.github.com/KuanChunChen/15bd34c56591b39a43887e892a0ff1bf.js"></script>
+<script src="https://gist.github.com/waitzShigoto/15bd34c56591b39a43887e892a0ff1bf.js"></script>
 
 <div class="c-border-content-title-1">画面の応答に必要なデータを保存するためのviewstateを作成する</div>
 * 次に、画面上で変化するすべての内容を整理するために<br>
 データクラスを作成して、画面に必要なデータを保存します<br>
-<script src="https://gist.github.com/KuanChunChen/df6639924388dce2a2def14fe45d39c0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/df6639924388dce2a2def14fe45d39c0.js"></script>
 
 <div class="c-border-content-title-1">combineを使ってflowを組み合わせる</div>
 * 次に、`combine`を使用してさまざまなデータソースを組み合わせます<br>
@@ -88,12 +88,12 @@ combineはすべてのflowを組み合わせ<br>
 * ラムダ`{}`内で判定したい値がある場合も考慮できます<br>
 最終的に、前に定義したViewStateを使って結果を返すだけです<br>
 `.stateIn`は、このR型flowの初期値を設定できます<br>
-<script src="https://gist.github.com/KuanChunChen/93f44fdfaae010f19254a3b0cc5cfc5a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/93f44fdfaae010f19254a3b0cc5cfc5a.js"></script>
 
 <div class="c-border-content-title-1">実際にcomposeでflowからのデータを使用する</div>
 * 前の手順が完了したら、`.collectAsState()`を使用して前のflowを取得し<br>
 composeで使用できるstateに収集します<br>
 この時点で画面をリアクティブに更新できます~<br>
 
-<script src="https://gist.github.com/KuanChunChen/a86bac16bd42eab68566b6b440fc6e5d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a86bac16bd42eab68566b6b440fc6e5d.js"></script>
 <a class="link" href="#category" data-scroll>目次に戻る</a>

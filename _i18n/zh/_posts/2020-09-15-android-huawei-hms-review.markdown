@@ -66,12 +66,12 @@ categories: Android教學
 <div class="c-border-content-title-1">第五步:加入專案配置</div>
   * 再來加入android專案 <br>
     在build gradle內配置`maven {url 'https://developer.huawei.com/repo/'}`
-    <script src="https://gist.github.com/KuanChunChen/1ca47854f0a1eb3c94565c3512725050.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/1ca47854f0a1eb3c94565c3512725050.js"></script>
     <br>
 
   * 再來把需要HMS kit 導入到專案內<br>
     這邊以HMS map為例<br>
-    <script src="https://gist.github.com/KuanChunChen/631f00b79f69c96bd2a226c58eff5199.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/631f00b79f69c96bd2a226c58eff5199.js"></script>
     `這樣可以正式開始開發了！`
 
 

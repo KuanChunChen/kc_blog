@@ -24,7 +24,7 @@ excerpt: "Want to master Android Enterprise skills? This comprehensive study not
       `curl -X GET https://androidmanagement.googleapis.com/v1/{parent=enterprises/*}/devices`
       Replace `{parent=enterprises/*}` with the format `enterprises/{enterprise-id}`
       Response:
-      <script src="https://gist.github.com/KuanChunChen/ecdf9831492804818412a9d190889fe1.js"></script>
+      <script src="https://gist.github.com/waitzShigoto/ecdf9831492804818412a9d190889fe1.js"></script>
 
       2. Delete the enterprise device via HTTP DELETE  
       `curl -X DELETE https://androidmanagement.googleapis.com/v1/{name=enterprises/*/devices/*}`
@@ -72,7 +72,7 @@ For example: `curl -X PATCH https://androidmanagement.googleapis.com/v1/{name=en
   The request body `{json=ResourcePolicy}` should include the corresponding [Resource Policy format](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies#Policy)<br>
 
        - In the request body, there is a key passwordRequirements where you can include the corresponding [PasswordRequirements json format](https://developers.google.com/android/management/reference/rest/v1/PasswordRequirements) to set it
-       <script src="https://gist.github.com/KuanChunChen/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
 <br>
 * Android Management API Lock Bottom Bar Buttons
   - Similarly, update via HTTP Patch [enterprises.policies](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies/patch), and in the request body, the `SystemNavigation` can be set to display the bottom bar

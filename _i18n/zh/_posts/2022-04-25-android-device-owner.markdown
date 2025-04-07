@@ -57,7 +57,7 @@ Device Owner權限可以幫助開發者實現一些普通權限無法滿足的�
 <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>：填入步驟1產生的hash code<br>
 <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>：填入你的download url<br>
 </p>
-<script src="https://gist.github.com/KuanChunChen/8a9376c9f99b70090c2c45a58defdf09.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8a9376c9f99b70090c2c45a58defdf09.js"></script>
 
 <p style="margin-top: 15px;" class="table_container">
 	3. 拿著步驟2的json格式 去產生QrCode<br>
@@ -207,14 +207,14 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 所以就不會講太細<br>
 
 * 首先就是得拿到DevicePolicyManger與AdminReceiver的實例<br>
-	<script src="https://gist.github.com/KuanChunChen/c12af22551a91a32a6f85cd3da7e3313.js"></script>
+	<script src="https://gist.github.com/waitzShigoto/c12af22551a91a32a6f85cd3da7e3313.js"></script>
 
 * 拿到後，就可以依照自己需要的去呼叫，實作方法大同小異，所以這邊只大概舉幾個例子
 
 	- `隱藏App`
-	 <script src="https://gist.github.com/KuanChunChen/520157aaceb75c79cda052e10f576a26.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/520157aaceb75c79cda052e10f576a26.js"></script>
 	- 加入`User Restriction`
-	 <script src="https://gist.github.com/KuanChunChen/15286f247a2120b4320b4cf5f678560e.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/15286f247a2120b4320b4cf5f678560e.js"></script>
 
 * 其他更多例子可以參考google [github](https://github.com/googlesamples/android-testdpc) 內有使用Device Owner的 範例app
 

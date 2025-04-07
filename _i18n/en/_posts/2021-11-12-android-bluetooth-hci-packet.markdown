@@ -107,7 +107,7 @@ to generate logs.<br>
 
 Here is a small shell script
 
-<script src="https://gist.github.com/KuanChunChen/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
 
 You can directly copy it to run in the shell<br>
 Or you can copy it line by line to the terminal to execute
@@ -145,7 +145,7 @@ If you want to write the shell script to execute with one click<br>
 you might need to pull this into a variable<br>
 to easily fetch the log<br>
 For example:
-<script src="https://gist.github.com/KuanChunChen/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
 This can be rewritten according to personal needs
 
 

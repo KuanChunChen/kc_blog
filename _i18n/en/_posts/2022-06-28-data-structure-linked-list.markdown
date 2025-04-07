@@ -34,18 +34,18 @@ Each node in a Linked List contains the following two elements:<br>
 <div class="c-border-content-title-4">
    Below is the code for implementing a Linked List in Kotlin
 </div>
- <script src="https://gist.github.com/KuanChunChen/ad9e538b06afc720f0785a4471fd6145.js"></script>
+ <script src="https://gist.github.com/waitzShigoto/ad9e538b06afc720f0785a4471fd6145.js"></script>
 
 <div class="c-border-content-title-4">
    Below is the code for traversing a Linked List
 </div>
 
-<script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
 <div class="c-border-content-title-4">
   Besides the above code, you can also implement a Linked List using Kotlin's Data Class:
 </div>
-<script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
 
 <div class="c-border-content-title-4">
   Linked List Complexity

@@ -28,7 +28,7 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 有些情況下<br>
 當需求方要求你動態設定 Android View 元素間的間距時<br>
 通常可以用下面的的方法:<br>
-<script src="https://gist.github.com/KuanChunChen/60e47ade8cf051643f9075e8157c6ded.js"></script>
+<script src="https://gist.github.com/waitzShigoto/60e47ade8cf051643f9075e8157c6ded.js"></script>
 <br>
 這個方法需要實例化一個 LayoutParams<br>
 並且需要設定上下左右間距後才能 set 到你的 View 上<br>
@@ -42,7 +42,7 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;使用kotlin extension來完成</h1>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;step0. 這邊先展示一下完整的擴充function</h4>
-<script src="https://gist.github.com/KuanChunChen/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
 
 <p class="table_container">
   這段程式碼已經可以直接使用了<br>
@@ -59,7 +59,7 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 <div class="c-border-content-title-4">
   首先先建立一個function如下
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/9aec2350bcd7231a162da047508d76be.js"></script><br>
 
 <div class="table_container">
   <p>上面程式碼解說</p>
@@ -98,7 +98,7 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 <div class="c-border-content-title-4">
     之後我們就可以這樣呼叫
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
 <div class="table_container">
   <p>上面程式碼解說</p>
   <span>
@@ -109,14 +109,14 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 </div><br>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. 寫一個dp to px的method</h4>
-<script src="https://gist.github.com/KuanChunChen/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
 
   - 這邊很簡單
   主要是為了配合設定間距時使用的是pixel
   所以寫了個轉換方法
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. 透過擴充好的layoutParams去對layout的parameter做修改</h4>
-<script src="https://gist.github.com/KuanChunChen/b64909a750c6a73306a1d1885f763f67.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b64909a750c6a73306a1d1885f763f67.js"></script>
 <div class="table_container">
   <p>上面程式碼解說</p>
   <span>
@@ -135,4 +135,4 @@ excerpt: "在Android App中，調整元素間距是一個常見的需求，而�
 
 <h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5.最後輕鬆使用</h4>
 
-  <script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>

@@ -68,7 +68,7 @@ App network request -> Token expired -> Server returns access expired -> Execute
 In this article, the main method I use for network requests is the RxJava operator,<br>
 wrapping Retrofit and applying OkHttp to request network APIs. Here I share a way I request network:<br>
 
-<script src="https://gist.github.com/KuanChunChen/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
 
 If someone uses RxJava to handle network requests,<br>
 they usually use an Rx operator to control it.<br>
@@ -93,12 +93,12 @@ Therefore,<br>
 I wrote a Kotlin extension function<br>
 to achieve this functionality:<br>
 
-<script src="https://gist.github.com/KuanChunChen/889f4e67cf5edae25cffc006a25032dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/889f4e67cf5edae25cffc006a25032dd.js"></script>
 
 <div class="c-border-content-title-4">Code Explanation</div><br>
 **1. When actually applying this extension, it will look like this:**<br>
 
-<script src="https://gist.github.com/KuanChunChen/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
 It's very convenient to use,<br>
 just add the extension function where you need to re-acquire the Token,<br>
 and continue using the original method where you don't need to re-acquire the Token.<br>

@@ -95,7 +95,7 @@ max_tokensを使用して制限することができます。<br>
 <p>あなたが慣れている言語でAPIの開発を始めることができます。</p>
 <p>OpenAI APIを接続するKotlinプログラム</p>
 
-<script src="https://gist.github.com/KuanChunChen/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
 
 <p class = "table_container">
 &#11014; ここでは、再利用する可能性のあるコードをChatGptAPI.kt、ChatGptCompletionRequest.kt、ChatGptCompletionResult.ktなどに分けて書くのが私の習慣です。<br>
@@ -104,12 +104,12 @@ max_tokensを使用して制限することができます。<br>
 UIスレッドとサブスレッドの切り替えはすでに処理されています。
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
+<script src="https://gist.github.com/waitzShigoto/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
 <p style="text-align:left;">
 &#11014; ここでは主にRetrofitを使用してエンドポイントの接続を分離しています。
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
 <p style="text-align:left;">
 &#11014; ここでは、HTTP接続のクラスを作成します。</p>
 
@@ -189,12 +189,12 @@ LineBotチャットルームのAPIを呼び出して、返されたメッセー�
 </div><br>
 <p>あなたが慣れている言語でAPIの開発を始めることができます</p>
 <p>LineBot API を接続する Kotlin プログラム</p>
-<script src="https://gist.github.com/KuanChunChen/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
 <p style="text-align:left;">
 &#11014; ここでは前のChatGPT接続のプロセスと同じく、Retrofitを使用して書いています
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/371d803d654c0050574da73df02d3f16.js"></script>
+<script src="https://gist.github.com/waitzShigoto/371d803d654c0050574da73df02d3f16.js"></script>
 <p style="text-align:left;">
 &#11014; 引き出されたLine Messagingインターフェース
 </p>

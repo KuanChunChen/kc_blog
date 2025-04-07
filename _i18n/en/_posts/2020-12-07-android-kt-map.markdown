@@ -18,10 +18,10 @@ then parse the JSON content,<br>
 and use the data to draw the route.<br>
 Below is part of the JSON content:
 
-<script src="https://gist.github.com/KuanChunChen/37e425cb8a6b029fd9b817b155705d3a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/37e425cb8a6b029fd9b817b155705d3a.js"></script>
 
 **(Since the JSON data is quite large when the route is long, only a part is shown)**
-But if you want to see the complete JSON file, you can click <a href="https://gist.github.com/KuanChunChen/030767a7fea9fcf4eba7cc600adc0da8">here</a> to view it.<br>
+But if you want to see the complete JSON file, you can click <a href="https://gist.github.com/waitzShigoto/030767a7fea9fcf4eba7cc600adc0da8">here</a> to view it.<br>
 
 <div class="c-border-content-title-4">Step 1: Understanding the Data</div>
 However, our requirement is to draw the entire driving route, so we plan to use the JSON data obtained just now, and have summarized a few tips as follows:<br>
@@ -74,28 +74,28 @@ as many people are already familiar with it!<br>
 Next, we take the polyline encode obtained from Google<br>
 (points in the overview_polyline within routes):<br>
 
-<script src="https://gist.github.com/KuanChunChen/5099e838a2d8d9af507eb94e250b33b8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5099e838a2d8d9af507eb94e250b33b8.js"></script>
 
 Following the official website's process, write the decode function (Kotlin version).<br>
 Here is an example I wrote in Kotlin.
 You can modify it according to your needs.<br>
 (For example, modifying the returned model, etc.):<br>
 
-<script src="https://gist.github.com/KuanChunChen/17a978f6831fa8c0f2f80adffa1803ad.js"></script>
+<script src="https://gist.github.com/waitzShigoto/17a978f6831fa8c0f2f80adffa1803ad.js"></script>
 ```
 Here is an important point: after reversing the polyline encoding, the returned latitude and longitude are reversed, so when processing the latitude and longitude data, remember to reverse the positions.
 ```
 <br>
 Step two, pass the obtained polyline encode into the decode function:<br>
-<script src="https://gist.github.com/KuanChunChen/e9cf66a41cc014870cb8bab4c188a10a.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/e9cf66a41cc014870cb8bab4c188a10a.js"></script><br>
 
 After decoding, you can get a format similar to the one below.<br>
 
-<script src="https://gist.github.com/KuanChunChen/bf80d28f5abdd748f1def92a30e557ed.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/bf80d28f5abdd748f1def92a30e557ed.js"></script><br>
 
 With this, we get the array of latitudes and longitudes we want to draw a line with, and we can use PolylineOption on Google Maps to draw the line:<br>
 
-<script src="https://gist.github.com/KuanChunChen/5eb77674995ca2e3422eed17825b22a6.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5eb77674995ca2e3422eed17825b22a6.js"></script><br>
 
 The final result of the drawing is as shown in the picture (red path):<br>
 <div align="center">

@@ -53,16 +53,16 @@ But toml does not support adding @aar at the end in versions<br>
 causing the build to fail<br>
 <img src="/images/toml/009.png" width="50%"><br><br>
 You can change it to the following<br>
-<script src="https://gist.github.com/KuanChunChen/c019662550b3ae9c8ab2a685ee3644a7.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c019662550b3ae9c8ab2a685ee3644a7.js"></script>
 
 * In the past, kotlin objects were used to configure version parameters, as shown below<br>
-<script src="https://gist.github.com/KuanChunChen/e529bd12f84310a4c1f05c237850f1ba.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e529bd12f84310a4c1f05c237850f1ba.js"></script>
 If you want to switch everything to .toml
 Testing shows that accessing versions configured in .toml externally<br>
 cannot be done directly like `libs.xx.xx.xxx to get the version`<br><br>
 You can only use `get()` to get the value of Versions in .toml<br>
 For example: `libs.versions.minSdk.get().toInt()`<br>
-<script src="https://gist.github.com/KuanChunChen/950ea155ac70ee87ce9b2060667027fa.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/950ea155ac70ee87ce9b2060667027fa.js"></script><br>
 However, if you set it this way<br>
 you cannot see where it is used in .toml<br>
 <img src="/images/toml/013.png" width="50%"><br><br>
@@ -78,8 +78,8 @@ The reason is due to an issue with the IDE
 It cannot be set to null or empty <br>
 
 Because some projects use plugin + classpath to set up
-<script src="https://gist.github.com/KuanChunChen/d353a385e8942ba88259c2bbb4e03171.js"></script>
-<script src="https://gist.github.com/KuanChunChen/29686a0a02bd225c08ca968011f87503.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d353a385e8942ba88259c2bbb4e03171.js"></script>
+<script src="https://gist.github.com/waitzShigoto/29686a0a02bd225c08ca968011f87503.js"></script>
 This causes conflicts when directly using plugins settings<br>
 <img src="/images/toml/011.png" width="50%"><br><br>
 
@@ -104,7 +104,7 @@ Very convenient!<br>
   <img src="/images/toml/008.png" width="100%">
   For example, the code below:
 </div>
-<script src="https://gist.github.com/KuanChunChen/ca2178bad03c6ee04618a575a7751334.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ca2178bad03c6ee04618a575a7751334.js"></script>
 
 <div class = "table_container">
    <p>Actual usage</p>
@@ -112,7 +112,7 @@ Very convenient!<br>
   Then you can directly use it in build.gradle.kts<br>
   For example, the code below:<br>
 </div>
-<script src="https://gist.github.com/KuanChunChen/5be8ba888fa9e64287f8a33636fa533b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5be8ba888fa9e64287f8a33636fa533b.js"></script>
 <div class="c-border-content-title-1">References</div>
 - <a href="https://developer.android.com/build/migrate-to-catalogs?hl=zh-cn#kts">Android developer official documentation</a><br>
 - <a href="https://docs.gradle.org/7.5/userguide/version_catalog_problems.html#unsupported_format_version">Gradle version catalogs troubleshooting</a><br>

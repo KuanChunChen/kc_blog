@@ -46,11 +46,11 @@ Jetpack Compose の学習に大きな利点があります。<br>
 <div class="c-border-content-title-4">まず、両者の違いを見てみましょう</div>
 
 例えば、これは xml を使用してシンプルなツールバーを作成する方法です：<br>
-<script src="https://gist.github.com/KuanChunChen/46bbdced14c9e3c26023854bed33c60d.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/46bbdced14c9e3c26023854bed33c60d.js"></script><br>
 
 そして、こちらは Jetpack Compose を使用してツールバーを作成する方法です<br>
 
-<script src="https://gist.github.com/KuanChunChen/80743e79901a8c98b87655ff8f020193.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/80743e79901a8c98b87655ff8f020193.js"></script><br>
 
 
 このような変更により、完全にコードでビューを制御できるようになります。<br>
@@ -92,14 +92,14 @@ Android StudioをArctic Foxバージョンに更新する必要があります<b
 
 <div class="c-border-content-title-4">第一歩</div>
 まず関連libをgradle dependenciesに追加します:<br>
-<script src="https://gist.github.com/KuanChunChen/c18119da90591482e2f6f5b6cb67bdec.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c18119da90591482e2f6f5b6cb67bdec.js"></script>
 <br>
 <br>
 <br>
 
 <div class="c-border-content-title-4">第二歩</div>
 @Composableを追加して、このfunがJetpack Composeのコンポーネントであることを示します<br>
-<script src="https://gist.github.com/KuanChunChen/d8ecd7b8977a5d2e11cb89e00b1e2d04.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d8ecd7b8977a5d2e11cb89e00b1e2d04.js"></script>
 <br>
 <br>
 <br>
@@ -125,13 +125,13 @@ ColumnはLinearLayoutに似た垂直配置方法を提供し、<br>
 複数のコンポーネントを追加する際に非常に便利です。<br>
 Columnを使用することで、複数のコンポーネントを垂直に簡単に並べることができ、<br>
 インターフェースのレイアウトがより構造化され、管理しやすくなります。<br>
-<script src="https://gist.github.com/KuanChunChen/203f5c350db588cc6b3730f9b326710c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/203f5c350db588cc6b3730f9b326710c.js"></script>
 ---
 
 
 公式libに内蔵されている関数を使って、すぐにツールバーを作成し始めます<br>
 例えばTopAppBar<br>
-<script src="https://gist.github.com/KuanChunChen/66d842982f99a753c786594e918abe16.js"></script>
+<script src="https://gist.github.com/waitzShigoto/66d842982f99a753c786594e918abe16.js"></script>
 
 ここでいくつかの<br>
 
@@ -153,7 +153,7 @@ content: @Composable RowScope.() -> Unit</font>
 （ここでcmd+左クリックを押してTopAppBarのソースコードを見て、RowScopeが何をしているかを確認できます）
 
 
-<script src="https://gist.github.com/KuanChunChen/049c22e6449d00c4aa529c33fc6cb76f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/049c22e6449d00c4aa529c33fc6cb76f.js"></script>
 
 <br>
 ここまでで、拡張性が高く、再利用可能なシンプルなウィジェットが迅速に完成しました。
@@ -164,7 +164,7 @@ content: @Composable RowScope.() -> Unit</font>
 もう一つfunを書いて@Previewを追加するだけで、refreshを押すとIDEの右側に先ほど作成したビューが表示されます
 （表示されない場合は、右側のDesignまたはsplitをクリックしてプレビュー画面を開いてください）
 
-<script src="https://gist.github.com/KuanChunChen/eac588083154d8faf5c8f15fff868798.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eac588083154d8faf5c8f15fff868798.js"></script>
 <br>
 <div class="c-border-content-title-4">第四步</div>
 実際の応用では<br>
@@ -176,7 +176,7 @@ contentとして包んで呼び出すことができます<br>
 このようにして、完全なロジックのレイアウトを包むことができます<br>
 将来レイアウトの見た目を変更したい場合は、ここから変更できます<br>
 基本的なコンポーネントのいくつかの機能を特に変更する必要はありません<br>
-<script src="https://gist.github.com/KuanChunChen/34565f4c1e1394cb2e5b1d50ded7093b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/34565f4c1e1394cb2e5b1d50ded7093b.js"></script>
 
 実際に作成したもの：
 <div align="center">
@@ -188,4 +188,4 @@ contentとして包んで呼び出すことができます<br>
 上記のステップを完了すると<br>
 fragmentやactivityでレイアウトを設定できます<br>
 非常にシンプルです<br>
-<script src="https://gist.github.com/KuanChunChen/d697201a60570da069cd3cc4f0ce425c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d697201a60570da069cd3cc4f0ce425c.js"></script>

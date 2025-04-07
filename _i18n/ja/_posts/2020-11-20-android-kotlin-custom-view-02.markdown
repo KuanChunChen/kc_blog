@@ -26,7 +26,7 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 <br>
 このクラスを作成し、使用したいレイアウトを継承します。ここでは、ビューにどのような特性を持たせたいかに応じて継承するものを調整できます。例えば、FrameLayoutを使用したい場合：
 
-<script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
+<script src="https://gist.github.com/waitzShigoto/99170edc18f10eb9786ed1ef5061a511.js"></script>
 
 <br>
 <br>
@@ -40,14 +40,14 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 <br>
 <br>
 上記の画像のレイアウトの実際のコードは以下の通りです：
-<script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2441aae9b1134270fc7cb0968693a4d4.js"></script>
 
 <br>
 <br>
 
 このレイアウトは基本的なもので、特に難しい点はありません。主に読者のプロジェクトの要件に応じて、必要なレイアウトを定義します。必ずしも上記のものに従う必要はありませんが、ファイルが混在しないように分ける習慣があります。この時点で、先ほど作成した HorizontalMoveView にこのレイアウトを読み込むだけです。以下のように：
 
-<script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
+<script src="https://gist.github.com/waitzShigoto/30213ecc81d3372c620b05a488ac05e2.js"></script>
 
 <br>
 <br>
@@ -55,7 +55,7 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 ここまでで、第一歩が完了です。カスタムビューを作成できましたが、注意が必要です。現在のところ、空の殻だけで、外観だけで、カスタムビューをサポートする機能はまだ書かれていません。したがって、カスタムビューを呼び出すことはできますが、機能はなく、画面に表示されるだけです。したがって、機能を追加する必要があります。
 ここで、先ほど作成したビューを呼び出してみます。以下のように：
 
-<script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ae59cabf7891e07eebd875cc2df612f1.js"></script>
 
 <br>
 <br>

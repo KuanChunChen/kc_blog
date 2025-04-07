@@ -34,7 +34,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
 </div>
 <p>
 
-  <script src="https://gist.github.com/KuanChunChen/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
       首先，創建一個名為 SnakeGameView 的自定義 View 類，並繼承自 View 類。<br>
@@ -45,7 +45,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     定義變量和初始化<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
       在 SnakeGameView 類中，定義遊戲所需的變量，如蛇的位置、大小、方向等。<br>
@@ -72,7 +72,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     設置遊戲畫面尺寸<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     在 SnakeGameView 類中，<br>
@@ -91,7 +91,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     繪製蛇和食物<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6d59bfaf552bade337814b0016fd0725.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6d59bfaf552bade337814b0016fd0725.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     在 SnakeGameView ，<br>
@@ -121,7 +121,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     遊戲邏輯<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d3d6fa84b498999473e0ed041fcb48be.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d3d6fa84b498999473e0ed041fcb48be.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     新增一個 updateGame 方法，實現遊戲的主要邏輯，如蛇的移動、碰撞檢測等。<br>
@@ -135,7 +135,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     生成食物<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3f8e352778a37d355b2afb2607013b23.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3f8e352778a37d355b2afb2607013b23.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     新增一個generateFood 方法，實現隨機生成食物的功能。<br>
@@ -149,7 +149,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     更新方向<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     為了讓蛇能夠根據用戶的操作轉向，<br>
@@ -162,7 +162,7 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     資源回收<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     為了避免內存泄漏，我們需要實現一個回收使用的資源，如bitmap。
@@ -174,8 +174,8 @@ excerpt: "在本教學中，我們將帶領您一步一步打造經典貪吃蛇�
     接回fragment/activity 並設置按鈕事件<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
-  <script src="https://gist.github.com/KuanChunChen/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
   <div class = "table_container">
     <p>程式碼解說</p>
     這是最後一步了，<br>

@@ -49,7 +49,7 @@ color resource IDをstyles.xmlに配置してダークモードのテーマ設�
 
 
 <div class="c-border-content-title-1">step1. compose関連libおよびmaterial3の追加</div>
-<script src="https://gist.github.com/KuanChunChen/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
 ここではニーズに応じて導入します<br>
 実際にtomlを使用する場合は次のように記述します：`implementation(libs.androidx.material3)`<br>
 これを`build.gradle.kts(:app)`に配置します<br><br>
@@ -59,15 +59,15 @@ color resource IDをstyles.xmlに配置してダークモードのテーマ設�
 こちらはMaterial 3テーマに関する
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>ドキュメント</a>
 
-<script src="https://gist.github.com/KuanChunChen/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
-<script src="https://gist.github.com/KuanChunChen/6315bd0157777d118f0def22f2f7e288.js"></script>
+<script src="https://gist.github.com/waitzShigoto/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6315bd0157777d118f0def22f2f7e288.js"></script>
 
 <div class="c-border-content-title-1">step3. 実際にテーマを使用する</div>
 ここではステータスバー、ナビゲーションバー、テーマなどの設定を行います<br>
 colorschemeは前述の実装を適用します
-<script src="https://gist.github.com/KuanChunChen/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
 ActivityやScreenで使用する場合：<br>
-<script src="https://gist.github.com/KuanChunChen/eef8ce349264ca797f6644676a588ffa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eef8ce349264ca797f6644676a588ffa.js"></script>
 
 <div class="c-border-content-title-1">(オプション) step4. 汎用ツールバーを作成する</div>
 * ここでは汎用のツールバーを作成します<br>
@@ -76,11 +76,11 @@ ActivityやScreenで使用する場合：<br>
 私はデザインに基づいて汎用のツールバーを先に作成します<br>
 このステップが必要かどうかは皆さん次第です<br>
 以下のように：<br>
-<script src="https://gist.github.com/KuanChunChen/448372236d5ae5dd508b69a3c5e350ac.js"></script>
+<script src="https://gist.github.com/waitzShigoto/448372236d5ae5dd508b69a3c5e350ac.js"></script>
 ここでは実際に`MainAppBarConfig`を使用します<br>
 主にMainAppBarConfigに必要なスタイルやクリック反応を追加し<br>
 それを`Scaffold`内の`topBar`に配置するだけです
-<script src="https://gist.github.com/KuanChunChen/0d011cba78589066d77d921d2e029a5e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0d011cba78589066d77d921d2e029a5e.js"></script>
 <div class="c-border-content-title-4">結語</div>
 * 第一部はここまでです<br>
 主に前述の基礎をしっかりと固めることが目的です<br>

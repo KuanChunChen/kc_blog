@@ -36,18 +36,18 @@ Linked List の各ノードは以下の2つの要素を含みます：<br>
 <div class="c-border-content-title-4">
    以下は Kotlin で Linked List を実装するコードです
 </div>
- <script src="https://gist.github.com/KuanChunChen/ad9e538b06afc720f0785a4471fd6145.js"></script>
+ <script src="https://gist.github.com/waitzShigoto/ad9e538b06afc720f0785a4471fd6145.js"></script>
 
 <div class="c-border-content-title-4">
    以下は Linked List を走査するコードです
 </div>
 
-<script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
 <div class="c-border-content-title-4">
   上記のコードに加えて、Kotlin の Data Class を使用して Linked List を実装することもできます：
 </div>
-<script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
 
 <div class="c-border-content-title-4">
   Linked List の複雑度

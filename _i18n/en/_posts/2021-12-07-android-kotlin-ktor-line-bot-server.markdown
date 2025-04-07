@@ -58,7 +58,7 @@ which can connect to a LINE chatbot to achieve automatic message replies.<br>
   mainly used to set Ktor-related parameters,<br>
   such as the port number and the package path of the main program's Application.module.<br>
 
-  <script src="https://gist.github.com/KuanChunChen/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
+  <script src="https://gist.github.com/waitzShigoto/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
   Next, create an application.kt file<br>
   ```Kotlin
   fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -75,7 +75,7 @@ which can connect to a LINE chatbot to achieve automatic message replies.<br>
   This is the server block that the .conf file points to for execution.<br>
   It is written using Kotlin's extension.<br>
 
-<script src="https://gist.github.com/KuanChunChen/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
 Below is an example of implementation,<br>
 where we add the relevant code to enable Ktor to support Gson for parsing JSON.<br>
 The purpose is to allow the HTTP server to use Gson to parse data when receiving it.<br>
@@ -130,7 +130,7 @@ can you confirm that it is Line's official server calling your server,<br>
 to prevent malicious attacks on your server.<br>
 
 Here is my Kotlin implementation for signature verification<br>
-<script src="https://gist.github.com/KuanChunChen/dab3f90689f9aa887d01c225caadd348.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dab3f90689f9aa887d01c225caadd348.js"></script>
 
 Next, we continue to learn the LINE Developer API,<br>
 for example, if you want the LINE bot to automatically reply to messages in the chatroom,<br>
@@ -177,7 +177,7 @@ enum class TextCommandType(var type: String){
   }
 ```
 
-<script src="https://gist.github.com/KuanChunChen/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
 
 Here is an example,<br>
 mainly showing how one of the commands fetches data from a third-party API to get trading pairs.<br><br>

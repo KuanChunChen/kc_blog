@@ -70,7 +70,7 @@ excerpt: "この記事では、RxJavaを使用してトークンの再取得と�
 この記事では、主にRxJavaのオペレーターを使用してネットワークリクエストを行い、<br>
 RetrofitをラップしてOkHttpを適用してネットワークAPIをリクエストする方法を共有します：<br>
 
-<script src="https://gist.github.com/KuanChunChen/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
 
 RxJavaを使用してネットワークリクエストを操作する場合、<br>
 通常はRxオペレーターを使用して制御します。<br>
@@ -94,12 +94,12 @@ RxJavaを使用して実行中にトークンを再取得し、<br>
 そのために、<br>
 この機能を実現するためのKotlinの拡張関数（extension function）を作成しました：<br>
 
-<script src="https://gist.github.com/KuanChunChen/889f4e67cf5edae25cffc006a25032dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/889f4e67cf5edae25cffc006a25032dd.js"></script>
 
 <div class="c-border-content-title-4">コード解説</div><br>
 **1. この拡張機能を実際に適用すると、次のようになります：**<br>
 
-<script src="https://gist.github.com/KuanChunChen/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
 使用は非常に簡単で、<br>
 トークンを再取得する必要がある場所にこの拡張関数を追加するだけです。<br>
 トークンを再取得する必要がない場所では、従来の方法で実行を続けます。<br>

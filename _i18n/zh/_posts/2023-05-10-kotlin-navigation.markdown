@@ -161,7 +161,7 @@ a. 不使用上面xml的方式預設值<br>
 
 b. 如果是有用xml方式帶入預設值的 <br>
 則可以用下面收變數的程式碼直接接收<br>
-<script src="https://gist.github.com/KuanChunChen/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
 
 <div class="c-border-content-title-4">navigation有支援的變數型態</div>
 <div class="p-img-container-single">
@@ -173,11 +173,11 @@ b. 如果是有用xml方式帶入預設值的 <br>
 
 <div class="c-border-content-title-4">支援直接設定跳轉動畫</div>
 帶入 enterAnim, exitAnim, popEnterAnim ,popExitAnim 則可以輕鬆預設跳轉動畫
-<script src="https://gist.github.com/KuanChunChen/695048f8e71483c8671bacb0a8f71473.js"></script>
+<script src="https://gist.github.com/waitzShigoto/695048f8e71483c8671bacb0a8f71473.js"></script>
 
 <div class="c-border-content-title-4">支援Activity 加上彈出動畫</div>
 使用下方code 可以使用navigation內建的activity跳離動畫
-<script src="https://gist.github.com/KuanChunChen/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
 
 
 <div class="c-border-main-title-2">Navigation 開發案例 - 支援 multiple back stacks</div>
@@ -187,7 +187,7 @@ b. 如果是有用xml方式帶入預設值的 <br>
 便可處理多個back stack跳轉問題<br>
 例如setupWithNavController 與bottom navigation view關聯 <br>
 setupActionBarWithNavController 與action bar關聯 <br>
-<script src="https://gist.github.com/KuanChunChen/fe1ee57edeaed321729525d4346014bc.js"></script>
+<script src="https://gist.github.com/waitzShigoto/fe1ee57edeaed321729525d4346014bc.js"></script>
 
 <div class="c-border-main-title-2">Navigation 開發案例 - popUpTo 及 popUpToInclusive</div>
 <div class="c-border-content-title-4">透過 popUpTo 導向目的地頁面時，移除該頁面stack上的所有頁面</div>
@@ -205,7 +205,7 @@ fragment依照順序跳轉 1 -> 2 -> 3 最後再從 3回到1 <br>
 且再次跳轉 1 -> 2 -> 3 再回到1 <br>
 此時眾fragment 在back stack內 順序為[1,2,3,1,2,3,1] <br>
 
-<script src="https://gist.github.com/KuanChunChen/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
 若是想要跳轉回1的時候在stack內不再有目的fragment以上的內容可以在xml的action內加入 <br>
 popUpTo 與 popUpToInclusive <br>
 這邊便可以讓下次跳轉回目的地fragment 上方有個stack instance給清除掉<br>

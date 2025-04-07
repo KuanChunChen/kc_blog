@@ -79,16 +79,16 @@ categories: Android教學
        -> Solution: Add `supportlib.jar` and include in gradle dependencies<br>
        `When using the Add as library feature in IDE, note the following`:
        Here, the original knox sdk and supportlib jar files need to be changed as follows, otherwise runtime errors will occur
-       <script src="https://gist.github.com/KuanChunChen/fefe8c4005184dbaecf0d20645709ba8.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/fefe8c4005184dbaecf0d20645709ba8.js"></script>
 
      - After the above steps, when activating the license key, admin permissions need to be enabled, otherwise `internal error` will be returned<br>
-       <script src="https://gist.github.com/KuanChunChen/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
 
      - There is a pitfall here: when activating the license, a Broadcast receiver needs to be used to receive the return result
          - However, the current official documentation shows that the broadcast action for activating the Knox license is
-           <script src="https://gist.github.com/KuanChunChen/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
           But in the old Knox API level 19 (Knox 2.6), Knox does not send the above Action, instead it sends the following
-           <script src="https://gist.github.com/KuanChunChen/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
          - It is noted here that the official documentation states [namespace changes when upgrading from 2.x to 3.x](https://docs.samsungknox.com/dev/knox-sdk/new-intent-names.htm) (starting from Knox API 30)
 
 - So here is a method provided: [Reference](https://docs.samsungknox.com/dev/knox-sdk/support-older-devices.htm)

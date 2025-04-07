@@ -103,7 +103,7 @@ QRコードからの距離が遠かったり、斜めの角度からスキャン
   - 以下では、主なQRコードスキャナーのコード解析を共有します。<br>
   興味がある方は参考にしてください。
 <div class="c-border-content-title-1">BaseCameraLifecycleObserver</div>    
-<script src="https://gist.github.com/KuanChunChen/c99170df495f4c7352a9c81f54f63bb7.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c99170df495f4c7352a9c81f54f63bb7.js"></script>
 <div class = "table_container">
   <p>コード解説</p>
   BaseCameraLifecycleObserverクラスは、他のクラスが継承するための基本的なクラスです。<br>
@@ -134,7 +134,7 @@ QRコードからの距離が遠かったり、斜めの角度からスキャン
 
 
 <div class="c-border-content-title-1">ScannerLifecycleObserver</div>    
-<script src="https://gist.github.com/KuanChunChen/6bbc490b5ce7596a2218c9b2beadd6c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6bbc490b5ce7596a2218c9b2beadd6c9.js"></script>
 <div class = "table_container">
   <p>コード解説</p>
   ScannerLifecycleObserverは比較的シンプルです<br>
@@ -148,7 +148,7 @@ QRコードからの距離が遠かったり、斜めの角度からスキャン
 
 </div><br>
 <div class="c-border-content-title-1">ScannerAnalyzer</div>    
-<script src="https://gist.github.com/KuanChunChen/7c3d18a8025bb0959b1339f633120c99.js"></script>
+<script src="https://gist.github.com/waitzShigoto/7c3d18a8025bb0959b1339f633120c99.js"></script>
 
 <div class = "table_container">
    <p>コード解説</p>

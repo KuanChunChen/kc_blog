@@ -50,7 +50,7 @@ we need to consider the overall structure of this page.<br>
 It is usually a habit to first imagine the final look of the screen,<br>
 so I use a Box component to conceptually separate different layers.<br>
 
-<script src="https://gist.github.com/KuanChunChen/4862edcea54d85e0b3afec37c02f78fa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4862edcea54d85e0b3afec37c02f78fa.js"></script>
 
 <div class="c-border-content-title-4">Step 2: Implement the Splash Screen Logo Animation</div>
 In this step, we will pass a function type parameter <font color="red"> event:()->Unit = {} </font><br>
@@ -61,14 +61,14 @@ as well as the delay time before executing the passed action.<br>
 These parameters can be adjusted according to needs,<br>
 but for ease of understanding, we will write them inside the function first.<br>
 
-<script src="https://gist.github.com/KuanChunChen/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b61eb400f593a0bd389d1b129f7dc9c5.js"></script><br>
 Depending on the specific situation,<br>
 I want my logo to be in the center of the page and slightly above,<br>
 so I added a Column component and used Modifier to adjust the position.<br>
 You can refer to lines <font color="red">#23~#34</font> in the code below to adjust the position.<br>
 
 <br>
-<script src="https://gist.github.com/KuanChunChen/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
+<script src="https://gist.github.com/waitzShigoto/65f06da7ebceb4e93d08b6fe1aad7629.js"></script>
 
 <div class="c-border-content-title-4">Step 3: The Main Event</div>
 
@@ -205,4 +205,4 @@ AnimatedVisibility(
 你可以加入你想要顯示的元件，<br>
 這樣就能呈現出動畫效果了。<br>
 <div class="c-border-main-title-2">最終成品，範例程式碼</div>
-<script src="https://gist.github.com/KuanChunChen/5953666a7808fbdfb4de564d07a6314e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5953666a7808fbdfb4de564d07a6314e.js"></script>

@@ -53,7 +53,7 @@ Next, you need to create a QR code scan to implement these two steps.<br>
 <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>: Enter the hash code generated in step 1<br>
 <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>: Enter your download URL<br>
 </p>
-<script src="https://gist.github.com/KuanChunChen/8a9376c9f99b70090c2c45a58defdf09.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8a9376c9f99b70090c2c45a58defdf09.js"></script>
 
 <p style="margin-top: 15px;" class="table_container">
 	3. Use the JSON format from step 2 to generate a QR code.<br>
@@ -202,14 +202,14 @@ Personally, I think it's not too difficult to understand<br>
 So I won't go into too much detail<br>
 
 * First, you need to get instances of DevicePolicyManager and AdminReceiver<br>
-	<script src="https://gist.github.com/KuanChunChen/c12af22551a91a32a6f85cd3da7e3313.js"></script>
+	<script src="https://gist.github.com/waitzShigoto/c12af22551a91a32a6f85cd3da7e3313.js"></script>
 
 * Once you have them, you can call them as needed. The implementation methods are quite similar, so here are just a few examples
 
 	- `Hide App`
-	 <script src="https://gist.github.com/KuanChunChen/520157aaceb75c79cda052e10f576a26.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/520157aaceb75c79cda052e10f576a26.js"></script>
 	- Add `User Restriction`
-	 <script src="https://gist.github.com/KuanChunChen/15286f247a2120b4320b4cf5f678560e.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/15286f247a2120b4320b4cf5f678560e.js"></script>
 
 * For more examples, you can refer to Google's [github](https://github.com/googlesamples/android-testdpc) which has sample apps using Device Owner
 

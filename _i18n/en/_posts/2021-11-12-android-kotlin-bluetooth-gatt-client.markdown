@@ -17,7 +17,7 @@ hoping it can also help those who need to implement it.<br>
 
 After Android 12, new permission-related handling was added, so take note!<br>
 Here is how I handled it, for your reference:
-<script src="https://gist.github.com/KuanChunChen/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
 
 The ultimate goal is this<br>
 To integrate with previous Jetpack Compose practices<br>
@@ -173,7 +173,7 @@ I also checked various APIs for discovering Bluetooth devices for comparison<br>
 <div class="c-border-main-title-2">Actual Development: How to Perform Bluetooth Scanning</div>
 
 Add the required permissions mentioned above in the manifest<br>
-<script src="https://gist.github.com/KuanChunChen/fc855c0ab9c4667df49b253595744d08.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/fc855c0ab9c4667df49b253595744d08.js"></script><br>
 
 
 <div class="c-border-content-title-4">Request Permissions in the Code</div>
@@ -183,7 +183,7 @@ that can be used universally<br>
 ```kotlin
   requestMultiplePermissions(Manifest.permission.ACCESS_FINE_LOCATION,...
 ```
-<script src="https://gist.github.com/KuanChunChen/42ac3a41e2b7d44eb84f5072c09fd359.js"></script>
+<script src="https://gist.github.com/waitzShigoto/42ac3a41e2b7d44eb84f5072c09fd359.js"></script>
 
 
 <div class="c-border-content-title-4">Obtain an Instance of BluetoothAdapter</div><br>
@@ -215,7 +215,7 @@ val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toI
 val uuidExtra = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID)
 ```
 繼承的BroadcastReceiver實作
-<script src="https://gist.github.com/KuanChunChen/aaf1cacad87443dec44eab7777d27242.js"></script>
+<script src="https://gist.github.com/waitzShigoto/aaf1cacad87443dec44eab7777d27242.js"></script>
 
 
 
@@ -235,7 +235,7 @@ bluetoothAdapter.cancelDiscovery()
 做到用viewmodel紀錄刷新狀態，並透過coroutine掃描指定秒數 x 秒 <br>
 如果不需要用到那麼複雜的話 <br>
 直接用startDiscovery、cancelDiscovery去開發就行了 <br>
-<script src="https://gist.github.com/KuanChunChen/2e0d11bb4d06d114d9eb911b3b65b3b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2e0d11bb4d06d114d9eb911b3b65b3b3.js"></script>
 
 掃描的結果會返回剛剛DeviceListBoardCast {}內，<br>
 這邊根據自己專案去調整就行<br>
@@ -254,14 +254,14 @@ private val receiver = DeviceListBoardCast { bleDevice ->
 首先建立一個service<br>
 並建立Binder<br>
 用來onBind時返回實例給fragment去調用<br>
-<script src="https://gist.github.com/KuanChunChen/9ab4e15232a62ec3894c753896eb4a26.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9ab4e15232a62ec3894c753896eb4a26.js"></script>
 
 <div class="c-border-content-title-4">初始化必需的class類別</div>
 
 在該service內創建一個 initialize()函式<br>
 用在之後bindservice時可以調用初始化<br>
 
-<script src="https://gist.github.com/KuanChunChen/06594ff234da93de9aaed7b1ec2b5480.js"></script>
+<script src="https://gist.github.com/waitzShigoto/06594ff234da93de9aaed7b1ec2b5480.js"></script>
 
 <div class="c-border-content-title-4">寫好callback，到時候藍芽狀態返回就能收到</div>
 
@@ -290,7 +290,7 @@ onCharacteristicWrite
 </div><br>
 
 gattCallback example:
-<script src="https://gist.github.com/KuanChunChen/6e9f5f10af4619fe3d13167a1d599e95.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6e9f5f10af4619fe3d13167a1d599e95.js"></script>
 
 <div class="c-border-content-title-4">Start Connection</div>
 Create a connect function<br>
@@ -308,7 +308,7 @@ Then use the connectGatt method in the device to bind the Gatt device<br>
 Of course, you also need to pass in the gattCallback written earlier<br>
 The previous part is just a series of null checks<br>
 To ensure the app does not crash due to null<br>
-<script src="https://gist.github.com/KuanChunChen/aa1c6a31dc8ee2a38432db88ec0125b3.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/aa1c6a31dc8ee2a38432db88ec0125b3.js"></script><br>
 
 In the instantiation of gattCallback,<br>
 you will find a method named broadcastUpdate.<br>
@@ -328,30 +328,30 @@ Here is a diagram<br>
 This is a general relationship diagram when connecting Bluetooth<br>
 
 So we find it through the following method:<br>
-<script src="https://gist.github.com/KuanChunChen/2b6fb90e97f14b00e6a942b43f653644.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2b6fb90e97f14b00e6a942b43f653644.js"></script>
 Bring in the gatt service obtained through the broadcast earlier<br>
 Then you can traverse to get the characteristic<br>
 
 Since the official Android has already wrapped the characteristic class for you<br>
 To read, you just need to call the relevant function:<br>
 
-<script src="https://gist.github.com/KuanChunChen/51be18e662704d9cf0241cc27f5f961b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/51be18e662704d9cf0241cc27f5f961b.js"></script>
 <br>
 
 And it will return to you in the previously defined BluetoothGattCallback<br>
 onCharacteristicRead<br>
 You just need to define the broadcast reception to get the data<br>
 
-<script src="https://gist.github.com/KuanChunChen/ebb8318578499bec7f6cf97f4bc93063.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ebb8318578499bec7f6cf97f4bc93063.js"></script>
 
 Additionally, there is also a notify method in Bluetooth:<br>
 
-<script src="https://gist.github.com/KuanChunChen/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
 
 Similarly, it returns the result<br>
 In BluetoothGattCallback<br>
 Check onCharacteristicChanged<br>
-<script src="https://gist.github.com/KuanChunChen/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
 
 If you want to see how to capture Bluetooth packets through third-party tools<br>
 You can refer to:<br>

@@ -43,7 +43,7 @@ and with just a few simple steps,<br>
 you can add pull-to-refresh functionality to your list.<br>
 
 
-<script src="https://gist.github.com/KuanChunChen/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
 
 <div class="c-border-content-title-4">Meaning of Each Variable</div>
 

@@ -48,7 +48,7 @@ Device Owner権限は、通常の権限では対応できないニーズを満�
    <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_CHECKSUM</b>：手順1で生成されたハッシュコードを入力<br>
    <b>android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION</b>：ダウンロードURLを入力<br>
 </p>
-<script src="https://gist.github.com/KuanChunChen/8a9376c9f99b70090c2c45a58defdf09.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8a9376c9f99b70090c2c45a58defdf09.js"></script>
 
 <p style="margin-top: 15px;" class="table_container">
 	3. 手順2のjson形式を使ってQrCodeを生成します。<br>
@@ -196,14 +196,14 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 なので詳細には説明しません<br>
 
 * まず、DevicePolicyManagerとAdminReceiverのインスタンスを取得する必要があります<br>
-	<script src="https://gist.github.com/KuanChunChen/c12af22551a91a32a6f85cd3da7e3313.js"></script>
+	<script src="https://gist.github.com/waitzShigoto/c12af22551a91a32a6f85cd3da7e3313.js"></script>
 
 * 取得した後は、必要に応じて呼び出すことができます。実装方法はほぼ同じなので、ここではいくつかの例を挙げるだけにします
 
 	- `アプリを隠す`
-	 <script src="https://gist.github.com/KuanChunChen/520157aaceb75c79cda052e10f576a26.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/520157aaceb75c79cda052e10f576a26.js"></script>
 	- `ユーザー制限`を追加する
-	 <script src="https://gist.github.com/KuanChunChen/15286f247a2120b4320b4cf5f678560e.js"></script>
+	 <script src="https://gist.github.com/waitzShigoto/15286f247a2120b4320b4cf5f678560e.js"></script>
 
 * その他の例については、Googleの[github](https://github.com/googlesamples/android-testdpc)にあるDevice Ownerを使用したサンプルアプリを参照してください
 

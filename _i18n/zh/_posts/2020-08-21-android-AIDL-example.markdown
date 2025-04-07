@@ -75,10 +75,10 @@ excerpt: "身為一個App工程師，總會被要求實現需求，當你遇到�
 * 通常在Android app 要呼叫AIDL接口會用Service去接<br>
 所以先繼承Service 並override該有的週期方法<br>
 範例如下：<br>
-<script src="https://gist.github.com/KuanChunChen/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
 
 * 接著在同一個service加入剛剛build完後產生的AIDL實例 ：<br>
-<script src="https://gist.github.com/KuanChunChen/d7bdc13de183beebcda4add00ecf8458.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d7bdc13de183beebcda4add00ecf8458.js"></script>
 
 <div class="c-border-content-title-4">小技巧: AIDL 介面 與 Service package path 需一樣 否則無法編譯成功</div>
 
@@ -89,7 +89,7 @@ excerpt: "身為一個App工程師，總會被要求實現需求，當你遇到�
 ![5.png](/images/aidl/5.png)<br><br>
 <div class="c-border-content-title-1">步驟3 : 加入Service至Manifest.xml<br></div>
 把`步驟2`的Service加入AndroidManifest.xml內並新增action<br>
-<script src="https://gist.github.com/KuanChunChen/873470afaa8317265c25ac02fc8832b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/873470afaa8317265c25ac02fc8832b3.js"></script>
 
 這邊的action是對應到之後`步驟5` 要用ServiceConnection去綁定的action<br>
 `action android:name="elegant.access.service.IRSSmartService"`
@@ -104,7 +104,7 @@ excerpt: "身為一個App工程師，總會被要求實現需求，當你遇到�
 <div class="c-border-content-title-1">(選擇性) 步驟5-其他用例<br></div>
 * 如果你是要在應用層用你的AIDL Service可以參考下面的code<br>
 `用Intent去bind的AIDL service就好了`<br>
-<script src="https://gist.github.com/KuanChunChen/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
 之後你就可以直接操作裡面已經實作好的方法<br>
 例如：<br>
 ```
@@ -124,7 +124,7 @@ eleAcesAPI.getUpdateList();
 這裡是用反射的方法<br>
 去綁定kernel寫好的service<br>
 綁定範例：<br>
-<script src="https://gist.github.com/KuanChunChen/364a1289647d7676a7b51e35d21c4899.js"></script>
+<script src="https://gist.github.com/waitzShigoto/364a1289647d7676a7b51e35d21c4899.js"></script>
 
 <div class="c-border-content-title-4">注意：這邊是你有開發底層的需求才用這個，如果是app實作AIDL就用上一個的就好</div>
 <div class="c-border-content-title-4">注意2：Android官方在Android 9之後有更新新的反射政策，不確定這個還可否使用，因為那時候該機型OTA目標版本是5~8，可自行實測</div><br>

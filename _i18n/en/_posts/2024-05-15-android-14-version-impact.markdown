@@ -287,11 +287,11 @@ Now, when using ZipInputStream.getNextEntry(), paths containing `..` or `/` will
        For example: `mediaProjection` requires calling createScreenCaptureIntent() to obtain the mediaProjection permission before startForeground.<br>
        Here is a demonstration<br>
        Update your build sdk version<br>
-       <script src="https://gist.github.com/KuanChunChen/7c4a8ef7b18660749a8acec308992d2b.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/7c4a8ef7b18660749a8acec308992d2b.js"></script>
        Add the following permissions<br>
-       <script src="https://gist.github.com/KuanChunChen/1f396d04ca999787104f31dd735a4ae0.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/1f396d04ca999787104f31dd735a4ae0.js"></script>
        Add the foreground service type according to your needs<br>
-       <script src="https://gist.github.com/KuanChunChen/333cca6030d4e727740f89ca74e529de.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/333cca6030d4e727740f89ca74e529de.js"></script>
 ```
 
        -> `Actual Issues Encountered`: In the `Service` code I wrote earlier,<br>

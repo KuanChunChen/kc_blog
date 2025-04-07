@@ -28,22 +28,22 @@ This time I am using Hilt<br>
 <div class="c-border-content-title-1">step1. Integrate Hilt & KSP</div>
 * To use Hilt, the following toml configuration is required<br>
 Mainly the Hilt library and KSP for Hilt integration<br>
-<script src="https://gist.github.com/KuanChunChen/a529e6aef2c4cb054a593689b86ab962.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a529e6aef2c4cb054a593689b86ab962.js"></script>
 
 * Add the plugin in build.gradle.kts(:app)
-<script src="https://gist.github.com/KuanChunChen/ca4d1179d072db1f781831ce3ae367a6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ca4d1179d072db1f781831ce3ae367a6.js"></script>
 
 * Import in build.gradle.kts(:yourAppName):
-<script src="https://gist.github.com/KuanChunChen/0cecaed97e600ccd7069722e2cc62c42.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0cecaed97e600ccd7069722e2cc62c42.js"></script>
 
 * Import in build.gradle.kts(:app):
-<script src="https://gist.github.com/KuanChunChen/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
 
 <div class="c-border-content-title-1">step2. Implement Hilt Application</div>
 * The official documentation mentions<br>
 Adding Hilt must include `@HiltAndroidApp`<br>
 So implement an Application<br>
-<script src="https://gist.github.com/KuanChunChen/648bd2e1d642c5ea108af87e7700a7de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/648bd2e1d642c5ea108af87e7700a7de.js"></script>
 
 Testing shows that if not added, the following error will occur:<br>
 `Caused by: java.lang.IllegalStateException: Hilt Activity must be attached to an @HiltAndroidApp Application. Did you forget to specify your Application's class name in your manifest's application 's android:name attribute?`
@@ -53,10 +53,10 @@ Testing shows that if not added, the following error will occur:<br>
 Hilt will provide injection functionality in classes annotated with `@AndroidEntryPoint`<br>
 
 * Let's try creating a ViewModel using Hilt
-<script src="https://gist.github.com/KuanChunChen/c76e7ce4bc7743832372ae66ae651f03.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c76e7ce4bc7743832372ae66ae651f03.js"></script>
 
 Actual usage:
-<script src="https://gist.github.com/KuanChunChen/412d3db62610456139c5231632f5d2dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/412d3db62610456139c5231632f5d2dd.js"></script>
 
 <div class="c-border-content-title-1">Adding Modules</div>
 * DI can add modules to provide the required classes<br>
@@ -66,7 +66,7 @@ mainly used for network request-related modules<br>
 `provideKotlinxJsonConverter` is used to provide a converter for parsing JSON format<br>
 `provideCustomConverter` is used to provide the response format definition for HTTP requests<br>
 `provideBaseRetrofitBuilder` is used to provide an instance of Retrofit<br>
-<script src="https://gist.github.com/KuanChunChen/1127653dde42bc2bca111e274a7ba521.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1127653dde42bc2bca111e274a7ba521.js"></script>
 
 In the source code above, you will see a line `@Named("xxx")`<br>
 This is used to indicate the name of this instance<br>
@@ -81,7 +81,7 @@ You can also build without adding `@Named`<br>
 But Hilt will just find the only one available to inject for you<br>
 
 Actual usage:<br>
-<script src="https://gist.github.com/KuanChunChen/a1b8b91295e8016cabc733463f6db0c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a1b8b91295e8016cabc733463f6db0c9.js"></script>
 * After using DI injection, you don't need to actively initialize and obtain the class instance yourself<br>
 DI handles it for you, and if used well<br>
 It will also make the code look cleaner and more readable<br>
@@ -100,9 +100,9 @@ You can also avoid writing a lot of repetitive code<br>
 For example: network requests<br>
 If the specifications provided by the server are the same<br>
 Then you only need to focus on developing the API service
-<script src="https://gist.github.com/KuanChunChen/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
 
 * Finally, when you need to use these instances, just inject them directly in the constructor
-<script src="https://gist.github.com/KuanChunChen/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
 
 <a class="link" href="#category" data-scroll>Back to Contents</a>

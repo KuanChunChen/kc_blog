@@ -36,18 +36,18 @@ Linked List 中的每個節點包含以下兩個元素：<br>
 <div class="c-border-content-title-4">
    以下是 Kotlin 實現 Linked List 的程式碼
 </div>
- <script src="https://gist.github.com/KuanChunChen/ad9e538b06afc720f0785a4471fd6145.js"></script>
+ <script src="https://gist.github.com/waitzShigoto/ad9e538b06afc720f0785a4471fd6145.js"></script>
 
 <div class="c-border-content-title-4">
    以下是遍歷Traversal Linked List 的程式碼
 </div>
 
-<script src="https://gist.github.com/KuanChunChen/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4e3fa3e7c237fe1f49a8f960ca4fcb44.js"></script>
 
 <div class="c-border-content-title-4">
   除了上述的程式碼，你也可以使用 Kotlin 的 Data Class 實現 Linked List：
 </div>
-<script src="https://gist.github.com/KuanChunChen/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e2f8f142eaa6aab94864dcf7cb638b3.js"></script>
 
 <div class="c-border-content-title-4">
   Linked List Complexity

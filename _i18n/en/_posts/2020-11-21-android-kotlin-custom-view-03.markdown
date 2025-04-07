@@ -24,7 +24,7 @@ Effect picture:
 
 The first step is very simple, you need to define an adapter for the recycler view. Here, I prefer to start by creating the XML for the item, as shown below:
 
-<script src="https://gist.github.com/KuanChunChen/b1a45501587bf59e8008b261c8439f72.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b1a45501587bf59e8008b261c8439f72.js"></script>
 
 
 <br><br>
@@ -40,7 +40,7 @@ and then create a view holder for this adapter within my adapter,<br>
 also using generics to replace places where similar code might be repeated in the future,<br>
 so it looks like this:<br>
 
-<script src="https://gist.github.com/KuanChunChen/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
 In the adapter above,<br>
 my code is very minimal,<br>
 because I first wrote an abstract class,<br>
@@ -49,7 +49,7 @@ because I first wrote an abstract class,<br>
 Additionally, my base adapter looks like this,<br>
 mainly abstracting some methods:
 
-<script src="https://gist.github.com/KuanChunChen/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
 
 
 Here, I mainly talk about some of the abstract methods
@@ -102,7 +102,7 @@ Currently, a basic recycler view has been constructed. <br>
 Just call the code below, <br>
 and you will have a basic recycler view: <br>
 
-<script src="https://gist.github.com/KuanChunChen/16987a5a8f9039f913b3e490da226e76.js"></script>
+<script src="https://gist.github.com/waitzShigoto/16987a5a8f9039f913b3e490da226e76.js"></script>
 
 Here, the switchRecyclerView mentioned is the custom view referred to in the previous article
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-02/">[Custom View] Custom UI Experience Sharing (1): Implementation</a>.
@@ -118,7 +118,7 @@ Next, to achieve the following effects with the recycler view: <br>
 
 We need to extend RecyclerView.ItemDecoration(), as follows:
 
-<script src="https://gist.github.com/KuanChunChen/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
 
 <br>
 
@@ -177,7 +177,7 @@ var sideVisibleWidth =
 Next, we just need to specify the item spacing under certain conditions, as follows:
 <br>
 
-<script src="https://gist.github.com/KuanChunChen/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
 
 <br>
 
@@ -189,7 +189,7 @@ With this, the spacing settings are complete. Next, we need to calculate the mov
 
 Next, we extend RecyclerView.OnScrollListener() to calculate the scroll listener:
 
-<script src="https://gist.github.com/KuanChunChen/9e98788c170b119d4da62124eb7523f3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e98788c170b119d4da62124eb7523f3.js"></script>
 
 <br>
 
@@ -206,7 +206,7 @@ SwitchRecyclerScrollerListener(private var mPosition: Int, private val itemWith:
 
 Next, override onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) to get the scroll amount when moving left or right,<br>
 
-<script src="https://gist.github.com/KuanChunChen/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
 
 We get dx in onScroll, which represents the scroll amount when moving left or right,<br>
 It triggers every time you scroll, so during the scroll, record and accumulate this value,<br>
@@ -236,7 +236,7 @@ Of course, you can also write it yourself according to your needs!<br>
 Finally, just take out the inherited classes you just wrote,<br>
 and you can get a horizontally scrolling recycler view. Here is an example of how I used it:<br>
 
-<script src="https://gist.github.com/KuanChunChen/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
 
 <br>
 

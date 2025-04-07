@@ -57,7 +57,7 @@ without specifying a Ruby version<br>
 Jekyll will use the default system version<br>
 
 So use this command to check your version
-<script src="https://gist.github.com/KuanChunChen/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
 
 We need to deploy to GitHub and use Jekyll 4.x<br>
 so we need Ruby version 3.2.3<br>
@@ -66,7 +66,7 @@ If you don't have version 3.2.3, you can use some tools to install it<br><br>
 However, since my computer happens to have rbenv installed<br>
 I will use rbenv as an example<br>
 
-<script src="https://gist.github.com/KuanChunChen/e02a03b088c850d4c4bb6802295d7704.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e02a03b088c850d4c4bb6802295d7704.js"></script>
 Of course, you can also use other common command-line tools<br>
 such as RVM, chruby, or asdf<br>
 Adjust and install Ruby according to your own habits~<br>
@@ -75,7 +75,7 @@ Finally, you need to create a file `.ruby-version`<br>
 in the root directory of your Jekyll project<br><br>
 
 You can use a command similar to the one below directly<br>
-<script src="https://gist.github.com/KuanChunChen/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
 
 Or you can create it manually if you prefer<br>
 <img src="/images/jekyll_deploy/004.png" alt="jekyll deploy 4.x" /><br><br><br><br>
@@ -91,16 +91,16 @@ Import Ruby version 3.2.3<br>
 Then set the Jekyll version to use<br>
 `gem "jekyll", "~> 4.3.3"`<br>
 The required command is as follows:<br>
-<script src="https://gist.github.com/KuanChunChen/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
 
 Here is the complete configuration<br>
 For your reference<br>
 Including some Jekyll plugins I use<br>
 Add them if you need them<br>
-<script src="https://gist.github.com/KuanChunChen/67631c36472fc3781800e847033d5250.js"></script>
+<script src="https://gist.github.com/waitzShigoto/67631c36472fc3781800e847033d5250.js"></script>
 
 Next, execute the following in your Jekyll root directory<br>
-<script src="https://gist.github.com/KuanChunChen/f860bebfabda529bd7bb3d21e51467ae.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f860bebfabda529bd7bb3d21e51467ae.js"></script>
 The purpose is to generate the `Gemfile.lock` file<br>
 And ensure your project runs smoothly<br><br>
 
@@ -128,7 +128,7 @@ All we need to do is modify a few lines in the official recommended `.yml` file:
 
 Here is my final complete `.yml` configuration<br>
 You can use and modify it directly<br>
-<script src="https://gist.github.com/KuanChunChen/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
 
 <div class="c-border-main-title-2">Summary</div>
 The steps are actually very simple<br>

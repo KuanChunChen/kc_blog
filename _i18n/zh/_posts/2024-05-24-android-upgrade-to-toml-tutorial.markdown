@@ -53,17 +53,17 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 導致build不過<br>
 <img src="/images/toml/009.png" width="50%"><br><br>
 改成下方這樣即可<br>
-<script src="https://gist.github.com/KuanChunChen/c019662550b3ae9c8ab2a685ee3644a7.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c019662550b3ae9c8ab2a685ee3644a7.js"></script>
 
 * 過去會用kotlin object來配置版本參數，如下<br>
-<script src="https://gist.github.com/KuanChunChen/e529bd12f84310a4c1f05c237850f1ba.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e529bd12f84310a4c1f05c237850f1ba.js"></script>
 如果想全部改成.toml
 實測在外部存取.toml配置的version<br>
 不能像是libs直接用<br>
 `libs.xx.xx.xxx去拿version`<br><br>
 只能直接用`get()`去拿到.toml內Versions的值<br>
 如：`libs.versions.minSdk.get().toInt()`<br>
-<script src="https://gist.github.com/KuanChunChen/950ea155ac70ee87ce9b2060667027fa.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/950ea155ac70ee87ce9b2060667027fa.js"></script><br>
 不過如用此方式設定<br>
 在.toml裡面看不到哪處使用<br>
 <img src="/images/toml/013.png" width="50%"><br><br>
@@ -79,8 +79,8 @@ implement("com.orhanobut:dialogplus:1.11@aar")
 不能設成null或empty <br>
 
 因為有些專案是拿plugin + classpath去設置
-<script src="https://gist.github.com/KuanChunChen/d353a385e8942ba88259c2bbb4e03171.js"></script>
-<script src="https://gist.github.com/KuanChunChen/29686a0a02bd225c08ca968011f87503.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d353a385e8942ba88259c2bbb4e03171.js"></script>
+<script src="https://gist.github.com/waitzShigoto/29686a0a02bd225c08ca968011f87503.js"></script>
 會讓直接用plugins設定有衝突<br>
 <img src="/images/toml/011.png" width="50%"><br><br>
 
@@ -107,7 +107,7 @@ implement("com.orhanobut:dialogplus:1.11@aar")
   <img src="/images/toml/008.png" width="100%">
   例如下方代碼：
 </div>
-<script src="https://gist.github.com/KuanChunChen/ca2178bad03c6ee04618a575a7751334.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ca2178bad03c6ee04618a575a7751334.js"></script>
 
 <div class = "table_container">
    <p>實際使用</p>
@@ -115,7 +115,7 @@ implement("com.orhanobut:dialogplus:1.11@aar")
   之後就可以直接在build.gradle.kts中直接使用<br>
   例如下方代碼：<br>
 </div>
-<script src="https://gist.github.com/KuanChunChen/5be8ba888fa9e64287f8a33636fa533b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5be8ba888fa9e64287f8a33636fa533b.js"></script>
 <div class="c-border-content-title-1">參考來源</div>
 - <a href="https://developer.android.com/build/migrate-to-catalogs?hl=zh-cn#kts">Android developer官方文件</a><br>
 - <a href="https://docs.gradle.org/7.5/userguide/version_catalog_problems.html#unsupported_format_version">Gradle version catlogs trouble shooting</a><br>

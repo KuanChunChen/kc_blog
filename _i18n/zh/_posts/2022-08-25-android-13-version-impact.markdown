@@ -42,7 +42,7 @@ excerpt: "本文將介紹 Android 13 版本升級帶來的開發挑戰以及解�
   - AirDroid有請求`所有檔案存取權`，所以目前不用修改，下方為跳轉到該頁面的Intent <br>
     `new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);`
   - 遇到要修改可參考demo：
-  <script src="https://gist.github.com/KuanChunChen/d75998c921b176e659c911a938da4930.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d75998c921b176e659c911a938da4930.js"></script>
 
   <div class="c-border-content-title-4">
        Android 13 通知權限變化

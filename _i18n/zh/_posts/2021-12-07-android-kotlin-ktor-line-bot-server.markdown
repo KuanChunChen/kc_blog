@@ -59,7 +59,7 @@ excerpt: "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin
   例如 port 號以及主程式的 Application.module 的 package path。<br>
 
 
-  <script src="https://gist.github.com/KuanChunChen/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
+  <script src="https://gist.github.com/waitzShigoto/ba0e0d520e9166fe6c45b16d2217fc48.js"></script>  <br>
   接著創建applicaiont.kt檔 <br>
   ```Kotlin
   fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -76,7 +76,7 @@ excerpt: "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin
   這邊則是前面.conf檔裡面指向要執行的server區塊<br>
   用了kotlin的extension去寫<br>
 
-  <script src="https://gist.github.com/KuanChunChen/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/c88cf59e7c6e1e2599cfe52a107278df.js"></script>
   以下是實作時的範例，<br>
   其中為了讓 Ktor 支援 Gson 解析 JSON，<br>
   所以加入了相關的 code<br>
@@ -132,7 +132,7 @@ excerpt: "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin
 以避免有心人士攻擊你的server。<br>
 
 這邊附上我kotlin驗證簽名的寫法<br>
-<script src="https://gist.github.com/KuanChunChen/dab3f90689f9aa887d01c225caadd348.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dab3f90689f9aa887d01c225caadd348.js"></script>
 
 接著，我們繼續學習 LINE 開發者 API，<br>
 例如想要讓 LINE 機器人自動在聊天室回覆訊息，<br>
@@ -180,7 +180,7 @@ excerpt: "打造自己的LINE聊天室機器人！從零開始學習使用Kotlin
   }
   ```
 
-  <script src="https://gist.github.com/KuanChunChen/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/ccf9f4c1a07013ff89c0357ef37ecda0.js"></script>
 
 這邊則是個範例<br>
 主要就是其中一條指令去抓第三方api取得交易對的寫法<br><br>

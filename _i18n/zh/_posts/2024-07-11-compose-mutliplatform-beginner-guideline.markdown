@@ -54,16 +54,16 @@ CMP 開發時需要熟悉多個資料夾的結構：<br>
 
 1.跨平台需求差異：<br>
    例如 Android 需要 Context，iOS 不需要：<br>
-   <script src="https://gist.github.com/KuanChunChen/d4594b6b1b1e92509fa34c67233b301d.js"></script><br>
+   <script src="https://gist.github.com/waitzShigoto/d4594b6b1b1e92509fa34c67233b301d.js"></script><br>
    完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-di-context">【Compose Multiplatform 】跨平台App但Android需要context作法並搭配Koin</a><br>
 2.平台特定實現：<br>
    像是手機端常用本地持久化儲存 <br>
    在Android會使用dataStore去處理這個相關問題<br>
    那要怎麼在多平台去使用呢？<br>
    使用 expect 和 actual 關鍵字：<br>
-   <script src="https://gist.github.com/KuanChunChen/99f7bc0f32960a1af80971e8f68a8b0d.js"></script>
-   <script src="https://gist.github.com/KuanChunChen/171b2f873713be2da5214a5450e1f2a4.js"></script>
-   <script src="https://gist.github.com/KuanChunChen/3a1379e63db12a23997c21d7f632d8fa.js"></script>
+   <script src="https://gist.github.com/waitzShigoto/99f7bc0f32960a1af80971e8f68a8b0d.js"></script>
+   <script src="https://gist.github.com/waitzShigoto/171b2f873713be2da5214a5450e1f2a4.js"></script>
+   <script src="https://gist.github.com/waitzShigoto/3a1379e63db12a23997c21d7f632d8fa.js"></script>
    不過儘管需要各自實作<br>
    但一些常用的library<br>
    CMP有支援以kotlin實作的library<br>

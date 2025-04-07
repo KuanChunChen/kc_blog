@@ -64,7 +64,7 @@ APP需要大量分配記憶體空間給你創建的objects<br>
 
 給個帶有code的例子：
 
-<script src="https://gist.github.com/KuanChunChen/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5654e03a5aa77334bf536c298fe0df88.js"></script><br>
 這個是常用的recycler view的實作adapter <br>
 那其中的bind()就是用來實現新的資料要產生item時的邏輯<br>
 
@@ -81,7 +81,7 @@ val demoBitmap = BitmapFactory.decodeResource(itemView.context.resources, R.draw
 那對heap容量的消耗是相當大的<br>
 
 因此最簡單的方式可以把固定的東西改為只加載一次<br>
-<script src="https://gist.github.com/KuanChunChen/baac7167d917ce9633f7d9346b3244ed.js"></script>
+<script src="https://gist.github.com/waitzShigoto/baac7167d917ce9633f7d9346b3244ed.js"></script>
 
 或是也可以用一些第三方的lib去將圖片存入緩存<br>
 進而減少加載的次數<br>
@@ -100,7 +100,7 @@ gc 無法清除掉的object leak 的 reference<br>
 
 Inner Classes :當內部類與外部類有reference時，有可能產生memory leak<br>
 例如：
-<script src="https://gist.github.com/KuanChunChen/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f7cf2cefdda47552aef1ea21ac0f1e37.js"></script>
 像是上面這段code<br>
 就是因為內部class存取了外部showResult<br>
 而因為AsyncTask會在背景執行<br>
@@ -112,7 +112,7 @@ Inner Classes :當內部類與外部類有reference時，有可能產生memory l
 可以把呼叫外部類的方法拿掉<br>
 或是改用其他方法去存取外部累<br>
 如可以使用弱引用<br>
-<script src="https://gist.github.com/KuanChunChen/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
+<script src="https://gist.github.com/waitzShigoto/14c2eb371a77d2a2425180dd865a2ebe.js"></script>
 
 用weakreference依舊可以存取外部類<br>
 不過他不會像是強引用一樣強以至於不會持續保留在記憶體內<br>

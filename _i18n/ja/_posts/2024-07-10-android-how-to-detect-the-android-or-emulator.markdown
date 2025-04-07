@@ -20,15 +20,15 @@ excerpt: "本文詳細介紹了在 Android App中檢測是否運行在模擬器�
 <div class="c-border-main-title-2">檢測方法</div>
 <div class="c-border-content-title-1">1. 使用 Android 內建屬性</div>
 這種方法利用 Android 系統的 Build 類來檢查各種硬件和軟件屬性：<br>
-<script src="https://gist.github.com/KuanChunChen/bbea6bcd92107162c90bcdd5dc8e3b4b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/bbea6bcd92107162c90bcdd5dc8e3b4b.js"></script>
 
 <div class="c-border-content-title-1">2. 檢查特定文件</div>
 某些文件只存在於模擬器環境中，我們可以檢查這些文件是否存在：<br>
-<script src="https://gist.github.com/KuanChunChen/f383dc9e57822547ba1de4b05b0ecf85.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f383dc9e57822547ba1de4b05b0ecf85.js"></script>
 
 <div class="c-border-content-title-1">3. 檢查電話號碼</div>
 模擬器通常有特定的電話網絡設置：
-<script src="https://gist.github.com/KuanChunChen/8e9fd3a2433281dd90e0e70fbfdf7d7e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8e9fd3a2433281dd90e0e70fbfdf7d7e.js"></script>
 
 <div class="c-border-content-title-1">4. 結合多種方法</div>
 把上面所有方法結合<br>
@@ -36,7 +36,7 @@ excerpt: "本文詳細介紹了在 Android App中檢測是否運行在模擬器�
 但我覺得不一定每台模擬器都有可能完美檢查出來<br>
 要是模擬器開發者知道這些檢驗手法<br>
 理論上也能製作出一台繞過這些方法的模擬器<br>
-<script src="https://gist.github.com/KuanChunChen/0c5cf9c9118ac6e044d0386f785490a6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0c5cf9c9118ac6e044d0386f785490a6.js"></script>
 
 <div class="c-border-main-title-2">注意事項</div>
 上面只是用各種可能判斷為模擬器的方法去判斷<br>

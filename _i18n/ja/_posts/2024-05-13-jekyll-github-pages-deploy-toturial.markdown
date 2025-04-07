@@ -57,7 +57,7 @@ rubyバージョンを指定しない場合<br>
 Jekyllはデフォルトのシステムバージョンを使用します<br>
 
 このコマンドを使用してバージョンを確認します
-<script src="https://gist.github.com/KuanChunChen/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
 
 GitHubにデプロイしてJekyll 4.xバージョンを使用するためには<br>
 ruby 3.2.3バージョンが必要です<br>
@@ -66,7 +66,7 @@ ruby 3.2.3バージョンが必要です<br>
 ここでは、私のコンピュータにrbenvがインストールされているので<br>
 rbenvを例にします<br>
 
-<script src="https://gist.github.com/KuanChunChen/e02a03b088c850d4c4bb6802295d7704.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e02a03b088c850d4c4bb6802295d7704.js"></script>
 もちろん、他の一般的なコマンドツールも使用できます<br>
 例：RVM、chruby、またはasdf<br>
 各自の習慣に応じてrubyを調整、インストールしてください~<br>
@@ -75,7 +75,7 @@ rbenvを例にします<br>
 `.ruby-version`ファイルを作成する必要があります<br><br>
 
 類似の指令を使って直接行うことができます<br>
-<script src="https://gist.github.com/KuanChunChen/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
 
 または手動で作成することもできます<br>
 <img src="/images/jekyll_deploy/004.png" alt="jekyll deploy 4.x" /><br><br><br><br>
@@ -91,16 +91,16 @@ ruby 3.2.3版を導入します <br>
 次に使用するJekyllのバージョンを設定します<br>
 `gem "jekyll", "~> 4.3.3"`<br>
 必要な指令は以下の通りです：<br>
-<script src="https://gist.github.com/KuanChunChen/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
 
 完全な設定は以下の通りです<br>
 参考にしてください<br>
 私が使用しているいくつかのJekyllプラグインも含まれています<br>
 必要に応じて追加してください<br>
-<script src="https://gist.github.com/KuanChunChen/67631c36472fc3781800e847033d5250.js"></script>
+<script src="https://gist.github.com/waitzShigoto/67631c36472fc3781800e847033d5250.js"></script>
 
 次に、Jekyllのルートディレクトリで以下を実行します<br>
-<script src="https://gist.github.com/KuanChunChen/f860bebfabda529bd7bb3d21e51467ae.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f860bebfabda529bd7bb3d21e51467ae.js"></script>
 これは`Gemfile.lock`ファイルを生成し、プロジェクトが正常に実行できるようにするためです<br><br>
 
 生成後、以下を使用して<br>
@@ -127,7 +127,7 @@ GitHubの自動デプロイ設定ファイルを設定する必要がありま�
 
 以下が最終的な完全な`.yml`設定です<br>
 そのまま使用して修正することができます<br>
-<script src="https://gist.github.com/KuanChunChen/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
 
 <div class="c-border-main-title-2">まとめ</div>
 実際の手順は非常に簡単です<br>

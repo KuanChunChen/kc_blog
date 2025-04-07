@@ -41,7 +41,7 @@ Android バージョンアップによる課題とその解決策について探
   - AirDroidは`すべてのファイルアクセス権`を要求しているため、現在のところ変更は不要です。以下はそのページに遷移するIntentです。 <br>
     `new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);`
   - 変更が必要な場合は、デモを参考にしてください：
-  <script src="https://gist.github.com/KuanChunChen/d75998c921b176e659c911a938da4930.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d75998c921b176e659c911a938da4930.js"></script>
 
   <div class="c-border-content-title-4">
        Android 13 通知権限の変化

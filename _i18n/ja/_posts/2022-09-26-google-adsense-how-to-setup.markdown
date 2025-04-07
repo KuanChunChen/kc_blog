@@ -68,7 +68,7 @@ Googleが統計と収益、残高などを提供します<br>
 先ほど入力したURLが表示されます<br>
 初回入力時は通常`審査中`の状態になります<br>
 このとき、コードが表示されることがあります<br>
-<script src="https://gist.github.com/KuanChunChen/ce78fcc8c41a93621a2af59d052c55da.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ce78fcc8c41a93621a2af59d052c55da.js"></script>
 このコードをサイトの`<head>`タグ内に追加します<br>
 初回はGoogleがサイトを審査します<br>
 規約に準拠しているか、不適切なコンテンツがないか、内容が十分かなどの要因を確認します<br>

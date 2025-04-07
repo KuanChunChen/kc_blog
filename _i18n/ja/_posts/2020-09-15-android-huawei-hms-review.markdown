@@ -65,12 +65,12 @@ Huawei SDKの導入を求められた経験があり<br>
 <div class="c-border-content-title-1">第五歩:プロジェクト設定の追加</div>
   * 次にAndroidプロジェクトに追加します <br>
     build gradleに`maven {url 'https://developer.huawei.com/repo/'}`を設定します
-    <script src="https://gist.github.com/KuanChunChen/1ca47854f0a1eb3c94565c3512725050.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/1ca47854f0a1eb3c94565c3512725050.js"></script>
     <br>
 
   * 次に必要なHMSキットをプロジェクトに導入します<br>
     ここではHMSマップを例にします<br>
-    <script src="https://gist.github.com/KuanChunChen/631f00b79f69c96bd2a226c58eff5199.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/631f00b79f69c96bd2a226c58eff5199.js"></script>
     `これで正式に開発を開始できます！`
 
 <div class="c-border-content-title-4">開発中に遭遇したHuaweiの小さな違いの共有</div>

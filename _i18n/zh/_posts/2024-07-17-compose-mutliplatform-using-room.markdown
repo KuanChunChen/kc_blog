@@ -56,60 +56,60 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 
 * 步驟1. 導入Room
    - 在.toml文件中加入以下內容：
-     <script src="https://gist.github.com/KuanChunChen/c352887cbc647ca13eeb66452a79edbd.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/c352887cbc647ca13eeb66452a79edbd.js"></script>
 
    - 在build.gradle.kts中加入plugin：
-     <script src="https://gist.github.com/KuanChunChen/b131ed97d95a0cd21cc3a7831c6142a8.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/b131ed97d95a0cd21cc3a7831c6142a8.js"></script>
 
    - 在build.gradle.kts中加入library：
-     <script src="https://gist.github.com/KuanChunChen/a036df8a7c3a144e2b261471e911d82f.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/a036df8a7c3a144e2b261471e911d82f.js"></script>
   
    - 在build.gradle.kts最外層加入以下代碼：
-     <script src="https://gist.github.com/KuanChunChen/52c42bc675a05a58f04ab9fc95624032.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/52c42bc675a05a58f04ab9fc95624032.js"></script>
 
    - 如果使用的kotlin版本大於1.9.20需要在gradle.properties中加入：
-    <script src="https://gist.github.com/KuanChunChen/adc4b45f180191bc1ec6911c9471cf8e.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/adc4b45f180191bc1ec6911c9471cf8e.js"></script>
 
 <div class="c-border-content-title-1">導入 - 搭配kotlin版本2.0.0</div>
 
 * 步驟1. 修改ksp版本：
-  <script src="https://gist.github.com/KuanChunChen/ca66a227923d4f4a47c7a6a5823af719.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/ca66a227923d4f4a47c7a6a5823af719.js"></script>
 
 * 步驟2. 調整build.gradle.kts：<br>
    - 加入`build/generated/ksp/metadata`到kotlin block內<br>
    - 用add方法導入ksp<br>
    - 最外層加入tasks.withType<br>
-    <script src="https://gist.github.com/KuanChunChen/c294e47392a0e64f2bd6cc88f638a5ac.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/c294e47392a0e64f2bd6cc88f638a5ac.js"></script>
 
 * 步驟3. 使用workaround實現RoomDatabase<br><br>
   這個是現階段的workaround<br>
   如果你要用kotlin 2.0.0版本就得先做<br>
   因為現在的兼容性需等待官方修復<br>
-  <script src="https://gist.github.com/KuanChunChen/a94106152a3951c8f605bb9cee11eaac.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/a94106152a3951c8f605bb9cee11eaac.js"></script>
 
 <div class="c-border-main-title-2">實際使用Room</div>
 <div class="c-border-content-title-1">Android Main</div>
 實作AppDataBase builder
-<script src="https://gist.github.com/KuanChunChen/070cd28c456b0cf18418e7982a3a859c.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/070cd28c456b0cf18418e7982a3a859c.js"></script><br>
 
 Koin: 
-<script src="https://gist.github.com/KuanChunChen/6a76498330b853aebcadcf118d8322c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6a76498330b853aebcadcf118d8322c9.js"></script>
 <div class="c-border-content-title-1">IOS Main</div>
 實作AppDataBase builder
-<script src="https://gist.github.com/KuanChunChen/12078618b6fe85935efd75dfd84178f0.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/12078618b6fe85935efd75dfd84178f0.js"></script><br>
 
 Koin:
-<script src="https://gist.github.com/KuanChunChen/221f5879d2f9aa3cf71368f6a6c30f47.js"></script>
+<script src="https://gist.github.com/waitzShigoto/221f5879d2f9aa3cf71368f6a6c30f47.js"></script>
 
 <div class="c-border-content-title-1">Common Main</div>
 實作AppDataBase
-<script src="https://gist.github.com/KuanChunChen/0c2d746b2045ab6a265ad00acd221e6c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0c2d746b2045ab6a265ad00acd221e6c.js"></script>
 
 Dao
-<script src="https://gist.github.com/KuanChunChen/f509c24e1504ecf18cddd59ea478d127.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f509c24e1504ecf18cddd59ea478d127.js"></script>
 
 Entity
-<script src="https://gist.github.com/KuanChunChen/40c40b4435400e56c7f77f9160238d64.js"></script>
+<script src="https://gist.github.com/waitzShigoto/40c40b4435400e56c7f77f9160238d64.js"></script>
 
 <div class="c-border-main-title-2">參考資料</div>
 

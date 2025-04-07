@@ -158,7 +158,7 @@ a. 上記のxml方式を使用せずにデフォルト値を設定する場合<b
 
 b. xml方式でデフォルト値を設定している場合<br>
 以下のコードで変数を直接受け取ることができます<br>
-<script src="https://gist.github.com/KuanChunChen/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
 
 <div class="c-border-content-title-4">navigationがサポートする変数の型</div>
 <div class="p-img-container-single">
@@ -170,11 +170,11 @@ b. xml方式でデフォルト値を設定している場合<br>
 
 <div class="c-border-content-title-4">直接設定できる遷移アニメーションのサポート</div>
 enterAnim, exitAnim, popEnterAnim, popExitAnimを設定することで、簡単に遷移アニメーションをデフォルト設定できます
-<script src="https://gist.github.com/KuanChunChen/695048f8e71483c8671bacb0a8f71473.js"></script>
+<script src="https://gist.github.com/waitzShigoto/695048f8e71483c8671bacb0a8f71473.js"></script>
 
 <div class="c-border-content-title-4">Activityにポップアップアニメーションを追加するサポート</div>
 以下のコードを使用すると、navigation内蔵のactivity離脱アニメーションを使用できます
-<script src="https://gist.github.com/KuanChunChen/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
 
 
 <div class="c-border-main-title-2">Navigation 開発事例 - multiple back stacksのサポート</div>
@@ -184,7 +184,7 @@ Navigationが提供するAPIを使用して関連するビューを関連付け�
 複数のback stackの遷移問題を処理できます<br>
 例えば、setupWithNavControllerとbottom navigation viewを関連付ける<br>
 setupActionBarWithNavControllerとaction barを関連付ける<br>
-<script src="https://gist.github.com/KuanChunChen/fe1ee57edeaed321729525d4346014bc.js"></script>
+<script src="https://gist.github.com/waitzShigoto/fe1ee57edeaed321729525d4346014bc.js"></script>
 
 <div class="c-border-main-title-2">Navigation 開発事例 - popUpToおよびpopUpToInclusive</div>
 <div class="c-border-content-title-4">popUpToを使用して目的地ページに遷移する際、そのページのstack上のすべてのページを削除する</div>
@@ -202,7 +202,7 @@ setupActionBarWithNavControllerとaction barを関連付ける<br>
 そして再び 1 -> 2 -> 3 に遷移して1に戻ります <br>
 この時、back stack内のフラグメントの順序は[1,2,3,1,2,3,1]です <br>
 
-<script src="https://gist.github.com/KuanChunChen/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
 目的のフラグメント以上の内容がstack内に残らないようにするには、xmlのaction内に<br>
 popUpToおよびpopUpToInclusiveを追加します<br>
 これにより、次回目的地のフラグメントに遷移する際に、その上のstackインスタンスがクリアされます<br>

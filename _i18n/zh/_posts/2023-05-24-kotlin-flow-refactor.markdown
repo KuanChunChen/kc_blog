@@ -40,7 +40,7 @@ excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教
     在實際呼叫 Flow 並進行收集（collect）時，需要在 Coroutine Scope 中加入它，如下所示：<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6922457ce9a309d18258b1ac50ed77a6.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6922457ce9a309d18258b1ac50ed77a6.js"></script>
 </p>
 <div class = "table_container">
   <p>程式碼解說</p>
@@ -59,7 +59,7 @@ excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教
 <div class="c-border-main-title-2">Kotlin flow 實際開發</div>
 <div class="c-border-content-title-4">使用Kotlin flow 取代原本的retrofit call 的callback或RxJava操作符，程式碼如下</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
 </p>
 
 <div class = "table_container">
@@ -81,7 +81,7 @@ excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教
 
 <div class="c-border-content-title-4">新增一個verifyResponse 檢查api請求是否如預期</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
 </p>
 
 <div class = "table_container">
@@ -98,7 +98,7 @@ excerpt: "輕鬆掌握如何使用 Kotlin Flow 進行網路連線重構。本教
 
 <div class="c-border-content-title-4">新增一個checkStatusAndRefreshToken 當api請求token過期會自動refresh token並重新請求原api</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
 </p>
 
 <div class = "table_container">

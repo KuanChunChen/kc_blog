@@ -70,7 +70,7 @@ you will be returned to the previous page<br>
 and the URL you just entered will be added<br>
 Usually, the first entry will be in `unreviewed` status<br>
 You might see a string of code<br>
-<script src="https://gist.github.com/KuanChunChen/ce78fcc8c41a93621a2af59d052c55da.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ce78fcc8c41a93621a2af59d052c55da.js"></script>
 You need to add it to the `<head>` tag of your website<br>
 because Google needs to review your website for the first time<br>
 to check if it meets the requirements, if there is any strange content, if the content is too little, etc.<br>

@@ -43,7 +43,7 @@ SwipeRefresh をアプリケーションに組み込む方法を学びます。<
 リストにプルダウンリフレッシュ機能を追加できます。<br>
 
 
-<script src="https://gist.github.com/KuanChunChen/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/fe87780cc0639b8458d764ce30ee54ed.js"></script><br>
 
 <div class="c-border-content-title-4">各変数の意味</div>
 

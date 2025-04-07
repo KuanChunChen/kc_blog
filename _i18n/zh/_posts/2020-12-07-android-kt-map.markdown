@@ -19,10 +19,10 @@ excerpt: "本篇教學介紹如何使用Kotlin在Android中使用Google Map API 
 並透過其中的資料來繪製路線。<br>
 以下是部分的JSON內容：
 
-<script src="https://gist.github.com/KuanChunChen/37e425cb8a6b029fd9b817b155705d3a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/37e425cb8a6b029fd9b817b155705d3a.js"></script>
 
 **(因當路線太長時，json資料是一大包，故只截取一部分)**
-但如果想看完整json檔的夥伴們，可以點 <a href="https://gist.github.com/KuanChunChen/030767a7fea9fcf4eba7cc600adc0da8">這裡</a> 觀看<br>
+但如果想看完整json檔的夥伴們，可以點 <a href="https://gist.github.com/waitzShigoto/030767a7fea9fcf4eba7cc600adc0da8">這裡</a> 觀看<br>
 
 <div class="c-border-content-title-4">第一步：理解資料</div>
 然而我們的需求是需要畫出整段行車路徑，所以預計使用剛剛取得的json資料，其中有歸納出幾個tips如下：<br>
@@ -77,7 +77,7 @@ Maps JavaScript API<br>
 接著，我們拿從google端取得的polyline encode<br>
 (routes內的overview_polyline內的points)：<br>
 
-<script src="https://gist.github.com/KuanChunChen/5099e838a2d8d9af507eb94e250b33b8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5099e838a2d8d9af507eb94e250b33b8.js"></script>
 
 
 依照官網的流程寫出 decode function （Kotlin version），<br>
@@ -85,21 +85,21 @@ Maps JavaScript API<br>
 可以依照你的需求，修改成你需求的樣子<br>
 （如修改返回的model…等等）：<br>
 
-<script src="https://gist.github.com/KuanChunChen/17a978f6831fa8c0f2f80adffa1803ad.js"></script>
+<script src="https://gist.github.com/waitzShigoto/17a978f6831fa8c0f2f80adffa1803ad.js"></script>
 ```
 這裡有一個重點，經過反轉的polyline編碼，返回的經緯度是相反的，所以你在處理經緯資料的時候，記得要把位置相反過來
 ```
 <br>
 第二步，將取得polyline encode帶入decode function :<br>
-<script src="https://gist.github.com/KuanChunChen/e9cf66a41cc014870cb8bab4c188a10a.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/e9cf66a41cc014870cb8bab4c188a10a.js"></script><br>
 
 解碼後，可以取得類似下方的格式<br>
 
-<script src="https://gist.github.com/KuanChunChen/bf80d28f5abdd748f1def92a30e557ed.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/bf80d28f5abdd748f1def92a30e557ed.js"></script><br>
 
 這樣得到我們想要畫線的經緯度陣列，即可在google map使用PolylineOption 去畫線了：<br>
 
-<script src="https://gist.github.com/KuanChunChen/5eb77674995ca2e3422eed17825b22a6.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5eb77674995ca2e3422eed17825b22a6.js"></script><br>
 
 最後畫線得出結果如圖 (紅色路徑)：<br>
 <div align="center">

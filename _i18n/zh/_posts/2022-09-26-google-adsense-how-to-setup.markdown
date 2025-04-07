@@ -71,7 +71,7 @@ google幫你做的一個統計以及實際收益、餘額等等<br>
 並會多了你剛剛輸入的網址<br>
 通常第一次輸入會是`未審核`的狀態<br>
 這時你可能會看到一串code<br>
-<script src="https://gist.github.com/KuanChunChen/ce78fcc8c41a93621a2af59d052c55da.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ce78fcc8c41a93621a2af59d052c55da.js"></script>
 你需要把它加到你的網站內`<head>`標籤內<br>
 因為第一次google官方要審核你的網站<br>
 是不是符合規定、是否有奇怪的內容、內容太少等等因素<br>

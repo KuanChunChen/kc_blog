@@ -24,7 +24,7 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 
 まず最初のステップは非常に簡単で、RecyclerView用のアダプターを定義することです。ここでは、まずアイテムのXMLを作成することから始めます。以下のようになります：
 
-<script src="https://gist.github.com/KuanChunChen/b1a45501587bf59e8008b261c8439f72.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b1a45501587bf59e8008b261c8439f72.js"></script>
 
 
 <br><br>
@@ -40,7 +40,7 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 同様にジェネリックを使用して、将来的に似たようなコードを書く必要がある場所を置き換えます。<br>
 そのため、以下のようになります：<br>
 
-<script src="https://gist.github.com/KuanChunChen/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8718aaf48a1806a57d97471fb5b9c7b0.js"></script>
 上記のアダプターでは、<br>
 コードが非常に少なくなっています。<br>
 なぜなら、先に抽象クラスを書いておいたからです。<br>
@@ -49,7 +49,7 @@ Hello, 皆さんこんにちは、Elegant AccessのKCです。<br>
 また、私のベースアダプターは以下のようになります。<br>
 主にいくつかのメソッドを抽象化しています：
 
-<script src="https://gist.github.com/KuanChunChen/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e90e3f602e0f4029205fe3d3b3b1155.js"></script>
 
 
 ここでは、抽象化したメソッドについて説明します。
@@ -100,7 +100,7 @@ RecyclerViewを頻繁に使用することを考慮し、また怠け者なの�
 以下のコードを呼び出すだけで、<br>
 基本的なRecyclerViewが得られます:<br>
 
-<script src="https://gist.github.com/KuanChunChen/16987a5a8f9039f913b3e490da226e76.js"></script>
+<script src="https://gist.github.com/waitzShigoto/16987a5a8f9039f913b3e490da226e76.js"></script>
 
 ここでのswitchRecyclerViewは前回の記事
   <a href="{{site.baseurl}}/2020/11/20/android-kotlin-custom-view-02/">[Custom View]カスタムUIの心得共有（1）：実装編</a>
@@ -116,7 +116,7 @@ RecyclerViewを頻繁に使用することを考慮し、また怠け者なの�
 
 そのために、RecyclerView.ItemDecoration()を継承する必要があります。以下のように:
 
-<script src="https://gist.github.com/KuanChunChen/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3df59c6aec3f5e11f983b8f0ac811cf3.js"></script>
 
 <br>
 
@@ -173,7 +173,7 @@ var sideVisibleWidth =
 
 次に、指定された条件下でアイテム間の間隔を指定するだけです。以下のように:<br>
 
-<script src="https://gist.github.com/KuanChunChen/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9a7c2bdeb1a7fc034079711d70b64e2a.js"></script>
 
 <br>
 
@@ -185,7 +185,7 @@ var sideVisibleWidth =
 
 次に、RecyclerView.OnScrollListener()を継承してスクロール時のリスナーを計算します:
 
-<script src="https://gist.github.com/KuanChunChen/9e98788c170b119d4da62124eb7523f3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9e98788c170b119d4da62124eb7523f3.js"></script>
 
 <br>
 
@@ -202,7 +202,7 @@ SwitchRecyclerScrollerListener(private var mPosition: Int, private val itemWith:
 
 接着override onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int)，左右にスクロールしたときの移動量を取得します。<br>
 
-<script src="https://gist.github.com/KuanChunChen/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f9f16c1c8ac7c55e4c32ffc841b07430.js"></script>
 
 onscroll内でdxを取得します。これは左右のスクロール量を表します。<br>
 スクロールするたびに一度トリガーされるので、スクロール中にその値を記録して累積します。<br>
@@ -232,7 +232,7 @@ if (moveTotalCount != 0) {
 最後に、先ほど書いた継承クラスを使用するだけで、<br>
 左右にスクロールできるRecyclerViewが得られます。以下は実際に使用した例です。<br>
 
-<script src="https://gist.github.com/KuanChunChen/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/13e2e64e8a59b8be7a9c3dcddde81d2e.js"></script>
 
 <br>
 

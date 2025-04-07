@@ -79,16 +79,16 @@ categories: Android教學
        -> 解決方法：`supportlib.jar`を追加し、gradle dependenciesに追加<br>
        `IDEのAdd as library機能を使用する場合、以下に注意`：
        Knox SDKとsupportlibの2つのjarファイルを以下のように変更する必要があり、ランタイムエラーが発生しなくなります
-       <script src="https://gist.github.com/KuanChunChen/fefe8c4005184dbaecf0d20645709ba8.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/fefe8c4005184dbaecf0d20645709ba8.js"></script>
 
      - 上記が成功した後、ライセンスキーをアクティベートする際に、admin権限を有効にしないと`internal error`が返されます<br>
-       <script src="https://gist.github.com/KuanChunChen/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
 
      - ここに罠があります。ライセンスをアクティベートする際には、Boardcastを使用して結果を受け取る必要があります
          - しかし、現在の公式ドキュメントでは、Knoxのライセンスアクティベーションのブロードキャストアクションは以下のように表示されています
-           <script src="https://gist.github.com/KuanChunChen/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
           しかし、旧版のKnox APIレベル19 (Knox 2.6)では、実際にはKnoxは上記のアクションを発行せず、以下のようになります
-           <script src="https://gist.github.com/KuanChunChen/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
          - ここで公式が言っているのは[2.xから3.xへのアップグレード時にnameSpaceが変更された](https://docs.samsungknox.com/dev/knox-sdk/new-intent-names.htm)ということです (Knox API 30から変更されました)
 
          - そこで彼は方法を提供しています：[参考](https://docs.samsungknox.com/dev/knox-sdk/support-older-devices.htm)

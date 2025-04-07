@@ -286,11 +286,11 @@ Android 14 は BluetoothAdapter#getProfileConnectionState() メソッドを呼�
        例えば、`mediaProjection`はstartForegroundの前にcreateScreenCaptureIntent()を呼び出してmediaProjectionの権限を取得する必要があります。<br>
        ここでデモを行いました<br>
        build sdk versionを更新してください<br>
-       <script src="https://gist.github.com/KuanChunChen/7c4a8ef7b18660749a8acec308992d2b.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/7c4a8ef7b18660749a8acec308992d2b.js"></script>
        以下の権限を追加してください<br>
-       <script src="https://gist.github.com/KuanChunChen/1f396d04ca999787104f31dd735a4ae0.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/1f396d04ca999787104f31dd735a4ae0.js"></script>
        必要に応じてforeground service typeを追加してください<br>
-       <script src="https://gist.github.com/KuanChunChen/333cca6030d4e727740f89ca74e529de.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/333cca6030d4e727740f89ca74e529de.js"></script>
 
        -> `実際に遭遇する可能性のある問題の共有`：以前に書いた`Service`コードには、<br>
        すでに`foregroundServiceType`を追加していました（以前は必須ではありませんでした）。<br>

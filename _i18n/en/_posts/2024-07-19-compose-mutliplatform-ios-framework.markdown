@@ -27,7 +27,7 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 <div class="c-border-main-title-2">使用CocoaPods</div>
 <div class="c-border-content-title-1">加入CocoaPods配置設定</div>
 加入libs.version.toml配置
-<script src="https://gist.github.com/KuanChunChen/14f0d600c186a7e8d32be0d5b96666ae.js"></script>
+<script src="https://gist.github.com/waitzShigoto/14f0d600c186a7e8d32be0d5b96666ae.js"></script>
 
 在build.gradle.kts中<br>
 加入cocoapods block<br>
@@ -36,7 +36,7 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 通常在你的ios專案下面 <br>
 如果用kmm官方的網頁產生專案的話<br>
 預設名稱是`iosApp`<br>
-<script src="https://gist.github.com/KuanChunChen/b6c7c751d9e203f71422c98ab512dcb4.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b6c7c751d9e203f71422c98ab512dcb4.js"></script><br>
 
 官網有提到可以添加以下幾種類型的Pod庫依賴<br>
 - 來自CocoaPods repository
@@ -46,7 +46,7 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 - 帶有自定義cinterop選項
 
 在iosApp專案下配置Podfile
-<script src="https://gist.github.com/KuanChunChen/419374bf1bfe829fb5c2cbc3ae79a5a8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/419374bf1bfe829fb5c2cbc3ae79a5a8.js"></script>
 
 好了之後<br>
 就在iosApp專案下使用指定`pod install` 安裝配置<br>
@@ -54,7 +54,7 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 或者`pod deintegrate`之後再重新安裝<br><br>
 最後`./gradlew build`一下<br>
 成功就能透過kotlin 導入 ios 橋接過來的code<br>
-<script src="https://gist.github.com/KuanChunChen/13e7f746a07dd30247ad1850946dadc3.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/13e7f746a07dd30247ad1850946dadc3.js"></script><br>
 
 <div class="c-border-main-title-2">不用Cocoapods並實現橋接在kotlin中使用ios framework</div>
 如果不想使用CocoaPods<br>
@@ -65,14 +65,14 @@ excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform
 需在`../composeApp/nativeInterop/cinterop/xxx.def`<br>
 建立一個`.def`檔<br>
 (依照你實據需求寫裡面內容)<br>
-<script src="https://gist.github.com/KuanChunChen/bb0cdcf859ca450bacbf3b888b49e02a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/bb0cdcf859ca450bacbf3b888b49e02a.js"></script>
 
 步驟2.<br>
 在`Build.gradle.kts` 中對ios配置加入下面代碼<br>
 其中你要使用的framework也可以透過cocoapods安裝後你再去找路徑之類的<br>
 或你自己實作.swift橋接過來也可以<br>
 
-<script src="https://gist.github.com/KuanChunChen/60fad794cafa8b4c067297035aea7128.js"></script>
+<script src="https://gist.github.com/waitzShigoto/60fad794cafa8b4c067297035aea7128.js"></script>
 
 <div class="c-border-main-title-2">總結</div>
 

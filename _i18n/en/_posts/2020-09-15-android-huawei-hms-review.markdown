@@ -65,12 +65,12 @@ is actually quite similar to Google GMS XDD <br>
 <div class="c-border-content-title-1">Step 5: Add Project Configuration</div>
   * Next, add it to the Android project.<br>
     Configure `maven {url 'https://developer.huawei.com/repo/'}` in the build gradle.
-    <script src="https://gist.github.com/KuanChunChen/1ca47854f0a1eb3c94565c3512725050.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/1ca47854f0a1eb3c94565c3512725050.js"></script>
     <br>
 
   * Then import the required HMS kit into the project.<br>
     Here, taking HMS map as an example.<br>
-    <script src="https://gist.github.com/KuanChunChen/631f00b79f69c96bd2a226c58eff5199.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/631f00b79f69c96bd2a226c58eff5199.js"></script>
     `Now you can officially start development!`
 
 <div class="c-border-content-title-4">Sharing Small Differences Encountered While Developing for Huawei</div>

@@ -31,7 +31,7 @@ excerpt: "この記事では、Android 12 バージョンアップによる開�
   マイクも同様です:[参考](https://developer.android.com/training/permissions/explaining-access#toggles)
 
   - 現在、システムがサポートしているかどうかを検出するためのコードがあり、ユーザーに通知することができますが、オンになっているかどうかを判断するAPIはまだ見つかっていません。
-  <script src="https://gist.github.com/KuanChunChen/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
 
   <div class="c-border-content-title-4">
      Android 12以上 ACTION_CLOSE_SYSTEM_DIALOGS が廃止されました:  
@@ -55,7 +55,7 @@ excerpt: "この記事では、Android 12 バージョンアップによる開�
      ここで注意すべきは、min sdkの要件が21以上であることです<br>
      ![android12_splash_min_sdk.png](/images/others/android12_splash_min_sdk.png)
      - 新しいスプラッシュ画面のテーマを設定します
-     <script src="https://gist.github.com/KuanChunChen/dd55d7b2cb70cedf158763083390d426.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/dd55d7b2cb70cedf158763083390d426.js"></script>
       `windowSplashScreenBackground`は背景色で、実際に設定できるのは@colorのみです<br>
       `windowSplashScreenAnimatedIcon`は中央の円形ビューのアイコンで、画像を設定できますが、サイズは公式が発表したものに従う必要があります<br>
       `windowSplashScreenBrandingImage`はアイコンの下にある小さな背景画像です<br>
@@ -66,7 +66,7 @@ excerpt: "この記事では、Android 12 バージョンアップによる開�
      - 新しいSplashThemeを`AndrodManifest.xml`に追加
 
      - 初期コードを追加
-     <script src="https://gist.github.com/KuanChunChen/7799d22f3d2839965678d9f75435bda5.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/7799d22f3d2839965678d9f75435bda5.js"></script>
 
      `SplashScreen.installSplashScreen(this)`は`super.onCreate`の前に必要<br>
      <br>
@@ -82,7 +82,7 @@ excerpt: "この記事では、Android 12 バージョンアップによる開�
   - 図のように、コンパイル後にインストールしようとすると、次のような`INSTALL_PARSE_FAILED_MANIFEST_MALFORMED`エラーが表示されます
    ![android12_exported_crash.png](/images/others/android12_exported_crash.png)<br>
   - また、PendingIntentを使用する場合も対応するフラグを追加しないとエラーが発生します：
-    <script src="https://gist.github.com/KuanChunChen/7ba7f042607cde3cb472af503088bce9.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/7ba7f042607cde3cb472af503088bce9.js"></script>
   - 解決方法＆デモ：<br>
     - 各PendingIntent作成箇所に`FLAG_IMMUTABLE`または`FLAG_MUTABLE`タグを追加する必要があります<br>
     - 最新のwork-runtimeを追加：`implementation 'androidx.work:work-runtime:2.7.1'`<br>
@@ -160,4 +160,4 @@ excerpt: "この記事では、Android 12 バージョンアップによる開�
   <a href="https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#startDiscovery()" target="_blank">APIドキュメント</a>
     および<a href="https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher" target="_blank">Bluetooth権限分離の説明</a><br>
   ここでは、どのように変更するかの簡単なデモです<br>
-  <script src="https://gist.github.com/KuanChunChen/cd5950dcc9247ea889e835a4085694f8.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/cd5950dcc9247ea889e835a4085694f8.js"></script>

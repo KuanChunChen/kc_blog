@@ -33,7 +33,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
 </div>
 <p>
 
-  <script src="https://gist.github.com/KuanChunChen/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
       まず、SnakeGameViewという名前のカスタムViewクラスを作成し、Viewクラスを継承します。<br>
@@ -44,7 +44,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     変数の定義と初期化<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
       SnakeGameViewクラス内で、蛇の位置、サイズ、方向など、ゲームに必要な変数を定義します。<br>
@@ -71,7 +71,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     ゲーム画面のサイズ設定<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     SnakeGameViewクラス内で、<br>
@@ -91,7 +91,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     蛇と食べ物の描画<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6d59bfaf552bade337814b0016fd0725.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6d59bfaf552bade337814b0016fd0725.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     SnakeGameView の<br>
@@ -121,7 +121,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     ゲームロジック<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d3d6fa84b498999473e0ed041fcb48be.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d3d6fa84b498999473e0ed041fcb48be.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     ゲームの主要なロジック（蛇の移動、衝突検出など）を実装するために、updateGame メソッドを追加します。<br>
@@ -134,7 +134,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     食べ物の生成<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3f8e352778a37d355b2afb2607013b23.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3f8e352778a37d355b2afb2607013b23.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     ランダムに食べ物を生成するために、generateFood メソッドを追加します。<br>
@@ -147,7 +147,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     方向の更新<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     蛇がユーザーの操作に応じて方向を変えるために、<br>
@@ -160,7 +160,7 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     リソースの解放<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
   <div class = "table_container">
     <p>コード解説</p>
     メモリリークを避けるために、ビットマップなどの使用済みリソースを解放するメソッドを実装する必要があります。<br>
@@ -172,8 +172,8 @@ AndroidのカスタムViewを使用してクラシックなスネークゲーム
     フラグメント/アクティビティを接続し、ボタンイベントを設定する<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
-  <script src="https://gist.github.com/KuanChunChen/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
   <div class = "table_container">
     <p>コードの説明</p>
     これが最後のステップです。<br>

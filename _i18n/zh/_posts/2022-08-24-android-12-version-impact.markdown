@@ -31,7 +31,7 @@ excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解�
   麥克風亦是如此:[參考](https://developer.android.com/training/permissions/explaining-access#toggles)
 
   - 目前看到有下方code ，可去偵測系統是否支援，來給使用者做提示，目前暫時沒看到可以判斷是否開啟的API
-  <script src="https://gist.github.com/KuanChunChen/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
 
   <div class="c-border-content-title-4">
      Android 12以上 棄用了 ACTION_CLOSE_SYSTEM_DIALOGS:  
@@ -56,7 +56,7 @@ excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解�
      這邊需注意min sdk要求為21以上<br>
      ![android12_splash_min_sdk.png](/images/others/android12_splash_min_sdk.png)
      - 設定新的splash screen的Theme
-     <script src="https://gist.github.com/KuanChunChen/dd55d7b2cb70cedf158763083390d426.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/dd55d7b2cb70cedf158763083390d426.js"></script>
       `windowSplashScreenBackground`為背景顏色，實測只能設定@color<br>
       `windowSplashScreenAnimatedIcon`為中間那個圓型view的icon，可設置圖片，但大小只能依照官方公佈的<br>
       `windowSplashScreenBrandingImage`為icon下方一小塊的背景圖片<br>
@@ -67,7 +67,7 @@ excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解�
      - 將新的SplashTheme加入`AndrodManifest.xml`
 
      - 加入初始code
-     <script src="https://gist.github.com/KuanChunChen/7799d22f3d2839965678d9f75435bda5.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/7799d22f3d2839965678d9f75435bda5.js"></script>
 
      `SplashScreen.installSplashScreen(this)`需在`super.onCreate`前<br>
      <br>
@@ -83,7 +83,7 @@ excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解�
   - 如圖，當編譯後要安裝，則顯示如下 `INSTALL_PARSE_FAILED_MANIFEST_MALFORMED` 錯誤
    ![android12_exported_crash.png](/images/others/android12_exported_crash.png)<br>
   - 另外當使用到PendingIntent時也需加入對應flags不然會報錯：
-    <script src="https://gist.github.com/KuanChunChen/7ba7f042607cde3cb472af503088bce9.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/7ba7f042607cde3cb472af503088bce9.js"></script>
   - 解法 ＆ Demo：<br>
     - 需在每個PendingIntent創建處加入`FLAG_IMMUTABLE`或 `FLAG_MUTABLE` 標籤<br>
     - 以及加入最新work-runtime： `implementation 'androidx.work:work-runtime:2.7.1'`<br>
@@ -161,4 +161,4 @@ excerpt: "本文將介紹 Android 12 版本升級帶來的開發挑戰以及解�
   <a href="https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#startDiscovery()" target="_blank">api文檔</a>
     與<a href="https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher" target="_blank">藍牙權限分離說明</a><br>
   這裏是簡單demo如何改<br>
-  <script src="https://gist.github.com/KuanChunChen/cd5950dcc9247ea889e835a4085694f8.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/cd5950dcc9247ea889e835a4085694f8.js"></script>

@@ -74,10 +74,10 @@ excerpt: "作为一名アプリエンジニア、さまざまな要求に応え�
 * 通常、AndroidアプリでAIDLインターフェースを呼び出す際は、Serviceを使用します。<br>
   そのため、まずServiceを継承し、必要なライフサイクルメソッドをオーバーライドします。<br>
   例は以下の通りです：<br>
-  <script src="https://gist.github.com/KuanChunChen/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
+  <script src="https://gist.github.com/waitzShigoto/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
 
 * 同じサービスに、先ほどビルドしたAIDLインスタンスを追加します：<br>
-<script src="https://gist.github.com/KuanChunChen/d7bdc13de183beebcda4add00ecf8458.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d7bdc13de183beebcda4add00ecf8458.js"></script>
 
 <div class="c-border-content-title-4">Tips: AIDL インターフェース と Service パッケージパスは同じでなければコンパイルできません</div>
 
@@ -88,7 +88,7 @@ excerpt: "作为一名アプリエンジニア、さまざまな要求に応え�
 ![5.png](/images/aidl/5.png)<br><br>
 <div class="c-border-content-title-1">ステップ3 : Manifest.xml に Service を追加<br></div>
 `ステップ2` で作成した Service を AndroidManifest.xml に追加し、action を追加します<br>
-<script src="https://gist.github.com/KuanChunChen/873470afaa8317265c25ac02fc8832b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/873470afaa8317265c25ac02fc8832b3.js"></script>
 
 ここでの action は後で `ステップ5` で ServiceConnection でバインドするための action に対応しています<br>
 `action android:name="elegant.access.service.IRSSmartService"`
@@ -102,7 +102,7 @@ Android 内であれば、必要な場所で Intent を使用して起動でき�
 <div class="c-border-content-title-1">(オプション) ステップ5-その他のユースケース<br></div>
 * アプリケーション層で AIDL Service を使用する場合は、以下のコードを参照してください<br>
 `Intent を使用してバインドする AIDL サービス`<br>
-<script src="https://gist.github.com/KuanChunChen/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
 その後、すでに実装されているメソッドを直接操作できます<br>
 例：<br>
 ```
@@ -119,7 +119,7 @@ eleAcesAPI.getUpdateList();
 ここではリフレクションを使用して<br>
 カーネルに作成されたサービスをバインドします<br>
 バインドの例：<br>
-<script src="https://gist.github.com/KuanChunChen/364a1289647d7676a7b51e35d21c4899.js"></script>
+<script src="https://gist.github.com/waitzShigoto/364a1289647d7676a7b51e35d21c4899.js"></script>
 
 <div class="c-border-content-title-4">注意：これは下層を開発する必要がある場合にのみ使用してください。アプリで AIDL を実装する場合は前述のものを使用してください</div>
 <div class="c-border-content-title-4">注意2：Android 公式は Android 9 以降で新しいリフレクションポリシーを更新しています。その時点での機種 OTA の対象バージョンが 5~8 だったため、これがまだ使用可能かどうかは不明です。自分でテストしてください</div><br>

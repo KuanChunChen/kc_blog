@@ -100,7 +100,7 @@ categories: Debug探討
 
   - シェルスクリプトを使用してバックグラウンドでログを取得する
   - ここでは簡単なスクリプトの例を紹介します：<br>
-<script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
 <p class ="table_container">
   1. <b style="color:red;">開発者</b>がカスタマイズする場合は、上記のコードを完全に理解する必要があります。<br>

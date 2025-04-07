@@ -25,7 +25,7 @@ excerpt: "想要掌握 Android Enterprise 的技巧嗎？這份完整的研究�
       `curl -X GET https://androidmanagement.googleapis.com/v1/{parent=enterprises/*}/devices`
       上方 `{parent=enterprises/*}` 帶入格式 `enterprises/{enterprise-id}`
       Response :
-      <script src="https://gist.github.com/KuanChunChen/ecdf9831492804818412a9d190889fe1.js"></script>
+      <script src="https://gist.github.com/waitzShigoto/ecdf9831492804818412a9d190889fe1.js"></script>
 
       2. 透過http DELETE刪除enterprise裝置  
       `curl -X DELETE https://androidmanagement.googleapis.com/v1/{name=enterprises/*/devices/*}`
@@ -73,7 +73,7 @@ excerpt: "想要掌握 Android Enterprise 的技巧嗎？這份完整的研究�
   後面request body 的`{json=ResourcePolicy}`帶入對應的[Resource Policy format](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies#Policy)<br>
 
        - request body 中有個key passwordRequirements這邊帶入對應的[PasswordRequirements json format](https://developers.google.com/android/management/reference/rest/v1/PasswordRequirements)來設定
-       <script src="https://gist.github.com/KuanChunChen/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a73f43b9b538e0ea0ecb2e40c337e420.js"></script>
 <br>
 * Android Management API 鎖定底部欄按鈕
   - 一樣透過 http Patch [enterprises.policies](https://developers.google.com/android/management/reference/rest/v1/enterprises.policies/patch)，發送時，request body 內的`SystemNavigation`可以設定底部欄位顯示

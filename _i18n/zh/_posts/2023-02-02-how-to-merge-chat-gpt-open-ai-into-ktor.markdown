@@ -97,7 +97,7 @@ excerpt: "現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊
   <p>可以開始使用你熟悉的語言來開發API了</p>
   <p>串接 OpenAI API 的 Kotlin 程式</p>
 
-  <script src="https://gist.github.com/KuanChunChen/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
 
   <p class = "table_container">
   &#11014; 這邊我習慣把各種有可能會覆用的code拉出來寫，ChatGptAPI.kt、ChatGptCompletionRequest.kt、ChatGptCompletionResult.kt...等等<br>
@@ -106,12 +106,12 @@ excerpt: "現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊
   裡面已經幫忙處理UI Thread跟sub Thread的切換了
   </p>
 
-  <script src="https://gist.github.com/KuanChunChen/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
   <p style="text-align:left;">
   &#11014; 這邊主要是用Retrofit把串接接口分離出來
   </p>
 
-  <script src="https://gist.github.com/KuanChunChen/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
   <p style="text-align:left;">
   &#11014; 這邊就是建立一個http連線的類</p>
 
@@ -194,12 +194,12 @@ excerpt: "現在Chat GPT的浪潮盛起，把Chat GPT串進你的通訊軟體聊
 </div><br>
 <p>可以開始使用你熟悉的語言來開發API了</p>
 <p>串接 LineBot API 的 Kotlin 程式</p>
-<script src="https://gist.github.com/KuanChunChen/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
 <p style="text-align:left;">
 &#11014; 這裡跟前面ChatGPT串接的過程一樣，也是使用Retrofit來寫
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/371d803d654c0050574da73df02d3f16.js"></script>
+<script src="https://gist.github.com/waitzShigoto/371d803d654c0050574da73df02d3f16.js"></script>
 <p style="text-align:left;">
 &#11014; 拉出來的Line Messaging接口
 </p>

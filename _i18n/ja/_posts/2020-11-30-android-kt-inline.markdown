@@ -24,7 +24,7 @@ inlineの実際の効果は、<br>
 オブジェクトを直接インスタンス化するのではなく、<br>
 inlineを使用してオブジェクトのインスタンス化を減らし、パフォーマンスを向上させます。<br>
 簡単に言うと、関数を書くときは以下のように書きます：<br>
-<script src="https://gist.github.com/KuanChunChen/626f82a8e911cb4ab227f0bffc4220b9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/626f82a8e911cb4ab227f0bffc4220b9.js"></script>
 <br>
 
 しかし、一般的な変数を持つ関数に直接inlineを追加すると、<br>
@@ -42,7 +42,7 @@ inlineを使用してオブジェクトのインスタンス化を減らし、�
 そこで、関数型変数を持つ関数を作成し、<br>
 同じ関数にinlineを追加してみます：<br>
 
-<script src="https://gist.github.com/KuanChunChen/0b924c1634435c157fba4a73f3c4afc9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0b924c1634435c157fba4a73f3c4afc9.js"></script>
 <br>
 
 これらを実行すると、結果は同じであることがわかりますが、<br>
@@ -56,7 +56,7 @@ inlineを使用しない場合、<br>
 そのため、lambda関数を処理するためにより多くのパフォーマンスを消費する可能性があります。<br>
 inlineを使用すると、このパフォーマンスの消費を減らすことができます。<br>
 
-<script src="https://gist.github.com/KuanChunChen/0edf38ee27045d23b0b490ca4381f286.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0edf38ee27045d23b0b490ca4381f286.js"></script>
 
 <br>
 
@@ -68,7 +68,7 @@ inlineを使用すると処理のパフォーマンスが向上することが�
 
 例えば、lambdaを持つ関数を繰り返し呼び出す必要がある状況があるとします。経験の浅い人は次のように書くかもしれません：
 
-<script src="https://gist.github.com/KuanChunChen/6f5a374bee3a35b754d5f551b170f969.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6f5a374bee3a35b754d5f551b170f969.js"></script>
 <br>
 
 逆コンパイルすると、<br>
@@ -78,12 +78,12 @@ inlineを使用すると処理のパフォーマンスが向上することが�
 経験を積むと、次のようにできます：<br>
 **1. lambda関数をループの外部で作成する**<br>
 これによりパフォーマンスが向上しますが、Kotlinを使用しているので、inlineを使用することもできます。<br>
-<script src="https://gist.github.com/KuanChunChen/c7535ba99806202c354e571447b99c68.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c7535ba99806202c354e571447b99c68.js"></script>
 <br>
 
 **2.使用inline來創建：**<br>
 
-<script src="https://gist.github.com/KuanChunChen/ad7d6e31cce3d9badd7cc9b2fa36b57a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ad7d6e31cce3d9badd7cc9b2fa36b57a.js"></script>
 
 <br>
 
@@ -102,7 +102,7 @@ inlineを理解すれば、なぜこれら2つが補助的なものかがわか�
 1つのinline function内に複数のfunction typeが含まれている場合に、<br>
 どのlambdaにinlineを使用するかを制御するためのものです。例えば：
 
-<script src="https://gist.github.com/KuanChunChen/b6f489a19d880c3a6f89e53d90521dd5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b6f489a19d880c3a6f89e53d90521dd5.js"></script>
 <br>
 したがって、必要に応じてinlineを使用するかどうかを選択できます。
 <br>
@@ -112,7 +112,7 @@ inlineを理解すれば、なぜこれら2つが補助的なものかがわか�
 lambda functionを使用する際に、<br>
 宣言されたlambda function内にreturnを追加すると、<br>
 呼び出し時にlambda functionを使用している場所から直接returnされます。<br>
-<script src="https://gist.github.com/KuanChunChen/e9fdbb9fc2aefe4841853b23d1db8714.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/e9fdbb9fc2aefe4841853b23d1db8714.js"></script><br>
 
 この時、inline function全体から抜け出したくない場合、<br>
 上記のコードのように、元のreturnをreturn@getMinutesWithInlineに変更することで、<br>
@@ -122,7 +122,7 @@ lambda functionを使用する際に、<br>
 inlineを補助するためのものです。<br>
 効果としては、returnがある場合に直接外部のプログラムフローに影響を与えないようにすることができます。<br>
 
-<script src="https://gist.github.com/KuanChunChen/940839c5f5bbaf854a0c243748192758.js"></script>
+<script src="https://gist.github.com/waitzShigoto/940839c5f5bbaf854a0c243748192758.js"></script>
 
 <div class="c-border-main-title-2">結論</div>
 inlineを使用することで、<br>

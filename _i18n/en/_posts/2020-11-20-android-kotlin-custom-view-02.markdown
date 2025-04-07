@@ -26,7 +26,7 @@ First, since we need to customize our own view, we need to create a class. For e
 <br>
 Create this class and inherit the layout you want to use. You can adjust it according to your needs, depending on what characteristics you want the view to have. For example, I want to use FrameLayout:
 
-<script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
+<script src="https://gist.github.com/waitzShigoto/99170edc18f10eb9786ed1ef5061a511.js"></script>
 
 <br>
 <br>
@@ -40,14 +40,14 @@ Next, create what this view contains, so you need to create a custom XML to serv
 <br>
 <br>
 The actual code for the layout in the above image is as follows:
-<script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2441aae9b1134270fc7cb0968693a4d4.js"></script>
 
 <br>
 <br>
 
 This layout is relatively basic and not particularly difficult. It mainly depends on the reader's project requirements to define the desired layout. You don't have to follow the above exactly, but I prefer to separate files to avoid mixing them together. At this point, you just need to load this layout in the HorizontalMoveView you just created, as follows:
 
-<script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
+<script src="https://gist.github.com/waitzShigoto/30213ecc81d3372c620b05a488ac05e2.js"></script>
 
 <br>
 <br>
@@ -55,7 +55,7 @@ This layout is relatively basic and not particularly difficult. It mainly depend
 At this point, you have completed the first step. You can now create your own custom view, but note that so far, it's just an empty shell with no functions to support your custom view. So currently, you can call your custom view to use it, but it has no functionality, just a display. Therefore, you still need to write its functions to use it.
 Here, try calling the view you just wrote like this:
 
-<script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ae59cabf7891e07eebd875cc2df612f1.js"></script>
 
 <br>
 <br>

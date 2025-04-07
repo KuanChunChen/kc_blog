@@ -47,7 +47,7 @@ This saves a lot of repetitive development time<br>
 
 
 <div class="c-border-content-title-1">step1. Add compose-related libs and material3</div>
-<script src="https://gist.github.com/KuanChunChen/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/416e5be6bcc5a0a6221d0fd027a503cb.js"></script>
 Import as needed<br>
 The actual usage of toml is written like this: `implementation(libs.androidx.material3)`<br>
 Place it in your `build.gradle.kts(:app)`<br><br>
@@ -57,15 +57,15 @@ Place it in your `build.gradle.kts(:app)`<br><br>
 Here is the documentation on Material 3 theme
 <a class="link" href="https://github.com/material-components/material-components-android/blob/master/docs/theming/Color.md" data-scroll>documentation</a>
 
-<script src="https://gist.github.com/KuanChunChen/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
-<script src="https://gist.github.com/KuanChunChen/6315bd0157777d118f0def22f2f7e288.js"></script>
+<script src="https://gist.github.com/waitzShigoto/7daaa21db73354b5ea4c6f7a9adefc1e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6315bd0157777d118f0def22f2f7e288.js"></script>
 
 <div class="c-border-content-title-1">step3. Actual Use of Theme</div>
 Here we set up the status bar, navigation bar, theme, etc.<br>
 The colorscheme is applied from the previous implementation
-<script src="https://gist.github.com/KuanChunChen/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a94e4b1cde86b6b8789bdd1e89d526ca.js"></script>
 Use in Activity or Screen:<br>
-<script src="https://gist.github.com/KuanChunChen/eef8ce349264ca797f6644676a588ffa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eef8ce349264ca797f6644676a588ffa.js"></script>
 
 <div class="c-border-content-title-1">(Optional) step4. Create a Universal Toolbar</div>
 * Here we create a universal toolbar<br>
@@ -74,11 +74,11 @@ Most of the time the toolbar will have a similar effect<br>
 I would write a universal toolbar based on the design draft<br>
 You can decide whether you need to do this step<br>
 As follows:<br>
-<script src="https://gist.github.com/KuanChunChen/448372236d5ae5dd508b69a3c5e350ac.js"></script>
+<script src="https://gist.github.com/waitzShigoto/448372236d5ae5dd508b69a3c5e350ac.js"></script>
 Here is the actual use of `MainAppBarConfig`<br>
 The main thing is to add the desired style or click response in `MainAppBarConfig`<br>
 Then put it in the `topBar` of the `Scaffold`
-<script src="https://gist.github.com/KuanChunChen/0d011cba78589066d77d921d2e029a5e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0d011cba78589066d77d921d2e029a5e.js"></script>
 <div class="c-border-content-title-4">Conclusion</div>
 * This is the end of the first part<br>
 The main thing is to lay a solid foundation<br>

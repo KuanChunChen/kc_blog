@@ -108,7 +108,7 @@ LXXXXXGYPXXCXXXXXX7	device
 
 這邊是一小段shell script
 
-<script src="https://gist.github.com/KuanChunChen/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
 
 可以直接複製去跑shell<br>
 亦可以一行一行複製到terminal去執行
@@ -147,7 +147,7 @@ FS/data/log/.../btsnoop_hci.log
 可能要注意這裡把他拉成變數<br>
 就能輕鬆抓取log<br>
 如：
-<script src="https://gist.github.com/KuanChunChen/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
 這邊就依照個人需求可改寫
 
 

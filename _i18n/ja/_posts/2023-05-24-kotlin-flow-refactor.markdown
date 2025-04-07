@@ -39,7 +39,7 @@ excerpt: "Kotlin Flowを使ってネットワーク接続をリファクタリ�
     実際にFlowを呼び出して収集（collect）する際には、Coroutine Scopeに追加する必要があります。以下のように：<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6922457ce9a309d18258b1ac50ed77a6.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6922457ce9a309d18258b1ac50ed77a6.js"></script>
 </p>
 <div class = "table_container">
   <p>コード解説</p>
@@ -57,7 +57,7 @@ excerpt: "Kotlin Flowを使ってネットワーク接続をリファクタリ�
 <div class="c-border-main-title-2">Kotlin Flowの実際の開発</div>
 <div class="c-border-content-title-4">Kotlin Flowを使用して、元のretrofitコールのコールバックやRxJavaのオペレーターを置き換えます。コードは以下の通りです。</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
 </p>
 
 <div class = "table_container">
@@ -78,7 +78,7 @@ excerpt: "Kotlin Flowを使ってネットワーク接続をリファクタリ�
 
 <div class="c-border-content-title-4">verifyResponseを追加してAPIリクエストが期待通りかどうかを確認する</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
 </p>
 
 <div class = "table_container">
@@ -95,7 +95,7 @@ excerpt: "Kotlin Flowを使ってネットワーク接続をリファクタリ�
 
 <div class="c-border-content-title-4">checkStatusAndRefreshTokenを追加して、APIリクエストのトークンが期限切れの場合に自動的にトークンをリフレッシュし、元のAPIを再リクエストする</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
 </p>
 
 <div class = "table_container">

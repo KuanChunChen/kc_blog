@@ -158,7 +158,7 @@ You can directly pass variables using the two sets of code below<br><br>
 
 b. If default values are passed using the XML method<br>
 You can directly receive them using the code below<br>
-<script src="https://gist.github.com/KuanChunChen/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ba53d799a44b2bf910a805eec4b6aa4e.js"></script>
 
 <div class="c-border-content-title-4">Variable Types Supported by Navigation</div>
 <div class="p-img-container-single">
@@ -169,11 +169,11 @@ You can directly receive them using the code below<br>
 
 <div class="c-border-content-title-4">Support for Directly Setting Transition Animations</div>
 By passing enterAnim, exitAnim, popEnterAnim, and popExitAnim, you can easily set transition animations
-<script src="https://gist.github.com/KuanChunChen/695048f8e71483c8671bacb0a8f71473.js"></script>
+<script src="https://gist.github.com/waitzShigoto/695048f8e71483c8671bacb0a8f71473.js"></script>
 
 <div class="c-border-content-title-4">Support for Adding Exit Animations to Activities</div>
 Using the code below, you can use the built-in activity exit animations in navigation
-<script src="https://gist.github.com/KuanChunChen/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4934a5ee1a72f6164912d589ab9d5f8b.js"></script>
 
 <div class="c-border-main-title-2">Navigation Development Case - Supporting Multiple Back Stacks</div>
 
@@ -182,7 +182,7 @@ By using the API provided by Navigation to associate related views<br>
 You can handle the issue of multiple back stack transitions<br>
 For example, setupWithNavController to associate with the bottom navigation view<br>
 setupActionBarWithNavController to associate with the action bar<br>
-<script src="https://gist.github.com/KuanChunChen/fe1ee57edeaed321729525d4346014bc.js"></script>
+<script src="https://gist.github.com/waitzShigoto/fe1ee57edeaed321729525d4346014bc.js"></script>
 
 <div class="c-border-main-title-2">Navigation Development Case - popUpTo and popUpToInclusive</div>
 <div class="c-border-content-title-4">Using popUpTo to Remove All Pages on the Stack When Navigating to the Destination Page</div>
@@ -200,7 +200,7 @@ Fragments transition in order 1 -> 2 -> 3 and then back from 3 to 1<br>
 And then transition again 1 -> 2 -> 3 and back to 1<br>
 At this point, the fragments in the back stack are in the order [1,2,3,1,2,3,1]<br>
 
-<script src="https://gist.github.com/KuanChunChen/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/78e62e0684ea4f1ae46962bd13c67b1b.js"></script>
 If you want to transition back to 1 without having the destination fragment above in the stack, you can add<br>
 popUpTo and popUpToInclusive in the XML action<br>
 This will allow the next transition back to the destination fragment to have a stack instance cleared above it<br>

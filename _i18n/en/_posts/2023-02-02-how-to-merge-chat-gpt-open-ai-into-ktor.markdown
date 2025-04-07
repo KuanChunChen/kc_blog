@@ -93,7 +93,7 @@ which might be useful for those who plan to use the API long-term to manage thei
 <p>You can start developing the API using the language you are familiar with.</p>
 <p>Kotlin program for integrating with the OpenAI API</p>
 
-<script src="https://gist.github.com/KuanChunChen/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/4bcd72e0ba21a76eb545112113be7cfa.js"></script>
 
 <p class="table_container">
 &#11014; Here, I prefer to extract reusable code into separate files, such as ChatGptAPI.kt, ChatGptCompletionRequest.kt, ChatGptCompletionResult.kt, etc.<br>
@@ -102,12 +102,12 @@ I used the simplest built-in Callback of Retrofit,<br>
 which already handles the switching between UI Thread and sub Thread.
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
+<script src="https://gist.github.com/waitzShigoto/04e812ff6d93a27e1ba8a91834b2f140.js"></script>
 <p style="text-align:left;">
 &#11014; This mainly uses Retrofit to separate the integration endpoints.
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a4b7da41bfe56c408b879fdc8ceac03b.js"></script>
 <p style="text-align:left;">
 &#11014; This is where you create an HTTP connection class</p>
 
@@ -187,12 +187,12 @@ These two keys are needed to call the LineBot related interfaces
 </div><br>
 <p>You can start developing the API using the language you are familiar with</p>
 <p>Connecting to the LineBot API with Kotlin</p>
-<script src="https://gist.github.com/KuanChunChen/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a21b726e6cde1d2f171ca77b66b78abb.js"></script>
 <p style="text-align:left;">
 &#11014; This is similar to the process of connecting to ChatGPT earlier, also using Retrofit
 </p>
 
-<script src="https://gist.github.com/KuanChunChen/371d803d654c0050574da73df02d3f16.js"></script>
+<script src="https://gist.github.com/waitzShigoto/371d803d654c0050574da73df02d3f16.js"></script>
 <p style="text-align:left;">
 &#11014; Extracted Line Messaging interface
 </p>

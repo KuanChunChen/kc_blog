@@ -73,10 +73,10 @@ or use the `Build > Rebuild Project` option in Android Studio to build it.<br>
 * Usually, in an Android app, you will use a Service to call the AIDL interface.<br>
 So first, extend the Service and override the necessary lifecycle methods.<br>
 An example is as follows:<br>
-<script src="https://gist.github.com/KuanChunChen/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/7f7cbef82fc784a8d44544bf5cbaf55b.js"></script><br>
 
 * Next, add the AIDL instance generated after the build to the same service:<br>
-<script src="https://gist.github.com/KuanChunChen/d7bdc13de183beebcda4add00ecf8458.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d7bdc13de183beebcda4add00ecf8458.js"></script>
 
 <div class="c-border-content-title-4">Tip: The AIDL interface and Service package path must be the same, otherwise it will not compile successfully</div>
 
@@ -87,7 +87,7 @@ The three images below are illustrative:<br>
 ![5.png](/images/aidl/5.png)<br><br>
 <div class="c-border-content-title-1">Step 3: Add Service to Manifest.xml<br></div>
 Add the Service from `Step 2` to AndroidManifest.xml and add an action<br>
-<script src="https://gist.github.com/KuanChunChen/873470afaa8317265c25ac02fc8832b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/873470afaa8317265c25ac02fc8832b3.js"></script>
 
 The action here corresponds to the action that will be used in `Step 5` to bind the ServiceConnection<br>
 `action android:name="elegant.access.service.IRSSmartService"`
@@ -101,7 +101,7 @@ Refer to `Steps 5~7` for details<br>
 <div class="c-border-content-title-1">(Optional) Step 5 - Other Use Cases<br></div>
 * If you want to use your AIDL Service at the application layer, you can refer to the code below<br>
 `Just use Intent to bind the AIDL service`<br>
-<script src="https://gist.github.com/KuanChunChen/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ab90b84bcdc96f98ec498045b68c57e5.js"></script>
 Then you can directly operate the methods already implemented inside<br>
 For example:<br>
 ```
@@ -120,7 +120,7 @@ So I wrote a service that connected to the AIDL interface using C#<br>
 Then just bind it at the app layer<br>
 Here, we used reflection to bind the service written in the kernel<br>
 Binding example:<br>
-<script src="https://gist.github.com/KuanChunChen/364a1289647d7676a7b51e35d21c4899.js"></script>
+<script src="https://gist.github.com/waitzShigoto/364a1289647d7676a7b51e35d21c4899.js"></script>
 
 <div class="c-border-content-title-4">Note: Use this only if you have the need to develop at the lower layer. If it's for app implementation of AIDL, just use the previous one</div>
 <div class="c-border-content-title-4">Note 2: Android officially updated the reflection policy after Android 9, not sure if this can still be used, because at that time the target version for the OTA model was 5~8, you can test it yourself</div><br>

@@ -79,16 +79,16 @@ categories: Android教學
        -> 解決方法：加入`supportlib.jar`並加入gradle dependencies<br>
        `用IDE的Add as library功能的需注意以下`：
        這裡需將原本knox sdk與supportlib 兩個jar檔案改成以下，runtime才不會再報錯
-       <script src="https://gist.github.com/KuanChunChen/fefe8c4005184dbaecf0d20645709ba8.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/fefe8c4005184dbaecf0d20645709ba8.js"></script>
 
      - 上述成功後激活license key時，需啟動admin權限，不然會回傳`internal error`<br>
-       <script src="https://gist.github.com/KuanChunChen/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/a3880c775ce2a8617ffc8dde47bfb865.js"></script>
 
      - 這裡有個坑 啟動license時需使用Boardcast接收返回結果
          - 但目前官方文件顯示 knox 啟用license 的廣播action 是使用
-           <script src="https://gist.github.com/KuanChunChen/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/878e1a32ea9ab7b614afd68969ed5b30.js"></script>
           但是舊版 Knox API level 19 (Knox 2.6) 上實測Knox不會發上面Action，而是如下
-           <script src="https://gist.github.com/KuanChunChen/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
+           <script src="https://gist.github.com/waitzShigoto/9cdd580d99d2d89d2e2f57430b1c9a4d.js"></script>
          - 這邊看到官方說 [2.x升級3.x時nameSpace有改](https://docs.samsungknox.com/dev/knox-sdk/new-intent-names.htm) (Knox api 30這版開始改了)
 
          - 所以他這邊提供一個方法：[參考](https://docs.samsungknox.com/dev/knox-sdk/support-older-devices.htm)

@@ -28,7 +28,7 @@ xmlでviewのマージンを設定する場合、<br>
 場合によっては、<br>
 要求者がAndroid View要素間のマージンを動的に設定するよう求めることがあります。<br>
 通常、以下の方法を使用できます。<br>
-<script src="https://gist.github.com/KuanChunChen/60e47ade8cf051643f9075e8157c6ded.js"></script>
+<script src="https://gist.github.com/waitzShigoto/60e47ade8cf051643f9075e8157c6ded.js"></script>
 <br>
 この方法では、LayoutParamsをインスタンス化し、<br>
 上下左右のマージンを設定してからViewにセットする必要があります。<br>
@@ -42,7 +42,7 @@ Kotlin Extensionを使用してマージン設定方法を実装できます。<
 <h1 style="background-color:powderblue;">&nbsp;&nbsp;Kotlin Extensionを使用して実装</h1>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;ステップ0. まずは完全な拡張関数を示します</h4>
-<script src="https://gist.github.com/KuanChunChen/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b884affe0c15221ec627ae3faa3c1dfa.js"></script>
 
 <p class="table_container">
   このコードはすでに直接使用できます。<br>
@@ -58,7 +58,7 @@ Kotlin Extensionを使用してマージン設定方法を実装できます。<
 <div class="c-border-content-title-4">
   まず、以下のように関数を作成します。
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/9aec2350bcd7231a162da047508d76be.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/9aec2350bcd7231a162da047508d76be.js"></script><br>
 
 <div class="table_container">
   <p>上記のコードの説明</p>
@@ -97,7 +97,7 @@ Kotlin Extensionを使用してマージン設定方法を実装できます。<
 <div class="c-border-content-title-4">
   その後、次のように呼び出すことができます
 </div><br>
-<script src="https://gist.github.com/KuanChunChen/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c5ef3ee7159011e92c8d17be233cf6a8.js"></script>
 <div class="table_container">
   <p>上記のコードの説明</p>
   <span>
@@ -108,14 +108,14 @@ Kotlin Extensionを使用してマージン設定方法を実装できます。<
 </div><br>
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step2. dpをpxに変換するメソッドを書く</h4>
-<script src="https://gist.github.com/KuanChunChen/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/52153b7712fde5257aaeab83b3c2ce7f.js"></script>
 
 - ここは非常に簡単です
   主に間隔を設定する際にピクセルを使用するため
   変換メソッドを書きました
 
 <h4 style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step3. 拡張したlayoutParamsを使用してレイアウトのパラメータを変更する</h4>
-<script src="https://gist.github.com/KuanChunChen/b64909a750c6a73306a1d1885f763f67.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b64909a750c6a73306a1d1885f763f67.js"></script>
 <div class="table_container">
   <p>上記のコードの説明</p>
   <span>
@@ -134,4 +134,4 @@ Kotlin Extensionを使用してマージン設定方法を実装できます。<
 
 <h4 id="step5" style="background-color:MediumSeaGreen; color:white;">&nbsp;&nbsp;Step5. 最後に簡単に使用する</h4>
 
-<script src="https://gist.github.com/KuanChunChen/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6e721513ab6c92dc05ab2e61ef716c1f.js"></script>

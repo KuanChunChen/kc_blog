@@ -17,7 +17,7 @@ excerpt: "この記事では、Androidプラットフォーム上でKotlin言語
 
 Android 12以降では権限関連の処理が追加されましたので、注意してください！<br>
 ここでは私の処理方法を紹介しますので、参考にしてください：
-<script src="https://gist.github.com/KuanChunChen/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5ce69516b88a79e4caa4a58c50b41b53.js"></script>
 
 
 最終目標はこのようになります<br>
@@ -174,7 +174,7 @@ API21で廃止されました<br>
 <div class="c-border-main-title-2">実際の開発：Bluetoothスキャンの方法</div>
 
 manifestに上記の必要な権限を追加します。<br>
-<script src="https://gist.github.com/KuanChunChen/fc855c0ab9c4667df49b253595744d08.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/fc855c0ab9c4667df49b253595744d08.js"></script><br>
 
 
 <div class="c-border-content-title-4">コード内で権限を要求する</div>
@@ -184,7 +184,7 @@ manifestに上記の必要な権限を追加します。<br>
 ```kotlin
   requestMultiplePermissions(Manifest.permission.ACCESS_FINE_LOCATION,...
 ```
-<script src="https://gist.github.com/KuanChunChen/42ac3a41e2b7d44eb84f5072c09fd359.js"></script>
+<script src="https://gist.github.com/waitzShigoto/42ac3a41e2b7d44eb84f5072c09fd359.js"></script>
 
 
 <div class="c-border-content-title-4">BluetoothAdapterインスタンスの取得</div><br>
@@ -216,7 +216,7 @@ val rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE).toI
 val uuidExtra = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID)
 ```
 継承したBroadcastReceiverの実装
-<script src="https://gist.github.com/KuanChunChen/aaf1cacad87443dec44eab7777d27242.js"></script>
+<script src="https://gist.github.com/waitzShigoto/aaf1cacad87443dec44eab7777d27242.js"></script>
 
 
 
@@ -236,7 +236,7 @@ viewmodelとcoroutineを組み合わせて<br>
 viewmodelでリフレッシュ状態を記録し、coroutineで指定秒数 x 秒スキャンを行います<br>
 それほど複雑にする必要がない場合は<br>
 startDiscoveryとcancelDiscoveryを直接使用して開発するだけで十分です<br>
-<script src="https://gist.github.com/KuanChunChen/2e0d11bb4d06d114d9eb911b3b65b3b3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2e0d11bb4d06d114d9eb911b3b65b3b3.js"></script>
 
 スキャンの結果は先ほどのDeviceListBoardCast {}内に返されます<br>
 ここはプロジェクトに応じて調整してください<br>
@@ -255,14 +255,14 @@ private val receiver = DeviceListBoardCast { bleDevice ->
 まず、serviceを作成します<br>
 次にBinderを作成します<br>
 onBind時にインスタンスをfragmentに返すために使用します<br>
-<script src="https://gist.github.com/KuanChunChen/9ab4e15232a62ec3894c753896eb4a26.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9ab4e15232a62ec3894c753896eb4a26.js"></script>
 
 <div class="c-border-content-title-4">必要なクラスを初期化する</div>
 
 そのservice内でinitialize()関数を作成します<br>
 後でbindservice時に初期化を呼び出すために使用します<br>
 
-<script src="https://gist.github.com/KuanChunChen/06594ff234da93de9aaed7b1ec2b5480.js"></script>
+<script src="https://gist.github.com/waitzShigoto/06594ff234da93de9aaed7b1ec2b5480.js"></script>
 
 <div class="c-border-content-title-4">コールバックを作成し、Bluetoothの状態が返されたときに受信できるようにする</div>
 
@@ -291,7 +291,7 @@ onBind時にインスタンスをfragmentに返すために使用します<br>
 </div><br>
 
 gattCallbackの例：
-<script src="https://gist.github.com/KuanChunChen/6e9f5f10af4619fe3d13167a1d599e95.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6e9f5f10af4619fe3d13167a1d599e95.js"></script>
 
 <div class="c-border-content-title-4">接続を開始</div>
 connect関数を作成します。<br>
@@ -309,7 +309,7 @@ bluetoothGatt = device.connectGatt(this, false, gattCallback)
 もちろん、前に作成したgattCallbackも渡します。<br>
 前の部分は一連のnull確認を行うだけです。<br>
 アプリがnullによってクラッシュしないようにします。<br>
-<script src="https://gist.github.com/KuanChunChen/aa1c6a31dc8ee2a38432db88ec0125b3.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/aa1c6a31dc8ee2a38432db88ec0125b3.js"></script><br>
 
 
 gattCallbackのインスタンス化の中で、<br>
@@ -331,31 +331,31 @@ serviceとcharacteristicを見つける必要があります。<br>
 
 
 次の方法で見つけます：<br>
-<script src="https://gist.github.com/KuanChunChen/2b6fb90e97f14b00e6a942b43f653644.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2b6fb90e97f14b00e6a942b43f653644.js"></script>
 前にブロードキャストで取得したgatt serviceを渡すと、<br>
 遍歴してcharacteristicを取得できます。<br>
 
 Android公式がcharacteristicのクラスを既に用意しているので、<br>
 読み取るには関連する関数を呼び出すだけです。<br>
 
-<script src="https://gist.github.com/KuanChunChen/51be18e662704d9cf0241cc27f5f961b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/51be18e662704d9cf0241cc27f5f961b.js"></script>
 <br>
 
 そして、以前に定義したBluetoothGattCallback内の<br>
 onCharacteristicReadで結果が返されます。<br>
 ブロードキャストを受信するように定義するだけでデータを取得できます。<br>
 
-<script src="https://gist.github.com/KuanChunChen/ebb8318578499bec7f6cf97f4bc93063.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ebb8318578499bec7f6cf97f4bc93063.js"></script>
 
 
 さらに、Bluetoothにはnotifyメソッドもあります。<br>
 
-<script src="https://gist.github.com/KuanChunChen/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d9348fbbdc38d3b1bbc20250505c414b.js"></script>
 
 同様に結果が返されます。<br>
 BluetoothGattCallback内の<br>
 onCharacteristicChangedを確認します。<br>
-<script src="https://gist.github.com/KuanChunChen/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/20abc91e5b0b6a658aa3ae3d17cfdee9.js"></script>
 
 
 サードパーティツールを使用して<br>

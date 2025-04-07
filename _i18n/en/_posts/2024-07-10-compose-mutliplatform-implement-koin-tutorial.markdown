@@ -26,10 +26,10 @@ Koin 作為一個輕量級的 DI 框架<br>
 <div class="c-border-main-title-2">實作步驟</div>
 <div class="c-border-content-title-1">1. 導入庫</div>
 在 .toml 文件中添加：<br>
-<script src="https://gist.github.com/KuanChunChen/1c76521f84737bfa12984f2ca451d340.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1c76521f84737bfa12984f2ca451d340.js"></script>
 
 在 build.gradle.kts 中添加：<br>
-<script src="https://gist.github.com/KuanChunChen/305692852ee11669c95e6b6d7a4c069d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/305692852ee11669c95e6b6d7a4c069d.js"></script>
 
 <div class="c-border-content-title-1">2. 實作 DI 內容</div>
 接下來，我們需要實作 DI 的具體內容：<br>
@@ -37,7 +37,7 @@ Koin 作為一個輕量級的 DI 框架<br>
 像是我們可能會規劃使用viewmodel、database、datastore等等<br>
 就可以根據你實際要用的去做分類<br>
 使得程式碼更好維護、管理<br>
-<script src="https://gist.github.com/KuanChunChen/5b922a7f0eeb3c57e35fdb6d2f2c2842.js"></script>
+<script src="https://gist.github.com/waitzShigoto/5b922a7f0eeb3c57e35fdb6d2f2c2842.js"></script>
 
 <div class="c-border-content-title-1">3. 初始化 Koin</div>
 如果剛好你實作的東西`需要跨平台`取得<br>
@@ -46,24 +46,24 @@ Koin 作為一個輕量級的 DI 框架<br>
 根據不同的平台和需求，我們有多種方式初始化 Koin：<br>
 
 in iOSMain：<br>
-<script src="https://gist.github.com/KuanChunChen/9a283e26ab1ba7df68b49e1a5afdd9d7.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9a283e26ab1ba7df68b49e1a5afdd9d7.js"></script>
 
 in androidMain：<br>
-<script src="https://gist.github.com/KuanChunChen/9aa5cf28e011445cfefb4cf96c37fbd9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9aa5cf28e011445cfefb4cf96c37fbd9.js"></script>
 
 如果剛好你實作的東西`不需要跨平台`取得<br>
 你可以用以下的方式去在commonMain裡面直接注入<br>
 對於 koin-compose 1.2.0 版本，可以用`KoinApplication`<br>
 讓你的代碼更有整體性<br>
-<script src="https://gist.github.com/KuanChunChen/678e1811c1cb91ea1ede5a3de49587c0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/678e1811c1cb91ea1ede5a3de49587c0.js"></script>
 
 或也可以用原本的 `startKoin`：<br>
-<script src="https://gist.github.com/KuanChunChen/b027bf199cb30df673fff52f95216aef.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b027bf199cb30df673fff52f95216aef.js"></script>
 
 <div class="c-border-content-title-1">4. 實際使用</div>
 
 之後直接用`koinViewModel`就能直接注入viewmodel
-<script src="https://gist.github.com/KuanChunChen/e76b173931dad48aa8d87b9853021e5e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e76b173931dad48aa8d87b9853021e5e.js"></script>
 
 或是有些要組成的東西在moduel那邊使用`get()` 就能幫你取得實例
 

@@ -288,11 +288,11 @@ mediaProjection`<br>
        例如：`mediaProjection`在startForeground前，要求要先呼叫createScreenCaptureIntent() 去取得mediaProjection的權限。<br>
        這裡嘗試去做了個示範<br>
        更新你的build sdk version<br>
-       <script src="https://gist.github.com/KuanChunChen/7c4a8ef7b18660749a8acec308992d2b.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/7c4a8ef7b18660749a8acec308992d2b.js"></script>
        加入以下權限<br>
-       <script src="https://gist.github.com/KuanChunChen/1f396d04ca999787104f31dd735a4ae0.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/1f396d04ca999787104f31dd735a4ae0.js"></script>
        根據你的需求加入 foreground service type<br>
-       <script src="https://gist.github.com/KuanChunChen/333cca6030d4e727740f89ca74e529de.js"></script>
+       <script src="https://gist.github.com/waitzShigoto/333cca6030d4e727740f89ca74e529de.js"></script>
 
        -> `實際可能遇到的問題分享`：我在先前寫過的`Service`代碼裡，<br>
        已經有加入過`foregroundServiceType` (之前是非強制)，<br>

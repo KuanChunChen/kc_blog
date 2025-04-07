@@ -31,7 +31,7 @@ excerpt: "This article will introduce the development challenges brought by the 
   The same applies to the microphone: [Reference](https://developer.android.com/training/permissions/explaining-access#toggles)
 
   - Currently, the following code can be used to detect if the system supports it and provide a prompt to the user. There is no API to determine if it is enabled.
-  <script src="https://gist.github.com/KuanChunChen/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/c7469603bb0f6b6b533447c7d7c9e0cf.js"></script>
 
   <div class="c-border-content-title-4">
      Deprecated ACTION_CLOSE_SYSTEM_DIALOGS in Android 12 and Above:  
@@ -56,7 +56,7 @@ excerpt: "This article will introduce the development challenges brought by the 
      Note that the minimum SDK requirement is 21 and above.<br>
      ![android12_splash_min_sdk.png](/images/others/android12_splash_min_sdk.png)
      - Set the new splash screen Theme
-     <script src="https://gist.github.com/KuanChunChen/dd55d7b2cb70cedf158763083390d426.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/dd55d7b2cb70cedf158763083390d426.js"></script>
       `windowSplashScreenBackground` is the background color, which can only be set to @color.<br>
       `windowSplashScreenAnimatedIcon` is the icon for the circular view in the middle, which can be set to an image, but the size must follow the official specifications.<br>
       `windowSplashScreenBrandingImage` is the small background image below the icon.<br>
@@ -67,7 +67,7 @@ excerpt: "This article will introduce the development challenges brought by the 
      - Add the new SplashTheme to `AndroidManifest.xml`
 
      - Add initial code
-     <script src="https://gist.github.com/KuanChunChen/7799d22f3d2839965678d9f75435bda5.js"></script>
+     <script src="https://gist.github.com/waitzShigoto/7799d22f3d2839965678d9f75435bda5.js"></script>
 
      `SplashScreen.installSplashScreen(this)` must be called before `super.onCreate`<br>
      <br>
@@ -82,7 +82,7 @@ excerpt: "This article will introduce the development challenges brought by the 
   - As shown, when compiling and installing, the following error `INSTALL_PARSE_FAILED_MANIFEST_MALFORMED` is displayed:
    ![android12_exported_crash.png](/images/others/android12_exported_crash.png)<br>
   - Additionally, when using PendingIntent, corresponding flags must be added to avoid errors:
-    <script src="https://gist.github.com/KuanChunChen/7ba7f042607cde3cb472af503088bce9.js"></script>
+    <script src="https://gist.github.com/waitzShigoto/7ba7f042607cde3cb472af503088bce9.js"></script>
   - Solution & Demo:<br>
     - Add `FLAG_IMMUTABLE` or `FLAG_MUTABLE` tags at each PendingIntent creation.<br>
     - Also, add the latest work-runtime: `implementation 'androidx.work:work-runtime:2.7.1'`<br>
@@ -160,4 +160,4 @@ excerpt: "This article will introduce the development challenges brought by the 
   <a href="https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#startDiscovery()" target="_blank">API documentation</a>
     and <a href="https://developer.android.com/guide/topics/connectivity/bluetooth/permissions#declare-android12-or-higher" target="_blank">Bluetooth permission separation explanation</a><br>
   Here is a simple demo on how to modify<br>
-  <script src="https://gist.github.com/KuanChunChen/cd5950dcc9247ea889e835a4085694f8.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/cd5950dcc9247ea889e835a4085694f8.js"></script>

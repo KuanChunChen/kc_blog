@@ -24,7 +24,7 @@ inline 實際上的作用，<br>
 而不是直接實例化一個物件，<br>
 藉由inline來減少實例化物件來提升效能<br>
 先簡單的說，我們寫一個funcion會寫成像下方這樣：<br>
-<script src="https://gist.github.com/KuanChunChen/626f82a8e911cb4ab227f0bffc4220b9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/626f82a8e911cb4ab227f0bffc4220b9.js"></script>
 <br>
 
 
@@ -43,7 +43,7 @@ inline 實際上的作用，<br>
 所以，我們試著寫出一個帶入function type的function，<br>
 並寫一個一樣的function帶有inline，就像這樣：<br>
 
-<script src="https://gist.github.com/KuanChunChen/0b924c1634435c157fba4a73f3c4afc9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0b924c1634435c157fba4a73f3c4afc9.js"></script>
 <br>
 
 這兩個執行後你會發現返回的結果一樣，<br>
@@ -58,7 +58,7 @@ inline 實際上的作用，<br>
 因此可能會花比較多效能去處理這個lambda function，<br>
 所以如果使用inline 就可以降低這方面效能的消耗。<br>
 
-<script src="https://gist.github.com/KuanChunChen/0edf38ee27045d23b0b490ca4381f286.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0edf38ee27045d23b0b490ca4381f286.js"></script>
 
 <br>
 
@@ -71,7 +71,7 @@ inline 實際上的作用，<br>
 
 假設你有個情境，是需要重複呼叫某個帶有lambda 的function，比較沒經驗的可能會直接這樣寫：
 
-<script src="https://gist.github.com/KuanChunChen/6f5a374bee3a35b754d5f551b170f969.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6f5a374bee3a35b754d5f551b170f969.js"></script>
 <br>
 
 可以看到，在你反編譯後，<br>
@@ -81,12 +81,12 @@ inline 實際上的作用，<br>
 所以當你比較有經驗後，你可以：<br>
 **1.把lambda function在迴圈外部創建**<br>
 這樣同樣能提升效能，但既然都使用kotlin了，那就使用inline也可以。<br>
-<script src="https://gist.github.com/KuanChunChen/c7535ba99806202c354e571447b99c68.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c7535ba99806202c354e571447b99c68.js"></script>
 <br>
 
 **2.使用inline來創建：**<br>
 
-<script src="https://gist.github.com/KuanChunChen/ad7d6e31cce3d9badd7cc9b2fa36b57a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ad7d6e31cce3d9badd7cc9b2fa36b57a.js"></script>
 
 <br>
 
@@ -106,7 +106,7 @@ noinline的概念，其實更簡單了，<br>
 是當你一個inline function內含有多個function type時，<br>
 你可以去控制，哪個lambda 要使用inline，例如：
 
-<script src="https://gist.github.com/KuanChunChen/b6f489a19d880c3a6f89e53d90521dd5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b6f489a19d880c3a6f89e53d90521dd5.js"></script>
 <br>
 因此，你也能依照需求，去選擇要不要用inline
 <br>
@@ -116,7 +116,7 @@ noinline的概念，其實更簡單了，<br>
 當你在使用lambda function時，<br>
 如果在宣告的lambda function 裡面加入return ，<br>
 會導致呼叫時，使用lambda function的地方直接return出該function：<br>
-<script src="https://gist.github.com/KuanChunChen/e9fdbb9fc2aefe4841853b23d1db8714.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/e9fdbb9fc2aefe4841853b23d1db8714.js"></script><br>
 
 
 
@@ -129,7 +129,7 @@ noinline的概念，其實更簡單了，<br>
 功效是可以避免有return時，直接被return出去！<br>
 
 
-<script src="https://gist.github.com/KuanChunChen/940839c5f5bbaf854a0c243748192758.js"></script>
+<script src="https://gist.github.com/waitzShigoto/940839c5f5bbaf854a0c243748192758.js"></script>
 
 
 

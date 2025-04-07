@@ -104,7 +104,7 @@ Bluetooth関連の操作を開始して、<br>
 
 ここに一小段のシェルスクリプトがあります
 
-<script src="https://gist.github.com/KuanChunChen/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8d55a3492f8cafbfd86196ce8f6d610d.js"></script>
 
 直接コピーしてシェルで実行できます<br>
 または一行ずつターミナルにコピーして実行することもできます
@@ -141,7 +141,7 @@ FS/data/log/.../btsnoop_hci.log
 ここを変数にしておくと<br>
 ログを簡単に取得できます<br>
 例：
-<script src="https://gist.github.com/KuanChunChen/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
+<script src="https://gist.github.com/waitzShigoto/d862a1007ddb5bbef96b28a8a5c3e723.js"></script>
 ここは個人のニーズに応じて書き換え可能です
 
 

@@ -26,7 +26,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 <br>
 建造這個類，並繼承你想要使用的layout，這邊想要讓view擁有什麼特性而繼承什麼，可以依照你的需求去調整，例如我想要用FrameLayout：
 
-<script src="https://gist.github.com/KuanChunChen/99170edc18f10eb9786ed1ef5061a511.js"></script>
+<script src="https://gist.github.com/waitzShigoto/99170edc18f10eb9786ed1ef5061a511.js"></script>
 
 <br>
 <br>
@@ -44,14 +44,14 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 <br>
 <br>
 上面那張圖的佈局實際上的code如下：
-<script src="https://gist.github.com/KuanChunChen/2441aae9b1134270fc7cb0968693a4d4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/2441aae9b1134270fc7cb0968693a4d4.js"></script>
 
 <br>
 <br>
 
 這邊的佈局比較基本，沒有什麼特別難的地方，主要是依照讀者的專案需求，來定義想要的佈局，不一定要照上面的也可以，但我習慣分檔，避免檔案都混在一起，這時候你只要在剛剛創建的 HorizontalMoveView 裡面去加載這張佈局，如下：
 
-<script src="https://gist.github.com/KuanChunChen/30213ecc81d3372c620b05a488ac05e2.js"></script>
+<script src="https://gist.github.com/waitzShigoto/30213ecc81d3372c620b05a488ac05e2.js"></script>
 
 <br>
 <br>
@@ -61,7 +61,7 @@ Hello,大家好,這裡是Elegant Access的 KC，<br>
 這邊要先嘗試呼叫剛寫好的view，可以這樣：
 
 
-<script src="https://gist.github.com/KuanChunChen/ae59cabf7891e07eebd875cc2df612f1.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ae59cabf7891e07eebd875cc2df612f1.js"></script>
 
 
 <br>

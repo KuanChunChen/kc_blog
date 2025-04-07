@@ -36,17 +36,17 @@ excerpt: ""
 <div class="c-border-content-title-1">Edittext</div>
 <img src="/images/compose/002.png" width="100%"><br><br>
 
-<script src="https://gist.github.com/KuanChunChen/1a5a6e77cbaa7565c95152467d9aa6eb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1a5a6e77cbaa7565c95152467d9aa6eb.js"></script>
 
 
 <div class="c-border-content-title-1">Dialog</div>
 <img src="/images/compose/003.png" width="100%"><br><br>
 
-<script src="https://gist.github.com/KuanChunChen/9eb6c6296cfab8ec4e17f5e151f3a205.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9eb6c6296cfab8ec4e17f5e151f3a205.js"></script>
 
 <div class="c-border-content-title-1">Dialog</div>
 <img src="/images/compose/004.png" width="100%"><br><br>
-<script src="https://gist.github.com/KuanChunChen/055ae82beba153468b22473973fc97e8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/055ae82beba153468b22473973fc97e8.js"></script>
 
 <div class="c-border-content-title-4">組出你要的畫面</div>
 * 再來就可以把各種畫面給組出來<br>
@@ -72,12 +72,12 @@ excerpt: ""
 例如網路請求、或本地端DB查詢大量資料時<br>
 所以可以使用flow等待他把資料emit過來給你<br>
 這邊稍微舉例：
-<script src="https://gist.github.com/KuanChunChen/15bd34c56591b39a43887e892a0ff1bf.js"></script>
+<script src="https://gist.github.com/waitzShigoto/15bd34c56591b39a43887e892a0ff1bf.js"></script>
 
 <div class="c-border-content-title-1">建立viewstate來放畫面響應需要的資料</div>
 * 接著為了整理你所有畫面上會有變化的內容<br>
 可以做一個data class 用來放你畫面要的資料<br>
-<script src="https://gist.github.com/KuanChunChen/df6639924388dce2a2def14fe45d39c0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/df6639924388dce2a2def14fe45d39c0.js"></script>
 
 <div class="c-border-content-title-1">用combine組合flow</div>
 * 接著使用`combine`把各種資料來源組進來<br>
@@ -89,12 +89,12 @@ combine會組合你的所有flow <br>
 * 如果你在lambda`{}`內有想要做判斷的值也可以考慮在裡面<br>
 最終把你要的結果用前面定義的ViewState去return即可<br>
 `.stateIn`可以設定你這個R類型flow的初始值<br>
-<script src="https://gist.github.com/KuanChunChen/93f44fdfaae010f19254a3b0cc5cfc5a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/93f44fdfaae010f19254a3b0cc5cfc5a.js"></script>
 
 <div class="c-border-content-title-1">實際在compose中使用flow給的資料</div>
 * 前面完成之後就可以透過`.collectAsState()`去拿到前面的flow<br>
 並收集成compose能用的state<br>
 這時候就能響應式更新畫面囉~<br>
 
-<script src="https://gist.github.com/KuanChunChen/a86bac16bd42eab68566b6b440fc6e5d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a86bac16bd42eab68566b6b440fc6e5d.js"></script>
 <a class="link" href="#category" data-scroll>跳回目錄</a>

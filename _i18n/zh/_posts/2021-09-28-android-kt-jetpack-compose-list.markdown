@@ -56,7 +56,7 @@ excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn �
 直接看實作item範例 ：<br>
 <br>
 
-<script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
+<script src="https://gist.github.com/waitzShigoto/90340f7ddf11897d221d12b87bab4782.js"></script>
 <br>
 主要就是實作item <br>
 可以搭配你自定義的data model、navigate引導等等 <br>
@@ -69,14 +69,14 @@ excerpt: "這篇文章介紹了如何使用 Jetpack Compose 中的 LazyColumn �
 再來只要使用LazyColumn呼叫你剛剛做好的item<br>
 這樣就能實作一個list列表了<br>
 如下：
-<script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/691f335e74c0ba919d159065ce9d70de.js"></script>
 
 
 
 <div class="c-border-content-title-4">第三步：加入viewmodel去變化資料</div>
 這是我這篇實作的viewmodel<br>
 以及livedata去觀察資料的變化<br>
-<script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br>
 <br>
 
@@ -114,7 +114,7 @@ _devices是用來給class內部呼叫<br>
 <div class="c-border-content-title-4">第四步：把viewmodel導入compose</div>
 <br>
 把剛剛前面實作的list的compose與viewmodel合體:<br>
-<script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br>
 <br>
 加入這行<br>
@@ -125,7 +125,7 @@ val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 ```
 
 這是包成一個content的範例，供參考：<br>
-<script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b544ff8031746459060be65333bb222b.js"></script><br>
 
 
 <div class="c-border-content-title-4">第五步：實際應用在fragment上看看吧</div>
@@ -140,7 +140,7 @@ val model: DeviceViewModel by activityViewModels()
 之後帶帶入剛剛完成的content內<br>
 看範例：<br>
 
-<script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
 
 所以之後要只要觀察到viewmodel內livedata有變化後<br>
 畫面就會自動更新了<br>

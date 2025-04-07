@@ -33,7 +33,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
 </div>
 <p>
 
-  <script src="https://gist.github.com/KuanChunChen/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/eb9fc1cf52e51c18c85160b9dec6b418.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
       First, create a custom View class named SnakeGameView, inheriting from the View class.<br>
@@ -44,7 +44,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Define variables and initialize<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/696e8b14f4b8fdd8e9a5ebc317105b80.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
       In the SnakeGameView class, define the variables needed for the game, such as the snake's position, size, direction, etc.<br>
@@ -71,7 +71,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Set game screen size<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/9c426a1e42cdd7b27a04169083e01d2d.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     In the SnakeGameView class,<br>
@@ -90,7 +90,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Drawing the Snake and Food<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6d59bfaf552bade337814b0016fd0725.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6d59bfaf552bade337814b0016fd0725.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     In SnakeGameView,<br>
@@ -120,7 +120,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Game Logic<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d3d6fa84b498999473e0ed041fcb48be.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d3d6fa84b498999473e0ed041fcb48be.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     Add an updateGame method to implement the main game logic, such as snake movement and collision detection.<br>
@@ -133,7 +133,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Generating Food<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3f8e352778a37d355b2afb2607013b23.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3f8e352778a37d355b2afb2607013b23.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     Add a generateFood method to implement the functionality of randomly generating food.<br>
@@ -147,7 +147,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Updating Direction<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/f5880e17a1706da1c958ad3e1a7925ac.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     To allow the snake to change direction based on user input,<br>
@@ -160,7 +160,7 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Resource Cleanup<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6dad33e94f9f62d5a3db492a8f2655f0.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     To avoid memory leaks, we need to implement a method to clean up used resources, such as bitmaps.<br>
@@ -172,8 +172,8 @@ We will learn how to use Android's custom View to implement the classic Snake ga
     Connect back to fragment/activity and set button events<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
-  <script src="https://gist.github.com/KuanChunChen/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/3dfd240bbe8d1a9b1311d74fcffba44b.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/1bcd4c2bc5b927975a4c56f62afe3cb1.js"></script>
   <div class = "table_container">
     <p>Code Explanation</p>
     This is the final step,<br>

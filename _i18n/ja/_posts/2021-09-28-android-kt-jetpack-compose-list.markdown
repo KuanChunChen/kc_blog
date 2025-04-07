@@ -55,7 +55,7 @@ excerpt: "この記事では、Jetpack Compose の LazyColumn と ViewModel を�
 アイテムの実装例を直接見てみましょう：<br>
 <br>
 
-<script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
+<script src="https://gist.github.com/waitzShigoto/90340f7ddf11897d221d12b87bab4782.js"></script>
 <br>
 主にアイテムを実装します。<br>
 カスタムデータモデル、ナビゲーションガイドなどと組み合わせることができます。<br>
@@ -68,12 +68,12 @@ excerpt: "この記事では、Jetpack Compose の LazyColumn と ViewModel を�
 次に、LazyColumn を使用して先ほど作成したアイテムを呼び出します。<br>
 これでリストを実装できます。<br>
 以下のように：
-<script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/691f335e74c0ba919d159065ce9d70de.js"></script>
 
 <div class="c-border-content-title-4">第三步：ViewModelを追加してデータを変更する</div>
 これはこの実装のViewModelです<br>
 そしてLiveDataを使ってデータの変化を観察します<br>
-<script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br>
 <br>
 
@@ -110,7 +110,7 @@ _devicesはクラス内部で呼び出すために使用します<br>
 <div class="c-border-content-title-4">第四步：ViewModelをComposeに導入する</div>
 <br>
 前に実装したリストのComposeとViewModelを統合します:<br>
-<script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br>
 <br>
 この行を追加します<br>
@@ -121,7 +121,7 @@ val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 ```
 
 これはコンテンツとしてパッケージ化された例です、参考にしてください：<br>
-<script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b544ff8031746459060be65333bb222b.js"></script><br>
 
 <div class="c-border-content-title-4">第五步：実際にFragmentで試してみましょう</div>
 
@@ -135,7 +135,7 @@ val model: DeviceViewModel by activityViewModels()
 その後、先ほど完成したコンテンツに導入します<br>
 例を見てください：<br>
 
-<script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
 
 そのため、ViewModel内のLiveDataに変化があると<br>
 画面が自動的に更新されます<br>

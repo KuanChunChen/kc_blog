@@ -104,7 +104,7 @@ So I decided to try implementing it using Google's `MLKit`.
   - Below I will share the main code analysis of the QR code scanner<br>
   Feel free to refer to it if interested
 <div class="c-border-content-title-1">BaseCameraLifecycleObserver</div>    
-<script src="https://gist.github.com/KuanChunChen/c99170df495f4c7352a9c81f54f63bb7.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c99170df495f4c7352a9c81f54f63bb7.js"></script>
 <div class = "table_container">
   <p>Code Explanation</p>
   The BaseCameraLifecycleObserver class is mainly used for inheritance by others<br>
@@ -135,7 +135,7 @@ So I decided to try implementing it using Google's `MLKit`.
 
 
 <div class="c-border-content-title-1">ScannerLifecycleObserver</div>    
-<script src="https://gist.github.com/KuanChunChen/6bbc490b5ce7596a2218c9b2beadd6c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6bbc490b5ce7596a2218c9b2beadd6c9.js"></script>
 <div class = "table_container">
   <p>Code Explanation</p>
   ScannerLifecycleObserver is relatively simple<br>
@@ -149,7 +149,7 @@ So I decided to try implementing it using Google's `MLKit`.
 
 </div><br>
 <div class="c-border-content-title-1">ScannerAnalyzer</div>    
-<script src="https://gist.github.com/KuanChunChen/7c3d18a8025bb0959b1339f633120c99.js"></script>
+<script src="https://gist.github.com/waitzShigoto/7c3d18a8025bb0959b1339f633120c99.js"></script>
 
 <div class = "table_container">
    <p>Code Explanation</p>

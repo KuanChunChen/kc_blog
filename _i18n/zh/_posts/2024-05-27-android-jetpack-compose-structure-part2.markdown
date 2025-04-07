@@ -28,22 +28,22 @@ excerpt: ""
 <div class="c-border-content-title-1">step1. 導入Hilt & KSP</div>
 * 為了使用Hilt 所以需要配置以下的toml<br>
 主要是hilt library跟 導入hilt會用到ksp<br>
-<script src="https://gist.github.com/KuanChunChen/a529e6aef2c4cb054a593689b86ab962.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a529e6aef2c4cb054a593689b86ab962.js"></script>
 
 * 在build.gradle.kts(:app)中 加入plugin
-<script src="https://gist.github.com/KuanChunChen/ca4d1179d072db1f781831ce3ae367a6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ca4d1179d072db1f781831ce3ae367a6.js"></script>
 
 * 在build.gradle.kts(:yourAppName)中導入：
-<script src="https://gist.github.com/KuanChunChen/0cecaed97e600ccd7069722e2cc62c42.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0cecaed97e600ccd7069722e2cc62c42.js"></script>
 
 * 在build.gradle.kts(:app)中導入：
-<script src="https://gist.github.com/KuanChunChen/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a40eb48d1b2a7f6e4e59041fa4cff3b5.js"></script>
 
 <div class="c-border-content-title-1">step2. 實作Hilt application</div>
 * 官方文件有提到<br>
 加入Hilt一定要包含	`@HiltAndroidApp`<br>
 所以實作一個Application<br>
-<script src="https://gist.github.com/KuanChunChen/648bd2e1d642c5ea108af87e7700a7de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/648bd2e1d642c5ea108af87e7700a7de.js"></script>
 
 實測若沒加，會報錯如下：<br>
 `Caused by: java.lang.IllegalStateException: Hilt Activity must be attached to an @HiltAndroidApp Application. Did you forget to specify your Application's class name in your manifest's application 's android:name attribute?`
@@ -53,10 +53,10 @@ excerpt: ""
 hilt會在class頭有加入`@AndroidEntryPoint`的地方提供inject的功能<br>
 
 * 那就來試試吧做一個使用Hilt的Viewmodel
-<script src="https://gist.github.com/KuanChunChen/c76e7ce4bc7743832372ae66ae651f03.js"></script>
+<script src="https://gist.github.com/waitzShigoto/c76e7ce4bc7743832372ae66ae651f03.js"></script>
 
 實際使用：
-<script src="https://gist.github.com/KuanChunChen/412d3db62610456139c5231632f5d2dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/412d3db62610456139c5231632f5d2dd.js"></script>
 
 <div class="c-border-content-title-1">加入module</div>
 * DI可以加入module來提供需要的class<br>
@@ -66,7 +66,7 @@ hilt會在class頭有加入`@AndroidEntryPoint`的地方提供inject的功能<br
 `provideKotlinxJsonConverter`這個就是拿來提供一個解析Json格式的converter<br>
 `provideCustomConverter`是拿來提供定義http request的response格式<br>
 `provideBaseRetrofitBuilder`是拿來提供Retrofit的instance<br>
-<script src="https://gist.github.com/KuanChunChen/1127653dde42bc2bca111e274a7ba521.js"></script>
+<script src="https://gist.github.com/waitzShigoto/1127653dde42bc2bca111e274a7ba521.js"></script>
 
 上面的source code都會看到有一行`@Named("xxx")`<br>
 這個是用來標示這個instance的名字是哪個<br>
@@ -81,7 +81,7 @@ hilt會在class頭有加入`@AndroidEntryPoint`的地方提供inject的功能<br
 不過Hilt就是找到唯一有的那個幫你注入<br>
 
 實際使用：<br>
-<script src="https://gist.github.com/KuanChunChen/a1b8b91295e8016cabc733463f6db0c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a1b8b91295e8016cabc733463f6db0c9.js"></script>
 * 使用DI注入後面就可以不用自己主動去初始化取得class的instance<br>
 透過DI幫你處理，若使用的不錯<br>
 也會讓code看起來更簡潔、更易讀<br>
@@ -100,10 +100,10 @@ hilt會在class頭有加入`@AndroidEntryPoint`的地方提供inject的功能<br
 例如：網路請求<br>
 如果服務端提供的規格都一樣<br>
 那只需要專注於開發API service就可以
-<script src="https://gist.github.com/KuanChunChen/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9fa177e6b7043a59f5d3841ee11fe2a4.js"></script>
 
 * 最後 當你需要取用這些instance只要直接在construct那邊inject 就可以用了
-<script src="https://gist.github.com/KuanChunChen/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
+<script src="https://gist.github.com/waitzShigoto/dae78780c5be26f1cba9b780f0c9f23c.js"></script>
 
 <a class="link" href="#category" data-scroll>跳回目錄</a>
 

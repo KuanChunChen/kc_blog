@@ -32,17 +32,17 @@ Android 平台需要 Context 而 iOS 不需要<br>
 我這個例子是因為SettingDataStore需要context<br>
 而LearningViewModel需要SettingDataStore<br>
 所以建立一個expect platformModule的變數<br>
-<script src="https://gist.github.com/KuanChunChen/3b4f485ab4125137e709bdbb1beb9aa3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3b4f485ab4125137e709bdbb1beb9aa3.js"></script>
 
 <div class="c-border-content-title-1">2. 在 Android 平台實現</div>
 在 Android 平台中，我們需要實現platformModule <br>
 那我預期dataStore需要拿到個context：<br>
-<script src="https://gist.github.com/KuanChunChen/683e5aae4fed38732e316cb0a94cde94.js"></script>
+<script src="https://gist.github.com/waitzShigoto/683e5aae4fed38732e316cb0a94cde94.js"></script>
 
 <div class="c-border-content-title-1">3. 在 iOS 平台實現</div>
 在 iOS 平台中，我們不需要 Context<br>
 所以直接實作就可以<br>
-<script src="https://gist.github.com/KuanChunChen/912bd0f442f650156791481b1cf7e4c3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/912bd0f442f650156791481b1cf7e4c3.js"></script>
 
 <div class="c-border-content-title-1">4. 初始化 Koin</div>
 在各平台的啟動點初始化 Koin：<br><br>
@@ -50,17 +50,17 @@ Android 平台需要 Context 而 iOS 不需要<br>
 Android<br>
 在Android的啟動點去取得context<br>
 並塞進startKoin的module list裡面<br>
-<script src="https://gist.github.com/KuanChunChen/34ee8c8baf10fe2ab0a34a0d3815994a.js"></script>
+<script src="https://gist.github.com/waitzShigoto/34ee8c8baf10fe2ab0a34a0d3815994a.js"></script>
 
 iOS:<br>
-<script src="https://gist.github.com/KuanChunChen/425c93b104dcc5cc35373a83174dfe1d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/425c93b104dcc5cc35373a83174dfe1d.js"></script>
 
 <div class="c-border-main-title-2">使用方法</div>
 在 commonMain 中使用koinViewModel注入的 ViewModel：<br>
-<script src="https://gist.github.com/KuanChunChen/0d756e78444510d20f26fec3a8829358.js"></script>
+<script src="https://gist.github.com/waitzShigoto/0d756e78444510d20f26fec3a8829358.js"></script>
 
 或是在module就把需要的instance用`get()`去幫你產生也可以
-<script src="https://gist.github.com/KuanChunChen/3b4f485ab4125137e709bdbb1beb9aa3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3b4f485ab4125137e709bdbb1beb9aa3.js"></script>
 
 <div class="c-border-main-title-2">總結</div>
 - 使用 expect 和 actual 關鍵字可以處理平台差異

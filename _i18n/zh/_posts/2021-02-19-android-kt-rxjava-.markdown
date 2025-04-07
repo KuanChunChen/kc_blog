@@ -70,7 +70,7 @@ App網路請求 -> Token過期 -> Server回傳存取過期 -> 執行重取Token�
 在這篇，我主要使用的連線請求方式是 RxJava 的操作符，<br>
 封裝Retrofit並套用OkHttp去請求網路Api，這邊分享一種我網路請求的方式：<br>
 
-<script src="https://gist.github.com/KuanChunChen/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/5724788a6a2efa973eb31b497ffb65df.js"></script><br>
 
 
 如果有人使用 RxJava 來操作網路請求，<br>
@@ -97,12 +97,12 @@ repo.getPaymentData(paymentRequest)
 我撰寫了一個 Kotlin 的擴展函式（extension function），<br>
 以實現這個功能：<br>
 
-<script src="https://gist.github.com/KuanChunChen/889f4e67cf5edae25cffc006a25032dd.js"></script>
+<script src="https://gist.github.com/waitzShigoto/889f4e67cf5edae25cffc006a25032dd.js"></script>
 
 <div class="c-border-content-title-4">程式碼解說</div><br>
 **1.當實際應用這個extension時，會像是這樣：**<br>
 
-<script src="https://gist.github.com/KuanChunChen/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
+<script src="https://gist.github.com/waitzShigoto/8ef1124c7d67d02b7e3024fc56735bc8.js"></script>
 使用起來非常方便，<br>
 只需在需要重新取得 Token 的地方加入該擴展函式，<br>
 不需要重新取得 Token 的地方則繼續使用原本的方式執行。<br>

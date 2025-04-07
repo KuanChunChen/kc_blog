@@ -57,7 +57,7 @@ excerpt: "本文提供了一個詳細的指南，幫助您將您的 Github pages
 jekyll就會使用你預設系統的版本<br>
 
 所以用此指令來檢查你的版本
-<script src="https://gist.github.com/KuanChunChen/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
+<script src="https://gist.github.com/waitzShigoto/9002c7e6d63823d0c59dc2c4720e323d.js"></script>
 
 我們要放到github部署並且使用jekyll 4.x版本<br>
 所以需要ruby 3.2.3版<br>
@@ -66,7 +66,7 @@ jekyll就會使用你預設系統的版本<br>
 不過這邊因為我電腦剛好是裝了rbenv<br>
 所以我就以此rbenv為例<br>
 
-<script src="https://gist.github.com/KuanChunChen/e02a03b088c850d4c4bb6802295d7704.js"></script>
+<script src="https://gist.github.com/waitzShigoto/e02a03b088c850d4c4bb6802295d7704.js"></script>
 當然你也可以用其他常用cmd tool<br>
 如：RVM、chruby 或 asdf<br>
 依照各位自己的習慣去調整、安裝ruby就行~<br>
@@ -75,7 +75,7 @@ jekyll就會使用你預設系統的版本<br>
 建立一個檔案 `.ruby-version`<br><br>
 
 可以用類似下面指令直接做<br>
-<script src="https://gist.github.com/KuanChunChen/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
+<script src="https://gist.github.com/waitzShigoto/bce26899b505b01d4380bbbd2ae29ebb.js"></script>
 
 或是你想直接手動創建也是可以<br>
 <img src="/images/jekyll_deploy/004.png" alt="jekyll deploy 4.x" /><br><br><br><br>
@@ -91,16 +91,16 @@ ruby安裝完後開始來配置jekyll專案<br>
 然後設置要使用的jekyll版本<br>
 `gem "jekyll", "~> 4.3.3"`<br>
 需求指令如下：<br>
-<script src="https://gist.github.com/KuanChunChen/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b64bfac8864bd597792c65ec75b9f099.js"></script><br>
 
 完整的配置如下<br>
 供大家參考<br>
 包含我使用的一些jekyll插件<br>
 如果有用到再加就好<br>
-<script src="https://gist.github.com/KuanChunChen/67631c36472fc3781800e847033d5250.js"></script>
+<script src="https://gist.github.com/waitzShigoto/67631c36472fc3781800e847033d5250.js"></script>
 
 再來在你的jekyll跟目錄底下執行<br>
-<script src="https://gist.github.com/KuanChunChen/f860bebfabda529bd7bb3d21e51467ae.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f860bebfabda529bd7bb3d21e51467ae.js"></script>
 目的是要幫你產生`Gemfile.lock`檔案<br>
 並讓你的專案可以順利執行<br><br>
 
@@ -128,7 +128,7 @@ ruby安裝完後開始來配置jekyll專案<br>
 
 以下是我最終的完整 `.yml` 配置<br>
 您可以直接使用並進行修改<br>
-<script src="https://gist.github.com/KuanChunChen/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/4f7e0968d7028a9c23e5749db9cc91e8.js"></script><br>
 
 <div class="c-border-main-title-2">總結</div>
 其實步驟很簡單<br>

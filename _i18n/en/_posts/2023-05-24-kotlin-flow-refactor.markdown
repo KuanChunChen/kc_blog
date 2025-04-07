@@ -39,7 +39,7 @@ excerpt: "Easily master how to use Kotlin Flow for network connection refactorin
     When actually calling Flow and collecting it, you need to include it in a Coroutine Scope, as shown below:<br>
 </div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/6922457ce9a309d18258b1ac50ed77a6.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/6922457ce9a309d18258b1ac50ed77a6.js"></script>
 </p>
 <div class = "table_container">
   <p>Code Explanation</p>
@@ -57,7 +57,7 @@ excerpt: "Easily master how to use Kotlin Flow for network connection refactorin
 <div class="c-border-main-title-2">Kotlin Flow in Actual Development</div>
 <div class="c-border-content-title-4">Using Kotlin Flow to replace the original Retrofit call's callback or RxJava operators, the code is as follows</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/d5a3acb5f2b90bee2cd8b60c54adfcab.js"></script>
 </p>
 
 <div class = "table_container">
@@ -77,7 +77,7 @@ We switch the thread of this Flow to the IO thread (.flowOn(Dispatchers.IO)) to 
 
 <div class="c-border-content-title-4">Add a verifyResponse to check if the API request is as expected</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/4a4daf5c3385a105b92cc642f9c505f5.js"></script>
 </p>
 
 <div class="table_container">
@@ -93,7 +93,7 @@ We switch the thread of this Flow to the IO thread (.flowOn(Dispatchers.IO)) to 
 
 <div class="c-border-content-title-4">Add a checkStatusAndRefreshToken to automatically refresh the token and re-request the original API when the API request token expires</div>
 <p>
-  <script src="https://gist.github.com/KuanChunChen/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
+  <script src="https://gist.github.com/waitzShigoto/e6e0cc122d03f964c1abafda32cd5b02.js"></script>
 </p>
 
 <div class="table_container">

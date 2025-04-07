@@ -56,7 +56,7 @@ If you're interested, you can refer to the previous articles<br>
 Let's look directly at the item implementation example:<br>
 <br>
 
-<script src="https://gist.github.com/KuanChunChen/90340f7ddf11897d221d12b87bab4782.js"></script>
+<script src="https://gist.github.com/waitzShigoto/90340f7ddf11897d221d12b87bab4782.js"></script>
 <br>
 The main task is to implement the item <br>
 You can pair it with your custom data model, navigation guides, etc.<br>
@@ -69,12 +69,12 @@ and insert the data
 Next, just use LazyColumn to call the item you just created<br>
 This way, you can implement a list<br>
 As follows:
-<script src="https://gist.github.com/KuanChunChen/691f335e74c0ba919d159065ce9d70de.js"></script>
+<script src="https://gist.github.com/waitzShigoto/691f335e74c0ba919d159065ce9d70de.js"></script>
 
 <div class="c-border-content-title-4">Step 3: Add ViewModel to Handle Data Changes</div>
 This is the ViewModel implementation for this example<br>
 and LiveData to observe data changes<br>
-<script src="https://gist.github.com/KuanChunChen/3fd3912e5202073418e05e8c5057fac3.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3fd3912e5202073418e05e8c5057fac3.js"></script>
 <br>
 <br>
 
@@ -111,7 +111,7 @@ avoiding the need to look at it for a long time if this feature needs to be remo
 <div class="c-border-content-title-4">Step 4: Integrate ViewModel into Compose</div>
 <br>
 Combine the previously implemented list compose with the ViewModel:<br>
-<script src="https://gist.github.com/KuanChunChen/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6bae5c6238ec34c9c01b35a5f1144259.js"></script>
 <br>
 <br>
 Add this line<br>
@@ -122,7 +122,7 @@ val devices: List<BleDevice> by deviceViewModel.devices.observeAsState(listOf())
 ```
 
 Here is an example wrapped as content for reference:<br>
-<script src="https://gist.github.com/KuanChunChen/b544ff8031746459060be65333bb222b.js"></script><br>
+<script src="https://gist.github.com/waitzShigoto/b544ff8031746459060be65333bb222b.js"></script><br>
 
 <div class="c-border-content-title-4">Step 5: Apply it to a Fragment</div>
 
@@ -136,7 +136,7 @@ val model: DeviceViewModel by activityViewModels()
 Then integrate it into the previously completed content<br>
 See the example:<br>
 
-<script src="https://gist.github.com/KuanChunChen/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
+<script src="https://gist.github.com/waitzShigoto/93bf9336cded4dd003e6aa5f7b54d18b.js"></script>
 
 So, after observing changes in LiveData within the ViewModel<br>
 the screen will automatically update<br>

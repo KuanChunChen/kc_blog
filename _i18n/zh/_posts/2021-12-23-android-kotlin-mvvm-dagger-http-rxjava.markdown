@@ -71,7 +71,7 @@ curl \
 接著我開始建構 HTTP 模組，<br>
 實作了 Retrofit client，<br>
 主要是為了提供 Retrofit 實例，像這樣：<br>
-<script src="https://gist.github.com/KuanChunChen/442337c7fa413741c5e15451827e2c74.js"></script>
+<script src="https://gist.github.com/waitzShigoto/442337c7fa413741c5e15451827e2c74.js"></script>
 <br>
 之後就裝進HttpModule提供給未來其他頁面的module用<br>
 <br>
@@ -119,10 +119,10 @@ curl \
 #### a.先開發application相關di的component與module<br>
 先把基本的di module建出來<br>
 
-<script src="https://gist.github.com/KuanChunChen/eb5864c365e4e4b184b3084deb41d060.js"></script>
+<script src="https://gist.github.com/waitzShigoto/eb5864c365e4e4b184b3084deb41d060.js"></script>
 <br>
 component建出來 :<br>
-<script src="https://gist.github.com/KuanChunChen/a6ddb1250a9d8df5ab18488f35df38ad.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a6ddb1250a9d8df5ab18488f35df38ad.js"></script>
 <br>
 
 
@@ -132,7 +132,7 @@ component建出來 :<br>
 所以先架http module<br>
 http module長這樣：
 
-<script src="https://gist.github.com/KuanChunChen/6d73385fd8aca0b3ee372100c1a2e1b0.js"></script>
+<script src="https://gist.github.com/waitzShigoto/6d73385fd8aca0b3ee372100c1a2e1b0.js"></script>
 
 
 RetrofitClient是我自行封裝的類，br>
@@ -147,7 +147,7 @@ RxJava2CallAdapterFactory<br>
 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 ```
 讓retrofit能支持Rxjava<br>
-<script src="https://gist.github.com/KuanChunChen/442337c7fa413741c5e15451827e2c74.js"></script>
+<script src="https://gist.github.com/waitzShigoto/442337c7fa413741c5e15451827e2c74.js"></script>
 
 
 <br>
@@ -157,11 +157,11 @@ RxJava2CallAdapterFactory<br>
 
 #### c-1.建立 Retrofit 用的 API interface<br>
 
-<script src="https://gist.github.com/KuanChunChen/a63ac4066bfed42d4bd909ed644e23c9.js"></script>
+<script src="https://gist.github.com/waitzShigoto/a63ac4066bfed42d4bd909ed644e23c9.js"></script>
 
 #### c-2.建立 Reposity 到時候實際呼叫api的地方<br>
 
-<script src="https://gist.github.com/KuanChunChen/ea939951bca958c6c983a1bb8bd226a2.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ea939951bca958c6c983a1bb8bd226a2.js"></script>
 
 #### c-3.建立 viewmodel 並預想到時候有哪些資料要觀察變化的<br>
 
@@ -170,11 +170,11 @@ RxJava2CallAdapterFactory<br>
 1.ui顯示狀態   <br>
 2.paging時要顯示的list資料<br>
 
-<script src="https://gist.github.com/KuanChunChen/3a8b6ec9c0ce4ca6bfd3c5c7d2653748.js"></script>
+<script src="https://gist.github.com/waitzShigoto/3a8b6ec9c0ce4ca6bfd3c5c7d2653748.js"></script>
 
 #### c-4.建立module<br>
 
-<script src="https://gist.github.com/KuanChunChen/f27a22b68b240cc95bc05bb3d2af19be.js"></script>
+<script src="https://gist.github.com/waitzShigoto/f27a22b68b240cc95bc05bb3d2af19be.js"></script>
 
 這邊的@Provides | @Moduel | @Inject 是DI需加的一些Annotations<br>
 所以根據不同情況或地方 需加入相關Annotations<br>
@@ -188,7 +188,7 @@ RxJava2CallAdapterFactory<br>
 
 #### c-6.建立顯示畫面的fragment<br>
 開始建立fragment並注入viewmodel<br>
-<script src="https://gist.github.com/KuanChunChen/b131256f8612877c48eba6c05c58e4b6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/b131256f8612877c48eba6c05c58e4b6.js"></script>
 
 #### c-7.建立欲使用的module<br>
 
@@ -196,7 +196,7 @@ RxJava2CallAdapterFactory<br>
 1.寫一個component<br>
 2.如果需要使用到 context，則可以導入之前建立的 app component<br>
 3.加入欲使用的 module<br>
-<script src="https://gist.github.com/KuanChunChen/63c03346e0d17b76019d9308051904b6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/63c03346e0d17b76019d9308051904b6.js"></script>
 <br>
 
 #### c-8. 刻app的view<br>
@@ -208,12 +208,12 @@ RxJava2CallAdapterFactory<br>
 
 首先寫一個class PagedListAdapter<br>
 接著建立 getItemViewType、onBindViewHolder、onCreateViewHolder：<br>
-<script src="https://gist.github.com/KuanChunChen/680faa718048a164879e9926c84d16b6.js"></script>
+<script src="https://gist.github.com/waitzShigoto/680faa718048a164879e9926c84d16b6.js"></script>
 建立DiffUtil.ItemCallback 用來判斷新的資料與舊的資料差異<br>
 不同的話就會更新<br>
 
 再來建立 pageing會用到的DataSource.Factory<br>
-<script src="https://gist.github.com/KuanChunChen/27a1befa148117fa009005bd8fae312e.js"></script>
+<script src="https://gist.github.com/waitzShigoto/27a1befa148117fa009005bd8fae312e.js"></script>
 這段是關於PageKeyedDataSource的使用，<br>
 該類別內有三個override method，<br>
 裡面有 loadInitial、loadAfter、loadBefore等override method<br>
@@ -235,4 +235,4 @@ callback.onResult(listSearchUser, initPage, nextKey)
 出來的結果也可能不同<br>
 
 這是我的範例：<br>
-<script src="https://gist.github.com/KuanChunChen/95e205701044eb49b16031c4f771df71.js"></script>
+<script src="https://gist.github.com/waitzShigoto/95e205701044eb49b16031c4f771df71.js"></script>

@@ -99,7 +99,7 @@ categories: Debug探討
 
 - Use a pre-written shell script to capture logs in the background directly from the command line.
 - Here is a simple example:<br>
-<script src="https://gist.github.com/KuanChunChen/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
+<script src="https://gist.github.com/waitzShigoto/ff02fe2fa4d02a0b6521bdc75ef61666.js"></script>
 
 <p class="table_container">
   1. If <b style="color:red;">developers</b> need to customize it, they should fully understand the code above.<br>
