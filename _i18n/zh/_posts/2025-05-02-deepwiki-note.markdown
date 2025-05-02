@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Deepwiki工具幫你快速理解第三方library"
-date: 2025-03-24 09:29:10 +0800
-image: cover/cursor-android-cover.svg
-tags: [cursor]
-permalink: /cursor-ai-with-android
-categories: cursor
+date: 2025-05-02 06:28:10 +0800
+image: cover/deepwiki.png
+tags: [deepwiki]
+permalink: /deepwiki
+categories: deepwiki
 excerpt: "Deepwiki工具幫你快速理解第三方library"
 ---
 
