@@ -1,43 +1,42 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：使用 expect 和 actual 實現跨平台程式碼"
+title: "Compose Multiplatform in Action: Using expect and actual to Implement Cross-Platform Code"
 date: 2024-08-18 17:23:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-9
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "This series focuses on Compose Multiplatform in Action: Developing Cross-platform Apps from Scratch with Kotlin. We'll focus on cross-platform Android and iOS app development, and discuss findings and insights in the final days."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-`Compose Multiplatform (簡稱CMP)`
+`Compose Multiplatform (CMP)`
 
-透過共享程式碼<br>
-不僅可以減少重複工作<br>
-還能提高開發效率和代碼一致性<br>
-`CMP` 為開發者提供了一種跨平台解決方案<br>
-使得同一套業務邏輯可以在不同的平台上運行<br>
+By sharing code<br>
+we not only reduce duplicate work<br>
+but also improve development efficiency and code consistency<br>
+`CMP` provides developers with a cross-platform solution<br>
+allowing the same business logic to run on different platforms<br>
 
-在這篇文章中<br>
-將探討 `CMP` 如何使用 `expect` 和 `actual` 關鍵字來實現`跨平台`程式碼<br>
-並分享一些實戰經驗<br>
+In this article<br>
+we'll explore how `CMP` uses the `expect` and `actual` keywords to implement `cross-platform` code<br>
+and share some practical experiences<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">什麼是 expect 和 actual ?</div>
-我們先簡單了解一下 **Compose Multiplatform** 跟 **Kotlin Multiplatform** 
+<div class="c-border-main-title-2">What are expect and actual?</div>
+Let's first get a basic understanding of **Compose Multiplatform** and **Kotlin Multiplatform** 
 
-* `expect` 關鍵字用於在共享程式碼中聲明一個平台相關的介面或類<br>
-  而 `actual` 關鍵字則用於在具體平台上實現這個介面或類別<br>
+* The `expect` keyword is used to declare a platform-dependent interface or class in shared code<br>
+  while the `actual` keyword is used to implement this interface or class on specific platforms<br>
 
-我們先來看一個簡單的例子<br>
-下面的程式碼展示了如何在各平台返回該平台的名稱<br>
-在 `commonMain` 使用 `expect` 關鍵字聲明一個函數<br>
-並期望在 CMP 專案中其他平台實現該函數<br>
+Let's look at a simple example<br>
+The code below shows how to return the name of the platform on each platform<br>
+In `commonMain`, we use the `expect` keyword to declare a function<br>
+and expect other platforms in the CMP project to implement this function<br>
 
 ```kotlin
 // in ~/commonMain/.../xxx.kt
@@ -54,12 +53,12 @@ actual fun getPlatformName(): String {
 }
 ```
 
-另外<br>
-`expect` 和 `actual` 不僅可以用於函數<br>
-還可以用於類別<br>
-這使得我們可以靈活地在共享程式碼中<br>
-定義平台特定的邏輯<br>
-並在具體平台上提供實作<br>
+Additionally<br>
+`expect` and `actual` can be used not only for functions<br>
+but also for classes<br>
+This allows us to flexibly define platform-specific logic<br>
+in shared code<br>
+and provide implementations on specific platforms<br>
 
 ```kotlin 
 // in ~/commonMain/.../FileSystem.kt
@@ -70,24 +69,24 @@ expect class FileSystem {
 // in ~/androidMain/.../FileSystem.kt
 actual class FileSystem {
     actual fun readFile(path: String): String {
-        // Android 特定的文件讀取邏輯
+        // Android-specific file reading logic
     }
 }
 
 // in ~/iosMain/.../FileSystem.kt
 actual class FileSystem {
     actual fun readFile(path: String): String {
-        // iOS 特定的文件讀取邏輯
+        // iOS-specific file reading logic
     }
 }
 ```
 
-<div class="c-border-main-title-2"">實際例子</div>
+<div class="c-border-main-title-2"">Practical Examples</div>
 
-* 像是前天在設定[material 3](https://ithelp.ithome.com.tw/articles/10343654)的主題時<br>
-  會去設定一個`expect` function 稱作 setStatusBarStyle<br>
-  主要是`預期有個跨平台function`<br>
-  可以去具體平台上設定status bar<br>
+* For instance, when setting up the [material 3]({{site.baseurl}}/compose-multiplatform-day-7) theme a couple of days ago<br>
+  we set up an `expect` function called setStatusBarStyle<br>
+  mainly `expecting a cross-platform function`<br>
+  that can set the status bar on specific platforms<br>
 
 ```kotlin
 // in ~/commonMain/.../xxxx.kt
@@ -126,12 +125,12 @@ actual fun setStatusBarStyle(backgroundColor: Color, isDarkTheme: Boolean) {
 }
 ```
 
-* 第二種例子是使用koin注入到具體平台時<br>
-  當該平台需要一些特定的`instance`<br>
-  可能就要到該平台下面去實作<br>
-  這時候就可以做一個`expect`的 koin module 在commonMain中<br><br>
+* A second example is when using Koin for dependency injection on specific platforms<br>
+  When a platform needs some specific `instances`<br>
+  you might need to implement them on that platform<br>
+  In this case, you can create an `expect` Koin module in commonMain<br><br>
 
-下面附上例子(後續會再針對這塊講koin怎使用)<br>
+Here's an example (we'll cover how to use Koin in more detail later)<br>
 
 ```kotlin
 // in ~/commonMain/.../xxxx.kt
@@ -161,22 +160,22 @@ actual val platformModule: Module = module {
 }
 ```
 
-<div class="c-border-main-title-2">小技巧</div>
+<div class="c-border-main-title-2">Tips</div>
 
-IDE 提供了一種方式<br>
-使你更容易分辨所實作的 `class` 是在哪個平台下<br>
-當你在共享程式碼中撰寫 `expect` 關鍵字時<br>
-如果其他平台尚未實作對應的 `actual`<br>
+The IDE provides a way<br>
+to help you more easily identify which platform a `class` is implemented for<br>
+When you write the `expect` keyword in shared code<br>
+if other platforms haven't implemented the corresponding `actual`<br>
 
-IDE 會提示你尚未實作<br>
-此時，只需按下自動生成<br>
-IDE 就會創建尚未實作的檔案<br>
-並在具體平台的檔案名稱中加入`對應的字串`<br>
-例如 xxx.android.kt 或 xxx.ios.kt。<br>
+The IDE will notify you that implementation is missing<br>
+At this point, you can simply hit the auto-generate button<br>
+and the IDE will create the missing implementation files<br>
+adding `corresponding strings` to the file names for specific platforms<br>
+such as xxx.android.kt or xxx.ios.kt.<br>
 
-這樣一來<br>
-你可以更直觀地了解每個 class 所屬的平台<br>
-例如:<br>
-當你使用 `command+f` 搜尋剛剛實作的函數時<br>
-可以清楚地知道當前搜尋到的是哪個平台的 class。<br>
-![https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png](https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png)
+This way<br>
+you can more intuitively understand which platform each class belongs to<br>
+For example:<br>
+When you use `command+f` to search for a function you just implemented<br>
+you can clearly know which platform's class you're currently looking at.<br>
+![https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png](https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png) 

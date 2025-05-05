@@ -1,84 +1,104 @@
 ---
 layout: post
-title: "【Compose Multiplatform】專案轉移探討與開發指南"
+title: "【Compose Multiplatform】プロジェクト移行の検討と開発ガイド"
 date: 2024-07-11 18:30:20 +0800
 image: cover/compose_multiplatform_guide.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-guide
 categories: ComposeMultiplatform
-excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform 的過程，包括前期轉移成本、常用庫的對應關係、可能遇到的問題以及未來展望。"
+excerpt: "この記事では、ComposeプロジェクトからCompose Multiplatformへの移行プロセスを詳しく説明し、初期移行コスト、ライブラリの対応関係、潜在的な問題、および将来の展望について解説します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-Compose Multiplatform (CMP) 為開發者提供了跨平台開發的強大工具<br>
-但從 Compose 專案轉移到 CMP 也面臨一些挑戰<br>
-本文將詳細介紹轉移過程中的關鍵點和注意事項<br>
+Compose Multiplatform（CMP）は開発者にクロスプラットフォーム開発の強力なツールを提供します<br>
+しかし、ComposeプロジェクトからCMPへの移行にはいくつかの課題もあります<br>
+本記事では移行プロセスにおける重要なポイントと注意点を詳しく説明します<br>
 
 <div id="category">
     {% include table/compose-multiplatform-category.html %}
 </div>
 
-<div class="c-border-main-title-2">前期轉移成本</div>
+<div class="c-border-main-title-2">初期移行コスト</div>
 
-CMP 開發時需要熟悉多個資料夾的結構：<br>
+最初に、CMPがどのようにクロスプラットフォームを実現しているかを理解する必要があります<br>
+そのため、プロジェクト構造を<br>
+理解するのに少し時間がかかります<br>
+以下で簡単に確認していきましょう<br>
+
+CMP開発では、複数のフォルダ構造に慣れる必要があります：<br>
 <img src="/images/compose/009.png" alt="Cover" width="30%"/><br>
 
-共通代碼放在 commonMain 中：<br>
+共通コードはcommonMainに配置します：<br>
 <img src="/images/compose/010.png" alt="Cover" width="30%"/><br>
 
-在各環境下導入需要的庫：<br>
+各環境で必要なライブラリをインポートします：<br>
 <img src="/images/compose/011.png" alt="Cover" width="50%"/><br>
 
-因預設使用lib.version.toml來配置 <br>
-需了解.toml<br>
-這邊有以前寫的筆記<br>
-<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">可參考</a>
+デフォルトではlib.version.tomlを使用して設定するため<br>
+.tomlについて理解する必要がありますが<br>
+実際には非常に簡単です<br>
+公式のデフォルト設定で十分機能します<br>
+特別な設定が必要でない限り<br><br>
 
-<div class="c-border-main-title-2">Compose Project 到 CMP Project 庫的轉移參考</div><br>
-* 假設我們原本製作Android專案都是用一些較常用的lib、或是官方推薦的(如表格左邊)<br>
-  嘗試用CMP寫之後我們使用的lib 轉移成本會嚐到一些紅利(如表格右邊)<br>
-  因為大多是你寫compose會用過的東西<br>
+以前書いたメモがこちらにあります<br>
+<a href="{{site.baseurl}}/android-upgrade-to-toml-tutorial">参考まで</a>
+
+<div class="c-border-main-title-2">ComposeプロジェクトからCMPプロジェクトへのライブラリ移行参考</div><br>
+* 元々Androidプロジェクトでよく使われるライブラリや公式推奨のライブラリを使用していた場合（表の左側）<br>
+  CMPで開発を試みた後、使用するライブラリの移行コストにいくつかのメリットを見つけることができます（表の右側）<br>
+  これは、Compose開発でほとんど使用したことのあるものだからです<br>
 {% include table/compose-multiplatform-compare.html %}
 
-<div class="c-border-main-title-2">可能遇到的問題</div>
+<div class="c-border-main-title-2">発生する可能性のある問題</div>
 
-1. 跨平台需求差異：<br>
-   例如 Android 需要 Context，iOS 不需要：<br>
+1. クロスプラットフォームの要件の違い：<br>
+   例えば、AndroidはContextが必要ですが、iOSは必要ありません：<br>
    <script src="https://gist.github.com/waitzShigoto/d4594b6b1b1e92509fa34c67233b301d.js"></script><br>
-   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-di-context">【Compose Multiplatform 】跨平台App但Android需要context作法並搭配Koin</a>
-2. 平台特定實現：<br>
-   像是手機端常用本地持久化儲存 <br>
-   在Android會使用dataStore去處理這個相關問題<br>
-   那要怎麼在多平台去使用呢？<br>
-   使用 expect 和 actual 關鍵字：<br>
+   完全なメモ：<a href="{{site.baseurl}}/compose-multiplatform-di-context">【Compose Multiplatform】KoinでAndroidのContextを扱うクロスプラットフォームアプリの実装</a><br>
+2. プラットフォーム固有の実装：<br>
+   例えば、モバイルではローカルの永続ストレージがよく使われます<br>
+   Androidでは、この問題を処理するためにDataStoreを使用します<br>
+   では、複数のプラットフォームでどのように使用すればよいでしょうか？<br>
+   expectとactualキーワードの使用：<br>
    <script src="https://gist.github.com/waitzShigoto/99f7bc0f32960a1af80971e8f68a8b0d.js"></script>
    <script src="https://gist.github.com/waitzShigoto/171b2f873713be2da5214a5450e1f2a4.js"></script>
    <script src="https://gist.github.com/waitzShigoto/3a1379e63db12a23997c21d7f632d8fa.js"></script>
-   不過儘管需要各自實作<br>
-   但一些常用的library<br>
-   CMP有支援以kotlin實作的library<br>
-   所以就算分平台實作還是可以用純.kt去寫 <br>
-   就像是上面的iosMain中實作的dataStore一樣<br><br>
+   個別に実装する必要があるにもかかわらず<br>
+   いくつかの一般的なライブラリは<br>
+   CMPがKotlin実装でサポートしています<br>
+   そのため、プラットフォーム別の実装でも、純粋な.ktで書くことができます<br>
+   上記のiosMainで実装されたDataStoreのように<br><br>
 
-   完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-datastore">【Compose Multiplatform】手機本地持久化儲存DataStore實作</a>
+   完全なメモ：<a href="{{site.baseurl}}/compose-multiplatform-datastore">【Compose Multiplatform】ローカル永続ストレージをDataStoreで実装する方法</a><br>
 
-3. CMP庫的兼容性問題或Bug持續修正中：<br>
-   例如 SqlDelight 2.0.0 版本在 iOS 上的Build會錯誤：<br>
-    - 解決方法 1：導入 stately-common<br>
-    - 解決方法 2：升級到 2.0.1 以上版本<br>
-   其原因可以查看此討論串：[點此](https://github.com/cashapp/sqldelight/issues/4357)<br>
-   SqlDelight完整筆記：<a href="{{site.baseurl}}/compose-multiplatform-sqldelight">【Compose Multiplatform】手機資料庫SqlDelight實作</a>
-<div class="c-border-main-title-2">未來展望</div>
+3. CMPライブラリの互換性問題やバグが継続的に修正されている：<br>
+   例えば、SQLDelight 2.0.0バージョンではiOSでビルドエラーが発生します：<br>
+    - 解決策1：stately-commonをインポートする<br>
+    - 解決策2：バージョン2.0.1以上にアップグレードする<br>
+   理由はこちらのディスカッションスレッドで確認できます：[こちらをクリック](https://github.com/cashapp/sqldelight/issues/4357)<br>
+   SQLDelightの完全なメモ：<a href="{{site.baseurl}}/compose-multiplatform-sqldelight">【Compose Multiplatform】SqlDelightデータベースの実装</a>
+<div class="c-border-main-title-2">将来の展望</div>
 
-Google 在 2024 年 5 月 14 日的博客中提到了對 KMP 的支持：<br>
+Googleは2024年5月14日のブログでKMPへのサポートについて言及しています：<br>
 <img src="/images/compose/012.png" alt="Cover" width="50%"/><br>
-這可能意味著未來會有更多庫得到支持。
+これは将来的により多くのライブラリがサポートされる可能性があることを意味するかもしれません。
 
-<div class="c-border-main-title-2">總結</div>
+<div class="c-border-main-title-2">まとめ</div>
 
-- CMP 提供了強大的跨平台開發能力，但需要適應新的專案結構
-- 大部分常用庫都有對應的 CMP 版本
-- 處理平台差異時，使用 expect 和 actual 關鍵字很有幫助
-- 注意庫的版本兼容性問題
-- 關注 Google 和社區的最新動態，以獲得更多支持和資源
+- CMPは強力なクロスプラットフォーム開発機能を提供しますが、新しいプロジェクト構造への適応が必要です
+- ほとんどの一般的なライブラリには対応するCMPバージョンがあります<br>
+例えば、Compose Appの開発でよく使用されるものは直接使用できます<br>
+DataStore、Roomなど
+- プラットフォームの違いを処理する際、expectとactualキーワードが非常に役立ちます
+- ライブラリのバージョン互換性の問題に注意してください<br>
+現在の開発では<br>
+いくつかの設定互換性の問題に遭遇しています<br>
+例：Kotlin 2.0.0でのRoom互換性の問題<br>
+CMPでCocoaPodsを設定する際のembedAndSignエラーなど<br>
+
+- Googleの最新アップデートに注目して、さらなるサポートとリソースを得ましょう<br>
+GPTに直接尋ねてみましたが<br>
+それほど正確ではないかもしれません<br>
+多くの互換性問題は自分で調査する必要があります<br>
+あるいは将来的にデータがより豊富になれば、より正確な回答が得られるかもしれません<br> 

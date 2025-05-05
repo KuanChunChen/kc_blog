@@ -1,22 +1,21 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：在CMP的Compose中用Material Design3 Theme"
+title: "Compose Multiplatform 実践：CMPのComposeでMaterial Design3 Themeを使用する"
 date: 2024-08-18 17:19:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-7
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)` <br><br>
+`Compose Multiplatform (略称CMP)` <br><br>
 
-今天我們要討論的是<br>
-如何在`CMP`的通用邏輯中使用`Material Design3 Theme` (或稱Material 3)<br>
-並在Compose UI中使用 Material 3 建立應用程式UI<br>
+今日は<br>
+`CMP`の共通ロジックで`Material Design3 Theme` (またはMaterial 3と呼ばれる)を使用する方法と<br>
+Compose UIでMaterial 3を使用してアプリケーションUIを構築する方法について説明します<br>
 
 
 <div id="category">
@@ -25,18 +24,18 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
 
 <div class="c-border-main-title-2">Material Design3 Theme</div>
 
-在 Compose Multiplatform 中應用 Material Design3 Theme (Material 3)<br>
-是建立直觀和一致的用戶界面的重要步驟<br>
-Material 3 是 Google 推出的設計規範<br>
-它提供了一套新的設計原則<br>
-旨在提升用戶體驗<br>
+Compose MultiplatformにMaterial Design3 Theme (Material 3)を適用することは<br>
+直感的で一貫性のあるユーザーインターフェースを構築する重要なステップです<br>
+Material 3はGoogleが発表したデザインガイドラインで<br>
+ユーザーエクスペリエンスを向上させることを目的とした<br>
+新しいデザイン原則のセットを提供しています<br>
 
-<div class="c-border-content-title-1">預期</div>
+<div class="c-border-content-title-1">目標</div>
 
-* 我們會客製化一個function `ElegantAccessComposeTheme { }`<br>
-  把Compose元件放入到寫好的`funtion type` or `lambda function`內<br>
-  就可以套用我們自定義的`Material 3 Theme`<br>
-  來達到統一管理UI theme設定的issue<br>
+* カスタム関数`ElegantAccessComposeTheme { }`を作成します<br>
+  Compose要素を記述済みの`funtion type`または`lambda function`に配置するだけで<br>
+  カスタマイズした`Material 3 Theme`を適用できます<br>
+  これによりUI themeの設定を統一的に管理できます<br>
 
 
 ```kotlin
@@ -45,21 +44,21 @@ Material 3 是 Google 推出的設計規範<br>
 @Composable
 @Preview
 fun App() {
-    //透過ElegantAccessComposeTheme設定Material 3 主題
+    //ElegantAccessComposeThemeを通じてMaterial 3テーマを設定
     ElegantAccessComposeTheme {
         val viewModel = koinViewModel<MainViewModel>()
-        //`ElegantAccessApp` 可以是任意自定義Compose元件
+        //`ElegantAccessApp`は任意のカスタムCompose要素
         ElegantAccessApp(viewModel)
     }
 
 }
 ```
-<div class="c-border-content-title-1">實作Material 3</div>
+<div class="c-border-content-title-1">Material 3の実装</div>
 
-* 步驟1. 導入 Material 3 主題<br>
-  在 `CMP專案` 的`build.gradle.kts`中<br>
-  引入 Material 3 library<br>
-  可以在 `build.gradle.kts` 文件的`commonMain`中配置相關的依賴項：<br>
+* ステップ1. Material 3テーマのインポート<br>
+  `CMPプロジェクト`の`build.gradle.kts`で<br>
+  Material 3ライブラリをインポートします<br>
+  `build.gradle.kts`ファイルの`commonMain`セクションで関連する依存関係を設定できます：<br>
 
 ```kotlin
     sourceSets {
@@ -71,12 +70,12 @@ fun App() {
     }
 ```
 
-* 步驟2. 實作  Material 3 主題<br>
-  我們搭配Kotlin特性`function type` 寫一個function<br>
-  可以只套用這個functino就能去設定UI共用通則<br>
-  會寫出下面的程式碼<br>
-  這邊把一些常用的UI Designs加進來<br>
-  包括`暗黑模式`、`狀態欄顏色`、`通用Material主題`<br>
+* ステップ2. Material 3テーマの実装<br>
+  Kotlinの特性である`function type`を活用して関数を作成し<br>
+  この関数を適用するだけでUI共通ルールを設定できるようにします<br>
+  以下のようなコードを記述します<br>
+  ここでは一般的に使用されるUI Designsを含めています<br>
+  `ダークモード`、`ステータスバーの色`、`共通Materialテーマ`などを含みます<br>
 
 ```kotlin
 // in .~/commonMain/..
@@ -105,20 +104,20 @@ fun ElegantAccessComposeTheme(
 }
 ```
 
-`程式碼關鍵部分解說`：<br>
-1. function中帶入一個變數使用compose中提供的 `isSystemInDarkTheme()`<br>
-   直接判斷是否為Dark mode<br>
-2. `content: @Composable () -> Unit` 則是宣告一個function type變數<br>
-   讓開發者可以從外部丟入 function type `{}`的內容<br>
-3. `colorScheme`：這邊則是判斷是否為DarkMode，並返回對應的顏色scheme<br>
-4. `setStatusBarStyle(backgroundColor, isDarkTheme)`: 因為是CMP所以我們寫了個expect fun讓他可以去各平台設定status bar顏色<br>
-5. `MaterialTheme(colorScheme, typography, shapes, content)` :這邊則是呼叫Material3中自帶的function去設定包括`主題色`、`字體`、`元件形狀`...等<br>
+`コードの重要な部分の説明`：<br>
+1. 関数内でcomposeが提供する`isSystemInDarkTheme()`を使用した変数を導入し<br>
+   ダークモードかどうかを直接判断します<br>
+2. `content: @Composable () -> Unit`は関数型変数を宣言し<br>
+   開発者が外部からfunction type `{}`の内容を渡せるようにします<br>
+3. `colorScheme`：ここではダークモードかどうかを判断し、対応する色のスキームを返します<br>
+4. `setStatusBarStyle(backgroundColor, isDarkTheme)`：CMPなので、各プラットフォームでステータスバーの色を設定できるようにexpect funを作成しました<br>
+5. `MaterialTheme(colorScheme, typography, shapes, content)`：ここではMaterial3の組み込み関数を呼び出して`テーマカラー`、`フォント`、`要素の形`などを設定します<br>
 
-* 步驟3. 實作colorScheme<br>
-  這邊使用Compose內提供的`darkColorScheme`或是`lightColorScheme`<br>
-  去設定`暗黑模式`或`亮色模式`要用的Color來源<br>
+* ステップ3. colorSchemeの実装<br>
+  ここではComposeが提供する`darkColorScheme`または`lightColorScheme`を使用して<br>
+  `ダークモード`または`ライトモード`で使用するColorを設定します<br>
 
-> Dark mode
+> ダークモード
 
 ```kotlin
 // in .~/commonMain/..
@@ -149,7 +148,7 @@ private fun EADarkColorScheme() = darkColorScheme(
 )
 ```
 
-> Light mode
+> ライトモード
 
 ```kotlin
 // in .~/commonMain/..
@@ -180,7 +179,7 @@ private fun EALightColorScheme() = lightColorScheme(
 )
 ```
 
-> 定義顏色
+> 色の定義
 
 ```kotlin
 object ColorResources {
@@ -234,9 +233,9 @@ object ColorResources {
 }
 ```
 
-* 步驟4. 實作shapes<br>
-  這邊是定義通用、常用的圓角數值<br>
-  有時候UI Designs 滿常會要求某個dialog或是某個元件背景要有圓角的<br>
+* ステップ4. shapesの実装<br>
+  ここでは一般的によく使用される角丸の値を定義します<br>
+  UI Designsでは特定のダイアログや要素の背景に角丸が必要な場合がよくあります<br>
 
 ```kotlin
 // in .~/commonMain/..

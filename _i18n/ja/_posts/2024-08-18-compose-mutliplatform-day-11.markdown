@@ -1,69 +1,68 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中透過StateFlow來管理UI狀態"
+title: "Compose Multiplatform 実践：CMPでStateFlowを使用したUI状態管理"
 date: 2024-08-18 17:25:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-11
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
-在前幾天的分享中<br>
-我們討論了如何使用 Compose 來製作 UI<br>
-然而，如何調整 UI 狀態以及在處理業務邏輯後如何改變 UI 畫面<br>
-我們尚未深入探討<br><br>
+<div class="c-border-main-title-2">はじめに</div>
+これまでの記事で<br>
+Composeを使ってUIを作成する方法について説明してきました<br>
+しかし、UI状態の調整方法やビジネスロジック処理後にUI画面を変更する方法については<br>
+まだ詳しく説明していませんでした<br><br>
 
-今天<br>
-我們將深入探討如何使用`StateFlow`<br>
-展示如何在 CMP 中管理和調整 UI 狀態<br>
-以及如何通過業務邏輯的處理來動態更新 UI<br>
+今日は<br>
+`StateFlow`の使用方法について詳しく説明し<br>
+CMP内でUI状態を管理・調整する方法<br>
+そしてビジネスロジックの処理を通じてUIを動的に更新する方法を紹介します<br>
 
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">StateFlow 是什麼？</div>
-`StateFlow` 是 Kotlin 協程庫中的一個狀態管理工具<br>
-旨在解決在 Compose 中管理 UI 狀態的需求<br>
-它是一個基於 Flow 的狀態容器<br>
-設計來持有和觀察狀態變化<br>
-特別適合在`Compose` 中使用<br>
+<div class="c-border-main-title-2">StateFlowとは？</div>
+`StateFlow`はKotlinコルーチンライブラリの状態管理ツールで<br>
+Compose内のUI状態管理のニーズを解決するためのものです<br>
+これはFlowベースの状態コンテナで<br>
+状態の保持と変化の観察のために設計されており<br>
+特に`Compose`での使用に適しています<br>
 
-<div class="c-border-content-title-1">StateFlow 的特點</div>
+<div class="c-border-content-title-1">StateFlowの特徴</div>
 
-1. `持有最新狀態`：StateFlow 始終持有最新的狀態值<br>
-   並且當狀態發生變化時<br>
-   會自動通知所有觀察者<br>
+1. `最新の状態を保持`：StateFlowは常に最新の状態値を保持し<br>
+   状態が変化した場合<br>
+   自動的にすべてのオブザーバーに通知します<br>
 
-2. `狀態不可變`：StateFlow 的狀態是不可變的<br>
-   這意味著每次狀態改變都會創建一個新的狀態實例<br>
-   從而確保狀態的一致性和預測性。<br>
+2. `状態は不変`：StateFlowの状態は不変です<br>
+   つまり、状態が変わるたびに新しい状態インスタンスが作成され<br>
+   状態の一貫性と予測可能性が確保されます<br>
 
-3. `基於熱流（Hot Flow）`：即使沒有`收集器(Collect)`<br>
-   StateFlow 也會持續保持最新的狀態值<br><br>
+3. `ホットフロー（Hot Flow）ベース`：`コレクター(Collect)`がなくても<br>
+   StateFlowは常に最新の状態値を維持し続けます<br><br>
 
-例如：我們可以透過以下code去更新UI狀態<br>
+例えば：以下のコードでUI状態を更新できます<br>
 
 ```kotlin
 private val _uiState = MutableStateFlow(UiState())
 val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 ```
-在你的Compose UI處去collect<br>
+Compose UIでcollectする<br>
 ```
 val uiState by viewModel.uiState.collectAsState()          
 ```
 
 
-<div class="c-border-content-title-1">實做StateFlow管理UI狀態</div>
+<div class="c-border-content-title-1">StateFlowを使用したUI状態管理の実装</div>
 
-假設我們有一個 實作好的`SettingScreen`<br>
-目前都只有顯示畫面<br>
-但沒有狀態變化<br>
-畫面的資料都是寫死的<br>
+すでに実装済みの`SettingScreen`があるとします<br>
+現在は画面表示のみで<br>
+状態変化はなく<br>
+画面のデータはハードコードされています<br>
 
 ```kotlin 
 @Composable
@@ -111,8 +110,8 @@ fun SettingScreen(navController: NavController) {
 }
 ```
 
-那我們可以先實作一個`data class`<br>
-目的是用來更新`SettingScreen`中的Choose Transfer Option的標題<br>
+まず、`data class`を実装します<br>
+目的は`SettingScreen`内の「Choose Transfer Option」タイトルを更新することです<br>
 
 ```kotlin
 data class ViewState(
@@ -123,17 +122,17 @@ data class ViewState(
 )
 ```
 
-接著實作一個Viewmodel<br>
-用來把管理業務邏輯<br>
-以及實現UI狀態的發送<br>
-那因為`StateFlow`狀態是無法改變的<br>
-所以你要改變可以用`MutableStateFlow`<br>
-而通常為了`避免外部不小心改到`<br>
-所以會把`MutableStateFlow`設定為`private `<br>
+次にViewmodelを実装します<br>
+ビジネスロジックを管理し<br>
+UI状態の送信を実現します<br>
+`StateFlow`の状態は変更できないため<br>
+変更するには`MutableStateFlow`を使用します<br>
+通常、`外部からの誤った変更を防ぐ`ために<br>
+`MutableStateFlow`を`private`に設定します<br>
 
-另外這邊寫了個範例`loadData()`去模擬網路請求資料<br>
-可以透過`_uiState.value = UiState(xxxx)`去通知UI該改變了<br>
-實際上你可以根據需求去調整<br>
+また、ネットワークリクエストをシミュレートする`loadData()`の例を作成しました<br>
+`_uiState.value = UiState(xxxx)`を使用してUIに変更を通知できます<br>
+実際には要件に応じて調整できます<br>
 
 ```
 class SettingViewModel(
@@ -145,12 +144,12 @@ class SettingViewModel(
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
     
-    // 模擬加載數據
+    // データロードのシミュレーション
     fun loadData() {
         viewModelScope.launch {
             _uiState.value = UiState(isLoading = true)
             try {
-                delay(1000)  // 模擬網絡請求
+                delay(1000)  // ネットワークリクエストのシミュレーション
                 _uiState.value = UiState(transferOptionTitle = "Loaded Data", isLoading = false)
             } catch (e: Exception) {
                 _uiState.value = UiState(error = e.message, isLoading = false)
@@ -160,14 +159,14 @@ class SettingViewModel(
 }
 ```
 
-接著<br>
-我們需要將ViewModel實例傳給Setting Screen<br>
-由於我們前幾天已經使用了Compose Navigation<br>
-所以可以直接在我們的NavGraphBuilder擴展中實現ViewModel<br>
+続いて<br>
+ViewModelインスタンスをSetting Screenに渡す必要があります<br>
+すでにCompose Navigationを使用しているので<br>
+NavGraphBuilder拡張でViewModelを実装できます<br>
 
-你可以通過以下方式來創建ViewModel實例：<br>
+以下の方法でViewModelインスタンスを作成できます：<br>
 
-使用直接創建的方式：<br>
+直接作成する方法：<br>
 ```kotlin
 fun NavGraphBuilder.routeSettingScreen(
     navController: NavHostController,
@@ -180,7 +179,7 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
-或者使用Koin來進行依賴注入（我們會在後續章節詳細介紹這個方法）<br>
+またはKoinを使用して依存性注入を行う方法（後の章で詳しく説明します）<br>
 
 
 ```kotlin
@@ -196,23 +195,22 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
-最後<br>
-你只需要在你的 Compose UI 中去收集該狀態<br>
-並透過該state去修改你的UI即可<br>
+最後に<br>
+Compose UIで状態を収集し<br>
+その状態を使ってUIを変更するだけです<br>
 
-<div class="c-border-content-title-1">實際使用</div>
+<div class="c-border-content-title-1">実際の使用例</div>
 
-可以透過<br>
-`val uiState by viewModel.uiState.collectAsState()`<br>
-去`collect` uiState在viewmodel中的狀態變化<br>
-在程式碼中直接呼叫uiState的值<br>
-就能夠動態去設置畫面<br>
+`val uiState by viewModel.uiState.collectAsState()`を使用して<br>
+viewmodelの状態変化を`collect`し<br>
+コード内で直接uiStateの値を呼び出すことで<br>
+画面を動的に設定できます<br>
 
-例如：
+例：
 `uiState.isLoading`
 `uiState.transferOptionTitle`
 `uiState.error`
-(可直接看下方code)
+（以下のコードを参照）
 
 
 ```kotlin
@@ -221,7 +219,7 @@ fun SettingScreen(navController: NavController, viewModel: SettingViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val config = createSettingConfig(navController)
 
-    // 觸發邏輯
+    // ロジックのトリガー
     LaunchedEffect(Unit) {
         viewModel.loadData()
     }

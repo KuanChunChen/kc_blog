@@ -1,108 +1,108 @@
 ---
 layout: post
-title: "【Compose Multiplatform】CMP中使用ROOM開發資料庫 - [KSP2] Annotation value is missing in nested annotations"
+title: "【Compose Multiplatform】CMPでROOMデータベースを使用する - [KSP2] ネストされた注釈で注釈値が欠けている"
 date: 2024-07-18 20:46:20 +0800
 image: cover/compose_multiplatform_room.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-room
 categories: ComposeMultiplatform
-excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform 的過程，如何導入以前在開發Android常用的Room。"
+excerpt: "この記事では、ComposeプロジェクトからCompose Multiplatformへの移行プロセスと、Android開発でよく使用されるRoomの実装方法について詳しく説明します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
 
 <div id="category">
     {% include table/compose-multiplatform-category.html %}
 </div>
 
-<div class="c-border-main-title-2">注意事項 - 在CMP上使用ROOM現階段遇到的兼容問題</div>
+<div class="c-border-main-title-2">重要な注意事項 - CMPでのROOM使用における現在の互換性問題</div>
 
-* 注意1. Room版本2.7.0-alpha01之後才支援KMM。
+* 注意1. Roomバージョン2.7.0-alpha01以降がKMMをサポートしています。
 
-* 注意2. ksp導入時可能會因為kotlin版本不同而出現版本太低或提示更新版本<br>
-且`無法Build過`<br>
-這時候可以去官方github找有無對應支援的版本 [ksp releases](https://github.com/google/ksp/releases)<br>
+* 注意2. kspをインポートする際、Kotlinのバージョンの違いにより互換性の問題が発生し、<br>
+`ビルドに失敗する`ことがあります。<br>
+この場合、サポートされているバージョンについて公式GitHubをチェックできます：[ksp releases](https://github.com/google/ksp/releases)<br>
 
-* 注意3. 使用kotlin搭配ksp會檢查ksp版本跟kotlin相容性<br>
-當使用kotlin 2.0.0 時，`gradle sync`時顯示版本太低或不相容時<br>
-會出現 `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation` <br>
-或 `[KSP2] Annotation value is missing in nested annotations`<br><br>
-一開始有搜尋到 `KSP2` 的問題<br>
-在gradle.property中加入`ksp.useKSP2=true`可以解決這個問題 <br><br>
-不過雖然上面解決了一個問題後<br>
-可以過`gradle sync`時<br>
-在ksp配置Room又會遇到問題<br>
-例如配置`ksp(libs.androidx.room.compiler)`後<br>
-會一直出現缺少dao `[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
-我有去爬文 <br>
-有人說可以將kotlin版本降到與ksp相同<br>
-但因為現在用官方Wizard產生CMP已經預設用kotlin 2.0.0<br>
-所以秉持著用新不用舊的原則XD<br>
-如果想在kotlin 2.0.0上成功搭建Room，需要使用workaround去暫解決 <br>
-在官方還沒解決的之前可以參考 <br><br><br>
-我會在這篇的下面提供方法<br>
-大家可以參考看看<br><br>
-另外我也看到有網友已經提issue給官方了：<br>
+* 注意3. Kotlinとkspを使用すると、kspバージョンとKotlinの互換性がチェックされます。<br>
+Kotlin 2.0.0を使用する場合、`gradle sync`の際にバージョンの互換性に関するエラーが表示されることがあります。<br>
+例えば `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation` <br>
+または `[KSP2] Annotation value is missing in nested annotations`<br><br>
+最初は`KSP2`の問題について<br>
+gradle.propertiesに`ksp.useKSP2=true`を追加することで解決策を見つけました。<br><br>
+しかし、この問題を解決して<br>
+`gradle sync`を通過した後でも<br>
+kspでRoomを設定する際に問題が発生します。<br>
+例えば、`ksp(libs.androidx.room.compiler)`をセットアップした後、<br>
+常にDAOが見つからないエラーが発生します：`[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
+この問題を調査した結果<br>
+Kotlinのバージョンをkspのバージョンに合わせて下げることを提案する人もいますが<br>
+現在CMPの公式Wizardではデフォルトでコトリン2.0.0が使用されているため<br>
+新しいバージョンを使うという原則に従い(笑)<br>
+Kotlin 2.0.0でRoomを正常にセットアップするには、回避策を使用する必要があります<br>
+公式の解決策が出るまで、以下の方法を参照できます<br><br><br>
+以下に方法を提供します<br>
+参考にしてください<br><br>
+また、他の開発者がすでに公式チームに問題を報告しているのも確認しました：<br>
    * [Issue 1](https://github.com/google/ksp/issues/1896)
    * [Issue 2](https://youtrack.jetbrains.com/issue/KT-68981)
    * [Issue 3](https://github.com/google/ksp/issues/1833)
 
 
 
-<div class="c-border-main-title-2">實作</div>
+<div class="c-border-main-title-2">実装</div>
 
-<div class="c-border-content-title-1">導入 - 搭配kotlin版本1.9</div>
+<div class="c-border-content-title-1">インポート - Kotlinバージョン1.9の場合</div>
 
-* 步驟1. 導入Room
-   - 在.toml文件中加入以下內容：
+* ステップ1. Roomをインポート
+   - .tomlファイルに以下を追加：
      <script src="https://gist.github.com/waitzShigoto/c352887cbc647ca13eeb66452a79edbd.js"></script>
 
-   - 在build.gradle.kts中加入plugin：
+   - build.gradle.ktsにプラグインを追加：
      <script src="https://gist.github.com/waitzShigoto/b131ed97d95a0cd21cc3a7831c6142a8.js"></script>
 
-   - 在build.gradle.kts中加入library：
+   - build.gradle.ktsにライブラリを追加：
      <script src="https://gist.github.com/waitzShigoto/a036df8a7c3a144e2b261471e911d82f.js"></script>
   
-   - 在build.gradle.kts最外層加入以下代碼：
+   - build.gradle.ktsの外層に以下のコードを追加：
      <script src="https://gist.github.com/waitzShigoto/52c42bc675a05a58f04ab9fc95624032.js"></script>
 
-   - 如果使用的kotlin版本大於1.9.20需要在gradle.properties中加入：
+   - Kotlinのバージョンが1.9.20より大きい場合、gradle.propertiesに以下を追加：
     <script src="https://gist.github.com/waitzShigoto/adc4b45f180191bc1ec6911c9471cf8e.js"></script>
 
-<div class="c-border-content-title-1">導入 - 搭配kotlin版本2.0.0</div>
+<div class="c-border-content-title-1">インポート - Kotlinバージョン2.0.0の場合</div>
 
-* 步驟1. 修改ksp版本：
+* ステップ1. kspバージョンを変更：
   <script src="https://gist.github.com/waitzShigoto/ca66a227923d4f4a47c7a6a5823af719.js"></script>
 
-* 步驟2. 調整build.gradle.kts：<br>
-   - 加入`build/generated/ksp/metadata`到kotlin block內<br>
-   - 用add方法導入ksp<br>
-   - 最外層加入tasks.withType<br>
+* ステップ2. build.gradle.ktsを調整：<br>
+   - kotlinブロックに`build/generated/ksp/metadata`を追加<br>
+   - addメソッドを使用してkspをインポート<br>
+   - 外層にtasks.withTypeを追加<br>
     <script src="https://gist.github.com/waitzShigoto/c294e47392a0e64f2bd6cc88f638a5ac.js"></script>
 
-* 步驟3. 使用workaround實現RoomDatabase<br><br>
-  這個是現階段的workaround<br>
-  如果你要用kotlin 2.0.0版本就得先做<br>
-  因為現在的兼容性需等待官方修復<br>
+* ステップ3. 回避策を使用してRoomDatabaseを実装<br><br>
+  これは現在の回避策です<br>
+  Kotlin 2.0.0を使用している場合は、これを行う必要があります<br>
+  公式チームが互換性の問題を解決するのを待つ必要があるためです<br>
   <script src="https://gist.github.com/waitzShigoto/a94106152a3951c8f605bb9cee11eaac.js"></script>
 
-<div class="c-border-main-title-2">實際使用Room</div>
+<div class="c-border-main-title-2">実際のRoomの使用</div>
 <div class="c-border-content-title-1">Android Main</div>
-實作AppDataBase builder
+AppDataBase builderの実装
 <script src="https://gist.github.com/waitzShigoto/070cd28c456b0cf18418e7982a3a859c.js"></script><br>
 
 Koin: 
 <script src="https://gist.github.com/waitzShigoto/6a76498330b853aebcadcf118d8322c9.js"></script>
-<div class="c-border-content-title-1">IOS Main</div>
-實作AppDataBase builder
+<div class="c-border-content-title-1">iOS Main</div>
+AppDataBase builderの実装
 <script src="https://gist.github.com/waitzShigoto/12078618b6fe85935efd75dfd84178f0.js"></script><br>
 
 Koin:
 <script src="https://gist.github.com/waitzShigoto/221f5879d2f9aa3cf71368f6a6c30f47.js"></script>
 
 <div class="c-border-content-title-1">Common Main</div>
-實作AppDataBase
+AppDataBaseの実装
 <script src="https://gist.github.com/waitzShigoto/0c2d746b2045ab6a265ad00acd221e6c.js"></script>
 
 Dao
@@ -111,10 +111,10 @@ Dao
 Entity
 <script src="https://gist.github.com/waitzShigoto/40c40b4435400e56c7f77f9160238d64.js"></script>
 
-<div class="c-border-main-title-2">參考資料</div>
+<div class="c-border-main-title-2">参考資料</div>
 
-* [kmm官方文件如何導入ksp](https://kotlinlang.org/docs/ksp-multiplatform.html)
-* [Android Studio Room文件](https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies)
-* [KMM支援Room文件](https://developer.android.com/kotlin/multiplatform/room)
+* [KMM公式ドキュメント（kspのインポート）](https://kotlinlang.org/docs/ksp-multiplatform.html)
+* [Android Studio Roomドキュメント](https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies)
+* [KMM Roomサポートドキュメント](https://developer.android.com/kotlin/multiplatform/room)
 * [ksp2](https://android-developers.googleblog.com/2023/12/ksp2-preview-kotlin-k2-standalone.html)
-* [issuetracker](https://issuetracker.google.com/issues/341787827)
+* [issuetracker](https://issuetracker.google.com/issues/341787827) 

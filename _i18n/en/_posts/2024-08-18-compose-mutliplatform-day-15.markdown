@@ -1,93 +1,91 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中使用ROOM開發跨平台資料庫 & 疑難雜症"
+title: "Compose Multiplatform in Action: Using Room for Cross-Platform Database Development & Troubleshooting"
 date: 2024-08-18 17:29:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-15
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "This series focuses on Compose Multiplatform in action: developing cross-platform apps from scratch using Kotlin. This post will specifically focus on developing cross-platform apps for Android and iOS, and in the final days, I'll discuss my research findings and insights."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
-`Compose Multiplatform (簡稱CMP)`<br><br>
+`Compose Multiplatform (CMP)`<br><br>
 
-在 `CMP` 專案中<br>
-如何實現跨平台的資料庫操作呢？<br>
-昨天我們提到了`SqlDelight`<br>
-這是CMP初期提出並針對`本地資料庫`做的跨雙平台解決方案<br><br>
+In a `CMP` project<br>
+how can we implement cross-platform database operations?<br>
+Yesterday we talked about `SqlDelight`<br>
+which was an early cross-platform solution for `local databases` in CMP<br><br>
 
-也就在近期`2024/05`左右<br>
-`Room` 也開始提供CMP跨平台的解決方案<br>
-另外，`Android Developer`官方也在網站上放上KMP使用的[文章](https://developer.android.com/kotlin/multiplatform/room?hl=zh-tw)<br><br>
+Recently, around `May 2024`<br>
+`Room` also started offering a cross-platform solution for CMP<br>
+Additionally, the `Android Developer` official site has published [articles](https://developer.android.com/kotlin/multiplatform/room?hl=en) on using KMP<br><br>
 
-本文將介紹如何在跨平台`Android` & `iOS`環境中<br>
-使用 `Room` 進行資料庫操作<br>
+This article will introduce how to perform database operations<br>
+using `Room` in a cross-platform `Android` & `iOS` environment<br>
 
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">前期配置</div>
+<div class="c-border-main-title-2">Initial Configuration</div>
 
-`注意1`. Room版本`2.7.0-alpha01`之後才支援KMM。<br><br>
+`Note 1`. Room version `2.7.0-alpha01` and later supports KMM.<br><br>
 
-`注意2`.
-`Room`在`CMP` or `KMP`中的`Build.gradle.kts`配置可能需要搭配`ksp`<br>
-ksp導入時可能會因為kotlin版本不同<br>
-而出現`ksp版本太低`或提示`需更新版本` 並且無法Build過<br>
-這時候可以去官方github找跟Kotlin能搭配的版本<br>
-可參考這：[ksp releases](https://github.com/google/ksp/releases)<br><br>
+`Note 2`.
+`Room` in `CMP` or `KMP` with `Build.gradle.kts` configuration may need to be paired with `ksp`<br>
+When importing ksp, you might encounter issues like `ksp version too low` or `need to update version` and be unable to build<br>
+In this case, you can find compatible versions for Kotlin on the official GitHub<br>
+Reference: [ksp releases](https://github.com/google/ksp/releases)<br><br>
 
-`注意3`. 使用kotlin搭配ksp會檢查ksp版本跟kotlin相容性<br>
-當使用kotlin 2.0.0 時，gradle sync時顯示版本太低或不相容時<br>
-會出現 `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation`<br>
-或 `[KSP2] Annotation value is missing in nested annotations`<br>
+`Note 3`. Using kotlin with ksp checks for ksp version and kotlin compatibility<br>
+When using kotlin 2.0.0, if gradle sync shows version is too low or incompatible<br>
+you might see errors like `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation`<br>
+or `[KSP2] Annotation value is missing in nested annotations`<br>
 
 
-<div class="c-border-content-title-1">CMP配置Room時可能遇到的問題</div>
+<div class="c-border-content-title-1">Potential Issues When Configuring Room in CMP</div>
 
-一開始遇到`[KSP2] Annotation value is missing in nested annotations`<br>
-後來在網上搜尋研究後發現可以<br>
-在`gradle.property`中加入`ksp.useKSP2=true`可以解決這個問題<br><br>
+Initially encountered `[KSP2] Annotation value is missing in nested annotations`<br>
+After searching online, I found that<br>
+adding `ksp.useKSP2=true` to `gradle.property` can solve this problem<br><br>
 
-上面解決了一個問題後<br>
-雖然可以`gradle sync`<br>
-但在用`ksp`配置`Room`又會遇到問題<br>
-例如配置`ksp(libs.androidx.room.compiler)`後<br>
-會出現`[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
+After solving one problem<br>
+although `gradle sync` works<br>
+configuring `Room` with `ksp` might lead to other issues<br>
+For example, after configuring `ksp(libs.androidx.room.compiler)`<br>
+you might see `[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
 
-後來我發現<br>
-問題的原因是官方文件上的配置主要針對 `Kotlin 1.9.0` 版本<br>
-然而，Kotlin 升級到 `2.0.0` 之後<br>
-與 `KSP` 的搭配方式有所調整<br>
-有些網友也有遇到<br>
-以下是我找到的幾個相關 Issue 回報<br>
-有興趣的話可以看看：<br>
+Later I discovered<br>
+the issue is that the official documentation is mainly for `Kotlin 1.9.0`<br>
+However, after Kotlin upgraded to `2.0.0`<br>
+the way it works with `KSP` changed<br>
+Some users have encountered similar issues<br>
+Here are some related Issue reports I found<br>
+if you're interested:<br>
 [Issue 1](https://github.com/google/ksp/issues/1896)<br>
 [Issue 2](https://youtrack.jetbrains.com/issue/KT-68981)<br>
 [Issue 3](https://github.com/google/ksp/issues/1833)<br>
 
-有人建議將 Kotlin 版本降到與 KSP 相同的版本來解決問題<br>
-但因為現在使用官方 `Wizard` 生成的 `CMP` 預設已經是 `Kotlin 2.0.0`<br>
-所以我還是選擇秉持著「用新不用舊」的原則 XD。<br><br>
+Some suggest downgrading Kotlin to the same version as KSP to solve the problem<br>
+But since the official `Wizard` generated `CMP` projects now default to `Kotlin 2.0.0`<br>
+I chose to stick with the principle of "use new, not old" XD.<br><br>
 
-如果想在 `Kotlin 2.0.0` 上成功搭建 `Room`<br>
-可能需要使用一些`暫時的解決方案`<br>
-在官方修復這個問題之前<br>
-可以參考以下配置方法<br>
-來讓 `Room` 正常運作在 `Kotlin 2.0.0` 上<br><br>
+If you want to successfully set up `Room` on `Kotlin 2.0.0`<br>
+you might need some `temporary solutions`<br>
+Before the official fix is released<br>
+you can refer to the configuration methods below<br>
+to make `Room` work properly on `Kotlin 2.0.0`<br><br>
 
-下方我將開始分享如何配置2.0.0上使用Room<br>
+Below I'll share how to configure Room on Kotlin 2.0.0<br>
 
 
-<div class="c-border-content-title-1">CMP上使用`kotlin 2.0.0`實作ROOM</div>
+<div class="c-border-content-title-1">Implementing ROOM with `kotlin 2.0.0` in CMP</div>
 
-* 步驟1. 在專案中導入 `Room`<br>
-  需在`libs.version.toml` 文件中添加：<br>
+* Step 1. Import `Room` into your project<br>
+  Add the following to your `libs.version.toml` file:<br>
 
 ```toml
 [versions]
@@ -106,7 +104,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "androidx-room" }
 ```
 
-並在gradle的 commonMain中加入
+Then add to commonMain in gradle
 
 ```groovy
 commonMain.dependencies {
@@ -115,12 +113,12 @@ commonMain.dependencies {
 }
 ```
 
-* 步驟2. 調整`build.gradle.kts`，主要有下面幾點
-    - 加入`build/generated/ksp/metadata`到`sourceSets.commonMain`內
-    - 用add方法導入ksp：`add("kspCommonMainMetadata", libs.androidx.room.compiler)`
-    - 最外層加入tasks.withType
-    - 加入room schemas配置
-    - 加入plugins配置
+* Step 2. Adjust `build.gradle.kts`, focusing on these points
+    - Add `build/generated/ksp/metadata` to `sourceSets.commonMain`
+    - Import ksp using the add method: `add("kspCommonMainMetadata", libs.androidx.room.compiler)`
+    - Add tasks.withType to the outermost layer
+    - Add room schemas configuration
+    - Add plugins configuration
 
 ```kotlin
 plugins {
@@ -150,17 +148,17 @@ tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach
 }
 ```
 
-* 步驟3. 使用workaround實現RoomDatabas
+* Step 3. Implement RoomDatabase using a workaround
 
-這個是現階段的workaround<br>
-如果你要用kotlin 2.0.0版本搭配Room就得先做<br>
-因為現在與ksp的`兼容性`需等待官方修復<br><br>
+This is a current workaround<br>
+Necessary if you want to use Kotlin 2.0.0 with Room<br>
+As we await official fixes for `compatibility` with ksp<br><br>
 
-主要是建立Room時候會繼承Room的`RoomDatabase`<br>
-正常來說編譯完成後會幫你產生AppDataBase的實作<br>
-不過目前版本缺少`clearAllTables`<br>
-所以這邊手動先自己加入<br>
-當暫時的解<br>
+The main issue is that when creating Room, you extend Room's `RoomDatabase`<br>
+Normally after compilation, it generates an implementation of AppDataBase<br>
+However, the current version is missing `clearAllTables`<br>
+So we manually add it here<br>
+As a temporary solution<br>
 
 ```kotlin
 // in ~/commonMain/db/AppDataBase.kt
@@ -181,9 +179,9 @@ interface DB {
 }
 ```
 
-<div class="c-border-content-title-1">實際開發Room</div>
+<div class="c-border-content-title-1">Actual Room Development</div>
 
-* 前面我們一樣需要 建立所有目標平台的`RoomDatabase.Builder`
+* As before, we need to create a `RoomDatabase.Builder` for all target platforms
 
 ```kotlin
 // in ~/androidMain
@@ -211,7 +209,7 @@ fun getAppDatabase(): RoomDatabase.Builder<AppDatabase> {
 }
 ```
 
-<div class="c-border-content-title-1">RoomDatabase.Builder搭配koin</div>
+<div class="c-border-content-title-1">RoomDatabase.Builder with Koin</div>
 
 ``` kotlin
 //in ~/androidMain
@@ -228,25 +226,25 @@ actual val platformModule: Module = module {
 }
 ```
 
-<div class="c-border-content-title-1">在commonMain實作ROOM</div>
+<div class="c-border-content-title-1">Implementing ROOM in commonMain</div>
 
-Room 的核心概念是透過面向物件的方式操作本地資料庫<br><br>
+The core concept of Room is to operate the local database in an object-oriented way<br><br>
 
-透過實作 `RoomDatabase`、`DAO`（資料存取物件）、和`Entity`(實體類別)<br>
-可以方便地對資料庫進行操作<br><br>
+By implementing `RoomDatabase`, `DAO` (Data Access Object), and `Entity` classes<br>
+you can easily operate on the database<br><br>
 
-`AppDatabase`：實作`RoomDatabase`的類別，其中帶入Room的annotation `@Database`<br>
-裡面可以針對entity做宣告，以及做版本遷移...等<br><br>
+`AppDatabase`: A class implementing `RoomDatabase` with the Room annotation `@Database`<br>
+where you can declare entities and handle version migrations, etc.<br><br>
 
-`dao` : 建立一個interface，並搭配些許的SQL cmd 讓操作DB可以使用物件導向方式<br><br>
+`dao`: Create an interface, paired with SQL commands to enable object-oriented database operations<br><br>
 
-`entity`: 主要是把建立table變成物件導向的方式<br>
-這邊使用`@Entity` annotation去宣告其為Room的entity<br>
-加入到RoomDatabase()後進行編譯<br>
-就會在你的DB產生對應的table<br>
+`entity`: Mainly turns table creation into an object-oriented approach<br>
+Using the `@Entity` annotation to declare it as a Room entity<br>
+After adding it to RoomDatabase() and compiling<br>
+it will generate the corresponding table in your DB<br>
 
 
-* 實作`AppDatabase`
+* Implementing `AppDatabase`
 
 ```kotlin
 @Database(entities = [VocabularyEntity::class], version = 1)
@@ -275,7 +273,7 @@ interface DB {
 }
 ```
 
-* 建立`Dao` interface
+* Creating a `Dao` interface
 
 ```kotlin
 @Dao
@@ -304,7 +302,7 @@ interface VocabularyDao {
 }
 ```
 
-* 建立`Entity`
+* Creating an `Entity`
 
 ```kotlin
 @Entity
@@ -313,4 +311,4 @@ data class VocabularyEntity(
     val name: String,
     val description: String? = null
 )
-```
+``` 

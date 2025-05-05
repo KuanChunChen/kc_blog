@@ -1,53 +1,52 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中使用koin來依賴注入Dependency Injection"
+title: "Compose Multiplatform in Action: Using Koin for Dependency Injection in CMP"
 date: 2024-08-18 17:27:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-13
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "This series focuses on Compose Multiplatform in action: developing cross-platform apps from scratch using Kotlin. This post will specifically focus on developing cross-platform apps for Android and iOS, and in the final days, I'll discuss my research findings and insights."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
 
-`Compose Multiplatform (簡稱CMP)`<br><br>
+`Compose Multiplatform (CMP)`<br><br>
 
-嗨，大家<br>
-今天繼續來介紹CMP的應用<br>
-我們將使用`koin`來依賴注入<br>
-來降低程式碼之間的耦合<br>
-讓其更易於維護<br><br>
+Hi everyone,<br>
+Today we'll continue exploring CMP applications<br>
+by using `Koin` for dependency injection<br>
+to reduce coupling between code components<br>
+making them easier to maintain<br><br>
 
-原本在寫Android的人可能會使用`Dagger2` or `Hilt`<br>
-但現在CMP官方有支援的主要是`koin`<br>
-使用`其他DI方案`可能要需自己使用其他worked around<br>
-所以我們今天會先以`koin`導入到CMP為主<br>
+Android developers might be familiar with `Dagger2` or `Hilt`<br>
+but currently, CMP officially supports mainly `Koin`<br>
+Using `other DI solutions` might require your own workarounds<br>
+so today we'll focus on integrating `Koin` into CMP<br>
 
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">什麼是依賴注入 Dependency Injection ?</div>
-在軟體開發中<br>
-`高耦合（Coupling）`是指程式碼中的模組或元件之間存在過多的依賴關係<br>
-這會使得程式碼難以維護和測試<br>
+<div class="c-border-main-title-2">What is Dependency Injection?</div>
+In software development,<br>
+`high coupling` refers to excessive dependencies between modules or components in code<br>
+making code difficult to maintain and test<br>
 
-為了解決高耦合的情況<br>
-我們可以使用`依賴注入（Dependency Injection, DI）`來減少程式碼之間的耦合<br>
+To solve high coupling issues,<br>
+we can use `Dependency Injection (DI)` to reduce coupling between code components<br>
 
-依賴注入是一種設計模式<br>
-它允許我們在物件的生命週期中將其依賴項注入到物件中<br>
-而不是在物件內部創建instance<br>
-這樣可以使得程式碼更加靈活和可測試<br>
+Dependency Injection is a design pattern<br>
+that allows us to inject dependencies into objects during their lifecycle<br>
+rather than creating instances inside the objects<br>
+making code more flexible and testable<br>
 
-<div class="c-border-content-title-1">沒有 Dependency Injection 的樣子</div>
+<div class="c-border-content-title-1">What it looks like without Dependency Injection</div>
 
-我們來看一個前幾天建StateFlow時用到viewmodel的例子<br>
-這邊我們需要手動創建`SettingViewModel實例`  且 `內部有多個class需init`<br>
+Let's look at an example from our StateFlow ViewModel from a few days ago<br>
+Here we need to manually create the `SettingViewModel instance` and `initialize multiple classes inside`<br>
 
 ```kotlin
 fun NavGraphBuilder.routeSettingScreen(
@@ -78,10 +77,9 @@ class SettingViewModel() {
 
 ```
 
-<div class="c-border-content-title-1">加入 koin 的樣子</div>
+<div class="c-border-content-title-1">What it looks like with Koin</div>
 
-如果透過DI來導入viewmodel<br>
-則你不需要自己去創建instance<br>
+With DI, you don't need to create instances yourself<br>
 
 ```kotlin
 fun NavGraphBuilder.routeSettingScreen(
@@ -96,15 +94,15 @@ fun NavGraphBuilder.routeSettingScreen(
 
 ```
 
-<div class="c-border-content-title-1">不過這樣乍看之下是不是根本沒差？</div>
+<div class="c-border-content-title-1">Does this really make a difference?</div>
 
-因為只是把創建實例變成透過 koinViewModel 去注入而已<br>
+At first glance, it seems like we're just replacing instance creation with koinViewModel injection<br>
 
-不過如果仔細看<br>
-如果你的 `SettingViewModel` 的構造函數突然變得很複雜<br>
-那麼你就需要一個一個建立每一個必需的實例<br>
+But looking closer,<br>
+if your `SettingViewModel` constructor becomes complex,<br>
+you'd need to create each required instance one by one<br>
 
-例如：<br>
+For example:<br>
 
 ```kotlin
 val a = A()
@@ -119,20 +117,20 @@ SettingViewModel(a,b,c,d,e,f,...)
 ```
 
 
-這時候 DI 注入的優點就顯現出來了<br>
-可以讓你免去自己一個一個創建實例的步驟<br>
-也可以讓你的程式碼行數變更少、更簡潔<br>
+This is where DI's advantages become clear<br>
+It eliminates the need to create instances manually<br>
+making your code shorter and cleaner<br>
 
-另一個優勢是<br>
-當你需要改動程式碼時<br>
-彈性會比較好<br>
-你只需要改動注入模組的程式碼即可<br>
-原本 `ViewModel` 的程式碼可以保持不變<br>
-只是修改模組實作那邊的邏輯而已<br>
+Another advantage is<br>
+when you need to modify your code,<br>
+it becomes more flexible<br>
+You just need to change the injected module code<br>
+The original `ViewModel` code can remain unchanged<br>
+only modifying the logic in the module implementation<br>
 
-此外<br>
-如果你在多個地方需要使用某個 class<br>
-依賴注入也可以減少你自己創建實例的步驟。<br>
+Additionally,<br>
+if you need to use a class in multiple places,<br>
+dependency injection reduces the steps to create instances.<br>
 
 ```kotlin
 class SettingViewModel(private val a: A, private val b: B,...) {
@@ -140,20 +138,20 @@ class SettingViewModel(private val a: A, private val b: B,...) {
 }
 ```
 
-在使用時依舊是<br>
+When using it, it's still simply:<br>
 
 ```kotlin
 val viewModel = koinViewModel<SettingViewModel>()
 ```
 
-<div class="c-border-main-title-2">在CMP中實作koin</div>
+<div class="c-border-main-title-2">Implementing Koin in CMP</div>
 
-<div class="c-border-content-title-1">將對應的 lib & version 加入 lib.versions.toml</div>
+<div class="c-border-content-title-1">Add the corresponding libraries and versions to lib.versions.toml</div>
 
-首先<br>
-我們需要在 `lib.versions.toml` 文件中加入 `koin` 的依賴和版本號<br>
-完成後<br>
-記得同步 `gradle`<br>
+First,<br>
+we need to add `Koin` dependencies and version numbers to the `lib.versions.toml` file<br>
+After completion,<br>
+remember to sync `gradle`<br>
 
 ```toml
 [versions]
@@ -166,9 +164,9 @@ koin-compose-viewmodel= { module = "io.insert-koin:koin-compose-viewmodel", vers
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 ```
 
-<div class="c-border-content-title-1">將Library導入build.gradle.kts中</div>
+<div class="c-border-content-title-1">Import the libraries into build.gradle.kts</div>
 
-* 這次一樣是共用的 所以在`commonMain`中加入以下：
+* As usual, these are shared, so add the following to `commonMain`:
 
 ```kotlin
     sourceSets {
@@ -180,21 +178,21 @@ koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinComp
     }
 ```
 
-<div class="c-border-content-title-1">CMP配置多平台koin</div>
+<div class="c-border-content-title-1">Configuring Koin for multiple platforms in CMP</div>
 
-(記得我們前面[各平台的進入點](https://ithelp.ithome.com.tw/articles/10343651)嗎？<br>
-忘記的話可以回去看看)<br>
+(Remember our discussion on [entry points for different platforms](https://ithelp.ithome.com.tw/articles/10343651)?<br>
+If you've forgotten, go back and review it)<br>
 
-* 我們可以先在`commonMain`加入一個expect `platformModule`<br>
-  因為目標平台可能會有不同的實作方式<br>
-  若是CMP還沒支援時<br>
-  可以透過`platformModule`去分別實作與注入<br>
-  使得不同目標平台的內容 可以注入到`commonMain`中<br>
-  例如：持久化儲存dataStore、本地話儲存RoomDatabase的Builder...等<br>
+* First, let's add an expect `platformModule` in `commonMain`<br>
+  Since target platforms might have different implementations<br>
+  If CMP doesn't support something yet<br>
+  We can use `platformModule` to implement and inject separately<br>
+  allowing different target platform content to be injected into `commonMain`<br>
+  For example: persistent storage dataStore, localized storage RoomDatabase Builder, etc.<br>
 
-這邊先在 `commonMain` 中 `expect` 一個 `platformModule`
+First, in `commonMain`, declare an `expect` for `platformModule`
 &
-`appModule()`主要是用來方便你`放入或擴充更多module`
+`appModule()` which helps us `place or extend more modules`
 
 ```kotlin
 // in ../commonMain
@@ -204,7 +202,7 @@ fun appModule() =
     listOf(platformModule,...)
 ```
 
-接著實作`androidMain` & `iosMain`的platformModule
+Then implement `platformModule` for `androidMain` & `iosMain`
 
 `androidMain`:
 ```
@@ -217,7 +215,7 @@ actual val platformModule: Module = module {
 }
 ```
 
-`iosMain`：
+`iosMain`:
 ```kotlin
 // in ../iosMain
 
@@ -228,8 +226,8 @@ actual val platformModule: Module = module {
 }
 ```
 
-* 現在我們需要在`CMP目標平台`中配置 koin<br>
-  首先我們在`androidMain`加入koin<br>
+* Now we need to configure Koin in `CMP target platforms`<br>
+  First, let's add Koin to `androidMain`<br>
 
 ```kotlin
 // in ../androidMain/../MainActivity.kt
@@ -252,17 +250,17 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-`關鍵程式碼解說`:
+`Key code explanation`:
 
-1. `androidModule` ：因為不管`Android`平台或是`iOS平台`可能會有他們自定義的規則<br>
-   例如：`Android有Context`，但是iOS沒有<br>
-   可以先做一個`androidModule`把`Context`實例配置進koin裡面<br><br>
-2. `startKoin`：接著我們就可以把androidModule跟前面做的`appModule()`帶進來<br>
-   而根據`前面的程式碼`<br>
-   我們前面autual 的 `platformModule` 也會被帶進來<br>
+1. `androidModule`: Because both `Android` and `iOS platforms` might have their own rules<br>
+   For example: `Android has Context` but iOS doesn't<br>
+   We can create an `androidModule` to configure a `Context` instance in Koin<br><br>
+2. `startKoin`: Then we can bring in the androidModule and the previously created `appModule()`<br>
+   Based on `the previous code`<br>
+   Our previously declared `platformModule` will also be included<br>
 
 
-* 開始配置`iosMain`的koin
+* Now let's configure Koin for `iosMain`
 
 ```kotlin
 // in ../iosMain/../MainViewController.kt
@@ -290,22 +288,22 @@ class UIViewControllerWrapperImpl(private val viewController: UIViewController) 
 }
 ```
 
-`關鍵程式碼解說`:<br>
+`Key code explanation`:<br>
 
-1. `iosModule` ：跟`android`一樣，ios也有獨有的東西`UIViewController`，若剛好需要<br>
-   則可以把它做成一個`iosModule`<br><br>
+1. `iosModule`: Similar to `android`, iOS also has unique elements like `UIViewController`<br>
+   If needed, we can create an `iosModule` for it<br><br>
 
-2. `KoinApplication`：接著我們就可以把`iosModule`跟前面做的`appModule()`帶進來<br>
-   而根據`前面的程式碼`<br>
-   我們前面autual 的 `platformModule` 也會被帶進來<br><br>
+2. `KoinApplication`: Then we can bring in the `iosModule` and our previously created `appModule()`<br>
+   Based on `the previous code`<br>
+   Our previously declared `platformModule` will also be included<br><br>
 
-<div class="c-border-content-title-1">CMP實作koin 共用module</div>
+<div class="c-border-content-title-1">Implementing shared modules with Koin in CMP</div>
 
-前個區塊主要介紹了在多個目標平台上進行開發的方法<br>
-現在，我們終於可以開始開發共用模組<br>
-在 `koin` 中製作模組也相對直觀<br><br>
+The previous section mainly covered development methods across multiple target platforms<br>
+Now, we can finally start developing shared modules<br>
+Creating modules in `Koin` is also relatively intuitive<br><br>
 
-首先，我們來看一下如何在 `commonMain` 中定義 `koin` 的模組<br>
+First, let's see how to define `Koin` modules in `commonMain`<br>
 
 ```kotlin
 // in ../commonMain
@@ -326,21 +324,21 @@ val viewModelModule = module {
 }
 ```
 
-`關鍵程式碼解說`：<br>
-1. `single { A() }`: 定義一個單例 A 的實例<br>
-   每次注入 A 時，koin 都會返回同一個實例<br>
-   `single { B() }` 和 `single { C() }`： 同樣定義單例 B 和 C 的實例<br><br>
-2. `single { SettingViewModel(get(), get(), get()) }` : 定義 `SettingViewModel` 的單例實例，並通過 `get()` 方法從 `koin` 容器中注入 A, B, C 的實例。<br><br>
-3. `appModule()`：前面我們就有先定義他了，現在把新的module加入即可。<br><br>
-4. 這個module主要使用koin library內提供的`module{}` 去創建<br>
-   `核心概念`就是把你想要的instance給創建進來<br>
-   而當配置好`startKoin`時<br>
-   你就可以`透過koin`幫你`inject`進來<br>
+`Key code explanation`:<br>
+1. `single { A() }`: Defines a singleton instance of A<br>
+   Whenever A is injected, Koin will return the same instance<br>
+   `single { B() }` and `single { C() }`: Similarly defines singleton instances of B and C<br><br>
+2. `single { SettingViewModel(get(), get(), get()) }`: Defines a singleton instance of `SettingViewModel`, and injects instances of A, B, C from the `Koin` container using the `get()` method.<br><br>
+3. `appModule()`: We defined this earlier, now we just add the new modules.<br><br>
+4. This module primarily uses the `module{}` provided in the Koin library<br>
+   The `core concept` is to create the instances you want<br>
+   Once `startKoin` is configured<br>
+   You can have them `injected` for you `through Koin`<br>
 
 
-<div class="c-border-content-title-1"> CMP實際使用koin注入</div>
+<div class="c-border-content-title-1">Actually using Koin injection in CMP</div>
 
-現在我們能開心`解放`複雜的手動創instance了
+Now we can happily `free ourselves` from complex manual instance creation
 
 ```kotlin
 fun NavGraphBuilder.routeSettingScreen(
@@ -354,9 +352,9 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
-<div class="c-border-main-title-2">總結</div>
+<div class="c-border-main-title-2">Summary</div>
 
-- Koin 能在 Compose Multiplatform 使用
-- 通過適當的配置，可以在不同平台上靈活使用 Koin
-- 使用 Koin 可以大大簡化跨平台項目的依賴管理
-- 根據項目規模和複雜度，選擇合適的初始化方式
+- Koin can be used in Compose Multiplatform
+- With proper configuration, Koin can be used flexibly on different platforms
+- Using Koin can greatly simplify dependency management in cross-platform projects
+- Choose the appropriate initialization method based on project size and complexity 

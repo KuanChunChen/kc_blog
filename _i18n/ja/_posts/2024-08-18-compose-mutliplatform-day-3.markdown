@@ -1,123 +1,121 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：續戰，用Wizard創建CMP專案"
+title: "Compose Multiplatform 実践：続戦、Wizardを使ってCMPプロジェクトを作成"
 date: 2024-08-18 17:13:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-3
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
 
-`Compose Multiplatform (簡稱CMP)`<br>
-昨天我們才剛完成安裝CMP的環境<br>
+`Compose Multiplatform (略称CMP)`<br>
+昨日はCMP環境のインストールを完了したばかりです<br>
 
-如果以寫程式的角度來看<br>
-其實任何檔案或結構<br>
-妳都可以完全從零開始自己<br>
-每個檔案都自己創建<br>
-甚至用指令去寫也可<br>
-例如<br>
+プログラミングの観点から見ると<br>
+実際には任意のファイルや構造を<br>
+完全にゼロから自分で作成することも可能です<br>
+すべてのファイルを自分で作成し<br>
+コマンドを使って書くこともできます<br>
+例えば<br>
 `touch xxx.kt`<br>
-然後`vim` 去改每個檔案<br>
+そして`vim`で各ファイルを編集する<br>
 
-但這樣太麻煩了<br>
-所以我們在創建專案<br>
-通常會用一些已經幫你配置好的專案結構<br>
+しかしこれは非常に面倒です<br>
+そのためプロジェクト作成時には<br>
+通常、すでに設定されたプロジェクト構造を使用します<br>
 
-像是以`CMP`來講<br>
-我們就可以用官方提供的`Wizard`來創建<br>
+`CMP`に関しては<br>
+公式が提供する`Wizard`を使用してプロジェクトを作成できます<br>
 
-所以今天我們就來暸解下<br>
-怎麼透過`Wizard`創建CMP的專案<br>
-以及一些疑難雜症<br>
+今日は<br>
+`Wizard`を使ってCMPプロジェクトを作成する方法と<br>
+いくつかの一般的な問題について学びましょう<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">CMP專案創建</div>
-<div class="c-border-content-title-1">創建專案</div>
-其實很簡單<br>
-透過JetBrain官方的網頁<br> 
+<div class="c-border-main-title-2">CMPプロジェクト作成</div>
+<div class="c-border-content-title-1">プロジェクトの作成</div>
+実はとても簡単です<br>
+JetBrain公式のウェブページを使用します<br> 
 [Kotlin Multiplatform Wizard](https://kmp.jetbrains.com/#newProject)
 
-進到該網頁後<br>
-你會看到如下畫面<br>
+このウェブページにアクセスすると<br>
+以下のような画面が表示されます<br>
 <img src="/images/compose/027.png" alt="Cover" width="50%" /><br />
 
-並依照你自己的需求去修改專案的名稱、包名..等等<br>
+自分のニーズに合わせてプロジェクト名、パッケージ名などを変更します<br>
 
-> 根據上圖 把設定快速帶一下
+> 上の図に基づいて、設定を簡単に説明します
 
-`Project Name`：是針對你這個專案設定名稱<br>
-主要會影響你`Build app出來的名稱`<br>
-專案的`root folder名稱`<br>
+`Project Name`：このプロジェクトの名前を設定します<br>
+主に`ビルドされるアプリの名前`に影響します<br>
+プロジェクトの`ルートフォルダ名`にもなります<br>
 
-`Project ID` : 也就是你Build App出來的Package Name<br>
-也會影響你的專案的package 的路徑<br>
+`Project ID` : ビルドされるアプリのPackage Nameです<br>
+プロジェクトのパッケージパスにも影響します<br>
 
-另外下面會看到幾個勾選框<br>
+また、下にはいくつかのチェックボックスがあります<br>
 `Android`、`iOS`、`Desktop`、`Web`、`Server`<br>
-你可以`根據你的需求`去勾選想要網頁幫你配置專案的基本項目<br>
+`自分のニーズ`に応じて、ウェブページに設定してもらいたい基本項目を選択できます<br>
 
-這邊簡單易懂<br>
-例如我這次目標是 `Android`、`iOS` 那我就勾選這兩個平台<br>
-那在iOS下方會看到 兩個選項<br>
-主要是讓你選擇要用哪個UI配置<br>
+ここは分かりやすいです<br>
+例えば今回の目標が`Android`と`iOS`なら、この2つのプラットフォームを選択します<br>
+そしてiOSの下に2つのオプションが表示されます<br>
+どのUIコンフィギュレーションを使用するかを選択するためのものです<br>
 > Share UI (with Compose Multiplatform UI framework)
 Do not share UI (use only SwiftUI)
 
-如果你要讓iOS 也使用Compose 做選擇<br>
-`Share UI (with Compose Multiplatform UI framework)`<br>
-反之則是使用Native 的SwiftUI<br>
+iOSでもComposeを使いたい場合は<br>
+`Share UI (with Compose Multiplatform UI framework)`を選択します<br>
+逆にネイティブのSwiftUIを使いたい場合は他方を選びます<br>
 
-不過上面的他只是根據你的設定去`預設`而已<br>
-如果你要調整`後續還是可以手動改`<br><br>
+ただし、これらは設定に基づいて`デフォルト`設定されるだけです<br>
+調整が必要な場合は`後で手動で変更する`ことができます<br><br>
 
-完成後就點擊Download<br>
-可以得到一個幫你創建好的專案<br>
+完了したらDownloadをクリックします<br>
+作成されたプロジェクトをダウンロードできます<br>
 <img src="/images/compose/028.png" alt="Cover" width="70%" /><br/>
 
-<div class="c-border-content-title-1">導入到IDE中</div>
+<div class="c-border-content-title-1">IDEにインポート</div>
 
-解壓縮上一步驟得到的`Zip壓縮檔`<br>
-之後就可以透過`Android Studio`中的 `import project`<br>
-把它導入到IDE<br>
-讓他能在IDE中做編輯<br>
+前のステップでダウンロードした`Zipファイル`を解凍します<br>
+その後、`Android Studio`の`import project`を使って<br>
+IDEにインポートできます<br>
+これによりIDEで編集できるようになります<br>
 
-找到`File > New > import project`<br>
+`File > New > import project`を探します<br>
 <img src="/images/compose/029.png" alt="Cover" width="50%" /><br/>
 
-在彈出的檔案選擇器中<br>
-選擇剛剛解壓縮的`資料夾`即可<br>
+表示されるファイル選択ダイアログで<br>
+先ほど解凍した`フォルダ`を選択します<br>
 <img src="/images/compose/030.png" alt="Cover" width="70%" /><br/>
 
-<div class="c-border-content-title-1">額外加碼分享【Compose Multiplatform Wizard】</div>
-前面幾天有說過CMP相關的社群目前都滿活躍的<br>
-或是主要在開發的公司`JetBrains`<br>
-目前都有持續在維護或更新<br>
-這個是比較新的feature也是由`JetBrains員工`開發的<br>
+<div class="c-border-content-title-1">追加情報【Compose Multiplatform Wizard】</div>
+前日にも触れましたが、CMP関連のコミュニティは現在非常に活発です<br>
+また、主要開発会社である`JetBrains`も<br>
+継続的にメンテナンスやアップデートを行っています<br>
+これは比較的新しい機能で、`JetBrainsの社員`によって開発されました<br>
 [Compose Multiplatform Wizard](https://www.jetbrains.com/zh-cn/lp/compose-multiplatform/)
-不過沒有放到官方文件中<br>
-這是我無意間逛github看到的<br>
+ただし公式ドキュメントには含まれていません<br>
+これはGitHubをブラウジング中に偶然見つけたものです<br>
 
-跟上面的`Kotlin Multiplatform Wizard` 其實是類似的東西<br>
-`Compose Multiplatform Wizard`其用途也是他也是透過網頁幫你產生以`Compose`為UI的專案<br>
-然後多了一些可以幫你導入CMP常用library的選項<br>
+上記の`Kotlin Multiplatform Wizard`と実際には類似したツールです<br>
+`Compose Multiplatform Wizard`も、ウェブページを通じて`Compose`をUIとするプロジェクトを生成するためのものです<br>
+さらにCMPでよく使用されるライブラリをインポートするオプションがいくつか追加されています<br>
 
 <img src="/images/compose/031.png" alt="Cover" width="50%" /><br />
 
-跟上面一樣<br>
-輸入想要的Project Name 跟Project ID<br>
-選擇想要的Library後<br>
-點擊下載後再解壓縮導入IDE中<br><br>
+上記と同様に<br>
+希望のProject NameとProject IDを入力し<br>
+必要なライブラリを選択して<br>
+ダウンロードをクリックした後、解凍してIDEにインポートします<br><br>
 
-另外這是該大神`terrakok`的github repo 有興趣可看<br>
-看起來他是用github page架設的<br>
-[Compose-Multiplatform-Wizard github](https://github.com/terrakok/Compose-Multiplatform-Wizard-App)
-
+また、この開発者`terrakok`のGitHubリポジトリも興味があれば見てみてください<br>
+GitHub Pagesを使って構築されているようです<br>
+[Compose-Multiplatform-Wizard github](https://github.com/terrakok/Compose-Multiplatform-Wizard-App) 

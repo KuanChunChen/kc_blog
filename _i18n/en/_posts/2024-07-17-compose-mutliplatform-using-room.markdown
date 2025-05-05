@@ -1,108 +1,108 @@
 ---
 layout: post
-title: "【Compose Multiplatform】CMP中使用ROOM開發資料庫 - [KSP2] Annotation value is missing in nested annotations"
+title: "【Compose Multiplatform】Using ROOM Database in CMP - [KSP2] Annotation value is missing in nested annotations"
 date: 2024-07-18 20:46:20 +0800
 image: cover/compose_multiplatform_room.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-room
 categories: ComposeMultiplatform
-excerpt: "本文詳細介紹了從 Compose 專案轉移到 Compose Multiplatform 的過程，如何導入以前在開發Android常用的Room。"
+excerpt: "This article details the process of migrating from a Compose project to Compose Multiplatform, and how to implement Room, which is commonly used in Android development."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
 
 <div id="category">
     {% include table/compose-multiplatform-category.html %}
 </div>
 
-<div class="c-border-main-title-2">注意事項 - 在CMP上使用ROOM現階段遇到的兼容問題</div>
+<div class="c-border-main-title-2">Important Notes - Current Compatibility Issues with ROOM in CMP</div>
 
-* 注意1. Room版本2.7.0-alpha01之後才支援KMM。
+* Note 1. Room version 2.7.0-alpha01 and above supports KMM.
 
-* 注意2. ksp導入時可能會因為kotlin版本不同而出現版本太低或提示更新版本<br>
-且`無法Build過`<br>
-這時候可以去官方github找有無對應支援的版本 [ksp releases](https://github.com/google/ksp/releases)<br>
+* Note 2. When importing ksp, you might encounter issues with version incompatibility due to different Kotlin versions<br>
+and `fail to Build`<br>
+In this case, you can check the official GitHub for supported versions: [ksp releases](https://github.com/google/ksp/releases)<br>
 
-* 注意3. 使用kotlin搭配ksp會檢查ksp版本跟kotlin相容性<br>
-當使用kotlin 2.0.0 時，`gradle sync`時顯示版本太低或不相容時<br>
-會出現 `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation` <br>
-或 `[KSP2] Annotation value is missing in nested annotations`<br><br>
-一開始有搜尋到 `KSP2` 的問題<br>
-在gradle.property中加入`ksp.useKSP2=true`可以解決這個問題 <br><br>
-不過雖然上面解決了一個問題後<br>
-可以過`gradle sync`時<br>
-在ksp配置Room又會遇到問題<br>
-例如配置`ksp(libs.androidx.room.compiler)`後<br>
-會一直出現缺少dao `[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
-我有去爬文 <br>
-有人說可以將kotlin版本降到與ksp相同<br>
-但因為現在用官方Wizard產生CMP已經預設用kotlin 2.0.0<br>
-所以秉持著用新不用舊的原則XD<br>
-如果想在kotlin 2.0.0上成功搭建Room，需要使用workaround去暫解決 <br>
-在官方還沒解決的之前可以參考 <br><br><br>
-我會在這篇的下面提供方法<br>
-大家可以參考看看<br><br>
-另外我也看到有網友已經提issue給官方了：<br>
+* Note 3. Using Kotlin with ksp will check for ksp version and Kotlin compatibility<br>
+When using Kotlin 2.0.0, during `gradle sync` you might see errors about version incompatibility<br>
+such as `Cannot change attributes of configuration ':composeApp:debugFrameworkIosX64' after it has been locked for mutation` <br>
+or `[KSP2] Annotation value is missing in nested annotations`<br><br>
+Initially, I found a solution for the `KSP2` issue<br>
+by adding `ksp.useKSP2=true` in gradle.properties<br><br>
+However, even after solving this issue<br>
+and passing `gradle sync`<br>
+you'll encounter problems when configuring Room with ksp<br>
+For example, after setting up `ksp(libs.androidx.room.compiler)`<br>
+you'll consistently get missing dao errors: `[ksp] [MissingType]: xxxxx 'data.xxx.xxxDao' references a type that is not present`<br><br>
+After researching this issue<br>
+Some suggest downgrading the Kotlin version to match ksp<br>
+But since the official Wizard for CMP now defaults to Kotlin 2.0.0<br>
+and following the principle of using newer rather than older versions XD<br>
+If you want to successfully set up Room with Kotlin 2.0.0, you'll need to use a workaround<br>
+You can refer to the methods below until an official solution is available<br><br><br>
+I'll provide methods below<br>
+that you can reference<br><br>
+Additionally, I've seen that other developers have already reported issues to the official team:<br>
    * [Issue 1](https://github.com/google/ksp/issues/1896)
    * [Issue 2](https://youtrack.jetbrains.com/issue/KT-68981)
    * [Issue 3](https://github.com/google/ksp/issues/1833)
 
 
 
-<div class="c-border-main-title-2">實作</div>
+<div class="c-border-main-title-2">Implementation</div>
 
-<div class="c-border-content-title-1">導入 - 搭配kotlin版本1.9</div>
+<div class="c-border-content-title-1">Import - With Kotlin version 1.9</div>
 
-* 步驟1. 導入Room
-   - 在.toml文件中加入以下內容：
+* Step 1. Import Room
+   - Add the following to your .toml file:
      <script src="https://gist.github.com/waitzShigoto/c352887cbc647ca13eeb66452a79edbd.js"></script>
 
-   - 在build.gradle.kts中加入plugin：
+   - Add plugin to build.gradle.kts:
      <script src="https://gist.github.com/waitzShigoto/b131ed97d95a0cd21cc3a7831c6142a8.js"></script>
 
-   - 在build.gradle.kts中加入library：
+   - Add library to build.gradle.kts:
      <script src="https://gist.github.com/waitzShigoto/a036df8a7c3a144e2b261471e911d82f.js"></script>
   
-   - 在build.gradle.kts最外層加入以下代碼：
+   - Add the following code to the outer layer of build.gradle.kts:
      <script src="https://gist.github.com/waitzShigoto/52c42bc675a05a58f04ab9fc95624032.js"></script>
 
-   - 如果使用的kotlin版本大於1.9.20需要在gradle.properties中加入：
+   - If you're using Kotlin version greater than 1.9.20, add the following to gradle.properties:
     <script src="https://gist.github.com/waitzShigoto/adc4b45f180191bc1ec6911c9471cf8e.js"></script>
 
-<div class="c-border-content-title-1">導入 - 搭配kotlin版本2.0.0</div>
+<div class="c-border-content-title-1">Import - With Kotlin version 2.0.0</div>
 
-* 步驟1. 修改ksp版本：
+* Step 1. Modify ksp version:
   <script src="https://gist.github.com/waitzShigoto/ca66a227923d4f4a47c7a6a5823af719.js"></script>
 
-* 步驟2. 調整build.gradle.kts：<br>
-   - 加入`build/generated/ksp/metadata`到kotlin block內<br>
-   - 用add方法導入ksp<br>
-   - 最外層加入tasks.withType<br>
+* Step 2. Adjust build.gradle.kts:<br>
+   - Add `build/generated/ksp/metadata` to the kotlin block<br>
+   - Use the add method to import ksp<br>
+   - Add tasks.withType to the outer layer<br>
     <script src="https://gist.github.com/waitzShigoto/c294e47392a0e64f2bd6cc88f638a5ac.js"></script>
 
-* 步驟3. 使用workaround實現RoomDatabase<br><br>
-  這個是現階段的workaround<br>
-  如果你要用kotlin 2.0.0版本就得先做<br>
-  因為現在的兼容性需等待官方修復<br>
+* Step 3. Implement RoomDatabase using a workaround<br><br>
+  This is the current workaround<br>
+  If you're using Kotlin 2.0.0, you'll need to do this<br>
+  as we need to wait for the official team to resolve compatibility issues<br>
   <script src="https://gist.github.com/waitzShigoto/a94106152a3951c8f605bb9cee11eaac.js"></script>
 
-<div class="c-border-main-title-2">實際使用Room</div>
+<div class="c-border-main-title-2">Using Room in Practice</div>
 <div class="c-border-content-title-1">Android Main</div>
-實作AppDataBase builder
+Implement AppDataBase builder
 <script src="https://gist.github.com/waitzShigoto/070cd28c456b0cf18418e7982a3a859c.js"></script><br>
 
 Koin: 
 <script src="https://gist.github.com/waitzShigoto/6a76498330b853aebcadcf118d8322c9.js"></script>
-<div class="c-border-content-title-1">IOS Main</div>
-實作AppDataBase builder
+<div class="c-border-content-title-1">iOS Main</div>
+Implement AppDataBase builder
 <script src="https://gist.github.com/waitzShigoto/12078618b6fe85935efd75dfd84178f0.js"></script><br>
 
 Koin:
 <script src="https://gist.github.com/waitzShigoto/221f5879d2f9aa3cf71368f6a6c30f47.js"></script>
 
 <div class="c-border-content-title-1">Common Main</div>
-實作AppDataBase
+Implement AppDataBase
 <script src="https://gist.github.com/waitzShigoto/0c2d746b2045ab6a265ad00acd221e6c.js"></script>
 
 Dao
@@ -111,10 +111,10 @@ Dao
 Entity
 <script src="https://gist.github.com/waitzShigoto/40c40b4435400e56c7f77f9160238d64.js"></script>
 
-<div class="c-border-main-title-2">參考資料</div>
+<div class="c-border-main-title-2">References</div>
 
-* [kmm官方文件如何導入ksp](https://kotlinlang.org/docs/ksp-multiplatform.html)
-* [Android Studio Room文件](https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies)
-* [KMM支援Room文件](https://developer.android.com/kotlin/multiplatform/room)
+* [KMM official documentation on importing ksp](https://kotlinlang.org/docs/ksp-multiplatform.html)
+* [Android Studio Room documentation](https://developer.android.com/jetpack/androidx/releases/room#declaring_dependencies)
+* [KMM Room support documentation](https://developer.android.com/kotlin/multiplatform/room)
 * [ksp2](https://android-developers.googleblog.com/2023/12/ksp2-preview-kotlin-k2-standalone.html)
-* [issuetracker](https://issuetracker.google.com/issues/341787827)
+* [issuetracker](https://issuetracker.google.com/issues/341787827) 

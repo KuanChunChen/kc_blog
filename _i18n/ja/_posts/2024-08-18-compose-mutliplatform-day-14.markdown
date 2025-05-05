@@ -1,25 +1,24 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP實作跨平台資料庫SqlDelight"
+title: "Compose Multiplatform 実践：CMPでSqlDelightを使用したクロスプラットフォームデータベースの実装"
 date: 2024-08-18 17:28:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-14
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)`<br><br>
+`Compose Multiplatform (略称CMP)`<br><br>
 
-在 `CMP` 專案中<br>
-如何實現跨平台的資料庫操作呢？<br>
-`SqlDelight` 提供了一個強大的解決方案<br><br>
+`CMP`プロジェクトでは<br>
+クロスプラットフォームのデータベース操作をどのように実現するのでしょうか？<br>
+`SqlDelight`はそのための強力なソリューションを提供しています<br><br>
 
-本文將介紹如何在跨平台`Android` & `iOS`環境中<br>
-使用 `SqlDelight` 進行資料庫操作<br>
+本記事ではクロスプラットフォーム`Android`および`iOS`環境で<br>
+`SqlDelight`を使用してデータベース操作を行う方法を紹介します<br>
 
 
 
@@ -27,10 +26,10 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">在CMP中實作SqlDelight</div>
+<div class="c-border-main-title-2">CMPにSqlDelightを実装する</div>
 
-在專案中導入 `SqlDelight`<br>
-需在`libs.version.toml` 文件中添加：<br>
+プロジェクトに`SqlDelight`を導入するには<br>
+`libs.version.toml`ファイルに以下を追加します：<br>
 
 ```toml
 [versions]
@@ -40,19 +39,19 @@ sqldelight = "2.0.1"
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 sqldelight-coroutines-extensions = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
-/** extensions 跟 runtime 可兩選一 * /
-/** 主要差異是在extensions有提供常用的flow、emit相關操作使用，runtime則無 * /
+/** extensions と runtime はどちらか一方を選択可能 * /
+/** 主な違いは、extensionsがよく使われるflow、emit関連の操作を提供するのに対し、runtimeは提供しない点 * /
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
 
 [plugins]
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 ```
 
-並在 `build.gradle.kts` 中添加插件和依賴<br>
-這次部分需要兩大目標平台的實作<br>
-`CMP`一樣有提供`Kotlin`為底的解決方案<br>
-所以可以直接在 `androidMain`、`commonMain`、`iosMain`<br>
-加入對應的依賴項<br><br>
+そして`build.gradle.kts`にプラグインと依存関係を追加します<br>
+今回は2つの主要ターゲットプラットフォームの実装が必要です<br>
+`CMP`は`Kotlin`ベースのソリューションを提供しているので<br>
+`androidMain`、`commonMain`、`iosMain`に<br>
+それぞれ対応する依存関係を追加できます<br><br>
 
 ```kotlin
 androidMain.dependencies {
@@ -70,12 +69,12 @@ iosMain.dependencies {
 }
 ```
 
-同時，一樣是`build.gradle.kts`中<br>
-`kotlin`下面加入`sqlDelight的配置`<br><br>
+同様に、`build.gradle.kts`の<br>
+`kotlin`セクションの下に`sqlDelightの設定`を追加します<br><br>
 
-這段`gradle配置`<br>
-可以理解為在test.your.package.db package下<br>
-當`編譯過後`會幫你建立一個AppDatabase的可操作class<br>
+この`gradle設定`は<br>
+test.your.package.dbパッケージ内で<br>
+`コンパイル後`にAppDatabaseという操作可能なクラスが生成されると理解できます<br>
 
 ```kotlin
 kotlin {
@@ -90,18 +89,18 @@ kotlin {
 ```
 
 
-<div class="c-border-content-title-1">實作資料表</div>
+<div class="c-border-content-title-1">テーブルの実装</div>
 
-在 `commonMain/sqldelight/database` 目錄下創建 `.sq` 文件：<br>
+`commonMain/sqldelight/database`ディレクトリに`.sq`ファイルを作成します：<br>
 ![https://ithelp.ithome.com.tw/upload/images/20240814/201683356KGhBaS0kq.png](https://ithelp.ithome.com.tw/upload/images/20240814/201683356KGhBaS0kq.png)
-需要在上述路徑加入`sqldelight folder`<br>
-然後Build專案時才會成功產生可操作的class<br><br>
+上記のパスに`sqldelightフォルダ`を追加する必要があります<br>
+そうすることでプロジェクトをビルドする際に操作可能なクラスが正常に生成されます<br><br>
 
-而`sqlDelight`的`.sq`<br>
-提供的方案是讓你透過sql指令<br>
-去定義增刪改查 來產出table<br><br>
+`sqlDelight`の`.sq`ファイルは<br>
+SQLコマンドを通じて<br>
+追加・削除・更新・検索を定義してテーブルを生成するソリューションを提供します<br><br>
 
-`.sq`範例如下：<br>
+`.sq`の例は以下の通りです：<br>
 
 ```sql
 CREATE TABLE VocabularyEntity (
@@ -126,16 +125,16 @@ CREATE TABLE VocabularyEntity (
  WHERE id IS :id;
 ```
 
-<div class="c-border-content-title-1">實作跨平台的sqlDelight內容</div>
+<div class="c-border-content-title-1">クロスプラットフォームのsqlDelight実装</div>
 
-前面說過<br>
-可能因為Android、iOS平台的相容性不同<br>
-所以table相關操作邏輯可以共通<br>
-但是不同目標的DatabaseDriver可能需要各別實作<br><br>
+前述したように<br>
+AndroidとiOSプラットフォームの互換性の違いにより<br>
+テーブル関連の操作ロジックは共通化できますが<br>
+異なるターゲットのDatabaseDriverは個別に実装する必要があるかもしれません<br><br>
 
-因此<br>
-為不同平台創建 `DatabaseDriver`<br>
-可以這樣寫：<br>
+したがって<br>
+異なるプラットフォーム用の`DatabaseDriver`を作成するには<br>
+次のように実装できます：<br>
 
 ```kotlin
 
@@ -160,20 +159,20 @@ actual class DatabaseDriverFactory {
 }
 ```
 
-`關鍵程式碼解說`：
-1. `AppDatabase.Schema`：這個Schema是配置完上面的`Build.gradle.kts`<br>
-   sync後會幫你產生的。<br><br>
-2. `AndroidSqliteDriver` ： 在 Android平台的需要輸入`context`，所以在autual class `DatabaseDriverFactory`建構子放入<br><br>
-3. `NativeSqliteDriver`：iOS的SqliteDriver<br>
+`重要なコードの説明`：
+1. `AppDatabase.Schema`：このSchemaは上記の`Build.gradle.kts`を設定した後<br>
+   同期すると自動生成されます。<br><br>
+2. `AndroidSqliteDriver`：Androidプラットフォームでは`context`の入力が必要なので、actual class `DatabaseDriverFactory`のコンストラクタに含めます<br><br>
+3. `NativeSqliteDriver`：iOSのSqliteDriver<br>
 
-<div class="c-border-content-title-1">koin注入跨平台DB驅動</div>
+<div class="c-border-content-title-1">Koinを使用したクロスプラットフォームDBドライバの注入</div>
 
-前面天數有提到<br>
-當有`跨平台`的內容時<br>
-可以做一個`platformModule`去實作跨平台需要注入的內容<br>
-(忘記的可以回[CMP中使用koin來依賴注入](https://ithelp.ithome.com.tw/articles/10344526)看~~)<br><br>
+以前の記事で触れたように<br>
+`クロスプラットフォーム`のコンテンツがある場合<br>
+`platformModule`を作成して、クロスプラットフォームで注入する必要があるコンテンツを実装できます<br>
+(忘れた場合は[CMPでKoinを使用した依存性注入](https://ithelp.ithome.com.tw/articles/10344526)を参照してください)<br><br>
 
-這邊我們直接上範例：<br>
+ここでは例を直接示します：<br>
 
 ```kotlin
 // in ../commonMain
@@ -194,19 +193,19 @@ actual val platformModule: Module = module {
 }
 ```
 
-`關鍵程式碼解說`:
-1. `platformModule`：commonMain中用expect告知目標平台需要實作對應variable<br>
-   而在`androidMain`、`iosMain`中就需要分別去實作autual的variable<br><br>
+`重要なコードの説明`:
+1. `platformModule`：commonMainでexpectを使用して、ターゲットプラットフォームが対応する変数を実装する必要があることを知らせます<br>
+   そして`androidMain`、`iosMain`ではそれぞれactualの変数を実装する必要があります<br><br>
 
-2. 因此我們在目標平台`android` 跟 `iOS` 中 就可以用<br>
-   前面完成的`AppDatabase`與`DatabaseDriverFactory`<br>
-   並搭配`koin`去依賴注入<br>
+2. したがって、ターゲットプラットフォーム`android`と`iOS`では<br>
+   前に完成した`AppDatabase`と`DatabaseDriverFactory`を使用して<br>
+   `koin`で依存性注入を行うことができます<br>
 
 
-<div class="c-border-content-title-1">實際使用</div>
+<div class="c-border-content-title-1">実際の使用例</div>
 
-以下是獲得 `AppDatabase` 並進行操作的示例<br>
-SqlDelight會幫你轉成物件導向可以操作的方法讓你使用<br>
+以下は`AppDatabase`を取得して操作を行う例です<br>
+SqlDelightはオブジェクト指向の操作可能なメソッドに変換して使用できるようにします<br>
 
 ```kotlin
 class LearningDataStore (private val db: AppDatabase) {
@@ -228,23 +227,22 @@ class LearningDataStore (private val db: AppDatabase) {
 }
 ```
 
-<div class="c-border-main-title-2">結語</div>
+<div class="c-border-main-title-2">まとめ</div>
 
-這是前期`CMP` 提供的一個local db的一個解決方案<br>
-用來共用跨平台的db邏輯<br>
-不過目前用起來比較沒那麼直觀<br>
-因為需自己寫整篇sql指令<br>
-但能一次撰寫雙平台邏輯的話<br>
-也不失為一種好方法<br><br>
+これは初期の`CMP`が提供するローカルデータベースのソリューションの一つです<br>
+クロスプラットフォームのDB論理を共有するために使用されます<br>
+しかし現在の使用感ではあまり直感的ではありません<br>
+SQLコマンド全体を自分で書く必要があるためです<br>
+しかし一度に両プラットフォームのロジックを書くことができれば<br>
+これも良い方法と言えるでしょう<br><br>
 
-不過大家不用擔心<br>
-後面會再介紹用`Room`來實作跨平台local db的一個新方案<br>
-是近期`2024/05`左右才開始支援的<br>
-所以大家到時候也可以來參考看看<br><br>
+しかし心配する必要はありません<br>
+後で`Room`を使ったクロスプラットフォームローカルDBの新しいソリューションを紹介します<br>
+これは最近の`2024/05`頃にようやくサポートされ始めたものです<br>
+ですので、その時にもぜひ参考にしてみてください<br><br>
 
-下一篇文章<br>
-我將會介紹另一種本地資料庫 `Room`<br>
-大家可以參考之後<br>
-再決定要用哪一種<br><br>
-[Compose Multiplatform 實戰：CMP中使用ROOM開發跨平台資料庫 & 疑難雜症
-](https://ithelp.ithome.com.tw/articles/10344763)
+次の記事では<br>
+別のローカルデータベース`Room`について紹介します<br>
+参考にした後<br>
+どちらを使用するかを決めることができます<br><br>
+<a href="{{site.baseurl}}/compose-multiplatform-day-15">Compose Multiplatform 実践：CMPでROOMを使用したクロスプラットフォームデータベースの開発と問題解決</a> 

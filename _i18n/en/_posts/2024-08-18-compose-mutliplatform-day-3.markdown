@@ -1,123 +1,120 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：續戰，用Wizard創建CMP專案"
+title: "Compose Multiplatform in Action: Continuing the Battle, Creating a CMP Project with Wizard"
 date: 2024-08-18 17:13:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-3
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "This series focuses on Compose Multiplatform in Action: Developing Cross-platform Apps from Scratch with Kotlin. We'll focus on cross-platform Android and iOS app development, and discuss findings and insights in the final days."
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">Introduction</div>
 
+`Compose Multiplatform (CMP)`<br>
+Yesterday we just finished setting up the CMP environment<br>
 
-`Compose Multiplatform (簡稱CMP)`<br>
-昨天我們才剛完成安裝CMP的環境<br>
-
-如果以寫程式的角度來看<br>
-其實任何檔案或結構<br>
-妳都可以完全從零開始自己<br>
-每個檔案都自己創建<br>
-甚至用指令去寫也可<br>
-例如<br>
+From a programming perspective<br>
+you could actually start from scratch<br>
+creating every file or structure yourself<br>
+creating each file manually<br>
+even using commands to write them<br>
+for example<br>
 `touch xxx.kt`<br>
-然後`vim` 去改每個檔案<br>
+then edit each file with `vim`<br>
 
-但這樣太麻煩了<br>
-所以我們在創建專案<br>
-通常會用一些已經幫你配置好的專案結構<br>
+But that's too cumbersome<br>
+so when creating projects<br>
+we typically use pre-configured project structures<br>
 
-像是以`CMP`來講<br>
-我們就可以用官方提供的`Wizard`來創建<br>
+For `CMP`<br>
+we can use the official `Wizard` tool<br>
 
-所以今天我們就來暸解下<br>
-怎麼透過`Wizard`創建CMP的專案<br>
-以及一些疑難雜症<br>
+So today we'll learn<br>
+how to create CMP projects using the `Wizard`<br>
+and address some common issues<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">CMP專案創建</div>
-<div class="c-border-content-title-1">創建專案</div>
-其實很簡單<br>
-透過JetBrain官方的網頁<br> 
+<div class="c-border-main-title-2">Creating a CMP Project</div>
+<div class="c-border-content-title-1">Project Creation</div>
+It's actually quite simple<br>
+using JetBrains' official webpage<br> 
 [Kotlin Multiplatform Wizard](https://kmp.jetbrains.com/#newProject)
 
-進到該網頁後<br>
-你會看到如下畫面<br>
+Once on this page<br>
+you'll see a screen like this<br>
 <img src="/images/compose/027.png" alt="Cover" width="50%" /><br />
 
-並依照你自己的需求去修改專案的名稱、包名..等等<br>
+Modify the project name, package name, etc. according to your needs<br>
 
-> 根據上圖 把設定快速帶一下
+> Let's quickly go through the settings as shown above
 
-`Project Name`：是針對你這個專案設定名稱<br>
-主要會影響你`Build app出來的名稱`<br>
-專案的`root folder名稱`<br>
+`Project Name`: This is the name of your project<br>
+It mainly affects the `name of your built app`<br>
+and your project's `root folder name`<br>
 
-`Project ID` : 也就是你Build App出來的Package Name<br>
-也會影響你的專案的package 的路徑<br>
+`Project ID`: This is the Package Name of your built app<br>
+It also affects the package path in your project<br>
 
-另外下面會看到幾個勾選框<br>
-`Android`、`iOS`、`Desktop`、`Web`、`Server`<br>
-你可以`根據你的需求`去勾選想要網頁幫你配置專案的基本項目<br>
+Below you'll see several checkboxes<br>
+`Android`, `iOS`, `Desktop`, `Web`, `Server`<br>
+You can select which platforms you want the wizard to configure for your project<br>
 
-這邊簡單易懂<br>
-例如我這次目標是 `Android`、`iOS` 那我就勾選這兩個平台<br>
-那在iOS下方會看到 兩個選項<br>
-主要是讓你選擇要用哪個UI配置<br>
+This is straightforward<br>
+For example, if my goal is to target `Android` and `iOS`, I'd select these two platforms<br>
+Under iOS, you'll see two options<br>
+allowing you to choose your UI configuration<br>
 > Share UI (with Compose Multiplatform UI framework)
 Do not share UI (use only SwiftUI)
 
-如果你要讓iOS 也使用Compose 做選擇<br>
+If you want iOS to use Compose, select<br>
 `Share UI (with Compose Multiplatform UI framework)`<br>
-反之則是使用Native 的SwiftUI<br>
+Otherwise, use native SwiftUI<br>
 
-不過上面的他只是根據你的設定去`預設`而已<br>
-如果你要調整`後續還是可以手動改`<br><br>
+Note that these are just `default` settings based on your choices<br>
+you can still `manually change them later`<br><br>
 
-完成後就點擊Download<br>
-可以得到一個幫你創建好的專案<br>
+After completing the form, click Download<br>
+to get a pre-configured project<br>
 <img src="/images/compose/028.png" alt="Cover" width="70%" /><br/>
 
-<div class="c-border-content-title-1">導入到IDE中</div>
+<div class="c-border-content-title-1">Importing into IDE</div>
 
-解壓縮上一步驟得到的`Zip壓縮檔`<br>
-之後就可以透過`Android Studio`中的 `import project`<br>
-把它導入到IDE<br>
-讓他能在IDE中做編輯<br>
+Unzip the compressed file from the previous step<br>
+then you can use `Android Studio`'s `import project` feature<br>
+to import it into the IDE<br>
+so you can edit it there<br>
 
-找到`File > New > import project`<br>
+Navigate to `File > New > Import Project`<br>
 <img src="/images/compose/029.png" alt="Cover" width="50%" /><br/>
 
-在彈出的檔案選擇器中<br>
-選擇剛剛解壓縮的`資料夾`即可<br>
+In the file selection dialog that appears<br>
+select the `folder` you just unzipped<br>
 <img src="/images/compose/030.png" alt="Cover" width="70%" /><br/>
 
-<div class="c-border-content-title-1">額外加碼分享【Compose Multiplatform Wizard】</div>
-前面幾天有說過CMP相關的社群目前都滿活躍的<br>
-或是主要在開發的公司`JetBrains`<br>
-目前都有持續在維護或更新<br>
-這個是比較新的feature也是由`JetBrains員工`開發的<br>
-[Compose Multiplatform Wizard](https://www.jetbrains.com/zh-cn/lp/compose-multiplatform/)
-不過沒有放到官方文件中<br>
-這是我無意間逛github看到的<br>
+<div class="c-border-content-title-1">Bonus: Compose Multiplatform Wizard</div>
+As mentioned in previous days, the CMP community is quite active<br>
+and the main company behind it, `JetBrains`<br>
+continues to maintain and update the tools<br>
+This is a newer feature also developed by `JetBrains employees`<br>
+[Compose Multiplatform Wizard](https://www.jetbrains.com/lp/compose-multiplatform/)
+though it's not included in the official documentation<br>
+I came across it while browsing GitHub<br>
 
-跟上面的`Kotlin Multiplatform Wizard` 其實是類似的東西<br>
-`Compose Multiplatform Wizard`其用途也是他也是透過網頁幫你產生以`Compose`為UI的專案<br>
-然後多了一些可以幫你導入CMP常用library的選項<br>
+It's similar to the `Kotlin Multiplatform Wizard` mentioned above<br>
+`Compose Multiplatform Wizard` also generates projects with `Compose` as the UI through a web interface<br>
+but adds options to import commonly used CMP libraries<br>
 
 <img src="/images/compose/031.png" alt="Cover" width="50%" /><br />
 
-跟上面一樣<br>
-輸入想要的Project Name 跟Project ID<br>
-選擇想要的Library後<br>
-點擊下載後再解壓縮導入IDE中<br><br>
+Just like before<br>
+enter your desired Project Name and Project ID<br>
+select the libraries you want<br>
+download, unzip, and import into your IDE<br><br>
 
-另外這是該大神`terrakok`的github repo 有興趣可看<br>
-看起來他是用github page架設的<br>
-[Compose-Multiplatform-Wizard github](https://github.com/terrakok/Compose-Multiplatform-Wizard-App)
-
+This is the GitHub repo of the developer `terrakok` if you're interested<br>
+It appears to be hosted on GitHub Pages<br>
+[Compose-Multiplatform-Wizard GitHub](https://github.com/terrakok/Compose-Multiplatform-Wizard-App) 

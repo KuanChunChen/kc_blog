@@ -1,43 +1,42 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：使用 expect 和 actual 實現跨平台程式碼"
+title: "Compose Multiplatform 実践：expect と actual を使用したクロスプラットフォームコードの実装"
 date: 2024-08-18 17:23:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-9
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)`
+`Compose Multiplatform (略称CMP)`
 
-透過共享程式碼<br>
-不僅可以減少重複工作<br>
-還能提高開發效率和代碼一致性<br>
-`CMP` 為開發者提供了一種跨平台解決方案<br>
-使得同一套業務邏輯可以在不同的平台上運行<br>
+コードを共有することで<br>
+重複作業を減らすだけでなく<br>
+開発効率とコードの一貫性を向上させることができます<br>
+`CMP`は開発者にクロスプラットフォームソリューションを提供し<br>
+同じビジネスロジックを異なるプラットフォーム上で実行できるようにします<br>
 
-在這篇文章中<br>
-將探討 `CMP` 如何使用 `expect` 和 `actual` 關鍵字來實現`跨平台`程式碼<br>
-並分享一些實戰經驗<br>
+この記事では<br>
+`CMP`が`expect`と`actual`キーワードを使用して`クロスプラットフォーム`コードを実装する方法を探り<br>
+実践的な経験を共有します<br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">什麼是 expect 和 actual ?</div>
-我們先簡單了解一下 **Compose Multiplatform** 跟 **Kotlin Multiplatform** 
+<div class="c-border-main-title-2">expect と actual とは？</div>
+まずは **Compose Multiplatform** と **Kotlin Multiplatform** について簡単に理解しましょう
 
-* `expect` 關鍵字用於在共享程式碼中聲明一個平台相關的介面或類<br>
-  而 `actual` 關鍵字則用於在具體平台上實現這個介面或類別<br>
+* `expect`キーワードは共有コードでプラットフォーム固有のインターフェースやクラスを宣言するために使用され<br>
+  `actual`キーワードは特定のプラットフォームでそのインターフェースやクラスを実装するために使用されます<br>
 
-我們先來看一個簡單的例子<br>
-下面的程式碼展示了如何在各平台返回該平台的名稱<br>
-在 `commonMain` 使用 `expect` 關鍵字聲明一個函數<br>
-並期望在 CMP 專案中其他平台實現該函數<br>
+簡単な例を見てみましょう<br>
+以下のコードは各プラットフォームの名前を返す方法を示しています<br>
+`commonMain`で`expect`キーワードを使用して関数を宣言し<br>
+CMPプロジェクトの他のプラットフォームでその関数を実装することを期待しています<br>
 
 ```kotlin
 // in ~/commonMain/.../xxx.kt
@@ -54,12 +53,12 @@ actual fun getPlatformName(): String {
 }
 ```
 
-另外<br>
-`expect` 和 `actual` 不僅可以用於函數<br>
-還可以用於類別<br>
-這使得我們可以靈活地在共享程式碼中<br>
-定義平台特定的邏輯<br>
-並在具體平台上提供實作<br>
+また<br>
+`expect`と`actual`は関数だけでなく<br>
+クラスにも使用できます<br>
+これにより、共有コード内で<br>
+プラットフォーム固有のロジックを柔軟に定義し<br>
+特定のプラットフォームで実装を提供できます<br>
 
 ```kotlin 
 // in ~/commonMain/.../FileSystem.kt
@@ -70,24 +69,24 @@ expect class FileSystem {
 // in ~/androidMain/.../FileSystem.kt
 actual class FileSystem {
     actual fun readFile(path: String): String {
-        // Android 特定的文件讀取邏輯
+        // Androidプラットフォーム固有のファイル読み込みロジック
     }
 }
 
 // in ~/iosMain/.../FileSystem.kt
 actual class FileSystem {
     actual fun readFile(path: String): String {
-        // iOS 特定的文件讀取邏輯
+        // iOSプラットフォーム固有のファイル読み込みロジック
     }
 }
 ```
 
-<div class="c-border-main-title-2"">實際例子</div>
+<div class="c-border-main-title-2"">実際の例</div>
 
-* 像是前天在設定[material 3](https://ithelp.ithome.com.tw/articles/10343654)的主題時<br>
-  會去設定一個`expect` function 稱作 setStatusBarStyle<br>
-  主要是`預期有個跨平台function`<br>
-  可以去具體平台上設定status bar<br>
+* 一昨日の[material 3](https://ithelp.ithome.com.tw/articles/10343654)テーマの設定時に<br>
+  `expect` function として setStatusBarStyle を設定しました<br>
+  これは主に`クロスプラットフォーム関数を期待`し<br>
+  特定のプラットフォームでステータスバーを設定できるようにするためです<br>
 
 ```kotlin
 // in ~/commonMain/.../xxxx.kt
@@ -126,12 +125,12 @@ actual fun setStatusBarStyle(backgroundColor: Color, isDarkTheme: Boolean) {
 }
 ```
 
-* 第二種例子是使用koin注入到具體平台時<br>
-  當該平台需要一些特定的`instance`<br>
-  可能就要到該平台下面去實作<br>
-  這時候就可以做一個`expect`的 koin module 在commonMain中<br><br>
+* 2つ目の例は、特定のプラットフォームにkoinを注入する場合です<br>
+  そのプラットフォームが特定の`instance`を必要とする場合<br>
+  そのプラットフォームで実装する必要があるかもしれません<br>
+  この場合、commonMainに`expect`のkoin moduleを作成できます<br><br>
 
-下面附上例子(後續會再針對這塊講koin怎使用)<br>
+以下は例です（後ほどkoinの使用方法についてさらに詳しく説明します）<br>
 
 ```kotlin
 // in ~/commonMain/.../xxxx.kt
@@ -163,20 +162,20 @@ actual val platformModule: Module = module {
 
 <div class="c-border-main-title-2">小技巧</div>
 
-IDE 提供了一種方式<br>
-使你更容易分辨所實作的 `class` 是在哪個平台下<br>
-當你在共享程式碼中撰寫 `expect` 關鍵字時<br>
-如果其他平台尚未實作對應的 `actual`<br>
+IDEには<br>
+実装している`class`がどのプラットフォームにあるかを区別しやすくする方法があります<br>
+共有コードで`expect`キーワードを記述する際<br>
+他のプラットフォームでまだ対応する`actual`が実装されていない場合<br>
 
-IDE 會提示你尚未實作<br>
-此時，只需按下自動生成<br>
-IDE 就會創建尚未實作的檔案<br>
-並在具體平台的檔案名稱中加入`對應的字串`<br>
-例如 xxx.android.kt 或 xxx.ios.kt。<br>
+IDEは未実装であることを通知します<br>
+この時、自動生成をクリックするだけで<br>
+IDEは未実装のファイルを作成し<br>
+特定のプラットフォームのファイル名に`対応する文字列`を追加します<br>
+例えば、xxx.android.ktやxxx.ios.ktなどです。<br>
 
-這樣一來<br>
-你可以更直觀地了解每個 class 所屬的平台<br>
-例如:<br>
-當你使用 `command+f` 搜尋剛剛實作的函數時<br>
-可以清楚地知道當前搜尋到的是哪個平台的 class。<br>
-![https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png](https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png)
+これにより<br>
+各classが属するプラットフォームをより直感的に理解できます<br>
+例えば:<br>
+`command+f`で実装した関数を検索するとき<br>
+現在検索されているのがどのプラットフォームのclassなのかが明確にわかります。<br>
+![https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png](https://ithelp.ithome.com.tw/upload/images/20240809/20168335MtnaW60N59.png) 

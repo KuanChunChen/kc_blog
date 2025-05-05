@@ -1,69 +1,68 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中透過StateFlow來管理UI狀態"
+title: "Compose Multiplatform in Action: Managing UI State with StateFlow in CMP"
 date: 2024-08-18 17:25:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-11
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "This series focuses on Compose Multiplatform in action: developing cross-platform apps from scratch using Kotlin. This post will specifically focus on developing cross-platform apps for Android and iOS, and in the final days, I'll discuss my research findings and insights."
 ---
 
-<div class="c-border-main-title-2">前言</div>
-在前幾天的分享中<br>
-我們討論了如何使用 Compose 來製作 UI<br>
-然而，如何調整 UI 狀態以及在處理業務邏輯後如何改變 UI 畫面<br>
-我們尚未深入探討<br><br>
+<div class="c-border-main-title-2">Introduction</div>
+In our previous discussions,<br>
+we explored how to create UI using Compose.<br>
+However, we haven't deeply examined how to adjust UI states<br>
+and how to update the UI after processing business logic.<br><br>
 
-今天<br>
-我們將深入探討如何使用`StateFlow`<br>
-展示如何在 CMP 中管理和調整 UI 狀態<br>
-以及如何通過業務邏輯的處理來動態更新 UI<br>
+Today,<br>
+we'll dive into how to use `StateFlow`<br>
+to demonstrate how to manage and adjust UI states in CMP<br>
+and how to dynamically update the UI through business logic processing.<br>
 
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">StateFlow 是什麼？</div>
-`StateFlow` 是 Kotlin 協程庫中的一個狀態管理工具<br>
-旨在解決在 Compose 中管理 UI 狀態的需求<br>
-它是一個基於 Flow 的狀態容器<br>
-設計來持有和觀察狀態變化<br>
-特別適合在`Compose` 中使用<br>
+<div class="c-border-main-title-2">What is StateFlow?</div>
+`StateFlow` is a state management tool in the Kotlin coroutine library<br>
+designed to address the need for managing UI states in Compose.<br>
+It's a Flow-based state container<br>
+designed to hold and observe state changes,<br>
+particularly suitable for use in `Compose`.<br>
 
-<div class="c-border-content-title-1">StateFlow 的特點</div>
+<div class="c-border-content-title-1">Characteristics of StateFlow</div>
 
-1. `持有最新狀態`：StateFlow 始終持有最新的狀態值<br>
-   並且當狀態發生變化時<br>
-   會自動通知所有觀察者<br>
+1. `Holds the latest state`: StateFlow always maintains the latest state value<br>
+   and automatically notifies all observers<br>
+   when the state changes.<br>
 
-2. `狀態不可變`：StateFlow 的狀態是不可變的<br>
-   這意味著每次狀態改變都會創建一個新的狀態實例<br>
-   從而確保狀態的一致性和預測性。<br>
+2. `Immutable state`: The state in StateFlow is immutable,<br>
+   meaning that each state change creates a new state instance,<br>
+   ensuring consistency and predictability of the state.<br>
 
-3. `基於熱流（Hot Flow）`：即使沒有`收集器(Collect)`<br>
-   StateFlow 也會持續保持最新的狀態值<br><br>
+3. `Based on Hot Flow`: Even without a `collector`,<br>
+   StateFlow continuously maintains the latest state value.<br><br>
 
-例如：我們可以透過以下code去更新UI狀態<br>
+For example: we can update the UI state with the following code:<br>
 
 ```kotlin
 private val _uiState = MutableStateFlow(UiState())
 val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 ```
-在你的Compose UI處去collect<br>
+Then collect it in your Compose UI:<br>
 ```
 val uiState by viewModel.uiState.collectAsState()          
 ```
 
 
-<div class="c-border-content-title-1">實做StateFlow管理UI狀態</div>
+<div class="c-border-content-title-1">Implementing StateFlow to Manage UI State</div>
 
-假設我們有一個 實作好的`SettingScreen`<br>
-目前都只有顯示畫面<br>
-但沒有狀態變化<br>
-畫面的資料都是寫死的<br>
+Let's say we have a completed `SettingScreen`<br>
+that currently only displays a screen<br>
+without state changes,<br>
+and all the screen data is hardcoded.<br>
 
 ```kotlin 
 @Composable
@@ -111,29 +110,29 @@ fun SettingScreen(navController: NavController) {
 }
 ```
 
-那我們可以先實作一個`data class`<br>
-目的是用來更新`SettingScreen`中的Choose Transfer Option的標題<br>
+First, we can implement a `data class`<br>
+to update the title "Choose Transfer Option" in the `SettingScreen`:<br>
 
 ```kotlin
 data class ViewState(
     val transferOptionTitle: String,
     val isLoading: Boolean = false,
     val error: String? = null
-    ... // More content that according your requirment.
+    ... // More content according to your requirements.
 )
 ```
 
-接著實作一個Viewmodel<br>
-用來把管理業務邏輯<br>
-以及實現UI狀態的發送<br>
-那因為`StateFlow`狀態是無法改變的<br>
-所以你要改變可以用`MutableStateFlow`<br>
-而通常為了`避免外部不小心改到`<br>
-所以會把`MutableStateFlow`設定為`private `<br>
+Next, implement a ViewModel<br>
+to manage business logic<br>
+and implement UI state emission.<br>
+Since `StateFlow` states are immutable,<br>
+you can use `MutableStateFlow` to change them.<br>
+To `prevent external accidental modifications`,<br>
+we typically set `MutableStateFlow` as `private`.<br>
 
-另外這邊寫了個範例`loadData()`去模擬網路請求資料<br>
-可以透過`_uiState.value = UiState(xxxx)`去通知UI該改變了<br>
-實際上你可以根據需求去調整<br>
+Additionally, I've written a sample `loadData()` function to simulate network data requests.<br>
+You can notify the UI of changes through `_uiState.value = UiState(xxxx)`.<br>
+You can adjust according to your needs in practice.<br>
 
 ```
 class SettingViewModel(
@@ -145,12 +144,12 @@ class SettingViewModel(
     private val _uiState = MutableStateFlow(UiState())
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
     
-    // 模擬加載數據
+    // Simulate data loading
     fun loadData() {
         viewModelScope.launch {
             _uiState.value = UiState(isLoading = true)
             try {
-                delay(1000)  // 模擬網絡請求
+                delay(1000)  // Simulate network request
                 _uiState.value = UiState(transferOptionTitle = "Loaded Data", isLoading = false)
             } catch (e: Exception) {
                 _uiState.value = UiState(error = e.message, isLoading = false)
@@ -160,14 +159,14 @@ class SettingViewModel(
 }
 ```
 
-接著<br>
-我們需要將ViewModel實例傳給Setting Screen<br>
-由於我們前幾天已經使用了Compose Navigation<br>
-所以可以直接在我們的NavGraphBuilder擴展中實現ViewModel<br>
+Next,<br>
+we need to pass the ViewModel instance to the Setting Screen.<br>
+Since we've already used Compose Navigation in previous days,<br>
+we can implement the ViewModel directly in our NavGraphBuilder extension.<br>
 
-你可以通過以下方式來創建ViewModel實例：<br>
+You can create a ViewModel instance in the following ways:<br>
 
-使用直接創建的方式：<br>
+Using direct creation:<br>
 ```kotlin
 fun NavGraphBuilder.routeSettingScreen(
     navController: NavHostController,
@@ -180,7 +179,7 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
-或者使用Koin來進行依賴注入（我們會在後續章節詳細介紹這個方法）<br>
+Or using Koin for dependency injection (we'll cover this method in detail in later chapters):<br>
 
 
 ```kotlin
@@ -196,23 +195,23 @@ fun NavGraphBuilder.routeSettingScreen(
 }
 ```
 
-最後<br>
-你只需要在你的 Compose UI 中去收集該狀態<br>
-並透過該state去修改你的UI即可<br>
+Finally,<br>
+you just need to collect that state in your Compose UI<br>
+and modify your UI through that state.<br>
 
-<div class="c-border-content-title-1">實際使用</div>
+<div class="c-border-content-title-1">Practical Usage</div>
 
-可以透過<br>
+You can use<br>
 `val uiState by viewModel.uiState.collectAsState()`<br>
-去`collect` uiState在viewmodel中的狀態變化<br>
-在程式碼中直接呼叫uiState的值<br>
-就能夠動態去設置畫面<br>
+to `collect` the state changes in the viewmodel's uiState.<br>
+By directly calling uiState values in your code,<br>
+you can dynamically set up your screen.<br>
 
-例如：
+For example:
 `uiState.isLoading`
 `uiState.transferOptionTitle`
 `uiState.error`
-(可直接看下方code)
+(see the code below)
 
 
 ```kotlin
@@ -221,7 +220,7 @@ fun SettingScreen(navController: NavController, viewModel: SettingViewModel) {
     val uiState by viewModel.uiState.collectAsState()
     val config = createSettingConfig(navController)
 
-    // 觸發邏輯
+    // Trigger logic
     LaunchedEffect(Unit) {
         viewModel.loadData()
     }
@@ -290,11 +289,7 @@ fun SettingScreen(navController: NavController, viewModel: SettingViewModel) {
 }
 ```
 
-<div class="c-border-main-title-2">最終成效</div>
+<div class="c-border-main-title-2">Final Result</div>
 
-最後看看上面這個例子的結果<br>
-![GIF](https://i.imgur.com/gT7j8sR.gif)
-
-
-
-
+Here's the result of the example above:<br>
+![GIF](https://i.imgur.com/gT7j8sR.gif) 

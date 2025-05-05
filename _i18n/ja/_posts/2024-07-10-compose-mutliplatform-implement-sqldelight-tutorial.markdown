@@ -1,82 +1,82 @@
 ---
 layout: post
-title: "【Compose Multiplatform】手機資料庫SqlDelight實作"
+title: "【Compose Multiplatform】SqlDelightデータベースの実装"
 date: 2024-07-10 15:38:40 +0800
 image: cover/compose_multiplatform_sqldelight.png
 tags: [Kotlin, Compose Multiplatform, SqlDelight]
 permalink: /compose-multiplatform-sqldelight
 categories: ComposeMultiplatform
-excerpt: "本文詳細介紹了如何在 Compose Multiplatform 專案中使用 SqlDelight 實現跨平台的資料庫操作，包括導入庫、實作資料表、建立平台特定實現以及實際使用方法。"
+excerpt: "この記事では、Compose Multiplatformプロジェクトでクロスプラットフォームのデータベース操作を実装するためのSqlDelightの使用方法について詳しく説明します。ライブラリのインポート、テーブルの実装、プラットフォーム固有の実装、および実際の使用方法を含みます。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-在 Compose Multiplatform 專案中<br>
-如何實現跨平台的資料庫操作呢？<br>
-SqlDelight 提供了一個強大的解決方案<br>
-本文將介紹如何在跨平台環境中<br>
-使用 SqlDelight 進行資料庫操作<br>
+Compose Multiplatformプロジェクトでは<br>
+クロスプラットフォームのデータベース操作をどのように実装できるでしょうか？<br>
+SqlDelightは強力なソリューションを提供します<br>
+本記事では、クロスプラットフォーム環境で<br>
+SqlDelightを使用してデータベース操作を行う方法を紹介します<br>
 
 <div id="category">
     {% include table/compose-multiplatform-category.html %}
 </div>
 
 
-<div class="c-border-main-title-2">實作步驟</div>
-<div class="c-border-content-title-1">1. 導入 SqlDelight</div>
-首先，在專案中導入 SqlDelight：<br>
-在 .toml 文件中添加：<br>
+<div class="c-border-main-title-2">実装手順</div>
+<div class="c-border-content-title-1">1. SqlDelightのインポート</div>
+まず、プロジェクトにSqlDelightをインポートします：<br>
+.tomlファイルに追加：<br>
 <script src="https://gist.github.com/waitzShigoto/212a3f263b6f8bd8d89dd7a41278cf15.js"></script>
 
-在 build.gradle.kts 中添加插件和依賴：<br>
- - 首先加入plugin<br>
+build.gradle.ktsにプラグインと依存関係を追加：<br>
+ - まずプラグインを追加<br>
 <script src="https://gist.github.com/waitzShigoto/d1f759b755844594d9b0a566c070274e.js"></script>
- - 接著在各環境下加入對應的lib<br>
+ - 次に各環境に対応するライブラリを追加<br>
 <script src="https://gist.github.com/waitzShigoto/961acd32138dd067fb890b238b9574ea.js"></script>
- - 最後在kotlin下面加入sqlDelight的配置<br>
- 可以理解為在`test.your.package.db` package下會幫你建立一個`AppDatabase`的可操作class<br>
+ - 最後にkotlinの下にSqlDelightの設定を追加<br>
+ これは、`test.your.package.db`パッケージに`AppDatabase`という操作可能なクラスが作成されると理解できます<br>
 <script src="https://gist.github.com/waitzShigoto/34c9aeaa5ed7a5899b1ed281b0ddafca.js"></script>
 
-<div class="c-border-content-title-1">2. 實作資料表</div>
- - 在 commonMain/`sqldelight`/database 目錄下創建 .sq 文件：<br>
- 當前版本我實測 需要在上述路徑加入sqldelight folder
- 然後下一步驟Build時候才會成功產生可操作的class
+<div class="c-border-content-title-1">2. データベーステーブルの実装</div>
+ - commonMain/`sqldelight`/databaseディレクトリに.sqファイルを作成：<br>
+ 現在のバージョンでは、次のステップでビルドプロセスが操作可能なクラスを正常に生成するためには、
+ 上記のパスにsqldelightフォルダを追加する必要があることを確認しました
 ![截圖 2024-07-09 下午3.11.59.png](/images/compose/007.png)
 <script src="https://gist.github.com/waitzShigoto/1ba4ff8058e91955208ff66625cdae30.js"></script>
 
- - (Optional)可下載同名插件`SqlDelight`，使其能右鍵產生.sq檔(至Marketplace下載即可)<br>
-  [參考 sqldelight](https://plugins.jetbrains.com/plugin/8191-sqldelight)<br>
+ - (オプション) 同名の`SqlDelight`プラグインをダウンロードすると、右クリックで.sqファイルを生成できます（マーケットプレイスからダウンロード可能）<br>
+  [参考 sqldelight](https://plugins.jetbrains.com/plugin/8191-sqldelight)<br>
   ![截圖 2024-07-09 下午3.11.59.png](/images/compose/008.png)
- - 如上所述當上面配置完 加上Build之後<br>
-   此路徑`/build/generated/sqldelight/code/..` 會產生對應的class<br><br>
- - 或可以用 cmd來Build<br>
+ - 上記のように設定し、ビルドした後<br>
+   `/build/generated/sqldelight/code/..`パスに対応するクラスが生成されます<br><br>
+ - またはコマンドを使用してビルドすることもできます<br>
    `./gradlew generateCommonMainAppDatabaseInterface`<br><br>
- - 如果遇到ios build失敗可以把build.gradle.kts的 isStatic改成false<br>
+ - iOSのビルドが失敗する場合は、build.gradle.ktsのisStaticをfalseに変更できます<br>
     <script src="https://gist.github.com/waitzShigoto/d212905eb22f1a29896d8d3699baefe3.js"></script>
 
-<div class="c-border-content-title-1">3. 建立各平台實作</div>
-為不同平台創建 DatabaseDriverFactory：<br>
+<div class="c-border-content-title-1">3. プラットフォーム固有の実装作成</div>
+異なるプラットフォーム用のDatabaseDriverFactoryを作成：<br>
 <script src="https://gist.github.com/waitzShigoto/04d780bfc000ef0a802557555ea721d3.js"></script>
 
-<div class="c-border-content-title-1">4. 實際使用</div>
-使用生成的DB class 實作業務邏輯：<br>
+<div class="c-border-content-title-1">4. 実際の使用法</div>
+生成されたDBクラスを使用してビジネスロジックを実装：<br>
 <script src="https://gist.github.com/waitzShigoto/e35ce1a2ca45daf6070ecbedb093ca93.js"></script>
 
-<div class="c-border-content-title-1">5. Koin 注入（Optional）</div>
-如果使用 Koin 進行依賴注入<br>
-可以這麼做<br>
+<div class="c-border-content-title-1">5. Koinの注入（オプション）</div>
+依存性注入にKoinを使用する場合<br>
+このように設定できます<br>
 <script src="https://gist.github.com/waitzShigoto/6894df15e9d1e293fda291a23faf0d6f.js"></script>
 
-<div class="c-border-main-title-2">注意事項</div>
-1. 建議使用 SqlDelight 2.0.1 版本，避免2.0.0版本IOS Build失敗的已知問題<br>
-詳細可看此討論串：[點此](https://github.com/cashapp/sqldelight/issues/4357)<br>
-2. 如果遇到 iOS 構建失敗，可以嘗試將 isStatic 設置為 false<br>
-找不到為何要這樣改<br>
-可能是官方的workaround<br>
-官方文件就直接寫出這個方法<br>
+<div class="c-border-main-title-2">注意点</div>
+1. SqlDelightバージョン2.0.0のiOSビルド失敗の既知の問題を避けるため、バージョン2.0.1を使用することをお勧めします<br>
+詳細については、こちらのディスカッションスレッドをご覧ください：[こちらをクリック](https://github.com/cashapp/sqldelight/issues/4357)<br>
+2. iOSビルドが失敗する場合は、isStaticをfalseに設定してみてください<br>
+なぜこの変更が必要なのかは不明です<br>
+おそらく公式の回避策です<br>
+公式ドキュメントには直接この方法が記載されています<br>
 
-<div class="c-border-main-title-2">總結</div>
-- SqlDelight 提供了強大的跨平台資料庫解決方案
-- 通過適當的封裝，可以在不同平台上統一使用資料庫 API
-- 結合 Koin 等依賴注入框架，可以更好地管理資料庫實例
-- 注意版本選擇和平台特定實現，以確保跨平台兼容性
+<div class="c-border-main-title-2">まとめ</div>
+- SqlDelightは強力なクロスプラットフォームデータベースソリューションを提供します
+- 適切なカプセル化により、異なるプラットフォーム間で統一されたデータベースAPIを使用できます
+- Koinなどの依存性注入フレームワークと組み合わせることで、データベースインスタンスをより適切に管理できます
+- クロスプラットフォームの互換性を確保するために、バージョン選択とプラットフォーム固有の実装に注意してください 

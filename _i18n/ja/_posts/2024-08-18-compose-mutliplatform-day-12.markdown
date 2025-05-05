@@ -1,24 +1,23 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中實作NavigationBar底部欄"
+title: "Compose Multiplatform 実践：CMPでのNavigationBarボトムバーの実装"
 date: 2024-08-18 17:26:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-12
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)`<br><br>
+`Compose Multiplatform (略称CMP)`<br><br>
 
-今天我們要來實作 `CMP` 的NavigationBar底部欄<br>
-他也是在material 3 中有提供的一個composable元件<br>
-可以提供使用者製作App中常使用切換頁面的底部欄<br>
+今日は`CMP`のNavigationBarボトムバーを実装します<br>
+これはmaterial 3で提供されているcomposableコンポーネントで<br>
+ユーザーがアプリでよく使用するページ切替用のボトムバーを作成できます<br>
 
-實際做出來會看起來像這樣<br>
+実際に作成すると次のようになります<br>
 
 ![https://ithelp.ithome.com.tw/upload/images/20240812/201683355J8smYXCg7.png](https://ithelp.ithome.com.tw/upload/images/20240812/201683355J8smYXCg7.png)
 
@@ -26,10 +25,10 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">實作 NavigationBar底部欄</div>
-今天我將分步介紹如何在 `CMP` 中實作一個 NavigationBar 底部欄<br>
-我們需要定義底部欄的結構<br>
-然後為其添加`樣式`和`行為`<br>
+<div class="c-border-main-title-2">NavigationBarボトムバーの実装</div>
+今日は`CMP`でNavigationBarボトムバーを実装する方法を段階的に紹介します<br>
+ボトムバーの構造を定義し<br>
+`スタイル`と`動作`を追加する必要があります<br>
 
 ```kotlin
 @Composable
@@ -79,45 +78,45 @@ fun BottomNavigation(navController: NavController) {
 }
 ```
 
-`關鍵程式碼解說`：<br>
-1. 我定義了一個list `screens`：其中的`Triple`<br>
-   可以讓你放入三參數的一個容器<br>
-   透過這邊自定義的內容<br>
-   去產生不同的`NavigationBarItem`<br>
+`主要コードの説明`：<br>
+1. リスト`screens`を定義しました：ここでの`Triple`は<br>
+   3つのパラメータを入れられるコンテナです<br>
+   ここでカスタマイズした内容を通じて<br>
+   異なる`NavigationBarItem`を生成します<br>
 2. `NavigationBar(
    modifier = Modifier.height(60.dp),
    containerColor = MaterialTheme.colorScheme.surface,
    ) {....}`：
-   這邊一樣是我們眾多compose的起手式<br>
-   用NavigationBar去包`NavigationBarItem`<br>
-   這樣你就可以得到一個高度是60 dp的底部欄<br>
+   これも多くのcomposeの基本的な書き方で<br>
+   NavigationBarで`NavigationBarItem`をラップすると<br>
+   高さ60 dpのボトムバーが得られます<br>
 
-3. 我們預期會傳入`navController: NavController`：<br>
-   這個是前幾天我們用來導航頁面的控制器<br>
-   (忘記的可以回去看)<br><br>
+3. `navController: NavController`を渡すことを想定しています：<br>
+   これは数日前に画面ナビゲーションに使用したコントローラーです<br>
+   （忘れた場合は前回の記事を参照してください）<br><br>
 
 4. `val navBackStackEntry by navController.currentBackStackEntryAsState()`：<br>
-   這行代碼使用了 Kotlin 的 `by` 語法來創建一個 `navBackStackEntry` 變量<br>
-   並將其委託給 navController.currentBackStackEntryAsState() 的返回值<br><br>
+   このコードはKotlinの`by`構文を使用して`navBackStackEntry`変数を作成し<br>
+   navController.currentBackStackEntryAsState()の戻り値に委譲しています<br><br>
 
 5. `val currentDestination = navBackStackEntry?.destination`：<br>
-   這行從 `navBackStackEntry` 中提取當前目的地 (currentDestination)<br><br>
+   この行は`navBackStackEntry`から現在の目的地（currentDestination）を抽出します<br><br>
 
-6. 而以上`4~5`，主要是為了拿到當前目的地的導航<br>
-   讓我們可以在這邊根據邏輯去處理UI狀態的更新<br><br>
+6. 上記の`4~5`は、主に現在のナビゲーション先を取得するためのもので<br>
+   ここでロジックに基づいてUI状態の更新を処理できるようにします<br><br>
 
 7. `selected = currentDestination?.route == route`：<br>
-   加入這行主要是為了防止在同個畫面又點擊了同個BottomBarItem的問題<br><br>
+   この行を追加した主な理由は、同じ画面で同じBottomBarItemをクリックする問題を防ぐためです<br><br>
 
-8. NavigationBarItem的參數就跟之前的其他comsable類似<br>
-   可以根據開發者情境去調整內容<br><br>
+8. NavigationBarItemのパラメータは、以前の他のcomposableと同様に<br>
+   開発者のシナリオに応じて内容を調整できます<br><br>
 
-<div class="c-border-content-title-1">實際使用</div>
+<div class="c-border-content-title-1">実際の使用例</div>
 
-還記得我們前面的`Compose Navigation`外面包了一層`Scaffold`嗎？<br>
-這時候<br>
-我們就可以直接在`Scaffold`中的`bottomBar`中<br>
-加入我們剛實作好的`BottomNavigation`了<br>
+以前の`Compose Navigation`の外側に`Scaffold`をラップしたことを覚えていますか？<br>
+ここで<br>
+`Scaffold`の`bottomBar`に<br>
+実装したばかりの`BottomNavigation`を追加できます<br>
 
 ```kotlin
 @Composable
@@ -132,7 +131,7 @@ fun ElegantAccessApp(
     }
 
     Scaffold(
-        // 加在這裡
+        // ここに追加
         bottomBar = {
            BottomNavigation(navController)
         },
@@ -157,20 +156,20 @@ fun ElegantAccessApp(
 }
 ```
 
-<div class="c-border-content-title-1"> 如果有的頁面不想顯示NavigationBar怎麼辦？</div>
+<div class="c-border-content-title-1">一部のページでNavigationBarを表示したくない場合はどうすればいいですか？</div>
 
-那這時候<br>
-就可以寫一個function `shouldShowBottomBar`<br>
-用來判斷當前是否要顯示`NavigationBar`<br><br>
+この場合<br>
+`shouldShowBottomBar`という関数を作成して<br>
+現在`NavigationBar`を表示すべきかどうかを判断できます<br><br>
 
-方法也很簡單<br>
+方法はとても簡単です<br>
 
-建立一個list存放想要顯示NavigationBar的route<br>
-跟`當前route`比較<br><br>
+NavigationBarを表示したいrouteのリストを作成し<br>
+`現在のroute`と比較します<br><br>
 
-這時候前面定義的enum就發揮優勢了<br>
-透過定義好的enum<br>
-這邊只需要去找到對應頁面的Route放進就好<br>
+ここで前に定義したenumが威力を発揮します<br>
+定義済みのenumを通じて<br>
+対応するページのRouteを見つけて追加するだけです<br>
 
 ```kotlin
 @Composable
@@ -187,7 +186,7 @@ fun shouldShowBottomBar(navController: NavHostController): Boolean {
 }
 ```
 
-接著在`Scaffold`加入`if判斷`即可<br>
+次に`Scaffold`に`if判定`を追加するだけです<br>
 
 ```kotlin
 Scaffold(
@@ -197,4 +196,4 @@ Scaffold(
         }
     },
 )
-```
+``` 

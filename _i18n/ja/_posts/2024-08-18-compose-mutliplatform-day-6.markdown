@@ -1,28 +1,27 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：CMP中跨平台Android、iOS程式碼的進入點"
+title: "Compose Multiplatform 実践：CMPにおけるクロスプラットフォームAndroid、iOSコードのエントリーポイント"
 date: 2024-08-18 17:17:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-6
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)`<br>
-昨天我們大致瞭解了一下CMP的專案結構<br>
+`Compose Multiplatform (略称CMP)`<br>
+昨日はCMPのプロジェクト構造について大まかに理解しました<br>
 
-我們從昨天的[CMP的專案結構理解與編譯配置](https://ithelp.ithome.com.tw/articles/10343569)<br>
-中的專案結構可以知道<br>
-CMP專案可以在<br>
+昨日の[CMPのプロジェクト構造理解とコンパイル設定](https://ithelp.ithome.com.tw/articles/10343569)<br>
+のプロジェクト構造から<br>
+CMPプロジェクトでは<br>
 
-`commonMain`下寫共用邏輯<br>
-`androidMain` 下寫Android平台的邏輯<br>
-`iosMain` 下寫iOS平台的邏輯<br>
-`desktopMain` 下寫Desktop平台的邏輯<br>
+`commonMain`で共通ロジックを記述<br>
+`androidMain`でAndroidプラットフォームのロジックを記述<br>
+`iosMain`でiOSプラットフォームのロジックを記述<br>
+`desktopMain`でDesktopプラットフォームのロジックを記述<br>
 
 ```
 YourProjectName
@@ -39,35 +38,35 @@ YourProjectName
 └── ...
 ```
 
-接下來我們可以開始一步一步來理解<br>
-`CMP`的程式碼進入點<br>
-因為涉及跨平台實作<br>
-所以總覺得需要好好理解下<br>
-程式碼是怎麼運作以及怎麼進到各自平台的<br>
-所以`今天將詳細解說下CMP在跨平台的程式進入點`<br>
+これから、一歩一歩<br>
+`CMP`のコードエントリーポイントについて理解していきましょう<br>
+クロスプラットフォーム実装に関わるため<br>
+コードがどのように動作し、各プラットフォームにどのように入っていくのかを<br>
+よく理解する必要があると思います<br>
+そこで`今日はCMPのクロスプラットフォームにおけるコードエントリーポイントについて詳しく説明します`<br>
 
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
-<div class="c-border-main-title-2">理解CMP程式的進入點</div>
-我們先簡單了解一下 **Compose Multiplatform** 跟 **Kotlin Multiplatform** <br>
+<div class="c-border-main-title-2">CMPコードのエントリーポイントを理解する</div>
+まずは簡単に **Compose Multiplatform** と **Kotlin Multiplatform** について理解しましょう<br>
 
-* 當然在CMP創建好的時候就已經幫你建立好這些進入點<br>
-  這邊`僅需理解概念`即可<br>
+* もちろん、CMPプロジェクト作成時にこれらのエントリーポイントは既に設定されています<br>
+  ここでは`概念を理解するだけ`で十分です<br>
 
-* 在CMP的commonMain下共用的程式碼進入點<br>
-  `預期` 在androidMain、iOSMain..等跨平台程式碼<br>
-  都會去呼叫這個共用函示<br>
-  來達到共用程式碼的目的<br>
+* CMPのcommonMainにある共通コードのエントリーポイント<br>
+  androidMain、iOSMain...などのクロスプラットフォームコードが<br>
+  この共通関数を呼び出すことを`想定`しています<br>
+  これによってコード共有の目的を達成します<br>
 
-* 這裡建立了一個共用的App()函式<br>
-  其中包含了<br>
-  1.`自定義的通用UI Theme`<br>
-  2.使用了koin 注入viewmodel<br>
-  3.自定義Compose UI的進入點<br>
-  (這個後面章節會解釋如何自定義UI Theme、使用koin、自定義Compose UI...等主題)<br>
+* ここで共通のApp()関数を作成しています<br>
+  これには以下が含まれます<br>
+  1.`カスタム共通UI Theme`<br>
+  2.koinを使用したviewmodelの注入<br>
+  3.カスタムCompose UIのエントリーポイント<br>
+  (これらについては後の章で、カスタムUI Themeの作成方法、koinの使用方法、カスタムCompose UIの作成方法...などのトピックを説明します)<br>
 
 ```kotlin
 // in ../commonMain/App.kt
@@ -83,9 +82,9 @@ fun App() {
 }
 ```
 
-<div class="c-border-content-title-1">Android App 程式進入點</div>
+<div class="c-border-content-title-1">Android Appのコードエントリーポイント</div>
 
-* `Android`實際呼叫commonMain中共用的App()函式
+* `Android`が実際にcommonMainの共通App()関数を呼び出します
 
 ```kotlin
 // in ../androidMain/App.kt
@@ -102,15 +101,15 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            // 呼叫剛剛實作共用的App()函式
+            // 先ほど実装した共通App()関数を呼び出します
             App()
         }
     }
 }
 ```
 
-- 其中Android的`Android Manifest.xml`中會宣告這個`MainActivity`的`<activity>`tag<br>
-  以及開啟App的初始頁面`<intent-filter>`<br>
+- AndroidではAndroidの`Android Manifest.xml`内で、この`MainActivity`の`<activity>`タグと<br>
+  アプリを起動する初期ページの`<intent-filter>`を宣言します<br>
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
     <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -128,9 +127,9 @@ class MainActivity : ComponentActivity() {
     </manifest>
   ```
 
-<div class="c-border-content-title-1"> iOS App 程式進入點</div>
+<div class="c-border-content-title-1">iOS Appのコードエントリーポイント</div>
 
-* `iosMain`實際呼叫commonMain中共用的App()函式
+* `iosMain`が実際にcommonMainの共通App()関数を呼び出します
 
 ```
 // in ../commonIos/MainViewController.kt
@@ -150,14 +149,14 @@ fun MainViewController() = ComposeUIViewController {
 }
 ```
 
-* 實際在`iOS`會去呼叫上面`MainViewController.kt`內的函式`MainViewController()`
+* 実際に`iOS`では上記の`MainViewController.kt`内の関数`MainViewController()`を呼び出します
   <img src="/images/compose/045.png" alt="Cover" width="100%"/><br/>
 
 
-<div class="c-border-content-title-1">Desktop 程式進入點</div>
+<div class="c-border-content-title-1">Desktopのコードエントリーポイント</div>
 
-* `desktopMain`中實際呼叫commonMain中共用的App()函式<br>
-  其中透過compose裡面的 `application 函式` 搭配`Window` 來完成desktop application
+* `desktopMain`では実際にcommonMainの共通App()関数を呼び出します<br>
+  その中でcomposeの`application関数`と`Window`を組み合わせてdesktop applicationを完成させます
 ```kotlin
 // in ../desktopMain/main.kt
 fun main() = application {
@@ -170,40 +169,40 @@ fun main() = application {
 }
 ```
 
-* CMP中的desktop也是透過JVM去編譯<br>
-  如果你要把他Build出來<br>
-  則在環境中使用下方gradle cmd 即可<br>
+* CMPのdesktopもJVMを通じてコンパイルされます<br>
+  Buildする場合は<br>
+  環境内で以下のgradle commandを使用します<br>
 ```groovy
 ./gradlew desktopRun -DmainClass=MainKt --quiet
 ```
 
-* 或者可以透過IDE直接把這個Gradle task加入到Run Configuration內
+* またはIDEから直接このGradle taskをRun Configurationに追加することもできます
 <img src="/images/compose/046.png" alt="Cover" width="90%"/><br/>
 
-<div class="c-border-main-title-2">開發共用邏輯</div>
+<div class="c-border-main-title-2">共通ロジックの開発</div>
 
-* 理解完上方進入點後<br>
-  我們可以開始開發共用邏輯<br>
-  來達到`只用一份Code`製作多個平台的應用程式<br>
+* 上記のエントリーポイントを理解したら<br>
+  共通ロジックの開発を始めることができます<br>
+  `1つのコード`で複数のプラットフォーム向けアプリケーションを作成することができます<br>
 
-* 由下方圖片可看到<br>
-  我們大部分的時間會花在`./commonMain`上<br>
-  主要的邏輯開發都在此<br>
-  除了有些依賴各自平台的內容，例如：檔案系統、檔案選擇器...等等<br>
-  才會透過`expect` 跟 `autual` 來實作<br>
-  (後面章節會也會再講怎麼用expect跟autual)<br>
+* 下図からわかるように<br>
+  私たちは大部分の時間を`./commonMain`に費やします<br>
+  主なロジック開発はここで行われます<br>
+  ファイルシステムやファイル選択...など、各プラットフォームに依存する内容を除き<br>
+  それらは`expect`と`actual`を通じて実装されます<br>
+  (後の章でexpectとactualの使い方についても説明します)<br>
 
 <img src="/images/compose/047.png" alt="Cover" width="80%"/><br/>
 
-* 不過到目前為止<br>
-  即便是`desktop平台`或`iOS平台` 有自己的檔案系統<br>
-  導致在commonMain共用邏輯中需要自己實作<br>
-  但在`KMM`或`CMP`中<br>
-  都已經有支援透過`kotlin`程式碼<br>
-  來寫這些跨平台內容的Library了<br>
-  你只需要在`Gradle中配置`即可<br>
+* ただし、現時点では<br>
+  `desktopプラットフォーム`や`iOSプラットフォーム`が独自のファイルシステムを持ち<br>
+  commonMainの共通ロジックで自分で実装する必要があるとしても<br>
+  `KMM`や`CMP`では<br>
+  すでに`kotlin`コードを通じて<br>
+  これらのクロスプラットフォームコンテンツを書くためのLibraryがサポートされています<br>
+  `Gradleで設定`するだけです<br>
 
-例如：透過Kotlin來實作desktop的檔案相關操作：<br>
+例：Kotlinを使用してdesktopのファイル関連操作を実装する：<br>
 
 ``` kotlin
 // ../desktop/PlatformFile.desktop.kt
@@ -242,4 +241,4 @@ actual class PlatformZip actual constructor() {
         }
     }
 }
-```
+``` 

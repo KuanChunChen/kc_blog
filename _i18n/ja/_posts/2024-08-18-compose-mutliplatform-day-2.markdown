@@ -1,33 +1,32 @@
 ---
 layout: post
-title: "Compose Multiplatform 實戰：初戰，安裝CMP環境吧。"
+title: "Compose Multiplatform 実践：初戦、CMP環境をインストールしよう"
 date: 2024-08-18 17:13:10 +0800
 image: cover/compose_multiplatform_ios_cocoapods.png
 tags: [Kotlin, Compose Multiplatform, KMP]
 permalink: /compose-multiplatform-day-2
 categories: ComposeMultiplatform
-excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開始開發跨平台App
-這次我會聚焦在 開發 跨平台Android 跟 IOS 的App上在最後幾天也會談談目前研究下來的概況以及心得"
+excerpt: "このシリーズのテーマはCompose Multiplatform 実践：Kotlinでゼロからクロスプラットフォームアプリを開発することです。今回はAndroidとiOSのクロスプラットフォームアプリ開発に焦点を当て、最終日には研究結果と感想を共有します。"
 ---
 
-<div class="c-border-main-title-2">前言</div>
+<div class="c-border-main-title-2">はじめに</div>
 
-`Compose Multiplatform (簡稱CMP)` UI框架能將Kotlin程式碼共用能力推向新高度<br>
-你可以一次實作使用者介面<br>
-並在所有目標平台上使用——包括iOS、Android、桌面和Web<br>
-今天我們將開始一步一步安裝環境<br><br>
+`Compose Multiplatform (略称CMP)` UIフレームワークは、Kotlinコード共有能力を新たな高みへと押し上げます<br>
+一度ユーザーインターフェースを実装すれば<br>
+iOS、Android、デスクトップ、Webを含むすべてのターゲットプラットフォームで使用できます<br>
+今日は環境のインストールを一歩一歩進めていきます<br><br>
 
 <div id="category">
     {% include table/compose-multiplatform-detail-category.html %}
 </div>
 
 <div class="c-border-main-title-2">目標</div>
-我們要建立一個CMP專案能製作出`多平台`(Android、iOS、Web、Desktop) 的應用程式<br>
-所以要先了解怎麼樣建立一個CMP的專案<br><br>
+`マルチプラットフォーム`（Android、iOS、Web、Desktop）アプリケーションを作成できるCMPプロジェクトを構築します<br>
+まずはCMPプロジェクトの作成方法を理解する必要があります<br><br>
 
-你們可以根據下面列出項目安裝<br>
-其中有部分是選擇性<br>
-大家可以依據`自己的需求`去做安裝<br>
+以下にリストアップした項目に従ってインストールできます<br>
+一部はオプションですので<br>
+`自分のニーズ`に応じてインストールしてください<br>
   * Android Studio
   * Java and JDK
   * Xcode
@@ -37,214 +36,214 @@ excerpt: "這次的主題是用Compose Multiplatform 實戰：用Kotlin從零開
   * (Optional) kdoctor
   * (Optional) Browsers
 
-<div class="c-border-main-title-2">CMP環境安裝 - 安裝必要工具</div>
-<div class="c-border-content-title-1">推薦先安裝kdoctor (Optional)</div>
-`kdoctor`是官方推薦的一個插件<br>
-他可以幫你檢查環境內的必要項目`是否已經就緒`<br>
+<div class="c-border-main-title-2">CMP環境インストール - 必要なツールのインストール</div>
+<div class="c-border-content-title-1">まずkdoctorのインストールをお勧めします (Optional)</div>
+`kdoctor`は公式が推奨するプラグインです<br>
+環境内の必要項目が`準備完了しているか`をチェックしてくれます<br>
 
-在Terminal中使用指令去安裝kdoctor<br>
+ターミナルでコマンドを使用してkdoctorをインストールします<br>
 ```
 brew install kdoctor
 ```
 <img src="/images/compose/019.png" alt="Cover" width="100%" /><br />
 
-接著直接用`kdoctor` 就能檢查了<br>
-像是我環境中<br>
-沒安裝Kotlin Multiplatform Plugin<br>
-他也能幫你檢查出來<br>
+その後、`kdoctor`を実行するだけでチェックできます<br>
+例えば、私の環境では<br>
+Kotlin Multiplatform Pluginがインストールされていませんが<br>
+それも検出してくれます<br>
 
 ```
 kdoctor
 ```
 <img src="/images/compose/020.png" alt="Cover" width="100%" /><br />
 
-總而言之<br>
-只要看到都`[v]`<br>
-代表你的`環境正確`了<br>
+要するに<br>
+すべてが`[v]`と表示されていれば<br>
+`環境が正しく`設定されています<br>
 
-如果`kdoctor`在檢查你的環境時診斷出任何問題：<br>
+もし`kdoctor`が環境チェック中に問題を診断した場合：<br>
 
-`[x]`：需要修復的任何失敗的檢查<br>
-你可以在*符號後找到問題描述和潛在解決方案。<br>
+`[x]`：修正が必要な失敗したチェック<br>
+*マークの後に問題の説明と潜在的な解決策が表示されます。<br>
 
-`[!]`：檢查警告<br>
-可能會是不一定要安裝的<br>
-只是提醒你可以安裝之類的<br>
+`[!]`：警告チェック<br>
+必ずしもインストールする必要はないかもしれません<br>
+インストールできると通知しているだけかもしれません<br>
 
-<div class="c-border-content-title-1">安裝Android Studio</div>
-為了製作CMP更方便我們需要安裝`Android Studio`<br>
+<div class="c-border-content-title-1">Android Studioのインストール</div>
+CMPを便利に作成するために`Android Studio`のインストールが必要です<br>
 
-先至[Android Studio 官網](https://developer.android.com/studio?hl=zh-tw)<br>
-下載IDE<br>
+まず[Android Studio 公式サイト](https://developer.android.com/studio?hl=zh-tw)に行き<br>
+IDEをダウンロードします<br>
 <img src="/images/compose/021.png" alt="Cover" width="50%" /><br />
 
-接著如果是`MacOS`是把下載好的`.dmg` 點開<br>
-把IDE拖移到Application資料夾<br>
-如果是`Windows` 就是`.exe` 選擇目錄去安裝<br>
+次に`MacOS`の場合はダウンロードした`.dmg`を開き<br>
+IDEをApplicationフォルダにドラッグします<br>
+`Windows`の場合は`.exe`でディレクトリを選択してインストールします<br>
 
 <img src="/images/compose/022.png" alt="Cover" width="50%" /><br />
-(圖為Mac的安裝示意圖)
+（Macのインストール例）
 
 
 
-<div class="c-border-content-title-1">檢查Kotlin Plugin</div>
-`CMP`主要是使用`Kotlin`來開發<br>
-所以Kotlin Plugin這也`必需`安裝<br>
-不過因為現在Android Studio都幫你整合好<br>
-你一安裝好 他就幫你裝好Kotlin Plugin<br>
-(比較新的IDE版本都會幫你裝好)<br>
+<div class="c-border-content-title-1">Kotlin Pluginのチェック</div>
+`CMP`は主に`Kotlin`を使用して開発します<br>
+そのためKotlin Pluginは`必須`です<br>
+ただし、現在のAndroid Studioではすべて統合されているため<br>
+インストールするとKotlin Pluginも一緒にインストールされます<br>
+（新しいバージョンのIDEではインストール済みです）<br>
 
-所以可以接著打開`Android Studio`<br>
+次に`Android Studio`を開きます<br>
 
-不過如果真的遇到問題<br>
-可以去`Tool > Kotlin > Configt Kotlin in Project`<br>
-讓IDE幫你檢查是否安裝<br>
+もし問題が発生した場合は<br>
+`Tool > Kotlin > Configt Kotlin in Project`を選択して<br>
+IDEにインストール状況をチェックさせることができます<br>
 <img src="/images/compose/023.png" alt="Cover" width="50%" /><br />
 
 
 
-<div class="c-border-content-title-1">檢查Java JDK環境</div>
-其實這個步驟跟上面一樣<br>
-比較新的`Android Studio IDE`都幫你安裝好了<br><br>
+<div class="c-border-content-title-1">Java JDK環境のチェック</div>
+実はこのステップも上記と同様です<br>
+新しい`Android Studio IDE`ではすでにインストールされています<br><br>
 
-如果`不確定`有沒有安裝的話<br>
-IDE也有內建的可以下載<br>
-可以到下面這個地方找看看有沒有安裝JDK<br>
-點擊`Android Studio > Setting` 或 快捷鍵 `Command + ,`<br>
+もし`不確か`な場合は<br>
+IDEに組み込まれたものをダウンロードできます<br>
+以下の場所でJDKがインストールされているか確認できます<br>
+`Android Studio > Setting`をクリックするか、ショートカット`Command + ,`を使用します<br>
 <img src="/images/compose/024.png" alt="Cover" width="50%" /><br />
 
-找到 `Build, Execution Deployment >Build Tools > Gradle`<br>
+`Build, Execution Deployment >Build Tools > Gradle`を探します<br>
 <img src="/images/compose/025.png" alt="Cover" width="50%" /><br />
 
-點擊下拉式視窗後點擊裡面的看環境內現成的<br>
-或是Download JDK去下載<br>
+ドロップダウンメニューをクリックして環境内の既存のものを確認する<br>
+またはDownload JDKをクリックしてダウンロードします<br>
 <img src="/images/compose/026.png" alt="Cover" width="50%" /><br />
 
 
-另外<br>
-這邊我推薦你可以用`sdkman` （Optional）<br>
-他可以讓你透過指令`管理你環境中的SDK`<br>
-不過因為是`介紹CMP`<br>
-所以我就介紹幾個`常用`的指令<br>
-大家有興趣可以再去網上找<br><br>
+また<br>
+ここでは`sdkman`の使用をお勧めします（Optional）<br>
+コマンドを通じて環境内の`SDKを管理`できます<br>
+ただし`CMPの紹介`が主題なので<br>
+`よく使われる`コマンドをいくつか紹介します<br>
+興味がある方はネットで詳細を調べてください<br><br>
 
-查看目前設定的的sdk<br>
+現在設定されているsdkを確認する<br>
 ```
 sdk current
 ```
 
-列出可以用跟可下載的Java SDK<br>
+利用可能およびダウンロード可能なJava SDKをリストアップする<br>
 ```
 sdk ls java
 ```
 
-設定JAVA環境 (xxx的名稱可以透過上面sdk ls 去找)<br>
+JAVA環境を設定する（xxxの名前は上記のsdk lsで見つけることができます）<br>
 ```
 sdk using java xxx
 ```
 
 <div class="c-border-content-title-1">Kotlin Multiplatform plugin (Optional)</div>
-為了讓Android Studio更好的支援Multiplatform<br>
-我們需要下載`Kotlin Multiplatform plugin`<br>
-一樣先打開Setting > Plugin > Marketplace<br>
+Android StudioがMultiplatformをより良くサポートするために<br>
+`Kotlin Multiplatform plugin`をダウンロードする必要があります<br>
+同様にSetting > Plugin > Marketplaceを開きます<br>
 <img src="/images/compose/017.png" alt="Cover" width="50%" /><br />
 
-按`install`下載<br>
-完成後點`Apply` 然後`Restart`IDE<br>
+`install`をクリックしてダウンロードします<br>
+完了したら`Apply`をクリックし、IDEを`Restart`します<br>
 
-他可以讓Android Studio透過Create New Project的方式<br>
-自動創建`KMP基本的專案內容`<br>
-類似幫你創`template`的概念<br>
+これにより、Android StudioでCreate New Projectを使用して<br>
+自動的に`KMPの基本的なプロジェクト内容`を作成できます<br>
+`template`を作成する概念に似ています<br>
 <img src="/images/compose/018.png" alt="Cover" width="50%" /><br />
 
-> [KMM Plugin官方Release](https://kotlin.liying-cn.net/docs/reference_zh/multiplatform/multiplatform-plugin-releases.html)
-有需要可參考
+> [KMM Plugin公式リリース](https://kotlin.liying-cn.net/docs/reference_zh/multiplatform/multiplatform-plugin-releases.html)
+必要に応じて参照してください
 
-另外`針對CMP`<br>
-官方也有提供線上創建CMP基本專案的方式<br>
-(忘記KMP跟CMP差異的可以回到`第一天`的文章查看，<a href="{{site.baseurl}}/compose-multiplatform-day-1">Compose Multiplatform 實戰：放輕鬆點，初探CMP</a>)<br>
+また、`CMPに関して`<br>
+公式はオンラインでCMP基本プロジェクトを作成する方法も提供しています<br>
+（KMPとCMPの違いを忘れた方は`1日目`の記事を参照してください、<a href="{{site.baseurl}}/compose-multiplatform-day-1">Compose Multiplatform 実践：リラックスして、CMPの初歩を探る</a>）<br>
 
-就是透過線上的網頁<br>
+オンラインWebページ<br>
 [Wizard](https://kmp.jetbrains.com/#newProject)<br>
-來創建再把他導入到IDE內<br>
+を使用して作成し、IDEにインポートします<br>
 
-就看你要用哪種方式<br>
-兩種在開發上的差異大概是<br>
-`KMP`：使用`KMM plugin`插件創建，比較聚焦在`Native UI`的 + `common邏輯`的開發方式<br>
-`CMP`：使用線上網頁`KMM Wizard`創建後導入IDE，比較聚焦在`Compose UI`+ `common邏輯`開發多平台的方式<br>
+どちらの方法を使うかは<br>
+開発上の主な違いは<br>
+`KMP`：`KMM plugin`プラグインを使用して作成、`Native UI` + `common logic`の開発方法に焦点を当てています<br>
+`CMP`：オンラインWebページ`KMM Wizard`を使用して作成しIDEにインポート、`Compose UI` + `common logic`でマルチプラットフォーム開発に焦点を当てています<br>
 
-這邊就先介紹到這<br>
-後面詳細開發專案時<br>
-會大概講一下怎麼用`Wizard`<br>
+ここでは簡単に紹介しました<br>
+後で詳細なプロジェクト開発時に<br>
+`Wizard`の使用方法について簡単に説明します<br>
 
-<div class="c-border-content-title-1">安裝 Xcode</div>
+<div class="c-border-content-title-1">Xcodeのインストール</div>
 
-如果你是macOS的Mac<br>
-並想要運行iOS app<br>
-則需要Xcode<br><br>
+macOSのMacを使用していて<br>
+iOSアプリを実行したい場合は<br>
+Xcodeが必要です<br><br>
 
-方法很簡單<br>
-就是到App Store 搜尋 Xcode<br>
-然後下載<br>
+方法は非常に簡単です<br>
+App StoreでXcodeを検索して<br>
+ダウンロードするだけです<br>
 <img src="/images/compose/016.png" alt="Cover" width="50%" /><br />
 
 
-如果你使用其他操作系統<br>
-可以跳過這個步驟<br>
-不過可能就沒辦法Build iOS app<br>
-感覺上應該也有Worked Around可以解決？<br>
-但可能就不是正規的做法XD<br>
+他のオペレーティングシステムを使用している場合は<br>
+このステップをスキップできますが<br>
+iOSアプリをビルドすることはできないかもしれません<br>
+解決方法（ワークアラウンド）もあるかもしれませんが<br>
+正規の方法ではないかもしれませんXD<br>
 
-<div class="c-border-content-title-1">安裝 CocoaPods (Optional)</div>
+<div class="c-border-content-title-1">CocoaPodsのインストール (Optional)</div>
 
-如果你預期之後想要用iOS的framework 可以事先安裝<br>
-如果不用就等後續需要再安裝也可以<br><br>
+将来的にiOSのフレームワークを使用したい場合は事前にインストールできます<br>
+必要ない場合は、後で必要になった時にインストールしても大丈夫です<br><br>
 
-使用指令安裝CocoaPods<br>
+コマンドを使用してCocoaPodsをインストールします<br>
 
 ```
 brew install cocoapods
 ```
 
-不過如果要透過brew安裝<br>
-需要用到較高版本的ruby<br><br>
+ただし、brewでインストールするには<br>
+より高いバージョンのrubyが必要です<br><br>
 
-根據官網顯示 至少要用`3.3.4`版本<br>
+公式サイトによると、少なくとも`3.3.4`バージョンが必要です<br>
 > Depends on:
 ruby	3.3.4	Powerful, clean, object-oriented scripting language
 
-所以你可以 透過以下指令<br>
-去查看環境中的版本<br>
+そこで、以下のコマンドで<br>
+環境内のバージョンを確認できます<br>
 
 ```
 ruby -v 
 ```
 
-版本不到的話<br>
-就先`reinstall`<br>
+バージョンが足りない場合は<br>
+まず`reinstall`します<br>
 ```
 brew reinstall ruby
 ```
 
-最後再用`brew install cocoapods`即可<br>
+最後に`brew install cocoapods`を実行します<br>
 
-<div class="c-border-content-title-1">檢查Browser (Optional)</div>
+<div class="c-border-content-title-1">ブラウザのチェック (Optional)</div>
 
-若你要製作Web application<br>
-你需要一個支援`Wasm垃圾回收（GC）`功能的瀏覽器。<br>
+Webアプリケーションを作成する場合<br>
+`Wasmガベージコレクション（GC）`機能をサポートするブラウザが必要です。<br>
 
-這是官網提供的資訊<br>
-需要確認一下 你OS內`Browser的版本`<br>
-是針對`目前有支援的環境` 說明<br>
+これは公式サイトが提供する情報です<br>
+OS内の`ブラウザのバージョン`を確認する必要があります<br>
+`現在サポートされている環境`に関する説明です<br>
 
-`Chrome` 和 `Chromium`：從版本 119 開始支援。<br>
-`Firefox`：從版本 120 開始支援。<br>
-`Safari/WebKit`：Wasm GC 目前正在開發中<br><br>
+`Chrome`と`Chromium`：バージョン119からサポート。<br>
+`Firefox`：バージョン120からサポート。<br>
+`Safari/WebKit`：Wasm GCは現在開発中です<br><br>
 
-Safari之類的好像沒有支援<br>
-所以不見得可以完整run<br>
-如果需要開發Web app的話<br>
-可以再根據上面資訊試試<br>
+Safariなどはサポートしていないようです<br>
+そのため完全に実行できない可能性があります<br>
+Webアプリの開発が必要な場合は<br>
+上記の情報に基づいて試してみてください<br>
 
 <div class="c-border-content-title-1">結語</div>
 我總覺得開始一個新的程式語言 或 框架<br>

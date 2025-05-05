@@ -1,164 +1,162 @@
 ---
 layout: post
-title: "Android16 適配筆記"
+title: "Android 16 適応ノート"
 date: 2025-02-12 09:29:10 +0800
 image: cover/android-version-adaptation-16.png
 tags: [Android]
 permalink: /android-16-note
-categories: SDK升級
-excerpt: "Android16 適配筆記"
+categories: SDKアップグレード
+excerpt: "Android 16 適応ノート"
 ---
 
-<div class="c-border-main-title-2">Android 16 開發時程 (2024-2025)</div>
-* 預覽階段 (2024)
-    - 11月: Dev Preview 1 - 基準版本
-    - 12月: Dev Preview 2 - 功能更新
+<div class="c-border-main-title-2">Android 16 開発タイムライン (2024-2025)</div>
+* プレビューフェーズ (2024)
+    - 11月: Dev Preview 1 - ベースラインバージョン
+    - 12月: Dev Preview 2 - 機能アップデート
 
-* Beta階段 (2025)
+* ベータフェーズ (2025)
   - 1月: Beta 1
   - 2月: Beta 2
   - 3月: Beta 3
-  - 4-5月: 最終版本測試
-  - 最終發布
+  - 4-5月: 最終バージョンテスト
+  - 最終リリース
 
-* 最終版本預計2025 Q2發布，截至今日2025/02/11官方已經發佈到Beta1
-  - [詳細](https://developer.android.com/about/versions/16/overview?hl=zh-tw)
+* 最終バージョンは2025年第2四半期に予定。本日（2025年2月11日）時点で、GoogleはBeta 1までリリースしています
+  - [詳細](https://developer.android.com/about/versions/16/overview?hl=ja)
 
-<div class="c-border-main-title-2">行為變更</div>
+<div class="c-border-main-title-2">動作変更</div>
 
-### 所有應用程式：無論 `targetSdkVersion` 為何，下列行為變更將會套用至所有應用程式
-#### JobScheduler配額最佳化 (JobScheduler quota optimizations)
-* 現在系統對於JobScheduler會有進一步的執行時間限制，目的是進一步限制應用程式在後台執行任務的頻率和資源消耗，以提升系統的整體效能和電池壽命，開發者可能需對此有一定的預期。(這邊官方`沒提到詳細的執行時間`是多少，他是用`quota`這個單字，所以可能要針對下述情況`有預期`)
-* 受影響的範圍
-  - 系統對於 JobScheduler 的執行時間配額會根據`應用程式所在的待命值區（ app standby bucket）`來決定，對開發者來說，變得要預期在`不同standby bucket`時，被分配到的配額會有所不同，`可透過下方代碼去處理`
+### すべてのアプリケーション：`targetSdkVersion`に関係なく、以下の動作変更がすべてのアプリケーションに適用されます
+#### JobSchedulerクォータの最適化
+* システムはJobSchedulerに対してさらに実行時間制限を設けるようになりました。これは、バックグラウンドタスクの頻度とリソース消費をさらに制限し、システム全体のパフォーマンスとバッテリー寿命を向上させることを目的としています。開発者はこれに対して一定の予測をしておく必要があります。（Google は正確な実行時間については言及せず、「クォータ」という言葉を使用しているため、以下の状況に備える必要があります）
+* 影響を受ける領域：
+  - JobSchedulerの実行時間クォータは、アプリのスタンバイバケット（app standby bucket）によって決定されます。開発者は異なるスタンバイバケットにいる場合に、異なるクォータが割り当てられることを予測する必要があります。以下のコードで処理できます：
     ```kotlin
     val usageStatsManager = context.getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
     val bucket = usageStatsManager.appStandbyBucket
 
     when (bucket) {
         UsageStatsManager.STANDBY_BUCKET_ACTIVE -> {
-            // 使用中：較寬裕的執行時間配額
+            // アクティブ：より寛大な実行時間クォータ
         }
         UsageStatsManager.STANDBY_BUCKET_RARE -> {
-            // 很少使用：較嚴格的執行時間配額
+            // ほとんど使用されていない：より厳しい実行時間クォータ
         }
 
-        ... 詳細狀態可以再去API內看
+        ... 詳細な状態についてはAPIを参照してください
     }
     ```
-  - 即使這個 Job 是在應用程式可見時啟動的，當應用程式進入背景後，Job 也會受到執行時間的限制
+  - アプリが表示されている時にJobが開始された場合でも、アプリがバックグラウンドに移行すると、Jobは実行時間の制限を受けます
     ```kotlin
-    // 即使 Job 是在應用程式可見時啟動
+    // アプリが表示されている時にJobが開始された場合でも
     val jobInfo = JobInfo.Builder(...)
         .build()
 
     jobScheduler.schedule(jobInfo)
-    // 當應用程式切到背景後
-    // Job 會受到執行時間配額限制
+    // アプリがバックグラウンドに移行すると
+    // Jobは実行時間クォータの制限を受けます
     ```
-  - 如果你同時有：
-    1. 一個正在運行的 ForegroundService
-    2. 一個透過 JobScheduler 排程的工作
-       這兩個同時在執行時，JobScheduler 的工作會受到運行時間配額的限制。
+  - 同時に以下の状況がある場合：
+    1. 実行中のForegroundService
+    2. JobSchedulerを通じてスケジュールされたタスク
+       両方が同時に実行されている場合、JobSchedulerのタスクは実行時間クォータの制限を受けます。
 
-* 上述`受影響的範圍`，會針對使用 `WorkManager`、`JobScheduler` 和 `DownloadManager` 進行排程的有所限制
-  - 若要Debug Job停止的原因，官方建議透過呼叫 `WorkInfo.getStopReason()`（對於 JobScheduler，可以呼叫 `JobParameters.getStopReason()`）來查看停止的原因。
-  - 或是可使用 `JobScheduler#getPendingJobReasonsHistory`來查看停止的原因
+* 上記の「影響を受ける領域」は、`WorkManager`、`JobScheduler`、`DownloadManager`を使用してスケジュールされたタスクを制限します
+  - Jobが停止した理由をデバッグするには、Googleは `WorkInfo.getStopReason()`（JobSchedulerの場合は`JobParameters.getStopReason()`）を呼び出して停止理由を確認することを推奨しています。
+  - または、`JobScheduler#getPendingJobReasonsHistory`を使用して停止理由を確認することもできます。
 
-* 如何在開發測試時，透過 adb 指令來測試不同的 Job 配額限制情境？
+* 開発テスト中に、adbコマンドを使用して異なるJobクォータ制限シナリオをテストする方法は？
     ```kotlin
-    # 假設你的應用包名是 com.example.app
+    # アプリのパッケージ名がcom.example.appだと仮定
 
-    # 1. 讓前台啟動的 Job 不受配額限制
+    # 1. フォアグラウンドで起動されたJobがクォータ制限を受けないようにする
     adb shell am compat enable OVERRIDE_QUOTA_ENFORCEMENT_TO_TOP_STARTED_JOBS com.example.app
 
-    # 2. 與Foreground Service 同時執行的 Job 不受配額限制
+    # 2. Foreground Serviceと同時に実行されるJobがクォータ制限を受けないようにする
     adb shell am compat enable OVERRIDE_QUOTA_ENFORCEMENT_TO_FGS_JOBS com.example.app
 
-    # 3. 手動設定應用的待命值區
+    # 3. アプリのスタンバイバケットを手動で設定する
     adb shell am set-standby-bucket com.example.app active
 
-    # 可選的值區：
+    # オプションのバケット：
     # - active
     # - working_set
     # - frequent
     # - rare
     # - restricted
-    # 查詢應用當前的待命值區
+    # アプリの現在のスタンバイバケットを照会する
     adb shell am get-standby-bucket com.example.app
     ```
 
-#### 完全棄用 JobInfo#setImportantWhileForeground、JobInfo#isImportantWhileForeground()
-* `setImportantWhileForeground`功能是：告訴系統這個 Job 在app前景運行時很重要
-  希望在應用程式處於前景時優先執行這個 Job
-  或當應用暫時不受背景限制時優先執行
+#### JobInfo#setImportantWhileForegroundとJobInfo#isImportantWhileForeground()の完全な廃止
+* `setImportantWhileForeground`の機能は：このJobがアプリがフォアグラウンドにある間重要であることをシステムに伝え、アプリがフォアグラウンドにある時やアプリが一時的にバックグラウンド制限を受けていない時にこのJobを優先的に実行することを期待するものです
     ```kotlin
-    # Android 12時標記為棄用
-    # Android 16完全棄用，就算用了系統直接忽略
+    # Android 12で非推奨としてマークされました
+    # Android 16で完全に廃止され、使用しても無視されます
 
     val jobInfo = JobInfo.Builder(jobId, componentName)
         .setImportantWhileForeground(true)
         .build()
     ```
 
-#### `Ordered broadcast` priority scope no longer global
-* 在廣播上設定順序的作法之後可能不再有效
-* 以前的運作方式：
-  - Android允許應用程式為廣播接收器（Broadcast Receivers）設定優先順序
-    可以通過兩種方式設定：
-    1. 在清單文件（Manifest）中使用android:priority屬性
-    2. 使用程式碼IntentFilter#setPriority()來設定
-  - 系統會按照優先順序從`高到低`依序發送廣播
-* `Android 16`的改變：
-  - 跨進程優先順序不再保證：
-    1. 不同進程（process）之間的廣播接收順序將不再保證按照優先順序執行
-    2. 優先順序只在`同一個應用的進程`內有效
-  - 優先順序範圍限制：
-    1. 優先順序值會被自動限制在`(SYSTEM_LOW_PRIORITY + 1, SYSTEM_HIGH_PRIORITY - 1)`之間
-    2. 只有`系統元件`才能使用最高和最低系統優先順序
+#### `Ordered broadcast`の優先度スコープはもはやグローバルではない
+* ブロードキャストの順序設定はもはや効果がなくなる可能性があります
+* 以前の動作：
+  - Androidはブロードキャストレシーバー（Broadcast Receivers）に優先順位を設定することを許可していました
+    これは2つの方法で設定できました：
+    1. マニフェストファイル（Manifest）でandroid:priority属性を使用する
+    2. コードIntentFilter#setPriority()を使用して設定する
+  - システムは優先順位に従って`高から低へ`順番にブロードキャストを送信していました
+* `Android 16`での変更：
+  - プロセス間の優先順位はもはや保証されません：
+    1. 異なるプロセス間のブロードキャスト受信順序は、優先順位に従って実行されることが保証されなくなります
+    2. 優先順位は`同じアプリケーションプロセス内`でのみ有効です
+  - 優先順位範囲の制限：
+    1. 優先順位値は自動的に`(SYSTEM_LOW_PRIORITY + 1, SYSTEM_HIGH_PRIORITY - 1)`の範囲に制限されます
+    2. `システムコンポーネント`のみが最高および最低システム優先順位を使用できます
 
-* `可能受影響的情況`：
-  - 應用程式在`不同進程`中註冊了相同的`broadcast intent`，並且預期按特定順序接收
-  - 應用程式需要與`其他process`互動，並且依賴於廣播接收的順序
-
-
-#### ART 內部變更 (Android Runtime)
-
-* 科普：https://source.android.com/docs/core/ota/modular-system?hl=zh-tw
-  - Android 10 推出了 Mainline (模組化系統元件)：Mainline 可將部分 `Android 系統元件模組化`，並在 Android 的正常發布週期外更新這些元件
-  - 所以現在Google play可以透過Mainline更新系統元件
-
-* Android 16包含了最新的ART更新
-  - 改善了執行效能
-  - 提供更多Java功能支援
-  - 這些改進透過`Google Play系統更新`提供給`Android 12`以上的裝置（超過十億台裝置）
-  - [ART官方發的blog](https://android-developers.googleblog.com/2023/11/the-secret-to-androids-improved-memory-latest-android-runtime-update.html)
-
-* `可能遇到的相容性問題`
-  - 依賴ART程式庫的應用程式可能無法在Android 16正常運作
-  - 這個問題也會影響到透過Google Play系統更新ART模組的`舊版Android`
-
-* 對開發者的影響：
-  - 需要測試是否因為更新ART後受到影響
-  - 可以看官方版本資訊中的內容，查看是否有相關的相容性問題：[點擊](https://developer.android.com/about/versions/16/release-notes?hl=zh-tw#art-impacted-libraries)
+* `影響を受ける可能性のある状況`：
+  - アプリケーションが`異なるプロセス`で同じ`broadcast intent`を登録し、特定の順序で受信することを期待している場合
+  - アプリケーションが`他のプロセス`と対話する必要があり、ブロードキャスト受信の順序に依存している場合
 
 
-#### 使用者體驗和系統使用者介面 調整
-* [淘汰干擾性無障礙工具的公告](https://developer.android.com/about/versions/16/behavior-changes-all?hl=zh-tw#disruptive-a11y)
-  - Android 16 已淘汰`無障礙公告`，這類公告的特色是使用 announceForAccessibility 或調度 TYPE_ANNOUNCEMENT
-  - `對開發者的影響`： 主要是api上的調整，所以可以直接參考[文件](https://developer.android.com/reference/android/view/View#announceForAccessibility(java.lang.CharSequence))
+#### ART内部変更（Android Runtime）
 
-* 支援 3-button navigation
-  - `3-button navigation`：主要是指新增了`predictive back(預測導航)`功能。predictive back(預測導航)是當`長按`下導航欄的back按鈕後，使用者可以依照手勢移動到想要的導航位置。
-    詳細請參考這個連結內的影片：https://developer.android.com/about/versions/16/behavior-changes-all#three-button-predictive-back
-  - 不過他是說`Support`，所以`現階段`需要開發者有支援才有，也不確定是不是每個廠商的OTA都有支援，若有用到需確認下。
-    (或者把targetSDK升到Android 16 就預設打開)
-  - 實際在系統上的演變：
+* 背景情報：https://source.android.com/docs/core/ota/modular-system?hl=ja
+  - Android 10はMainline（モジュラーシステムコンポーネント）を導入しました：Mainlineは特定の`Androidシステムコンポーネント`をモジュール化し、Androidの通常のリリースサイクル外でこれらのコンポーネントを更新します
+  - そのため、Google Playは現在Mainlineを通じてシステムコンポーネントを更新できます
+
+* Android 16には最新のART更新が含まれています
+  - 実行パフォーマンスの向上
+  - より多くのJava機能のサポート
+  - これらの改善は`Google Playシステム更新`を通じて`Android 12`以上を実行しているデバイス（10億台以上）に提供されます
+  - [GoogleからのART公式ブログ](https://android-developers.googleblog.com/2023/11/the-secret-to-androids-improved-memory-latest-android-runtime-update.html)
+
+* `潜在的な互換性の問題`
+  - ARTライブラリに依存するアプリケーションはAndroid 16で正常に機能しない可能性があります
+  - この問題は、ARTモジュールがGoogle Playシステム更新を通じて更新される`古いAndroidバージョン`にも影響します
+
+* 開発者への影響：
+  - ART更新の影響を受けるかどうかをテストする必要があります
+  - 関連する互換性の問題については、公式バージョン情報を確認してください：[ここをクリック](https://developer.android.com/about/versions/16/release-notes?hl=ja#art-impacted-libraries)
+
+
+#### ユーザーエクスペリエンスとシステムUIの調整
+* [妨害的なアクセシビリティツールの廃止に関するお知らせ](https://developer.android.com/about/versions/16/behavior-changes-all?hl=ja#disruptive-a11y)
+  - Android 16では、announceForAccessibilityを使用するか、TYPE_ANNOUNCEMENTをディスパッチする`アクセシビリティアナウンス`が廃止されました
+  - `開発者への影響`：主にAPIの調整なので、[ドキュメント](https://developer.android.com/reference/android/view/View#announceForAccessibility(java.lang.CharSequence))を直接参照できます
+
+* 3ボタンナビゲーションのサポート
+  - `3ボタンナビゲーション`：主に`予測バック（predictive back）`機能の追加を指します。予測バックは、ユーザーがナビゲーションバーのバックボタンを`長押し`すると、ジェスチャーに基づいて希望のナビゲーション位置に移動できるようにするものです。
+    詳細については、このリンクのビデオをご覧ください：https://developer.android.com/about/versions/16/behavior-changes-all?hl=ja#three-button-predictive-back
+  - ただし、`サポート`と記載されているため、`現段階`では開発者がサポートしている必要があり、すべてのメーカーのOTAがサポートしているかどうかは確かではありません。使用している場合は確認する必要があります。
+    （またはAndroid 16 SDKをターゲットにすることでデフォルトで有効になります）
+  - 実際のシステム進化：
     1. Android 13（API 33）：
-       需要在開發者選項中啟用「預測返回操作動畫」
-       即使應用程式實作了相關功能，也需要開發者選項才能看到動畫效果
+       開発者オプションで「予測バックアニメーション」を有効にする必要があります
+       アプリが関連機能を実装していても、アニメーション効果を見るには開発者オプションが必要です
     2. Android 14（API 34）：
-       可以在Manifest中application或activity選擇啟用/不啟用
+       アプリケーションまたはアクティビティのManifestで有効/無効を選択できます
         ```xml
         <manifest ...>
             <application . . .
@@ -178,40 +176,40 @@ excerpt: "Android16 適配筆記"
             </application>
         </manifest>
         ```
-    需要`開發者選項`來測試動畫效果
+    アニメーション効果をテストするには`開発者オプション`が必要です
     3. Android 15（API 35）以上：
-       不再需要開發者選項
-       只要應用程式有實作並啟用，就會直接顯示動畫效果
+       開発者オプションが不要になります
+       アプリが実装して有効にしている場合、アニメーション効果が直接表示されます
 
-  - 對開發者的影響：
-    1. 必需使用`AppCompat 1.6.0-alpha05 (AndroidX)`以上版本 API，才能實作上述功能
-    2. 實際程式碼可參考[官方](https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture?hl=zh-tw#migrate-app)
-    3. 指定target SDK Android 16 以上的app需要處理相關事件，或是停用。
+  - 開発者への影響：
+    1. 上記の機能を実装するには`AppCompat 1.6.0-alpha05（AndroidX）`以上のAPIを使用する必要があります
+    2. 実際のコードは[公式ドキュメント](https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture?hl=ja#migrate-app)を参照できます
+    3. Android 16以上をターゲットとするアプリは、関連イベントを処理するか無効にする必要があります。
 
 
-### 所有應用程式：指定 Android 16 以上版本的應用程式，才會受到影響
-#### 使用者體驗和系統使用者介面 調整
-* `開發者`必需遷移或選擇不採用預測返回功能
-  - 因為前一個段落有提到Android 16 無論targetSDK的行為中，`開始支援`預測返回功能
-  - 現在開發者需要Handle預測返回事件，或是選擇直接停用，這裡`系統預設開啟`。
-    (可以參考上面段落的代碼或文章)
-    1. Handle 就實作相關代碼
-    2. 停用就去設置`android:enableOnBackInvokedCallback="false"`
+### すべてのアプリケーション：Android 16以上をターゲットとするアプリのみが影響を受けます
+#### ユーザーエクスペリエンスとシステムUIの調整
+* `開発者`は予測バック機能を移行するか、オプトアウトする必要があります
+  - 前のセクションで述べたように、targetSDKに関係なく、Android 16の動作は予測バック機能を`サポート開始`します
+  - 開発者は予測バックイベントを処理するか、直接無効にすることを選択する必要があります。`システムはデフォルトで有効`にしています。
+    （上記のセクションのコードまたは記事を参照できます）
+    1. 関連コードを実装して処理する
+    2. `android:enableOnBackInvokedCallback="false"`を設定して無効にする
 
-#### scheduleAtFixedRate最佳化
-* 舊版：應用程式返回有效生命週期時，所有錯過的執行作業會立即執行
-* 新版：最多只會立即執行一次遺漏的執行作業
-* API文件：https://developer.android.com/reference/java/util/concurrent/ScheduledExecutorService#scheduleAtFixedRate(java.lang.Runnable,%20long,%20long,%20java.util.concurrent.TimeUnit)
+#### scheduleAtFixedRateの最適化
+* 旧バージョン：アプリが有効なライフサイクルに戻ると、すべての見逃された実行ジョブがすぐに実行されます
+* 新バージョン：最大で1つの見逃された実行ジョブのみがすぐに実行されます
+* APIドキュメント：https://developer.android.com/reference/java/util/concurrent/ScheduledExecutorService?hl=ja#scheduleAtFixedRate(java.lang.Runnable,%20long,%20long,%20java.util.concurrent.TimeUnit)
 
-#### 大螢幕和板型規格 調整
-* 大螢幕定義：`最小寬度`大於等於 600 dp 的螢幕上
-* 官方表示，應將app製作成`自動調整式版面配置`，在當今的多裝置世界中，限制方向和可調整大小等模式過於嚴苛。
-  (有著未來會逐步移除相關可設置參數的感覺XD，目前主要是針對大螢幕)
-  ![Screenshot 2025-02-11 at 4.54.44 PM.png](/attachment/67ab1059ddf687cea7b2c219)
+#### 大画面とフォームファクター仕様の調整
+* 大画面の定義：`最小幅`が600 dp以上の画面
+* Googleは、今日のマルチデバイス世界では方向と再サイズの制限が厳しすぎるため、アプリは`適応型レイアウト`で作成すべきだと述べています。
+  （将来的には関連するパラメータを徐々に削除する可能性がありますが、現在は主に大画面を対象としています）
+  ![Screenshot 2025-02-11 at 4.54.44 PM.png](/attachment/67ab1059ddf687cea7b2c219)
 
-* targetSDK Android 16 上，最小寬度 ≥ 600dp 的螢幕上，系統會忽略：
-  `螢幕方向限制`、`大小調整限制`、`顯示比例限制`
-* 以下設置在大螢幕設備上會被忽略
+* targetSDK Android 16では、最小幅≥600dpの画面で、システムは以下を無視します：
+  `画面方向制限`、`サイズ変更制限`、`表示比率制限`
+* 以下の設定は大画面デバイスでは無視されます
     ```kotlin
     screenOrientation
     resizableActivity
@@ -220,7 +218,7 @@ excerpt: "Android16 適配筆記"
     setRequestedOrientation()
     getRequestedOrientation()
     ```
-* 在大螢幕，系統會忽略下列 screenOrientation、setRequestedOrientation() 和 getRequestedOrientation() 的值：
+* 大画面では、システムはscreenOrientation、setRequestedOrientation()、getRequestedOrientation()の以下の値を無視します：
     ```
     portrait
     reversePortrait
@@ -232,25 +230,19 @@ excerpt: "Android16 適配筆記"
     userLandscape
     ```
 
-* 不過現階段，官方也有提供退出該行為的參數，讓你有個過渡期 (最多到API 37)
-  ![Screenshot 2025-02-11 at 5.01.54 PM.png](/attachment/67ab1205ddf687cea7b2c371)
+* ただし、現段階では、Googleはこの動作からオプトアウトするためのパラメータも提供しており、移行期間（API 37まで）を与えています
+  ![Screenshot 2025-02-11 at 5.01.54 PM.png](/attachment/67ab1205ddf687cea7b2c371)
 
     ```xml
-    ## 指定頁面退出該行為 (最多到API 37)
+    ## この動作からオプトアウトするページを指定する（API 37まで）
     <activity>
       <property 
         android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" 
         android:value="true" />
     </activity>
 
-    ## 全域退出該行為 (最多到API 37)
+    ## この動作からグローバルにオプトアウトする（API 37まで）
     <application ...>
       <property android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" android:value="true" />
     </application>
-    ```
-
-#### 健康與健身權限
-
-* `BODY_SENSORS 權限轉換為更細緻的權限`：先前需要 `BODY_SENSORS` 或 `BODY_SENSORS_BACKGROUND` 的任何 API，現在都需要對應的 `android.permissions.health` 權限
-* 對開發者的影響：permission細化，需處裡。
-* [文件](https://developer.android.com/about/versions/16/behavior-changes-16?hl=zh-tw#health-fitness-permissions)
+    ``` 
